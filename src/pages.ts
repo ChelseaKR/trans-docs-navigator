@@ -73,7 +73,8 @@ export function renderChecklistPage(
   query = "",
 ): string {
   const s = uiStrings(lang);
-  const intro = `<p>Your steps are listed in the order most people complete them. Each links to its official source and the date it was last checked.</p>`;
+  const intro = `<p>Your steps are listed in the order most people complete them. Each links to its official source and the date it was last checked.</p>
+<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>`;
   const q = query ? `?${query}` : "";
   const actions = `<p class="no-print"><a href="/packet${q}">📄 ${escapeHtml(s.print)}</a> · <a href="/">${escapeHtml(s.startOver)}</a></p>`;
   const gaps = checklist.gaps.length
@@ -163,10 +164,12 @@ export function renderPacketPage(
  * download-and-instructions.
  */
 export function renderFormFillPage(form: FormDef, lang: Language = "en"): string {
+  const s = uiStrings(lang);
   if (!form.fillable) {
     const body = `
 <p>This official form is a flat scan that can't be auto-filled. Download the blank form and complete it by hand:</p>
-<p><a href="${escapeHtml(form.source.url)}" rel="noopener noreferrer">${escapeHtml(form.title)}</a></p>`;
+<p><a href="${escapeHtml(form.source.url)}" rel="noopener noreferrer">${escapeHtml(form.title)}</a></p>
+<p class="flag" role="note">${escapeHtml(s.notFilingNote)}</p>`;
     return page({ lang, title: form.title, heading: form.title, body });
   }
 
@@ -188,6 +191,7 @@ export function renderFormFillPage(form: FormDef, lang: Language = "en"): string
 
   const body = `
 <p><strong>Privacy:</strong> what you type here stays in your browser. The form is filled on your device and never sent anywhere.</p>
+<p class="flag" role="note">${escapeHtml(s.notFilingNote)}</p>
 <form id="fill" aria-label="${escapeHtml(form.title)}">
   <fieldset><legend>${escapeHtml(form.title)}</legend>${inputs}</fieldset>
   <button type="submit">Fill &amp; download</button>
