@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ny.court-order.name",
+    "jurisdiction": "US-NY",
+    "document_type": "court-order",
+    "change_type": ["name"],
+    "topic": "New York name change petition",
+    "statement": "In New York you change your legal name by filing a name change petition in civil court (or supreme court), and the judge signs an order granting the new name.",
+    "detail": "New York law allows a court to seal the record or waive the usual newspaper publication when publication could threaten the petitioner's safety — this is decided by the court.",
+    "cost": { "amount_usd": null, "note": "Filing fees vary by court; fee waivers are available for those who cannot afford them.", "fee_waiver": true },
+    "timeline": { "typical": "several weeks, depending on the court's calendar" },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.nycourts.gov/courthelp/Family/nameChange.shtml",
+      "title": "NY Courts — Changing Your Name",
+      "last_verified": "2026-05-31",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ny.drivers-license.gender-marker",
+    "jurisdiction": "US-NY",
+    "document_type": "drivers-license",
+    "change_type": ["gender-marker"],
+    "topic": "New York driver's license sex designation",
+    "statement": "New York lets you select a sex designation of F, M, or X on your driver's license or ID by self-attesting on the DMV's designation form — no medical proof is required.",
+    "cost": { "amount_usd": 0, "note": "No additional fee to change the designation." },
+    "timeline": { "typical": "processed with your DMV transaction" },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.ny.gov/driver-license/changing-sex-designation-your-license-permit-or-non-driver-id",
+      "title": "NY DMV — Changing the Sex Designation on Your License/ID",
+      "last_verified": "2026-05-31",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ny.drivers-license.name",
+    "jurisdiction": "US-NY",
+    "document_type": "drivers-license",
+    "change_type": ["name"],
+    "topic": "New York driver's license name change",
+    "statement": "To change the name on your New York license or ID, bring your court order and proof of identity to the DMV and apply for an amended document.",
+    "prerequisites": ["court-order"],
+    "source": {
+      "url": "https://dmv.ny.gov/driver-license/change-name-your-dmv-records",
+      "title": "NY DMV — Change the Name on Your DMV Records",
+      "last_verified": "2026-05-31",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

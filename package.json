@@ -1,0 +1,35 @@
+{
+  "name": "trans-docs-navigator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Privacy-first, fully-cited navigator for legal name and gender-marker changes. Information, never legal advice.",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --test --experimental-strip-types 'tests/**/*.test.ts'",
+    "test:coverage": "node --test --experimental-test-coverage --experimental-strip-types 'tests/**/*.test.ts'",
+    "lint": "node --experimental-strip-types scripts/lint.ts",
+    "content:validate": "node --experimental-strip-types scripts/content-validate.ts",
+    "citation:coverage": "node --experimental-strip-types scripts/citation-coverage.ts",
+    "privacy:lint": "node --experimental-strip-types scripts/privacy-lint.ts",
+    "freshness": "node --experimental-strip-types scripts/freshness.ts",
+    "disclosure:check": "node --experimental-strip-types scripts/disclosure-check.ts",
+    "readability": "node --experimental-strip-types scripts/readability.ts",
+    "eval": "node --experimental-strip-types eval/run.ts",
+    "eval:bedrock": "node --experimental-strip-types eval/run-bedrock.ts",
+    "loadtest": "node --experimental-strip-types scripts/latency-bench.ts",
+    "a11y": "node --experimental-strip-types scripts/a11y-lint.ts",
+    "dev": "node --experimental-strip-types api/server.ts"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.19",
+    "typescript": "^5.8.3"
+  }
+}

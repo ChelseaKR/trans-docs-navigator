@@ -1,0 +1,13 @@
+node_modules/
+*.log
+.DS_Store
+coverage/
+dist/
+.env
+.env.*
+!.env.example
+infra/.terraform/
+infra/*.tfstate*
+# Ephemeral by design: nothing user-generated is ever persisted.
+*.session.json
+tmp/

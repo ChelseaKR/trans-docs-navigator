@@ -1,0 +1,84 @@
+[
+  {
+    "id": "us.ssa-card.name",
+    "jurisdiction": "US",
+    "document_type": "ssa-card",
+    "change_type": ["name"],
+    "topic": "Social Security record name change",
+    "statement": "To change the name on your Social Security record, file Form SS-5 (Application for a Social Security Card) and show original documents proving your legal name change, such as a court order, and proof of identity.",
+    "detail": "You can file by mail or at a local Social Security office. There is no fee. Updating Social Security early helps other agencies that check your record.",
+    "cost": { "amount_usd": 0, "note": "Social Security does not charge a fee for a corrected card." },
+    "timeline": { "typical": "2–4 weeks for the updated card to arrive" },
+    "prerequisites": ["court-order"],
+    "source": {
+      "url": "https://www.ssa.gov/forms/ss-5.pdf",
+      "title": "SSA Form SS-5, Application for a Social Security Card",
+      "last_verified": "2026-05-31",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "us-ss-5",
+    "language": "en"
+  },
+  {
+    "id": "us.ssa-card.gender-marker",
+    "jurisdiction": "US",
+    "document_type": "ssa-card",
+    "change_type": ["gender-marker"],
+    "topic": "Social Security gender marker policy",
+    "statement": "Federal policy on the sex/gender marker held in Social Security records has changed recently and is being litigated.",
+    "detail": "Because this is volatile, the navigator does not present a current rule here; it must be reverified against the official source before being shown as fact.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ssa.gov/",
+      "title": "Social Security Administration",
+      "last_verified": "2025-01-15",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "us.passport.name",
+    "jurisdiction": "US",
+    "document_type": "passport",
+    "change_type": ["name"],
+    "topic": "U.S. passport name change",
+    "statement": "To update the name on your U.S. passport, submit a passport application with a certified copy of the document that legally changed your name, such as a court order.",
+    "detail": "If your most recent passport was issued within the last year, the correction may be free; otherwise you apply with Form DS-82 (renewal by mail) or DS-11 (in person) and pay the applicable fee.",
+    "cost": { "amount_usd": null, "note": "Free for recent passports corrected within a year; otherwise standard application fees apply.", "fee_waiver": false },
+    "timeline": { "typical": "several weeks; expedited service is available for an extra fee" },
+    "prerequisites": ["court-order"],
+    "source": {
+      "url": "https://travel.state.gov/content/travel/en/passports/have-passport/change-correct.html",
+      "title": "U.S. Department of State — Change or Correct a Passport",
+      "last_verified": "2026-05-31",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "us-ds-82",
+    "language": "en"
+  },
+  {
+    "id": "us.passport.gender-marker",
+    "jurisdiction": "US",
+    "document_type": "passport",
+    "change_type": ["gender-marker"],
+    "topic": "U.S. passport sex marker policy",
+    "statement": "Federal policy on the sex marker printed in U.S. passports has changed recently and is subject to ongoing litigation.",
+    "detail": "Because this is volatile, the navigator does not present a current rule here; it must be reverified against the official State Department source before being shown as fact.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://travel.state.gov/content/travel/en/passports.html",
+      "title": "U.S. Department of State — Passports",
+      "last_verified": "2025-01-20",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]

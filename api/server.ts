@@ -1,0 +1,109 @@
+// HTTP shell. The PRIVACY INVARIANT (enforced by privacy-lint) holds here: this file
+// references no identity PII. All routing/validation logic lives in api/router.ts (which
+// is unit-tested and coverage-gated); this file only does HTTP plumbing — security
+// headers, request bounds, a simple rate limit, timeouts, and static-file serving.
+
+import { createServer } from "node:http";
+import type { IncomingMessage, ServerResponse } from "node:http";
+import { readFileSync, existsSync, statSync } from "node:fs";
+import { join, normalize, extname } from "node:path";
+import { REPO_ROOT, loadCorpus, LAST_QUARANTINE } from "./corpus.ts";
+import { safeLog } from "./log.ts";
+import { handleRoute } from "./router.ts";
+
+const PORT = Number(process.env.PORT ?? 8080);
+
+// Abuse resistance.
+const MAX_URL_LEN = 4096; // reject absurd query strings before parsing
+const REQUEST_TIMEOUT_MS = 15_000; // socket idle/processing timeout
+const RATE_LIMIT = { windowMs: 60_000, max: 120 }; // per-IP requests/min
+
+const MIME: Record<string, string> = {
+  ".pdf": "application/pdf",
+  ".js": "text/javascript; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
+};
+
+// Conservative security headers. CSP allows the same-origin pdf-lib bundle; the only
+// inline script is the client-side form-fill, so 'unsafe-inline' is scoped to script
+// and style. (Hardening to nonces is a follow-up once the bundle is externalized.)
+const SECURITY_HEADERS: Record<string, string> = {
+  "content-security-policy":
+    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'",
+  "x-content-type-options": "nosniff",
+  "x-frame-options": "DENY",
+  "referrer-policy": "no-referrer",
+  "cross-origin-opener-policy": "same-origin",
+};
+
+function send(res: ServerResponse, status: number, contentType: string, body: string | Buffer): void {
+  res.writeHead(status, { "content-type": contentType, ...SECURITY_HEADERS });
+  res.end(body);
+}
+
+/** Serve a static file only from the public/ and forms/fixtures/ allowlist. */
+function tryStatic(pathname: string, res: ServerResponse): boolean {
+  const allowed = pathname.startsWith("/vendor/") || pathname.startsWith("/forms/fixtures/");
+  if (!allowed) return false;
+  const full = normalize(join(REPO_ROOT, pathname.startsWith("/vendor/") ? join("public", pathname) : pathname));
+  if (!full.startsWith(REPO_ROOT) || !existsSync(full) || !statSync(full).isFile()) return false;
+  send(res, 200, MIME[extname(full)] ?? "application/octet-stream", readFileSync(full));
+  return true;
+}
+
+// Tiny in-memory fixed-window rate limiter (per client IP). Stateless service, so this
+// is best-effort process-local protection; a real deploy fronts it with an edge limiter.
+const hits = new Map<string, { count: number; resetAt: number }>();
+function rateLimited(ip: string, now: number): boolean {
+  const slot = hits.get(ip);
+  if (!slot || now >= slot.resetAt) {
+    hits.set(ip, { count: 1, resetAt: now + RATE_LIMIT.windowMs });
+    return false;
+  }
+  slot.count++;
+  return slot.count > RATE_LIMIT.max;
+}
+
+const server = createServer((req: IncomingMessage, res: ServerResponse) => {
+  const start = Date.now();
+  const ip = req.socket.remoteAddress ?? "unknown";
+  let route = "/";
+  try {
+    if ((req.url ?? "").length > MAX_URL_LEN) {
+      send(res, 414, "text/plain; charset=utf-8", "URI too long");
+      return;
+    }
+    if (rateLimited(ip, start)) {
+      res.writeHead(429, { "content-type": "text/plain; charset=utf-8", "retry-after": "60", ...SECURITY_HEADERS });
+      res.end("Too many requests");
+      safeLog("rate_limited", { status: 429 });
+      return;
+    }
+
+    const url = new URL(req.url ?? "/", `http://localhost:${PORT}`);
+    route = url.pathname;
+
+    if (tryStatic(route, res)) return;
+
+    const r = handleRoute(req.method ?? "GET", url);
+    send(res, r.status, r.contentType, r.body);
+    if (r.log) safeLog(r.log.event, r.log.fields);
+  } catch (err) {
+    send(res, 500, "text/html; charset=utf-8", "<!doctype html><html lang=en><title>Error</title><p>Something went wrong. Please try again.</p>");
+    safeLog("error", { route, status: 500, error: (err as Error).message });
+  } finally {
+    safeLog("request", { route, method: req.method ?? "GET", duration_ms: Date.now() - start });
+  }
+});
+
+// Warm the corpus in fail-DEGRADED mode at startup: a single malformed record is
+// quarantined (and alarmed) rather than taking the whole service down. CI still loads
+// fail-closed via the content gate, so a bad record can't reach production unseen.
+loadCorpus({ quarantine: true });
+if (LAST_QUARANTINE.length > 0) {
+  safeLog("corpus_quarantine", { quarantined: LAST_QUARANTINE.length, status: 200 });
+}
+
+server.requestTimeout = REQUEST_TIMEOUT_MS;
+server.headersTimeout = REQUEST_TIMEOUT_MS;
+server.listen(PORT, () => safeLog("listening", { route: `http://localhost:${PORT}`, status: 200 }));

@@ -1,0 +1,12 @@
+{
+  "_comment": "Named-verifier roster (ROADMAP §4, ADR-3). Every corpus record's source.verifier MUST appear here by exact name, so an unknown/typo'd verifier cannot be committed. A verifier marked placeholder:true is an illustrative seed reviewer, NOT a real human verification — any record verified by a placeholder is mechanically valid but is NEVER launch-cleared. Replacing the placeholder with a real, accountable human verifier (per jurisdiction) is the OPEN P0 review-gate in docs/STATUS.md.",
+  "roster": [
+    {
+      "name": "Pilot Seed Reviewer",
+      "role": "seed",
+      "affiliation": "Trans Docs Navigator (reference build)",
+      "placeholder": true,
+      "note": "Illustrative seed data only (ADR-3). Records carrying this verifier are not launch-cleared; they exist to exercise the gates against realistic-shaped content."
+    }
+  ]
+}

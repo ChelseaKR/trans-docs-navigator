@@ -1,0 +1,8 @@
+{
+  "_comment": "Authorship provenance for the gold/accuracy oracle (ROADMAP §4, ADR-3). The eval is only a real measurement when the gold set is authored INDEPENDENTLY of the corpus — otherwise accuracy is partly tautological (the oracle was written to match the data it grades). This file makes that status explicit and machine-checkable: no jurisdiction may be launch_cleared while independent_author is false.",
+  "independent_author": false,
+  "gold_author": "Trans Docs Navigator (reference build)",
+  "corpus_author": "Trans Docs Navigator (reference build)",
+  "reviewed_by": null,
+  "note": "Co-authored with the seed corpus to exercise the harness mechanism. Replace with an independently-authored, expert-reviewed gold set (e.g. via a trans legal-aid partner) before launch. This is the OPEN P0 review-gate #2 in docs/STATUS.md."
+}

@@ -1,0 +1,74 @@
+name: ci
+
+# The blocking enforcement pipeline (QUALITY-AND-METRICS-STANDARD §"enforcement
+# pipeline"). A merge to main requires every job green; branch protection enforces it.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci
+      # The full local gate set: lint, typecheck, tests+coverage, security,
+      # content, citation coverage, privacy, freshness, disclosure, a11y (mechanical), eval.
+      - run: make verify
+      - name: Upload committed audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-reports
+          path: docs/audits/
+
+  a11y-browser:
+    # Real-browser accessibility gate (BLOCKING). Covers the ~60–70% of WCAG that the
+    # static linter cannot (axe + HTML_CodeSniffer in a real browser). The remaining
+    # manual screen-reader / keyboard / 200%-zoom walkthrough stays review-gated and is
+    # signed off in docs/audits/accessibility-YYYY-MM-DD.md.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci
+      - name: Start server
+        run: |
+          PORT=8080 node --experimental-strip-types api/server.ts &
+          npx --yes wait-on http://localhost:8080/healthz
+      - name: pa11y-ci (axe-core + htmlcs, zero violations)
+        # Explicit URL list in .pa11yci.json (the app serves no sitemap). Zero-violation
+        # threshold; a violation fails the job. This is a required check via branch protection.
+        run: npx --yes pa11y-ci --config .pa11yci.json
+
+  security-sast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Semgrep SAST (BLOCKING)
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: p/typescript p/owasp-top-ten
+        # Blocking: a SAST finding fails the job (required check via branch protection).
+
+  container-and-infra:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build container
+        run: docker build -t trans-docs-navigator:ci .
+      - name: Terraform validate
+        run: |
+          cd infra
+          terraform init -backend=false
+          terraform validate

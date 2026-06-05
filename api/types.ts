@@ -1,0 +1,163 @@
+// Domain types for the Trans Docs Navigator.
+// Mirrors ROADMAP.md §6 data model: Jurisdiction, DocumentType, Requirement
+// (source, last_verified, verifier), Form (field_map, fillable?), ChecklistTemplate,
+// and an ephemeral client-side Session (never persisted server-side in default mode).
+
+/** A US jurisdiction. "US" denotes a federal-level document (SSA, passport). */
+export type JurisdictionId = string; // e.g. "US-CA", "US-NY", "US-IL", "US"
+
+/** The official documents a person may need to update. */
+export type DocumentType =
+  | "court-order"
+  | "ssa-card"
+  | "drivers-license"
+  | "passport"
+  | "birth-certificate"
+  | "financial-records";
+
+/** Which kind of legal change a record/step addresses. */
+export type ChangeType = "name" | "gender-marker";
+
+export type Language = "en" | "es";
+
+/**
+ * Verification state of a corpus record.
+ * - verified:            a named human confirmed it against the source, within SLA.
+ * - needs_reverification: stale or volatile; degraded to "needs reverification", never served as current fact.
+ * - unverified:          ingested but not yet human-checked; never served.
+ */
+export type VerificationStatus = "verified" | "needs_reverification" | "unverified";
+
+/** Provenance for a single substantive claim. Guardrail #1: no claim without this. */
+export interface Source {
+  url: string;
+  title: string;
+  /** ISO date (YYYY-MM-DD) a named human last verified the claim against the source. */
+  last_verified: string;
+  /** The named human verifier. "UNVERIFIED" is not allowed to render. */
+  verifier: string;
+}
+
+export interface Cost {
+  /** Dollar amount, or null when the cost is variable/unknown (must then carry a note). */
+  amount_usd: number | null;
+  note?: string;
+  /** True when a documented fee-waiver path exists. */
+  fee_waiver?: boolean;
+}
+
+export interface Timeline {
+  typical: string; // plain-language, e.g. "2–8 weeks"
+  note?: string;
+}
+
+/**
+ * One citable corpus record: a single requirement/fact for a (jurisdiction × document × change).
+ * This IS the retrieval unit and the citation unit.
+ */
+export interface CorpusRecord {
+  id: string;
+  jurisdiction: JurisdictionId;
+  document_type: DocumentType;
+  change_type: ChangeType[];
+  topic: string;
+  /** The substantive, plain-language claim (~8th-grade readability). */
+  statement: string;
+  detail?: string;
+  cost?: Cost;
+  timeline?: Timeline;
+  /** Record ids or step keys that must be completed first. */
+  prerequisites?: string[];
+  /** True when the outcome varies by court/clerk and must be framed as "varies". */
+  discretionary?: boolean;
+  source: Source;
+  verification_status: VerificationStatus;
+  /** Per-record freshness SLA in days. Legal content defaults to 90. */
+  recheck_sla_days: number;
+  /** id into the forms registry, when an official form backs this step. */
+  form_ref?: string;
+  language: Language;
+}
+
+/** A field on an official, fillable form, mapped to an intake key. */
+export interface FieldMapEntry {
+  /** The PDF AcroForm field name. */
+  pdf_field: string;
+  /** The intake/session key that supplies the value (e.g. "new_legal_name"). */
+  intake_key: string;
+  /** Optional fixed transform for checkboxes/selects. */
+  kind?: "text" | "checkbox";
+  /** For checkbox fields, the on-value to set when the intake value is truthy. */
+  on_value?: string;
+}
+
+export interface FormDef {
+  id: string;
+  jurisdiction: JurisdictionId;
+  document_type: DocumentType;
+  change_type: ChangeType[];
+  title: string;
+  /** Official source for the blank form. */
+  source: Source;
+  /** False for flat scans that cannot be programmatically filled (degrade to instructions). */
+  fillable: boolean;
+  field_map: FieldMapEntry[];
+  /** Path (relative to repo root) of the blank PDF fixture, when fillable. */
+  template_path?: string;
+}
+
+/** Minimal, respectful intake. Lives only in client memory/session — never persisted server-side. */
+export interface Intake {
+  jurisdiction: JurisdictionId;
+  change_types: ChangeType[];
+  /** Documents the user wants to update; empty means "recommend the standard set". */
+  documents: DocumentType[];
+  language: Language;
+  /** Optional, all skippable — used only client-side for form pre-fill. */
+  current_legal_name?: string;
+  new_legal_name?: string;
+  has_court_order?: boolean;
+}
+
+/** One step in a generated, ordered checklist. */
+export interface ChecklistStep {
+  key: string;
+  order: number;
+  document_type: DocumentType;
+  title: string;
+  /** Record ids backing this step's substantive content. */
+  record_ids: string[];
+  prerequisites: string[]; // step keys
+  cost?: Cost;
+  timeline?: Timeline;
+  discretionary: boolean;
+  /** True when at least one backing record is degraded → step shows "needs reverification". */
+  needs_reverification: boolean;
+  form_ref?: string;
+}
+
+export interface Checklist {
+  jurisdiction: JurisdictionId;
+  change_types: ChangeType[];
+  language: Language;
+  steps: ChecklistStep[];
+  /** Step keys that could not be produced because no verified corpus backs them. */
+  gaps: { document_type: DocumentType; reason: string }[];
+}
+
+/** A single rendered unit of a grounded answer. */
+export interface AnswerBlock {
+  text: string;
+  /** Record ids cited by this block. Empty only when `kind` is non-substantive. */
+  citations: string[];
+  /** substantive claims must be cited; boilerplate/uncertainty/refusal need not be. */
+  kind: "claim" | "boilerplate" | "uncertainty" | "refusal" | "freshness";
+}
+
+export interface GroundedAnswer {
+  blocks: AnswerBlock[];
+  /** Records actually used, deduped, for rendering the source list. */
+  cited_records: CorpusRecord[];
+  /** True when retrieval found nothing serveable and the system refused. */
+  refused: boolean;
+}
