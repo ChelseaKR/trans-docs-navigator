@@ -57,8 +57,8 @@ export function renderIntakePage(lang: Language = "en"): string {
     <legend>Language</legend>
     <label for="language">Language</label>
     <select id="language" name="language">
-      <option value="en">English</option>
-      <option value="es">Español</option>
+      <option value="en"${lang === "en" ? " selected" : ""}>English</option>
+      <option value="es"${lang === "es" ? " selected" : ""}>Español</option>
     </select>
   </fieldset>
   <button type="submit">Show my checklist</button>
@@ -99,14 +99,14 @@ function renderResumePanel(s: ReturnType<typeof uiStrings>, query: string): stri
 <section class="no-print" aria-labelledby="resume-h">
   <h2 id="resume-h">${escapeHtml(s.resumeTitle)}</h2>
   <p class="meta">${escapeHtml(s.resumeIntro)}</p>
-  <form id="resume" onsubmit="return false">
+  <div id="resume" role="group" aria-labelledby="resume-h">
     <label for="resume-pass">${escapeHtml(s.passLabel)}</label>
     <input id="resume-pass" type="password" autocomplete="off" autocapitalize="off" spellcheck="false">
     <button type="button" id="resume-save">${escapeHtml(s.saveBtn)}</button>
     <button type="button" id="resume-load">${escapeHtml(s.resumeBtn)}</button>
     <button type="button" id="resume-del">${escapeHtml(s.deleteBtn)}</button>
     <p id="resume-status" role="status" aria-live="polite" class="meta"></p>
-  </form>
+  </div>
 </section>
 <script>
 (function(){

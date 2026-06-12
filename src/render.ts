@@ -20,7 +20,7 @@ const T = {
   en: {
     skip: "Skip to main content",
     bannerTitle: "Information, not legal advice",
-    bannerBody: DISCLOSURE.notLegalAdvice + " " + DISCLOSURE.aiAssisted,
+    bannerBody: DISCLOSURE.aiAssisted, // title already carries the "not legal advice" sentence
     footer: "Your answers stay in your browser. Nothing you enter is sent to or stored on a server.",
     legalNav: "Legal and policies",
     termsLink: "Terms of Use",
@@ -52,7 +52,7 @@ const T = {
   es: {
     skip: "Saltar al contenido principal",
     bannerTitle: "Información, no asesoramiento legal",
-    bannerBody: "Información, no asesoramiento legal. Asistido por IA, basado en fuentes citadas.",
+    bannerBody: "Asistido por IA, basado en fuentes citadas.",
     footer: "Sus respuestas permanecen en su navegador. Nada de lo que escribe se envía ni se almacena en un servidor.",
     legalNav: "Legal y políticas",
     termsLink: "Términos de uso",
@@ -110,6 +110,7 @@ main{max-width:60rem;margin:0 auto;padding:1.5rem 1rem}
 .flag{color:var(--warn);font-weight:600}
 fieldset{border:1px solid var(--line);border-radius:.5rem;margin:1rem 0;padding:1rem}
 label{display:block;margin:.4rem 0}
+input[type=text],input[type=password],select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:.3rem;padding:.5rem;font:inherit;max-width:100%}
 button{background:var(--accent);color:#000;border:0;border-radius:.4rem;padding:.6rem 1.2rem;font-size:1rem;cursor:pointer}
 footer{max-width:60rem;margin:0 auto;padding:1.5rem 1rem;color:var(--muted);border-top:1px solid var(--line)}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
