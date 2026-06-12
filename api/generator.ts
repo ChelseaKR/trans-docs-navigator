@@ -166,22 +166,45 @@ export function buildBedrockPrompt(input: GenerateInput): string {
   ].join("\n");
 }
 
+/** Hard cap on model output we'll parse — defense against pathological/giant output. */
+const MAX_PARSE_LEN = 16_000;
+
 /**
  * Parse model output into AnswerBlocks. Each text chunk is paired with the citation
  * tag(s) that FOLLOW it (so a tag at the end of a sentence stays attached to it). Any
  * trailing text with no following tag becomes an uncited claim — which enforce() rejects.
+ *
+ * Implemented as a LINEAR single pass over `[c:<id>]` tag matches (no lazy-star global
+ * regex — that backtracks O(n²) on adversarial input). Input is length-capped.
  */
 export function parseTaggedOutput(text: string): AnswerBlock[] {
+  const src = text.length > MAX_PARSE_LEN ? text.slice(0, MAX_PARSE_LEN) : text;
   const blocks: AnswerBlock[] = [];
-  const unit = /([\s\S]*?)((?:\s*\[c:[a-z0-9._-]+\])+)/gi;
-  let lastIndex = 0;
-  for (const m of text.matchAll(unit)) {
-    const ids = [...m[2]!.matchAll(/\[c:([a-z0-9._-]+)\]/gi)].map((t) => t[1]!);
-    const clean = m[1]!.replace(/^[\s.!?,;:]+/, "").trim();
-    lastIndex = m.index + m[0].length;
+  const tag = /\[c:([a-z0-9._-]+)\]/gi;
+  let cursor = 0; // start of the current text chunk
+  let chunkStart = 0;
+  let ids: string[] = [];
+  let m: RegExpExecArray | null;
+
+  const flush = (textEnd: number) => {
+    const clean = src.slice(chunkStart, textEnd).replace(/^[\s.!?,;:]+/, "").replace(/\s*\[c:[a-z0-9._-]+\]\s*/gi, " ").trim();
     if (clean.length > 0) blocks.push({ kind: "claim", citations: ids, text: clean });
+    ids = [];
+  };
+
+  while ((m = tag.exec(src)) !== null) {
+    // Collect consecutive tags (possibly separated by spaces) into the same claim.
+    ids.push(m[1]!);
+    const after = m.index + m[0].length;
+    // Peek: if the next non-space is another tag, keep accumulating into this chunk.
+    const restAfter = src.slice(after);
+    if (/^\s*\[c:/i.test(restAfter)) continue;
+    flush(after);
+    chunkStart = after;
+    cursor = after;
   }
-  const rest = text.slice(lastIndex).replace(/^[\s.!?,;:]+/, "").trim();
+  // Trailing text after the last tag (no citation) → uncited claim (rejected by enforce).
+  const rest = src.slice(cursor).replace(/^[\s.!?,;:]+/, "").trim();
   if (rest.length > 0) blocks.push({ kind: "claim", citations: [], text: rest });
   return blocks;
 }

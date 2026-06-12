@@ -18,7 +18,7 @@ export interface FreshnessVerdict {
   current: boolean;
   ageDays: number;
   /** Why it is or isn't current. */
-  reason: "verified-within-sla" | "past-sla" | "needs-reverification" | "unverified";
+  reason: "verified-within-sla" | "past-sla" | "needs-reverification" | "unverified" | "future-date";
 }
 
 export function freshnessOf(rec: CorpusRecord, today: string = DEFAULT_TODAY): FreshnessVerdict {
@@ -30,6 +30,11 @@ export function freshnessOf(rec: CorpusRecord, today: string = DEFAULT_TODAY): F
     return { current: false, ageDays, reason: "needs-reverification" };
   }
   // verified:
+  // A last_verified date in the FUTURE (data-entry typo, e.g. 2027 for 2025) would yield a
+  // negative age and otherwise pass the SLA forever. Never trust a future verification date.
+  if (ageDays < 0) {
+    return { current: false, ageDays, reason: "future-date" };
+  }
   if (ageDays > rec.recheck_sla_days) {
     return { current: false, ageDays, reason: "past-sla" };
   }

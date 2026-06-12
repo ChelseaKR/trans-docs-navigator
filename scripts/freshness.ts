@@ -15,10 +15,14 @@ const violations: string[] = [];
 const degraded: string[] = [];
 
 for (const rec of corpus) {
+  const f = freshnessOf(rec, today);
   if (staleButMarkedCurrent(rec, today)) {
-    const f = freshnessOf(rec, today);
     violations.push(`${rec.id} — verified but ${f.ageDays}d old > ${rec.recheck_sla_days}d SLA (re-mark needs_reverification)`);
-  } else if (freshnessOf(rec, today).reason === "needs-reverification") {
+  } else if (rec.verification_status === "verified" && f.reason === "future-date") {
+    // A verified record dated in the future is a data-entry error that would otherwise
+    // read as permanently "current" — fail closed rather than trust the date.
+    violations.push(`${rec.id} — last_verified is in the FUTURE (${rec.source.last_verified}); fix the date`);
+  } else if (f.reason === "needs-reverification") {
     degraded.push(rec.id);
   }
 }
