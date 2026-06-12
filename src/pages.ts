@@ -5,7 +5,7 @@
 // filled entirely in the browser.
 
 import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from "../api/types.ts";
-import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, DOC_LABELS, gapReason } from "./render.ts";
+import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, DOC_LABELS, gapReason, fieldLabel } from "./render.ts";
 import { toResumeState } from "./secure-resume.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
@@ -183,10 +183,11 @@ export function renderFormFillPage(form: FormDef, lang: Language = "en"): string
 
   const inputs = form.field_map
     .map((m) => {
+      const label = fieldLabel(lang, m.intake_key);
       if (m.kind === "checkbox") {
-        return `<label><input type="checkbox" data-key="${m.intake_key}"> ${escapeHtml(m.intake_key.replace(/_/g, " "))}</label>`;
+        return `<label><input type="checkbox" data-key="${m.intake_key}"> ${escapeHtml(label)}</label>`;
       }
-      return `<label for="f_${m.intake_key}">${escapeHtml(m.intake_key.replace(/_/g, " "))}</label>
+      return `<label for="f_${m.intake_key}">${escapeHtml(label)}</label>
         <input id="f_${m.intake_key}" type="text" data-key="${m.intake_key}" autocomplete="off">`;
     })
     .join("");

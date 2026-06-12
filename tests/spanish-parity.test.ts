@@ -59,6 +59,14 @@ test("Spanish-thin states surface an honest coverage note (TX has no ES state re
   assert.doesNotMatch(ca.body, /aún no están listos/);
 });
 
+test("form-fill field labels are friendly and localized", () => {
+  const en = handleRoute("GET", u("/forms/us-ss-5")).body;
+  assert.match(en, /<label for="f_new_legal_name">New legal name<\/label>/); // friendly label, not snake_case
+  const es = handleRoute("GET", u("/forms/us-ss-5?language=es")).body;
+  assert.match(es, /Nuevo nombre legal/);
+  assert.match(es, /Tengo una orden judicial/); // checkbox label
+});
+
 test("405 carries an Allow header", () => {
   const r = handleRoute("POST", u("/"));
   assert.equal(r.status, 405);

@@ -43,6 +43,23 @@ export function gapReason(lang: Language, reason: "no-records" | "all-degraded")
   return reason === "no-records" ? T[lang].gapNoRecords : T[lang].gapAllDegraded;
 }
 
+/** Friendly labels for the form-fill intake keys (a small fixed set). Falls back to the key. */
+export const FIELD_LABELS: Record<Language, Record<string, string>> = {
+  en: {
+    new_legal_name: "New legal name",
+    current_legal_name: "Current legal name",
+    has_court_order: "I have a court order",
+  },
+  es: {
+    new_legal_name: "Nuevo nombre legal",
+    current_legal_name: "Nombre legal actual",
+    has_court_order: "Tengo una orden judicial",
+  },
+};
+export function fieldLabel(lang: Language, intakeKey: string): string {
+  return FIELD_LABELS[lang][intakeKey] ?? intakeKey.replace(/_/g, " ");
+}
+
 export function escapeHtml(s: string): string {
   return s
     .replace(/&/g, "&amp;")
