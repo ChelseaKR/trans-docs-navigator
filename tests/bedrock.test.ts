@@ -15,7 +15,7 @@ const caQuery = { jurisdiction: "US-CA", change_types: ["name"] as ("name")[], d
 const transportOf = (text: string): BedrockTransport => async () => text;
 
 test("a faithful (validly tagged) model answer passes the citation gate", async () => {
-  const gen = new BedrockGenerator(transportOf("File the petition and pay the fee. [c:ca.court-order.name]"));
+  const gen = new BedrockGenerator(transportOf("File a Petition for Change of Name in the superior court. [c:ca.court-order.name]"));
   const ans = await answerAsync(caQuery, { generator: gen });
   assert.equal(ans.refused, false);
   assert.ok(ans.cited_records.some((r) => r.id === "ca.court-order.name"));
@@ -24,18 +24,26 @@ test("a faithful (validly tagged) model answer passes the citation gate", async 
 
 test("a hallucinated UNCITED claim is rejected (not rendered)", async () => {
   const gen = new BedrockGenerator(transportOf("Your name change is legally approved and final."));
-  await assert.rejects(() => answerAsync(caQuery, { generator: gen }), /Citation coverage .* < 100%/);
+  await assert.rejects(() => answerAsync(caQuery, { generator: gen }), /rejected/);
+});
+
+test("a fabricated claim mis-cited to a real, current record is rejected (faithfulness)", async () => {
+  // The citation id is real and current, but the claim text is not supported by it.
+  const gen = new BedrockGenerator(
+    transportOf("California will pay you $500 and approve your name change automatically with no court. [c:ca.court-order.name]"),
+  );
+  await assert.rejects(() => answerAsync(caQuery, { generator: gen }), /unfaithful-claim|rejected/);
 });
 
 test("a FABRICATED citation (no such record) is rejected", async () => {
   const gen = new BedrockGenerator(transportOf("Do this special thing. [c:totally.made.up]"));
-  await assert.rejects(() => answerAsync(caQuery, { generator: gen }), /unresolved-citation|< 100%/);
+  await assert.rejects(() => answerAsync(caQuery, { generator: gen }), /rejected/);
 });
 
-test("a claim citing a STALE record is rejected", async () => {
-  // tx.drivers-license.gender-marker is needs_reverification → not current.
-  const gen = new BedrockGenerator(transportOf("This is fine. [c:tx.drivers-license.gender-marker]"));
-  await assert.rejects(() => answerAsync(caQuery, { generator: gen }), /stale-citation|< 100%/);
+test("a citation to a record NOT in the retrieved set is rejected (anti-mis-grounding)", async () => {
+  // A real, current record from another jurisdiction is not in the CA grounding set.
+  const gen = new BedrockGenerator(transportOf("File a petition for change of name. [c:ny.court-order.name]"));
+  await assert.rejects(() => answerAsync(caQuery, { generator: gen }), /unresolved-citation|rejected/);
 });
 
 test("an injection echoed by the model still cannot render uncited", async () => {
@@ -82,6 +90,16 @@ test("parseTaggedOutput: tagged → claim with citations; untagged → uncited c
   assert.equal(claims.length, 3);
   assert.deepEqual(claims[0]!.citations, ["a.b"]);
   assert.deepEqual(claims[2]!.citations, []); // untagged ⇒ will be rejected by enforce
+});
+
+test("parseTaggedOutput is linear and input-bounded (no ReDoS)", () => {
+  // The old lazy-star global regex was O(n²): ~22s on 80k chars. This must be ~instant.
+  const adversarial = "x ".repeat(40000) + "[c:".repeat(40000);
+  const start = process.hrtime.bigint();
+  const blocks = parseTaggedOutput(adversarial);
+  const ms = Number(process.hrtime.bigint() - start) / 1e6;
+  assert.ok(ms < 500, `parse took ${ms.toFixed(0)}ms — possible quadratic blowup`);
+  assert.ok(Array.isArray(blocks));
 });
 
 test("the offline localGroundedTransport exercises the full model path safely", async () => {

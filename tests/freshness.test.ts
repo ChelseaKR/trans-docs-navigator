@@ -40,6 +40,15 @@ test("needs_reverification degrades and is not stale-as-current", () => {
   assert.equal(staleButMarkedCurrent(r, today), false);
 });
 
+test("a future last_verified date is never current (data-entry typo guard)", () => {
+  const future = { ...base, source: { ...base.source, last_verified: "2027-01-01" } };
+  const v = freshnessOf(future, today);
+  assert.equal(v.current, false);
+  assert.equal(v.reason, "future-date");
+  assert.ok(v.ageDays < 0);
+  assert.equal(isCurrent(future, today), false);
+});
+
 test("unverified is never current", () => {
   const r = { ...base, verification_status: "unverified" as const };
   assert.equal(freshnessOf(r, today).reason, "unverified");

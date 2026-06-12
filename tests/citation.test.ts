@@ -62,6 +62,33 @@ test("stale-only citation fails (cannot serve stale as fact)", () => {
   assert.ok(r.violations.some((v) => v.reason === "stale-citation"));
 });
 
+test("enforce rejects a claim that mixes a valid and a stale citation (no smuggling)", () => {
+  const ans = answerWith([{ kind: "claim", citations: ["good.rec", "stale.rec"], text: "fact" }]);
+  // Coverage counts the claim cited (it has one valid id), but a stale citation is a
+  // violation — enforce must still reject so a stale source can't ride along.
+  assert.equal(checkCoverage(ans, corpus, today).coverage, 1);
+  assert.throws(() => enforce(ans, corpus, today), /rejected/);
+});
+
+test("grounding restricts which records a citation may resolve to", () => {
+  const ans = answerWith([{ kind: "claim", citations: ["good.rec"], text: "fact" }]);
+  // good.rec is in the corpus but NOT in the grounding set → unresolved.
+  const r = checkCoverage(ans, corpus, today, { grounding: [staleRec] });
+  assert.ok(r.violations.some((v) => v.reason === "unresolved-citation"));
+  assert.equal(r.coverage, 0);
+});
+
+test("requireFaithful rejects a claim whose text isn't supported by the cited record", () => {
+  const faithful = answerWith([{ kind: "claim", citations: ["good.rec"], text: "A long enough statement to be substantive." }]);
+  const r1 = checkCoverage(faithful, corpus, today, { requireFaithful: true });
+  assert.equal(r1.coverage, 1);
+  assert.equal(r1.violations.length, 0);
+
+  const hallucinated = answerWith([{ kind: "claim", citations: ["good.rec"], text: "Completely unrelated invented nonsense about dragons and spaceships." }]);
+  const r2 = checkCoverage(hallucinated, corpus, today, { requireFaithful: true });
+  assert.ok(r2.violations.some((v) => v.reason === "unfaithful-claim"));
+});
+
 test("empty answer (refusal) has trivially full coverage", () => {
   const ans = answerWith([{ kind: "refusal", citations: [], text: "I don't have verified info" }]);
   assert.equal(checkCoverage(ans, corpus, today).coverage, 1);

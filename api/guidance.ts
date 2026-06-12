@@ -46,6 +46,10 @@ export function answer(query: RetrievalQuery, opts: AnswerOptions = {}): Grounde
  * sentence is rejected, never rendered, regardless of which generator produced it.
  */
 export async function answerAsync(query: RetrievalQuery, opts: AsyncAnswerOptions): Promise<GroundedAnswer> {
-  const draft = await opts.generator.generateAsync(buildInput(query, opts.retriever ?? retrieve, opts.maxRecords));
-  return enforce(draft, loadCorpus(), query.today);
+  const input = buildInput(query, opts.retriever ?? retrieve, opts.maxRecords);
+  const draft = await opts.generator.generateAsync(input);
+  // Untrusted (model) generator: citations must resolve within the RETRIEVED set and each
+  // claim's text must be faithful to its cited record — not merely carry a valid id.
+  const grounding = input.retrieved.map((r) => r.record);
+  return enforce(draft, loadCorpus(), query.today, { grounding, requireFaithful: true });
 }
