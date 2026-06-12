@@ -3,7 +3,10 @@
     "standard": "WCAG2AA",
     "runners": ["axe", "htmlcs"],
     "timeout": 30000,
-    "threshold": 0
+    "threshold": 0,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
+    }
   },
   "urls": [
     "http://localhost:8080/",
@@ -12,6 +15,9 @@
     "http://localhost:8080/checklist?jurisdiction=US-CA&change=name&language=es",
     "http://localhost:8080/packet?jurisdiction=US-CA&change=name&change=gender-marker",
     "http://localhost:8080/answer?jurisdiction=US-CA&change=name",
-    "http://localhost:8080/forms/us-ss-5"
+    "http://localhost:8080/forms/us-ss-5",
+    "http://localhost:8080/terms",
+    "http://localhost:8080/privacy",
+    "http://localhost:8080/accessibility"
   ]
 }

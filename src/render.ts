@@ -20,8 +20,14 @@ const T = {
   en: {
     skip: "Skip to main content",
     bannerTitle: "Information, not legal advice",
-    bannerBody: DISCLOSURE.notLegalAdvice + " " + DISCLOSURE.aiAssisted,
+    bannerBody: DISCLOSURE.aiAssisted, // title already carries the "not legal advice" sentence
     footer: "Your answers stay in your browser. Nothing you enter is sent to or stored on a server.",
+    legalNav: "Legal and policies",
+    termsLink: "Terms of Use",
+    privacyLink: "Privacy",
+    a11yLink: "Accessibility",
+    verifyNote: "This is general information, not legal advice. Requirements change — always confirm with the official source linked on each step, and talk to a lawyer or legal-aid organization about your specific situation.",
+    notFilingNote: "Filling this form here does not file it for you and is not legal advice. Review the official instructions and submit it yourself.",
     sources: "Sources",
     lastChecked: "last checked",
     needsRecheck: "Needs reverification — not shown as current.",
@@ -46,8 +52,14 @@ const T = {
   es: {
     skip: "Saltar al contenido principal",
     bannerTitle: "Información, no asesoramiento legal",
-    bannerBody: "Información, no asesoramiento legal. Asistido por IA, basado en fuentes citadas.",
+    bannerBody: "Asistido por IA, basado en fuentes citadas.",
     footer: "Sus respuestas permanecen en su navegador. Nada de lo que escribe se envía ni se almacena en un servidor.",
+    legalNav: "Legal y políticas",
+    termsLink: "Términos de uso",
+    privacyLink: "Privacidad",
+    a11yLink: "Accesibilidad",
+    verifyNote: "Esto es información general, no asesoramiento legal. Los requisitos cambian — confirme siempre con la fuente oficial enlazada en cada paso, y hable con un abogado o una organización de ayuda legal sobre su situación específica.",
+    notFilingNote: "Llenar este formulario aquí no lo presenta por usted y no es asesoramiento legal. Revise las instrucciones oficiales y preséntelo usted mismo.",
     sources: "Fuentes",
     lastChecked: "verificado por última vez",
     needsRecheck: "Necesita reverificación — no se muestra como actual.",
@@ -98,6 +110,7 @@ main{max-width:60rem;margin:0 auto;padding:1.5rem 1rem}
 .flag{color:var(--warn);font-weight:600}
 fieldset{border:1px solid var(--line);border-radius:.5rem;margin:1rem 0;padding:1rem}
 label{display:block;margin:.4rem 0}
+input[type=text],input[type=password],select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:.3rem;padding:.5rem;font:inherit;max-width:100%}
 button{background:var(--accent);color:#000;border:0;border-radius:.4rem;padding:.6rem 1.2rem;font-size:1rem;cursor:pointer}
 footer{max-width:60rem;margin:0 auto;padding:1.5rem 1rem;color:var(--muted);border-top:1px solid var(--line)}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
@@ -120,6 +133,7 @@ export function uiStrings(lang: Language): (typeof T)[Language] {
 
 export function page(opts: { lang: Language; title: string; heading: string; body: string }): string {
   const t = T[opts.lang];
+  const langQ = opts.lang === "es" ? "?language=es" : ""; // preserve language on footer links
   return `<!doctype html>
 <html lang="${opts.lang}">
 <head>
@@ -139,6 +153,11 @@ export function page(opts: { lang: Language; title: string; heading: string; bod
 </main>
 <footer>
   <p>${escapeHtml(t.footer)}</p>
+  <nav aria-label="${escapeHtml(t.legalNav)}">
+    <a href="/terms${langQ}">${escapeHtml(t.termsLink)}</a> ·
+    <a href="/privacy${langQ}">${escapeHtml(t.privacyLink)}</a> ·
+    <a href="/accessibility${langQ}">${escapeHtml(t.a11yLink)}</a>
+  </nav>
 </footer>
 </body>
 </html>`;
@@ -220,7 +239,7 @@ export function renderPacket(
         .map((g) => `<li class="flag">${escapeHtml(g.document_type)}: ${escapeHtml(g.reason)}</li>`)
         .join("")}</ul></section>`
     : "";
-  return `<p>${escapeHtml(t.packetIntro)}</p><ol>${steps}</ol>${gaps}<p class="meta">${escapeHtml(t.prepared)} ${escapeHtml(generatedOn)}.</p>`;
+  return `<p>${escapeHtml(t.packetIntro)}</p><p class="flag" role="note">${escapeHtml(t.verifyNote)}</p><ol>${steps}</ol>${gaps}<p class="meta">${escapeHtml(t.prepared)} ${escapeHtml(generatedOn)}.</p>`;
 }
 
 export function renderAnswer(ans: GroundedAnswer, lang: Language): string {

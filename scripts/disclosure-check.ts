@@ -10,6 +10,7 @@ import { buildChecklist } from "../api/checklist.ts";
 import { loadCorpus } from "../api/corpus.ts";
 import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
+import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
 import { renderAnswer, page } from "../src/render.ts";
 import type { Language } from "../api/types.ts";
 import { pass, fail } from "./util.ts";
@@ -40,13 +41,30 @@ function checkPageDisclosure(name: string, html: string, lang: Language): void {
   }
 }
 
+// Every page must carry the banner disclosure AND footer links to the legal/policy pages.
+const LEGAL_LINKS = [/href="\/terms/, /href="\/privacy/, /href="\/accessibility/];
+function checkFooterLegalLinks(name: string, html: string): void {
+  for (const re of LEGAL_LINKS) {
+    if (!re.test(html)) problems.push(`${name}: footer missing legal/policy link ${re}`);
+  }
+}
+
 for (const lang of ["en", "es"] as Language[]) {
   const cl = buildChecklist({ jurisdiction: "US-CA", change_types: ["name", "gender-marker"], documents: [], language: lang });
-  checkPageDisclosure("intake", renderIntakePage(lang), lang);
-  checkPageDisclosure("checklist", renderChecklistPage(cl, corpus, lang), lang);
-  checkPageDisclosure("packet", renderPacketPage(cl, corpus, lang, "2026-05-31"), lang);
-  checkPageDisclosure("form-fill", renderFormFillPage(formById("us-ss-5")!, lang), lang);
-  checkPageDisclosure("answer-page", page({ lang, title: "A", heading: "A", body: renderAnswer(answer({ jurisdiction: "US-CA", change_types: ["name"], language: lang }), lang) }), lang);
+  const pages: [string, string][] = [
+    ["intake", renderIntakePage(lang)],
+    ["checklist", renderChecklistPage(cl, corpus, lang)],
+    ["packet", renderPacketPage(cl, corpus, lang, "2026-05-31")],
+    ["form-fill", renderFormFillPage(formById("us-ss-5")!, lang)],
+    ["answer-page", page({ lang, title: "A", heading: "A", body: renderAnswer(answer({ jurisdiction: "US-CA", change_types: ["name"], language: lang }), lang) })],
+    ["terms", renderTermsPage(lang)],
+    ["privacy", renderPrivacyPage(lang)],
+    ["accessibility", renderAccessibilityPage(lang)],
+  ];
+  for (const [name, htmlStr] of pages) {
+    checkPageDisclosure(name, htmlStr, lang);
+    checkFooterLegalLinks(name, htmlStr);
+  }
 }
 
 // Every grounded answer — grounded AND refusal, EN AND ES — must end with the disclaimer.

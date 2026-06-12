@@ -13,6 +13,7 @@ import { loadCorpus } from "../api/corpus.ts";
 import { buildChecklist } from "../api/checklist.ts";
 import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
+import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
 import { PALETTE } from "../src/render.ts";
 import { pass, fail } from "./util.ts";
 
@@ -74,6 +75,10 @@ const pages: Page[] = [
   { name: "packet", html: renderPacketPage(enChecklist, corpus, "en", "2026-05-31") },
   { name: "form-fill", html: renderFormFillPage(formById("us-ss-5")!, "en") },
   { name: "form-degraded", html: renderFormFillPage(formById("us-ds-82")!, "en") },
+  { name: "terms", html: renderTermsPage("en") },
+  { name: "terms-es", html: renderTermsPage("es") },
+  { name: "privacy", html: renderPrivacyPage("en") },
+  { name: "accessibility", html: renderAccessibilityPage("en") },
 ];
 
 function checkPage(p: Page): string[] {

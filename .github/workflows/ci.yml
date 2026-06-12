@@ -48,7 +48,9 @@ jobs:
           npx --yes wait-on http://localhost:8080/healthz
       - name: pa11y-ci (axe-core + htmlcs, zero violations)
         # Explicit URL list in .pa11yci.json (the app serves no sitemap). Zero-violation
-        # threshold; a violation fails the job. This is a required check via branch protection.
+        # threshold; a violation fails the job. Required check via branch protection.
+        # Chromium runs with --no-sandbox (.pa11yci.json) since GitHub runners have no
+        # user namespaces for the Chrome sandbox.
         run: npx --yes pa11y-ci --config .pa11yci.json
 
   security-sast:
@@ -67,6 +69,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build container
         run: docker build -t trans-docs-navigator:ci .
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.5"
       - name: Terraform validate
         run: |
           cd infra

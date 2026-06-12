@@ -13,6 +13,7 @@ import { formById } from "./forms.ts";
 import type { ChangeType, DocumentType, Intake, Language } from "./types.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
 import { renderAnswer, page } from "../src/render.ts";
+import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
 
 /** Input bounds — abuse/DoS resistance + predictable resource use. */
 export const LIMITS = {
@@ -140,6 +141,13 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
 
   if (p === "/") {
     return { status: 200, contentType: HTML, body: renderIntakePage(asLanguage(url.searchParams.get("language"))) };
+  }
+
+  // Static legal / policy pages (linked from every footer).
+  if (p === "/terms" || p === "/privacy" || p === "/accessibility") {
+    const lang = asLanguage(url.searchParams.get("language"));
+    const render = p === "/terms" ? renderTermsPage : p === "/privacy" ? renderPrivacyPage : renderAccessibilityPage;
+    return { status: 200, contentType: HTML, body: render(lang) };
   }
 
   if (p === "/checklist") {
