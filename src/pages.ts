@@ -6,6 +6,7 @@
 
 import type { Checklist, CorpusRecord, FormDef, Language } from "../api/types.ts";
 import { page, renderChecklist, renderPacket, uiStrings, escapeHtml } from "./render.ts";
+import { toResumeState } from "./secure-resume.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-CA", label: "California" },
@@ -94,7 +95,12 @@ export function renderChecklistPage(
  */
 function renderResumePanel(s: ReturnType<typeof uiStrings>, query: string): string {
   if (!query) return "";
-  const cfg = JSON.stringify({ query });
+  // Defense-in-depth: persist ONLY the allowlisted non-PII selection keys, regardless of
+  // what query reached this page. Identity fields can never be saved even if a future
+  // caller passed a richer query string. (Mirrors src/secure-resume.ts toResumeState.)
+  const safeQuery = toResumeState(new URLSearchParams(query)).toString();
+  if (!safeQuery) return "";
+  const cfg = JSON.stringify({ query: safeQuery });
   return `
 <section class="no-print" aria-labelledby="resume-h">
   <h2 id="resume-h">${escapeHtml(s.resumeTitle)}</h2>
@@ -110,7 +116,7 @@ function renderResumePanel(s: ReturnType<typeof uiStrings>, query: string): stri
 </section>
 <script>
 (function(){
-  var CFG = ${cfg}, KEY = 'tdn.resume', ITER = 150000;
+  var CFG = ${cfg}, KEY = 'tdn.resume', ITER = 600000; // keep in sync with secure-resume.ts
   var status = document.getElementById('resume-status');
   var pass = document.getElementById('resume-pass');
   var enc = new TextEncoder(), dec = new TextDecoder();

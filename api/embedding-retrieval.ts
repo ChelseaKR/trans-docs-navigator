@@ -16,15 +16,25 @@ import { isCurrent } from "./freshness.ts";
 import { filterByQuery, tokensFor, rankStable } from "./retrieval.ts";
 import type { RetrievalQuery, Retrieved, Retriever } from "./retrieval.ts";
 
-const DIM = 256;
+// Larger space + separate offsets for word vs sub-word features so common domain terms
+// (e.g. "marker" vs "order") don't collide, and word signal isn't drowned by trigrams.
+const DIM = 4096;
+const WORD_SPACE = 2048; // [0, 2048) for word features
+const GRAM_SPACE = DIM - WORD_SPACE; // [2048, 4096) for trigram features
 
-function hash(s: string): number {
-  let h = 2166136261;
+function fnv(s: string, seed: number): number {
+  let h = seed >>> 0;
   for (let i = 0; i < s.length; i++) {
     h ^= s.charCodeAt(i);
     h = Math.imul(h, 16777619);
   }
-  return (h >>> 0) % DIM;
+  return h >>> 0;
+}
+function wordBucket(s: string): number {
+  return fnv(s, 2166136261) % WORD_SPACE;
+}
+function gramBucket(s: string): number {
+  return WORD_SPACE + (fnv(s, 0x811c9dc5 ^ 0x5bd1e995) % GRAM_SPACE);
 }
 
 function trigrams(token: string): string[] {
@@ -39,8 +49,8 @@ export function embed(text: string, language: Language = "en"): Float64Array {
   const v = new Float64Array(DIM);
   const bump = (i: number, w: number) => { v[i] = v[i]! + w; };
   for (const tok of tokensFor(text, language)) {
-    bump(hash(tok), 1); // word feature
-    for (const g of trigrams(tok)) bump(hash(g), 0.5); // sub-word feature (typo robustness)
+    bump(wordBucket(tok), 1); // word feature
+    for (const g of trigrams(tok)) bump(gramBucket(g), 0.5); // sub-word feature (typo robustness)
   }
   let norm = 0;
   for (const x of v) norm += x * x;
