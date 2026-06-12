@@ -24,7 +24,8 @@ const CANONICAL_ORDER: DocumentType[] = [
   "financial-records",
 ];
 
-const TITLES: Record<DocumentType, string> = {
+/** Canonical English step titles. The view layer localizes display via src/render DOC_TITLES. */
+export const TITLES: Record<DocumentType, string> = {
   "court-order": "Get a court order for your name change",
   "ssa-card": "Update your Social Security record",
   "drivers-license": "Update your driver's license or state ID",
@@ -79,14 +80,11 @@ export function buildChecklist(intake: Intake, today?: string, corpus = loadCorp
     const degraded = matching.filter((r) => !isCurrent(r, today));
 
     if (currentRecords.length === 0 && degraded.length === 0) {
-      gaps.push({ document_type: doc, reason: "no corpus records for this jurisdiction/document yet" });
+      gaps.push({ document_type: doc, reason: "no-records" });
       continue;
     }
     if (currentRecords.length === 0) {
-      gaps.push({
-        document_type: doc,
-        reason: "all records for this document need reverification — not served as current",
-      });
+      gaps.push({ document_type: doc, reason: "all-degraded" });
       // Still emit a step so the user sees the gap, flagged.
     }
 

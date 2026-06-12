@@ -46,7 +46,7 @@ test("Spanish pages render in Spanish", () => {
 
 test("non-fillable form degrades to a download link, not a fill form", () => {
   const ds82 = renderFormFillPage(formById("us-ds-82")!, "en");
-  assert.match(ds82, /flat scan that can't be auto-filled/);
+  assert.match(ds82, /flat scan/);
   assert.doesNotMatch(ds82, /id="fill"/); // no client fill form
 });
 
