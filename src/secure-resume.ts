@@ -14,7 +14,10 @@
 // algorithm inline (WebCrypto) so it runs with no bundler. Keep the two in sync.
 
 const ALLOWED_KEYS = ["jurisdiction", "change", "doc", "language"] as const;
-const PBKDF2_ITERATIONS = 150_000;
+// OWASP 2023 guidance for PBKDF2-HMAC-SHA256. The threat model (hostile-jurisdiction
+// forensic read + offline brute-force of a chosen passphrase) is exactly what this
+// defends. Must stay in lockstep with the inline mirror in src/pages.ts.
+const PBKDF2_ITERATIONS = 600_000;
 
 /** Strip an intake/query object down to the non-PII selection keys that may be saved. */
 export function toResumeState(params: URLSearchParams): URLSearchParams {

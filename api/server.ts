@@ -6,7 +6,7 @@
 import { createServer } from "node:http";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { readFileSync, existsSync, statSync } from "node:fs";
-import { join, normalize, extname } from "node:path";
+import { join, normalize, extname, sep } from "node:path";
 import { REPO_ROOT, loadCorpus, LAST_QUARANTINE } from "./corpus.ts";
 import { safeLog } from "./log.ts";
 import { handleRoute } from "./router.ts";
@@ -41,20 +41,38 @@ function send(res: ServerResponse, status: number, contentType: string, body: st
   res.end(body);
 }
 
-/** Serve a static file only from the public/ and forms/fixtures/ allowlist. */
+// The ONLY directories static serving may reach. We assert the resolved path is inside
+// one of these (not merely under REPO_ROOT), so a traversal that still resolves under the
+// repo can't disclose source files. We also reject any pathname carrying `..` or an
+// encoded slash before it's resolved.
+const VENDOR_DIR = join(REPO_ROOT, "public", "vendor");
+const FIXTURES_DIR = join(REPO_ROOT, "forms", "fixtures");
+
+/** Serve a static file only from the public/vendor/ and forms/fixtures/ allowlist. */
 function tryStatic(pathname: string, res: ServerResponse): boolean {
-  const allowed = pathname.startsWith("/vendor/") || pathname.startsWith("/forms/fixtures/");
-  if (!allowed) return false;
-  const full = normalize(join(REPO_ROOT, pathname.startsWith("/vendor/") ? join("public", pathname) : pathname));
-  if (!full.startsWith(REPO_ROOT) || !existsSync(full) || !statSync(full).isFile()) return false;
+  if (pathname.includes("..") || /%2[ef]/i.test(pathname)) return false; // no traversal / encoded sep
+  const isVendor = pathname.startsWith("/vendor/");
+  const isFixture = pathname.startsWith("/forms/fixtures/");
+  if (!isVendor && !isFixture) return false;
+  const full = normalize(join(REPO_ROOT, isVendor ? join("public", pathname) : pathname));
+  const allowedDir = isVendor ? VENDOR_DIR : FIXTURES_DIR;
+  if (!full.startsWith(allowedDir + sep) || !existsSync(full) || !statSync(full).isFile()) return false;
   send(res, 200, MIME[extname(full)] ?? "application/octet-stream", readFileSync(full));
   return true;
 }
 
 // Tiny in-memory fixed-window rate limiter (per client IP). Stateless service, so this
 // is best-effort process-local protection; a real deploy fronts it with an edge limiter.
+// Entries are swept so a spray of unique IPs (IPv6) can't grow the map without bound.
 const hits = new Map<string, { count: number; resetAt: number }>();
+const MAX_TRACKED_IPS = 50_000;
+let sweepCounter = 0;
 function rateLimited(ip: string, now: number): boolean {
+  if (++sweepCounter >= 1000 || hits.size > MAX_TRACKED_IPS) {
+    sweepCounter = 0;
+    for (const [k, v] of hits) if (now >= v.resetAt) hits.delete(k);
+    if (hits.size > MAX_TRACKED_IPS) hits.clear(); // hard bound if everything is still active
+  }
   const slot = hits.get(ip);
   if (!slot || now >= slot.resetAt) {
     hits.set(ip, { count: 1, resetAt: now + RATE_LIMIT.windowMs });
@@ -90,7 +108,9 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
     if (r.log) safeLog(r.log.event, r.log.fields);
   } catch (err) {
     send(res, 500, "text/html; charset=utf-8", "<!doctype html><html lang=en><title>Error</title><p>Something went wrong. Please try again.</p>");
-    safeLog("error", { route, status: 500, error: (err as Error).message });
+    // Log the error CLASS only, never the message — a message can interpolate content the
+    // allowlist logger wouldn't otherwise see. Stack/detail belong in a non-PII trace sink.
+    safeLog("error", { route, status: 500, error: (err as Error).name });
   } finally {
     safeLog("request", { route, method: req.method ?? "GET", duration_ms: Date.now() - start });
   }
