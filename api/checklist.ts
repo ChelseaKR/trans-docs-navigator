@@ -59,6 +59,27 @@ function pickTimeline(records: CorpusRecord[]): Timeline | undefined {
   return times[0];
 }
 
+/**
+ * True when the user's language has THINNER coverage than English for this request — i.e.
+ * some wanted document has a current English record but none in the user's language. Lets
+ * the UI be honest ("full Spanish steps for this state aren't ready yet") instead of
+ * silently showing gaps that are really just missing translations.
+ */
+export function hasThinnerLanguageCoverage(intake: Intake, today?: string, corpus = loadCorpus()): boolean {
+  if (intake.language === "en") return false;
+  const wanted = intake.documents.length > 0 ? intake.documents : STANDARD_SET;
+  const hasCurrent = (doc: DocumentType, lang: Intake["language"]) =>
+    corpus.some(
+      (r) =>
+        r.document_type === doc &&
+        (r.jurisdiction === intake.jurisdiction || r.jurisdiction === "US") &&
+        r.change_type.some((c) => intake.change_types.includes(c)) &&
+        r.language === lang &&
+        isCurrent(r, today),
+    );
+  return wanted.some((doc) => hasCurrent(doc, "en") && !hasCurrent(doc, intake.language));
+}
+
 export function buildChecklist(intake: Intake, today?: string, corpus = loadCorpus()): Checklist {
   const wanted = intake.documents.length > 0 ? intake.documents : STANDARD_SET;
   const orderedDocs = CANONICAL_ORDER.filter((d) => wanted.includes(d));

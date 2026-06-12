@@ -65,10 +65,12 @@ export function renderChecklistPage(
   records: CorpusRecord[],
   lang: Language,
   query = "",
+  opts: { thinnerCoverage?: boolean } = {},
 ): string {
   const s = uiStrings(lang);
+  const coverageNote = opts.thinnerCoverage ? `<p class="flag" role="note">${escapeHtml(s.thinnerCoverage)}</p>` : "";
   const intro = `<p>${escapeHtml(s.checklistIntro)}</p>
-<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>`;
+<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${coverageNote}`;
   const q = query ? `?${query}` : "";
   const actions = `<p class="no-print"><a href="/packet${q}">📄 ${escapeHtml(s.print)}</a> · <a href="/">${escapeHtml(s.startOver)}</a></p>`;
   const gaps = checklist.gaps.length

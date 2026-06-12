@@ -124,6 +124,7 @@ const T = {
     fillDone: "Done — your filled form downloaded. It was never sent to a server.",
     fillUnfilled: "Downloaded. These field(s) could not be auto-filled — please complete them by hand: ",
     fillError: "Could not fill the form. You can download the blank form instead.",
+    thinnerCoverage: "Full steps in your language for this state aren't ready yet. Federal steps are shown; switch to English to see more.",
   },
   es: {
     skip: "Saltar al contenido principal",
@@ -196,6 +197,7 @@ const T = {
     fillDone: "Listo: su formulario llenado se descargó. Nunca se envió a un servidor.",
     fillUnfilled: "Descargado. Estos campos no se pudieron llenar automáticamente; complételos a mano: ",
     fillError: "No se pudo llenar el formulario. Puede descargar el formulario en blanco.",
+    thinnerCoverage: "Los pasos completos en español para este estado aún no están listos. Se muestran los pasos federales; cambie a inglés para ver más.",
   },
 } as const;
 
@@ -279,7 +281,9 @@ export function page(opts: { lang: Language; title: string; heading: string; bod
 </html>`;
 }
 
-function sourceList(records: CorpusRecord[], lang: Language): string {
+// `level` keeps heading order correct: 3 inside a checklist step (under the step's h2),
+// 2 on the standalone answer page (directly under the page h1, so no level is skipped).
+function sourceList(records: CorpusRecord[], lang: Language, level: 2 | 3 = 3): string {
   if (records.length === 0) return "";
   const t = T[lang];
   const items = records
@@ -288,7 +292,7 @@ function sourceList(records: CorpusRecord[], lang: Language): string {
         `<li><a href="${escapeHtml(r.source.url)}" rel="noopener noreferrer">${escapeHtml(r.source.title)}</a> — <span class="meta">${escapeHtml(t.lastChecked)} ${escapeHtml(r.source.last_verified)}</span></li>`,
     )
     .join("");
-  return `<h3>${escapeHtml(t.sources)}</h3><ul>${items}</ul>`;
+  return `<h${level}>${escapeHtml(t.sources)}</h${level}><ul>${items}</ul>`;
 }
 
 export function renderChecklist(checklist: Checklist, records: CorpusRecord[], lang: Language): string {
@@ -365,5 +369,5 @@ export function renderAnswer(ans: GroundedAnswer, lang: Language): string {
       return `<p${cls}>${escapeHtml(b.text)}</p>`;
     })
     .join("");
-  return `<section aria-label="answer">${blocks}${sourceList(ans.cited_records, lang)}</section>`;
+  return `<section aria-label="answer">${blocks}${sourceList(ans.cited_records, lang, 2)}</section>`;
 }
