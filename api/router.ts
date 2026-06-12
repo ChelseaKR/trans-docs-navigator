@@ -12,7 +12,7 @@ import { loadCorpus } from "./corpus.ts";
 import { formById } from "./forms.ts";
 import type { ChangeType, DocumentType, Intake, Language } from "./types.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
-import { renderAnswer, page } from "../src/render.ts";
+import { renderAnswer, page, uiStrings, escapeHtml } from "../src/render.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
 
 /** Input bounds — abuse/DoS resistance + predictable resource use. */
@@ -98,20 +98,22 @@ export function parseIntake(url: URL): Intake | null {
 
 const HTML = "text/html; charset=utf-8";
 
-function badRequest(message: string): RouteResponse {
+function badRequest(lang: Language): RouteResponse {
+  const t = uiStrings(lang);
   return {
     status: 400,
     contentType: HTML,
-    body: page({ lang: "en", title: "Invalid request", heading: "Invalid request", body: `<p>${message}</p><p><a href="/">Start over</a></p>` }),
+    body: page({ lang, title: t.badRequestHeading, heading: t.badRequestHeading, body: `<p>${escapeHtml(t.badRequestBody)}</p><p><a href="/">${escapeHtml(t.backToStart)}</a></p>` }),
     log: { event: "bad_request", fields: { status: 400 } },
   };
 }
 
-function notFound(): RouteResponse {
+function notFound(lang: Language): RouteResponse {
+  const t = uiStrings(lang);
   return {
     status: 404,
     contentType: HTML,
-    body: page({ lang: "en", title: "Not found", heading: "Page not found", body: '<p><a href="/">Start over</a></p>' }),
+    body: page({ lang, title: t.notFoundHeading, heading: t.notFoundHeading, body: `<p>${escapeHtml(t.notFoundBody)}</p><p><a href="/">${escapeHtml(t.backToStart)}</a></p>` }),
   };
 }
 
@@ -120,11 +122,13 @@ function notFound(): RouteResponse {
  * `today` is injectable for deterministic tests.
  */
 export function handleRoute(method: string, url: URL, today?: string): RouteResponse {
+  const lang = asLanguage(url.searchParams.get("language"));
   if (method !== "GET" && method !== "HEAD") {
+    const t = uiStrings(lang);
     return {
       status: 405,
       contentType: HTML,
-      body: page({ lang: "en", title: "Method not allowed", heading: "Method not allowed", body: "<p>Use GET.</p>" }),
+      body: page({ lang, title: t.methodHeading, heading: t.methodHeading, body: `<p>${escapeHtml(t.methodBody)}</p>` }),
       log: { event: "method_not_allowed", fields: { method, status: 405 } },
     };
   }
@@ -152,7 +156,7 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
 
   if (p === "/checklist") {
     const intake = parseIntake(url);
-    if (!intake) return badRequest("That isn’t a state we recognize. Please pick one from the list.");
+    if (!intake) return badRequest(lang);
     const checklist = buildChecklist(intake, today);
     return {
       status: 200,
@@ -164,7 +168,7 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
 
   if (p === "/packet") {
     const intake = parseIntake(url);
-    if (!intake) return badRequest("That isn’t a state we recognize. Please pick one from the list.");
+    if (!intake) return badRequest(lang);
     const checklist = buildChecklist(intake, today);
     const generatedOn = (today ?? new Date().toISOString().slice(0, 10)).slice(0, 10);
     return {
@@ -177,8 +181,8 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
 
   if (p === "/answer") {
     const jurisdiction = validJurisdiction(url.searchParams.get("jurisdiction"));
-    if (jurisdiction === null) return badRequest("That isn’t a state we recognize. Please pick one from the list.");
-    const lang = asLanguage(url.searchParams.get("language"));
+    if (jurisdiction === null) return badRequest(lang);
+    const t = uiStrings(lang);
     const result = answer({
       jurisdiction,
       change_types: changeTypes(url),
@@ -191,25 +195,23 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     // and whether any stale/volatile record was surfaced as "needs reverification".
     const claims = result.blocks.filter((b) => b.kind === "claim").length;
     const degraded = result.blocks.some((b) => b.kind === "freshness");
+    // Always give a way forward (no dead-end): back to the checklist for the same query,
+    // or start over. Preserves the non-PII query so the user lands back where they were.
+    const back = intakeQuery({ jurisdiction, change_types: changeTypes(url), documents: documents(url), language: lang });
+    const actions = `<p class="no-print"><a href="/checklist?${back}">← ${escapeHtml(t.backToChecklist)}</a> · <a href="/">${escapeHtml(t.backToStart)}</a></p>`;
     return {
       status: 200,
       contentType: HTML,
-      body: page({ lang, title: "Answer", heading: "What the sources say", body: renderAnswer(result, lang) }),
+      body: page({ lang, title: t.answerHeading, heading: t.answerHeading, body: renderAnswer(result, lang) + actions }),
       log: { event: "answer", fields: { jurisdiction, refused: result.refused, claims, degraded, status: 200 } },
     };
   }
 
   if (p.startsWith("/forms/") && !p.startsWith("/forms/fixtures/")) {
     const form = formById(p.slice("/forms/".length));
-    if (!form) {
-      return {
-        status: 404,
-        contentType: HTML,
-        body: page({ lang: "en", title: "Not found", heading: "Form not found", body: "<p>No such form.</p>" }),
-      };
-    }
-    return { status: 200, contentType: HTML, body: renderFormFillPage(form, asLanguage(url.searchParams.get("language"))) };
+    if (!form) return notFound(lang);
+    return { status: 200, contentType: HTML, body: renderFormFillPage(form, lang) };
   }
 
-  return { ...notFound(), log: { event: "not_found", fields: { route: p, status: 404 } } };
+  return { ...notFound(lang), log: { event: "not_found", fields: { route: p, status: 404 } } };
 }

@@ -141,8 +141,8 @@ export interface Checklist {
   change_types: ChangeType[];
   language: Language;
   steps: ChecklistStep[];
-  /** Step keys that could not be produced because no verified corpus backs them. */
-  gaps: { document_type: DocumentType; reason: string }[];
+  /** Documents we couldn't produce verified steps for, with a language-neutral reason code. */
+  gaps: { document_type: DocumentType; reason: "no-records" | "all-degraded" }[];
 }
 
 /** A single rendered unit of a grounded answer. */
