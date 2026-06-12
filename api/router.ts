@@ -6,7 +6,7 @@
 // format, enum filtering, array caps, question length) before they reach retrieval or
 // rendering. The PRIVACY INVARIANT holds: only non-identifying query fields are read.
 
-import { buildChecklist } from "./checklist.ts";
+import { buildChecklist, hasThinnerLanguageCoverage } from "./checklist.ts";
 import { answer } from "./guidance.ts";
 import { loadCorpus } from "./corpus.ts";
 import { formById } from "./forms.ts";
@@ -38,6 +38,8 @@ export interface RouteResponse {
   status: number;
   contentType: string;
   body: string;
+  /** Extra response headers to merge (e.g. Allow on a 405). */
+  headers?: Record<string, string>;
   /** Optional structured log to emit (non-PII fields only). */
   log?: { event: string; fields: Record<string, unknown> };
 }
@@ -128,6 +130,7 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     return {
       status: 405,
       contentType: HTML,
+      headers: { allow: "GET, HEAD" }, // HTTP requires Allow on a 405
       body: page({ lang, title: t.methodHeading, heading: t.methodHeading, body: `<p>${escapeHtml(t.methodBody)}</p>` }),
       log: { event: "method_not_allowed", fields: { method, status: 405 } },
     };
@@ -158,10 +161,11 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     const intake = parseIntake(url);
     if (!intake) return badRequest(lang);
     const checklist = buildChecklist(intake, today);
+    const thinnerCoverage = hasThinnerLanguageCoverage(intake, today);
     return {
       status: 200,
       contentType: HTML,
-      body: renderChecklistPage(checklist, loadCorpus(), intake.language, intakeQuery(intake)),
+      body: renderChecklistPage(checklist, loadCorpus(), intake.language, intakeQuery(intake), { thinnerCoverage }),
       log: { event: "checklist", fields: { jurisdiction: intake.jurisdiction, change_types: intake.change_types, documents: intake.documents, language: intake.language, status: 200 } },
     };
   }

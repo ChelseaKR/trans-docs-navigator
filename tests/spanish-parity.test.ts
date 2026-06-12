@@ -50,6 +50,27 @@ test("error pages are Spanish under ?language=es", () => {
   assert.match(method.body, /Método no permitido/);
 });
 
+test("Spanish-thin states surface an honest coverage note (TX has no ES state records)", () => {
+  // Texas: EN has a current court-order record, Spanish does not → honest note.
+  const tx = handleRoute("GET", u("/checklist?jurisdiction=US-TX&change=name&doc=court-order&language=es"), today);
+  assert.match(tx.body, /Los pasos completos en español para este estado aún no están listos/);
+  // California ES is complete for court-order → no note.
+  const ca = handleRoute("GET", u("/checklist?jurisdiction=US-CA&change=name&doc=court-order&language=es"), today);
+  assert.doesNotMatch(ca.body, /aún no están listos/);
+});
+
+test("405 carries an Allow header", () => {
+  const r = handleRoute("POST", u("/"));
+  assert.equal(r.status, 405);
+  assert.equal(r.headers?.allow, "GET, HEAD");
+});
+
+test("answer-page Sources heading is h2 (no h1→h3 skip)", () => {
+  const r = handleRoute("GET", u("/answer?jurisdiction=US-CA&change=name"), today);
+  assert.match(r.body, /<h2>Sources<\/h2>/);
+  assert.doesNotMatch(r.body, /<h3>Sources/);
+});
+
 test("gaps render a humane Spanish sentence, not a raw slug", () => {
   // US-CA + birth-certificate has no CA records → a gap.
   const r = handleRoute("GET", u("/checklist?jurisdiction=US-CA&change=name&doc=birth-certificate&language=es"), today);

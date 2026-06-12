@@ -36,8 +36,8 @@ const SECURITY_HEADERS: Record<string, string> = {
   "cross-origin-opener-policy": "same-origin",
 };
 
-function send(res: ServerResponse, status: number, contentType: string, body: string | Buffer): void {
-  res.writeHead(status, { "content-type": contentType, ...SECURITY_HEADERS });
+function send(res: ServerResponse, status: number, contentType: string, body: string | Buffer, extra?: Record<string, string>): void {
+  res.writeHead(status, { "content-type": contentType, ...SECURITY_HEADERS, ...extra });
   res.end(body);
 }
 
@@ -104,7 +104,7 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
     if (tryStatic(route, res)) return;
 
     const r = handleRoute(req.method ?? "GET", url);
-    send(res, r.status, r.contentType, r.body);
+    send(res, r.status, r.contentType, r.body, r.headers);
     if (r.log) safeLog(r.log.event, r.log.fields);
   } catch (err) {
     send(res, 500, "text/html; charset=utf-8", "<!doctype html><html lang=en><title>Error</title><p>Something went wrong. Please try again.</p>");
