@@ -5,7 +5,8 @@
 // filled entirely in the browser.
 
 import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from "../api/types.ts";
-import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, DOC_LABELS, gapReason, fieldLabel } from "./render.ts";
+import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel } from "./render.ts";
+import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { toResumeState } from "./secure-resume.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
@@ -27,7 +28,7 @@ export function renderIntakePage(lang: Language = "en"): string {
     )
     .join("");
   const docs = DOCUMENT_IDS.map(
-    (d) => `<label><input type="checkbox" name="doc" value="${d}"> ${escapeHtml(DOC_LABELS[lang][d])}</label>`,
+    (d) => `<label><input type="checkbox" name="doc" value="${d}"> ${escapeHtml(locale(lang).docLabels[d])}</label>`,
   ).join("");
 
   const body = `
@@ -51,8 +52,7 @@ export function renderIntakePage(lang: Language = "en"): string {
     <legend>${escapeHtml(s.languageLegend)}</legend>
     <label for="language">${escapeHtml(s.languageLegend)}</label>
     <select id="language" name="language">
-      <option value="en"${lang === "en" ? " selected" : ""}>English</option>
-      <option value="es"${lang === "es" ? " selected" : ""}>Español</option>
+      ${SUPPORTED_LOCALES.map((l) => `<option value="${l.language}"${lang === l.language ? " selected" : ""}>${escapeHtml(l.selfName)}</option>`).join("\n      ")}
     </select>
   </fieldset>
   <button type="submit">${escapeHtml(s.submitChecklist)}</button>
@@ -75,7 +75,7 @@ export function renderChecklistPage(
   const actions = `<p class="no-print"><a href="/packet${q}">📄 ${escapeHtml(s.print)}</a> · <a href="/">${escapeHtml(s.startOver)}</a></p>`;
   const gaps = checklist.gaps.length
     ? `<section aria-label="${escapeHtml(s.notCovered)}"><h2>${escapeHtml(s.notCovered)}</h2><ul>${checklist.gaps
-        .map((g) => `<li class="flag">${escapeHtml(DOC_LABELS[lang][g.document_type])}: ${escapeHtml(gapReason(lang, g.reason))}</li>`)
+        .map((g) => `<li class="flag">${escapeHtml(locale(lang).docLabels[g.document_type])}: ${escapeHtml(gapReason(lang, g.reason))}</li>`)
         .join("")}</ul></section>`
     : "";
   // Reassuring empty-state instead of a bare empty list when nothing could be produced.
@@ -86,23 +86,32 @@ export function renderChecklistPage(
   return page({ lang, title: s.checklistTitle, heading: s.checklistHeading, body });
 }
 
+/** JSON island: config data for a static client script. `<` is escaped so markup in a
+ *  value can never close the tag; type="application/json" means it is data, never executed. */
+function jsonIsland(id: string, value: unknown): string {
+  return `<script type="application/json" id="${id}">${JSON.stringify(value).replace(/</g, "\\u003c")}</script>`;
+}
+
 /**
  * Optional client-side encrypted save/resume (§2.5). Saves ONLY the non-PII selection
  * query, AES-GCM-encrypted with a passphrase, into localStorage — never to a server, and
- * never any identity field. Mirrors src/secure-resume.ts (kept in sync); progressive
- * enhancement, so no-JS users simply don't see it. Hidden when there's no selection yet.
+ * never any identity field. The behavior lives in the static module
+ * /assets/resume-panel.js (crypto in /assets/resume-crypto.js, the same module the test
+ * suite exercises); this function only emits markup + a JSON config island, so the page
+ * carries no inline script. Progressive enhancement: no-JS users simply don't see it.
+ * Hidden when there's no selection yet.
  */
 function renderResumePanel(s: ReturnType<typeof uiStrings>, query: string): string {
   if (!query) return "";
   // Defense-in-depth: persist ONLY the allowlisted non-PII selection keys, regardless of
   // what query reached this page. Identity fields can never be saved even if a future
-  // caller passed a richer query string. (Mirrors src/secure-resume.ts toResumeState.)
+  // caller passed a richer query string.
   const safeQuery = toResumeState(new URLSearchParams(query)).toString();
   if (!safeQuery) return "";
-  const cfg = JSON.stringify({
+  const cfg = {
     query: safeQuery,
     M: { enterPass: s.resEnterPass, saved: s.resSaved, nothing: s.resNothing, wrong: s.resWrong, deleted: s.resDeleted },
-  });
+  };
   return `
 <section class="no-print" aria-labelledby="resume-h">
   <h2 id="resume-h">${escapeHtml(s.resumeTitle)}</h2>
@@ -116,40 +125,8 @@ function renderResumePanel(s: ReturnType<typeof uiStrings>, query: string): stri
     <p id="resume-status" role="status" aria-live="polite" class="meta"></p>
   </div>
 </section>
-<script>
-(function(){
-  var CFG = ${cfg}, KEY = 'tdn.resume', ITER = 600000; // keep in sync with secure-resume.ts
-  var status = document.getElementById('resume-status');
-  var pass = document.getElementById('resume-pass');
-  var enc = new TextEncoder(), dec = new TextDecoder();
-  function b64(bytes){ var s=''; for(var i=0;i<bytes.length;i++) s+=String.fromCharCode(bytes[i]); return btoa(s); }
-  function unb64(t){ var s=atob(t), o=new Uint8Array(s.length); for(var i=0;i<s.length;i++) o[i]=s.charCodeAt(i); return o; }
-  async function key(salt){
-    var base = await crypto.subtle.importKey('raw', enc.encode(pass.value), 'PBKDF2', false, ['deriveKey']);
-    return crypto.subtle.deriveKey({name:'PBKDF2',salt:salt,iterations:ITER,hash:'SHA-256'}, base, {name:'AES-GCM',length:256}, false, ['encrypt','decrypt']);
-  }
-  document.getElementById('resume-save').addEventListener('click', async function(){
-    if(!pass.value){ status.textContent=CFG.M.enterPass; return; }
-    var salt=crypto.getRandomValues(new Uint8Array(16)), iv=crypto.getRandomValues(new Uint8Array(12));
-    var ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv:iv}, await key(salt), enc.encode(CFG.query)));
-    var blob=new Uint8Array(28+ct.length); blob.set(salt,0); blob.set(iv,16); blob.set(ct,28);
-    localStorage.setItem(KEY, b64(blob));
-    status.textContent=CFG.M.saved;
-  });
-  document.getElementById('resume-load').addEventListener('click', async function(){
-    var stored=localStorage.getItem(KEY);
-    if(!stored){ status.textContent=CFG.M.nothing; return; }
-    try{
-      var b=unb64(stored), salt=b.slice(0,16), iv=b.slice(16,28), ct=b.slice(28);
-      var pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:iv}, await key(salt), ct);
-      location.href='/checklist?'+dec.decode(pt);
-    }catch(e){ status.textContent=CFG.M.wrong; }
-  });
-  document.getElementById('resume-del').addEventListener('click', function(){
-    localStorage.removeItem(KEY); status.textContent=CFG.M.deleted;
-  });
-})();
-</script>`;
+${jsonIsland("resume-cfg", cfg)}
+<script type="module" src="/assets/resume-panel.js"></script>`;
 }
 
 /** M5 printable packet: the full plan, print-optimized, with a print button (no-JS-friendly). */
@@ -160,7 +137,8 @@ export function renderPacketPage(
   generatedOn: string,
 ): string {
   const s = uiStrings(lang);
-  const actions = `<p class="no-print"><button type="button" onclick="window.print()">🖨️ ${escapeHtml(s.print)}</button> <a href="/">${escapeHtml(s.startOver)}</a></p>`;
+  const actions = `<p class="no-print"><button type="button" id="print-btn">🖨️ ${escapeHtml(s.print)}</button> <a href="/">${escapeHtml(s.startOver)}</a></p>
+<script type="module" src="/assets/packet.js"></script>`;
   const body = actions + renderPacket(checklist, records, lang, generatedOn);
   return page({ lang, title: s.packetTitle, heading: s.packetHeading, body });
 }
@@ -192,13 +170,16 @@ export function renderFormFillPage(form: FormDef, lang: Language = "en"): string
     })
     .join("");
 
-  const config = JSON.stringify({
+  const cfg = {
     template: `/${form.template_path}`,
     fieldMap: form.field_map,
     filename: `${form.id}-filled.pdf`,
     M: { filling: s.fillFilling, done: s.fillDone, unfilled: s.fillUnfilled, error: s.fillError },
-  });
+  };
 
+  // pdf-lib loads as a classic script (sets the PDFLib global, SRI-pinned); the fill
+  // logic is the static module /assets/form-fill.js reading the #fill-cfg island.
+  // Module scripts run after parsing, so PDFLib is always defined first.
   const body = `
 <p><strong>${escapeHtml(s.privacyLabel)}</strong> ${escapeHtml(s.formPrivacy)}</p>
 <p class="flag" role="note">${escapeHtml(s.notFilingNote)}</p>
@@ -207,45 +188,8 @@ export function renderFormFillPage(form: FormDef, lang: Language = "en"): string
   <button type="submit">${escapeHtml(s.fillDownload)}</button>
   <p id="status" role="status" aria-live="polite"></p>
 </form>
+${jsonIsland("fill-cfg", cfg)}
 <script src="/vendor/pdf-lib.min.js" integrity="sha256-D5pcrQeUHwgmWGyU4InYm5GMRuXBfPLVo8b2ZuO8aU8=" crossorigin="anonymous"></script>
-<script>
-const CFG = ${config};
-document.getElementById('fill').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const status = document.getElementById('status');
-  status.textContent = CFG.M.filling;
-  const values = {};
-  for (const el of document.querySelectorAll('[data-key]')) {
-    values[el.dataset.key] = el.type === 'checkbox' ? el.checked : el.value;
-  }
-  try {
-    const tplBytes = await fetch(CFG.template).then(r => r.arrayBuffer());
-    const pdfDoc = await PDFLib.PDFDocument.load(tplBytes);
-    const acro = pdfDoc.getForm();
-    const unfilled = [];
-    for (const m of CFG.fieldMap) {
-      let v = values[m.intake_key];
-      if (v === undefined || v === '' || v === false) continue;
-      if (typeof v === 'string' && v.length > 200) v = v.slice(0, 200);
-      try {
-        if (m.kind === 'checkbox') acro.getCheckBox(m.pdf_field).check();
-        else acro.getTextField(m.pdf_field).setText(String(v));
-      } catch (_) { unfilled.push(m.intake_key.replace(/_/g, ' ')); }
-    }
-    const out = await pdfDoc.save();
-    const blob = new Blob([out], { type: 'application/pdf' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = CFG.filename;
-    a.click();
-    URL.revokeObjectURL(a.href);
-    status.textContent = unfilled.length
-      ? CFG.M.unfilled + unfilled.join(', ') + '.'
-      : CFG.M.done;
-  } catch (err) {
-    status.textContent = CFG.M.error;
-  }
-});
-</script>`;
+<script type="module" src="/assets/form-fill.js"></script>`;
   return page({ lang, title: form.title, heading: form.title, body });
 }

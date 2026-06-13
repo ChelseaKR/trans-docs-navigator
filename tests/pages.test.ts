@@ -4,9 +4,12 @@
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { buildChecklist } from "../api/checklist.ts";
 import { loadCorpus } from "../api/corpus.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
+import { STYLE } from "../src/render.ts";
 import { formById } from "../api/forms.ts";
 
 const corpus = loadCorpus();
@@ -26,13 +29,15 @@ test("checklist page links to the packet (carrying the query) and start-over", (
 
 test("printable packet renders full steps, sources, prepared date, and print control", () => {
   const h = renderPacketPage(clEn, corpus, "en", "2026-05-31");
-  assert.match(h, /window\.print\(\)/);
+  assert.match(h, /id="print-btn"/); // wired by the static /assets/packet.js module
+  assert.match(h, /\/assets\/packet\.js/);
   assert.match(h, /Prepared on 2026-05-31/);
   assert.match(h, /Petition for Change of Name/); // statement
   assert.match(h, /selfhelp\.courts\.ca\.gov/); // source url
-  // Print stylesheet hides nav and expands link URLs.
-  assert.match(h, /@media print/);
-  assert.match(h, /\.no-print/);
+  // Print stylesheet (linked, served from the same STYLE constant) hides nav and expands link URLs.
+  assert.match(h, /<link rel="stylesheet" href="\/assets\/app\.css">/);
+  assert.match(STYLE, /@media print/);
+  assert.match(STYLE, /\.no-print/);
 });
 
 test("Spanish pages render in Spanish", () => {
@@ -55,9 +60,20 @@ test("encrypted save/resume panel renders with a labeled passphrase when there's
   assert.match(h, /Save your progress/);
   assert.match(h, /id="resume-pass"/);
   assert.match(h, /for="resume-pass"/); // labeled (a11y)
-  assert.match(h, /AES-GCM/); // client-side encryption present
-  assert.match(h, /localStorage/); // local-only, no server
+  assert.match(h, /id="resume-cfg"/); // config island for the static module
+  assert.match(h, /\/assets\/resume-panel\.js/); // behavior is external — no inline script
+  assert.doesNotMatch(h, /<script>/); // CSP is script-src 'self'; nothing inline
   assert.doesNotMatch(h, /current_legal_name|new_legal_name/); // never persists identity
+});
+
+test("the client resume module encrypts via the same single-source crypto (local-only)", () => {
+  const panel = readFileSync(join(import.meta.dirname, "..", "public", "assets", "resume-panel.js"), "utf8");
+  assert.match(panel, /from "\.\/resume-crypto\.js"/); // single source of truth
+  assert.match(panel, /localStorage/); // local-only, no server
+  assert.doesNotMatch(panel, /fetch\(|XMLHttpRequest|navigator\.sendBeacon/); // nothing leaves the device
+  const cryptoSrc = readFileSync(join(import.meta.dirname, "..", "public", "assets", "resume-crypto.js"), "utf8");
+  assert.match(cryptoSrc, /AES-GCM/);
+  assert.match(cryptoSrc, /600000/); // PBKDF2 iterations (OWASP 2023)
 });
 
 test("resume panel is hidden when there is no selection yet (progressive enhancement)", () => {

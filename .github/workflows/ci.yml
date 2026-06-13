@@ -2,6 +2,8 @@ name: ci
 
 # The blocking enforcement pipeline (QUALITY-AND-METRICS-STANDARD §"enforcement
 # pipeline"). A merge to main requires every job green; branch protection enforces it.
+# Action refs are pinned by commit SHA (supply-chain hardening); the tag is in the
+# comment for readability. Dependabot keeps the pins current.
 
 on:
   push:
@@ -15,8 +17,8 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "22"
       - run: npm ci
@@ -25,10 +27,23 @@ jobs:
       - run: make verify
       - name: Upload committed audit artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: audit-reports
           path: docs/audits/
+
+  smoke-journey:
+    # Real-server synthetic journey: intake → checklist → packet → form-fill in EN+ES,
+    # all static assets, and the strict CSP on every HTML response. Catches the failure
+    # modes render-level tests can't (header regressions, 404ing assets, CSP lockouts).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+      - run: npm ci
+      - run: make smoke
 
   a11y-browser:
     # Real-browser accessibility gate (BLOCKING). Covers the ~60–70% of WCAG that the
@@ -37,8 +52,8 @@ jobs:
     # signed off in docs/audits/accessibility-YYYY-MM-DD.md.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "22"
       - run: npm ci
@@ -56,9 +71,9 @@ jobs:
   security-sast:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: Semgrep SAST (BLOCKING)
-        uses: returntocorp/semgrep-action@v1
+        uses: returntocorp/semgrep-action@713efdd345f3035192eaa63f56867b88e63e4e5d # v1
         with:
           config: p/typescript p/owasp-top-ten
         # Blocking: a SAST finding fails the job (required check via branch protection).
@@ -66,10 +81,10 @@ jobs:
   container-and-infra:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: Build container
         run: docker build -t trans-docs-navigator:ci .
-      - uses: hashicorp/setup-terraform@v3
+      - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3
         with:
           terraform_version: "1.9.5"
       - name: Terraform validate

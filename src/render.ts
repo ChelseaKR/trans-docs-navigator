@@ -5,59 +5,18 @@
 // visible; motion respects prefers-reduced-motion.
 
 import type { Checklist, GroundedAnswer, CorpusRecord, DocumentType, Language } from "../api/types.ts";
-import { DISCLOSURE } from "../api/citation.ts";
-import { TITLES as EN_TITLES } from "../api/checklist.ts";
+import type { UiMessages } from "./i18n/index.ts";
+import { t as locale } from "./i18n/index.ts";
 
-/** Localized step titles (full) and short document labels for prerequisites/gaps. */
-export const DOC_TITLES: Record<Language, Record<DocumentType, string>> = {
-  en: EN_TITLES,
-  es: {
-    "court-order": "Obtenga una orden judicial para su cambio de nombre",
-    "ssa-card": "Actualice su registro del Seguro Social",
-    "drivers-license": "Actualice su licencia de conducir o identificación estatal",
-    passport: "Actualice su pasaporte de EE. UU.",
-    "birth-certificate": "Modifique su acta de nacimiento",
-    "financial-records": "Actualice registros financieros y otros",
-  },
-};
-export const DOC_LABELS: Record<Language, Record<DocumentType, string>> = {
-  en: {
-    "court-order": "Court order",
-    "ssa-card": "Social Security card",
-    "drivers-license": "Driver's license / state ID",
-    passport: "U.S. passport",
-    "birth-certificate": "Birth certificate",
-    "financial-records": "Financial & other records",
-  },
-  es: {
-    "court-order": "Orden judicial",
-    "ssa-card": "Tarjeta de Seguro Social",
-    "drivers-license": "Licencia de conducir / identificación estatal",
-    passport: "Pasaporte de EE. UU.",
-    "birth-certificate": "Acta de nacimiento",
-    "financial-records": "Registros financieros y otros",
-  },
-};
-/** Localized gap-reason sentence from the language table. */
+/** Localized gap-reason sentence from the language bundle. */
 export function gapReason(lang: Language, reason: "no-records" | "all-degraded"): string {
-  return reason === "no-records" ? T[lang].gapNoRecords : T[lang].gapAllDegraded;
+  const ui = locale(lang).ui;
+  return reason === "no-records" ? ui.gapNoRecords : ui.gapAllDegraded;
 }
 
-/** Friendly labels for the form-fill intake keys (a small fixed set). Falls back to the key. */
-export const FIELD_LABELS: Record<Language, Record<string, string>> = {
-  en: {
-    new_legal_name: "New legal name",
-    current_legal_name: "Current legal name",
-    has_court_order: "I have a court order",
-  },
-  es: {
-    new_legal_name: "Nuevo nombre legal",
-    current_legal_name: "Nombre legal actual",
-    has_court_order: "Tengo una orden judicial",
-  },
-};
+/** Friendly label for a form-fill intake key (a small fixed set). Falls back to the key. */
 export function fieldLabel(lang: Language, intakeKey: string): string {
-  return FIELD_LABELS[lang][intakeKey] ?? intakeKey.replace(/_/g, " ");
+  return locale(lang).fieldLabels[intakeKey] ?? intakeKey.replace(/_/g, " ");
 }
 
 export function escapeHtml(s: string): string {
@@ -69,154 +28,6 @@ export function escapeHtml(s: string): string {
     .replace(/'/g, "&#39;");
 }
 
-const T = {
-  en: {
-    skip: "Skip to main content",
-    bannerTitle: "Information, not legal advice",
-    bannerBody: DISCLOSURE.aiAssisted, // title already carries the "not legal advice" sentence
-    footer: "Your answers stay in your browser. Nothing you enter is sent to or stored on a server.",
-    legalNav: "Legal and policies",
-    termsLink: "Terms of Use",
-    privacyLink: "Privacy",
-    a11yLink: "Accessibility",
-    verifyNote: "This is general information, not legal advice. Requirements change — always confirm with the official source linked on each step, and talk to a lawyer or legal-aid organization about your specific situation.",
-    notFilingNote: "Filling this form here does not file it for you and is not legal advice. Review the official instructions and submit it yourself.",
-    sources: "Sources",
-    lastChecked: "last checked",
-    needsRecheck: "Needs reverification — not shown as current.",
-    discretionary: "Varies by court/clerk.",
-    cost: "Cost",
-    timeline: "Timeline",
-    prereq: "Do first",
-    step: "Step",
-    print: "Print or save as PDF",
-    startOver: "Start over",
-    prepared: "Prepared on",
-    packetIntro: "Your full plan, ready to print or save. It contains no information about you beyond the choices you made.",
-    private: "Private mode: no account, nothing saved. Closing this tab erases everything.",
-    notCovered: "Not yet covered",
-    resumeTitle: "Save your progress (optional, on this device)",
-    resumeIntro: "Save only your selections — no names — encrypted with a passphrase you choose. It stays on this device and is never sent anywhere. Forget the passphrase and it can't be recovered.",
-    passLabel: "Passphrase",
-    saveBtn: "Save (encrypted)",
-    resumeBtn: "Resume",
-    deleteBtn: "Delete saved",
-    intakeHeading: "Plan your legal name and gender-marker changes",
-    intakeLead: "Answer a few questions and get a personalized, ordered checklist with the right forms and official sources for your state. You can also use this without entering any personal details.",
-    whereLive: "Where do you live?",
-    stateLabel: "State",
-    whatChanging: "What are you changing?",
-    changeNameLabel: "Legal name",
-    changeMarkerLabel: "Gender marker",
-    whichDocs: "Which documents do you want to update? (leave all unchecked for the recommended set)",
-    languageLegend: "Language",
-    submitChecklist: "Show my checklist",
-    checklistTitle: "Your checklist",
-    checklistHeading: "Your personalized checklist",
-    checklistIntro: "Your steps are listed in the order most people complete them. Each links to its official source and the date it was last checked.",
-    packetTitle: "Your packet",
-    packetHeading: "Your name & gender-marker change packet",
-    answerHeading: "What the sources say",
-    formPrivacy: "What you type here stays in your browser. The form is filled on your device and never sent anywhere.",
-    fillDownload: "Fill & download",
-    flatScanIntro: "This official form is a flat scan that can't be auto-filled. Download the blank form and complete it by hand:",
-    gapNoRecords: "We don't have verified steps for this yet. Check your state's official website or a trans legal-aid organization.",
-    gapAllDegraded: "The information we have for this may have changed and needs reverification — we won't show it as current. Check the official source.",
-    noStepsLead: "We couldn't build any verified steps for these choices yet.",
-    notFoundHeading: "Page not found",
-    notFoundBody: "We couldn't find that page.",
-    badRequestHeading: "Invalid request",
-    badRequestBody: "That isn't a state we recognize. Please pick one from the list.",
-    methodHeading: "Method not allowed",
-    methodBody: "Please use GET.",
-    backToChecklist: "Back to your checklist",
-    backToStart: "Start over",
-    privacyLabel: "Privacy:",
-    resEnterPass: "Enter a passphrase first.",
-    resSaved: "Saved on this device, encrypted. Nothing was sent anywhere.",
-    resNothing: "Nothing saved on this device.",
-    resWrong: "Wrong passphrase, or the saved data was changed.",
-    resDeleted: "Deleted from this device.",
-    fillFilling: "Filling on your device…",
-    fillDone: "Done — your filled form downloaded. It was never sent to a server.",
-    fillUnfilled: "Downloaded. These field(s) could not be auto-filled — please complete them by hand: ",
-    fillError: "Could not fill the form. You can download the blank form instead.",
-    thinnerCoverage: "Full steps in your language for this state aren't ready yet. Federal steps are shown; switch to English to see more.",
-  },
-  es: {
-    skip: "Saltar al contenido principal",
-    bannerTitle: "Información, no asesoramiento legal",
-    bannerBody: "Asistido por IA, basado en fuentes citadas.",
-    footer: "Sus respuestas permanecen en su navegador. Nada de lo que escribe se envía ni se almacena en un servidor.",
-    legalNav: "Legal y políticas",
-    termsLink: "Términos de uso",
-    privacyLink: "Privacidad",
-    a11yLink: "Accesibilidad",
-    verifyNote: "Esto es información general, no asesoramiento legal. Los requisitos cambian — confirme siempre con la fuente oficial enlazada en cada paso, y hable con un abogado o una organización de ayuda legal sobre su situación específica.",
-    notFilingNote: "Llenar este formulario aquí no lo presenta por usted y no es asesoramiento legal. Revise las instrucciones oficiales y preséntelo usted mismo.",
-    sources: "Fuentes",
-    lastChecked: "verificado por última vez",
-    needsRecheck: "Necesita reverificación — no se muestra como actual.",
-    discretionary: "Varía según el tribunal/secretario.",
-    cost: "Costo",
-    timeline: "Tiempo estimado",
-    prereq: "Hacer primero",
-    step: "Paso",
-    print: "Imprimir o guardar como PDF",
-    startOver: "Empezar de nuevo",
-    prepared: "Preparado el",
-    packetIntro: "Su plan completo, listo para imprimir o guardar. No contiene información sobre usted más allá de las opciones que eligió.",
-    private: "Modo privado: sin cuenta, nada se guarda. Cerrar esta pestaña borra todo.",
-    notCovered: "Aún no cubierto",
-    resumeTitle: "Guarde su progreso (opcional, en este dispositivo)",
-    resumeIntro: "Guarde solo sus selecciones — sin nombres — cifradas con una contraseña que usted elige. Permanece en este dispositivo y nunca se envía a ningún lugar. Si olvida la contraseña, no se puede recuperar.",
-    passLabel: "Contraseña",
-    saveBtn: "Guardar (cifrado)",
-    resumeBtn: "Reanudar",
-    deleteBtn: "Eliminar lo guardado",
-    intakeHeading: "Planifique sus cambios legales de nombre y marcador de género",
-    intakeLead: "Responda algunas preguntas y obtenga una lista personalizada y ordenada con los formularios correctos y las fuentes oficiales para su estado. También puede usarla sin ingresar datos personales.",
-    whereLive: "¿Dónde vive?",
-    stateLabel: "Estado",
-    whatChanging: "¿Qué está cambiando?",
-    changeNameLabel: "Nombre legal",
-    changeMarkerLabel: "Marcador de género",
-    whichDocs: "¿Qué documentos desea actualizar? (deje todo sin marcar para el conjunto recomendado)",
-    languageLegend: "Idioma",
-    submitChecklist: "Mostrar mi lista",
-    checklistTitle: "Su lista",
-    checklistHeading: "Su lista personalizada",
-    checklistIntro: "Sus pasos se enumeran en el orden en que la mayoría de las personas los completa. Cada uno enlaza a su fuente oficial y la fecha en que se verificó por última vez.",
-    packetTitle: "Su paquete",
-    packetHeading: "Su paquete de cambio de nombre y marcador de género",
-    answerHeading: "Lo que dicen las fuentes",
-    formPrivacy: "Lo que escribe aquí permanece en su navegador. El formulario se llena en su dispositivo y nunca se envía a ningún lugar.",
-    fillDownload: "Llenar y descargar",
-    flatScanIntro: "Este formulario oficial es una imagen escaneada que no se puede llenar automáticamente. Descargue el formulario en blanco y complételo a mano:",
-    gapNoRecords: "Aún no tenemos pasos verificados para esto. Consulte el sitio web oficial de su estado o una organización de ayuda legal para personas trans.",
-    gapAllDegraded: "La información que tenemos sobre esto puede haber cambiado y necesita reverificación; no la mostraremos como actual. Consulte la fuente oficial.",
-    noStepsLead: "Todavía no pudimos crear pasos verificados para estas opciones.",
-    notFoundHeading: "Página no encontrada",
-    notFoundBody: "No pudimos encontrar esa página.",
-    badRequestHeading: "Solicitud no válida",
-    badRequestBody: "Ese no es un estado que reconozcamos. Por favor, elija uno de la lista.",
-    methodHeading: "Método no permitido",
-    methodBody: "Por favor, use GET.",
-    backToChecklist: "Volver a su lista",
-    backToStart: "Empezar de nuevo",
-    privacyLabel: "Privacidad:",
-    resEnterPass: "Ingrese una contraseña primero.",
-    resSaved: "Guardado en este dispositivo, cifrado. No se envió nada a ningún lugar.",
-    resNothing: "No hay nada guardado en este dispositivo.",
-    resWrong: "Contraseña incorrecta, o los datos guardados fueron modificados.",
-    resDeleted: "Eliminado de este dispositivo.",
-    fillFilling: "Llenando en su dispositivo…",
-    fillDone: "Listo: su formulario llenado se descargó. Nunca se envió a un servidor.",
-    fillUnfilled: "Descargado. Estos campos no se pudieron llenar automáticamente; complételos a mano: ",
-    fillError: "No se pudo llenar el formulario. Puede descargar el formulario en blanco.",
-    thinnerCoverage: "Los pasos completos en español para este estado aún no están listos. Se muestran los pasos federales; cambie a inglés para ver más.",
-  },
-} as const;
 
 /**
  * Colour tokens, exported so the a11y gate can assert WCAG 2.2 AA contrast ratios
@@ -229,7 +40,9 @@ export const PALETTE = {
   print: { bg: "#ffffff", fg: "#000000", muted: "#222222", accent: "#0b3d91", card: "#ffffff", warn: "#7a4b00", line: "#999999", onAccent: "#ffffff" },
 } as const;
 
-const STYLE = `
+// Served at /assets/app.css (api/router.ts) and linked from every page, so the CSP
+// needs no 'unsafe-inline' for styles. Derived from PALETTE — one source of truth.
+export const STYLE = `
 :root{--bg:${PALETTE.screen.bg};--fg:${PALETTE.screen.fg};--muted:${PALETTE.screen.muted};--accent:${PALETTE.screen.accent};--card:${PALETTE.screen.card};--warn:${PALETTE.screen.warn};--line:${PALETTE.screen.line}}
 *{box-sizing:border-box}
 body{margin:0;font:1rem/1.6 system-ui,sans-serif;background:var(--bg);color:var(--fg)}
@@ -262,12 +75,12 @@ footer{max-width:60rem;margin:0 auto;padding:1.5rem 1rem;color:var(--muted);bord
 `;
 
 /** UI string table for a language (used by page assembly in pages.ts). */
-export function uiStrings(lang: Language): (typeof T)[Language] {
-  return T[lang];
+export function uiStrings(lang: Language): UiMessages {
+  return locale(lang).ui;
 }
 
 export function page(opts: { lang: Language; title: string; heading: string; body: string }): string {
-  const t = T[opts.lang];
+  const t = locale(opts.lang).ui;
   const langQ = opts.lang === "es" ? "?language=es" : ""; // preserve language on footer links
   return `<!doctype html>
 <html lang="${opts.lang}">
@@ -275,7 +88,7 @@ export function page(opts: { lang: Language; title: string; heading: string; bod
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escapeHtml(opts.title)}</title>
-<style>${STYLE}</style>
+<link rel="stylesheet" href="/assets/app.css">
 </head>
 <body>
 <a class="skip" href="#main">${escapeHtml(t.skip)}</a>
@@ -302,7 +115,7 @@ export function page(opts: { lang: Language; title: string; heading: string; bod
 // 2 on the standalone answer page (directly under the page h1, so no level is skipped).
 function sourceList(records: CorpusRecord[], lang: Language, level: 2 | 3 = 3): string {
   if (records.length === 0) return "";
-  const t = T[lang];
+  const t = locale(lang).ui;
   const items = records
     .map(
       (r) =>
@@ -313,7 +126,7 @@ function sourceList(records: CorpusRecord[], lang: Language, level: 2 | 3 = 3): 
 }
 
 export function renderChecklist(checklist: Checklist, records: CorpusRecord[], lang: Language): string {
-  const t = T[lang];
+  const t = locale(lang).ui;
   const byId = new Map(records.map((r) => [r.id, r]));
   const steps = checklist.steps
     .map((s) => {
@@ -323,13 +136,13 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
         : "";
       const time = s.timeline ? `<p class="meta"><strong>${escapeHtml(t.timeline)}:</strong> ${escapeHtml(s.timeline.typical)}</p>` : "";
       const prereq = s.prerequisites.length
-        ? `<p class="meta"><strong>${escapeHtml(t.prereq)}:</strong> ${s.prerequisites.map((d) => escapeHtml(DOC_LABELS[lang][d as DocumentType] ?? d)).join(", ")}</p>`
+        ? `<p class="meta"><strong>${escapeHtml(t.prereq)}:</strong> ${s.prerequisites.map((d) => escapeHtml(locale(lang).docLabels[d as DocumentType] ?? d)).join(", ")}</p>`
         : "";
       const disc = s.discretionary ? `<p class="flag">${escapeHtml(t.discretionary)}</p>` : "";
       const stale = s.needs_reverification ? `<p class="flag" role="note">${escapeHtml(t.needsRecheck)}</p>` : "";
       const claims = stepRecords.map((r) => `<li>${escapeHtml(r.statement)}</li>`).join("");
       return `<li class="step">
-  <h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(DOC_TITLES[lang][s.document_type])}</h2>
+  <h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
   ${claims ? `<ul>${claims}</ul>` : ""}
   ${cost}${time}${prereq}${disc}${stale}
   ${sourceList(stepRecords, lang)}
@@ -346,7 +159,7 @@ export function renderPacket(
   lang: Language,
   generatedOn: string,
 ): string {
-  const t = T[lang];
+  const t = locale(lang).ui;
   const byId = new Map(records.map((r) => [r.id, r]));
   const steps = checklist.steps
     .map((s) => {
@@ -359,12 +172,12 @@ export function renderPacket(
         : "";
       const time = s.timeline ? `<p class="meta"><strong>${escapeHtml(t.timeline)}:</strong> ${escapeHtml(s.timeline.typical)}</p>` : "";
       const prereq = s.prerequisites.length
-        ? `<p class="meta"><strong>${escapeHtml(t.prereq)}:</strong> ${s.prerequisites.map((d) => escapeHtml(DOC_LABELS[lang][d as DocumentType] ?? d)).join(", ")}</p>`
+        ? `<p class="meta"><strong>${escapeHtml(t.prereq)}:</strong> ${s.prerequisites.map((d) => escapeHtml(locale(lang).docLabels[d as DocumentType] ?? d)).join(", ")}</p>`
         : "";
       const disc = s.discretionary ? `<p class="flag">${escapeHtml(t.discretionary)}</p>` : "";
       const stale = s.needs_reverification ? `<p class="flag" role="note">${escapeHtml(t.needsRecheck)}</p>` : "";
       return `<li class="step">
-  <h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(DOC_TITLES[lang][s.document_type])}</h2>
+  <h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
   ${detail ? `<ul>${detail}</ul>` : ""}
   ${cost}${time}${prereq}${disc}${stale}
   ${sourceList(stepRecords, lang)}
@@ -373,7 +186,7 @@ export function renderPacket(
     .join("");
   const gaps = checklist.gaps.length
     ? `<section aria-label="${escapeHtml(t.notCovered)}"><h2>${escapeHtml(t.notCovered)}</h2><ul>${checklist.gaps
-        .map((g) => `<li class="flag">${escapeHtml(DOC_LABELS[lang][g.document_type])}: ${escapeHtml(gapReason(lang, g.reason))}</li>`)
+        .map((g) => `<li class="flag">${escapeHtml(locale(lang).docLabels[g.document_type])}: ${escapeHtml(gapReason(lang, g.reason))}</li>`)
         .join("")}</ul></section>`
     : "";
   return `<p>${escapeHtml(t.packetIntro)}</p><p class="flag" role="note">${escapeHtml(t.verifyNote)}</p><ol>${steps}</ol>${gaps}<p class="meta">${escapeHtml(t.prepared)} ${escapeHtml(generatedOn)}.</p>`;

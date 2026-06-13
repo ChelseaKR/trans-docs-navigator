@@ -1,0 +1,32 @@
+name: codeql
+
+# Scheduled + PR static analysis (PRODUCTIONIZATION-PLAN Phase 4). Complements the
+# blocking Semgrep job in ci.yml with GitHub's own query packs.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "41 3 * * 3" # Wednesdays 03:41 UTC
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read # required for SARIF upload on private repos
+
+jobs:
+  analyze:
+    # Code-scanning upload is unavailable on private personal repos (needs Advanced
+    # Security) and free on public ones. This guard makes the job a no-op until the
+    # repo flips public, at which point CodeQL starts running with no other change.
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: github/codeql-action/init@dd903d2e4f5405488e5ef1422510ee31c8b32357 # v3
+        with:
+          languages: javascript-typescript
+          queries: security-and-quality
+      - uses: github/codeql-action/analyze@dd903d2e4f5405488e5ef1422510ee31c8b32357 # v3

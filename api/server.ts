@@ -24,12 +24,12 @@ const MIME: Record<string, string> = {
   ".css": "text/css; charset=utf-8",
 };
 
-// Conservative security headers. CSP allows the same-origin pdf-lib bundle; the only
-// inline script is the client-side form-fill, so 'unsafe-inline' is scoped to script
-// and style. (Hardening to nonces is a follow-up once the bundle is externalized.)
+// Strict security headers. No inline scripts or styles anywhere: client JS is served
+// from /assets/ (public/assets on disk), the stylesheet from /assets/app.css, and
+// per-page config travels in JSON islands — so the CSP is 'self' across the board.
 const SECURITY_HEADERS: Record<string, string> = {
   "content-security-policy":
-    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'",
+    "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; object-src 'none'",
   "x-content-type-options": "nosniff",
   "x-frame-options": "DENY",
   "referrer-policy": "no-referrer",
@@ -46,16 +46,19 @@ function send(res: ServerResponse, status: number, contentType: string, body: st
 // repo can't disclose source files. We also reject any pathname carrying `..` or an
 // encoded slash before it's resolved.
 const VENDOR_DIR = join(REPO_ROOT, "public", "vendor");
+const ASSETS_DIR = join(REPO_ROOT, "public", "assets");
 const FIXTURES_DIR = join(REPO_ROOT, "forms", "fixtures");
 
-/** Serve a static file only from the public/vendor/ and forms/fixtures/ allowlist. */
+/** Serve a static file only from the public/{vendor,assets}/ and forms/fixtures/ allowlist. */
 function tryStatic(pathname: string, res: ServerResponse): boolean {
   if (pathname.includes("..") || /%2[ef]/i.test(pathname)) return false; // no traversal / encoded sep
-  const isVendor = pathname.startsWith("/vendor/");
+  const isPublic = pathname.startsWith("/vendor/") || pathname.startsWith("/assets/");
   const isFixture = pathname.startsWith("/forms/fixtures/");
-  if (!isVendor && !isFixture) return false;
-  const full = normalize(join(REPO_ROOT, isVendor ? join("public", pathname) : pathname));
-  const allowedDir = isVendor ? VENDOR_DIR : FIXTURES_DIR;
+  if (!isPublic && !isFixture) return false;
+  const full = normalize(join(REPO_ROOT, isPublic ? join("public", pathname) : pathname));
+  const allowedDir = pathname.startsWith("/vendor/") ? VENDOR_DIR : isPublic ? ASSETS_DIR : FIXTURES_DIR;
+  // /assets/app.css is not on disk (the router serves it from the typed palette), so a
+  // miss here falls through to routing rather than 404ing.
   if (!full.startsWith(allowedDir + sep) || !existsSync(full) || !statSync(full).isFile()) return false;
   send(res, 200, MIME[extname(full)] ?? "application/octet-stream", readFileSync(full));
   return true;
