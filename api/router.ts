@@ -12,8 +12,9 @@ import { loadCorpus } from "./corpus.ts";
 import { formById } from "./forms.ts";
 import type { ChangeType, DocumentType, Intake, Language } from "./types.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
-import { renderAnswer, page, uiStrings, escapeHtml } from "../src/render.ts";
+import { renderAnswer, page, uiStrings, escapeHtml, STYLE } from "../src/render.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
+import { asLanguage } from "../src/i18n/index.ts";
 
 /** Input bounds — abuse/DoS resistance + predictable resource use. */
 export const LIMITS = {
@@ -44,9 +45,8 @@ export interface RouteResponse {
   log?: { event: string; fields: Record<string, unknown> };
 }
 
-export function asLanguage(v: string | null): Language {
-  return v === "es" ? "es" : "en";
-}
+// Language parsing is registry-driven (src/i18n): a new locale needs no router change.
+export { asLanguage } from "../src/i18n/index.ts";
 
 /** Well-formed jurisdiction id, or null when the param is malformed (→ 400). */
 export function validJurisdiction(v: string | null): string | null {
@@ -137,6 +137,12 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
   }
 
   const p = url.pathname;
+
+  // The app stylesheet derives from the typed PALETTE in src/render.ts, so it is
+  // served from code rather than duplicated on disk. Static JS lives in public/assets.
+  if (p === "/assets/app.css") {
+    return { status: 200, contentType: "text/css; charset=utf-8", body: STYLE };
+  }
 
   if (p === "/healthz") {
     return {

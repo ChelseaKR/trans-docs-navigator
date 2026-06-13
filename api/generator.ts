@@ -12,7 +12,8 @@
 
 import type { GroundedAnswer, AnswerBlock, CorpusRecord, Cost, Timeline, Language } from "./types.ts";
 import type { Retrieved } from "./retrieval.ts";
-import { DISCLOSURE } from "./citation.ts";
+import type { GeneratorMessages } from "../src/i18n/index.ts";
+import { t as locale } from "../src/i18n/index.ts";
 
 export interface GenerateInput {
   retrieved: Retrieved[];
@@ -26,54 +27,18 @@ export interface Generator {
   generate(input: GenerateInput): GroundedAnswer;
 }
 
-/**
- * Language strings for the system-composed parts of an answer. Record statements/details
- * are already in the record's language; these are the scaffolding sentences around them.
- */
-const STR = {
-  en: {
-    costVaries: (note?: string) => (note ? ` Cost varies: ${note}` : " Cost varies."),
-    costAbout: (amt: number, waiver: boolean) =>
-      ` The typical cost is about $${amt}.${waiver ? " A fee waiver may be available if you cannot afford it." : ""}`,
-    timeline: (typ: string, note?: string) => ` Typical timeline: ${typ}.${note ? ` ${note}` : ""}`,
-    intro: "Here is what the official sources say for your situation. Each point links to its source and the date it was last checked.",
-    discretionary: "This step is discretionary — the outcome can vary by court or clerk, so treat it as a likely path, not a guarantee.",
-    refusal:
-      "I don't have verified information for that yet, so I can't give you an answer I'd stand behind. " +
-      "Please check the official source directly, or try a jurisdiction and document I currently cover.",
-    freshness: (topic: string, date: string, title: string) =>
-      `One related rule (${topic}) may have changed and needs reverification — I last have it checked on ${date}, ` +
-      `which is outside the freshness window, so I won't present it as current. Verify it directly at the official source: ${title}.`,
-    disclosure: `${DISCLOSURE.notLegalAdvice} ${DISCLOSURE.aiAssisted}`,
-  },
-  es: {
-    costVaries: (note?: string) => (note ? ` El costo varía: ${note}` : " El costo varía."),
-    costAbout: (amt: number, waiver: boolean) =>
-      ` El costo típico es de aproximadamente $${amt}.${waiver ? " Puede haber una exención de tarifa si no puede pagarla." : ""}`,
-    timeline: (typ: string, note?: string) => ` Tiempo estimado: ${typ}.${note ? ` ${note}` : ""}`,
-    intro: "Esto es lo que dicen las fuentes oficiales para su situación. Cada punto enlaza a su fuente y la fecha en que se verificó por última vez.",
-    discretionary: "Este paso es discrecional — el resultado puede variar según el tribunal o el secretario, así que considérelo un camino probable, no una garantía.",
-    refusal:
-      "Todavía no tengo información verificada sobre eso, así que no puedo darle una respuesta que pueda respaldar. " +
-      "Consulte directamente la fuente oficial, o pruebe una jurisdicción y un documento que cubra actualmente.",
-    freshness: (topic: string, date: string, title: string) =>
-      `Una regla relacionada (${topic}) puede haber cambiado y necesita reverificación — la verifiqué por última vez el ${date}, ` +
-      `lo cual está fuera del período de vigencia, así que no la presentaré como actual. Verifíquela directamente en la fuente oficial: ${title}.`,
-    disclosure: "Información, no asesoramiento legal. Asistido por IA, basado en fuentes citadas.",
-  },
-} as const;
 
-function costSentence(cost: Cost, s: (typeof STR)[Language]): string {
+function costSentence(cost: Cost, s: GeneratorMessages): string {
   if (cost.amount_usd === null) return s.costVaries(cost.note);
   return s.costAbout(cost.amount_usd, cost.fee_waiver === true);
 }
 
-function timelineSentence(t: Timeline, s: (typeof STR)[Language]): string {
+function timelineSentence(t: Timeline, s: GeneratorMessages): string {
   return s.timeline(t.typical, t.note);
 }
 
 /** Compose the cited claim text for one record from its own fields only. */
-function claimText(rec: CorpusRecord, s: (typeof STR)[Language]): string {
+function claimText(rec: CorpusRecord, s: GeneratorMessages): string {
   let text = rec.statement.trim();
   if (rec.detail) text += ` ${rec.detail.trim()}`;
   if (rec.cost) text += costSentence(rec.cost, s);
@@ -83,7 +48,7 @@ function claimText(rec: CorpusRecord, s: (typeof STR)[Language]): string {
 
 export class GroundedComposer implements Generator {
   generate(input: GenerateInput): GroundedAnswer {
-    const s = STR[input.language ?? "en"];
+    const s = locale(input.language ?? "en").generator;
     const max = input.maxRecords ?? 8;
     const current = input.retrieved.filter((r) => r.current).slice(0, max);
     const degraded = input.retrieved.filter((r) => !r.current);
@@ -117,7 +82,7 @@ export class GroundedComposer implements Generator {
   }
 }
 
-function freshnessBlock(rec: CorpusRecord, s: (typeof STR)[Language]): AnswerBlock {
+function freshnessBlock(rec: CorpusRecord, s: GeneratorMessages): AnswerBlock {
   return {
     kind: "freshness",
     citations: [], // intentionally not a servable claim
@@ -125,7 +90,7 @@ function freshnessBlock(rec: CorpusRecord, s: (typeof STR)[Language]): AnswerBlo
   };
 }
 
-function disclosureBlock(s: (typeof STR)[Language]): AnswerBlock {
+function disclosureBlock(s: GeneratorMessages): AnswerBlock {
   return { kind: "boilerplate", citations: [], text: s.disclosure };
 }
 
@@ -149,7 +114,7 @@ export interface AsyncGenerator {
 
 /** Build the retrieval-grounded prompt. The context lists each servable record by id. */
 export function buildBedrockPrompt(input: GenerateInput): string {
-  const s = STR[input.language ?? "en"];
+  const s = locale(input.language ?? "en").generator;
   const current = input.retrieved.filter((r) => r.current).slice(0, input.maxRecords ?? 8);
   const context = current
     .map((r) => `[${r.record.id}] ${claimText(r.record, s)}`)
@@ -227,7 +192,7 @@ export class BedrockGenerator implements AsyncGenerator {
           "GroundedComposer is the default; wire api/bedrock-transport.ts to enable the model path (ADR-1).",
       );
     }
-    const s = STR[input.language ?? "en"];
+    const s = locale(input.language ?? "en").generator;
     const current = input.retrieved.filter((r) => r.current).slice(0, input.maxRecords ?? 8);
     const degraded = input.retrieved.filter((r) => !r.current);
 

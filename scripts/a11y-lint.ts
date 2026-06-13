@@ -14,7 +14,7 @@ import { buildChecklist } from "../api/checklist.ts";
 import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
-import { PALETTE } from "../src/render.ts";
+import { PALETTE, STYLE } from "../src/render.ts";
 import { pass, fail } from "./util.ts";
 
 // ── Colour-contrast (WCAG 2.2 SC 1.4.3) ───────────────────────────────────────
@@ -95,8 +95,7 @@ function checkPage(p: Page): string[] {
   need((h.match(/<h1[\s>]/gi) ?? []).length === 1, "must have exactly one <h1>");
   need(/<a class="skip" href="#main"/.test(h), "missing skip-to-content link");
   need(/id="main"/.test(h), "missing main landmark (#main)");
-  need(/focus-visible/.test(h), "missing visible-focus styles");
-  need(/prefers-reduced-motion/.test(h), "missing reduced-motion handling");
+  need(/<link rel="stylesheet" href="\/assets\/app\.css">/.test(h), "missing app stylesheet link");
 
   // Images need alt text.
   for (const img of h.match(/<img\b[^>]*>/gi) ?? []) {
@@ -142,7 +141,13 @@ function checkLabels(p: Page): string[] {
   return errs;
 }
 
-const allErrors = [...pages.flatMap(checkPage), ...contrastErrors()];
+// The stylesheet is shared (served at /assets/app.css from this same STYLE constant),
+// so the visible-focus and reduced-motion checks run once against it.
+const styleErrors: string[] = [];
+if (!/focus-visible/.test(STYLE)) styleErrors.push("stylesheet: missing visible-focus styles");
+if (!/prefers-reduced-motion/.test(STYLE)) styleErrors.push("stylesheet: missing reduced-motion handling");
+
+const allErrors = [...pages.flatMap(checkPage), ...styleErrors, ...contrastErrors()];
 if (allErrors.length > 0) fail("a11y", `${allErrors.length} mechanical WCAG violation(s)`, allErrors);
 pass(
   "a11y",

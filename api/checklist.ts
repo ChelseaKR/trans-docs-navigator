@@ -13,6 +13,7 @@ import type {
 } from "./types.ts";
 import { loadCorpus } from "./corpus.ts";
 import { isCurrent } from "./freshness.ts";
+import { t } from "../src/i18n/index.ts";
 
 /** Canonical ordering of documents. Index = order; also the dependency backbone. */
 const CANONICAL_ORDER: DocumentType[] = [
@@ -24,15 +25,11 @@ const CANONICAL_ORDER: DocumentType[] = [
   "financial-records",
 ];
 
-/** Canonical English step titles. The view layer localizes display via src/render DOC_TITLES. */
-export const TITLES: Record<DocumentType, string> = {
-  "court-order": "Get a court order for your name change",
-  "ssa-card": "Update your Social Security record",
-  "drivers-license": "Update your driver's license or state ID",
-  passport: "Update your U.S. passport",
-  "birth-certificate": "Amend your birth certificate",
-  "financial-records": "Update financial and other records",
-};
+/**
+ * Canonical step titles are the English ones from the locale registry
+ * (src/i18n); the view layer localizes display via each bundle's docTitles.
+ */
+const TITLES: Record<DocumentType, string> = t("en").docTitles;
 
 /** The default set recommended when the user doesn't pick specific documents. */
 const STANDARD_SET: DocumentType[] = ["court-order", "ssa-card", "drivers-license", "passport"];

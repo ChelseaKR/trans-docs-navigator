@@ -4,6 +4,15 @@
   "private": true,
   "description": "Privacy-first, fully-cited navigator for legal name and gender-marker changes. Information, never legal advice.",
   "license": "AGPL-3.0-or-later",
+  "author": "Chelsea Kelly-Reif",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChelseaKR/trans-docs-navigator.git"
+  },
+  "homepage": "https://github.com/ChelseaKR/trans-docs-navigator#readme",
+  "bugs": {
+    "url": "https://github.com/ChelseaKR/trans-docs-navigator/issues"
+  },
   "type": "module",
   "engines": {
     "node": ">=22.6.0"

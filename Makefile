@@ -6,7 +6,8 @@ NODE := node --experimental-strip-types --no-warnings
 SHELL := /bin/bash
 
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
-        lint typecheck test security content citation privacy freshness disclosure readability deploy-plan clean
+        lint typecheck test security content citation privacy freshness disclosure readability deploy-plan clean \
+        smoke coverage link-check source-watch source-baseline new-record
 
 help:
 	@echo "Targets:"
@@ -83,6 +84,33 @@ eval:
 eval-bedrock:
 	@echo "── model-path eval (BedrockGenerator → citation.enforce) ──"
 	@$(NODE) eval/run-bedrock.ts
+
+# ---------------------------------------------------------------------------
+# Operational checks (not in `verify`; run on push/schedule by CI workflows).
+# ---------------------------------------------------------------------------
+
+# Real-server journey: intake → checklist → packet → form-fill in EN+ES, plus
+# assets and the strict CSP. Catches what render-level tests can't.
+smoke:
+	@echo "── synthetic user journey (real server) ──────────────────"
+	@$(NODE) scripts/smoke-journey.ts
+
+# Regenerate the public coverage matrix (docs/audits/coverage.md).
+coverage:
+	@$(NODE) scripts/coverage-matrix.ts
+
+# Weekly content-ops (content-watch.yml): do the cited sources still resolve,
+# and has any source page changed under a record since its baseline?
+link-check:
+	@$(NODE) scripts/link-check.ts
+source-watch:
+	@$(NODE) scripts/source-watch.ts
+source-baseline:
+	@$(NODE) scripts/source-watch.ts --update
+
+# Print a schema-valid corpus-record skeleton (dated today, placeholder verifier).
+new-record:
+	@$(NODE) scripts/new-record.ts
 
 # Deterministic in-process latency guard for the request path. The network-level p95
 # first-token target (ROADMAP §7) is loadtest/p95.k6.js, run against a live instance.

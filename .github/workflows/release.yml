@@ -1,0 +1,35 @@
+name: release
+
+# Tagged-release packaging (PRODUCTIONIZATION-PLAN Phase 1): build the container,
+# push it to GHCR under this repo, and attach a CycloneDX SBOM. Uses only
+# GITHUB_TOKEN — no external registry account or long-lived credential. Deploy
+# targets pull a digest-pinned image from here.
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Log in to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+      - name: Build and push
+        run: |
+          IMAGE="ghcr.io/${{ github.repository }}"
+          TAG="${GITHUB_REF_NAME}"
+          docker build -t "$IMAGE:$TAG" -t "$IMAGE:latest" .
+          docker push "$IMAGE:$TAG"
+          docker push "$IMAGE:latest"
+      - name: SBOM (CycloneDX)
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0
+        with:
+          image: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+          format: cyclonedx-json
+          artifact-name: sbom-${{ github.ref_name }}.cdx.json
