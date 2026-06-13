@@ -18,6 +18,10 @@ permissions:
 
 jobs:
   analyze:
+    # Code-scanning upload is unavailable on private personal repos (needs Advanced
+    # Security) and free on public ones. This guard makes the job a no-op until the
+    # repo flips public, at which point CodeQL starts running with no other change.
+    if: ${{ !github.event.repository.private }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
