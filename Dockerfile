@@ -1,6 +1,6 @@
 # Containerized for VPC-parity deployment (portability §8). Distroless-ish: only the
 # runtime and production deps. No PII is ever stored, so no volumes are mounted.
-FROM node:22-slim AS base
+FROM node:26-slim AS base
 WORKDIR /app
 
 # Install production dependencies only.
