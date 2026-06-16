@@ -38,8 +38,13 @@ interface Check {
 }
 
 const CHECKS: Check[] = [
-  { name: "intake (en)", path: "/", contains: ["Information, not legal advice", "Plan your legal name"] },
-  { name: "intake (es)", path: "/?language=es", contains: ["Información, no asesoramiento legal", "Planifique sus cambios"] },
+  { name: "intake (en)", path: "/", contains: ["Information, not legal advice", "Plan your legal name", 'rel="canonical"'] },
+  { name: "intake (es)", path: "/?language=es", contains: ["Información, no asesoramiento legal", "Planifique sus cambios", 'hreflang="es"'] },
+  { name: "guide index (en)", path: "/guide", contains: ["All guides", 'rel="canonical"', "California"] },
+  { name: "guide page (en)", path: "/guide/california/name-change", contains: ["HowTo", 'rel="canonical"', "Build my personalized checklist"] },
+  { name: "guide page (es)", path: "/guide/illinois/gender-marker?language=es", contains: ["BreadcrumbList", "Crear mi lista"] },
+  { name: "robots.txt", path: "/robots.txt", contentType: "text/plain", contains: ["Disallow: /checklist", "Sitemap:"] },
+  { name: "sitemap.xml", path: "/sitemap.xml", contentType: "application/xml", contains: ["<urlset", "/guide/california/name-change", "hreflang"] },
   { name: "checklist (en)", path: "/checklist?jurisdiction=US-CA&change=name&change=gender-marker", contains: ["Information, not legal advice", "Step 1"] },
   { name: "checklist (es)", path: "/checklist?jurisdiction=US-CA&change=name&language=es", contains: ["Información, no asesoramiento legal", "Paso 1"] },
   { name: "packet (en)", path: "/packet?jurisdiction=US-CA&change=name", contains: ["Information, not legal advice", "Prepared on"] },

@@ -231,4 +231,32 @@ export const en: LocaleBundle = {
       },
     ],
   },
+
+  seo: {
+    homeTitle: "Legal name & gender-marker change guide, by state",
+    homeDescription:
+      "Plain-language, cited steps to change your legal name and gender marker in the US, with the right forms and official sources for your state. Not legal advice.",
+    guideIndexTitle: "State-by-state name & gender-marker change guides",
+    guideIndexDescription:
+      "Cited, current guides to changing your legal name and gender marker in each state we cover, from court order through SSA, DMV, and passport.",
+    guideIndexLead:
+      "Pick your state and what you're changing. Each guide lists the steps in order, with costs, timelines, and a link to the official source for every requirement.",
+    guideIndexAllHeading: "All guides",
+    topicName: { name: "Name change", "gender-marker": "Gender-marker change" },
+    guideTitle: (state, topic) => `${topic} in ${state}: steps, forms & costs`,
+    guideHeading: (state, topic) => `${topic} in ${state}`,
+    guideDescription: (state, topic) =>
+      `How to complete a ${topic.toLowerCase()} in ${state}: the steps in order, what each costs, how long it takes, and the official source for every requirement.`,
+    guideLead: (state, topic) =>
+      `These are the steps most people follow for a ${topic.toLowerCase()} in ${state}, in order. Each links to its official source and the date we last checked it. When you're ready, build a personalized checklist that covers every document at once.`,
+    guideCta: "Build my personalized checklist",
+    guideReviewed: "Last reviewed",
+    breadcrumbHome: "Home",
+    breadcrumbGuides: "Guides",
+    legalDescription: {
+      terms: "The terms for using Trans Docs Navigator: general information, not legal advice, with no warranty. Verify every requirement against the official source.",
+      privacy: "How Trans Docs Navigator protects you: no account, nothing you type sent to a server, no trackers, forms filled on your device.",
+      accessibility: "Our WCAG 2.2 AA accessibility commitment for Trans Docs Navigator, what we test automatically, and how to report a barrier.",
+    },
+  },
 };

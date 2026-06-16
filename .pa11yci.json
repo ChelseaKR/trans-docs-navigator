@@ -18,6 +18,9 @@
     "http://localhost:8080/forms/us-ss-5",
     "http://localhost:8080/terms",
     "http://localhost:8080/privacy",
-    "http://localhost:8080/accessibility"
+    "http://localhost:8080/accessibility",
+    "http://localhost:8080/guide",
+    "http://localhost:8080/guide/california/name-change",
+    "http://localhost:8080/guide/texas/gender-marker?language=es"
   ]
 }

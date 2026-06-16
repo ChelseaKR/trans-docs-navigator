@@ -14,6 +14,7 @@ import { buildChecklist } from "../api/checklist.ts";
 import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
+import { renderGuideIndex, renderGuidePage } from "../src/guide.ts";
 import { PALETTE, STYLE } from "../src/render.ts";
 import { pass, fail } from "./util.ts";
 
@@ -79,6 +80,10 @@ const pages: Page[] = [
   { name: "terms-es", html: renderTermsPage("es") },
   { name: "privacy", html: renderPrivacyPage("en") },
   { name: "accessibility", html: renderAccessibilityPage("en") },
+  { name: "guide-index", html: renderGuideIndex("en") },
+  { name: "guide-index-es", html: renderGuideIndex("es") },
+  { name: "guide-page", html: renderGuidePage("california", "name-change", "en")! },
+  { name: "guide-page-es", html: renderGuidePage("texas", "gender-marker", "es")! },
 ];
 
 function checkPage(p: Page): string[] {

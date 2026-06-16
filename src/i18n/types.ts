@@ -4,7 +4,7 @@
 // writing one new bundle module and registering it in ./index.ts; the compiler
 // enforces completeness against these interfaces.
 
-import type { DocumentType, Language } from "../../api/types.ts";
+import type { ChangeType, DocumentType, Language } from "../../api/types.ts";
 
 /** Strings for page chrome, the intake form, checklist, packet, form-fill, and errors. */
 export interface UiMessages {
@@ -113,6 +113,34 @@ export interface LegalMessages {
   accessibility: LegalSection[];
 }
 
+/**
+ * Strings for search-engine metadata and the indexable guide pages. Kept in the
+ * locale bundle so the Spanish surface is a real, separately-rankable page, not an
+ * afterthought. Templated entries are functions because the state name and topic vary.
+ */
+export interface SeoMessages {
+  /** Keyword-shaped homepage <title> (brand is appended by the renderer). */
+  homeTitle: string;
+  homeDescription: string;
+  guideIndexTitle: string;
+  guideIndexDescription: string;
+  guideIndexLead: string;
+  guideIndexAllHeading: string;
+  /** Display name of each change type, e.g. "Name change" / "Cambio de nombre". */
+  topicName: Record<ChangeType, string>;
+  guideTitle(stateName: string, topicName: string): string;
+  guideHeading(stateName: string, topicName: string): string;
+  guideDescription(stateName: string, topicName: string): string;
+  guideLead(stateName: string, topicName: string): string;
+  /** Call-to-action linking a guide page into the personalized checklist flow. */
+  guideCta: string;
+  guideReviewed: string;
+  breadcrumbHome: string;
+  breadcrumbGuides: string;
+  /** Plain-language meta descriptions for the legal pages. */
+  legalDescription: { terms: string; privacy: string; accessibility: string };
+}
+
 /** Everything one language needs. The compiler enforces parity across languages. */
 export interface LocaleBundle {
   language: Language;
@@ -127,4 +155,5 @@ export interface LocaleBundle {
   fieldLabels: Record<string, string>;
   generator: GeneratorMessages;
   legal: LegalMessages;
+  seo: SeoMessages;
 }
