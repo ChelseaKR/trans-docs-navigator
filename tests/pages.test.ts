@@ -83,6 +83,23 @@ test("form page links to the official source and never auto-fills", () => {
   }
 });
 
+test("form page offers an on-device copy-helper that can't submit anything", () => {
+  const h = renderFormFillPage(formById("us-ss-5")!, "en");
+  assert.match(h, /id="copy-current"/);
+  assert.match(h, /id="copy-new"/);
+  assert.match(h, /for="copy-current"/); // labelled (a11y)
+  assert.match(h, /\/assets\/form-copy\.js/);
+  assert.doesNotMatch(h, /<form/); // no form element → nothing can be submitted
+  assert.doesNotMatch(h, /<input[^>]*\bname=/); // inputs have no name → never serialized to a request
+  assert.doesNotMatch(h, /<script>/); // strict CSP: no inline script
+});
+
+test("the copy-helper is local-only with no network egress", () => {
+  const js = readFileSync(join(import.meta.dirname, "..", "public", "assets", "form-copy.js"), "utf8");
+  assert.match(js, /clipboard/);
+  assert.doesNotMatch(js, /fetch\(|XMLHttpRequest|navigator\.sendBeacon|FormData/);
+});
+
 test("encrypted save/resume panel renders with a labeled passphrase when there's a selection", () => {
   const h = renderChecklistPage(clEn, corpus, "en", "jurisdiction=US-CA&change=name");
   assert.match(h, /Save your progress/);

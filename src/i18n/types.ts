@@ -92,6 +92,11 @@ export interface UiMessages {
   moreHeading: string;
   seeDetailedAnswer: string;
   officialFormIntro: string;
+  // On-device "copy your details into the official form" helper (no PDF, no egress).
+  copyTitle: string;
+  copyIntro: string;
+  copyBtn: string;
+  copied: string;
 }
 
 /**
