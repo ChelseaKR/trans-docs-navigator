@@ -91,6 +91,7 @@ export interface UiMessages {
   varies: string;
   moreHeading: string;
   seeDetailedAnswer: string;
+  officialFormIntro: string;
 }
 
 /**

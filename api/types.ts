@@ -79,31 +79,20 @@ export interface CorpusRecord {
   language: Language;
 }
 
-/** A field on an official, fillable form, mapped to an intake key. */
-export interface FieldMapEntry {
-  /** The PDF AcroForm field name. */
-  pdf_field: string;
-  /** The intake/session key that supplies the value (e.g. "new_legal_name"). */
-  intake_key: string;
-  /** Optional fixed transform for checkboxes/selects. */
-  kind?: "text" | "checkbox";
-  /** For checkbox fields, the on-value to set when the intake value is truthy. */
-  on_value?: string;
-}
-
+/**
+ * An official government form referenced by a step. The app links the user to the
+ * real blank form at its official source — it does NOT auto-fill it. (These are XFA/
+ * LiveCycle PDFs that browser PDF tooling can't fill, and a mis-filled legal form is a
+ * real harm; we send people to the authoritative form instead. See docs/STATUS.md.)
+ */
 export interface FormDef {
   id: string;
   jurisdiction: JurisdictionId;
   document_type: DocumentType;
   change_type: ChangeType[];
   title: string;
-  /** Official source for the blank form. */
+  /** Official source for the blank form (the link the user follows). */
   source: Source;
-  /** False for flat scans that cannot be programmatically filled (degrade to instructions). */
-  fillable: boolean;
-  field_map: FieldMapEntry[];
-  /** Path (relative to repo root) of the blank PDF fixture, when fillable. */
-  template_path?: string;
 }
 
 /** Minimal, respectful intake. Lives only in client memory/session — never persisted server-side. */

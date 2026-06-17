@@ -18,7 +18,7 @@ export const en: LocaleBundle = {
     privacyLink: "Privacy",
     a11yLink: "Accessibility",
     verifyNote: "This is general information, not legal advice. Requirements change, so always confirm with the official source linked on each step, and talk to a lawyer or legal-aid organization about your specific situation.",
-    notFilingNote: "Filling this form here does not file it for you and is not legal advice. Review the official instructions and submit it yourself.",
+    notFilingNote: "This tool doesn't file anything for you and isn't legal advice. Download the official form, complete it, and submit it yourself.",
     sources: "Sources",
     lastChecked: "last checked",
     needsRecheck: "Needs reverification, so we don't show it as current.",
@@ -90,6 +90,7 @@ export const en: LocaleBundle = {
     varies: "varies",
     moreHeading: "Go deeper",
     seeDetailedAnswer: "See what the sources say in detail",
+    officialFormIntro: "This is an official government form. Download it from the source below and complete it yourself — we don't fill it in for you, so you always work from the authoritative version.",
   },
 
   docTitles: {

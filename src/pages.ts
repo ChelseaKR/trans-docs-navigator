@@ -5,7 +5,7 @@
 // filled entirely in the browser.
 
 import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from "../api/types.ts";
-import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel } from "./render.ts";
+import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason } from "./render.ts";
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
 import { toResumeState } from "./secure-resume.ts";
@@ -184,52 +184,17 @@ export function renderPacketPage(
 }
 
 /**
- * Client-side form-fill page. The blank form + field map are sent to the browser;
- * the user's name(s) are typed in and the PDF is filled with pdf-lib entirely
- * client-side, then downloaded. Nothing is posted back. Flat scans degrade to
- * download-and-instructions.
+ * Official-form page. We link the user to the real blank form at its official source
+ * and tell them plainly that they download and complete it themselves. We deliberately
+ * do NOT auto-fill: the relevant government forms are XFA/LiveCycle PDFs that browser
+ * tooling can't fill, and a mis-filled legal form is a real harm — better the
+ * authoritative form than a fake one. (See docs/STATUS.md.)
  */
 export function renderFormFillPage(form: FormDef, lang: Language = "en"): string {
   const s = uiStrings(lang);
-  if (!form.fillable) {
-    const body = `
-<p>${escapeHtml(s.flatScanIntro)}</p>
-<p><a href="${escapeHtml(form.source.url)}" rel="noopener noreferrer">${escapeHtml(form.title)}</a></p>
-<p class="flag" role="note">${escapeHtml(s.notFilingNote)}</p>`;
-    return page({ lang, title: form.title, heading: form.title, body });
-  }
-
-  const inputs = form.field_map
-    .map((m) => {
-      const label = fieldLabel(lang, m.intake_key);
-      if (m.kind === "checkbox") {
-        return `<label><input type="checkbox" data-key="${m.intake_key}"> ${escapeHtml(label)}</label>`;
-      }
-      return `<label for="f_${m.intake_key}">${escapeHtml(label)}</label>
-        <input id="f_${m.intake_key}" type="text" data-key="${m.intake_key}" autocomplete="off">`;
-    })
-    .join("");
-
-  const cfg = {
-    template: `/${form.template_path}`,
-    fieldMap: form.field_map,
-    filename: `${form.id}-filled.pdf`,
-    M: { filling: s.fillFilling, done: s.fillDone, unfilled: s.fillUnfilled, error: s.fillError },
-  };
-
-  // pdf-lib loads as a classic script (sets the PDFLib global, SRI-pinned); the fill
-  // logic is the static module /assets/form-fill.js reading the #fill-cfg island.
-  // Module scripts run after parsing, so PDFLib is always defined first.
   const body = `
-<p><strong>${escapeHtml(s.privacyLabel)}</strong> ${escapeHtml(s.formPrivacy)}</p>
-<p class="flag" role="note">${escapeHtml(s.notFilingNote)}</p>
-<form id="fill" aria-label="${escapeHtml(form.title)}">
-  <fieldset><legend>${escapeHtml(form.title)}</legend>${inputs}</fieldset>
-  <button type="submit">${escapeHtml(s.fillDownload)}</button>
-  <p id="status" role="status" aria-live="polite"></p>
-</form>
-${jsonIsland("fill-cfg", cfg)}
-<script src="/vendor/pdf-lib.min.js" integrity="sha256-D5pcrQeUHwgmWGyU4InYm5GMRuXBfPLVo8b2ZuO8aU8=" crossorigin="anonymous"></script>
-<script type="module" src="/assets/form-fill.js"></script>`;
+<p>${escapeHtml(s.officialFormIntro)}</p>
+<p class="cta"><a href="${escapeHtml(form.source.url)}" rel="noopener noreferrer">${escapeHtml(s.getFormCta)}: ${escapeHtml(form.source.title)}</a></p>
+<p class="flag" role="note">${escapeHtml(s.notFilingNote)}</p>`;
   return page({ lang, title: form.title, heading: form.title, body });
 }

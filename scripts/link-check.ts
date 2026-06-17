@@ -8,6 +8,7 @@
 // since gov sites often bot-block, and a block is not rot.
 
 import { loadCorpus } from "../api/corpus.ts";
+import { loadForms } from "../api/forms.ts";
 import { pass, fail } from "./util.ts";
 
 const TIMEOUT_MS = 15_000;
@@ -33,7 +34,9 @@ async function probe(url: string): Promise<{ ok: boolean; note?: string }> {
   return { ok: true };
 }
 
-const urls = [...new Set(loadCorpus().map((r) => r.source.url))];
+// Both corpus citations and the official-form links must stay live — a dead form link
+// sends a user nowhere. (The form links rotted undetected before this gate covered them.)
+const urls = [...new Set([...loadCorpus().map((r) => r.source.url), ...loadForms().map((f) => f.source.url)])];
 const dead: string[] = [];
 const warnings: string[] = [];
 
