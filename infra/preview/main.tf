@@ -39,8 +39,10 @@ data "aws_caller_identity" "current" {}
 
 # ── Container registry ─────────────────────────────────────────────────────────
 resource "aws_ecr_repository" "app" {
-  name                 = "trans-docs-navigator"
-  image_tag_mutability = "MUTABLE"
+  name = "trans-docs-navigator"
+  # Immutable tags: a pushed tag can't be overwritten, so a deployed image can't be
+  # swapped under you. CD pushes one immutable tag per commit (the git SHA).
+  image_tag_mutability = "IMMUTABLE"
   force_delete         = true # preview: allow `terraform destroy` to remove images too
   image_scanning_configuration {
     scan_on_push = true
@@ -81,6 +83,12 @@ resource "aws_iam_role_policy_attachment" "lambda_logs" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
+# X-Ray write access for the tracing enabled on the function below.
+resource "aws_iam_role_policy_attachment" "lambda_xray" {
+  role       = aws_iam_role.lambda_exec.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess"
+}
+
 # Bounded log retention → no unbounded CloudWatch storage cost.
 resource "aws_cloudwatch_log_group" "lambda" {
   name              = "/aws/lambda/trans-docs-navigator-preview"
@@ -98,6 +106,11 @@ resource "aws_lambda_function" "app" {
 
   # Cost guardrail: cap concurrent executions so a spike can't run up the bill.
   reserved_concurrent_executions = var.max_concurrency
+
+  # End-to-end tracing. Demo traffic stays within the X-Ray free tier (100k traces/mo).
+  tracing_config {
+    mode = "Active"
+  }
 
   environment {
     variables = {

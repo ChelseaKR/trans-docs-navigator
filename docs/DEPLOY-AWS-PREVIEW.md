@@ -33,15 +33,17 @@ terraform init
 # 1. Create the registry + roles + budget first (the Lambda needs an image to exist).
 terraform apply -target=aws_ecr_repository.app
 
-# 2. Build and push the image (from the repo root).
+# 2. Build and push the image under a unique, immutable tag (the registry rejects
+#    overwriting a tag). Use the git SHA — the same scheme the CD workflow uses.
 cd ../..
+TAG="$(git rev-parse --short HEAD)"
+REPO="$(cd infra/preview && terraform output -raw ecr_repository_url)"
 aws ecr get-login-password --region us-east-1 \
-  | docker login --username AWS --password-stdin "$(cd infra/preview && terraform output -raw ecr_repository_url | cut -d/ -f1)"
-IMAGE="$(cd infra/preview && terraform output -raw ecr_repository_url):latest"
-docker build -t "$IMAGE" . && docker push "$IMAGE"
+  | docker login --username AWS --password-stdin "${REPO%%/*}"
+docker build -t "$REPO:$TAG" . && docker push "$REPO:$TAG"
 
 # 3. Create the Lambda, Function URL, OIDC deploy role, and budget.
-cd infra/preview && terraform apply -var budget_email=you@example.com
+cd infra/preview && terraform apply -var budget_email=you@example.com -var image_tag="$TAG"
 
 # 4. Point SITE_ORIGIN at the live URL so canonical/OG/sitemap are correct.
 FN=trans-docs-navigator-preview
