@@ -80,6 +80,16 @@ export const es: LocaleBundle = {
     fillUnfilled: "Descargado. Estos campos no se pudieron llenar automáticamente; complételos a mano: ",
     fillError: "No se pudo llenar el formulario. Puede descargar el formulario en blanco.",
     thinnerCoverage: "Los pasos completos en español para este estado aún no están listos. Se muestran los pasos federales; cambie a inglés para ver más.",
+    fillFormCta: "Llene este formulario en su dispositivo",
+    getFormCta: "Obtenga el formulario oficial",
+    moreDetail: "Más detalle",
+    markDone: "Marcar como hecho",
+    progressTemplate: "{done} de {total} pasos hechos",
+    stepsLabel: "pasos",
+    estimatedCost: "Costo estimado",
+    varies: "varía",
+    moreHeading: "Más información",
+    seeDetailedAnswer: "Vea en detalle lo que dicen las fuentes",
   },
 
   docTitles: {

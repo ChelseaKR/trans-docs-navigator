@@ -79,6 +79,18 @@ export interface UiMessages {
   fillUnfilled: string;
   fillError: string;
   thinnerCoverage: string;
+  // Checklist enrichment (surfaced form-fill, plan summary, progress, deeper links).
+  fillFormCta: string;
+  getFormCta: string;
+  moreDetail: string;
+  markDone: string;
+  /** Progress counter template with {done}/{total} placeholders. */
+  progressTemplate: string;
+  stepsLabel: string;
+  estimatedCost: string;
+  varies: string;
+  moreHeading: string;
+  seeDetailedAnswer: string;
 }
 
 /**

@@ -25,7 +25,9 @@ test("checklist page chrome and step titles are Spanish", () => {
   assert.match(r.body, /Su lista personalizada/); // heading
   assert.match(r.body, /Sus pasos se enumeran/); // intro
   assert.match(r.body, /Obtenga una orden judicial/); // localized step title
-  assert.doesNotMatch(r.body, /Your personalized checklist|Get a court order/);
+  assert.match(r.body, /Llene este formulario en su dispositivo/); // localized form-fill CTA
+  assert.match(r.body, /Marcar como hecho/); // localized progress toggle
+  assert.doesNotMatch(r.body, /Your personalized checklist|Get a court order|Fill this form|Mark done/);
 });
 
 test("answer page heading is Spanish and offers a way back (no dead-end)", () => {
