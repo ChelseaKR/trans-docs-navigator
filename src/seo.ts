@@ -12,8 +12,9 @@ import type { Language } from "../api/types.ts";
 import { escapeHtml } from "./render.ts";
 import { SUPPORTED_LOCALES } from "./i18n/index.ts";
 
-/** Absolute origin for canonical/OG/hreflang/sitemap URLs. Set at deploy time. */
-export const SITE_ORIGIN = (process.env.SITE_ORIGIN ?? "https://trans-docs-navigator.org").replace(/\/+$/, "");
+/** Absolute origin for canonical/OG/hreflang/sitemap URLs. Set SITE_ORIGIN at deploy
+ *  time; on Render the preview auto-detects its own URL via RENDER_EXTERNAL_URL. */
+export const SITE_ORIGIN = (process.env.SITE_ORIGIN ?? process.env.RENDER_EXTERNAL_URL ?? "https://trans-docs-navigator.org").replace(/\/+$/, "");
 export const SITE_NAME = "Trans Docs Navigator";
 const OG_IMAGE = "/assets/og-default.png";
 

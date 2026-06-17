@@ -1,0 +1,27 @@
+# Render Blueprint for the public preview (docs/DEPLOY-PREVIEW.md).
+#
+# COST GUARDRAILS — this is configured so the preview cannot generate a surprise bill:
+#   • plan: free            → hard $0 ceiling, no credit card required.
+#   • free web services spin DOWN when idle (scale-to-zero), so an idle preview costs
+#     nothing; the first request after a sleep takes ~30s to wake.
+#   • a single instance, no autoscaling.
+#   • the app is stateless — no database, disk, or managed add-on to bill for.
+#   • the answer engine runs the deterministic, in-process composer by default; the paid
+#     Bedrock LLM path stays OFF unless TDN_BEDROCK=aws is set (it is not here), so there
+#     is no per-request model cost.
+#   • the server's built-in per-IP rate limit (120 req/min) bounds abuse.
+services:
+  - type: web
+    name: trans-docs-navigator
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # SITE_ORIGIN drives canonical/OG/sitemap URLs. Left to the app's default, which
+      # reads Render's RENDER_EXTERNAL_URL automatically, so the preview self-configures
+      # its own origin even if the onrender.com subdomain differs from the service name.
