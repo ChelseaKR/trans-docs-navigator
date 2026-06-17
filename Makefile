@@ -6,7 +6,7 @@ NODE := node --experimental-strip-types --no-warnings
 SHELL := /bin/bash
 
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
-        lint typecheck test security content citation privacy freshness disclosure readability seo deploy-plan clean \
+        lint typecheck test security content forms citation privacy freshness disclosure readability seo deploy-plan clean \
         smoke coverage link-check source-watch source-baseline new-record
 
 help:
@@ -27,60 +27,64 @@ dev:
 # ---------------------------------------------------------------------------
 # The blocking pipeline, in standard order. Any non-zero exit fails the build.
 # ---------------------------------------------------------------------------
-verify: lint typecheck test security content citation privacy freshness disclosure readability a11y seo eval
+verify: lint typecheck test security content forms citation privacy freshness disclosure readability a11y seo eval
 	@echo ""
 	@echo "✅ make verify: all merge-blocking gates passed."
 
 lint:
-	@echo "── [1/13] lint ───────────────────────────────────────────"
+	@echo "── [1/14] lint ───────────────────────────────────────────"
 	@$(NODE) scripts/lint.ts
 
 typecheck:
-	@echo "── [2/13] type-check (tsc --strict) ──────────────────────"
+	@echo "── [2/14] type-check (tsc --strict) ──────────────────────"
 	@npx --no-install tsc --noEmit
 
 test:
-	@echo "── [3/13] unit + integration tests (coverage-gated) ──────"
+	@echo "── [3/14] unit + integration tests (coverage-gated) ──────"
 	@$(NODE) scripts/run-tests.ts
 
 security:
-	@echo "── [4/13] security: dependency audit + secret scan ───────"
+	@echo "── [4/14] security: dependency audit + secret scan ───────"
 	@$(NODE) scripts/security-scan.ts
 
 content:
-	@echo "── [5/13] corpus content validation (source+verifier+date)"
+	@echo "── [5/14] corpus content validation (source+verifier+date)"
 	@$(NODE) scripts/content-validate.ts
 
+forms:
+	@echo "── [6/14] forms: official links, no fake auto-fill ───────"
+	@$(NODE) scripts/forms-check.ts
+
 citation:
-	@echo "── [6/13] citation coverage (100% required) ──────────────"
+	@echo "── [7/14] citation coverage (100% required) ──────────────"
 	@$(NODE) scripts/citation-coverage.ts
 
 privacy:
-	@echo "── [7/13] privacy lint (no PII in logs / no egress) ──────"
+	@echo "── [8/14] privacy lint (no PII in logs / no egress) ──────"
 	@$(NODE) scripts/privacy-lint.ts
 
 freshness:
-	@echo "── [8/13] corpus freshness SLA ───────────────────────────"
+	@echo "── [9/14] corpus freshness SLA ───────────────────────────"
 	@$(NODE) scripts/freshness.ts
 
 disclosure:
-	@echo "── [9/13] disclosure strings (info-not-advice / AI label) ─"
+	@echo "── [10/14] disclosure strings (info-not-advice / AI label) ─"
 	@$(NODE) scripts/disclosure-check.ts
 
 readability:
-	@echo "── [10/13] readability (plain-language ~8th-grade target) ─"
+	@echo "── [11/14] readability (plain-language ~8th-grade target) ─"
 	@$(NODE) scripts/readability.ts
 
 a11y:
-	@echo "── [11/13] accessibility gate ────────────────────────────"
+	@echo "── [12/14] accessibility gate ────────────────────────────"
 	@$(NODE) scripts/a11y-lint.ts
 
 seo:
-	@echo "── [12/13] SEO (indexing contract, metadata, sitemap) ────"
+	@echo "── [13/14] SEO (indexing contract, metadata, sitemap) ────"
 	@$(NODE) scripts/seo-lint.ts
 
 eval:
-	@echo "── [13/13] eval harness (groundedness/accuracy/refusal) ──"
+	@echo "── [14/14] eval harness (groundedness/accuracy/refusal) ──"
 	@$(NODE) eval/run.ts
 
 # Opt-in model-path safety lane (not in `verify`; offline by default, real Bedrock with

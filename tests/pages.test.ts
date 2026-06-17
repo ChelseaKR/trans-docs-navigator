@@ -27,10 +27,10 @@ test("checklist page links to the packet (carrying the query) and start-over", (
   assert.match(h, /href="\/">/); // start over
 });
 
-test("checklist surfaces the on-device form-fill for steps backed by a form", () => {
+test("checklist surfaces the official form for steps backed by a form", () => {
   const h = renderChecklistPage(clEn, corpus, "en", "jurisdiction=US-CA&change=name");
-  assert.match(h, /href="\/forms\/[a-z0-9-]+"/); // the differentiating CTA is reachable from the flow
-  assert.match(h, /Fill this form on your device/);
+  assert.match(h, /href="\/forms\/[a-z0-9-]+"/); // the form is reachable from the flow
+  assert.match(h, /Get the official form/);
 });
 
 test("checklist shows a plan summary, progress toggles, and deeper links", () => {
@@ -73,10 +73,14 @@ test("Spanish pages render in Spanish", () => {
   assert.match(packet, /Petición para Cambio de Nombre/);
 });
 
-test("non-fillable form degrades to a download link, not a fill form", () => {
-  const ds82 = renderFormFillPage(formById("us-ds-82")!, "en");
-  assert.match(ds82, /flat scan/);
-  assert.doesNotMatch(ds82, /id="fill"/); // no client fill form
+test("form page links to the official source and never auto-fills", () => {
+  for (const id of ["us-ss-5", "us-ds-82", "ca-nc-100"]) {
+    const h = renderFormFillPage(formById(id)!, "en");
+    assert.match(h, /rel="noopener noreferrer"/); // links out to the official form
+    assert.match(h, /complete it yourself/); // honest: we don't fill it
+    assert.doesNotMatch(h, /id="fill"/); // no client fill form
+    assert.doesNotMatch(h, /pdf-lib|PDFLib/); // no fake-fill machinery
+  }
 });
 
 test("encrypted save/resume panel renders with a labeled passphrase when there's a selection", () => {

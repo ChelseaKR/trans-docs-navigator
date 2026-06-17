@@ -25,9 +25,9 @@ test("checklist page chrome and step titles are Spanish", () => {
   assert.match(r.body, /Su lista personalizada/); // heading
   assert.match(r.body, /Sus pasos se enumeran/); // intro
   assert.match(r.body, /Obtenga una orden judicial/); // localized step title
-  assert.match(r.body, /Llene este formulario en su dispositivo/); // localized form-fill CTA
+  assert.match(r.body, /Obtenga el formulario oficial/); // localized official-form CTA
   assert.match(r.body, /Marcar como hecho/); // localized progress toggle
-  assert.doesNotMatch(r.body, /Your personalized checklist|Get a court order|Fill this form|Mark done/);
+  assert.doesNotMatch(r.body, /Your personalized checklist|Get a court order|Get the official form|Mark done/);
 });
 
 test("answer page heading is Spanish and offers a way back (no dead-end)", () => {
@@ -61,12 +61,14 @@ test("Spanish-thin states surface an honest coverage note (TX has no ES state re
   assert.doesNotMatch(ca.body, /aún no están listos/);
 });
 
-test("form-fill field labels are friendly and localized", () => {
+test("official-form page is localized and links to the real source (no auto-fill)", () => {
   const en = handleRoute("GET", u("/forms/us-ss-5")).body;
-  assert.match(en, /<label for="f_new_legal_name">New legal name<\/label>/); // friendly label, not snake_case
+  assert.match(en, /complete it yourself/); // honest: we don't fill it
+  assert.match(en, /ssa\.gov\/forms\/ss-5\.pdf/); // links the official form
   const es = handleRoute("GET", u("/forms/us-ss-5?language=es")).body;
-  assert.match(es, /Nuevo nombre legal/);
-  assert.match(es, /Tengo una orden judicial/); // checkbox label
+  assert.match(es, /complételo usted mismo/); // localized honest copy
+  assert.match(es, /Obtenga el formulario oficial/);
+  assert.doesNotMatch(es, /complete it yourself/); // no English leak
 });
 
 test("405 carries an Allow header", () => {

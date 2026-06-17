@@ -1,8 +1,8 @@
 # Trans Docs Navigator
 
-**A state-by-state navigator for legal name and gender-marker changes.** It turns the bureaucratic maze (vital records, courts, DMV, SSA, passport) into a personalized, ordered checklist, pre-fills the actual forms in your browser, and explains each step in plain language with a citation and a last-checked date. Information, never legal advice. Built privacy-first, for users who may be in hostile jurisdictions.
+**A state-by-state navigator for legal name and gender-marker changes.** It turns the bureaucratic maze (vital records, courts, DMV, SSA, passport) into a personalized, ordered checklist, links the exact official form for each step, and explains everything in plain language with a citation and a last-checked date. Information, never legal advice. Built privacy-first, for users who may be in hostile jurisdictions.
 
-**Status:** in build (M6). Five jurisdictions (CA, IL, NY, TX, WA) plus federal, in English and Spanish. All 13 automated merge gates pass: lint, typecheck, tests with coverage, security scan, content validation, citation coverage, privacy, freshness, disclosure, readability, accessibility, SEO, and eval. The remaining launch gates need human judgment, not code: named-human verification of every corpus record, counsel review of the legal pages, a manual screen-reader walkthrough, and a real-Bedrock eval run. Those are tracked openly in [`docs/IMPROVEMENT-PLAN.md`](./docs/IMPROVEMENT-PLAN.md); keeping them open is a decision, not a gap.
+**Status:** in build (M6). Five jurisdictions (CA, IL, NY, TX, WA) plus federal, in English and Spanish. All 14 automated merge gates pass: lint, typecheck, tests with coverage, security scan, content validation, forms, citation coverage, privacy, freshness, disclosure, readability, accessibility, SEO, and eval. The remaining launch gates need human judgment, not code: named-human verification of every corpus record, counsel review of the legal pages, a manual screen-reader walkthrough, and a real-Bedrock eval run. Those are tracked openly in [`docs/IMPROVEMENT-PLAN.md`](./docs/IMPROVEMENT-PLAN.md); keeping them open is a decision, not a gap.
 
 ## Why it matters
 
@@ -10,9 +10,9 @@ The rules for changing your name and gender marker differ by state and by docume
 
 ## What it looks like
 
-| Intake | Checklist | Client-side form fill |
+| Intake | Checklist | Official form, linked |
 |---|---|---|
-| ![Intake form: state, what you're changing, documents, language](./docs/screenshots/intake.png) | ![Personalized checklist with citations and last-checked dates](./docs/screenshots/checklist.png) | ![Form SS-5 filled entirely in the browser](./docs/screenshots/form-fill.png) |
+| ![Intake form: state, what you're changing, documents, language](./docs/screenshots/intake.png) | ![Personalized checklist with form links, progress, citations, and last-checked dates](./docs/screenshots/checklist.png) | ![Each step links to the official blank form at its source](./docs/screenshots/form-fill.png) |
 
 ## Live preview
 
@@ -27,7 +27,7 @@ It's a demonstration, not a launched service: the corpus is illustrative seed co
 
 - Asks a short, respectful intake: your state, which documents, your language. There is no account, and an ephemeral mode that saves nothing at all.
 - Produces an **ordered, personalized checklist** (court order → SSA → DMV → passport → records), with prerequisites, realistic costs, and timelines.
-- **Pre-fills the actual government forms** on your device, for you to download and file yourself.
+- **Links the exact official form** for each step, at its government source, for you to download and file yourself. (It does not auto-fill: these are XFA/LiveCycle PDFs that browser tooling can't fill, and a mis-filled legal form is a real harm — better the authoritative form.)
 - Answers questions with **inline citations** to the governing source and a last-verified date, and says plainly when it doesn't know.
 
 ## Design guarantees
@@ -36,7 +36,7 @@ Four properties are enforced by merge-blocking CI gates, not by convention:
 
 1. **No claim without a citation.** Every substantive statement renders with a source and a last-verified date, or it does not render. This applies to model-generated text too: output passes through the same post-generation enforcement, so a hallucinated sentence cannot reach a user.
 2. **Information, not legal advice.** Every page carries the disclosure, persistently and in both languages. The service makes no representations about individual legal outcomes.
-3. **Privacy is a safety property.** Zero server-side PII by default. Form-fill runs entirely in the browser. The optional save-progress feature encrypts only your selections (never names) with a passphrase, on your own device. The threat model assumes a hostile jurisdiction; the strongest protection is having nothing to hand over.
+3. **Privacy is a safety property.** Zero server-side PII by default. There are no identity inputs to leak — the app links you to official forms rather than collecting your details. The optional save-progress feature encrypts only your selections (never names) with a passphrase, on your own device. The threat model assumes a hostile jurisdiction; the strongest protection is having nothing to hand over.
 4. **Stale law is broken law.** Every record has a freshness SLA. Expired data is shown as "needs reverification," never silently served as current.
 
 The privacy invariant is proven three ways: a static lint over the codebase, a runtime allowlist logger, and a data-flow test that injects sentinel PII into every request field and asserts none of it reaches a log or response.
@@ -44,9 +44,9 @@ The privacy invariant is proven three ways: a static lint over the codebase, a r
 ## Quickstart
 
 ```sh
-npm install        # deps: pdf-lib (form-fill) + typescript/@types/node (dev)
-make verify        # the full 12-gate pipeline
-make dev           # http://localhost:8080 → intake → checklist → client-side form-fill
+npm install        # zero production dependencies; typescript/@types/node (dev) only
+make verify        # the full 14-gate pipeline
+make dev           # http://localhost:8080 → intake → checklist → official form links
 make eval          # regenerates docs/audits/eval-report.{md,json}
 ```
 
@@ -56,7 +56,7 @@ Operations runbook: [`docs/OPERATIONS.md`](./docs/OPERATIONS.md). Build log and 
 
 ## Architecture in one paragraph
 
-Retrieval-mandatory generation over a hand-verified corpus of jurisdiction records. The HTTP layer (`api/server.ts`) does plumbing only; routing and validation live in unit-tested `api/router.ts`; the checklist engine, retrieval, and citation enforcement are separate modules under `api/`. Rendering is server-side, accessible HTML (`src/`) that works with JavaScript disabled; the form-fill page progressively enhances. All user-facing strings live in per-language bundles under `src/i18n/`; adding a language means writing one bundle module and registering it. A deterministic extractive composer is the default generator; a Bedrock-backed generator is the production seam, subject to identical citation enforcement.
+Retrieval-mandatory generation over a hand-verified corpus of jurisdiction records. The HTTP layer (`api/server.ts`) does plumbing only; routing and validation live in unit-tested `api/router.ts`; the checklist engine, retrieval, and citation enforcement are separate modules under `api/`. Rendering is server-side, accessible HTML (`src/`) that works with JavaScript disabled; progress tracking and save/resume progressively enhance. All user-facing strings live in per-language bundles under `src/i18n/`; adding a language means writing one bundle module and registering it. A deterministic extractive composer is the default generator; a Bedrock-backed generator is the production seam, subject to identical citation enforcement.
 
 ## Internationalization
 

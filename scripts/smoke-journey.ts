@@ -49,14 +49,13 @@ const CHECKS: Check[] = [
   { name: "checklist (es)", path: "/checklist?jurisdiction=US-CA&change=name&language=es", contains: ["Información, no asesoramiento legal", "Paso 1"] },
   { name: "packet (en)", path: "/packet?jurisdiction=US-CA&change=name", contains: ["Information, not legal advice", "Prepared on"] },
   { name: "packet (es)", path: "/packet?jurisdiction=US-CA&change=name&language=es", contains: ["Preparado el"] },
-  { name: "form-fill", path: "/forms/us-ss-5", contains: ["Information, not legal advice", 'id="fill"'] },
+  { name: "official form page", path: "/forms/us-ss-5", contains: ["Information, not legal advice", "ssa.gov/forms/ss-5.pdf"] },
   { name: "terms (es)", path: "/terms?language=es", contains: ["Términos de uso"] },
   { name: "stylesheet", path: "/assets/app.css", contentType: "text/css", contains: ["focus-visible", "@media print"] },
   { name: "resume module", path: "/assets/resume-panel.js", contentType: "text/javascript", contains: ["resume-crypto.js"] },
   { name: "crypto module", path: "/assets/resume-crypto.js", contentType: "text/javascript", contains: ["AES-GCM"] },
-  { name: "form-fill module", path: "/assets/form-fill.js", contentType: "text/javascript" },
+  { name: "progress module", path: "/assets/progress.js", contentType: "text/javascript", contains: ["localStorage"] },
   { name: "packet module", path: "/assets/packet.js", contentType: "text/javascript" },
-  { name: "pdf-lib vendor", path: "/vendor/pdf-lib.min.js", contentType: "text/javascript" },
   { name: "healthz", path: "/healthz", contentType: "application/json", contains: ["corpus_records"] },
 ];
 

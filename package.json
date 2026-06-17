@@ -34,9 +34,6 @@
     "a11y": "node --experimental-strip-types scripts/a11y-lint.ts",
     "dev": "node --experimental-strip-types api/server.ts"
   },
-  "dependencies": {
-    "pdf-lib": "^1.17.1"
-  },
   "devDependencies": {
     "@types/node": "^25.9.3",
     "typescript": "^6.0.3"

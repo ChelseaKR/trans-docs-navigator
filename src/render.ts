@@ -181,11 +181,11 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
         ? `<details class="step-detail no-print"><summary>${escapeHtml(t.moreDetail)}</summary><ul>${details.map((d) => `<li>${escapeHtml(d)}</li>`).join("")}</ul></details>`
         : "";
 
-      // The differentiator: jump straight to filling the actual form for this step,
-      // on-device. Fillable forms say "fill"; flat scans degrade to "get the form".
+      // Link straight to the official form for this step (download + complete it
+      // yourself; we don't auto-fill — see api/forms.ts).
       const form = s.form_ref ? formById(s.form_ref) : undefined;
       const formCta = form
-        ? `<p class="step-cta no-print"><a href="/forms/${escapeHtml(form.id)}${langQ}">📝 ${escapeHtml(form.fillable ? t.fillFormCta : t.getFormCta)}</a></p>`
+        ? `<p class="step-cta no-print"><a href="/forms/${escapeHtml(form.id)}${langQ}">📝 ${escapeHtml(t.getFormCta)}</a></p>`
         : "";
 
       return `<li class="step" data-step="${escapeHtml(s.key)}">

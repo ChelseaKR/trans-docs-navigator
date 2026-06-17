@@ -12,12 +12,10 @@ import { walk, read, pass, fail } from "./util.ts";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
-// (c) Vendored-asset integrity. A minified third-party bundle is an untracked
-// supply-chain surface; pin its sha256 so a tampered/upgraded bundle can't slip in
-// unreviewed. Update this hash deliberately when intentionally bumping the library.
-const VENDORED: [string, string][] = [
-  ["public/vendor/pdf-lib.min.js", "0f9a5cad07941f0826586c94e089d89b918c46e5c17cf2d5a3c6f666e3bc694f"],
-];
+// (c) Vendored-asset integrity. The app vendors no third-party browser bundles
+// (pdf-lib was removed with the auto-fill feature), so there is nothing to pin.
+// Any future vendored asset under public/vendor/ should be sha256-pinned here.
+const VENDORED: [string, string][] = [];
 for (const [rel, expected] of VENDORED) {
   const p = join(ROOT, rel);
   if (!existsSync(p)) fail("security", `vendored asset missing: ${rel}`);

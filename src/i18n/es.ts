@@ -18,7 +18,7 @@ export const es: LocaleBundle = {
     privacyLink: "Privacidad",
     a11yLink: "Accesibilidad",
     verifyNote: "Esto es información general, no asesoramiento legal. Los requisitos cambian, así que confirme siempre con la fuente oficial enlazada en cada paso, y hable con un abogado o una organización de ayuda legal sobre su situación específica.",
-    notFilingNote: "Llenar este formulario aquí no lo presenta por usted y no es asesoramiento legal. Revise las instrucciones oficiales y preséntelo usted mismo.",
+    notFilingNote: "Esta herramienta no presenta nada por usted y no es asesoramiento legal. Descargue el formulario oficial, complételo y preséntelo usted mismo.",
     sources: "Fuentes",
     lastChecked: "verificado por última vez",
     needsRecheck: "Necesita reverificación, así que no se muestra como actual.",
@@ -90,6 +90,7 @@ export const es: LocaleBundle = {
     varies: "varía",
     moreHeading: "Más información",
     seeDetailedAnswer: "Vea en detalle lo que dicen las fuentes",
+    officialFormIntro: "Este es un formulario oficial del gobierno. Descárguelo desde la fuente a continuación y complételo usted mismo: no lo llenamos por usted, así que siempre trabaja con la versión oficial.",
   },
 
   docTitles: {

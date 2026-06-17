@@ -8,16 +8,9 @@
     "source": {
       "url": "https://www.ssa.gov/forms/ss-5.pdf",
       "title": "SSA Form SS-5",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
-    },
-    "fillable": true,
-    "template_path": "forms/fixtures/us-ss-5.pdf",
-    "field_map": [
-      { "pdf_field": "name_to_be_shown_on_card", "intake_key": "new_legal_name", "kind": "text" },
-      { "pdf_field": "other_names_used", "intake_key": "current_legal_name", "kind": "text" },
-      { "pdf_field": "name_change_check", "intake_key": "has_court_order", "kind": "checkbox", "on_value": "Yes" }
-    ]
+    }
   },
   {
     "id": "ca-nc-100",
@@ -28,15 +21,9 @@
     "source": {
       "url": "https://courts.ca.gov/sites/default/files/courts/default/2024-11/nc100.pdf",
       "title": "California Form NC-100",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
-    },
-    "fillable": true,
-    "template_path": "forms/fixtures/ca-nc-100.pdf",
-    "field_map": [
-      { "pdf_field": "petitioner_present_name", "intake_key": "current_legal_name", "kind": "text" },
-      { "pdf_field": "petitioner_proposed_name", "intake_key": "new_legal_name", "kind": "text" }
-    ]
+    }
   },
   {
     "id": "ca-dl-329",
@@ -45,16 +32,11 @@
     "change_type": ["gender-marker"],
     "title": "Form DL 329 — Gender Category Request",
     "source": {
-      "url": "https://www.dmv.ca.gov/portal/file/gender-category-request-dl-329-pdf/",
-      "title": "California DMV Form DL 329",
-      "last_verified": "2026-05-31",
+      "url": "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/updating-information-on-your-driver-license-or-identification-dl-id-card/",
+      "title": "California DMV — Update DL/ID (Gender Category)",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
-    },
-    "fillable": true,
-    "template_path": "forms/fixtures/ca-dl-329.pdf",
-    "field_map": [
-      { "pdf_field": "full_name", "intake_key": "new_legal_name", "kind": "text" }
-    ]
+    }
   },
   {
     "id": "us-ds-82",
@@ -63,12 +45,10 @@
     "change_type": ["name"],
     "title": "Form DS-82 — U.S. Passport Renewal",
     "source": {
-      "url": "https://eforms.state.gov/Forms/ds82.pdf",
+      "url": "https://eforms.state.gov/Forms/ds82_pdf.PDF",
       "title": "U.S. Department of State Form DS-82",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
-    },
-    "fillable": false,
-    "field_map": []
+    }
   }
 ]
