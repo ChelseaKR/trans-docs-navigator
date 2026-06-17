@@ -389,3 +389,24 @@ P18: 'the tool checked a financial-and-other-records box for me and then said no
 - **Unmet needs:** A real financial/other-records section: a concrete list of who to notify (bank, credit cards, employer/HR, health insurance, retirement, voter registration, leases) and what proof each needs.; Divorce-specific guidance: whether my divorce decree alone can restore a former name in WA, and how that changes (or skips) the court-order step.; A how-to or form helper for the WA court name-change petition itself, since that's the scariest, most paperwork-heavy step.; An actionable path or at least an alternative official link for the federal gender-marker pieces (SSA, passport) instead of just 'needs reverification'.; Some sense that the content was checked by a real person/legal aid, since it reads as authoritative but is seed/placeholder-verified.
 - **Safety/trust:** The privacy posture genuinely lowered my guard, which is exactly what I need as a trans woman documenting a sensitive transition after a divorce: no account, browser-only, tab-close-erases. The recurring 'information, not legal advice, grounded in cited sources' banner plus official links and 'last checked' dates built real trust for the name-change basics. But that same authoritative polish becomes a quiet risk: the 'Financial & other records' checkbox that does nothing and the total silence on divorce/former-name restoration could make me think I've covered everything when I haven't, and possibly pay for a court petition I might not have needed. The honesty about gender-marker reverification, by contrast, increased trust even though it was a dead end.
 - **Verbatim:** “"Washington's covered and the name-change steps are the clearest I've seen, but I came here because of my divorce and to fix my bank and insurance, and the tool checked a 'financial and other records' box for me and then said nothing about either, which made me wonder what else it's quietly leaving out."”
+
+---
+
+## Remediation log (2026-06-17)
+
+Worked iteratively from the panel findings; each iteration kept all 14 gates + smoke green.
+
+**Addressed in code/content this round:**
+- **Honest dead ends / no lifeline / needs-reverification stranding** (most prevalent blocker) → degraded ("needs reverification") steps no longer strip the official source link; they keep the link + last-checked date and add a plain *why* and a *safest thing to do today* pointer. A named **referral layer** (A4TE ID Documents Center — all 50 states, Transgender Law Center, NCLR, Trans Lifeline, TransLatin@ Coalition) now appears on every checklist. *(iter 1)*
+- **High-risk users invisible** → a sensitive-situations note (minor / undocumented / fleeing harm / no stable address / reentry) and a public-record / confidential-filing warning on the court-order step, both routing to the named orgs. We *warn and route*; we do not fabricate per-situation legal procedure. *(iter 1)*
+- **Only 5 states selectable** → all 50 states + DC are now selectable (grouped, with an up-front coverage note); uncovered states reach an honest banner + the federal steps + the all-50-states referral, from the intake form. *(iter 2)*
+- **Fee-waiver dead end / vague costs** → fee-waiver how-to on court-order steps (ask the clerk; CA Form FW-001; proof of income/benefits; can reach $0) and an honest cost note instead of a bare "varies". *(iter 3)*
+- **Nonbinary "X" never confirmed** → Illinois DL/ID record now names the X option explicitly (CA/NY/WA already did). **Spanish link fragility** → router accepts both `?language=` and `?lang=`. *(iter 4)*
+
+**Left open — genuinely human-gated (not fabricated):**
+- **Named human / counsel verification** of every record (placeholder verifiers remain) — caps professional recommendation; mechanism exists, sign-off does not.
+- **A maintained "current federal status" explainer** for SSA/passport gender markers — needs ongoing legal monitoring of active litigation; interim mitigation is the per-step official link + "why" + orgs tracking it.
+- **Real per-state content for the other 45 states** — interim mitigation is federal steps + the ID Documents Center referral.
+- **Exact procedures** for confidential/sealed filing (DV survivors), immigration interactions (undocumented), minors/parental consent, no-stable-address, and reentry — interim mitigation is warnings + named referrals.
+- **Manual screen-reader / keyboard / zoom audit** — the mechanical a11y gate passes; a human pass is still required before promoting to assistive-tech users.
+- **National actionability of gender-marker changes** — gated on federal policy stability and per-state content.
