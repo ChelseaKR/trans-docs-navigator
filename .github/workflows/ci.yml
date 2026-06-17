@@ -87,8 +87,11 @@ jobs:
       - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3
         with:
           terraform_version: "1.9.5"
-      - name: Terraform validate
+      - name: Terraform validate (production skeleton + cost-light preview)
         run: |
-          cd infra
-          terraform init -backend=false
-          terraform validate
+          for dir in infra infra/preview; do
+            echo "── $dir"
+            terraform -chdir="$dir" init -backend=false
+            terraform -chdir="$dir" validate
+            terraform -chdir="$dir" fmt -check
+          done

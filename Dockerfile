@@ -1,7 +1,14 @@
 # Containerized for VPC-parity deployment (portability §8). Distroless-ish: only the
 # runtime and production deps. No PII is ever stored, so no volumes are mounted.
+# One image runs everywhere: a plain container host (Render) runs the CMD directly;
+# AWS Lambda activates the Lambda Web Adapter extension below to bridge function
+# invocations to the same HTTP server. Outside Lambda the adapter file is inert.
 FROM node:26-slim AS base
 WORKDIR /app
+
+# AWS Lambda Web Adapter (cost-light preview, infra/preview): lets Lambda run this
+# standard HTTP server unmodified. Inert on non-Lambda hosts.
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:1.0.1 /lambda-adapter /opt/extensions/lambda-adapter
 
 # Install production dependencies only.
 COPY package.json package-lock.json ./
@@ -16,6 +23,8 @@ COPY public ./public
 
 ENV NODE_ENV=production
 ENV PORT=8080
+# Lambda Web Adapter readiness probe → our no-PII health endpoint (ignored off-Lambda).
+ENV AWS_LWA_READINESS_CHECK_PATH=/healthz
 EXPOSE 8080
 USER node
 
