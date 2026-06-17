@@ -5,7 +5,7 @@
 
 import type { CorpusRecord } from "./types.ts";
 
-export const DEFAULT_TODAY = "2026-05-31"; // overridable for deterministic tests/eval
+export const DEFAULT_TODAY = "2026-06-16"; // "as of" date; overridable for deterministic tests/eval
 
 function daysBetween(fromIso: string, toIso: string): number {
   const from = Date.parse(fromIso + "T00:00:00Z");

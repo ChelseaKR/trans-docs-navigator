@@ -56,8 +56,15 @@ export function renderIntakePage(lang: Language = "en"): string {
     </select>
   </fieldset>
   <button type="submit">${escapeHtml(s.submitChecklist)}</button>
-</form>`;
-  return page({ lang, title: s.intakeHeading, heading: s.intakeHeading, body });
+</form>
+<p><a href="/guide">${escapeHtml(locale(lang).seo.guideIndexTitle)}</a></p>`;
+  return page({
+    lang,
+    title: locale(lang).seo.homeTitle,
+    heading: s.intakeHeading,
+    body,
+    seo: { path: "/", description: locale(lang).seo.homeDescription, index: true },
+  });
 }
 
 export function renderChecklistPage(

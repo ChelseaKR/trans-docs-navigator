@@ -7,6 +7,8 @@
 import type { Checklist, GroundedAnswer, CorpusRecord, DocumentType, Language } from "../api/types.ts";
 import type { UiMessages } from "./i18n/index.ts";
 import { t as locale } from "./i18n/index.ts";
+import type { SeoMeta } from "./seo.ts";
+import { headTags, titleTag } from "./seo.ts";
 
 /** Localized gap-reason sentence from the language bundle. */
 export function gapReason(lang: Language, reason: "no-records" | "all-degraded"): string {
@@ -61,6 +63,10 @@ label{display:block;margin:.4rem 0}
 input[type=text],input[type=password],select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:.3rem;padding:.5rem;font:inherit;max-width:100%}
 button{background:var(--accent);color:#000;border:0;border-radius:.4rem;padding:.6rem 1.2rem;font-size:1rem;cursor:pointer}
 footer{max-width:60rem;margin:0 auto;padding:1.5rem 1rem;color:var(--muted);border-top:1px solid var(--line)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.breadcrumb{color:var(--muted);font-size:.95rem;margin:.5rem 0 1rem}
+.cta{margin:1.5rem 0}
+.cta a{display:inline-block;background:var(--accent);color:var(--onAccent,#000);padding:.6rem 1.1rem;border-radius:.4rem;font-weight:600;text-decoration:none}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media print{
   :root{--bg:${PALETTE.print.bg};--fg:${PALETTE.print.fg};--muted:${PALETTE.print.muted};--accent:${PALETTE.print.accent};--card:${PALETTE.print.card};--warn:${PALETTE.print.warn};--line:${PALETTE.print.line}}
@@ -79,15 +85,29 @@ export function uiStrings(lang: Language): UiMessages {
   return locale(lang).ui;
 }
 
-export function page(opts: { lang: Language; title: string; heading: string; body: string }): string {
+export function page(opts: {
+  lang: Language;
+  title: string;
+  heading: string;
+  body: string;
+  /**
+   * Search metadata. Omit it and the page renders `noindex` with no canonical/OG —
+   * the privacy-safe default. Pass `{ path, description, index: true }` only on the
+   * content surfaces the indexing contract allows (home, guides, legal).
+   */
+  seo?: SeoMeta;
+}): string {
   const t = locale(opts.lang).ui;
   const langQ = opts.lang === "es" ? "?language=es" : ""; // preserve language on footer links
+  const fullTitle = titleTag(opts.title);
+  const seo: SeoMeta = opts.seo ?? { path: "", description: "", index: false };
   return `<!doctype html>
 <html lang="${opts.lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escapeHtml(opts.title)}</title>
+<title>${escapeHtml(fullTitle)}</title>
+${headTags(fullTitle, opts.lang, seo)}
 <link rel="stylesheet" href="/assets/app.css">
 </head>
 <body>

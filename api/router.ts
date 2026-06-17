@@ -14,6 +14,8 @@ import type { ChangeType, DocumentType, Intake, Language } from "./types.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
 import { renderAnswer, page, uiStrings, escapeHtml, STYLE } from "../src/render.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
+import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.ts";
+import { robotsTxt, sitemapXml } from "../src/seo.ts";
 import { asLanguage } from "../src/i18n/index.ts";
 
 /** Input bounds — abuse/DoS resistance + predictable resource use. */
@@ -144,6 +146,14 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     return { status: 200, contentType: "text/css; charset=utf-8", body: STYLE };
   }
 
+  // Crawler files (generated from the route set, so they can't go stale).
+  if (p === "/robots.txt") {
+    return { status: 200, contentType: "text/plain; charset=utf-8", body: robotsTxt() };
+  }
+  if (p === "/sitemap.xml") {
+    return { status: 200, contentType: "application/xml; charset=utf-8", body: sitemapXml(indexablePaths()) };
+  }
+
   if (p === "/healthz") {
     return {
       status: 200,
@@ -161,6 +171,23 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     const lang = asLanguage(url.searchParams.get("language"));
     const render = p === "/terms" ? renderTermsPage : p === "/privacy" ? renderPrivacyPage : renderAccessibilityPage;
     return { status: 200, contentType: HTML, body: render(lang) };
+  }
+
+  // Indexable guide content surface (docs/SEO-PLAN.md Phase 2).
+  if (p === "/guide") {
+    return { status: 200, contentType: HTML, body: renderGuideIndex(lang) };
+  }
+  if (p.startsWith("/guide/")) {
+    const [, , stateSlug, topicSlug, ...rest] = p.split("/");
+    if (!stateSlug || !topicSlug || rest.length > 0) return notFound(lang);
+    const html = renderGuidePage(stateSlug, topicSlug, lang);
+    if (html === null) return notFound(lang);
+    return {
+      status: 200,
+      contentType: HTML,
+      body: html,
+      log: { event: "guide", fields: { state: stateSlug, topic: topicSlug, language: lang, status: 200 } },
+    };
   }
 
   if (p === "/checklist") {

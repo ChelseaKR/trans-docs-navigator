@@ -3,18 +3,26 @@
     "id": "il.court-order.name",
     "jurisdiction": "US-IL",
     "document_type": "court-order",
-    "change_type": ["name"],
+    "change_type": [
+      "name"
+    ],
     "topic": "Illinois name change petition",
     "statement": "In Illinois you change your legal name by filing a Request for Name Change in the circuit court of the county where you live, and a judge signs an order granting it.",
     "detail": "Illinois usually requires newspaper publication of the request, but a court can waive publication when it could endanger the petitioner — this is decided by the judge.",
-    "cost": { "amount_usd": null, "note": "Filing fees vary by county; a fee waiver is available, and publication may add a separate newspaper cost.", "fee_waiver": true },
-    "timeline": { "typical": "roughly 6 weeks, partly driven by the publication period" },
+    "cost": {
+      "amount_usd": null,
+      "note": "Filing fees vary by county; a fee waiver is available, and publication may add a separate newspaper cost.",
+      "fee_waiver": true
+    },
+    "timeline": {
+      "typical": "roughly 6 weeks, partly driven by the publication period"
+    },
     "discretionary": true,
     "prerequisites": [],
     "source": {
-      "url": "https://www.illinoislegalaid.org/legal-information/changing-your-name-adult",
+      "url": "https://www.illinoislegalaid.org/legal-information/changing-your-name",
       "title": "Illinois Legal Aid Online — Changing Your Name (Adult)",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -25,16 +33,23 @@
     "id": "il.drivers-license.gender-marker",
     "jurisdiction": "US-IL",
     "document_type": "drivers-license",
-    "change_type": ["gender-marker"],
+    "change_type": [
+      "gender-marker"
+    ],
     "topic": "Illinois driver's license sex designation",
     "statement": "Illinois lets you choose the sex designation on your driver's license or state ID by self-certifying with the Secretary of State — medical documentation is not required.",
-    "cost": { "amount_usd": 0, "note": "No additional fee to update the designation during another transaction." },
-    "timeline": { "typical": "processed during your visit" },
+    "cost": {
+      "amount_usd": 0,
+      "note": "No additional fee to update the designation during another transaction."
+    },
+    "timeline": {
+      "typical": "processed during your visit"
+    },
     "prerequisites": [],
     "source": {
-      "url": "https://www.ilsos.gov/departments/drivers/drivers_license/home.html",
-      "title": "Illinois Secretary of State — Driver's License & ID",
-      "last_verified": "2026-05-31",
+      "url": "https://www.illinoislegalaid.org/legal-information/updating-sex-and-gender-markers-identification",
+      "title": "Illinois Legal Aid Online — Updating Sex and Gender Markers on ID",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",

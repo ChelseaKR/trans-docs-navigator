@@ -1,0 +1,13 @@
+{
+  "name": "Trans Docs Navigator",
+  "short_name": "Trans Docs",
+  "description": "Privacy-first, fully-cited guide to legal name and gender-marker changes in the US.",
+  "lang": "en",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0f1419",
+  "theme_color": "#0f1419",
+  "icons": [
+    { "src": "/assets/favicon.svg", "type": "image/svg+xml", "sizes": "any" }
+  ]
+}

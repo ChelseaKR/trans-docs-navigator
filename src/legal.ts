@@ -22,13 +22,22 @@ function legalBody(sections: LegalSection[], updatedLabel: string): string {
 
 export function renderTermsPage(lang: Language = "en"): string {
   const l = locale(lang).legal;
-  return page({ lang, title: l.termsTitle, heading: l.termsTitle, body: legalBody(l.terms, l.updatedLabel) });
+  return page({
+    lang, title: l.termsTitle, heading: l.termsTitle, body: legalBody(l.terms, l.updatedLabel),
+    seo: { path: "/terms", description: locale(lang).seo.legalDescription.terms, index: true },
+  });
 }
 export function renderPrivacyPage(lang: Language = "en"): string {
   const l = locale(lang).legal;
-  return page({ lang, title: l.privacyTitle, heading: l.privacyTitle, body: legalBody(l.privacy, l.updatedLabel) });
+  return page({
+    lang, title: l.privacyTitle, heading: l.privacyTitle, body: legalBody(l.privacy, l.updatedLabel),
+    seo: { path: "/privacy", description: locale(lang).seo.legalDescription.privacy, index: true },
+  });
 }
 export function renderAccessibilityPage(lang: Language = "en"): string {
   const l = locale(lang).legal;
-  return page({ lang, title: l.accessibilityTitle, heading: l.accessibilityTitle, body: legalBody(l.accessibility, l.updatedLabel) });
+  return page({
+    lang, title: l.accessibilityTitle, heading: l.accessibilityTitle, body: legalBody(l.accessibility, l.updatedLabel),
+    seo: { path: "/accessibility", description: locale(lang).seo.legalDescription.accessibility, index: true },
+  });
 }

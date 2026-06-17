@@ -7,7 +7,7 @@ import { handleRoute } from "../api/router.ts";
 import { renderIntakePage } from "../src/pages.ts";
 
 const u = (p: string) => new URL(p, "http://localhost:8080");
-const today = "2026-05-31";
+const today = "2026-06-16";
 
 test("intake page is fully Spanish under ?language=es (no English chrome)", () => {
   const h = renderIntakePage("es");

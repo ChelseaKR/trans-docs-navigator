@@ -231,4 +231,32 @@ export const es: LocaleBundle = {
       },
     ],
   },
+
+  seo: {
+    homeTitle: "Guía de cambio de nombre y marcador de género, por estado",
+    homeDescription:
+      "Pasos claros y citados para cambiar su nombre legal y marcador de género en EE. UU., con los formularios y fuentes oficiales de su estado. No es asesoramiento legal.",
+    guideIndexTitle: "Guías de cambio de nombre y marcador de género por estado",
+    guideIndexDescription:
+      "Guías citadas y actuales para cambiar su nombre legal y marcador de género en cada estado que cubrimos: orden judicial, Seguro Social, DMV y pasaporte.",
+    guideIndexLead:
+      "Elija su estado y lo que va a cambiar. Cada guía enumera los pasos en orden, con costos, plazos y un enlace a la fuente oficial de cada requisito.",
+    guideIndexAllHeading: "Todas las guías",
+    topicName: { name: "Cambio de nombre", "gender-marker": "Cambio de marcador de género" },
+    guideTitle: (state, topic) => `${topic} en ${state}: pasos, formularios y costos`,
+    guideHeading: (state, topic) => `${topic} en ${state}`,
+    guideDescription: (state, topic) =>
+      `Cómo completar un ${topic.toLowerCase()} en ${state}: los pasos en orden, cuánto cuesta cada uno, cuánto tarda y la fuente oficial de cada requisito.`,
+    guideLead: (state, topic) =>
+      `Estos son los pasos que la mayoría de las personas sigue para un ${topic.toLowerCase()} en ${state}, en orden. Cada uno enlaza a su fuente oficial y la fecha en que lo verificamos por última vez. Cuando esté listo, cree una lista personalizada que cubra todos los documentos a la vez.`,
+    guideCta: "Crear mi lista personalizada",
+    guideReviewed: "Última revisión",
+    breadcrumbHome: "Inicio",
+    breadcrumbGuides: "Guías",
+    legalDescription: {
+      terms: "Los términos para usar Trans Docs Navigator: información general, no asesoramiento legal, sin garantía. Verifique cada requisito con la fuente oficial.",
+      privacy: "Cómo le protege Trans Docs Navigator: sin cuenta, nada de lo que escribe se envía a un servidor, sin rastreadores, formularios llenados en su dispositivo.",
+      accessibility: "Nuestro compromiso de accesibilidad WCAG 2.2 AA para Trans Docs Navigator, lo que probamos automáticamente y cómo informar una barrera.",
+    },
+  },
 };

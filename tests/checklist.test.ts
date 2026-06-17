@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { buildChecklist } from "../api/checklist.ts";
 import type { Intake, CorpusRecord } from "../api/types.ts";
 
-const today = "2026-05-31";
+const today = "2026-06-16";
 
 function rec(over: Partial<CorpusRecord>): CorpusRecord {
   return {
