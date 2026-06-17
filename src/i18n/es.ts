@@ -102,6 +102,10 @@ export const es: LocaleBundle = {
     helpIntro: "Organizaciones gratuitas, dirigidas por personas trans y de ayuda legal. Si algo no está claro, se atasca o no se ajusta a su situación, contáctelas: para eso están.",
     publicRecordWarning: "Aviso: en muchos estados, un cambio de nombre judicial es un registro público. Si aparecer públicamente podría ponerle en riesgo, algunos tribunales permiten una presentación confidencial o sellada; pregunte al tribunal o a una organización de ayuda antes de presentar.",
     sensitiveSituationsNote: "Si su situación es delicada —es menor de 18 años, indocumentado, huye de un peligro, no tiene una dirección estable o salió de prisión recientemente— los pasos pueden ser diferentes de maneras que esta herramienta no cubre. Por favor, use las organizaciones de ayuda a continuación.",
+    coverageNote: "Cubrimos por completo California, Illinois, Nueva York, Texas y Washington. Elija cualquier otro estado y obtendrá los pasos federales que aplican en todas partes, además de dónde conseguir ayuda específica de su estado.",
+    coveredGroup: "Cobertura completa",
+    otherStatesGroup: "Otros estados (pasos federales + referencias)",
+    outOfState: (state) => `Todavía no cubrimos ${state} por completo. A continuación están los pasos federales que aplican en todos los estados. Para los pasos de nombre y marcador de género específicos de ${state}, use las organizaciones de ayuda en esta página: el ID Documents Center tiene una guía gratuita para los 50 estados.`,
   },
 
   docTitles: {

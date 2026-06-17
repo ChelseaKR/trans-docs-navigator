@@ -21,6 +21,23 @@ test("intake page states the ephemeral/private posture", () => {
   assert.match(h, /Private mode: no account, nothing saved/);
 });
 
+test("intake lets any state be selected (grouped), with a coverage note", () => {
+  const h = renderIntakePage("en");
+  assert.match(h, /<optgroup label="Fully covered">/);
+  assert.match(h, /<optgroup label="Other states/);
+  assert.match(h, /Montana/); // an uncovered state is selectable
+  assert.match(h, /Florida/);
+  assert.match(h, /We fully cover California/); // coverage expectation set up front
+});
+
+test("an uncovered state gets an honest banner + federal steps + referrals, not a dead end", () => {
+  const oh = buildChecklist({ jurisdiction: "US-OH", change_types: ["name"], documents: [], language: "en" });
+  const h = renderChecklistPage(oh, corpus, "en", "jurisdiction=US-OH&change=name");
+  assert.match(h, /fully cover Ohio yet/); // names the state honestly
+  assert.match(h, /Social Security/); // federal step still shown
+  assert.match(h, /ID Documents Center/); // the all-50-states lifeline
+});
+
 test("checklist page links to the packet (carrying the query) and start-over", () => {
   const h = renderChecklistPage(clEn, corpus, "en", "jurisdiction=US-CA&change=name");
   assert.match(h, /href="\/packet\?jurisdiction=US-CA&change=name"/);

@@ -102,6 +102,10 @@ export const en: LocaleBundle = {
     helpIntro: "Free, trans-led and legal-aid organizations. If anything here is unclear, stuck, or doesn't fit your situation, reach out — that's what they're for.",
     publicRecordWarning: "Heads up: in many states a court name-change is a public record. If being listed publicly could put you at risk, some courts allow a confidential or sealed filing — ask the court or a help organization below before you file.",
     sensitiveSituationsNote: "If your situation is sensitive — you're under 18, undocumented, fleeing harm, without a stable address, or recently incarcerated — the steps can differ in ways this tool doesn't cover. Please use the help organizations below.",
+    coverageNote: "We fully cover California, Illinois, New York, Texas, and Washington. Pick any other state and you'll get the federal steps that apply everywhere, plus where to get state-specific help.",
+    coveredGroup: "Fully covered",
+    otherStatesGroup: "Other states (federal steps + referrals)",
+    outOfState: (state) => `We don't fully cover ${state} yet. Below are the federal steps that apply in every state. For ${state}-specific name and gender-marker steps, use the help organizations on this page — the ID Documents Center has a free guide for all 50 states.`,
   },
 
   docTitles: {

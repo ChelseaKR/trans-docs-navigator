@@ -9,20 +9,22 @@ import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, 
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
 import { renderReferrals } from "./referrals.ts";
+import { US_STATES, isCovered, stateName } from "./states.ts";
 import { toResumeState } from "./secure-resume.ts";
 
-const JURISDICTIONS: { id: string; label: string }[] = [
-  { id: "US-CA", label: "California" },
-  { id: "US-IL", label: "Illinois" },
-  { id: "US-NY", label: "New York" },
-  { id: "US-TX", label: "Texas" },
-  { id: "US-WA", label: "Washington" },
-];
 const DOCUMENT_IDS: DocumentType[] = ["court-order", "ssa-card", "drivers-license", "passport", "birth-certificate", "financial-records"];
 
 export function renderIntakePage(lang: Language = "en"): string {
   const s = uiStrings(lang);
-  const jOpts = JURISDICTIONS.map((j) => `<option value="${j.id}">${escapeHtml(j.label)}</option>`).join("");
+  // Every state is selectable. The five fully-covered states are grouped first; any
+  // other state leads to the federal steps + referrals (honest out-of-state path).
+  const covered = US_STATES.filter((st) => isCovered(st.id));
+  const others = US_STATES.filter((st) => !isCovered(st.id));
+  const opt = (st: { id: string; name: string }, sel: boolean) =>
+    `<option value="${st.id}"${sel ? " selected" : ""}>${escapeHtml(st.name)}</option>`;
+  const jOpts =
+    `<optgroup label="${escapeHtml(s.coveredGroup)}">${covered.map((st) => opt(st, st.id === "US-CA")).join("")}</optgroup>` +
+    `<optgroup label="${escapeHtml(s.otherStatesGroup)}">${others.map((st) => opt(st, false)).join("")}</optgroup>`;
   const ct = (["name", "gender-marker"] as const)
     .map(
       (c) =>
@@ -41,6 +43,7 @@ export function renderIntakePage(lang: Language = "en"): string {
     <legend>${escapeHtml(s.whereLive)}</legend>
     <label for="jurisdiction">${escapeHtml(s.stateLabel)}</label>
     <select id="jurisdiction" name="jurisdiction" required>${jOpts}</select>
+    <p class="meta">${escapeHtml(s.coverageNote)}</p>
   </fieldset>
   <fieldset>
     <legend>${escapeHtml(s.whatChanging)}</legend>
@@ -78,8 +81,13 @@ export function renderChecklistPage(
 ): string {
   const s = uiStrings(lang);
   const coverageNote = opts.thinnerCoverage ? `<p class="flag" role="note">${escapeHtml(s.thinnerCoverage)}</p>` : "";
+  // Honest out-of-state banner: a user in an uncovered state gets the federal steps and
+  // is pointed at the all-50-states referral, instead of a silent dead end.
+  const outOfState = !isCovered(checklist.jurisdiction)
+    ? `<p class="flag" role="note">${escapeHtml(s.outOfState(stateName(checklist.jurisdiction)))}</p>`
+    : "";
   const intro = `<p>${escapeHtml(s.checklistIntro)}</p>
-<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${coverageNote}`;
+<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${outOfState}${coverageNote}`;
   const q = query ? `?${query}` : "";
   const actions = `<p class="no-print"><a href="/packet${q}">📄 ${escapeHtml(s.print)}</a> · <a href="/">${escapeHtml(s.startOver)}</a></p>`;
   const gaps = checklist.gaps.length

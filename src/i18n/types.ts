@@ -105,6 +105,11 @@ export interface UiMessages {
   helpIntro: string;
   publicRecordWarning: string;
   sensitiveSituationsNote: string;
+  // Coverage front door.
+  coverageNote: string;
+  coveredGroup: string;
+  otherStatesGroup: string;
+  outOfState(stateName: string): string;
 }
 
 /**
