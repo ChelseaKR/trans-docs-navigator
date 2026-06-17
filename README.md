@@ -16,9 +16,10 @@ The rules for changing your name and gender marker differ by state and by docume
 
 ## Live preview
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/ChelseaKR/trans-docs-navigator)
+**▶ [Live demo](https://7cddozrk6sfpsq7foszis7tcza0boyka.lambda-url.us-west-2.on.aws/)** — runs the real app (every route works, not a static export) on AWS Lambda. It's a serverless, scale-to-zero deploy chosen as a cost guardrail: no always-on compute, a per-month budget alarm, no paid LLM calls by default. First request after idle takes a few seconds to wake. (AWS setup and cost-guardrail breakdown: [`docs/DEPLOY-AWS-PREVIEW.md`](./docs/DEPLOY-AWS-PREVIEW.md).)
 
-One click deploys the real app (every route works, not a static export) to **Render's free tier**, which is chosen as a cost guardrail: the free plan has a hard $0 ceiling with no credit card, sleeps when idle, and the app is stateless with no paid LLM calls by default. Once deployed it runs at `https://trans-docs-navigator.onrender.com` (first request after idle takes ~30s to wake). Setup and the full cost-guardrail breakdown: [`docs/DEPLOY-PREVIEW.md`](./docs/DEPLOY-PREVIEW.md).
+Prefer your own host? One click deploys the same image to Render's free tier:
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/ChelseaKR/trans-docs-navigator) — see [`docs/DEPLOY-PREVIEW.md`](./docs/DEPLOY-PREVIEW.md).
 
 It's a demonstration, not a launched service: the corpus is illustrative seed content with corrected official sources but placeholder verifiers, and every page carries the "information, not legal advice" disclosure. It also runs locally in one command (see Quickstart).
 
