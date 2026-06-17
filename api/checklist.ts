@@ -123,6 +123,9 @@ export function buildChecklist(intake: Intake, today?: string, corpus = loadCorp
       document_type: doc,
       title: TITLES[doc],
       record_ids: currentRecords.map((r) => r.id),
+      // Degraded records' ids are kept so the view can still show their official source
+      // link on a "needs reverification" step (never strand the user — see render.ts).
+      degraded_record_ids: degraded.map((r) => r.id),
       prerequisites,
       cost: pickCost(currentRecords),
       timeline: pickTimeline(currentRecords),

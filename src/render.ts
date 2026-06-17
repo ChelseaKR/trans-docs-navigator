@@ -79,6 +79,7 @@ footer{max-width:60rem;margin:0 auto;padding:1.5rem 1rem;color:var(--muted);bord
 .step-detail{margin:.5rem 0}
 .step-detail summary{cursor:pointer;color:var(--accent)}
 .more{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.5rem 1rem 1rem;margin:1.5rem 0}
+.help{background:var(--card);border:1px solid var(--accent);border-radius:.5rem;padding:.5rem 1rem 1rem;margin:1.5rem 0}
 .copy-helper{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.5rem 1rem 1rem;margin:1.5rem 0}
 .copy-out{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:.4rem;padding:.5rem;min-height:1.4rem;margin:.5rem 0}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
@@ -174,7 +175,12 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
         ? `<p class="meta"><strong>${escapeHtml(t.prereq)}:</strong> ${s.prerequisites.map((d) => escapeHtml(locale(lang).docLabels[d as DocumentType] ?? d)).join(", ")}</p>`
         : "";
       const disc = s.discretionary ? `<p class="flag">${escapeHtml(t.discretionary)}</p>` : "";
-      const stale = s.needs_reverification ? `<p class="flag" role="note">${escapeHtml(t.needsRecheck)}</p>` : "";
+      // Degraded records still surface their official source so a "needs reverification"
+      // step never strands the user (panel finding). Show the why + safest-action too.
+      const degradedRecords = s.degraded_record_ids.map((id) => byId.get(id)).filter((r): r is CorpusRecord => !!r);
+      const stale = s.needs_reverification
+        ? `<p class="flag" role="note">${escapeHtml(t.needsRecheck)}</p><p class="meta">${escapeHtml(t.needsRecheckWhy)}</p><p class="meta">${escapeHtml(t.safestAction)}</p>`
+        : "";
       const claims = stepRecords.map((r) => `<li>${escapeHtml(r.statement)}</li>`).join("");
 
       // Expandable practical detail (kept out of the default view to stay scannable).
@@ -190,13 +196,22 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
         ? `<p class="step-cta no-print"><a href="/forms/${escapeHtml(form.id)}${langQ}">📝 ${escapeHtml(t.getFormCta)}</a></p>`
         : "";
 
+      // Public-record / confidential-filing warning on the court-order step.
+      const courtWarning = s.document_type === "court-order"
+        ? `<p class="flag" role="note">${escapeHtml(t.publicRecordWarning)}</p>`
+        : "";
+      // Sources from current AND degraded records (deduped), so the official link is
+      // always present even when the step is degraded.
+      const sourceRecords = [...stepRecords, ...degradedRecords].filter(
+        (r, i, a) => a.findIndex((x) => x.id === r.id) === i,
+      );
       return `<li class="step" data-step="${escapeHtml(s.key)}">
   <div class="step-head"><h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
   <label class="done-toggle no-print"><input type="checkbox" data-step-toggle="${escapeHtml(s.key)}"> ${escapeHtml(t.markDone)}</label></div>
   ${claims ? `<ul>${claims}</ul>` : ""}
-  ${cost}${time}${prereq}${disc}${stale}
+  ${cost}${time}${prereq}${disc}${stale}${courtWarning}
   ${detailBlock}${formCta}
-  ${sourceList(stepRecords, lang)}
+  ${sourceList(sourceRecords, lang)}
 </li>`;
     })
     .join("");

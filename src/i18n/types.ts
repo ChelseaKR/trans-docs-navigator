@@ -97,6 +97,14 @@ export interface UiMessages {
   copyIntro: string;
   copyBtn: string;
   copied: string;
+  // Degraded-step escape hatch + help/safety layer.
+  needsRecheckWhy: string;
+  safestAction: string;
+  checkOfficialSource: string;
+  helpHeading: string;
+  helpIntro: string;
+  publicRecordWarning: string;
+  sensitiveSituationsNote: string;
 }
 
 /**

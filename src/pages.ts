@@ -8,6 +8,7 @@ import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from ".
 import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel } from "./render.ts";
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
+import { renderReferrals } from "./referrals.ts";
 import { toResumeState } from "./secure-resume.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
@@ -122,7 +123,11 @@ export function renderChecklistPage(
 <script type="module" src="/assets/progress.js"></script>`
     : "";
 
-  const body = intro + summary + actions + noSteps + more + gaps + renderResumePanel(s, query) + progress;
+  // Always offer a human lifeline + a sensitive-situations note (the panel's most
+  // repeated gap: honest dead ends with no one to turn to).
+  const sensitive = `<p class="flag no-print" role="note">${escapeHtml(s.sensitiveSituationsNote)}</p>`;
+  const help = sensitive + renderReferrals(lang, s.helpHeading, s.helpIntro, escapeHtml);
+  const body = intro + summary + actions + noSteps + more + gaps + help + renderResumePanel(s, query) + progress;
   return page({ lang, title: s.checklistTitle, heading: s.checklistHeading, body });
 }
 

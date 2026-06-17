@@ -95,6 +95,13 @@ export const es: LocaleBundle = {
     copyIntro: "Ingrese su nombre una vez y cópielo en el formulario oficial. Esto permanece en su navegador: no se envía a ningún lugar.",
     copyBtn: "Copiar",
     copied: "Copiado al portapapeles.",
+    needsRecheckWhy: "La regla aquí está cambiando o siendo impugnada en este momento, así que no la mostramos como actual para no darle una respuesta incorrecta.",
+    safestAction: "Lo más seguro hoy: consulte directamente la fuente oficial y comuníquese con una de las organizaciones de ayuda a continuación para conocer la regla vigente.",
+    checkOfficialSource: "Fuente oficial",
+    helpHeading: "Reciba ayuda de una persona real",
+    helpIntro: "Organizaciones gratuitas, dirigidas por personas trans y de ayuda legal. Si algo no está claro, se atasca o no se ajusta a su situación, contáctelas: para eso están.",
+    publicRecordWarning: "Aviso: en muchos estados, un cambio de nombre judicial es un registro público. Si aparecer públicamente podría ponerle en riesgo, algunos tribunales permiten una presentación confidencial o sellada; pregunte al tribunal o a una organización de ayuda antes de presentar.",
+    sensitiveSituationsNote: "Si su situación es delicada —es menor de 18 años, indocumentado, huye de un peligro, no tiene una dirección estable o salió de prisión recientemente— los pasos pueden ser diferentes de maneras que esta herramienta no cubre. Por favor, use las organizaciones de ayuda a continuación.",
   },
 
   docTitles: {

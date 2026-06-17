@@ -95,6 +95,13 @@ export const en: LocaleBundle = {
     copyIntro: "Enter your name once, then copy it into the official form. This stays in your browser — nothing is sent anywhere.",
     copyBtn: "Copy",
     copied: "Copied to clipboard.",
+    needsRecheckWhy: "The rule here is changing or being challenged right now, so we won't show it as current and risk giving you the wrong answer.",
+    safestAction: "Safest thing to do today: check the official source directly, and contact one of the help organizations below for the current rule.",
+    checkOfficialSource: "Official source",
+    helpHeading: "Get help from a real person",
+    helpIntro: "Free, trans-led and legal-aid organizations. If anything here is unclear, stuck, or doesn't fit your situation, reach out — that's what they're for.",
+    publicRecordWarning: "Heads up: in many states a court name-change is a public record. If being listed publicly could put you at risk, some courts allow a confidential or sealed filing — ask the court or a help organization below before you file.",
+    sensitiveSituationsNote: "If your situation is sensitive — you're under 18, undocumented, fleeing harm, without a stable address, or recently incarcerated — the steps can differ in ways this tool doesn't cover. Please use the help organizations below.",
   },
 
   docTitles: {

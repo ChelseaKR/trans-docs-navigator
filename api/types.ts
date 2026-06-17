@@ -114,8 +114,11 @@ export interface ChecklistStep {
   order: number;
   document_type: DocumentType;
   title: string;
-  /** Record ids backing this step's substantive content. */
+  /** Record ids backing this step's substantive content (current, serveable records). */
   record_ids: string[];
+  /** Degraded (needs-reverification) record ids — surfaced as official-source links so a
+   *  degraded step still points the user somewhere, never a dead end. */
+  degraded_record_ids: string[];
   prerequisites: string[]; // step keys
   cost?: Cost;
   timeline?: Timeline;

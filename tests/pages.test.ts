@@ -126,6 +126,27 @@ test("resume panel is hidden when there is no selection yet (progressive enhance
   assert.doesNotMatch(h, /id="resume-pass"/);
 });
 
+test("a degraded (needs-reverification) step still shows the official source + why + safest action", () => {
+  const tx = buildChecklist({ jurisdiction: "US-TX", change_types: ["gender-marker"], documents: [], language: "en" });
+  const h = renderChecklistPage(tx, corpus, "en", "jurisdiction=US-TX&change=gender-marker");
+  assert.match(h, /Needs reverification/);
+  assert.match(h, /rel="noopener noreferrer"/); // official source link is NOT stripped on a degraded step
+  assert.match(h, /changing or being challenged/); // the "why"
+  assert.match(h, /Safest thing to do today/); // the escape hatch
+});
+
+test("checklist always offers a human lifeline and a sensitive-situations note", () => {
+  const h = renderChecklistPage(clEn, corpus, "en", "jurisdiction=US-CA&change=name");
+  assert.match(h, /Get help from a real person/);
+  assert.match(h, /ID Documents Center/); // the all-50-states referral
+  assert.match(h, /your situation is sensitive/);
+});
+
+test("the court-order step carries a public-record / confidential-filing warning", () => {
+  const h = renderChecklistPage(clEn, corpus, "en", "jurisdiction=US-CA&change=name");
+  assert.match(h, /public record/);
+});
+
 test("checklist page surfaces gaps for an uncovered jurisdiction", () => {
   const cl = buildChecklist({ jurisdiction: "US-NV", change_types: ["name"], documents: ["court-order"], language: "en" });
   const h = renderChecklistPage(cl, corpus, "en", "jurisdiction=US-NV&change=name");
