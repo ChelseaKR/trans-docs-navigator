@@ -164,6 +164,13 @@ test("the court-order step carries a public-record / confidential-filing warning
   assert.match(h, /public record/);
 });
 
+test("fee-waiver help and an honest cost note appear for budget-anxious users", () => {
+  const h = renderChecklistPage(clEn, corpus, "en", "jurisdiction=US-CA&change=name");
+  assert.match(h, /ask for a fee waiver/); // make-or-break step for low income
+  assert.match(h, /Form FW-001/);
+  assert.match(h, /Costs vary by state and county/);
+});
+
 test("checklist page surfaces gaps for an uncovered jurisdiction", () => {
   const cl = buildChecklist({ jurisdiction: "US-NV", change_types: ["name"], documents: ["court-order"], language: "en" });
   const h = renderChecklistPage(cl, corpus, "en", "jurisdiction=US-NV&change=name");

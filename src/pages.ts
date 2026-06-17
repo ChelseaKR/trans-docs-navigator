@@ -111,8 +111,9 @@ export function renderChecklistPage(
     else known += st.cost.amount_usd;
   }
   const costText = known > 0 ? `$${known}${anyVaries ? "+" : ""}` : anyVaries ? s.varies : "";
+  const costNote = anyVaries ? `<p class="meta">${escapeHtml(s.costNote)}</p>` : "";
   const summary = hasSteps
-    ? `<p class="plan-summary"><strong>${checklist.steps.length} ${escapeHtml(s.stepsLabel)}</strong>${costText ? ` · ${escapeHtml(s.estimatedCost)}: ${escapeHtml(costText)}` : ""}</p>
+    ? `<p class="plan-summary"><strong>${checklist.steps.length} ${escapeHtml(s.stepsLabel)}</strong>${costText ? ` · ${escapeHtml(s.estimatedCost)}: ${escapeHtml(costText)}` : ""}</p>${costNote}
 <p id="progress-count" class="meta no-print" role="status" aria-live="polite"></p>`
     : "";
 

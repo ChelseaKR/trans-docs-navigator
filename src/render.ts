@@ -200,6 +200,10 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
       const courtWarning = s.document_type === "court-order"
         ? `<p class="flag" role="note">${escapeHtml(t.publicRecordWarning)}</p>`
         : "";
+      // Fee-waiver help where a waiver exists (the make-or-break step for low-income users).
+      const feeWaiver = s.document_type === "court-order" && s.cost?.fee_waiver
+        ? `<p class="meta">${escapeHtml(t.feeWaiverHelp)}</p>`
+        : "";
       // Sources from current AND degraded records (deduped), so the official link is
       // always present even when the step is degraded.
       const sourceRecords = [...stepRecords, ...degradedRecords].filter(
@@ -209,7 +213,7 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
   <div class="step-head"><h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
   <label class="done-toggle no-print"><input type="checkbox" data-step-toggle="${escapeHtml(s.key)}"> ${escapeHtml(t.markDone)}</label></div>
   ${claims ? `<ul>${claims}</ul>` : ""}
-  ${cost}${time}${prereq}${disc}${stale}${courtWarning}
+  ${cost}${time}${prereq}${disc}${stale}${courtWarning}${feeWaiver}
   ${detailBlock}${formCta}
   ${sourceList(sourceRecords, lang)}
 </li>`;

@@ -106,6 +106,8 @@ export const en: LocaleBundle = {
     coveredGroup: "Fully covered",
     otherStatesGroup: "Other states (federal steps + referrals)",
     outOfState: (state) => `We don't fully cover ${state} yet. Below are the federal steps that apply in every state. For ${state}-specific name and gender-marker steps, use the help organizations on this page — the ID Documents Center has a free guide for all 50 states.`,
+    feeWaiverHelp: "Can't afford the filing fee? Courts must let you ask for a fee waiver. Ask the clerk for the fee-waiver form (in California it's Form FW-001) and bring proof of low income or public benefits — a waiver can bring the court fee to $0.",
+    costNote: "Costs vary by state and county. The court filing fee is usually the largest, and a fee waiver may reduce it — see each step for details.",
   },
 
   docTitles: {

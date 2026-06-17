@@ -110,6 +110,9 @@ export interface UiMessages {
   coveredGroup: string;
   otherStatesGroup: string;
   outOfState(stateName: string): string;
+  // Cost clarity + fee waivers.
+  feeWaiverHelp: string;
+  costNote: string;
 }
 
 /**

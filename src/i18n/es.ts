@@ -106,6 +106,8 @@ export const es: LocaleBundle = {
     coveredGroup: "Cobertura completa",
     otherStatesGroup: "Otros estados (pasos federales + referencias)",
     outOfState: (state) => `Todavía no cubrimos ${state} por completo. A continuación están los pasos federales que aplican en todos los estados. Para los pasos de nombre y marcador de género específicos de ${state}, use las organizaciones de ayuda en esta página: el ID Documents Center tiene una guía gratuita para los 50 estados.`,
+    feeWaiverHelp: "¿No puede pagar la tarifa de presentación? Los tribunales deben permitirle solicitar una exención de tarifas. Pida al secretario el formulario de exención (en California es el Formulario FW-001) y lleve prueba de bajos ingresos o de beneficios públicos: una exención puede reducir la tarifa judicial a $0.",
+    costNote: "Los costos varían según el estado y el condado. La tarifa de presentación judicial suele ser la mayor, y una exención de tarifas puede reducirla; consulte cada paso para más detalles.",
   },
 
   docTitles: {
