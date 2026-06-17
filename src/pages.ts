@@ -7,6 +7,7 @@
 import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from "../api/types.ts";
 import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel } from "./render.ts";
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
+import { guideLinksFor } from "./guide.ts";
 import { toResumeState } from "./secure-resume.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
@@ -86,10 +87,42 @@ export function renderChecklistPage(
         .join("")}</ul></section>`
     : "";
   // Reassuring empty-state instead of a bare empty list when nothing could be produced.
-  const noSteps = checklist.steps.length === 0
+  const hasSteps = checklist.steps.length > 0;
+  const noSteps = !hasSteps
     ? `<p class="flag" role="note">${escapeHtml(s.noStepsLead)}</p><p class="no-print"><a href="/">${escapeHtml(s.backToStart)}</a></p>`
     : renderChecklist(checklist, records, lang);
-  const body = intro + actions + noSteps + gaps + renderResumePanel(s, query);
+
+  // Plan summary: step count + an honest estimated cost (sum of known amounts; "+"
+  // when some steps vary; "varies" when none are fixed).
+  let known = 0;
+  let anyVaries = false;
+  for (const st of checklist.steps) {
+    if (!st.cost) continue;
+    if (st.cost.amount_usd === null) anyVaries = true;
+    else known += st.cost.amount_usd;
+  }
+  const costText = known > 0 ? `$${known}${anyVaries ? "+" : ""}` : anyVaries ? s.varies : "";
+  const summary = hasSteps
+    ? `<p class="plan-summary"><strong>${checklist.steps.length} ${escapeHtml(s.stepsLabel)}</strong>${costText ? ` · ${escapeHtml(s.estimatedCost)}: ${escapeHtml(costText)}` : ""}</p>
+<p id="progress-count" class="meta no-print" role="status" aria-live="polite"></p>`
+    : "";
+
+  // "Go deeper": the matching state guides + the detailed grounded answer, which the
+  // checklist flow previously left unreachable.
+  const guides = guideLinksFor(checklist.jurisdiction, checklist.change_types, lang);
+  const more = hasSteps
+    ? `<section class="more no-print" aria-labelledby="more-h"><h2 id="more-h">${escapeHtml(s.moreHeading)}</h2><ul>${guides
+        .map((g) => `<li><a href="${escapeHtml(g.path)}">${escapeHtml(g.label)}</a></li>`)
+        .join("")}<li><a href="/answer${q}">${escapeHtml(s.seeDetailedAnswer)}</a></li></ul></section>`
+    : "";
+
+  // Client-side, local-only progress (privacy-safe, like the resume panel).
+  const progress = hasSteps
+    ? `${jsonIsland("progress-cfg", { key: `tdn.progress.${query}`, template: s.progressTemplate })}
+<script type="module" src="/assets/progress.js"></script>`
+    : "";
+
+  const body = intro + summary + actions + noSteps + more + gaps + renderResumePanel(s, query) + progress;
   return page({ lang, title: s.checklistTitle, heading: s.checklistHeading, body });
 }
 

@@ -45,7 +45,7 @@ const CHECKS: Check[] = [
   { name: "guide page (es)", path: "/guide/illinois/gender-marker?language=es", contains: ["BreadcrumbList", "Crear mi lista"] },
   { name: "robots.txt", path: "/robots.txt", contentType: "text/plain", contains: ["Disallow: /checklist", "Sitemap:"] },
   { name: "sitemap.xml", path: "/sitemap.xml", contentType: "application/xml", contains: ["<urlset", "/guide/california/name-change", "hreflang"] },
-  { name: "checklist (en)", path: "/checklist?jurisdiction=US-CA&change=name&change=gender-marker", contains: ["Information, not legal advice", "Step 1"] },
+  { name: "checklist (en)", path: "/checklist?jurisdiction=US-CA&change=name&change=gender-marker", contains: ["Information, not legal advice", "Step 1", "/forms/", "/assets/progress.js", "Go deeper"] },
   { name: "checklist (es)", path: "/checklist?jurisdiction=US-CA&change=name&language=es", contains: ["Información, no asesoramiento legal", "Paso 1"] },
   { name: "packet (en)", path: "/packet?jurisdiction=US-CA&change=name", contains: ["Information, not legal advice", "Prepared on"] },
   { name: "packet (es)", path: "/packet?jurisdiction=US-CA&change=name&language=es", contains: ["Preparado el"] },

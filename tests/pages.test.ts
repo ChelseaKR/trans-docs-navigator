@@ -27,6 +27,30 @@ test("checklist page links to the packet (carrying the query) and start-over", (
   assert.match(h, /href="\/">/); // start over
 });
 
+test("checklist surfaces the on-device form-fill for steps backed by a form", () => {
+  const h = renderChecklistPage(clEn, corpus, "en", "jurisdiction=US-CA&change=name");
+  assert.match(h, /href="\/forms\/[a-z0-9-]+"/); // the differentiating CTA is reachable from the flow
+  assert.match(h, /Fill this form on your device/);
+});
+
+test("checklist shows a plan summary, progress toggles, and deeper links", () => {
+  const h = renderChecklistPage(clEn, corpus, "en", "jurisdiction=US-CA&change=name");
+  assert.match(h, /class="plan-summary"/);
+  assert.match(h, /<strong>\d+ steps<\/strong>/);
+  assert.match(h, /data-step-toggle=/); // per-step progress
+  assert.match(h, /id="progress-cfg"/);
+  assert.match(h, /\/assets\/progress\.js/);
+  assert.match(h, /href="\/guide\/california\/name-change"/); // matching state guide
+  assert.match(h, /href="\/answer\?jurisdiction=US-CA&change=name"/); // grounded Q&A
+  assert.doesNotMatch(h, /<script>/); // strict CSP: no inline script
+});
+
+test("progress is local-only with no network egress", () => {
+  const js = readFileSync(join(import.meta.dirname, "..", "public", "assets", "progress.js"), "utf8");
+  assert.match(js, /localStorage/);
+  assert.doesNotMatch(js, /fetch\(|XMLHttpRequest|navigator\.sendBeacon/);
+});
+
 test("printable packet renders full steps, sources, prepared date, and print control", () => {
   const h = renderPacketPage(clEn, corpus, "en", "2026-05-31");
   assert.match(h, /id="print-btn"/); // wired by the static /assets/packet.js module

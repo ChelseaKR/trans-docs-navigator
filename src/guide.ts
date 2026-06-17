@@ -53,6 +53,23 @@ export function indexablePaths(): string[] {
   return ["/", ...guidePaths(), "/terms", "/privacy", "/accessibility"];
 }
 
+/** Guide links matching a checklist's jurisdiction × change types (empty if none cover it). */
+export function guideLinksFor(jurisdiction: string, changeTypes: ChangeType[], lang: Language): { path: string; label: string }[] {
+  const state = STATES.find((s) => s.id === jurisdiction);
+  if (!state) return [];
+  const seo = locale(lang).seo;
+  const out: { path: string; label: string }[] = [];
+  for (const c of changeTypes) {
+    const topic = TOPICS.find((t) => t.change === c);
+    if (!topic) continue;
+    out.push({
+      path: `/guide/${state.slug}/${topic.slug}${lang === "es" ? "?language=es" : ""}`,
+      label: seo.guideHeading(state.name[lang], seo.topicName[c]),
+    });
+  }
+  return out;
+}
+
 /** The /guide index: links to every state × topic guide, grouped by state. */
 export function renderGuideIndex(lang: Language): string {
   const seo = locale(lang).seo;

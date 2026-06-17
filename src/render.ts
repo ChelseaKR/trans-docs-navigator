@@ -9,6 +9,7 @@ import type { UiMessages } from "./i18n/index.ts";
 import { t as locale } from "./i18n/index.ts";
 import type { SeoMeta } from "./seo.ts";
 import { headTags, titleTag } from "./seo.ts";
+import { formById } from "../api/forms.ts";
 
 /** Localized gap-reason sentence from the language bundle. */
 export function gapReason(lang: Language, reason: "no-records" | "all-degraded"): string {
@@ -67,6 +68,17 @@ footer{max-width:60rem;margin:0 auto;padding:1.5rem 1rem;color:var(--muted);bord
 .breadcrumb{color:var(--muted);font-size:.95rem;margin:.5rem 0 1rem}
 .cta{margin:1.5rem 0}
 .cta a{display:inline-block;background:var(--accent);color:var(--onAccent,#000);padding:.6rem 1.1rem;border-radius:.4rem;font-weight:600;text-decoration:none}
+.plan-summary{font-size:1.05rem;margin:.5rem 0}
+.step-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
+.step-head h2{margin:.2rem 0}
+.done-toggle{font-size:.9rem;color:var(--muted);font-weight:400;white-space:nowrap}
+.step.done{opacity:.7}
+.step.done .step-head h2{text-decoration:line-through}
+.step-cta{margin:.6rem 0}
+.step-cta a{display:inline-block;background:var(--accent);color:var(--onAccent,#000);padding:.45rem .9rem;border-radius:.4rem;text-decoration:none;font-weight:600;font-size:.95rem}
+.step-detail{margin:.5rem 0}
+.step-detail summary{cursor:pointer;color:var(--accent)}
+.more{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.5rem 1rem 1rem;margin:1.5rem 0}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media print{
   :root{--bg:${PALETTE.print.bg};--fg:${PALETTE.print.fg};--muted:${PALETTE.print.muted};--accent:${PALETTE.print.accent};--card:${PALETTE.print.card};--warn:${PALETTE.print.warn};--line:${PALETTE.print.line}}
@@ -147,12 +159,13 @@ function sourceList(records: CorpusRecord[], lang: Language, level: 2 | 3 = 3): 
 
 export function renderChecklist(checklist: Checklist, records: CorpusRecord[], lang: Language): string {
   const t = locale(lang).ui;
+  const langQ = lang === "es" ? "?language=es" : "";
   const byId = new Map(records.map((r) => [r.id, r]));
   const steps = checklist.steps
     .map((s) => {
       const stepRecords = s.record_ids.map((id) => byId.get(id)).filter((r): r is CorpusRecord => !!r);
       const cost = s.cost
-        ? `<p class="meta"><strong>${escapeHtml(t.cost)}:</strong> ${s.cost.amount_usd === null ? escapeHtml(s.cost.note ?? "varies") : "$" + s.cost.amount_usd}</p>`
+        ? `<p class="meta"><strong>${escapeHtml(t.cost)}:</strong> ${s.cost.amount_usd === null ? escapeHtml(s.cost.note ?? t.varies) : "$" + s.cost.amount_usd}</p>`
         : "";
       const time = s.timeline ? `<p class="meta"><strong>${escapeHtml(t.timeline)}:</strong> ${escapeHtml(s.timeline.typical)}</p>` : "";
       const prereq = s.prerequisites.length
@@ -161,10 +174,26 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
       const disc = s.discretionary ? `<p class="flag">${escapeHtml(t.discretionary)}</p>` : "";
       const stale = s.needs_reverification ? `<p class="flag" role="note">${escapeHtml(t.needsRecheck)}</p>` : "";
       const claims = stepRecords.map((r) => `<li>${escapeHtml(r.statement)}</li>`).join("");
-      return `<li class="step">
-  <h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
+
+      // Expandable practical detail (kept out of the default view to stay scannable).
+      const details = stepRecords.map((r) => r.detail).filter((d): d is string => !!d);
+      const detailBlock = details.length
+        ? `<details class="step-detail no-print"><summary>${escapeHtml(t.moreDetail)}</summary><ul>${details.map((d) => `<li>${escapeHtml(d)}</li>`).join("")}</ul></details>`
+        : "";
+
+      // The differentiator: jump straight to filling the actual form for this step,
+      // on-device. Fillable forms say "fill"; flat scans degrade to "get the form".
+      const form = s.form_ref ? formById(s.form_ref) : undefined;
+      const formCta = form
+        ? `<p class="step-cta no-print"><a href="/forms/${escapeHtml(form.id)}${langQ}">📝 ${escapeHtml(form.fillable ? t.fillFormCta : t.getFormCta)}</a></p>`
+        : "";
+
+      return `<li class="step" data-step="${escapeHtml(s.key)}">
+  <div class="step-head"><h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
+  <label class="done-toggle no-print"><input type="checkbox" data-step-toggle="${escapeHtml(s.key)}"> ${escapeHtml(t.markDone)}</label></div>
   ${claims ? `<ul>${claims}</ul>` : ""}
   ${cost}${time}${prereq}${disc}${stale}
+  ${detailBlock}${formCta}
   ${sourceList(stepRecords, lang)}
 </li>`;
     })

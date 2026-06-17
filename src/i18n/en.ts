@@ -80,6 +80,16 @@ export const en: LocaleBundle = {
     fillUnfilled: "Downloaded. We couldn't auto-fill these fields, so complete them by hand: ",
     fillError: "Could not fill the form. You can download the blank form instead.",
     thinnerCoverage: "Full steps in your language for this state aren't ready yet. Federal steps are shown; switch to English to see more.",
+    fillFormCta: "Fill this form on your device",
+    getFormCta: "Get the official form",
+    moreDetail: "More detail",
+    markDone: "Mark done",
+    progressTemplate: "{done} of {total} steps done",
+    stepsLabel: "steps",
+    estimatedCost: "Estimated cost",
+    varies: "varies",
+    moreHeading: "Go deeper",
+    seeDetailedAnswer: "See what the sources say in detail",
   },
 
   docTitles: {
