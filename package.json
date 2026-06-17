@@ -35,7 +35,9 @@
     "dev": "node --experimental-strip-types api/server.ts"
   },
   "devDependencies": {
+    "@types/jsdom": "^28.0.3",
     "@types/node": "^25.9.3",
+    "jsdom": "^29.1.1",
     "typescript": "^6.0.3"
   }
 }

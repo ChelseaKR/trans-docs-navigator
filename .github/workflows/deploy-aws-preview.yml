@@ -56,4 +56,14 @@ jobs:
           url="${url%/}"
           aws lambda update-function-configuration --function-name "$fn" \
             --environment "Variables={NODE_ENV=production,AWS_LWA_READINESS_CHECK_PATH=/healthz,SITE_ORIGIN=$url}" >/dev/null
+          aws lambda wait function-updated --function-name "$fn"
+          echo "SMOKE_URL=$url" >> "$GITHUB_ENV"
           echo "Deployed → $url"
+      - name: Smoke-test the live deployment
+        if: env.configured == 'true'
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+      - name: Run live smoke
+        if: env.configured == 'true'
+        run: node --experimental-strip-types --no-warnings scripts/smoke-live.ts

@@ -103,6 +103,10 @@ smoke:
 	@echo "── synthetic user journey (real server) ──────────────────"
 	@$(NODE) scripts/smoke-journey.ts
 
+# Smoke against a LIVE deployed instance (SMOKE_URL=...); run after a deploy.
+smoke-live:
+	@$(NODE) scripts/smoke-live.ts
+
 # Regenerate the public coverage matrix (docs/audits/coverage.md).
 coverage:
 	@$(NODE) scripts/coverage-matrix.ts

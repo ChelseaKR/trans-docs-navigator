@@ -18,6 +18,7 @@ const args = [
   "--experimental-test-coverage",
   "--test-coverage-include=api/**/*.ts",
   "--test-coverage-include=src/**/*.ts",
+  "--test-coverage-include=public/assets/**/*.js", // client tier — executed by tests/client-dom.test.ts
   "--test-coverage-exclude=api/server.ts", // thin HTTP/socket shell (logic lives in api/router.ts)
   "--test-coverage-lines=90",
   "--test-coverage-branches=85",
