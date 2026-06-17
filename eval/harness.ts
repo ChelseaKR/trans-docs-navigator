@@ -14,7 +14,7 @@ import { isCurrent } from "../api/freshness.ts";
 import { GOLD } from "./gold.ts";
 import type { GoldItem } from "./gold.ts";
 
-export const EVAL_TODAY = "2026-05-31";
+export const EVAL_TODAY = "2026-06-16";
 
 export interface GoldProvenance {
   independent_author: boolean;

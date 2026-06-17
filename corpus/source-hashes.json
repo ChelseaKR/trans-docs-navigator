@@ -1,9 +1,22 @@
 {
   "https://selfhelp.courts.ca.gov/name-change": "874e03a2294d678ac377cf92f0bed64554a54561254a9f54e36c6249d71689fd",
+  "https://selfhelp.courts.ca.gov/gender-recognition": "3150e82f42802170eedafdb015f996da97433f07a0059961fbaac1d5c8fe2a43",
   "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/": "bc4caf71123f2336469728f1b2257c28af2f6a432a5e56a001d41acec3ec2bb1",
-  "https://travel.state.gov/content/travel/en/passports/have-passport/change-correct.html": "cbf9869c63918a6085bacf9fb58776f1529a252202c646612cabc6d71972a78b",
-  "https://travel.state.gov/content/travel/en/passports.html": "ef5505eff6212f4796221409142e186271b22a3be5c38aa7a366338735e9b49b",
+  "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/updating-information-on-your-driver-license-or-identification-dl-id-card/": "53bb9423399b6292c22a8d0748877ea2200ff25cf77faafea41988da38710c9e",
+  "https://travel.state.gov/content/travel/en/passports/have-passport/change-correct.html": "2f767082bb19858f7c6c6714d51cbcdb9048919b3158e503364072515cbd638b",
+  "https://travel.state.gov/content/travel/en/passports.html": "f7993a3dbfcde12fd1d0ea490636fd16b1d0575f23fa6c6157fb2c83568923b5",
+  "https://www.illinoislegalaid.org/legal-information/changing-your-name": "4b450d6c3a6d771cf5b36d677cddf5c89947e3cf1a697322f1f966457fde95a7",
+  "https://www.illinoislegalaid.org/legal-information/updating-sex-and-gender-markers-identification": "0909d4efd1317542d8057b1a8f3c6490986269de0d18d0cefb65e4965c9f8398",
+  "https://dmv.ny.gov/driver-license/change-information-on-dmv-photo-documents": "41f9db0b63c962df0a66c38f3c5d528ae5c09bc77546673c538c8fbc25893fa5",
+  "https://selfhelp.courts.ca.gov/es/cambie-su-nombre-en-california": "157b99fb5721e58445d01de6a5bc13ae5f65a058e33a45423657e0c2d3043d2d",
+  "https://selfhelp.courts.ca.gov/es/reconocimiento-de-genero": "0455e5a29872e224677664b38df5012f60fdac2045152c7f3b38894768567b56",
   "https://www.dmv.ca.gov/portal/es/driver-licenses-identification-cards/": "bc4caf71123f2336469728f1b2257c28af2f6a432a5e56a001d41acec3ec2bb1",
+  "https://travel.state.gov/es/pasaportes/renovar-o-reemplazar/cambiar-o-corregir.html": "002264292a09cf7200dd5204dda6362cd357604b11690bf58e41203384003fae",
+  "https://travel.state.gov/en/passports/apply/unique-needs/sex-markers.html": "8999ee48a57d53ddb65e4d6c3db24d779260c80e7a4db8cdd2136e5576d95485",
+  "https://texaslawhelp.org/family-divorce-children/name-change/name-change-of-an-adult": "34b5124b19ea0c2408b159e82fa9a90a590644a13f247cd8ddc76ef5eb645666",
+  "https://www.dps.texas.gov/section/driver-license/how-change-information-your-driver-license-or-id-card": "18c04a2e7ce6811f6e05d014a3be3df8a5b538b9cca0941f3771f58d676a8e43",
   "https://www.dps.texas.gov/section/driver-license": "2add87471a4d1ed398fbdce8ad351415541ae87e1c8e3679dc2f61d8e5a3f33a",
-  "https://www.courts.wa.gov/forms/?fa=forms.contribute&formID=49": "ad3a0f53e39c17838bae0830d3f44c72fbf9d771937fddac86df4bb5f3bc801c"
+  "https://www.courts.wa.gov/forms/?fa=forms.contribute&formID=49": "ad3a0f53e39c17838bae0830d3f44c72fbf9d771937fddac86df4bb5f3bc801c",
+  "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-name-or-address-your-driver-license": "284383d82a50d1755e4df89b92ed32e8a21ca69e4869381df19253b15ab44e59",
+  "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-gender-designation": "40719c57f0ba1be3995a3fa2bea5e3a792d2cbb60fc9af7aa326d3880d1fed31"
 }

@@ -3,12 +3,20 @@
     "id": "ca.court-order.name",
     "jurisdiction": "US-CA",
     "document_type": "court-order",
-    "change_type": ["name"],
+    "change_type": [
+      "name"
+    ],
     "topic": "California petition for change of name",
     "statement": "In California you change your legal name by filing a Petition for Change of Name (Form NC-100) and related forms in the superior court for the county where you live.",
     "detail": "The court issues a decree of change of name that you then use to update other documents. If you cannot afford the filing fee, you can request a fee waiver with Form FW-001.",
-    "cost": { "amount_usd": null, "note": "The filing fee varies by county (commonly around $435–$480); a fee waiver is available if you cannot afford it.", "fee_waiver": true },
-    "timeline": { "typical": "roughly 6–12 weeks from filing to a signed order" },
+    "cost": {
+      "amount_usd": null,
+      "note": "The filing fee varies by county (commonly around $435–$480); a fee waiver is available if you cannot afford it.",
+      "fee_waiver": true
+    },
+    "timeline": {
+      "typical": "roughly 6–12 weeks from filing to a signed order"
+    },
     "discretionary": true,
     "prerequisites": [],
     "source": {
@@ -26,17 +34,25 @@
     "id": "ca.court-order.gender-marker",
     "jurisdiction": "US-CA",
     "document_type": "court-order",
-    "change_type": ["gender-marker"],
+    "change_type": [
+      "gender-marker"
+    ],
     "topic": "California petition for change of gender",
     "statement": "California lets you petition for a court recognition of a change of gender and sex identifier, and you can request a name change in the same set of forms.",
     "detail": "California does not require a physician's statement to obtain a court recognition of gender change. The same forms can request a male, female, or nonbinary designation.",
-    "cost": { "amount_usd": null, "note": "Filing fees vary by county; a fee waiver is available.", "fee_waiver": true },
-    "timeline": { "typical": "often a few weeks; varies by county" },
+    "cost": {
+      "amount_usd": null,
+      "note": "Filing fees vary by county; a fee waiver is available.",
+      "fee_waiver": true
+    },
+    "timeline": {
+      "typical": "often a few weeks; varies by county"
+    },
     "prerequisites": [],
     "source": {
-      "url": "https://selfhelp.courts.ca.gov/gender-change",
+      "url": "https://selfhelp.courts.ca.gov/gender-recognition",
       "title": "California Courts Self-Help — Change Your Legal Gender",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -47,12 +63,21 @@
     "id": "ca.drivers-license.name",
     "jurisdiction": "US-CA",
     "document_type": "drivers-license",
-    "change_type": ["name"],
+    "change_type": [
+      "name"
+    ],
     "topic": "California driver's license name change",
     "statement": "To change the name on your California driver's license or ID, visit the DMV with proof of your legal name change, such as your court order, and apply for a replacement card.",
-    "cost": { "amount_usd": null, "note": "A replacement card fee applies; check the current DMV fee schedule." },
-    "timeline": { "typical": "a temporary card is issued at the visit; the permanent card arrives by mail" },
-    "prerequisites": ["court-order"],
+    "cost": {
+      "amount_usd": null,
+      "note": "A replacement card fee applies; check the current DMV fee schedule."
+    },
+    "timeline": {
+      "typical": "a temporary card is issued at the visit; the permanent card arrives by mail"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
     "source": {
       "url": "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/",
       "title": "California DMV — Driver's Licenses & ID Cards",
@@ -67,16 +92,23 @@
     "id": "ca.drivers-license.gender-marker",
     "jurisdiction": "US-CA",
     "document_type": "drivers-license",
-    "change_type": ["gender-marker"],
+    "change_type": [
+      "gender-marker"
+    ],
     "topic": "California driver's license gender category",
     "statement": "California lets you choose a gender category of female, male, or nonbinary on your driver's license or ID by submitting a Gender Category Request (Form DL 329) — no medical documentation is required.",
-    "cost": { "amount_usd": 0, "note": "No fee to change the gender category when done with another transaction." },
-    "timeline": { "typical": "processed with your DMV visit" },
+    "cost": {
+      "amount_usd": 0,
+      "note": "No fee to change the gender category when done with another transaction."
+    },
+    "timeline": {
+      "typical": "processed with your DMV visit"
+    },
     "prerequisites": [],
     "source": {
-      "url": "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/gender-category-on-dl-id-cards/",
+      "url": "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/updating-information-on-your-driver-license-or-identification-dl-id-card/",
       "title": "California DMV — Gender Category on DL/ID Cards",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",

@@ -3,18 +3,26 @@
     "id": "ca.court-order.name.es",
     "jurisdiction": "US-CA",
     "document_type": "court-order",
-    "change_type": ["name"],
+    "change_type": [
+      "name"
+    ],
     "topic": "Petición de cambio de nombre en California",
     "statement": "En California, usted cambia su nombre legal presentando una Petición para Cambio de Nombre (Formulario NC-100) y los formularios relacionados en el tribunal superior del condado donde vive.",
     "detail": "El tribunal emite una orden de cambio de nombre que luego usa para actualizar otros documentos. Si no puede pagar la tarifa, puede solicitar una exención con el Formulario FW-001.",
-    "cost": { "amount_usd": null, "note": "La tarifa varía según el condado (frecuentemente alrededor de $435–$480); hay una exención de tarifa disponible.", "fee_waiver": true },
-    "timeline": { "typical": "aproximadamente de 6 a 12 semanas desde la presentación hasta la orden firmada" },
+    "cost": {
+      "amount_usd": null,
+      "note": "La tarifa varía según el condado (frecuentemente alrededor de $435–$480); hay una exención de tarifa disponible.",
+      "fee_waiver": true
+    },
+    "timeline": {
+      "typical": "aproximadamente de 6 a 12 semanas desde la presentación hasta la orden firmada"
+    },
     "discretionary": true,
     "prerequisites": [],
     "source": {
-      "url": "https://selfhelp.courts.ca.gov/cambio-de-nombre",
+      "url": "https://selfhelp.courts.ca.gov/es/cambie-su-nombre-en-california",
       "title": "Ayuda Legal de las Cortes de California — Cambie su Nombre",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -26,17 +34,25 @@
     "id": "ca.court-order.gender-marker.es",
     "jurisdiction": "US-CA",
     "document_type": "court-order",
-    "change_type": ["gender-marker"],
+    "change_type": [
+      "gender-marker"
+    ],
     "topic": "Petición de cambio de género en California",
     "statement": "California le permite solicitar el reconocimiento judicial de un cambio de género e identificador de sexo, y puede pedir un cambio de nombre en el mismo conjunto de formularios.",
     "detail": "California no exige una declaración de un médico para obtener el reconocimiento judicial del cambio de género. Los mismos formularios pueden solicitar una designación masculina, femenina o no binaria.",
-    "cost": { "amount_usd": null, "note": "Las tarifas varían según el condado; hay una exención disponible.", "fee_waiver": true },
-    "timeline": { "typical": "a menudo unas pocas semanas; varía según el condado" },
+    "cost": {
+      "amount_usd": null,
+      "note": "Las tarifas varían según el condado; hay una exención disponible.",
+      "fee_waiver": true
+    },
+    "timeline": {
+      "typical": "a menudo unas pocas semanas; varía según el condado"
+    },
     "prerequisites": [],
     "source": {
-      "url": "https://selfhelp.courts.ca.gov/cambio-de-genero",
+      "url": "https://selfhelp.courts.ca.gov/es/reconocimiento-de-genero",
       "title": "Ayuda Legal de las Cortes de California — Cambie su Género Legal",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -47,12 +63,21 @@
     "id": "ca.drivers-license.name.es",
     "jurisdiction": "US-CA",
     "document_type": "drivers-license",
-    "change_type": ["name"],
+    "change_type": [
+      "name"
+    ],
     "topic": "Cambio de nombre en la licencia de conducir de California",
     "statement": "Para cambiar el nombre en su licencia de conducir o identificación de California, visite el DMV con prueba de su cambio de nombre legal, como su orden judicial, y solicite una tarjeta de reemplazo.",
-    "cost": { "amount_usd": null, "note": "Se aplica una tarifa por la tarjeta de reemplazo; consulte la tabla de tarifas actual del DMV." },
-    "timeline": { "typical": "se emite una tarjeta temporal en la visita; la tarjeta permanente llega por correo" },
-    "prerequisites": ["court-order"],
+    "cost": {
+      "amount_usd": null,
+      "note": "Se aplica una tarifa por la tarjeta de reemplazo; consulte la tabla de tarifas actual del DMV."
+    },
+    "timeline": {
+      "typical": "se emite una tarjeta temporal en la visita; la tarjeta permanente llega por correo"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
     "source": {
       "url": "https://www.dmv.ca.gov/portal/es/driver-licenses-identification-cards/",
       "title": "DMV de California — Licencias de Conducir e Identificaciones",
@@ -67,16 +92,23 @@
     "id": "ca.drivers-license.gender-marker.es",
     "jurisdiction": "US-CA",
     "document_type": "drivers-license",
-    "change_type": ["gender-marker"],
+    "change_type": [
+      "gender-marker"
+    ],
     "topic": "Categoría de género en la licencia de California",
     "statement": "California le permite elegir una categoría de género de femenino, masculino o no binario en su licencia de conducir o identificación enviando una Solicitud de Categoría de Género (Formulario DL 329) — no se requiere documentación médica.",
-    "cost": { "amount_usd": 0, "note": "No hay tarifa para cambiar la categoría de género cuando se hace junto con otro trámite." },
-    "timeline": { "typical": "se procesa durante su visita al DMV" },
+    "cost": {
+      "amount_usd": 0,
+      "note": "No hay tarifa para cambiar la categoría de género cuando se hace junto con otro trámite."
+    },
+    "timeline": {
+      "typical": "se procesa durante su visita al DMV"
+    },
     "prerequisites": [],
     "source": {
-      "url": "https://www.dmv.ca.gov/portal/es/driver-licenses-identification-cards/gender-category-on-dl-id-cards/",
+      "url": "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/updating-information-on-your-driver-license-or-identification-dl-id-card/",
       "title": "DMV de California — Categoría de Género en Licencias/ID",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -88,12 +120,20 @@
     "id": "ny.court-order.name.es",
     "jurisdiction": "US-NY",
     "document_type": "court-order",
-    "change_type": ["name"],
+    "change_type": [
+      "name"
+    ],
     "topic": "Petición de cambio de nombre en Nueva York",
     "statement": "En Nueva York, usted cambia su nombre legal presentando una petición de cambio de nombre en el tribunal civil (o tribunal supremo), y el juez firma una orden que concede el nuevo nombre.",
     "detail": "La ley de Nueva York permite que un tribunal selle el expediente o renuncie a la publicación habitual en el periódico cuando la publicación podría amenazar la seguridad del solicitante; esto lo decide el tribunal.",
-    "cost": { "amount_usd": null, "note": "Las tarifas de presentación varían según el tribunal; hay exenciones disponibles para quienes no pueden pagarlas.", "fee_waiver": true },
-    "timeline": { "typical": "varias semanas, según el calendario del tribunal" },
+    "cost": {
+      "amount_usd": null,
+      "note": "Las tarifas de presentación varían según el tribunal; hay exenciones disponibles para quienes no pueden pagarlas.",
+      "fee_waiver": true
+    },
+    "timeline": {
+      "typical": "varias semanas, según el calendario del tribunal"
+    },
     "discretionary": true,
     "prerequisites": [],
     "source": {
@@ -110,19 +150,26 @@
     "id": "ny.drivers-license.gender-marker.es",
     "jurisdiction": "US-NY",
     "document_type": "drivers-license",
-    "change_type": ["gender-marker"],
+    "change_type": [
+      "gender-marker"
+    ],
     "topic": "Designación de sexo en la licencia de Nueva York",
     "statement": "Nueva York le permite seleccionar una designación de sexo de F, M o X en su licencia de conducir o identificación al autocertificarse en el formulario de designación del DMV — no se requiere prueba médica.",
-    "cost": { "amount_usd": 0, "note": "No hay tarifa adicional para cambiar la designación." },
-    "timeline": { "typical": "se procesa con su trámite del DMV" },
+    "cost": {
+      "amount_usd": 0,
+      "note": "No hay tarifa adicional para cambiar la designación."
+    },
+    "timeline": {
+      "typical": "se procesa con su trámite del DMV"
+    },
     "prerequisites": [],
     "source": {
-      "url": "https://dmv.ny.gov/driver-license/changing-sex-designation-your-license-permit-or-non-driver-id",
+      "url": "https://dmv.ny.gov/driver-license/change-information-on-dmv-photo-documents",
       "title": "DMV de NY — Cambiar la Designación de Sexo en su Licencia/ID",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
-    "verification_status": "verified",
+    "verification_status": "needs_reverification",
     "recheck_sla_days": 90,
     "language": "es"
   },
@@ -130,14 +177,18 @@
     "id": "ny.drivers-license.name.es",
     "jurisdiction": "US-NY",
     "document_type": "drivers-license",
-    "change_type": ["name"],
+    "change_type": [
+      "name"
+    ],
     "topic": "Cambio de nombre en la licencia de Nueva York",
     "statement": "Para cambiar el nombre en su licencia o identificación de Nueva York, lleve su orden judicial y una prueba de identidad al DMV y solicite un documento modificado.",
-    "prerequisites": ["court-order"],
+    "prerequisites": [
+      "court-order"
+    ],
     "source": {
-      "url": "https://dmv.ny.gov/driver-license/change-name-your-dmv-records",
+      "url": "https://dmv.ny.gov/driver-license/change-information-on-dmv-photo-documents",
       "title": "DMV de NY — Cambiar el Nombre en sus Registros del DMV",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -148,18 +199,26 @@
     "id": "il.court-order.name.es",
     "jurisdiction": "US-IL",
     "document_type": "court-order",
-    "change_type": ["name"],
+    "change_type": [
+      "name"
+    ],
     "topic": "Petición de cambio de nombre en Illinois",
     "statement": "En Illinois, usted cambia su nombre legal presentando una Solicitud de Cambio de Nombre en el tribunal de circuito del condado donde vive, y un juez firma una orden que la concede.",
     "detail": "Illinois generalmente requiere la publicación de la solicitud en un periódico, pero un tribunal puede renunciar a la publicación cuando podría poner en peligro al solicitante; esto lo decide el juez.",
-    "cost": { "amount_usd": null, "note": "Las tarifas de presentación varían según el condado; hay una exención disponible, y la publicación puede añadir un costo aparte del periódico.", "fee_waiver": true },
-    "timeline": { "typical": "aproximadamente 6 semanas, en parte por el período de publicación" },
+    "cost": {
+      "amount_usd": null,
+      "note": "Las tarifas de presentación varían según el condado; hay una exención disponible, y la publicación puede añadir un costo aparte del periódico.",
+      "fee_waiver": true
+    },
+    "timeline": {
+      "typical": "aproximadamente 6 semanas, en parte por el período de publicación"
+    },
     "discretionary": true,
     "prerequisites": [],
     "source": {
-      "url": "https://www.illinoislegalaid.org/legal-information/changing-your-name-adult",
+      "url": "https://www.illinoislegalaid.org/legal-information/changing-your-name",
       "title": "Illinois Legal Aid Online — Cambiar su Nombre (Adulto)",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -170,16 +229,23 @@
     "id": "il.drivers-license.gender-marker.es",
     "jurisdiction": "US-IL",
     "document_type": "drivers-license",
-    "change_type": ["gender-marker"],
+    "change_type": [
+      "gender-marker"
+    ],
     "topic": "Designación de sexo en la licencia de Illinois",
     "statement": "Illinois le permite elegir la designación de sexo en su licencia de conducir o identificación estatal mediante autocertificación ante el Secretario de Estado — no se requiere documentación médica.",
-    "cost": { "amount_usd": 0, "note": "No hay tarifa adicional para actualizar la designación durante otro trámite." },
-    "timeline": { "typical": "se procesa durante su visita" },
+    "cost": {
+      "amount_usd": 0,
+      "note": "No hay tarifa adicional para actualizar la designación durante otro trámite."
+    },
+    "timeline": {
+      "typical": "se procesa durante su visita"
+    },
     "prerequisites": [],
     "source": {
-      "url": "https://www.ilsos.gov/departments/drivers/drivers_license/home.html",
-      "title": "Secretario de Estado de Illinois — Licencia de Conducir e ID",
-      "last_verified": "2026-05-31",
+      "url": "https://www.illinoislegalaid.org/legal-information/updating-sex-and-gender-markers-identification",
+      "title": "Illinois Legal Aid Online — Actualizar Marcadores de Sexo y Género en su Identificación",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -190,13 +256,22 @@
     "id": "us.ssa-card.name.es",
     "jurisdiction": "US",
     "document_type": "ssa-card",
-    "change_type": ["name"],
+    "change_type": [
+      "name"
+    ],
     "topic": "Cambio de nombre en el registro del Seguro Social",
     "statement": "Para cambiar el nombre en su registro del Seguro Social, presente el Formulario SS-5 y muestre documentos originales que prueben su cambio de nombre legal, como una orden judicial, y prueba de identidad.",
     "detail": "Puede presentarlo por correo o en una oficina local del Seguro Social. No hay cargo.",
-    "cost": { "amount_usd": 0, "note": "El Seguro Social no cobra una tarifa por una tarjeta corregida." },
-    "timeline": { "typical": "de 2 a 4 semanas para recibir la tarjeta actualizada" },
-    "prerequisites": ["court-order"],
+    "cost": {
+      "amount_usd": 0,
+      "note": "El Seguro Social no cobra una tarifa por una tarjeta corregida."
+    },
+    "timeline": {
+      "typical": "de 2 a 4 semanas para recibir la tarjeta actualizada"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
     "source": {
       "url": "https://www.ssa.gov/forms/ss-5.pdf",
       "title": "Formulario SS-5 del Seguro Social, Solicitud de Tarjeta de Seguro Social",
@@ -212,17 +287,27 @@
     "id": "us.passport.name.es",
     "jurisdiction": "US",
     "document_type": "passport",
-    "change_type": ["name"],
+    "change_type": [
+      "name"
+    ],
     "topic": "Cambio de nombre en el pasaporte de EE. UU.",
     "statement": "Para actualizar el nombre en su pasaporte de EE. UU., envíe una solicitud de pasaporte con una copia certificada del documento que cambió su nombre legalmente, como una orden judicial.",
     "detail": "Si su pasaporte más reciente se emitió en el último año, la corrección puede ser gratuita; de lo contrario, solicita con el Formulario DS-82 (renovación por correo) o DS-11 (en persona) y paga la tarifa correspondiente.",
-    "cost": { "amount_usd": null, "note": "Gratis para pasaportes recientes corregidos en un año; de lo contrario, se aplican las tarifas estándar de solicitud.", "fee_waiver": false },
-    "timeline": { "typical": "varias semanas; hay servicio acelerado disponible por una tarifa adicional" },
-    "prerequisites": ["court-order"],
+    "cost": {
+      "amount_usd": null,
+      "note": "Gratis para pasaportes recientes corregidos en un año; de lo contrario, se aplican las tarifas estándar de solicitud.",
+      "fee_waiver": false
+    },
+    "timeline": {
+      "typical": "varias semanas; hay servicio acelerado disponible por una tarifa adicional"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
     "source": {
-      "url": "https://travel.state.gov/content/travel/es/passports.html",
+      "url": "https://travel.state.gov/es/pasaportes/renovar-o-reemplazar/cambiar-o-corregir.html",
       "title": "Departamento de Estado de EE. UU. — Pasaportes",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -234,7 +319,9 @@
     "id": "us.ssa-card.gender-marker.es",
     "jurisdiction": "US",
     "document_type": "ssa-card",
-    "change_type": ["gender-marker"],
+    "change_type": [
+      "gender-marker"
+    ],
     "topic": "Política del marcador de género del Seguro Social",
     "statement": "La política federal sobre el marcador de sexo/género en los registros del Seguro Social ha cambiado recientemente y está en litigio.",
     "detail": "Por ser volátil, el navegador no presenta una regla actual aquí; debe reverificarse con la fuente oficial antes de mostrarse como un hecho.",
@@ -253,15 +340,17 @@
     "id": "us.passport.gender-marker.es",
     "jurisdiction": "US",
     "document_type": "passport",
-    "change_type": ["gender-marker"],
+    "change_type": [
+      "gender-marker"
+    ],
     "topic": "Política del marcador de sexo del pasaporte de EE. UU.",
     "statement": "La política federal sobre el marcador de sexo impreso en los pasaportes de EE. UU. ha cambiado recientemente y está sujeta a litigio en curso.",
     "detail": "Por ser volátil, el navegador no presenta una regla actual aquí; debe reverificarse con la fuente oficial del Departamento de Estado antes de mostrarse como un hecho.",
     "prerequisites": [],
     "source": {
-      "url": "https://travel.state.gov/content/travel/es/passports.html",
+      "url": "https://travel.state.gov/en/passports/apply/unique-needs/sex-markers.html",
       "title": "Departamento de Estado de EE. UU. — Pasaportes",
-      "last_verified": "2025-01-20",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",

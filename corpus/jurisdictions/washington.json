@@ -3,12 +3,20 @@
     "id": "wa.court-order.name",
     "jurisdiction": "US-WA",
     "document_type": "court-order",
-    "change_type": ["name"],
+    "change_type": [
+      "name"
+    ],
     "topic": "Washington name change petition",
     "statement": "In Washington you change your legal name by filing a petition in district court, and the judge signs an order granting the new name.",
     "detail": "Washington courts can seal the name-change record when openness could harm the petitioner's safety; this is decided by the court. The signed order is then used to update other documents.",
-    "cost": { "amount_usd": null, "note": "Filing fees vary by county district court; a fee waiver is available for those who cannot afford them.", "fee_waiver": true },
-    "timeline": { "typical": "often a few weeks, depending on the court" },
+    "cost": {
+      "amount_usd": null,
+      "note": "Filing fees vary by county district court; a fee waiver is available for those who cannot afford them.",
+      "fee_waiver": true
+    },
+    "timeline": {
+      "typical": "often a few weeks, depending on the court"
+    },
     "discretionary": true,
     "prerequisites": [],
     "source": {
@@ -25,14 +33,18 @@
     "id": "wa.drivers-license.name",
     "jurisdiction": "US-WA",
     "document_type": "drivers-license",
-    "change_type": ["name"],
+    "change_type": [
+      "name"
+    ],
     "topic": "Washington driver's license name change",
     "statement": "To change the name on your Washington driver's license or ID, bring your court order and proof of identity to a Department of Licensing office and apply for a replacement.",
-    "prerequisites": ["court-order"],
+    "prerequisites": [
+      "court-order"
+    ],
     "source": {
-      "url": "https://dol.wa.gov/driver-licenses-and-permits/changing-your-name-or-address",
+      "url": "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-name-or-address-your-driver-license",
       "title": "Washington DOL — Changing Your Name",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -43,16 +55,23 @@
     "id": "wa.drivers-license.gender-marker",
     "jurisdiction": "US-WA",
     "document_type": "drivers-license",
-    "change_type": ["gender-marker"],
+    "change_type": [
+      "gender-marker"
+    ],
     "topic": "Washington driver's license gender designation",
     "statement": "Washington lets you choose a gender designation of F, M, or X on your driver's license or ID by self-attesting — no medical documentation is required.",
-    "cost": { "amount_usd": 0, "note": "No additional fee to change the designation during another transaction." },
-    "timeline": { "typical": "processed during your visit" },
+    "cost": {
+      "amount_usd": 0,
+      "note": "No additional fee to change the designation during another transaction."
+    },
+    "timeline": {
+      "typical": "processed during your visit"
+    },
     "prerequisites": [],
     "source": {
-      "url": "https://dol.wa.gov/driver-licenses-and-permits/gender-designation",
+      "url": "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-gender-designation",
       "title": "Washington DOL — Gender Designation",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-06-16",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
