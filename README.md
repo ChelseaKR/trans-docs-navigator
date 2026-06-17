@@ -2,7 +2,7 @@
 
 **A state-by-state navigator for legal name and gender-marker changes.** It turns the bureaucratic maze (vital records, courts, DMV, SSA, passport) into a personalized, ordered checklist, pre-fills the actual forms in your browser, and explains each step in plain language with a citation and a last-checked date. Information, never legal advice. Built privacy-first, for users who may be in hostile jurisdictions.
 
-**Status:** in build (M6). Five jurisdictions (CA, IL, NY, TX, WA) plus federal, in English and Spanish. All 12 automated merge gates pass: lint, typecheck, tests with coverage, security scan, content validation, citation coverage, privacy, freshness, disclosure, readability, accessibility, and eval. The remaining launch gates need human judgment, not code: named-human verification of every corpus record, counsel review of the legal pages, a manual screen-reader walkthrough, and a real-Bedrock eval run. Those are tracked openly in [`docs/IMPROVEMENT-PLAN.md`](./docs/IMPROVEMENT-PLAN.md); keeping them open is a decision, not a gap.
+**Status:** in build (M6). Five jurisdictions (CA, IL, NY, TX, WA) plus federal, in English and Spanish. All 13 automated merge gates pass: lint, typecheck, tests with coverage, security scan, content validation, citation coverage, privacy, freshness, disclosure, readability, accessibility, SEO, and eval. The remaining launch gates need human judgment, not code: named-human verification of every corpus record, counsel review of the legal pages, a manual screen-reader walkthrough, and a real-Bedrock eval run. Those are tracked openly in [`docs/IMPROVEMENT-PLAN.md`](./docs/IMPROVEMENT-PLAN.md); keeping them open is a decision, not a gap.
 
 ## Why it matters
 
@@ -14,7 +14,13 @@ The rules for changing your name and gender marker differ by state and by docume
 |---|---|---|
 | ![Intake form: state, what you're changing, documents, language](./docs/screenshots/intake.png) | ![Personalized checklist with citations and last-checked dates](./docs/screenshots/checklist.png) | ![Form SS-5 filled entirely in the browser](./docs/screenshots/form-fill.png) |
 
-No hosted demo yet — it runs locally in one command (see Quickstart).
+## Live preview
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/ChelseaKR/trans-docs-navigator)
+
+One click deploys the real app (every route works, not a static export) to **Render's free tier**, which is chosen as a cost guardrail: the free plan has a hard $0 ceiling with no credit card, sleeps when idle, and the app is stateless with no paid LLM calls by default. Once deployed it runs at `https://trans-docs-navigator.onrender.com` (first request after idle takes ~30s to wake). Setup and the full cost-guardrail breakdown: [`docs/DEPLOY-PREVIEW.md`](./docs/DEPLOY-PREVIEW.md).
+
+It's a demonstration, not a launched service: the corpus is illustrative seed content with corrected official sources but placeholder verifiers, and every page carries the "information, not legal advice" disclosure. It also runs locally in one command (see Quickstart).
 
 ## What it does
 
