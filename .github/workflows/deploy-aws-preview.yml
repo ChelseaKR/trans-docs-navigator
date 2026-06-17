@@ -1,0 +1,59 @@
+name: deploy-aws-preview
+
+# Manual, OIDC-based deploy of the cost-light AWS preview (infra/preview).
+# Manual by design (workflow_dispatch only) so nothing bills until you choose to deploy.
+# Requires two repo variables (Settings → Secrets and variables → Actions → Variables):
+#   AWS_DEPLOY_ROLE_ARN  — the deploy_role_arn output from `terraform apply`
+#   AWS_REGION           — e.g. us-east-1
+# The job is a no-op if AWS_DEPLOY_ROLE_ARN is unset, so the workflow is safe to ship.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # OIDC
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Guard — require the deploy role to be configured
+        run: |
+          if [ -z "${{ vars.AWS_DEPLOY_ROLE_ARN }}" ]; then
+            echo "AWS_DEPLOY_ROLE_ARN not set — run infra/preview Terraform first, then set the repo variable. Skipping."
+            exit 0
+          fi
+          echo "configured=true" >> "$GITHUB_ENV"
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        if: env.configured == 'true'
+      - name: Configure AWS credentials (OIDC, no long-lived keys)
+        if: env.configured == 'true'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - name: Login to ECR
+        if: env.configured == 'true'
+        id: ecr
+        run: |
+          acct=$(aws sts get-caller-identity --query Account --output text)
+          registry="$acct.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com"
+          aws ecr get-login-password --region "${{ vars.AWS_REGION }}" | docker login --username AWS --password-stdin "$registry"
+          echo "image=$registry/trans-docs-navigator:${{ github.sha }}" >> "$GITHUB_OUTPUT"
+      - name: Build and push image
+        if: env.configured == 'true'
+        run: |
+          docker build -t "${{ steps.ecr.outputs.image }}" .
+          docker push "${{ steps.ecr.outputs.image }}"
+      - name: Update the Lambda and point SITE_ORIGIN at the live URL
+        if: env.configured == 'true'
+        run: |
+          fn=trans-docs-navigator-preview
+          aws lambda update-function-code --function-name "$fn" --image-uri "${{ steps.ecr.outputs.image }}" >/dev/null
+          aws lambda wait function-updated --function-name "$fn"
+          url=$(aws lambda get-function-url-config --function-name "$fn" --query FunctionUrl --output text)
+          url="${url%/}"
+          aws lambda update-function-configuration --function-name "$fn" \
+            --environment "Variables={NODE_ENV=production,AWS_LWA_READINESS_CHECK_PATH=/healthz,SITE_ORIGIN=$url}" >/dev/null
+          echo "Deployed → $url"
