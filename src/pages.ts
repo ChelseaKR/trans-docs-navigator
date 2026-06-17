@@ -5,7 +5,7 @@
 // filled entirely in the browser.
 
 import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from "../api/types.ts";
-import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason } from "./render.ts";
+import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel } from "./render.ts";
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
 import { toResumeState } from "./secure-resume.ts";
@@ -192,9 +192,28 @@ export function renderPacketPage(
  */
 export function renderFormFillPage(form: FormDef, lang: Language = "en"): string {
   const s = uiStrings(lang);
+  const currentLabel = fieldLabel(lang, "current_legal_name");
+  const newLabel = fieldLabel(lang, "new_legal_name");
+  // Copy-helper config (labels + confirmation) for the static module. The inputs are
+  // NOT inside a <form> and have no name attribute, so nothing can be submitted — the
+  // values live only in the browser and never reach the server.
+  const cfg = { labels: { current: currentLabel, new: newLabel }, copied: s.copied };
   const body = `
 <p>${escapeHtml(s.officialFormIntro)}</p>
 <p class="cta"><a href="${escapeHtml(form.source.url)}" rel="noopener noreferrer">${escapeHtml(s.getFormCta)}: ${escapeHtml(form.source.title)}</a></p>
+<section class="copy-helper no-print" aria-labelledby="copy-h">
+  <h2 id="copy-h">${escapeHtml(s.copyTitle)}</h2>
+  <p class="meta">${escapeHtml(s.copyIntro)}</p>
+  <label for="copy-current">${escapeHtml(currentLabel)}</label>
+  <input id="copy-current" type="text" data-copy="current" autocomplete="off" autocapitalize="words" spellcheck="false">
+  <label for="copy-new">${escapeHtml(newLabel)}</label>
+  <input id="copy-new" type="text" data-copy="new" autocomplete="off" autocapitalize="words" spellcheck="false">
+  <p><button type="button" id="copy-btn">${escapeHtml(s.copyBtn)}</button></p>
+  <pre id="copy-out" class="copy-out" aria-live="polite"></pre>
+  <p id="copy-status" role="status" aria-live="polite" class="meta"></p>
+</section>
+${jsonIsland("copy-cfg", cfg)}
+<script type="module" src="/assets/form-copy.js"></script>
 <p class="flag" role="note">${escapeHtml(s.notFilingNote)}</p>`;
   return page({ lang, title: form.title, heading: form.title, body });
 }

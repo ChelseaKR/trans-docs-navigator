@@ -79,6 +79,8 @@ footer{max-width:60rem;margin:0 auto;padding:1.5rem 1rem;color:var(--muted);bord
 .step-detail{margin:.5rem 0}
 .step-detail summary{cursor:pointer;color:var(--accent)}
 .more{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.5rem 1rem 1rem;margin:1.5rem 0}
+.copy-helper{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.5rem 1rem 1rem;margin:1.5rem 0}
+.copy-out{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:.4rem;padding:.5rem;min-height:1.4rem;margin:.5rem 0}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media print{
   :root{--bg:${PALETTE.print.bg};--fg:${PALETTE.print.fg};--muted:${PALETTE.print.muted};--accent:${PALETTE.print.accent};--card:${PALETTE.print.card};--warn:${PALETTE.print.warn};--line:${PALETTE.print.line}}

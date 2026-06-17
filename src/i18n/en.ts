@@ -91,6 +91,10 @@ export const en: LocaleBundle = {
     moreHeading: "Go deeper",
     seeDetailedAnswer: "See what the sources say in detail",
     officialFormIntro: "This is an official government form. Download it from the source below and complete it yourself — we don't fill it in for you, so you always work from the authoritative version.",
+    copyTitle: "Your details, ready to copy in",
+    copyIntro: "Enter your name once, then copy it into the official form. This stays in your browser — nothing is sent anywhere.",
+    copyBtn: "Copy",
+    copied: "Copied to clipboard.",
   },
 
   docTitles: {
