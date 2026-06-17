@@ -96,7 +96,7 @@ export function parseIntake(url: URL): Intake | null {
     jurisdiction,
     change_types: ct.length > 0 ? ct : ["name", "gender-marker"],
     documents: documents(url),
-    language: asLanguage(url.searchParams.get("language")),
+    language: asLanguage((url.searchParams.get("language") ?? url.searchParams.get("lang"))),
   };
 }
 
@@ -126,7 +126,7 @@ function notFound(lang: Language): RouteResponse {
  * `today` is injectable for deterministic tests.
  */
 export function handleRoute(method: string, url: URL, today?: string): RouteResponse {
-  const lang = asLanguage(url.searchParams.get("language"));
+  const lang = asLanguage((url.searchParams.get("language") ?? url.searchParams.get("lang")));
   if (method !== "GET" && method !== "HEAD") {
     const t = uiStrings(lang);
     return {
@@ -163,12 +163,12 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
   }
 
   if (p === "/") {
-    return { status: 200, contentType: HTML, body: renderIntakePage(asLanguage(url.searchParams.get("language"))) };
+    return { status: 200, contentType: HTML, body: renderIntakePage(asLanguage((url.searchParams.get("language") ?? url.searchParams.get("lang")))) };
   }
 
   // Static legal / policy pages (linked from every footer).
   if (p === "/terms" || p === "/privacy" || p === "/accessibility") {
-    const lang = asLanguage(url.searchParams.get("language"));
+    const lang = asLanguage((url.searchParams.get("language") ?? url.searchParams.get("lang")));
     const render = p === "/terms" ? renderTermsPage : p === "/privacy" ? renderPrivacyPage : renderAccessibilityPage;
     return { status: 200, contentType: HTML, body: render(lang) };
   }
