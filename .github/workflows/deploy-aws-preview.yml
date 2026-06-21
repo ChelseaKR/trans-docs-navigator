@@ -29,7 +29,7 @@ jobs:
         if: env.configured == 'true'
       - name: Configure AWS credentials (OIDC, no long-lived keys)
         if: env.configured == 'true'
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4
         with:
           role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
