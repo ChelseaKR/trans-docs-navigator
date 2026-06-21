@@ -13,3 +13,6 @@ infra/**/*.tfstate*
 # Ephemeral by design: nothing user-generated is ever persisted.
 *.session.json
 tmp/
+
+# runtime-fetched portfolio-standards (never commit)
+.standards/
