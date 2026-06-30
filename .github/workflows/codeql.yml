@@ -4,12 +4,17 @@ name: codeql
 # blocking Semgrep job in ci.yml with GitHub's own query packs.
 
 on:
-  push:
-    branches: [main]
+  # PRs into main analyze the diff before merge; the weekly schedule keeps the
+  # default-branch baseline fresh. The post-merge `push: [main]` re-run was
+  # redundant with those two (CI-CD-STANDARD §11) and is dropped to save minutes.
   pull_request:
     branches: [main]
   schedule:
     - cron: "41 3 * * 3" # Wednesdays 03:41 UTC
+
+concurrency:
+  group: codeql-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
