@@ -132,11 +132,23 @@ export function renderChecklistPage(
 <script type="module" src="/assets/progress.js"></script>`
     : "";
 
-  // Always offer a human lifeline + a sensitive-situations note (the panel's most
-  // repeated gap: honest dead ends with no one to turn to).
-  const sensitive = `<p class="flag no-print" role="note">${escapeHtml(s.sensitiveSituationsNote)}</p>`;
-  const help = sensitive + renderReferrals(lang, s.helpHeading, s.helpIntro, escapeHtml);
-  const body = intro + summary + actions + noSteps + more + gaps + help + renderResumePanel(s, query) + progress;
+  // Surface the human lifeline BEFORE the risky court/federal steps, not only at the page
+  // bottom (RESEARCH-ROADMAP R11): a compact sensitive-situations note plus an in-page jump
+  // to the full referral block (#help-h), shown above the steps. The full referral list
+  // still renders at the bottom, so it's reachable however the user scrolls.
+  const topLifeline = `<p class="flag no-print" role="note">${escapeHtml(s.sensitiveSituationsNote)} <a href="#help-h">${escapeHtml(s.getHelpNow)}</a></p>`;
+  const help = renderReferrals(lang, s.helpHeading, s.helpIntro, escapeHtml);
+
+  // Privacy-safe reminders (RESEARCH-ROADMAP E6): a one-click .ics export of the steps,
+  // built entirely in the browser from what's already on the page — no server, no contact
+  // info, no invented deadlines. Progressive enhancement: without JS it simply isn't shown.
+  const reminders = hasSteps
+    ? `<p class="no-print"><button type="button" id="ics-btn">📅 ${escapeHtml(s.downloadIcs)}</button></p>
+<p class="meta no-print">${escapeHtml(s.downloadIcsNote)}</p>
+<script type="module" src="/assets/reminders.js"></script>`
+    : "";
+
+  const body = intro + summary + topLifeline + actions + noSteps + reminders + more + gaps + help + renderResumePanel(s, query) + progress;
   return page({ lang, title: s.checklistTitle, heading: s.checklistHeading, body });
 }
 

@@ -57,6 +57,7 @@ const CHECKS: Check[] = [
   { name: "progress module", path: "/assets/progress.js", contentType: "text/javascript", contains: ["localStorage"] },
   { name: "copy-helper module", path: "/assets/form-copy.js", contentType: "text/javascript", contains: ["clipboard"] },
   { name: "packet module", path: "/assets/packet.js", contentType: "text/javascript" },
+  { name: "reminders module", path: "/assets/reminders.js", contentType: "text/javascript", contains: ["BEGIN:VCALENDAR"] },
   { name: "healthz", path: "/healthz", contentType: "application/json", contains: ["corpus_records"] },
 ];
 

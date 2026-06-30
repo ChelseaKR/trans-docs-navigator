@@ -105,6 +105,10 @@ export interface UiMessages {
   helpIntro: string;
   publicRecordWarning: string;
   sensitiveSituationsNote: string;
+  /** Anchor link surfacing the help/referral section from the top of the checklist, before the risky steps. */
+  getHelpNow: string;
+  /** Per-step "report an error / law changed" link, wired to the law-changed issue template. */
+  reportError: string;
   // Coverage front door.
   coverageNote: string;
   coveredGroup: string;
@@ -113,6 +117,9 @@ export interface UiMessages {
   // Cost clarity + fee waivers.
   feeWaiverHelp: string;
   costNote: string;
+  // Privacy-safe reminders: a client-side .ics task list of the steps (no server, no contact info).
+  downloadIcs: string;
+  downloadIcsNote: string;
 }
 
 /**

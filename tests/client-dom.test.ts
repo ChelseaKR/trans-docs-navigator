@@ -126,3 +126,32 @@ test("packet.js wires the print button", async () => {
   (dom.window.document.getElementById("print-btn") as HTMLButtonElement).click();
   assert.equal(printed, true);
 });
+
+test("reminders.js downloads an undated, escaped, client-side .ics of the steps (E6)", async () => {
+  // Mount the checklist DOM BEFORE the first import: the module binds its button listener
+  // at import time, and node caches the module across tests.
+  const dom = mount(renderChecklistPage(clEn, corpus, "en", "jurisdiction=US-CA&change=name"));
+  // Capture the would-be download instead of needing a real navigation/Blob in jsdom.
+  let href = "";
+  let name = "";
+  dom.window.HTMLAnchorElement.prototype.click = function (this: HTMLAnchorElement) {
+    href = this.href;
+    name = this.getAttribute("download") ?? "";
+  };
+  const mod = await import("../public/assets/reminders.js");
+  (dom.window.document.getElementById("ics-btn") as HTMLButtonElement).click();
+  assert.ok(href.startsWith("data:text/calendar"), "saved as a client-side data: URL — nothing sent to a server");
+  assert.match(name, /\.ics$/);
+
+  // Pure builder: real step titles become tasks; escaped; no invented deadlines.
+  const titles = [...dom.window.document.querySelectorAll("[data-step] .step-head h2")].map((h) => (h.textContent || "").trim());
+  assert.ok(titles.length > 0);
+  const ics = mod.buildIcs([...titles, "a, b; c"], "20260630T000000Z");
+  assert.match(ics, /BEGIN:VCALENDAR/);
+  assert.match(ics, /END:VCALENDAR/);
+  assert.equal((ics.match(/BEGIN:VTODO/g) ?? []).length, titles.length + 1); // one task per step
+  assert.match(ics, /SUMMARY:Step 1: Get a court order for your name change/); // a real step → a task
+  assert.match(ics, /SUMMARY:a\\, b\\; c/); // RFC 5545 escaping of , and ;
+  assert.doesNotMatch(ics, /DTSTART|DUE/); // no invented deadlines
+  assert.match(ics, /\r\n/); // CRLF line endings
+});

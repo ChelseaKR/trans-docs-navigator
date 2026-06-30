@@ -159,6 +159,39 @@ test("checklist always offers a human lifeline and a sensitive-situations note",
   assert.match(h, /your situation is sensitive/);
 });
 
+test("the lifeline is surfaced before the risky steps, jumping to the full referral block (R11)", () => {
+  const h = renderChecklistPage(clEn, corpus, "en", "jurisdiction=US-CA&change=name");
+  const topAnchor = h.indexOf('href="#help-h"');
+  const firstStep = h.indexOf('<li class="step"');
+  assert.ok(topAnchor > -1, "top lifeline anchor is present");
+  assert.ok(firstStep > -1, "checklist has steps");
+  assert.ok(topAnchor < firstStep, "the lifeline appears before the first (court/federal) step");
+  assert.match(h, /id="help-h"/); // the anchor target (full referral section) exists on the page
+});
+
+test("each checklist step wires a per-step report-an-error link to the law-changed template (R11)", () => {
+  const h = renderChecklistPage(clEn, corpus, "en", "jurisdiction=US-CA&change=name");
+  const reportLinks = h.match(/issues\/new\?template=law-changed\.md/g) ?? [];
+  const steps = h.match(/<li class="step"/g) ?? [];
+  assert.ok(steps.length > 0);
+  assert.equal(reportLinks.length, steps.length); // exactly one report link per step
+  assert.match(h, /Report an error or a law that changed/);
+  assert.match(h, /title=%5Blaw-changed%5D%20US-CA/); // non-PII jurisdiction/document prefilled, URL-encoded
+  assert.doesNotMatch(h, /<script>/); // unchanged: strict CSP, nothing inline
+});
+
+test("checklist offers a privacy-safe .ics reminders download wired to an external module (E6)", () => {
+  const h = renderChecklistPage(clEn, corpus, "en", "jurisdiction=US-CA&change=name");
+  assert.match(h, /id="ics-btn"/);
+  assert.match(h, /Add these steps to your calendar/);
+  assert.match(h, /\/assets\/reminders\.js/); // behavior is external — no inline script
+  assert.match(h, /nothing is sent anywhere/); // honest privacy posture in the helper note
+  assert.doesNotMatch(h, /<script>/); // strict CSP unchanged
+  // Progressive enhancement: no steps → no reminders affordance.
+  const empty = renderChecklistPage(buildChecklist({ jurisdiction: "US-NV", change_types: ["name"], documents: ["birth-certificate"], language: "en" }), corpus, "en", "jurisdiction=US-NV&change=name");
+  assert.doesNotMatch(empty, /id="ics-btn"/);
+});
+
 test("the court-order step carries a public-record / confidential-filing warning", () => {
   const h = renderChecklistPage(clEn, corpus, "en", "jurisdiction=US-CA&change=name");
   assert.match(h, /public record/);
