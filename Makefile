@@ -6,7 +6,7 @@ NODE := node --experimental-strip-types --no-warnings
 SHELL := /bin/bash
 
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
-        lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n seo deploy-plan clean \
+        lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-overflow seo deploy-plan clean \
         smoke coverage link-check source-watch source-baseline new-record
 
 help:
@@ -27,7 +27,7 @@ dev:
 # ---------------------------------------------------------------------------
 # The blocking pipeline, in standard order. Any non-zero exit fails the build.
 # ---------------------------------------------------------------------------
-verify: lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n a11y seo eval
+verify: lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css a11y seo eval i18n-overflow
 	@echo ""
 	@echo "✅ make verify: all merge-blocking gates passed."
 
@@ -76,32 +76,50 @@ readability:
 	@$(NODE) scripts/readability.ts
 
 # Mechanical i18n gates (INTERNATIONALIZATION-STANDARD §4). G1 UTF-8 and G3 BCP-47
-# tag-validity join the existing G6 EN/ES key-parity gate below. G2 (no-hardcoded-string
-# extraction) and the MF1→MF2 audit (§9) are deferred to a later phase; G12 (CLDR/tzdata
-# pin) is N/A-until-used — the frontend does no Intl number/date formatting yet. See docs/I18N.md.
+# tag-validity join the existing G6 EN/ES key-parity gate below, plus the G10 static
+# logical-CSS gate (stylelint). The G9 pseudolocale overflow gate is i18n-overflow
+# (browser, below). G2 (no-hardcoded-string extraction) and the MF1→MF2 audit (§9) are
+# deferred; G12 (CLDR/tzdata pin) is N/A-until-used — the frontend does no Intl
+# number/date formatting yet. ar/he RTL mirror smoke is deferred. See docs/I18N.md.
 i18n-utf8:
-	@echo "── [12/17] i18n: UTF-8 encoding (all tracked text files) ──"
+	@echo "── [12/19] i18n: UTF-8 encoding (all tracked text files) ──"
 	@$(NODE) scripts/i18n-utf8.ts
 
 i18n-bcp47:
-	@echo "── [13/17] i18n: BCP 47 language-tag validity ────────────"
+	@echo "── [13/19] i18n: BCP 47 language-tag validity ────────────"
 	@$(NODE) scripts/i18n-bcp47.ts
 
 i18n:
-	@echo "── [14/17] locale key-parity (EN/ES, no empty translations) ─"
+	@echo "── [14/19] locale key-parity (EN/ES, no empty translations) ─"
 	@$(NODE) scripts/i18n-parity.ts
 
+# G10 (static) — logical-CSS for RTL readiness. Extracts the typed STYLE from
+# src/render.ts to a git-ignored artifact and lints the inline (writing-direction)
+# axis with stylelint-use-logical (stylelint.config.js). Fix findings in render.ts.
+i18n-logical-css:
+	@echo "── [15/19] i18n: logical-CSS (G10 static, stylelint use-logical) ─"
+	@$(NODE) scripts/i18n-css-extract.ts
+	@npx --no-install stylelint tmp/app.generated.css
+
 a11y:
-	@echo "── [15/17] accessibility gate ────────────────────────────"
+	@echo "── [16/19] accessibility gate ────────────────────────────"
 	@$(NODE) scripts/a11y-lint.ts
 
 seo:
-	@echo "── [16/17] SEO (indexing contract, metadata, sitemap) ────"
+	@echo "── [17/19] SEO (indexing contract, metadata, sitemap) ────"
 	@$(NODE) scripts/seo-lint.ts
 
 eval:
-	@echo "── [17/17] eval harness (groundedness/accuracy/refusal) ──"
+	@echo "── [18/19] eval harness (groundedness/accuracy/refusal) ──"
 	@$(NODE) eval/run.ts
+
+# G9 (live) — pseudolocale overflow. Renders the key routes under the en-XA
+# pseudolocale (~40% expansion, ⟦…⟧) on desktop + mobile and asserts no clipping,
+# truncation, or horizontal scroll. Playwright starts the test server itself
+# (TDN_I18N_TEST_HOOKS=1); production never registers en-XA. See docs/I18N.md.
+i18n-overflow:
+	@echo "── [19/19] i18n: pseudolocale overflow (G9, Playwright desktop+mobile) ─"
+	@npx --no-install playwright test
 
 # Opt-in model-path safety lane (not in `verify`; offline by default, real Bedrock with
 # TDN_BEDROCK=aws + AWS credentials). Proves the citation gate holds for the model path.

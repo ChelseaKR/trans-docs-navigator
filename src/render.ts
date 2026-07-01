@@ -51,8 +51,8 @@ export const STYLE = `
 body{margin:0;font:1rem/1.6 system-ui,sans-serif;background:var(--bg);color:var(--fg)}
 a{color:var(--accent)}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:#000;padding:.5rem 1rem}
-.skip:focus{left:0;z-index:10}
+.skip{position:absolute;inset-inline-start:-9999px;top:0;background:var(--accent);color:#000;padding:.5rem 1rem}
+.skip:focus{inset-inline-start:0;z-index:10}
 header[role=banner]{background:var(--card);border-bottom:1px solid var(--line);padding:1rem}
 .banner{max-width:60rem;margin:0 auto;color:var(--warn);font-weight:600}
 main{max-width:60rem;margin:0 auto;padding:1.5rem 1rem}

@@ -16,3 +16,12 @@ tmp/
 
 # runtime-fetched portfolio-standards (never commit)
 .standards/
+
+# G9 pseudolocale — generated from src/i18n/en.ts by scripts/i18n-pseudo.ts, never a shipping locale
+tests/e2e/i18n/en-XA.generated.json
+# G10 — CSS extracted from src/render.ts STYLE for stylelint (tmp/ is already ignored; explicit for clarity)
+tmp/app.generated.css
+# Playwright (G9 overflow gate) output
+test-results/
+playwright-report/
+.playwright/
