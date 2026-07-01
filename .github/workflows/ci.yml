@@ -24,11 +24,16 @@ jobs:
         with:
           node-version: "22"
       - run: npm ci
+      # G9 pseudolocale overflow (below) drives a real browser via Playwright, so
+      # `make verify` needs Chromium. Keeps local == CI (both run the full make verify).
+      - name: Install Playwright Chromium (G9 pseudolocale overflow gate)
+        run: npx playwright install --with-deps chromium
       # The full local gate set: lint, typecheck, tests+coverage, security,
       # content, citation coverage, privacy, freshness, disclosure, readability,
-      # i18n UTF-8 (G1) + BCP-47 tag validity (G3) + locale key-parity (G6, EN/ES),
-      # a11y (mechanical), seo, eval. (G4 html-lang is also enforced by the
-      # a11y-browser job below via pa11y-ci axe/htmlcs WCAG2AA.)
+      # i18n UTF-8 (G1) + BCP-47 tag validity (G3) + locale key-parity (G6, EN/ES)
+      # + logical-CSS (G10 static, stylelint use-logical), a11y (mechanical), seo,
+      # eval, and the G9 pseudolocale overflow gate (Playwright, desktop + mobile).
+      # (G4 html-lang is also enforced by the a11y-browser job below via pa11y-ci.)
       - run: make verify
       - name: Upload committed audit artifacts
         if: always()
@@ -57,6 +62,8 @@ jobs:
     # static linter cannot (axe + HTML_CodeSniffer in a real browser). The remaining
     # manual screen-reader / keyboard / 200%-zoom walkthrough stays review-gated and is
     # signed off in docs/audits/accessibility-YYYY-MM-DD.md.
+    # (The G9 pseudolocale overflow gate — INTERNATIONALIZATION-STANDARD §4 — is the
+    # sibling real-browser i18n check; it runs in the `verify` job above via `make verify`.)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
