@@ -1,0 +1,43 @@
+name: container-scan
+
+# Container image CVE scan (SECURITY-AND-SUPPLY-CHAIN-STANDARD, backlog #11).
+# Builds the production image and scans it with Trivy. A HIGH or CRITICAL,
+# fixable OS/library vulnerability fails the job (BLOCKING via branch protection).
+# Action refs are pinned by commit SHA (supply-chain hardening); the tag lives in
+# the trailing comment for readability. Dependabot keeps the pins current.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Least privilege: this job only reads the repo to build the image.
+permissions:
+  contents: read
+
+concurrency:
+  group: container-scan-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  trivy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - name: Build container
+        # Same image the deploy path ships (Dockerfile at repo root).
+        run: docker build -t trans-docs-navigator:scan .
+
+      - name: Trivy image scan (BLOCKING on HIGH,CRITICAL)
+        # Fails on fixable HIGH/CRITICAL CVEs in OS packages and app libraries.
+        # ignore-unfixed avoids failing on vulns with no upstream fix available.
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: image
+          image-ref: trans-docs-navigator:scan
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+          ignore-unfixed: true
