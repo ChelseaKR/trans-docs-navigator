@@ -25,7 +25,8 @@ jobs:
           node-version: "22"
       - run: npm ci
       # The full local gate set: lint, typecheck, tests+coverage, security,
-      # content, citation coverage, privacy, freshness, disclosure, a11y (mechanical), eval.
+      # content, citation coverage, privacy, freshness, disclosure, readability,
+      # locale key-parity (EN/ES), a11y (mechanical), seo, eval.
       - run: make verify
       - name: Upload committed audit artifacts
         if: always()

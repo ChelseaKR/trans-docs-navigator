@@ -28,6 +28,7 @@
     "freshness": "node --experimental-strip-types scripts/freshness.ts",
     "disclosure:check": "node --experimental-strip-types scripts/disclosure-check.ts",
     "readability": "node --experimental-strip-types scripts/readability.ts",
+    "i18n:parity": "node --experimental-strip-types scripts/i18n-parity.ts",
     "eval": "node --experimental-strip-types eval/run.ts",
     "eval:bedrock": "node --experimental-strip-types eval/run-bedrock.ts",
     "loadtest": "node --experimental-strip-types scripts/latency-bench.ts",
