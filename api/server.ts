@@ -6,12 +6,18 @@
 import { createServer } from "node:http";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { readFileSync, existsSync, statSync } from "node:fs";
+import { randomUUID } from "node:crypto";
 import { join, normalize, extname, sep } from "node:path";
 import { REPO_ROOT, loadCorpus, LAST_QUARANTINE } from "./corpus.ts";
 import { safeLog } from "./log.ts";
 import { handleRoute } from "./router.ts";
 
 const PORT = Number(process.env.PORT ?? 8080);
+
+// Health/readiness probes are unauthenticated and EXCLUDED from the access log
+// (OBSERVABILITY-STANDARD §6): kept out of log noise so probe traffic (every few
+// seconds) doesn't drown the request stream.
+const HEALTH_PATHS = new Set(["/livez", "/readyz", "/healthz"]);
 
 // Abuse resistance.
 const MAX_URL_LEN = 4096; // reject absurd query strings before parsing
@@ -87,6 +93,7 @@ function rateLimited(ip: string, now: number): boolean {
 
 const server = createServer((req: IncomingMessage, res: ServerResponse) => {
   const start = Date.now();
+  const requestId = randomUUID(); // correlation id; not derived from and never carries user data
   const ip = req.socket.remoteAddress ?? "unknown";
   let route = "/";
   try {
@@ -113,9 +120,20 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
     send(res, 500, "text/html; charset=utf-8", "<!doctype html><html lang=en><title>Error</title><p>Something went wrong. Please try again.</p>");
     // Log the error CLASS only, never the message — a message can interpolate content the
     // allowlist logger wouldn't otherwise see. Stack/detail belong in a non-PII trace sink.
-    safeLog("error", { route, status: 500, error: (err as Error).name });
+    safeLog("error", { route, status: 500, error: (err as Error).name }, "error");
   } finally {
-    safeLog("request", { route, method: req.method ?? "GET", duration_ms: Date.now() - start });
+    // Structured access log: one JSON line per request with the correlation id, method,
+    // path, response status, and latency. Health probes are excluded (§6). `route` is a
+    // matched pathname only — never the query string — so no query content is logged.
+    if (!HEALTH_PATHS.has(route)) {
+      safeLog("request", {
+        request_id: requestId,
+        method: req.method ?? "GET",
+        path: route,
+        status: res.statusCode,
+        latency_ms: Date.now() - start,
+      });
+    }
   }
 });
 
