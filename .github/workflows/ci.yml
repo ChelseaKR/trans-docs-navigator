@@ -26,7 +26,9 @@ jobs:
       - run: npm ci
       # The full local gate set: lint, typecheck, tests+coverage, security,
       # content, citation coverage, privacy, freshness, disclosure, readability,
-      # locale key-parity (EN/ES), a11y (mechanical), seo, eval.
+      # i18n UTF-8 (G1) + BCP-47 tag validity (G3) + locale key-parity (G6, EN/ES),
+      # a11y (mechanical), seo, eval. (G4 html-lang is also enforced by the
+      # a11y-browser job below via pa11y-ci axe/htmlcs WCAG2AA.)
       - run: make verify
       - name: Upload committed audit artifacts
         if: always()
