@@ -6,11 +6,11 @@
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { loadCorpus, REPO_ROOT } from "../api/corpus.ts";
-import { isCurrent, DEFAULT_TODAY } from "../api/freshness.ts";
+import { isCurrent, TEST_TODAY } from "../api/freshness.ts";
 import type { ChangeType, DocumentType, Language } from "../api/types.ts";
 import { pass } from "./util.ts";
 
-const today = process.env.NAV_TODAY ?? DEFAULT_TODAY;
+const today = process.env.NAV_TODAY ?? TEST_TODAY;
 const corpus = loadCorpus();
 
 const DOCS: DocumentType[] = ["court-order", "ssa-card", "drivers-license", "passport", "birth-certificate", "financial-records"];

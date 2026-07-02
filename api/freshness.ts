@@ -5,7 +5,39 @@
 
 import type { CorpusRecord } from "./types.ts";
 
-export const DEFAULT_TODAY = "2026-06-16"; // "as of" date; overridable for deterministic tests/eval
+// The frozen "as of" date for DETERMINISTIC OFFLINE consumers ONLY — the freshness gate,
+// the coverage matrix, and the eval harness — so those stay reproducible run-to-run.
+// The LIVE SERVING PATH must NEVER resolve currency against this constant (FIX-02): it
+// uses servingToday()/the real clock, or "stale law is broken law" only holds at merge
+// time. Named TEST_* (not DEFAULT_*) so any serving-path import is trivially grep-able
+// and can be rejected in review.
+export const TEST_TODAY = "2026-06-16";
+
+const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+
+/** Is `s` a well-formed, real calendar date in YYYY-MM-DD (rejects 2026-13-40)? */
+function isValidIsoDate(s: string): boolean {
+  return ISO_DATE_RE.test(s) && new Date(s + "T00:00:00Z").toISOString().slice(0, 10) === s;
+}
+
+/** The real "as of" date (UTC, YYYY-MM-DD). `now` is injectable for deterministic tests. */
+export function isoToday(now: Date = new Date()): string {
+  return now.toISOString().slice(0, 10);
+}
+
+/**
+ * The date the SERVING path evaluates freshness/expiry against. Defaults to the REAL clock
+ * (isoToday) so a record whose SLA lapses degrades within a day of real time crossing it —
+ * not "never", the way a compile-time constant would. An explicit NAV_TODAY override (the
+ * same ops/demo pin the freshness gate honors) is used ONLY when it's a well-formed ISO
+ * date; a malformed pin is ignored, because a non-parseable date yields NaN ages that would
+ * silently pass every SLA and make stale records look current. Never returns TEST_TODAY.
+ */
+export function servingToday(env: NodeJS.ProcessEnv = process.env, now: Date = new Date()): string {
+  const pin = env.NAV_TODAY;
+  if (pin && isValidIsoDate(pin)) return pin;
+  return isoToday(now);
+}
 
 function daysBetween(fromIso: string, toIso: string): number {
   const from = Date.parse(fromIso + "T00:00:00Z");
@@ -21,7 +53,7 @@ export interface FreshnessVerdict {
   reason: "verified-within-sla" | "past-sla" | "needs-reverification" | "unverified" | "future-date";
 }
 
-export function freshnessOf(rec: CorpusRecord, today: string = DEFAULT_TODAY): FreshnessVerdict {
+export function freshnessOf(rec: CorpusRecord, today: string = servingToday()): FreshnessVerdict {
   const ageDays = daysBetween(rec.source.last_verified, today);
   if (rec.verification_status === "unverified") {
     return { current: false, ageDays, reason: "unverified" };
@@ -41,7 +73,7 @@ export function freshnessOf(rec: CorpusRecord, today: string = DEFAULT_TODAY): F
   return { current: true, ageDays, reason: "verified-within-sla" };
 }
 
-export function isCurrent(rec: CorpusRecord, today: string = DEFAULT_TODAY): boolean {
+export function isCurrent(rec: CorpusRecord, today: string = servingToday()): boolean {
   return freshnessOf(rec, today).current;
 }
 
@@ -50,6 +82,6 @@ export function isCurrent(rec: CorpusRecord, today: string = DEFAULT_TODAY): boo
  * BOTH marked `verified` AND past its SLA. That state means stale data would be
  * served as current. Such records must be re-marked `needs_reverification`.
  */
-export function staleButMarkedCurrent(rec: CorpusRecord, today: string = DEFAULT_TODAY): boolean {
+export function staleButMarkedCurrent(rec: CorpusRecord, today: string = servingToday()): boolean {
   return rec.verification_status === "verified" && freshnessOf(rec, today).reason === "past-sla";
 }

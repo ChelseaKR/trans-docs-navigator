@@ -5,10 +5,10 @@
 // but do not fail the build.
 
 import { loadCorpus } from "../api/corpus.ts";
-import { freshnessOf, staleButMarkedCurrent, DEFAULT_TODAY } from "../api/freshness.ts";
+import { freshnessOf, staleButMarkedCurrent, TEST_TODAY } from "../api/freshness.ts";
 import { pass, fail } from "./util.ts";
 
-const today = process.env.NAV_TODAY ?? DEFAULT_TODAY;
+const today = process.env.NAV_TODAY ?? TEST_TODAY;
 const corpus = loadCorpus();
 
 const violations: string[] = [];
