@@ -95,6 +95,23 @@ export const en: LocaleBundle = {
     copyIntro: "Enter your name once, then copy it into the official form. This stays in your browser — nothing is sent anywhere.",
     copyBtn: "Copy",
     copied: "Copied to clipboard.",
+    offlineTitle: "Save for offline (optional, on this device)",
+    offlineIntro: "Keep a copy of your checklist and packet on this device so you can re-read them with no internet connection. Saved copies are not encrypted: anyone who can open this browser can read them. If someone checking your device is a risk for you, don't save - or delete the copies when you're done.",
+    offlineSaveBtn: "Save for offline",
+    offlineRemoveBtn: "Delete offline copies",
+    offlineSaving: "Saving on this device...",
+    offlineSaved: "Saved on this device on {date}. Nothing was sent anywhere.",
+    offlineHaveCopy: "An offline copy of this page is saved on this device.",
+    offlineRemoved: "All offline copies were deleted from this device.",
+    offlineError: "Couldn't save on this device. You can still print or save as PDF.",
+    offlineUnsupported: "This browser can't save pages for offline use.",
+    offlineUpdated: "The offline app was updated. Your saved pages were kept.",
+    offlineBanner: "Saved copy from {date}. Laws change: if more than {days} days have passed, re-check every step at its official source before you act.",
+    offlinePageTitle: "You're offline",
+    offlineHeading: "You're offline",
+    offlineLead: "This page appears because you have no internet connection right now. If you saved pages for offline use, they're listed below and will open without a connection.",
+    offlineSavedHeading: "Saved on this device",
+    offlineNoneSaved: "No pages are saved for offline use on this device.",
   },
 
   docTitles: {
@@ -212,6 +229,11 @@ export const en: LocaleBundle = {
         h: "Optional “Save your progress” (on your device)",
         html:
           "<p>If you choose to save your progress, only your <em>selections</em>, never your name, are encrypted with a passphrase you choose and stored on your own device. They are never sent anywhere, and you can delete them at any time with the “Delete saved” button or by clearing your browser storage.</p>",
+      },
+      {
+        h: "Optional \"Save for offline\" (on your device)",
+        html:
+          "<p>If you choose to save pages for offline use, copies of those pages are stored <strong>unencrypted</strong> in your browser storage, on your own device - never on our servers. Anyone who can open your browser or inspect the device may be able to read them. If that is a risk for you, don't save, or use the \"Delete offline copies\" button (or clear your browser storage) when done. Saving never sends anything anywhere: the offline feature does no background syncing, no push notifications, and no fetching you didn't ask for. Every saved page shows the date it was saved, because laws change and an old copy can go stale.</p>",
       },
       {
         h: "Why we built it this way",

@@ -97,6 +97,28 @@ export interface UiMessages {
   copyIntro: string;
   copyBtn: string;
   copied: string;
+  // Explicit "save for offline" shell (EXP-01): panel, statuses, the burned-in
+  // staleness banner, and the offline notice page. All local-only, like resume.
+  offlineTitle: string;
+  /** Plain-language intro that states the forensic trade-off (unencrypted, device-discoverable). */
+  offlineIntro: string;
+  offlineSaveBtn: string;
+  offlineRemoveBtn: string;
+  offlineSaving: string;
+  /** Save confirmation with a {date} placeholder. */
+  offlineSaved: string;
+  offlineHaveCopy: string;
+  offlineRemoved: string;
+  offlineError: string;
+  offlineUnsupported: string;
+  offlineUpdated: string;
+  /** Burned into every saved page with {date} and {days} placeholders. */
+  offlineBanner: string;
+  offlinePageTitle: string;
+  offlineHeading: string;
+  offlineLead: string;
+  offlineSavedHeading: string;
+  offlineNoneSaved: string;
 }
 
 /**

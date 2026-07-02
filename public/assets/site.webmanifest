@@ -9,5 +9,8 @@
   "theme_color": "#0f1419",
   "icons": [
     { "src": "/assets/favicon.svg", "type": "image/svg+xml", "sizes": "any" }
+  ],
+  "screenshots": [
+    { "src": "/assets/og-default.png", "sizes": "1200x630", "type": "image/png", "form_factor": "wide" }
   ]
 }

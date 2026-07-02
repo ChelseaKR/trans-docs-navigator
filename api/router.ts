@@ -12,12 +12,13 @@ import { loadCorpus } from "./corpus.ts";
 import { isCurrent } from "./freshness.ts";
 import { formById } from "./forms.ts";
 import type { ChangeType, CorpusRecord, DocumentType, Intake, Language } from "./types.ts";
-import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
+import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
 import { renderAnswer, page, uiStrings, escapeHtml, STYLE } from "../src/render.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
 import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.ts";
 import { robotsTxt, sitemapXml } from "../src/seo.ts";
 import { asLanguage } from "../src/i18n/index.ts";
+import { serviceWorkerScript } from "../src/offline.ts";
 
 /** Input bounds — abuse/DoS resistance + predictable resource use. */
 export const LIMITS = {
@@ -181,6 +182,12 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     return { status: 200, contentType: "text/css; charset=utf-8", body: STYLE };
   }
 
+  // Service worker for offline-capable PWA (EXP-01). Serves a generated script with
+  // the shell version hash burned in (content hash = versioning).
+  if (p === "/sw.js") {
+    return { status: 200, contentType: "text/javascript; charset=utf-8", body: serviceWorkerScript() };
+  }
+
   // Crawler files (generated from the route set, so they can't go stale).
   if (p === "/robots.txt") {
     return { status: 200, contentType: "text/plain; charset=utf-8", body: robotsTxt() };
@@ -265,9 +272,14 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     return {
       status: 200,
       contentType: HTML,
-      body: renderPacketPage(checklist, loadCorpus(), intake.language, generatedOn),
+      body: renderPacketPage(checklist, loadCorpus(), intake.language, generatedOn, intakeQuery(intake)),
       log: { event: "packet", fields: { jurisdiction: intake.jurisdiction, language: intake.language, status: 200 } },
     };
+  }
+
+  // Offline notice page — shown when there's no network and no cached copy.
+  if (p === "/offline") {
+    return { status: 200, contentType: HTML, body: renderOfflinePage(lang) };
   }
 
   if (p === "/answer") {
