@@ -123,6 +123,7 @@ export function page(opts: {
 <title>${escapeHtml(fullTitle)}</title>
 ${headTags(fullTitle, opts.lang, seo)}
 <link rel="stylesheet" href="/assets/app.css">
+<script defer src="/assets/vitals.js"></script>
 </head>
 <body>
 <a class="skip" href="#main">${escapeHtml(t.skip)}</a>

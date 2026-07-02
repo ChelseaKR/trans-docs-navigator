@@ -31,6 +31,11 @@ const ALLOWED_FIELDS = new Set([
   "documents",
   "language",
   "duration_ms",
+  // Core Web Vitals RUM sample fields (api/vitals.ts) — metric telemetry only,
+  // never identity: an enum name, a number, an enum rating.
+  "metric",
+  "value",
+  "rating",
   "refused",
   "claims",
   "coverage",

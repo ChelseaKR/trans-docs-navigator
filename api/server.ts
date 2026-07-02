@@ -11,6 +11,7 @@ import { join, normalize, extname, sep } from "node:path";
 import { REPO_ROOT, loadCorpus, LAST_QUARANTINE } from "./corpus.ts";
 import { safeLog } from "./log.ts";
 import { handleRoute, asLanguage } from "./router.ts";
+import { parseWebVital, MAX_BEACON_BYTES } from "./vitals.ts";
 
 const PORT = Number(process.env.PORT ?? 8080);
 
@@ -18,6 +19,11 @@ const PORT = Number(process.env.PORT ?? 8080);
 // (OBSERVABILITY-STANDARD §6): kept out of log noise so probe traffic (every few
 // seconds) doesn't drown the request stream.
 const HEALTH_PATHS = new Set(["/livez", "/readyz", "/healthz"]);
+
+// Cookieless Core Web Vitals RUM sink (OBSERVABILITY-STANDARD §8). Beacon traffic is
+// excluded from the access log like the health probes — the handler emits its own
+// single `web_vital` line instead, so field samples don't double-log every page view.
+const VITALS_PATH = "/api/metrics/web-vitals";
 
 // Abuse resistance.
 const MAX_URL_LEN = 4096; // reject absurd query strings before parsing
@@ -99,6 +105,45 @@ function rateLimited(ip: string, now: number): boolean {
   return slot.count > RATE_LIMIT.max;
 }
 
+/**
+ * Log-only Core Web Vitals sink: validate the tiny beacon body (api/vitals.ts),
+ * emit ONE structured non-PII log line, answer 204. No storage backend, no
+ * cookies, no IPs, no identifiers — the sample is only metric/value/rating/path.
+ */
+function handleVitalsBeacon(req: IncomingMessage, res: ServerResponse): void {
+  let size = 0;
+  const chunks: Buffer[] = [];
+  req.on("data", (chunk: Buffer) => {
+    size += chunk.length;
+    if (size > MAX_BEACON_BYTES) {
+      send(res, 413, "text/plain; charset=utf-8", "Payload too large");
+      req.destroy();
+      return;
+    }
+    chunks.push(chunk);
+  });
+  req.on("end", () => {
+    if (res.writableEnded) return;
+    const vital = parseWebVital(Buffer.concat(chunks).toString("utf8"));
+    if (vital === null) {
+      send(res, 400, "text/plain; charset=utf-8", "Invalid web-vital sample");
+      safeLog("web_vital_rejected", { path: VITALS_PATH, status: 400 }, "warn");
+      return;
+    }
+    res.writeHead(204, SECURITY_HEADERS);
+    res.end();
+    safeLog("web_vital", {
+      metric: vital.name,
+      value: vital.value,
+      rating: vital.rating,
+      path: vital.path,
+      status: 204,
+    });
+  });
+  // Best-effort sink: a client that vanished mid-beacon is not an error.
+  req.on("error", () => {});
+}
+
 const server = createServer((req: IncomingMessage, res: ServerResponse) => {
   const start = Date.now();
   const requestId = randomUUID(); // correlation id; not derived from and never carries user data
@@ -121,6 +166,11 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
 
     if (tryStatic(route, res)) return;
 
+    if (route === VITALS_PATH && req.method === "POST") {
+      handleVitalsBeacon(req, res);
+      return;
+    }
+
     const r = handleRoute(req.method ?? "GET", url);
     // I18N-13 (G11): declare the resolved rendered language on every localized HTML
     // response, independent of how it was selected (explicit ?language= param here,
@@ -140,7 +190,7 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
     // Structured access log: one JSON line per request with the correlation id, method,
     // path, response status, and latency. Health probes are excluded (§6). `route` is a
     // matched pathname only — never the query string — so no query content is logged.
-    if (!HEALTH_PATHS.has(route)) {
+    if (!HEALTH_PATHS.has(route) && route !== VITALS_PATH) {
       safeLog("request", {
         request_id: requestId,
         method: req.method ?? "GET",

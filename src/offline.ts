@@ -57,6 +57,7 @@ export const SHELL_ASSETS: readonly string[] = [
   "/assets/resume-panel.js",
   "/assets/packet.js",
   "/assets/form-copy.js",
+  "/assets/vitals.js",
   "/assets/site.webmanifest",
   "/assets/favicon.svg",
   "/offline",
