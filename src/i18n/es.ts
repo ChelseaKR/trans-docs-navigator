@@ -95,6 +95,23 @@ export const es: LocaleBundle = {
     copyIntro: "Ingrese su nombre una vez y cópielo en el formulario oficial. Esto permanece en su navegador: no se envía a ningún lugar.",
     copyBtn: "Copiar",
     copied: "Copiado al portapapeles.",
+    offlineTitle: "Guardar sin conexion (opcional, en este dispositivo)",
+    offlineIntro: "Guarde una copia de su lista y paquete en este dispositivo para releerlos sin conexion a internet. Las copias guardadas no estan cifradas: cualquiera que pueda abrir este navegador puede leerlas. Si alguien revisando su dispositivo es un riesgo para usted, no guarde, o elimine las copias cuando termine.",
+    offlineSaveBtn: "Guardar sin conexion",
+    offlineRemoveBtn: "Eliminar copias sin conexion",
+    offlineSaving: "Guardando en este dispositivo...",
+    offlineSaved: "Guardado en este dispositivo el {date}. Nada se envio a ningun lugar.",
+    offlineHaveCopy: "Una copia sin conexion de esta pagina esta guardada en este dispositivo.",
+    offlineRemoved: "Todas las copias sin conexion se eliminaron de este dispositivo.",
+    offlineError: "No se pudo guardar en este dispositivo. Aun puede imprimir o guardar como PDF.",
+    offlineUnsupported: "Este navegador no puede guardar paginas para uso sin conexion.",
+    offlineUpdated: "La aplicacion sin conexion se actualizo. Sus paginas guardadas se conservaron.",
+    offlineBanner: "Copia guardada del {date}. Las leyes cambian: si ha pasado mas de {days} dias, vuelva a verificar cada paso en su fuente oficial antes de actuar.",
+    offlinePageTitle: "Está sin conexion",
+    offlineHeading: "Está sin conexion",
+    offlineLead: "Esta pagina aparece porque no tiene conexion a internet en este momento. Si guardo paginas para uso sin conexion, se enumeran a continuacion y se abriran sin una conexion.",
+    offlineSavedHeading: "Guardado en este dispositivo",
+    offlineNoneSaved: "No hay paginas guardadas para uso sin conexion en este dispositivo.",
   },
 
   docTitles: {
@@ -212,6 +229,11 @@ export const es: LocaleBundle = {
         h: "“Guardar su progreso” (opcional, en su dispositivo)",
         html:
           "<p>Si elige guardar su progreso, solo sus <em>selecciones</em>, nunca su nombre, se cifran con una contraseña que usted elige y se guardan en su propio dispositivo. Nunca se envían a ningún lugar, y puede eliminarlas en cualquier momento con el botón “Eliminar lo guardado” o borrando el almacenamiento de su navegador.</p>",
+      },
+      {
+        h: "Opcional \"Guardar sin conexion\" (en su dispositivo)",
+        html:
+          "<p>Si elige guardar paginas para uso sin conexion, las copias se guardan <strong>sin cifrar</strong> en el almacenamiento de su navegador, en su propio dispositivo - nunca en nuestros servidores. Cualquiera que pueda abrir su navegador o inspeccionar el dispositivo podria leerlas. Si eso es un riesgo para usted, no guarde, o use el boton \"Eliminar copias sin conexion\" (o borre el almacenamiento de su navegador) cuando termine. Guardar nunca envia nada a ningun lugar: la funcion sin conexion no hace sincronizacion en segundo plano, notificaciones push ni obtiene nada que no le pidiera. Cada pagina guardada muestra la fecha en que se guardo, porque las leyes cambian y una copia antigua puede quedar obsoleta.</p>",
       },
       {
         h: "Por qué lo hicimos así",
