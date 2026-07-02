@@ -124,8 +124,9 @@ export function renderChecklistPage(
     : "";
 
   // Explicit offline saving (EXP-01) — URLs to cache are the current checklist only.
-  const langQ = lang === "es" ? "?language=es" : "";
-  const offlineUrls = hasSteps ? [`/checklist?${query}${lang === "es" ? (query ? "&language=es" : "?language=es") : ""}`] : [];
+  const offlineUrls = hasSteps
+    ? [`/checklist?${query}${lang === "es" && !query.includes("language=") ? "&language=es" : ""}`]
+    : [];
   const offline = renderOfflinePanel(s, offlineUrls);
 
   const body = intro + summary + actions + noSteps + more + gaps + renderResumePanel(s, query) + offline + progress;

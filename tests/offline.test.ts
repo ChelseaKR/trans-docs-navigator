@@ -91,3 +91,38 @@ test("service worker has no background-sync, push, or periodic-sync listeners", 
 test("SAVED_CACHE constant is defined and exported", () => {
   assert.equal(SAVED_CACHE, "tdn-saved-v1");
 });
+
+// Regression: renderChecklistPage used to unconditionally append "&language=es" for
+// Spanish users, even though intakeQuery() already includes language=es whenever
+// intake.language !== "en". That produced a "Save for offline" URL with the param
+// duplicated (…&language=es&language=es), which the service worker cached under a key
+// that never matches the browser's real address-bar URL on reload — so the very users
+// who saved a Spanish checklist got bounced to the generic /offline notice.
+function offlineCfgUrls(body: string): string[] {
+  const m = body.match(/<script type="application\/json" id="offline-cfg">([\s\S]*?)<\/script>/);
+  assert.ok(m, "should have an offline-cfg JSON island");
+  const json = m[1];
+  assert.ok(json, "offline-cfg JSON island should have content");
+  const cfg = JSON.parse(json.replace(/\\u003c/g, "<"));
+  return cfg.urls;
+}
+
+test("checklist offline save URL for Spanish users matches the request URL exactly (no duplicated language=es)", () => {
+  const url = u("/checklist?jurisdiction=US-CA&change=name&language=es");
+  const r = handleRoute("GET", url);
+  assert.equal(r.status, 200);
+  const [saveUrl] = offlineCfgUrls(r.body);
+  assert.ok(saveUrl, "should have at least one offline save URL");
+  assert.equal(saveUrl, url.pathname + url.search);
+  assert.equal((saveUrl.match(/language=es/g) ?? []).length, 1, "language=es must appear exactly once");
+});
+
+test("checklist offline save URL for English users adds no language param", () => {
+  const url = u("/checklist?jurisdiction=US-CA&change=name");
+  const r = handleRoute("GET", url);
+  assert.equal(r.status, 200);
+  const [saveUrl] = offlineCfgUrls(r.body);
+  assert.ok(saveUrl, "should have at least one offline save URL");
+  assert.equal(saveUrl, url.pathname + url.search);
+  assert.ok(!saveUrl.includes("language="), "English save URL should carry no language param");
+});
