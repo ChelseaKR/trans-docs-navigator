@@ -3,9 +3,10 @@
 // Validation here is the single source of truth used by both the runtime and the
 // content-validation CI gate (scripts/content-validate.ts).
 
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { clearAllCaches } from "./cache.ts";
 import type {
   CorpusRecord,
   DocumentType,
@@ -158,9 +159,30 @@ export function validateRecord(raw: unknown): ValidationIssue[] {
 }
 
 let CACHE: CorpusRecord[] | null = null;
+// mtime (ms) captured when CACHE was last built, for the dev-ergonomics watch below.
+let CACHE_MTIME_MS: number | null = null;
 
 /** Issues from the most recent quarantine load — for runtime alarming. */
 export let LAST_QUARANTINE: ValidationIssue[] = [];
+
+/**
+ * Dev-ergonomics watch gate (IP §5.2): production keeps the zero-syscall process-lifetime
+ * cache; dev (or CORPUS_WATCH=1) pays one extra stat-per-call so editing the corpus on
+ * disk is picked up without a server restart.
+ */
+function corpusWatchEnabled(): boolean {
+  return process.env.CORPUS_WATCH === "1" || process.env.NODE_ENV !== "production";
+}
+
+/** Newest mtime (ms) across the corpus dir's *.json files and VERIFIERS.json. */
+function newestCorpusMtimeMs(dir: string): number {
+  let newest = statSync(VERIFIERS_FILE).mtimeMs;
+  for (const f of readdirSync(dir).filter((f) => f.endsWith(".json"))) {
+    const m = statSync(join(dir, f)).mtimeMs;
+    if (m > newest) newest = m;
+  }
+  return newest;
+}
 
 /**
  * Load + validate every record.
@@ -173,7 +195,24 @@ export let LAST_QUARANTINE: ValidationIssue[] = [];
 export function loadCorpus(opts: { force?: boolean; dir?: string; quarantine?: boolean } = {}): CorpusRecord[] {
   const dir = opts.dir ?? CORPUS_DIR;
   const useCache = !opts.dir; // a custom dir is never cached (test-only path)
-  if (CACHE && useCache && !opts.force) return CACHE;
+  let force = opts.force === true;
+
+  if (!useCache || force) {
+    // A custom dir bypasses the process cache entirely, and an explicit force reload
+    // both start fresh — neither should carry a stale watch baseline forward.
+    CACHE_MTIME_MS = null;
+  } else if (CACHE && corpusWatchEnabled()) {
+    // On each cached call, check whether the corpus changed on disk since CACHE was
+    // built; if so, force a reload AND drop every cache derived from it (answers,
+    // checklist HTML — api/router.ts) so stale renders can't survive a corpus edit.
+    const current = newestCorpusMtimeMs(dir);
+    if (CACHE_MTIME_MS !== null && current > CACHE_MTIME_MS) {
+      force = true;
+      clearAllCaches();
+    }
+  }
+
+  if (CACHE && useCache && !force) return CACHE;
   const files = readdirSync(dir).filter((f) => f.endsWith(".json"));
   const roster = loadVerifierRoster();
   const records: CorpusRecord[] = [];
@@ -204,7 +243,10 @@ export function loadCorpus(opts: { force?: boolean; dir?: string; quarantine?: b
   LAST_QUARANTINE = opts.quarantine ? allIssues : [];
   // Cache the valid record set in both modes (a fail-closed load with issues already
   // threw above, so reaching here means the records are safe to serve).
-  if (useCache) CACHE = records;
+  if (useCache) {
+    CACHE = records;
+    CACHE_MTIME_MS = corpusWatchEnabled() ? newestCorpusMtimeMs(dir) : null;
+  }
   return records;
 }
 
