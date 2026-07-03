@@ -119,6 +119,9 @@ export interface UiMessages {
   offlineLead: string;
   offlineSavedHeading: string;
   offlineNoneSaved: string;
+  // Privacy-safe reminders: a client-side .ics task list of the steps (no server, no contact info).
+  downloadIcs: string;
+  downloadIcsNote: string;
 }
 
 /**

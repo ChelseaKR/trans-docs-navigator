@@ -112,6 +112,8 @@ export const es: LocaleBundle = {
     offlineLead: "Esta pagina aparece porque no tiene conexion a internet en este momento. Si guardo paginas para uso sin conexion, se enumeran a continuacion y se abriran sin una conexion.",
     offlineSavedHeading: "Guardado en este dispositivo",
     offlineNoneSaved: "No hay paginas guardadas para uso sin conexion en este dispositivo.",
+    downloadIcs: "Agregue estos pasos a su calendario (.ics)",
+    downloadIcsNote: "Crea una lista de tareas en su dispositivo. Solo contiene los nombres de los pasos —sin datos personales— y no se envía nada a ningún lugar.",
   },
 
   docTitles: {
