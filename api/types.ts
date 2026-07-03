@@ -85,6 +85,12 @@ export interface CorpusRecord {
  * LiveCycle PDFs that browser PDF tooling can't fill, and a mis-filled legal form is a
  * real harm; we send people to the authoritative form instead. See docs/STATUS.md.)
  */
+/** One "what to bring" item for a form's preparation checklist — always cited. */
+export interface PreparationItem {
+  item: string;
+  citation: string;
+}
+
 export interface FormDef {
   id: string;
   jurisdiction: JurisdictionId;
@@ -93,6 +99,18 @@ export interface FormDef {
   title: string;
   /** Official source for the blank form (the link the user follows). */
   source: Source;
+  /** Revision string scraped/entered from the official page (e.g. "Rev. 2024-11"). */
+  version_hint?: string;
+  /** SHA-256 of the raw PDF bytes, from scripts/source-watch.ts's forms baseline. */
+  pdf_sha256?: string;
+  /** ISO date (YYYY-MM-DD) the PDF was last hashed. */
+  checked?: string;
+  /**
+   * "What to bring" checklist (certified copies, payment types, etc.), each item
+   * cited. Legal content here is [counsel-gated] — left empty/absent until
+   * verified content is authored; the field is typed and rendered ahead of that.
+   */
+  preparation?: PreparationItem[];
 }
 
 /** Minimal, respectful intake. Lives only in client memory/session — never persisted server-side. */

@@ -5,7 +5,7 @@
 // filled entirely in the browser.
 
 import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from "../api/types.ts";
-import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel } from "./render.ts";
+import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel, preparationList } from "./render.ts";
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
 import { toResumeState } from "./secure-resume.ts";
@@ -217,6 +217,7 @@ export function renderFormFillPage(form: FormDef, lang: Language = "en"): string
   const body = `
 <p>${escapeHtml(s.officialFormIntro)}</p>
 <p class="cta"><a href="${escapeHtml(form.source.url)}" rel="noopener noreferrer">${escapeHtml(s.getFormCta)}: ${escapeHtml(form.source.title)}</a></p>
+${preparationList(form.preparation, lang)}
 <section class="copy-helper no-print" aria-labelledby="copy-h">
   <h2 id="copy-h">${escapeHtml(s.copyTitle)}</h2>
   <p class="meta">${escapeHtml(s.copyIntro)}</p>

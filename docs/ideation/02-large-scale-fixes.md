@@ -208,6 +208,18 @@
   hash mismatches the build manifest.
 
 ## FIX-10 — Forms layer depth: caching, version pinning, and preparation metadata
+**Status:** ✅ Done (structural parts) — `api/forms.ts` now caches the registry like
+`loadCorpus()` (`loadForms()`/`formById()` reuse a module-level array; `clearFormsCache()`
+is the test-only reset hook). `FormDef` gained optional `version_hint`, `pdf_sha256`,
+`checked`, and a typed `preparation: {item, citation}[]`. `scripts/source-watch.ts` now
+also fetches each form's PDF, hashes the raw bytes (not the HTML-normalize path used for
+corpus pages), and compares against a new `forms/form-hashes.json` baseline — reusing the
+same fetch-failure-tolerant, `--update`-aware pattern as the corpus watch (refactored into
+a shared `computeUrlHashes()` helper). `renderFormFillPage()` renders a "What to bring"
+section with each item's citation when `form.preparation` is present, and renders nothing
+when it's absent/empty. `preparation` content itself is **[counsel-gated]** and intentionally
+left empty in `forms/registry.json` — this lands the plumbing/schema/rendering so real
+"what to bring" items can be added once verified.
 **Pitch:** Treat official forms as first-class, drift-watched artifacts.
 - **Why it matters:** `api/forms.ts` re-reads `forms/registry.json` from disk on
   every `formById()` call (per step, per request — trivial now, wasteful at scale),

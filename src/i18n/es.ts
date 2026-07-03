@@ -91,6 +91,7 @@ export const es: LocaleBundle = {
     moreHeading: "Más información",
     seeDetailedAnswer: "Vea en detalle lo que dicen las fuentes",
     officialFormIntro: "Este es un formulario oficial del gobierno. Descárguelo desde la fuente a continuación y complételo usted mismo: no lo llenamos por usted, así que siempre trabaja con la versión oficial.",
+    whatToBringTitle: "Qué traer",
     copyTitle: "Sus datos, listos para copiar",
     copyIntro: "Ingrese su nombre una vez y cópielo en el formulario oficial. Esto permanece en su navegador: no se envía a ningún lugar.",
     copyBtn: "Copiar",

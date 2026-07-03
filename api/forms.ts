@@ -14,8 +14,19 @@ import { REPO_ROOT } from "./corpus.ts";
 
 const REGISTRY = join(REPO_ROOT, "forms", "registry.json");
 
+// Cached like loadCorpus() — the registry is small and static per-process, so re-reading
+// it from disk on every formById() call (per step, per request) is pure waste.
+let CACHE: FormDef[] | null = null;
+
 export function loadForms(): FormDef[] {
-  return JSON.parse(readFileSync(REGISTRY, "utf8")) as FormDef[];
+  if (CACHE) return CACHE;
+  CACHE = JSON.parse(readFileSync(REGISTRY, "utf8")) as FormDef[];
+  return CACHE;
+}
+
+/** Test-only hook: drop the cache so a test can force a fresh disk read. */
+export function clearFormsCache(): void {
+  CACHE = null;
 }
 
 export function formById(id: string): FormDef | undefined {

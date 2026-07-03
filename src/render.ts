@@ -4,7 +4,7 @@
 // disclosure (guardrail #2). Colour tokens meet AA contrast; focus is always
 // visible; motion respects prefers-reduced-motion.
 
-import type { Checklist, GroundedAnswer, CorpusRecord, DocumentType, Language } from "../api/types.ts";
+import type { Checklist, GroundedAnswer, CorpusRecord, DocumentType, Language, PreparationItem } from "../api/types.ts";
 import type { UiMessages } from "./i18n/index.ts";
 import { t as locale } from "./i18n/index.ts";
 import type { SeoMeta } from "./seo.ts";
@@ -80,6 +80,7 @@ footer{max-width:60rem;margin:0 auto;padding:1.5rem 1rem;color:var(--muted);bord
 .step-detail summary{cursor:pointer;color:var(--accent)}
 .more{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.5rem 1rem 1rem;margin:1.5rem 0}
 .copy-helper{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.5rem 1rem 1rem;margin:1.5rem 0}
+.prep{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.5rem 1rem 1rem;margin:1.5rem 0}
 .copy-out{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:.4rem;padding:.5rem;min-height:1.4rem;margin:.5rem 0}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media print{
@@ -157,6 +158,21 @@ function sourceList(records: CorpusRecord[], lang: Language, level: 2 | 3 = 3): 
     )
     .join("");
   return `<h${level}>${escapeHtml(t.sources)}</h${level}><ul>${items}</ul>`;
+}
+
+/**
+ * "What to bring" preparation checklist for a form-fill page (FIX-10). Renders nothing
+ * when `items` is absent/empty — the underlying legal content (what a given form
+ * actually requires) is [counsel-gated] and not yet authored in forms/registry.json,
+ * so an empty/absent list must never render a placeholder claim.
+ */
+export function preparationList(items: PreparationItem[] | undefined, lang: Language): string {
+  if (!items || items.length === 0) return "";
+  const t = locale(lang).ui;
+  const rows = items
+    .map((p) => `<li>${escapeHtml(p.item)} — <span class="meta">${escapeHtml(p.citation)}</span></li>`)
+    .join("");
+  return `<section class="prep" aria-labelledby="prep-h"><h2 id="prep-h">${escapeHtml(t.whatToBringTitle)}</h2><ul>${rows}</ul></section>`;
 }
 
 export function renderChecklist(checklist: Checklist, records: CorpusRecord[], lang: Language): string {
