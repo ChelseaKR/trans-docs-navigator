@@ -68,3 +68,39 @@ counsel-review question, not a mechanical one — tracked as an open review gate
   save/resume feature, and the human review-gate sign-off for this DPIA needs to
   explicitly weigh whether the in-product disclosure of that trade-off is sufficient
   before launch — this note identifies the question; it does not answer it.
+
+## 6. STRIDE — edge/CDN-log seam and the build→serve corpus-tamper seam (FIX-09)
+Two seams outside the request-handling code covered in §1–5: the network edge in front
+of the app, and the pipeline stage between "CI's content gate cleared this corpus" and
+"this is what's actually being served." Neither is exercised by unit tests, so they're
+recorded here rather than only in code comments.
+
+### 6a. Edge / CDN-log seam
+The app itself never logs PII (§3), but a real deploy sits behind an edge (ALB access
+logs, a CDN, or the Lambda Function URL's own request logging) that this repo does not
+control and that may retain more than the app does.
+
+| STRIDE | Threat | Mitigation / status |
+|---|---|---|
+| Spoofing | Edge/DNS hijack intercepts traffic before it reaches the real origin | TLS-only origin (ALB/Function URL are HTTPS); HSTS is a residual gap — not yet set at the edge layer (tracked below) |
+| Tampering | A compromised or misconfigured edge cache serves stale/altered HTML to some users | `Cache-Control` policy for HTML responses is not yet explicit — residual risk; static assets are content-addressed via the service-worker version hash (`SW_VERSION`) |
+| Repudiation | No per-request identity exists to repudiate (no accounts), but edge log access itself is unaudited by this repo | Out of scope for the app; the hosting account's edge-log IAM/access policy is the operator's responsibility, not code-enforced here |
+| Information disclosure | The GET-only intake (`state`, `documents`, `language` — non-identifying by design, §2) still lands in edge access logs, which retain independently of and typically longer than this app's ephemeral posture | **Known residual risk**, already flagged in §5. The privacy notice must say query params can appear in upstream logs; retention there is the hosting provider's, not this app's |
+| Denial of service | The in-process rate limiter (`api/server.ts`) is per-instance and stateless — a distributed spray defeats it | **Auto-gated? No — residual.** A real deploy needs an edge-level limiter (ALB/WAF or CDN); the in-app limiter is explicitly documented as best-effort only |
+| Elevation of privilege | N/A — there are no privileged roles or accounts in the app; the edge console itself is a privileged surface for the operator, not modeled here | Out of scope (infra/account-level IAM, not app code) |
+
+### 6b. Build → serve corpus-tamper seam
+The corpus is version-controlled and gated by `make content`/`make citation` in CI, but
+nothing previously proved that the bytes CI validated are the same bytes a running
+instance is actually serving. FIX-09 closes part of this gap with a build-time content
+hash (`corpus.manifest.json`, `scripts/corpus-manifest.ts`) re-verified at boot
+(`api/corpus.ts` `verifyCorpusManifest`, wired in `api/server.ts`).
+
+| STRIDE | Threat | Mitigation / status |
+|---|---|---|
+| Spoofing | An attacker publishes an image under the project's name/registry, impersonating a real build | ECR images are immutable-tagged per git SHA (`infra/preview/main.tf`); GHCR release pushes use `GITHUB_TOKEN` only (no long-lived keys). No image-signing (cosign/sigstore) yet — residual |
+| Tampering | Corpus content mutated between CI's content gate and what's actually served — a tampered image layer, a bad deploy, a stray hand-edit on the runtime host | **Auto-gated (FIX-09, new):** `corpus.manifest.json` bakes a SHA-256 of `corpus/jurisdictions/*.json` + `forms/registry.json` into the image at build time; `api/server.ts` recomputes it live at boot and loudly refuses to start on mismatch (`safeLog("corpus_integrity", …, "error")` + non-zero exit) rather than silently serving unverified content |
+| Repudiation | No cryptographic provenance ties a running image back to the CI run/commit that produced it | A CycloneDX SBOM is attached on release (`release.yml`); no signed build provenance (SLSA/in-toto) attestation yet — residual, tracked for a future pass |
+| Information disclosure | N/A — the corpus is public legal information, not secret; the manifest itself only exposes a hash + filenames, never content | No mitigation needed; low/no risk by data classification |
+| Denial of service | A false-positive integrity mismatch (e.g. a build step that legitimately touches corpus files post-hash) takes the whole service down by design | **Accepted trade, by design:** FIX-09 is intentionally fail-closed/loud here — availability is sacrificed for integrity on this one signal. `scripts/corpus-manifest.ts` must run as the LAST content-touching build step so this doesn't false-positive in normal operation |
+| Elevation of privilege | Whoever controls the CI build step controls both the corpus content AND the manifest that attests to it — a compromised pipeline can ship a malicious corpus with a self-consistent (and therefore "valid") manifest | The manifest proves build-time bytes equal serve-time bytes; it does **not** prove the build-time bytes were trustworthy. That trust still rests entirely on branch protection + required CI checks (content/citation/privacy gates) on `main`. Documented here as an explicit non-goal of FIX-09, not an oversight |

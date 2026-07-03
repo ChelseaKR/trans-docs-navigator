@@ -3,7 +3,7 @@
 // Validation here is the single source of truth used by both the runtime and the
 // content-validation CI gate (scripts/content-validate.ts).
 
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import type {
@@ -13,6 +13,7 @@ import type {
   VerificationStatus,
   Language,
 } from "./types.ts";
+import { computeCorpusManifest, manifestPath } from "../scripts/corpus-manifest.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const REPO_ROOT = join(HERE, "..");
@@ -247,4 +248,40 @@ export function validateCorpus(dir: string = CORPUS_DIR): {
 
 export function recordById(id: string, corpus = loadCorpus()): CorpusRecord | undefined {
   return corpus.find((r) => r.id === id);
+}
+
+export interface CorpusIntegrityResult {
+  ok: boolean;
+  /** Digest baked into corpus.manifest.json at build time. `null` if the file is absent. */
+  expected: string | null;
+  /** Digest recomputed live from the corpus/forms files on disk right now. */
+  actual: string;
+}
+
+/**
+ * Corpus integrity attestation (FIX-09 §A): recompute the live corpus hash and compare
+ * it against the digest baked into corpus.manifest.json at build/image time. A
+ * mismatch means the corpus-backed content being served right now is not the content
+ * the image was built and gated on — the caller (api/server.ts) loudly quarantines
+ * rather than serving corpus-backed routes.
+ *
+ * Never throws: an absent manifest (the normal case in local dev, where nothing runs
+ * `npm run corpus:manifest`) is reported as `expected: null`, not a mismatch — the
+ * caller logs it once at info and continues rather than treating dev as tampered.
+ */
+export function verifyCorpusManifest(opts: { repoRoot?: string } = {}): CorpusIntegrityResult {
+  const repoRoot = opts.repoRoot ?? REPO_ROOT;
+  const actual = computeCorpusManifest(repoRoot).hash;
+  const path = manifestPath(repoRoot);
+  if (!existsSync(path)) {
+    return { ok: true, expected: null, actual };
+  }
+  let expected: string | null = null;
+  try {
+    const parsed = JSON.parse(readFileSync(path, "utf8")) as { hash?: unknown };
+    expected = typeof parsed.hash === "string" ? parsed.hash : null;
+  } catch {
+    expected = null; // an unparseable manifest is treated as a mismatch below, never a throw
+  }
+  return { ok: expected !== null && expected === actual, expected, actual };
 }

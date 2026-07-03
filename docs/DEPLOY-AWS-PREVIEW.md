@@ -10,6 +10,18 @@ content is legally cleared.
 > official sources but placeholder verifiers; every page carries the "information, not
 > legal advice" disclosure.
 
+> **Egress posture (FIX-09): this preview does NOT get the deny-all-egress guarantee.**
+> `infra/main.tf`'s zero-egress security group and no-IGW/NAT private subnet only apply
+> to the closed-VPC production posture. This Lambda preview runs with **no VPC at all**
+> (see "No VPC, Bedrock OFF" in the cost table below — deliberate, to avoid VPC-endpoint
+> and ENI cost on a scale-to-zero demo), so there is no security group and no route
+> table restricting its outbound traffic — it has the same egress freedom as any public
+> Lambda function. Runtime egress-denial is provable only for the `infra/main.tf`
+> posture, deployed into a real AWS account (`terraform apply` + an attempted-and-failed
+> outbound connection from inside the app SG — static config review can't substitute for
+> that). Don't read a working preview deploy as evidence that egress-denial holds; it
+> deliberately doesn't apply here.
+
 ## Why this is cost-safe
 
 | Guardrail | Effect |

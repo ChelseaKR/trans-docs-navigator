@@ -23,6 +23,7 @@
     "test:coverage": "node --test --experimental-test-coverage --experimental-strip-types 'tests/**/*.test.ts'",
     "lint": "node --experimental-strip-types scripts/lint.ts",
     "content:validate": "node --experimental-strip-types scripts/content-validate.ts",
+    "corpus:manifest": "node --experimental-strip-types scripts/corpus-manifest.ts",
     "citation:coverage": "node --experimental-strip-types scripts/citation-coverage.ts",
     "privacy:lint": "node --experimental-strip-types scripts/privacy-lint.ts",
     "freshness": "node --experimental-strip-types scripts/freshness.ts",
