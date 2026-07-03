@@ -16,6 +16,7 @@ export const en: LocaleBundle = {
     legalNav: "Legal and policies",
     termsLink: "Terms of Use",
     privacyLink: "Privacy",
+    transparencyLink: "Transparency report",
     a11yLink: "Accessibility",
     methodologyLink: "How we source & verify",
     verifyNote: "This is general information, not legal advice. Requirements change, so always confirm with the official source linked on each step, and talk to a lawyer or legal-aid organization about your specific situation.",
@@ -169,6 +170,7 @@ export const en: LocaleBundle = {
     privacyTitle: "Privacy Notice",
     accessibilityTitle: "Accessibility Statement",
     methodologyTitle: "How We Source & Verify",
+    transparencyTitle: "Transparency Report",
     terms: [
       {
         h: "Information, not legal advice",
@@ -306,6 +308,23 @@ export const en: LocaleBundle = {
     ],
   },
 
+  transparency: [
+    {
+      h: "About this report",
+      html:
+        "<p>“The strongest protection is having nothing to hand over” (see our <a href=\"/privacy\">Privacy Notice</a>) is an architecture claim. This page turns it into a standing, dated commitment: each quarter, we state plainly what data our server holds and what a court order, subpoena, or other legal-compulsion request could and could not reach.</p>" +
+        "<p><strong>This page does not include a warrant canary.</strong> A canary — an affirmative, dated statement about the specific legal demands we have or have not received — is legally delicate wording, and review of any such statement by a licensed attorney is an explicit, <strong>open</strong> launch gate (see <a href=\"/terms\">Terms of Use</a>). We will not add canary wording before that review, and counsel may decide against one entirely; a canary we could not keep honestly updated would be worse than no canary. Until reviewed, no canary status — present or absent — should be inferred from anything on this page.</p>",
+    },
+    {
+      h: "Q2 2026 (April 1 – June 30, 2026)",
+      html:
+        "<p>As of June 30, 2026, per our Data Protection Impact Assessment (<code>docs/audits/dpia.md</code>):</p>" +
+        "<p><strong>Could be produced under compulsion:</strong> ephemeral edge/server logs (timestamps, request path, response status, and non-identifying operational fields such as jurisdiction code or language — the fixed allowlist enforced by <code>api/log.ts</code>) and host/infrastructure metadata (for example hosting-provider account and network records held by our infrastructure providers, not by us).</p>" +
+        "<p><strong>Could not be produced:</strong> the content of any question, intake answer, or document selection (never sent to or stored on a server — read only from the URL at request time and never logged or retained), any identity data entered for form-fill (legal name, date of birth, Social Security number — filled entirely on the user's own device and never transmitted), and any encrypted “save your progress” state (stored only on the user's device, never on ours).</p>" +
+        "<p>No changes to the data-flow architecture occurred this quarter.</p>",
+    },
+  ],
+
   seo: {
     homeTitle: "Legal name & gender-marker change guide, by state",
     homeDescription:
@@ -333,5 +352,7 @@ export const en: LocaleBundle = {
       accessibility: "Our WCAG 2.2 AA accessibility commitment for Trans Docs Navigator, what we test automatically, and how to report a barrier.",
       methodology: "How Trans Docs Navigator sources and verifies every requirement from official government sources, plus the quarterly partner-review cadence we are establishing.",
     },
+    transparencyDescription:
+      "Dated quarterly entries on what Trans Docs Navigator could and could not produce under legal compulsion. No warrant canary yet — counsel review is pending.",
   },
 };

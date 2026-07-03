@@ -228,9 +228,16 @@ secondary audience.
 - **Excellence bar:** the mirror passes the full `scripts/smoke-journey.ts`; uptime
   tracked like the clearnet preview.
 
-### EXP-12 — Transparency report and legal-demand canary
+### EXP-12 — Transparency report and legal-demand canary — **Status: Shipped**
 **Pitch:** Report on a fixed cadence what the service was asked to hand over —
 which, by design, is nothing.
+- **Shipped:** `/transparency` (`src/transparency.ts`, routed in `api/router.ts`,
+  linked from every page footer) with a dated Q2 2026 entry stating what could/could
+  not be produced under compulsion (edge/server logs and host metadata could; corpus,
+  query, and identity content could not), per FIX-09's DPIA work. No canary wording
+  shipped — the page carries a clearly-marked DRAFT-posture note that any canary text
+  remains **[counsel-gated]** and open, same posture as `src/legal.ts`. Future
+  quarters are appended by PR to the locale bundles (`src/i18n/en.ts`/`es.ts`).
 - **Impact:** "The strongest protection is having nothing to hand over" (README) is
   an architecture claim; a standing transparency page converts it into an
   accountable public commitment that partners and press (persona A3) can check.

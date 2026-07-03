@@ -16,6 +16,7 @@ export const es: LocaleBundle = {
     legalNav: "Legal y políticas",
     termsLink: "Términos de uso",
     privacyLink: "Privacidad",
+    transparencyLink: "Informe de transparencia",
     a11yLink: "Accesibilidad",
     methodologyLink: "Cómo obtenemos y verificamos la información",
     verifyNote: "Esto es información general, no asesoramiento legal. Los requisitos cambian, así que confirme siempre con la fuente oficial enlazada en cada paso, y hable con un abogado o una organización de ayuda legal sobre su situación específica.",
@@ -169,6 +170,7 @@ export const es: LocaleBundle = {
     privacyTitle: "Aviso de privacidad",
     accessibilityTitle: "Declaración de accesibilidad",
     methodologyTitle: "Cómo obtenemos y verificamos la información",
+    transparencyTitle: "Informe de transparencia",
     terms: [
       {
         h: "Información, no asesoramiento legal",
@@ -308,6 +310,23 @@ export const es: LocaleBundle = {
     ],
   },
 
+  transparency: [
+    {
+      h: "Sobre este informe",
+      html:
+        "<p>“La protección más fuerte es no tener nada que entregar” (vea nuestro <a href=\"/privacy?language=es\">Aviso de privacidad</a>) es una afirmación sobre la arquitectura del servicio. Esta página la convierte en un compromiso público, fechado y permanente: cada trimestre, indicamos con claridad qué datos guarda nuestro servidor y qué podría alcanzar, o no, una orden judicial, citación u otra solicitud de divulgación forzosa.</p>" +
+        "<p><strong>Esta página no incluye un “warrant canary”.</strong> Un canary —una declaración afirmativa y fechada sobre las solicitudes legales específicas que hemos recibido o no— es un texto legalmente delicado, y la revisión de ese tipo de declaración por un abogado con licencia es un requisito de lanzamiento explícito y <strong>pendiente</strong> (vea los <a href=\"/terms?language=es\">Términos de uso</a>). No agregaremos ese tipo de texto antes de esa revisión, y es posible que la asesoría legal decida no incluirlo en absoluto: un canary que no pudiéramos mantener actualizado con honestidad sería peor que no tener ninguno. Hasta que se revise, no debe inferirse ningún estado de canary —presente o ausente— de nada en esta página.</p>",
+    },
+    {
+      h: "2.º trimestre de 2026 (1 de abril – 30 de junio de 2026)",
+      html:
+        "<p>Al 30 de junio de 2026, según nuestra Evaluación de Impacto en la Protección de Datos (<code>docs/audits/dpia.md</code>):</p>" +
+        "<p><strong>Podría producirse bajo una solicitud de divulgación forzosa:</strong> registros efímeros del servidor o del borde de la red (marcas de tiempo, ruta de la solicitud, estado de la respuesta y campos operativos no identificativos, como el código de jurisdicción o el idioma —la lista fija que aplica <code>api/log.ts</code>) y metadatos del alojamiento/infraestructura (por ejemplo, registros de cuenta y de red que mantienen nuestros proveedores de infraestructura, no nosotros).</p>" +
+        "<p><strong>No podría producirse:</strong> el contenido de ninguna pregunta, respuesta de admisión o selección de documentos (nunca se envía ni se guarda en un servidor; se lee solo desde la dirección web al momento de la solicitud y nunca se registra ni se conserva), ningún dato de identidad ingresado para llenar formularios (nombre legal, fecha de nacimiento, número de Seguro Social —se completa enteramente en el dispositivo del usuario y nunca se transmite), ni ningún estado cifrado de “guardar su progreso” (se guarda solo en el dispositivo del usuario, nunca en los nuestros).</p>" +
+        "<p>No hubo cambios en la arquitectura del flujo de datos este trimestre.</p>",
+    },
+  ],
+
   seo: {
     homeTitle: "Guía de cambio de nombre y marcador de género, por estado",
     homeDescription:
@@ -335,5 +354,7 @@ export const es: LocaleBundle = {
       accessibility: "Nuestro compromiso de accesibilidad WCAG 2.2 AA para Trans Docs Navigator, lo que probamos automáticamente y cómo informar una barrera.",
       methodology: "Cómo Trans Docs Navigator obtiene y verifica cada requisito de fuentes oficiales del gobierno, más el ritmo trimestral de revisión con socios que estamos estableciendo.",
     },
+    transparencyDescription:
+      "Entradas trimestrales sobre lo que Trans Docs Navigator podría y no podría producir ante una solicitud legal. Sin warrant canary: revisión legal pendiente.",
   },
 };
