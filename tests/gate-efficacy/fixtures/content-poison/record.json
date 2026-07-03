@@ -1,0 +1,13 @@
+[
+  {
+    "id": "poison.missing-source",
+    "jurisdiction": "US-CA",
+    "document_type": "court-order",
+    "change_type": ["name"],
+    "topic": "Poison fixture — missing source block",
+    "statement": "This record intentionally omits the source block to prove content-validate.ts rejects a claim with no provenance.",
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

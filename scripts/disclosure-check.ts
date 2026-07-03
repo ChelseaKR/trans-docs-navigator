@@ -18,6 +18,15 @@ import { pass, fail } from "./util.ts";
 const problems: string[] = [];
 const corpus = loadCorpus();
 
+// Test-only injection point (tests/gate-efficacy): DISCLOSURE_POISON=1 strips the
+// "not legal advice" phrase from one rendered page's banner, simulating a template
+// regression (guardrail #2 silently dropped from a page). Inert unless the env var
+// is exactly "1", so production behavior is unchanged.
+const DISCLOSURE_POISON = process.env.DISCLOSURE_POISON === "1";
+function poison(html: string): string {
+  return DISCLOSURE_POISON ? html.replace(DISCLOSURE.notLegalAdvice, "") : html;
+}
+
 // Language-appropriate disclosure phrases that must appear in the visible banner.
 const BANNER_PHRASES: Record<Language, string[]> = {
   en: [DISCLOSURE.notLegalAdvice, "AI-assisted"],
@@ -53,7 +62,7 @@ for (const lang of ["en", "es"] as Language[]) {
   const cl = buildChecklist({ jurisdiction: "US-CA", change_types: ["name", "gender-marker"], documents: [], language: lang });
   const pages: [string, string][] = [
     ["intake", renderIntakePage(lang)],
-    ["checklist", renderChecklistPage(cl, corpus, lang)],
+    ["checklist", poison(renderChecklistPage(cl, corpus, lang))],
     ["packet", renderPacketPage(cl, corpus, lang, "2026-05-31")],
     ["form-fill", renderFormFillPage(formById("us-ss-5")!, lang)],
     ["answer-page", page({ lang, title: "A", heading: "A", body: renderAnswer(answer({ jurisdiction: "US-CA", change_types: ["name"], language: lang }), lang) })],

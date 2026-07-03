@@ -19,7 +19,12 @@ import { pass, fail } from "./util.ts";
 
 const errors: string[] = [];
 
-for (const f of loadForms()) {
+// Test-only override (tests/gate-efficacy): point the gate at a poisoned fixture
+// registry. loadForms() defaults to the real registry.json when the argument is
+// undefined, so production behavior is unchanged whenever FORMS_REGISTRY is unset.
+const forms = loadForms(process.env.FORMS_REGISTRY);
+
+for (const f of forms) {
   const raw = f as unknown as Record<string, unknown>;
   if (!/^https:\/\//.test(f.source?.url ?? "")) errors.push(`${f.id}: source.url must be an official https URL`);
   if (!f.source?.title) errors.push(`${f.id}: missing source.title`);
@@ -37,4 +42,4 @@ if (existsSync(fixturesDir)) {
 }
 
 if (errors.length > 0) fail("forms", `${errors.length} form-registry issue(s)`, errors);
-pass("forms", `${loadForms().length} forms link to official sources; no auto-fill surface or synthetic fixtures shipped`);
+pass("forms", `${forms.length} forms link to official sources; no auto-fill surface or synthetic fixtures shipped`);
