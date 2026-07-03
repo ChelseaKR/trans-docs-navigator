@@ -19,7 +19,9 @@ A hardening pass executed every item that code can deliver; `make verify` is gre
 
 **Done (code/tests/gates landed):**
 - §1.1 verifier roster + placeholder enforcement · §1.2 gold-provenance gate · §1.3
-  adversarial/injection eval suite + paraphrase-tolerant faithfulness · §1.5 calendar-date
+  adversarial/injection eval suite + paraphrase-tolerant faithfulness, now upgraded to
+  claim-decomposition + per-claim semantic entailment with a pluggable LLM-judge interface
+  (`eval/faithfulness.ts`) · §1.5 calendar-date
   validation + conflicting-cost detection · §2.1 PII-egress test *(caught & fixed a real
   query-string reflection bug)* · §2.2 HTTP hardening (testable router, input bounds,
   security headers, rate limit, timeouts) · §2.4 vendored-asset SRI + pinned hash · §3.1
@@ -77,7 +79,7 @@ the spine of the pre-launch plan.
 |---|---|---|
 | Factual accuracy `1.00`, groundedness `1.00` | Gold set is **co-authored with the corpus** (`eval/gold.ts:4-7`); the oracle was written to match the data it grades. It tests the *harness*, not the *content*. | §1.1, §1.2 |
 | Citation coverage `100%` | The default `GroundedComposer` is *extractive* (`api/generator.ts`) — it can only emit text it copied from a record, so coverage is true by construction. A real LLM (`BedrockGenerator`) can fail this. | §1.3 |
-| Groundedness `≥0.95` | Faithfulness is a **substring match** (`eval/harness.ts:~82`), not semantic. "File a petition" scores faithful against any longer sentence containing it. | §1.3 |
+| Groundedness `≥0.95` | ~~Faithfulness was a **substring match**~~ — **DONE**: `eval/faithfulness.ts` now decomposes each claim into sub-claims and requires per-claim source support + a negation/polarity guard, with the old substring/token check demoted to a fast deterministic pre-filter and a pluggable `FaithfulnessJudge` seam for a real LLM judge. See §1.3. | §1.3 |
 | `0 axe violations` / a11y gate green | Mechanical lint covers only ~30–40% of WCAG (ADR-4). Manual SR/keyboard/zoom walkthrough is **review-gated and PENDING**. | §3.1 |
 | `make verify` green = "ready" | `verifier` fields are placeholders (ADR-3); **no jurisdiction is launch-cleared**. Mechanical readiness ≠ legal correctness. | §1.1 |
 | Privacy gate green | Regex scan catches *direct* PII references; it can miss obfuscated/derived flows (`scripts/privacy-lint.ts`). Defense-in-depth, not proof. | §2.1 |
@@ -104,8 +106,8 @@ This is where wrong work hurts people. It is the highest-value dimension.
 ### 1.3 — `P1` Make the eval real, not mechanically-true
 - **Dimension:** Eval rigor · **Concern:** technical · **Evidence:** §0 rows 2–3; `eval/harness.ts`.
 - **Actions:**
-  - Run at least one eval pass through the **real `BedrockGenerator`** (Haiku) — not only the extractive composer — so citation coverage and groundedness are tested against a model that *can* hallucinate. This is STATUS open-gate #6.
-  - Upgrade faithfulness from substring match to a semantic check (entailment via an LLM-judge with its own rubric, or at minimum claim-decomposition + per-claim source support). Keep the deterministic check as a fast pre-filter.
+  - Run at least one eval pass through the **real `BedrockGenerator`** (Haiku) — not only the extractive composer — so citation coverage and groundedness are tested against a model that *can* hallucinate. This is STATUS open-gate #6. **OPEN** (needs AWS credentials).
+  - ~~Upgrade faithfulness from substring match to a semantic check...~~ **DONE**: `eval/faithfulness.ts` adds a claim-decomposition + per-claim source-support layer (deterministic `SemanticJudge`, with a per-sub-claim negation/polarity guard) on top of the old substring/token check, which is now a fast pre-filter (`deterministicPrefilter`). The judge is exposed via a `FaithfulnessJudge` interface (`eval/harness.ts`'s `isFaithful`/`runEval` take an optional `judge`, defaulting to the deterministic one) so a real LLM-judge (e.g. Bedrock-backed entailment) can be injected later without touching the harness's control flow — no credentials are required for the default path or `npm test`/`npm run eval`. See `tests/faithfulness.test.ts`.
   - Add an **adversarial suite**: typo'd questions, ambiguous queries, jurisdiction-not-in-corpus, prompt-injection in the question field, mixed-language input. Assert *refusal/degradation*, not answers.
 
 ### 1.4 — `P1` Grow gold-set coverage to match claims

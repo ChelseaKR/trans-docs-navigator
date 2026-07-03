@@ -14,6 +14,8 @@ import { isCurrent } from "../api/freshness.ts";
 import { retrieve } from "../api/retrieval.ts";
 import { GOLD } from "./gold.ts";
 import type { GoldItem } from "./gold.ts";
+import { claimIsFaithful, defaultJudge } from "./faithfulness.ts";
+import type { FaithfulnessJudge } from "./faithfulness.ts";
 
 export const EVAL_TODAY = "2026-06-16";
 
@@ -112,31 +114,24 @@ function answerText(ans: GroundedAnswer): string {
   return ans.blocks.map((b) => b.text).join("\n");
 }
 
-const FAITHFUL_TOKEN_COVERAGE = 0.6; // a claim must carry ≥60% of its cited record's content tokens
-
-function contentTokens(s: string): string[] {
-  return (s.toLowerCase().replace(/[^a-z0-9áéíóúüñ\s]/gi, " ").match(/[a-z0-9áéíóúüñ]+/gi) ?? [])
-    .filter((t) => t.length > 3); // drop short function words; keep content-bearing tokens
-}
-
 /**
- * Faithfulness check. The deterministic composer is extractive, so an exact substring
- * match holds today; but we ALSO accept a token-coverage match (≥60% of the cited
- * record's content tokens present in the claim). The token measure is a deterministic
- * stand-in for semantic entailment that stays meaningful once a real model
- * (BedrockGenerator) rewords output — substring alone would spuriously fail a faithful
- * paraphrase. A real launch swaps this for an LLM-judge entailment check (ROADMAP §7).
+ * Faithfulness check. `claimIsFaithful` (eval/faithfulness.ts) runs a cheap
+ * deterministic token/substring PRE-FILTER first — the default GroundedComposer is
+ * extractive, so an exact substring match holds today, and the token-coverage
+ * fallback stays meaningful once a real model reworks the phrasing. Anything that
+ * clears the pre-filter is then decomposed into atomic sub-claims and each one must
+ * be independently entailed by a pluggable FaithfulnessJudge (default: a
+ * deterministic SemanticJudge with per-claim token support + a negation/polarity
+ * guard), so a single well-supported sentence can no longer carry an unsupported one
+ * along with it. This is the seam where a real LLM-judge (e.g. Bedrock-backed
+ * entailment) plugs in later — pass a different `judge` through `runEval`/`isFaithful`
+ * without touching this file's control flow (ROADMAP §7, IMPROVEMENT-PLAN §1.3).
  */
-function claimIsFaithful(claimText: string, rec: CorpusRecord): boolean {
-  if (claimText.includes(rec.statement.trim())) return true; // exact extractive match
-  const need = contentTokens(rec.statement);
-  if (need.length === 0) return true;
-  const have = new Set(contentTokens(claimText));
-  const covered = need.filter((t) => have.has(t)).length / need.length;
-  return covered >= FAITHFUL_TOKEN_COVERAGE;
-}
-
-function isFaithful(ans: GroundedAnswer, corpus: CorpusRecord[]): { faithful: number; total: number } {
+function isFaithful(
+  ans: GroundedAnswer,
+  corpus: CorpusRecord[],
+  judge: FaithfulnessJudge = defaultJudge,
+): { faithful: number; total: number } {
   let faithful = 0;
   let total = 0;
   for (const block of ans.blocks) {
@@ -144,7 +139,7 @@ function isFaithful(ans: GroundedAnswer, corpus: CorpusRecord[]): { faithful: nu
     total++;
     const ok = block.citations.some((id) => {
       const rec = corpus.find((r) => r.id === id);
-      return rec ? claimIsFaithful(block.text, rec) : false;
+      return rec ? claimIsFaithful(block.text, rec, judge) : false;
     });
     if (ok) faithful++;
   }
@@ -226,7 +221,7 @@ function ratio(pass: number, total: number): number {
   return total === 0 ? 0 : pass / total;
 }
 
-export function runEval(thresholds: Thresholds = THRESHOLDS): EvalReport {
+export function runEval(thresholds: Thresholds = THRESHOLDS, judge: FaithfulnessJudge = defaultJudge): EvalReport {
   const corpus = loadCorpus();
   const items: ItemResult[] = [];
   const answers: { item: GoldItem; ans: GroundedAnswer | null }[] = [];
@@ -258,7 +253,7 @@ export function runEval(thresholds: Thresholds = THRESHOLDS): EvalReport {
   let claimTotal = 0;
   for (const { item, ans } of answers) {
     if (item.suite !== "accuracy" || !ans || ans.refused) continue;
-    const f = isFaithful(ans, corpus);
+    const f = isFaithful(ans, corpus, judge);
     faithful += f.faithful;
     claimTotal += f.total;
   }
