@@ -1,0 +1,38 @@
+[
+  {
+    "id": "il.referral.center-on-halsted",
+    "jurisdiction": "US-IL",
+    "name": "Center on Halsted",
+    "url": "https://www.centeronhalsted.org",
+    "note": {
+      "en": "Chicago's LGBTQ+ community center; hosts legal-name-change clinics and can refer to attorneys familiar with Illinois gender-marker petitions.",
+      "es": "Centro comunitario LGBTQ+ de Chicago; organiza clínicas de cambio legal de nombre y puede referir a abogados familiarizados con peticiones de marcador de género en Illinois."
+    },
+    "source": {
+      "url": "https://www.centeronhalsted.org",
+      "title": "Center on Halsted",
+      "last_verified": "2026-06-01",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "il.referral.illinois-legal-aid-online",
+    "jurisdiction": "US-IL",
+    "name": "Illinois Legal Aid Online",
+    "url": "https://www.illinoislegalaid.org",
+    "note": {
+      "en": "Statewide nonprofit legal-information hub with self-help articles and a directory to connect Illinois residents with free or low-cost legal aid.",
+      "es": "Centro estatal sin fines de lucro de información legal con artículos de autoayuda y un directorio para conectar a residentes de Illinois con ayuda legal gratuita o de bajo costo."
+    },
+    "source": {
+      "url": "https://www.illinoislegalaid.org",
+      "title": "Illinois Legal Aid Online",
+      "last_verified": "2026-06-01",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]
