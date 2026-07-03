@@ -138,6 +138,7 @@ ${headTags(fullTitle, opts.lang, seo)}
   <nav aria-label="${escapeHtml(t.legalNav)}">
     <a href="/terms${langQ}">${escapeHtml(t.termsLink)}</a> ·
     <a href="/privacy${langQ}">${escapeHtml(t.privacyLink)}</a> ·
+    <a href="/transparency${langQ}">${escapeHtml(t.transparencyLink)}</a> ·
     <a href="/accessibility${langQ}">${escapeHtml(t.a11yLink)}</a>
   </nav>
 </footer>

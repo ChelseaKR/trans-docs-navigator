@@ -15,6 +15,7 @@ export interface UiMessages {
   legalNav: string;
   termsLink: string;
   privacyLink: string;
+  transparencyLink: string;
   a11yLink: string;
   verifyNote: string;
   notFilingNote: string;
@@ -148,6 +149,7 @@ export interface LegalMessages {
   termsTitle: string;
   privacyTitle: string;
   accessibilityTitle: string;
+  transparencyTitle: string;
   terms: LegalSection[];
   privacy: LegalSection[];
   accessibility: LegalSection[];
@@ -179,6 +181,8 @@ export interface SeoMessages {
   breadcrumbGuides: string;
   /** Plain-language meta descriptions for the legal pages. */
   legalDescription: { terms: string; privacy: string; accessibility: string };
+  /** Meta description for the /transparency report page. */
+  transparencyDescription: string;
 }
 
 /** Everything one language needs. The compiler enforces parity across languages. */
@@ -195,5 +199,11 @@ export interface LocaleBundle {
   fieldLabels: Record<string, string>;
   generator: GeneratorMessages;
   legal: LegalMessages;
+  /**
+   * Dated quarterly transparency-report entries (LegalSection[] shape: `h` is the
+   * period label, `html` states what could/could not be produced under compulsion).
+   * DRAFT POSTURE: no warrant-canary assertion ships here — see src/transparency.ts.
+   */
+  transparency: LegalSection[];
   seo: SeoMessages;
 }

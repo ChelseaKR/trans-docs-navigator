@@ -15,6 +15,7 @@ import { loadCorpus } from "../api/corpus.ts";
 import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
+import { renderTransparencyPage } from "../src/transparency.ts";
 import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.ts";
 import { robotsTxt, sitemapXml, SITE_NAME, SITE_ORIGIN } from "../src/seo.ts";
 import type { Language } from "../api/types.ts";
@@ -43,6 +44,8 @@ const indexable: Indexable[] = [
   { name: "terms (en)", path: "/terms", html: renderTermsPage("en") },
   { name: "privacy (es)", path: "/privacy", html: renderPrivacyPage("es") },
   { name: "accessibility (en)", path: "/accessibility", html: renderAccessibilityPage("en") },
+  { name: "transparency (en)", path: "/transparency", html: renderTransparencyPage("en") },
+  { name: "transparency (es)", path: "/transparency", html: renderTransparencyPage("es") },
 ];
 
 for (const p of indexable) {
