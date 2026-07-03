@@ -16,6 +16,7 @@ export interface UiMessages {
   termsLink: string;
   privacyLink: string;
   a11yLink: string;
+  methodologyLink: string;
   verifyNote: string;
   notFilingNote: string;
   sources: string;
@@ -142,15 +143,17 @@ export interface LegalSection {
   html: string;
 }
 
-/** The three legal/policy pages plus their titles and "last updated" label. */
+/** The legal/policy + trust pages plus their titles and "last updated" label. */
 export interface LegalMessages {
   updatedLabel: string;
   termsTitle: string;
   privacyTitle: string;
   accessibilityTitle: string;
+  methodologyTitle: string;
   terms: LegalSection[];
   privacy: LegalSection[];
   accessibility: LegalSection[];
+  methodology: LegalSection[];
 }
 
 /**
@@ -177,8 +180,8 @@ export interface SeoMessages {
   guideReviewed: string;
   breadcrumbHome: string;
   breadcrumbGuides: string;
-  /** Plain-language meta descriptions for the legal pages. */
-  legalDescription: { terms: string; privacy: string; accessibility: string };
+  /** Plain-language meta descriptions for the legal/trust pages. */
+  legalDescription: { terms: string; privacy: string; accessibility: string; methodology: string };
 }
 
 /** Everything one language needs. The compiler enforces parity across languages. */

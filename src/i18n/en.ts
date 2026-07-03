@@ -17,6 +17,7 @@ export const en: LocaleBundle = {
     termsLink: "Terms of Use",
     privacyLink: "Privacy",
     a11yLink: "Accessibility",
+    methodologyLink: "How we source & verify",
     verifyNote: "This is general information, not legal advice. Requirements change, so always confirm with the official source linked on each step, and talk to a lawyer or legal-aid organization about your specific situation.",
     notFilingNote: "This tool doesn't file anything for you and isn't legal advice. Download the official form, complete it, and submit it yourself.",
     sources: "Sources",
@@ -159,6 +160,7 @@ export const en: LocaleBundle = {
     termsTitle: "Terms of Use",
     privacyTitle: "Privacy Notice",
     accessibilityTitle: "Accessibility Statement",
+    methodologyTitle: "How We Source & Verify",
     terms: [
       {
         h: "Information, not legal advice",
@@ -267,6 +269,33 @@ export const en: LocaleBundle = {
           "<p>If something is hard to use, please let us know by opening an issue on the project repository. We treat accessibility barriers as bugs.</p>",
       },
     ],
+    methodology: [
+      {
+        h: "Official sources only",
+        html:
+          "<p>Every requirement we show — a fee, a form, a wait time, a step order — is sourced from an <strong>official government source</strong>: a court, a state agency (DMV, vital records), the Social Security Administration, or the U.S. Department of State. We don't rely on forums, secondhand summaries, or other advocacy sites as a primary source, though we may link to a legal-aid guide for extra context.</p>",
+      },
+      {
+        h: "How we verify a requirement",
+        html:
+          "<p>Before a fact enters the corpus, a named reviewer reads the official source directly, records the exact page or document it came from, and records the date it was checked. That source URL and date travel with the fact everywhere it's shown — on a guide page, a checklist step, or a generated answer — so you can check our work.</p>",
+      },
+      {
+        h: "“Last checked” and going stale",
+        html:
+          "<p>Every requirement carries the date we last checked it and a re-check deadline (its freshness SLA). If a requirement passes that deadline before we've re-verified it, we don't keep showing it as current: it's automatically marked <strong>needs reverification</strong> and flagged in the interface, rather than silently going stale.</p>",
+      },
+      {
+        h: "Report an error or a law change",
+        html:
+          "<p>Laws change faster than any small team can track alone. If you notice a requirement that's out of date or wrong, please open an issue on the project repository using the “law changed” report template. We treat a wrong requirement as a bug, and we prioritize fixing it over new features.</p>",
+      },
+      {
+        h: "Partner review cadence",
+        html:
+          "<p>Beyond individual reports, we run a standing <strong>quarterly review</strong> of every jurisdiction's requirements with trans legal-aid partners: each quarter, a partner organization (or, in a jurisdiction without a partner yet, a named volunteer reviewer) re-checks the official sources for that jurisdiction against what we publish. Corrections found in review are applied immediately, re-dated, and, where the change is substantive, noted in the project's release history. Jurisdictions without an assigned reviewer are marked accordingly rather than presented as reviewed.</p>",
+      },
+    ],
   },
 
   seo: {
@@ -294,6 +323,7 @@ export const en: LocaleBundle = {
       terms: "The terms for using Trans Docs Navigator: general information, not legal advice, with no warranty. Verify every requirement against the official source.",
       privacy: "How Trans Docs Navigator protects you: no account, nothing you type sent to a server, no trackers, forms filled on your device.",
       accessibility: "Our WCAG 2.2 AA accessibility commitment for Trans Docs Navigator, what we test automatically, and how to report a barrier.",
+      methodology: "How Trans Docs Navigator sources and verifies every requirement from official government sources, plus our quarterly partner-review cadence.",
     },
   },
 };

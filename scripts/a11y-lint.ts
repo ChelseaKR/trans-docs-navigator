@@ -13,7 +13,7 @@ import { loadCorpus } from "../api/corpus.ts";
 import { buildChecklist } from "../api/checklist.ts";
 import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
-import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
+import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderGuideIndex, renderGuidePage } from "../src/guide.ts";
 import { PALETTE, STYLE } from "../src/render.ts";
 import { pass, fail } from "./util.ts";
@@ -80,6 +80,8 @@ const pages: Page[] = [
   { name: "terms-es", html: renderTermsPage("es") },
   { name: "privacy", html: renderPrivacyPage("en") },
   { name: "accessibility", html: renderAccessibilityPage("en") },
+  { name: "methodology", html: renderMethodologyPage("en") },
+  { name: "methodology-es", html: renderMethodologyPage("es") },
   { name: "guide-index", html: renderGuideIndex("en") },
   { name: "guide-index-es", html: renderGuideIndex("es") },
   { name: "guide-page", html: renderGuidePage("california", "name-change", "en")! },
