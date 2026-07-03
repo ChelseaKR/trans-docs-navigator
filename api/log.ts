@@ -62,6 +62,9 @@ const ALLOWED_FIELDS = new Set([
   "trace_flags",
   "span_kind",
   "span_name",
+  // Corpus integrity attestation (FIX-09 §A): hex digests only, never file content.
+  "expected",
+  "actual",
 ]);
 
 export type LogFields = Record<string, unknown>;

@@ -17,9 +17,17 @@ RUN npm ci --omit=dev
 # App sources (TypeScript run directly via Node's type-stripping).
 COPY api ./api
 COPY src ./src
+COPY scripts ./scripts
 COPY corpus ./corpus
 COPY forms ./forms
 COPY public ./public
+
+# Corpus integrity attestation (FIX-09 §A): bake a content hash of the exact
+# corpus/forms bytes shipped in THIS image into corpus.manifest.json. api/server.ts
+# re-verifies this against a live recompute at boot and loudly refuses to start if
+# they ever diverge — proof that what's serving is what this image was built (and
+# CI's content gate) on, not a tampered image or a corpus mutated after the fact.
+RUN node --experimental-strip-types --no-warnings scripts/corpus-manifest.ts
 
 ENV NODE_ENV=production
 ENV PORT=8080

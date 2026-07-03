@@ -8,7 +8,7 @@ import type { IncomingMessage, ServerResponse } from "node:http";
 import { readFileSync, existsSync, statSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 import { join, normalize, extname, sep } from "node:path";
-import { REPO_ROOT, loadCorpus, LAST_QUARANTINE } from "./corpus.ts";
+import { REPO_ROOT, loadCorpus, LAST_QUARANTINE, verifyCorpusManifest } from "./corpus.ts";
 import { safeLog } from "./log.ts";
 import { handleRoute, asLanguage } from "./router.ts";
 import { servingToday } from "./freshness.ts";
@@ -195,6 +195,31 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
 loadCorpus({ quarantine: true });
 if (LAST_QUARANTINE.length > 0) {
   safeLog("corpus_quarantine", { quarantined: LAST_QUARANTINE.length, status: 200 });
+}
+
+// Corpus integrity attestation (FIX-09 §A): the digest baked into corpus.manifest.json
+// at build/image time must match a live recompute of the corpus/forms bytes on disk
+// right now. Extends the quarantine pattern above, but LOUD rather than degraded — a
+// mismatch means what's on disk is not what CI's content gate cleared (a tampered
+// image, a bad deploy, a stray hand-edit), so we refuse to come up at all rather than
+// silently serve unverified content.
+const integrity = verifyCorpusManifest();
+if (integrity.status === "absent") {
+  // No manifest baked in: the normal case in local dev, where nobody runs
+  // `npm run corpus:manifest` before `npm run dev`. Logged once at info, never fatal.
+  safeLog("corpus_integrity", { status: 200 }, "info");
+} else if (!integrity.ok) {
+  safeLog(
+    "corpus_integrity",
+    {
+      status: 500,
+      expected: integrity.expected,
+      actual: integrity.actual,
+      error: integrity.status,
+    },
+    "error",
+  );
+  process.exit(1); // loud quarantine: refuse to serve corpus-backed routes at all
 }
 
 server.requestTimeout = REQUEST_TIMEOUT_MS;

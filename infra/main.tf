@@ -37,11 +37,125 @@ resource "aws_vpc" "main" {
   tags                 = { Name = "trans-docs-navigator", PII = "none" }
 }
 
-# VPC endpoint so generation traffic to Bedrock never traverses the public internet.
-resource "aws_vpc_endpoint" "bedrock" {
+# App private subnet — NO route to an Internet Gateway or NAT Gateway (FIX-09 §B,
+# zero-egress runtime). This is the network-layer half of the egress-denial posture:
+# even if a security-group rule were ever misconfigured, there is no path off this
+# subnet to the public internet at all. The route table below carries only the VPC's
+# implicit local route; the ONLY way out is the Bedrock interface VPC endpoint's ENI,
+# which resolves via VPC-internal DNS and never touches an IGW/NAT route.
+resource "aws_subnet" "app_private" {
   vpc_id            = aws_vpc.main.id
-  service_name      = "com.amazonaws.${var.region}.bedrock-runtime"
-  vpc_endpoint_type = "Interface"
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "${var.region}a"
+  tags              = { Name = "trans-docs-navigator-app-private", PII = "none" }
+}
+
+# No `route` block here is deliberate: no aws_internet_gateway, no aws_nat_gateway —
+# neither resource is declared anywhere in this configuration, so there is nothing for
+# this table to route toward except the VPC's own local CIDR. Local-only.
+resource "aws_route_table" "app_private" {
+  vpc_id = aws_vpc.main.id
+  tags   = { Name = "trans-docs-navigator-app-private-rt" }
+}
+
+resource "aws_route_table_association" "app_private" {
+  subnet_id      = aws_subnet.app_private.id
+  route_table_id = aws_route_table.app_private.id
+}
+
+# ── Security groups (FIX-09 §B: deny-all egress by default) ────────────────────────
+# The ALB is the only internet-facing ingress. Its egress is scoped to the app subnet
+# CIDR (not a security-group cross-reference, to avoid a dependency cycle with the app
+# SG below) rather than left open to 0.0.0.0/0.
+resource "aws_security_group" "alb" {
+  name        = "trans-docs-navigator-alb"
+  description = "Public ALB. Ingress: internet on 443. Egress: the app subnet only."
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description = "HTTPS from the internet"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    description = "Forward to the app service in the private subnet only"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = [aws_subnet.app_private.cidr_block]
+  }
+
+  tags = { Name = "trans-docs-navigator-alb", PII = "none" }
+}
+
+# The service. Deliberately NO inline `egress` block: Terraform manages a security
+# group's rule set declaratively, so omitting egress here removes AWS's automatic
+# "allow all outbound" default rather than merely failing to add to it — the app SG
+# denies ALL egress by default. The one exception (Bedrock) is the pair of
+# aws_security_group_rule resources below, kept out-of-line to avoid the mutual-SG-
+# reference dependency cycle that inline cross-referencing rules would create.
+resource "aws_security_group" "app" {
+  name        = "trans-docs-navigator-app"
+  description = "The service. Ingress from the ALB only. NO egress by default (deny-all) - see the scoped Bedrock exception below."
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description     = "HTTP from the ALB only"
+    from_port       = 8080
+    to_port         = 8080
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb.id]
+  }
+
+  tags = { Name = "trans-docs-navigator-app", PII = "none" }
+}
+
+# VPC endpoint security group: attached to the Bedrock interface endpoint's ENI.
+# Its own ingress is scoped to the app SG (added as a standalone rule below), so
+# nothing but the app can reach Bedrock through it either.
+resource "aws_security_group" "bedrock_endpoint" {
+  name        = "trans-docs-navigator-bedrock-endpoint"
+  description = "Attached to the Bedrock interface VPC endpoint. Reachable only from the app SG."
+  vpc_id      = aws_vpc.main.id
+  tags        = { Name = "trans-docs-navigator-bedrock-endpoint", PII = "none" }
+}
+
+# The ONE scoped egress path out of the app SG: HTTPS to the Bedrock endpoint SG, and
+# nothing else. Declared as aws_security_group_rule (not inline on either group) so
+# the two SGs can reference each other's id without Terraform seeing a dependency cycle
+# between the two aws_security_group resources themselves.
+resource "aws_security_group_rule" "app_egress_bedrock" {
+  type                     = "egress"
+  description              = "Bedrock invoke traffic - the only egress the app SG allows"
+  from_port                = 443
+  to_port                  = 443
+  protocol                 = "tcp"
+  security_group_id        = aws_security_group.app.id
+  source_security_group_id = aws_security_group.bedrock_endpoint.id
+}
+
+resource "aws_security_group_rule" "bedrock_endpoint_ingress_app" {
+  type                     = "ingress"
+  description              = "Only the app SG may reach the Bedrock endpoint"
+  from_port                = 443
+  to_port                  = 443
+  protocol                 = "tcp"
+  security_group_id        = aws_security_group.bedrock_endpoint.id
+  source_security_group_id = aws_security_group.app.id
+}
+
+# VPC endpoint so generation traffic to Bedrock never traverses the public internet.
+# Bound to the app's private subnet and the scoped endpoint SG above.
+resource "aws_vpc_endpoint" "bedrock" {
+  vpc_id              = aws_vpc.main.id
+  service_name        = "com.amazonaws.${var.region}.bedrock-runtime"
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = [aws_subnet.app_private.id]
+  security_group_ids  = [aws_security_group.bedrock_endpoint.id]
+  private_dns_enabled = true
 }
 
 # Least-privilege task role: invoke Bedrock only. No S3/DynamoDB — there is no PII to store.
@@ -263,4 +377,14 @@ resource "aws_cloudwatch_metric_alarm" "rate_limited_spike" {
   statistic           = "Sum"
   treat_missing_data  = "notBreaching"
   alarm_actions       = var.alarm_sns_topic_arn == "" ? [] : [var.alarm_sns_topic_arn]
+}
+
+output "app_security_group_id" {
+  description = "Deny-all-egress SG for the service (FIX-09 §B) — attach to the ECS/Fargate task or EC2 instances."
+  value       = aws_security_group.app.id
+}
+
+output "app_private_subnet_id" {
+  description = "Private subnet with no IGW/NAT route — the app's only network home."
+  value       = aws_subnet.app_private.id
 }

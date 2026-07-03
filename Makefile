@@ -7,7 +7,7 @@ SHELL := /bin/bash
 
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
         gate-count lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-overflow seo deploy-plan clean \
-        smoke coverage link-check source-watch source-baseline policy-watch policy-baseline new-record slo
+        smoke coverage link-check source-watch source-baseline policy-watch policy-baseline new-record slo corpus-manifest build
 
 help:
 	@echo "Targets:"
@@ -17,6 +17,7 @@ help:
 	@echo "  make eval         Run the groundedness/accuracy/refusal eval harness"
 	@echo "  make a11y         Run the accessibility gate"
 	@echo "  make loadtest     In-process p95 latency guard (merge-blocking, no server needed)"
+	@echo "  make build        Build the production container image"
 	@echo "  make deploy-plan  Validate infra (terraform plan)"
 
 install:
@@ -187,6 +188,21 @@ new-record:
 deploy-plan:
 	@cd infra && terraform init -backend=false >/dev/null 2>&1 && terraform validate || \
 		echo "terraform not installed — see infra/README.md for the validated plan"
+
+# ---------------------------------------------------------------------------
+# Build (FIX-09 §A): the corpus integrity attestation. Regenerates
+# corpus.manifest.json from the corpus/forms bytes about to ship, so the digest
+# baked into the image always matches what's actually in it. The Dockerfile also
+# runs `scripts/corpus-manifest.ts` itself as a RUN step, so the manifest is baked
+# in regardless of whether the image is built through this target or a bare
+# `docker build .` (as CI's container-scan/release/deploy workflows do).
+# ---------------------------------------------------------------------------
+corpus-manifest:
+	@echo "── corpus integrity manifest (FIX-09 §A) ─────────────────"
+	@npm run --silent corpus:manifest
+
+build: corpus-manifest
+	docker build -t trans-docs-navigator .
 
 clean:
 	rm -rf coverage dist tmp
