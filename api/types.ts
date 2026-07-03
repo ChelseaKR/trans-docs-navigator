@@ -123,6 +123,13 @@ export interface ChecklistStep {
   /** True when at least one backing record is degraded → step shows "needs reverification". */
   needs_reverification: boolean;
   form_ref?: string;
+  /**
+   * True when intake bookkeeping (e.g. Intake.has_court_order) says this step is
+   * already complete. The step is still emitted with its citations — never deleted —
+   * it's just annotated done, and dependents that listed it as a prerequisite are
+   * unblocked (the satisfied prerequisite is pruned from their list).
+   */
+  done?: boolean;
 }
 
 export interface Checklist {

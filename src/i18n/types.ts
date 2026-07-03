@@ -84,6 +84,8 @@ export interface UiMessages {
   getFormCta: string;
   moreDetail: string;
   markDone: string;
+  /** Badge shown on a step the intake already marked complete (e.g. has_court_order). */
+  alreadyDone: string;
   /** Progress counter template with {done}/{total} placeholders. */
   progressTemplate: string;
   stepsLabel: string;

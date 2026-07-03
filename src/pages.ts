@@ -32,6 +32,11 @@ export function renderIntakePage(lang: Language = "en"): string {
   const docs = DOCUMENT_IDS.map(
     (d) => `<label><input type="checkbox" name="doc" value="${d}"> ${escapeHtml(locale(lang).docLabels[d])}</label>`,
   ).join("");
+  // Skippable, non-identifying bookkeeping bit (same privacy class as change_types —
+  // see docs/audits/dpia.md). It only lets the checklist annotate the court-order step
+  // as already done and prune it from dependents' prerequisite lists; it is bookkeeping,
+  // never individualized guidance, so the copy stays neutral.
+  const courtOrderLabel = fieldLabel(lang, "has_court_order");
 
   const body = `
 <p>${escapeHtml(s.intakeLead)}</p>
@@ -49,6 +54,10 @@ export function renderIntakePage(lang: Language = "en"): string {
   <fieldset>
     <legend>${escapeHtml(s.whichDocs)}</legend>
     ${docs}
+  </fieldset>
+  <fieldset>
+    <legend>${escapeHtml(courtOrderLabel)}</legend>
+    <label><input type="checkbox" name="court_order" value="1"> ${escapeHtml(courtOrderLabel)}</label>
   </fieldset>
   <fieldset>
     <legend>${escapeHtml(s.languageLegend)}</legend>
@@ -98,7 +107,7 @@ export function renderChecklistPage(
   let known = 0;
   let anyVaries = false;
   for (const st of checklist.steps) {
-    if (!st.cost) continue;
+    if (!st.cost || st.done) continue; // already-done steps (e.g. has_court_order) don't cost anything more
     if (st.cost.amount_usd === null) anyVaries = true;
     else known += st.cost.amount_usd;
   }

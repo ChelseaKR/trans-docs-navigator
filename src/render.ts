@@ -74,6 +74,8 @@ footer{max-width:60rem;margin:0 auto;padding:1.5rem 1rem;color:var(--muted);bord
 .done-toggle{font-size:.9rem;color:var(--muted);font-weight:400;white-space:nowrap}
 .step.done{opacity:.7}
 .step.done .step-head h2{text-decoration:line-through}
+.step-done{border-inline-start:.3rem solid var(--accent)}
+.done-badge{color:var(--accent);font-weight:600}
 .step-cta{margin:.6rem 0}
 .step-cta a{display:inline-block;background:var(--accent);color:var(--onAccent,#000);padding:.45rem .9rem;border-radius:.4rem;text-decoration:none;font-weight:600;font-size:.95rem}
 .step-detail{margin:.5rem 0}
@@ -175,6 +177,8 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
         : "";
       const disc = s.discretionary ? `<p class="flag">${escapeHtml(t.discretionary)}</p>` : "";
       const stale = s.needs_reverification ? `<p class="flag" role="note">${escapeHtml(t.needsRecheck)}</p>` : "";
+      // has_court_order intake: annotate, don't hide — citations stay visible either way.
+      const done = s.done ? `<p class="meta done-badge">✅ ${escapeHtml(t.alreadyDone)}</p>` : "";
       const claims = stepRecords.map((r) => `<li>${escapeHtml(r.statement)}</li>`).join("");
 
       // Expandable practical detail (kept out of the default view to stay scannable).
@@ -190,9 +194,10 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
         ? `<p class="step-cta no-print"><a href="/forms/${escapeHtml(form.id)}${langQ}">📝 ${escapeHtml(t.getFormCta)}</a></p>`
         : "";
 
-      return `<li class="step" data-step="${escapeHtml(s.key)}">
+      return `<li class="step${s.done ? " step-done" : ""}" data-step="${escapeHtml(s.key)}">
   <div class="step-head"><h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
   <label class="done-toggle no-print"><input type="checkbox" data-step-toggle="${escapeHtml(s.key)}"> ${escapeHtml(t.markDone)}</label></div>
+  ${done}
   ${claims ? `<ul>${claims}</ul>` : ""}
   ${cost}${time}${prereq}${disc}${stale}
   ${detailBlock}${formCta}
@@ -227,8 +232,10 @@ export function renderPacket(
         : "";
       const disc = s.discretionary ? `<p class="flag">${escapeHtml(t.discretionary)}</p>` : "";
       const stale = s.needs_reverification ? `<p class="flag" role="note">${escapeHtml(t.needsRecheck)}</p>` : "";
-      return `<li class="step">
+      const done = s.done ? `<p class="meta done-badge">✅ ${escapeHtml(t.alreadyDone)}</p>` : "";
+      return `<li class="step${s.done ? " step-done" : ""}">
   <h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
+  ${done}
   ${detail ? `<ul>${detail}</ul>` : ""}
   ${cost}${time}${prereq}${disc}${stale}
   ${sourceList(stepRecords, lang)}
