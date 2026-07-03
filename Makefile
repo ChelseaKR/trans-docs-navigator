@@ -7,7 +7,7 @@ SHELL := /bin/bash
 
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
         lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-overflow seo deploy-plan clean \
-        smoke coverage link-check source-watch source-baseline new-record
+        smoke coverage link-check source-watch source-baseline policy-watch policy-baseline new-record
 
 help:
 	@echo "Targets:"
@@ -149,6 +149,14 @@ source-watch:
 	@$(NODE) scripts/source-watch.ts
 source-baseline:
 	@$(NODE) scripts/source-watch.ts --update
+
+# Weekly content-ops (content-watch.yml): watch the authoritative trackers (MAP, A4TE,
+# legislative-tracker pages) upstream of any single cited source, and annotate affected
+# records by jurisdiction when one changes.
+policy-watch:
+	@$(NODE) scripts/policy-watch.ts
+policy-baseline:
+	@$(NODE) scripts/policy-watch.ts --update
 
 # Print a schema-valid corpus-record skeleton (dated today, placeholder verifier).
 new-record:
