@@ -84,6 +84,8 @@ export interface UiMessages {
   getFormCta: string;
   moreDetail: string;
   markDone: string;
+  /** Per-step "report an error / law changed" link, wired to the law-changed issue template. */
+  reportError: string;
   /** Progress counter template with {done}/{total} placeholders. */
   progressTemplate: string;
   stepsLabel: string;

@@ -31,6 +31,15 @@ export function escapeHtml(s: string): string {
     .replace(/'/g, "&#39;");
 }
 
+// "Law changed in X" issue template (.github/ISSUE_TEMPLATE/law-changed.md). Wiring a
+// per-step report link to it turns users into a freshness signal (RESEARCH-ROADMAP R11).
+// The jurisdiction + document are non-PII selection metadata, prefilled into the title so
+// the report is actionable; no identity data is involved.
+const LAW_CHANGED_ISSUE_URL = "https://github.com/ChelseaKR/trans-docs-navigator/issues/new?template=law-changed.md";
+export function reportErrorHref(jurisdiction: string, documentType: string): string {
+  return `${LAW_CHANGED_ISSUE_URL}&title=${encodeURIComponent(`[law-changed] ${jurisdiction} · ${documentType}`)}`;
+}
+
 
 /**
  * Colour tokens, exported so the a11y gate can assert WCAG 2.2 AA contrast ratios
@@ -190,6 +199,10 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
         ? `<p class="step-cta no-print"><a href="/forms/${escapeHtml(form.id)}${langQ}">📝 ${escapeHtml(t.getFormCta)}</a></p>`
         : "";
 
+      // Per-step "report an error / law changed" link (RESEARCH-ROADMAP R11): a one-click
+      // path to the law-changed issue template, so a user who spots stale guidance becomes
+      // a freshness signal exactly where they noticed it.
+      const reportLink = `<p class="step-report meta no-print"><a href="${reportErrorHref(checklist.jurisdiction, s.document_type)}" rel="noopener noreferrer">${escapeHtml(t.reportError)}</a></p>`;
       return `<li class="step" data-step="${escapeHtml(s.key)}">
   <div class="step-head"><h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
   <label class="done-toggle no-print"><input type="checkbox" data-step-toggle="${escapeHtml(s.key)}"> ${escapeHtml(t.markDone)}</label></div>
@@ -197,6 +210,7 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
   ${cost}${time}${prereq}${disc}${stale}
   ${detailBlock}${formCta}
   ${sourceList(stepRecords, lang)}
+  ${reportLink}
 </li>`;
     })
     .join("");

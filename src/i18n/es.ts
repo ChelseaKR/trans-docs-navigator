@@ -84,6 +84,7 @@ export const es: LocaleBundle = {
     getFormCta: "Obtenga el formulario oficial",
     moreDetail: "Más detalle",
     markDone: "Marcar como hecho",
+    reportError: "¿Desactualizado? Informe de un error o una ley que cambió",
     progressTemplate: "{done} de {total} pasos hechos",
     stepsLabel: "pasos",
     estimatedCost: "Costo estimado",
