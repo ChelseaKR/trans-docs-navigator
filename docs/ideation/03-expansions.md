@@ -138,7 +138,7 @@ checklist with the guarantees structurally attached.
 - **Excellence bar:** an embedded checklist visibly degrades when a record does;
   provenance fields are non-optional keys in every response.
 
-### EXP-08 — Corpus as a versioned, signed public dataset
+### EXP-08 — Corpus as a versioned, signed public dataset — ✅ DONE
 **Pitch:** Publish the corpus — schema, changelog, signatures — as a first-class
 open-data artifact.
 - **Impact:** ROADMAP §11's "the verified corpus + methodology remain a reusable
@@ -155,6 +155,33 @@ open-data artifact.
   **[counsel-gated]**.
 - **Excellence bar:** a third party can validate any release offline and diff two
   releases to see exactly which legal facts changed and who verified them.
+- **Status:** Release pipeline shipped; public distribution awaits repository
+  visibility. `scripts/dataset-build.ts` assembles a release bundle
+  (`schema.json`, `records.json`, `verifiers.json`, `labels.json`, `manifest.json`
+  with per-file sha256 + `corpus/source-hashes.json` provenance) under `dist/dataset/`,
+  reusing `api/corpus.ts`'s fail-closed validator so a release can never ship a record
+  the `content` gate would reject. `labels.json` is mechanically derived per
+  jurisdiction from `verification_status` counts and the `placeholder:true` roster
+  flag (`mechanical_verification_complete:false` wherever any record is unverified or
+  uses a placeholder); `launch_cleared` always remains false because a build script
+  cannot grant a human/counsel gate. No new legal wording is introduced, matching
+  `docs/audits/data-card.md`. `scripts/dataset-diff.ts`
+  diffs two releases (dirs, records.json paths, or a `git:<ref>` snapshot of
+  `corpus/jurisdictions/`) keyed by record `id` into `changelog.md`/`diff.json`,
+  surfacing which `statement`/`verification_status`/`verifier` fields changed and by
+  whom — satisfying the excellence bar. `.github/workflows/release.yml`'s new
+  `dataset` job runs the build on the same `tags: v*` trigger after full verification,
+  uploads each file to the tagged GitHub Release (and as a workflow artifact), and
+  attests keyless build provenance via
+  `actions/attest-build-provenance` (OIDC; only `id-token: write` +
+  `attestations: write`, no secrets) — mirroring the SBOM job. `npm run dataset:build`
+  / `dataset:diff` and `make dataset` wrap the same scripts locally. Tests in
+  `tests/dataset.test.ts` assert the bundle's shape, schema-validity, verifier-roster
+  membership, mechanical-verification labels, and the never-auto-grant-launch invariant.
+  GitHub Release assets inherit this repository's current private visibility, so calling
+  them a public download today would be false. Zenodo DOI minting and the repository-
+  visibility decision remain open — this ships the build/sign/diff/release pipeline
+  those distribution steps attach to.
 
 ### EXP-09 — Clinic mode for legal-aid workshops
 **Pitch:** A facilitation view for people who already run name-change clinics.

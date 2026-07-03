@@ -38,6 +38,8 @@
     "loadtest": "node --experimental-strip-types scripts/latency-bench.ts",
     "slo:check": "node --experimental-strip-types scripts/slo-check.ts",
     "a11y": "node --experimental-strip-types scripts/a11y-lint.ts",
+    "dataset:build": "node --experimental-strip-types scripts/dataset-build.ts",
+    "dataset:diff": "node --experimental-strip-types scripts/dataset-diff.ts",
     "dev": "node --experimental-strip-types api/server.ts"
   },
   "devDependencies": {
