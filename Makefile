@@ -7,7 +7,7 @@ SHELL := /bin/bash
 
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
         lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-overflow seo deploy-plan clean \
-        smoke coverage link-check source-watch source-baseline policy-watch policy-baseline new-record
+        smoke coverage link-check source-watch source-baseline policy-watch policy-baseline new-record dataset
 
 help:
 	@echo "Targets:"
@@ -172,6 +172,14 @@ policy-baseline:
 # Print a schema-valid corpus-record skeleton (dated today, placeholder verifier).
 new-record:
 	@$(NODE) scripts/new-record.ts
+
+# Build the versioned, signed public-dataset release bundle (EXP-08): schema,
+# records, verifier roster, per-jurisdiction labels, and a hash manifest under
+# dist/dataset/. `.github/workflows/release.yml`'s `dataset` job runs the same
+# command on tagged releases and attests provenance over the result.
+dataset:
+	@echo "── dataset release bundle (schema+records+verifiers+labels+manifest) ─"
+	@$(NODE) scripts/dataset-build.ts
 
 deploy-plan:
 	@cd infra && terraform init -backend=false >/dev/null 2>&1 && terraform validate || \

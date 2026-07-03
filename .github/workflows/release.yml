@@ -16,6 +16,14 @@ name: release
 #
 # Uses only GITHUB_TOKEN + keyless OIDC (Sigstore Fulcio/Rekor) — no long-lived
 # credential, no repo secret to provision.
+#
+# The `dataset` job (EXP-08) publishes the corpus itself as a versioned, signed
+# public-dataset bundle (schema + records + verifier roster + per-jurisdiction
+# labels + hash manifest, see scripts/dataset-build.ts) — same tag trigger, uploaded
+# as a workflow artifact and attested with keyless OIDC provenance (no secrets,
+# mirrors the SBOM pattern above). It runs independently of version-check/verify/
+# package/verify-published so a dataset-only release isn't blocked on the image
+# pipeline (and vice versa).
 
 on:
   push:
@@ -212,3 +220,32 @@ jobs:
       - name: Stop the container
         if: always()
         run: docker rm -f release-check || true
+
+  # Versioned, signed public-dataset release (EXP-08). No new deps: the build script
+  # is native `node --experimental-strip-types` reusing api/corpus.ts's fail-closed
+  # validator. Provenance is keyless (GitHub OIDC) — no secrets, only the two extra
+  # permissions below (job-scoped; they do not widen the `package` job above).
+  dataset:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: "22"
+      - name: Build dataset release bundle
+        run: node --experimental-strip-types scripts/dataset-build.ts dist/dataset
+      - name: Attest build provenance (keyless, OIDC)
+        uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4.1.1
+        with:
+          subject-path: "dist/dataset/*"
+      - name: Upload dataset artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: dataset-${{ github.ref_name }}
+          path: dist/dataset/
