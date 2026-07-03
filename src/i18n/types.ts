@@ -99,6 +99,8 @@ export interface UiMessages {
   moreHeading: string;
   seeDetailedAnswer: string;
   officialFormIntro: string;
+  /** "What to bring" preparation-list heading on the form-fill page (rendered only when a form has cited items). */
+  whatToBringTitle: string;
   // On-device "copy your details into the official form" helper (no PDF, no egress).
   copyTitle: string;
   copyIntro: string;

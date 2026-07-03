@@ -14,7 +14,7 @@
 import { existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { loadForms } from "../api/forms.ts";
-import { REPO_ROOT } from "../api/corpus.ts";
+import { isValidIsoDate, REPO_ROOT } from "../api/corpus.ts";
 import { pass, fail } from "./util.ts";
 
 const errors: string[] = [];
@@ -28,7 +28,33 @@ for (const f of forms) {
   const raw = f as unknown as Record<string, unknown>;
   if (!/^https:\/\//.test(f.source?.url ?? "")) errors.push(`${f.id}: source.url must be an official https URL`);
   if (!f.source?.title) errors.push(`${f.id}: missing source.title`);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(f.source?.last_verified ?? "")) errors.push(`${f.id}: missing/invalid last_verified`);
+  if (!isValidIsoDate(f.source?.last_verified)) errors.push(`${f.id}: missing/invalid last_verified`);
+  if (f.version_hint !== undefined && f.version_hint.trim().length === 0) {
+    errors.push(`${f.id}: version_hint must be non-empty when present`);
+  }
+  if (f.pdf_sha256 !== undefined && !/^[a-f0-9]{64}$/.test(f.pdf_sha256)) {
+    errors.push(`${f.id}: pdf_sha256 must be a lowercase SHA-256 hex digest`);
+  }
+  if (f.checked !== undefined && !isValidIsoDate(f.checked)) {
+    errors.push(`${f.id}: checked must be a real ISO calendar date`);
+  }
+  if (f.pdf_sha256 !== undefined && f.checked === undefined) {
+    errors.push(`${f.id}: pdf_sha256 requires a checked date`);
+  }
+  if (f.preparation !== undefined) {
+    if (!Array.isArray(f.preparation)) {
+      errors.push(`${f.id}: preparation must be an array`);
+    } else {
+      for (const [index, item] of f.preparation.entries()) {
+        if (!item || typeof item.item !== "string" || item.item.trim().length === 0) {
+          errors.push(`${f.id}: preparation[${index}].item must be non-empty`);
+        }
+        if (!item || typeof item.citation !== "string" || item.citation.trim().length === 0) {
+          errors.push(`${f.id}: preparation[${index}].citation must be non-empty`);
+        }
+      }
+    }
+  }
   for (const banned of ["fillable", "template_path", "field_map"]) {
     if (raw[banned] !== undefined) errors.push(`${f.id}: must not declare "${banned}" — the app links to official forms, it does not auto-fill`);
   }

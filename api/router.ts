@@ -164,7 +164,7 @@ function badRequest(lang: Language): RouteResponse {
 
 interface ChecklistCacheKey {
   intake: Intake;
-  today?: string;
+  today: string | undefined;
   thinnerCoverage: boolean;
 }
 
@@ -184,7 +184,7 @@ interface AnswerKey {
   change_types: ChangeType[];
   documents: DocumentType[];
   language: Language;
-  today?: string;
+  today: string | undefined;
 }
 
 interface AnswerCacheValue {
