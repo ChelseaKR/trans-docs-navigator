@@ -7,7 +7,7 @@ SHELL := /bin/bash
 
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
         lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-overflow seo deploy-plan clean \
-        smoke coverage link-check source-watch source-baseline policy-watch policy-baseline new-record
+        smoke e2e-journey coverage link-check source-watch source-baseline policy-watch policy-baseline new-record
 
 help:
 	@echo "Targets:"
@@ -120,7 +120,7 @@ eval:
 # (TDN_I18N_TEST_HOOKS=1); production never registers en-XA. See docs/I18N.md.
 i18n-overflow:
 	@echo "── [19/20] i18n: pseudolocale overflow (G9, Playwright desktop+mobile) ─"
-	@npx --no-install playwright test
+	@npx --no-install playwright test tests/e2e/i18n
 
 # Deterministic in-process latency guard for the request path (QM-02, ROADMAP §7).
 # Measures routing + retrieval + composition + render latency with no server/network
@@ -147,6 +147,15 @@ eval-bedrock:
 smoke:
 	@echo "── synthetic user journey (real server) ──────────────────"
 	@$(NODE) scripts/smoke-journey.ts
+
+# D2 — real-BROWSER journey: intake → checklist → form-fill → encrypted save/resume
+# round-trip, against the production server (Playwright's "journey-*" projects; see
+# playwright.config.ts). Complements `smoke` (a non-browser HTTP walk) by proving the
+# client-side modules (resume-panel.js, resume-crypto.js, form-copy.js) actually run,
+# under the real strict CSP, in a real browser.
+e2e-journey:
+	@echo "── real-browser E2E journey (Playwright, desktop+mobile) ─"
+	@npx --no-install playwright test tests/e2e/journey
 
 # Regenerate the public coverage matrix (docs/audits/coverage.md).
 coverage:

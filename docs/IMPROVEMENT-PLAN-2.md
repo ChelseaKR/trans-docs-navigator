@@ -59,8 +59,19 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
   `src/pages.ts`, the resume panel) to SRI'd `/vendor/*.js`, then drop `'unsafe-inline'` from
   `script-src` in `api/server.ts`. Reuse the vendored-asset hash check in
   `scripts/security-scan.ts`.
-- **D2 `P2` Playwright E2E:** intake → checklist → form-fill download → encrypted
-  save/resume round-trip in a real browser (complements the unit-tested `src/secure-resume.ts`).
+- **D2 `P2` Playwright E2E — DONE (2026-07-03):** intake → checklist → form-fill →
+  encrypted save/resume round-trip in a real browser (complements the unit-tested
+  `src/secure-resume.ts`). Landed as `tests/e2e/journey/journey.spec.ts`, run against the
+  real production server entry (`api/server.ts`, not the pseudolocale test server) via a
+  second Playwright project pair (`journey-desktop`/`journey-mobile`) in
+  `playwright.config.ts`. Covers: intake submission → `/checklist` (disclosure banner +
+  `Step 1`) → following a `/forms/...` link (copy-helper affordance, since form-copy.js
+  is clipboard-based, not a download) → encrypted save/resume via `#resume-pass` /
+  `#resume-save` / `#resume-load` (asserts `localStorage["tdn.resume"]` is non-plaintext,
+  a wrong passphrase fails closed with no navigation, and the correct one restores the
+  saved selection onto a *different* checklist) → the strict CSP on every HTML response
+  along the way. `npm run test:e2e:journey` / `make e2e-journey`; wired into the
+  `smoke-journey` CI job alongside the existing `scripts/smoke-journey.ts` walk.
 - **D3 `P2` Real retrieval backend:** wire a real embedding model + pgvector/OpenSearch
   behind the `Retriever` seam (`api/embedding-retrieval.ts`); run `loadtest/p95.k6.js` in CI
   against a docker-compose instance for the §7 p95 target.
@@ -85,11 +96,12 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
    report-an-error links. Each a PR, `make verify` green, net-new assurance.
 2. **Round 3b (launch gates, human-led):** A1–A5. The true launch blockers; code prepares
    the artifacts, humans sign them.
-3. **Round 3c (scale/product):** B2/B4, C2/C3, D2–D4, E1/E2 as capacity allows.
+3. **Round 3c (scale/product):** B2/B4, C2/C3, D3/D4, E1/E2 as capacity allows (D2 done).
 
 ## New/strengthened CI gates this round adds
 1. Source-liveness (link-rot) gate (B1) · 2. CSP without script `'unsafe-inline'` + SRI on
-the externalized bundles (D1) · 3. Scheduled freshness/eval cron (B4) · 4. Playwright E2E (D2).
+the externalized bundles (D1) · 3. Scheduled freshness/eval cron (B4) · 4. Playwright E2E
+(D2) — **landed**, `smoke-journey` CI job.
 
 ---
 
