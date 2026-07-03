@@ -57,6 +57,16 @@ launch claim until the human step is signed; see `docs/STATUS.md`):
 - A real Bedrock accuracy pass (needs AWS credentials) · standing up the actual
   pgvector/OpenSearch index + running k6 in CI against a deployed instance.
 
+**Previously deferred — now landed as code (2026-07-03, third pass):**
+- §5.2 **Answer/render caching** — `api/cache.ts` (bounded, LRU-ish `memoize()` +
+  `clearAllCaches()` registry) wraps `/checklist` and the no-question-text set of
+  `/answer` in `api/router.ts`, keyed on the canonical `intakeQuery()` fields + `today` (no
+  free text, no PII); `api/corpus.ts`'s `loadCorpus()` gains a dev-ergonomics mtime watch
+  (`NODE_ENV !== 'production'` or `CORPUS_WATCH=1`) that force-reloads and cascades
+  `clearAllCaches()` on a corpus edit, so a stale cached answer/checklist can never
+  outlive the file it was rendered from. See `tests/cache.test.ts`, `tests/router.test.ts`,
+  `tests/corpus.test.ts`.
+
 ## How to read this
 
 - **Priority:** `P0` launch-blocking · `P1` pre-launch · `P2` post-launch hardening · `P3` opportunistic.
@@ -191,9 +201,9 @@ and proving the privacy invariant rather than spot-checking it.
 - **Dimension:** Performance/relevance · **Concern:** technical · **Evidence:** ADR-2; lexical full-corpus scan with no IDF; ROADMAP §6 specifies pgvector/OpenSearch behind the same `retrieve()` signature.
 - **Action:** Implement the embedding-backed retriever behind the existing interface; keep the lexical one as a deterministic test/eval fallback. Re-run the eval through it to prove the safety contract holds across the swap. Add a `p95 first-token < 1.5 s` load test (ROADMAP §7 names k6; no harness exists yet) — currently an *unmeasured* target.
 
-### 5.2 — `P3` Caching & render reuse
+### 5.2 — `P3` Caching & render reuse — **DONE**
 - **Dimension:** Performance/cost · **Concern:** technical · **Evidence:** pages re-render per request; ROADMAP §11 wants common-jurisdiction answer caching for Bedrock cost.
-- **Action:** Cache common `(jurisdiction × change_type)` answers and static checklist HTML (it's stateless and PII-free, so cacheable). Add corpus cache-invalidation on file change for dev ergonomics (`api/corpus.ts` caches for process lifetime).
+- **Action:** ~~Cache common `(jurisdiction × change_type)` answers and static checklist HTML (it's stateless and PII-free, so cacheable). Add corpus cache-invalidation on file change for dev ergonomics (`api/corpus.ts` caches for process lifetime).~~ **DONE**: `api/cache.ts` adds a tiny generic `memoize()` (bounded Map, LRU-ish eviction, default max 256) plus a `clearAllCaches()` registry. `api/router.ts` wraps `/checklist` (keyed on the canonical `intakeQuery(intake)` + `today` + the thinner-coverage flag — this already collapses to (jurisdiction × change × doc × language), so it naturally caches common (jurisdiction × change-type) combos) and `/answer` (keyed on jurisdiction + sorted change/doc enums + language + `today`, cached **only** when no free-text `q` is present — a question always bypasses the cache; observability counters are stored alongside the cached body so the safe-log call still fires real numbers on a hit). `api/corpus.ts`'s `loadCorpus()` now stats the corpus dir + `VERIFIERS.json` on each cached call (gated behind `NODE_ENV !== 'production'` or `CORPUS_WATCH=1`, so production keeps its zero-syscall process-lifetime cache) and, on a newer mtime, force-reloads **and** calls `clearAllCaches()` so stale answers/checklist HTML can't survive a corpus edit. See `tests/cache.test.ts`, and the caching/invalidation coverage added to `tests/router.test.ts` and `tests/corpus.test.ts`.
 
 ---
 

@@ -107,6 +107,31 @@ test("checklist with malformed jurisdiction returns 400", () => {
   assert.equal(r.status, 400);
 });
 
+test("checklist route caching (IP §5.2): identical requests return an identical body, and the cache hit still logs", () => {
+  const req = () => handleRoute("GET", u("/checklist?jurisdiction=US-CA&change=name"), "2026-06-16");
+  const first = req();
+  const second = req(); // served from the render cache
+  assert.equal(first.status, 200);
+  assert.equal(second.status, 200);
+  assert.equal(second.body, first.body);
+  // Observability must not go blind on a cache hit — the log is emitted outside the
+  // cached value on every request, hit or miss.
+  assert.equal(second.log?.event, "checklist");
+  assert.equal(second.log?.fields.jurisdiction, "US-CA");
+});
+
+test("checklist route caching keys on the full canonical query, today, and thinner-coverage — distinct inputs never collide", () => {
+  const ca = handleRoute("GET", u("/checklist?jurisdiction=US-CA&change=name"), "2026-06-16");
+  const ny = handleRoute("GET", u("/checklist?jurisdiction=US-NY&change=name"), "2026-06-16");
+  assert.notEqual(ca.body, ny.body);
+
+  const day1 = handleRoute("GET", u("/checklist?jurisdiction=US-CA&change=gender-marker"), "2026-06-16");
+  const day2 = handleRoute("GET", u("/checklist?jurisdiction=US-CA&change=gender-marker"), "2026-07-01");
+  // Both render successfully — a different `today` is a different cache key, not a stale hit.
+  assert.equal(day1.status, 200);
+  assert.equal(day2.status, 200);
+});
+
 test("packet route renders with a deterministic generated-on date when today is injected", () => {
   const r = handleRoute("GET", u("/packet?jurisdiction=US-CA&change=name"), "2026-05-31");
   assert.equal(r.status, 200);
@@ -129,6 +154,33 @@ test("answer route with no change param defaults to both change types (like /che
   assert.equal(r.status, 200);
   assert.equal(r.log?.fields.refused, false);
   assert.ok((r.log?.fields.claims as number) > 0);
+});
+
+test("answer route caching (IP §5.2): identical no-question requests return an identical body, and the cache hit still logs real counters", () => {
+  const req = () => handleRoute("GET", u("/answer?jurisdiction=US-CA&change=name"), "2026-05-31");
+  const first = req();
+  const second = req(); // served from the render cache
+  assert.equal(first.status, 200);
+  assert.equal(second.body, first.body);
+  // The observability log is stored alongside the cached value and re-emitted on every
+  // hit — counters must not go blank/zero just because the body was cached.
+  assert.equal(second.log?.event, "answer");
+  assert.equal(second.log?.fields.jurisdiction, "US-CA");
+  assert.equal(second.log?.fields.refused, first.log?.fields.refused);
+  assert.equal(second.log?.fields.claims, first.log?.fields.claims);
+  assert.equal(second.log?.fields.degraded, first.log?.fields.degraded);
+});
+
+test("answer route never caches a free-text question — different questions re-rank retrieval independently, never colliding on a shared cache entry", () => {
+  // These two questions are known (tests/retrieval.test.ts-style scoring) to re-rank the
+  // retrieved records differently, so a genuinely per-request (uncached) answer path
+  // produces different bodies; a caching bug that fell through to the no-q cache key
+  // would flatten both to the same (cached) body.
+  const q1 = handleRoute("GET", u("/answer?jurisdiction=US-CA&change=name&q=passport%20travel%20document"), "2026-05-31");
+  const q2 = handleRoute("GET", u("/answer?jurisdiction=US-CA&change=name&q=social%20security%20card%20SSA"), "2026-05-31");
+  assert.equal(q1.status, 200);
+  assert.equal(q2.status, 200);
+  assert.notEqual(q1.body, q2.body);
 });
 
 test("form route renders a known form and 404s an unknown one", () => {
