@@ -39,7 +39,7 @@
     "dev": "node --experimental-strip-types api/server.ts"
   },
   "devDependencies": {
-    "@playwright/test": "1.60.0",
+    "@playwright/test": "1.61.1",
     "@types/node": "^25.9.3",
     "stylelint": "16.26.1",
     "stylelint-use-logical": "2.1.3",
