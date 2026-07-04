@@ -41,7 +41,7 @@
   "devDependencies": {
     "@playwright/test": "1.60.0",
     "@types/node": "^25.9.3",
-    "stylelint": "16.26.1",
+    "stylelint": "17.14.0",
     "stylelint-use-logical": "2.1.3",
     "typescript": "^6.0.3"
   }
