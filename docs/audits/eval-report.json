@@ -36,6 +36,20 @@
       "threshold": 1,
       "n": 5,
       "pass": true
+    },
+    {
+      "name": "context_recall_at_8",
+      "value": 1,
+      "threshold": 0.8,
+      "n": 12,
+      "pass": true
+    },
+    {
+      "name": "context_precision_at_1",
+      "value": 1,
+      "threshold": 0.7,
+      "n": 12,
+      "pass": true
     }
   ],
   "segment_accuracy": [

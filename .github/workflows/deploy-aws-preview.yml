@@ -14,6 +14,13 @@ permissions:
   contents: read
   id-token: write # OIDC
 
+# CICD-23: prevent two concurrent deploys of the same preview environment from racing
+# each other (e.g. two manual dispatches, or a re-run while one is in flight). Do NOT
+# cancel an in-flight deploy — a half-applied Lambda update is worse than a queued one.
+concurrency:
+  group: deploy-aws-preview-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest

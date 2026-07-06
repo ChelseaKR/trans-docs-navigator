@@ -1,0 +1,24 @@
+# Code owners (CQ-39, CICD-17/18). This is a single-maintainer repo today, so
+# "code owner review required" is enforced by branch-protection settings the
+# maintainer controls directly (see the README conformance table) rather than
+# by a second human — but the file itself is what CICD-17 requires to exist,
+# names the accountable owner per safety-critical path, and is what a future
+# second maintainer would extend.
+
+* @ChelseaKR
+
+# CI/CD and release supply chain — changes here affect every gate.
+/.github/workflows/ @ChelseaKR
+
+# Citation enforcement is the core safety control: no claim ships without a
+# citation, including model-generated text (see docs/audits/model-card.md).
+/api/citation.ts @ChelseaKR
+
+# The privacy-invariant logging sink (allowlist-only fields, fail-closed).
+/api/log.ts @ChelseaKR
+
+# The static privacy lint that proves no PII reaches logs/egress.
+/scripts/privacy-lint.ts @ChelseaKR
+
+# The hand-verified legal corpus — every record needs a real source + verifier.
+/corpus/ @ChelseaKR

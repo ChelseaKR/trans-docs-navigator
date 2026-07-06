@@ -17,8 +17,8 @@ import { t as locale } from "../src/i18n/index.ts";
 
 export interface GenerateInput {
   retrieved: Retrieved[];
-  question?: string;
-  maxRecords?: number;
+  question?: string | undefined;
+  maxRecords?: number | undefined;
   /** Language for the system-composed scaffolding (intro/cost/timeline/refusal/disclosure). */
   language?: Language;
 }
@@ -176,13 +176,12 @@ export function parseTaggedOutput(text: string): AnswerBlock[] {
 
 export class BedrockGenerator implements AsyncGenerator {
   private readonly transport: BedrockTransport | null;
-  private readonly config: { modelId: string; region: string };
-  constructor(
-    transport: BedrockTransport | null = null,
-    config: { modelId: string; region: string } = { modelId: "anthropic.claude-3-5-haiku", region: "us-east-1" },
-  ) {
+  // No modelId/region config field here: the transport (api/bedrock-transport.ts)
+  // owns its own AWS SDK client config. A prior `config` constructor param was
+  // accepted but never read anywhere (dead code, caught by `noUnusedLocals`) —
+  // removed 2026-07-05 rather than wired to fake behavior it never had.
+  constructor(transport: BedrockTransport | null = null) {
     this.transport = transport;
-    this.config = config;
   }
 
   async generateAsync(input: GenerateInput): Promise<GroundedAnswer> {
