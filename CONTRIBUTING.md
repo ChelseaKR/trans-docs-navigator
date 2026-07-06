@@ -38,6 +38,11 @@ The CI content gate rejects any record whose verifier is not in that roster.
 
    or just `make verify` to run the full blocking pipeline (CI parity).
 
+This repo also participates in a portfolio-wide engineering standard (see the
+"Standards conformance" table in the README and `/STANDARDS` if you have access to the
+private standards repo); `.github/workflows/standards.yml` checks the corpus/audit
+artifacts for staleness against it on every push and PR.
+
 ## Pull requests
 
 - Keep PRs focused; a corpus PR should touch corpus + verifier roster, not app code.

@@ -13,8 +13,6 @@ on:
 
 permissions:
   contents: read
-  security-events: write
-  actions: read # required for SARIF upload on private repos
 
 jobs:
   analyze:
@@ -23,12 +21,26 @@ jobs:
     # repo flips public, at which point CodeQL starts running with no other change.
     if: ${{ !github.event.repository.private }}
     runs-on: ubuntu-latest
+    # Write scopes declared at job level, not workflow level (OpenSSF Scorecard
+    # Token-Permissions prefers this even for a single-job workflow — it's the
+    # pattern that stays minimal if a second job is ever added here).
+    permissions:
+      contents: read
+      security-events: write
+      actions: read # required for SARIF upload on private repos
     steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           persist-credentials: false
       - uses: github/codeql-action/init@8aad20d150bbac5944a9f9d289da16a4b0d87c1e # v4.36.2
         with:
-          languages: javascript-typescript
+          # `actions` (CICD-20) analyzes the workflow YAML itself (the same surface
+          # zizmor covers from a different angle, in ci.yml); `javascript-typescript`
+          # covers the application code.
+          languages: javascript-typescript,actions
           queries: security-and-quality
       - uses: github/codeql-action/analyze@8aad20d150bbac5944a9f9d289da16a4b0d87c1e # v4.36.2

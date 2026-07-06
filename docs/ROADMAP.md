@@ -60,8 +60,11 @@ Targets specialize `/STANDARDS/QUALITY-AND-METRICS-STANDARD.md`.
 | Corpus freshness | 0 jurisdictions past recheck SLA served as "current" | freshness job | merge-blocking + runtime alarm |
 | axe violations | 0 | pa11y-ci | merge-blocking |
 | Server-side PII fields | 0 in default mode | privacy lint + data-flow test | merge-blocking |
-| p95 first-token | < 1.5 s | k6 | merge-blocking |
+| Request-path p95 (in-process) | < 15 ms | `scripts/latency-bench.ts` (`make loadtest`) | **merge-blocking** — wired into `make verify` step 20/20 (2026-07-05) |
+| p95 first-token, network/deployed (< 1.5 s) | < 1.5 s | `loadtest/p95.k6.js` (k6, against a live instance) | **opt-in**, not merge-blocking — needs k6 + a running server; corrected from a prior "merge-blocking" claim that wasn't actually wired anywhere (2026-07-05) |
 | Line / branch coverage | ≥ 90% / ≥ 85% (safety-critical) | coverage | merge-blocking |
+| Retrieval context recall@8 | ≥ 0.80 | `eval/harness.ts` `retrievalQuality()` (`make eval`) | **merge-blocking** — added 2026-07-05 (AIEV-03). K=8 (not the standard's @20) because this corpus has 32 records total; @20 is tautological at this scale. Must gate before any embedding-retrieval swap (ADR-2) lands. |
+| Retrieval precision@1 | ≥ 0.70 | Same harness function (AIEV-04 analogue) | **merge-blocking** — added 2026-07-05. The gold set names exactly one expected-relevant record per accuracy item, so "precision" here is Precision@1 (top-ranked-result accuracy), the standard IR analogue for single-relevant-document ground truth, not Precision@20 (which has a hard ceiling of 1/20 at this gold-set shape). |
 
 **Testing strategy.** Unit (logic, field-mapping), integration (retrieval→generation→citation check), eval (groundedness/accuracy/refusal via the harness), a11y (axe + keyboard + screen-reader), privacy (no-PII-in-logs, ephemeral-by-default), and content tests (every corpus record has source + verifier + date).
 
@@ -102,6 +105,29 @@ docs/   (this + audits + generated reports)
 - **Observability.** Health endpoint, eval-regression alarms, freshness alarms, error budget; **no PII in logs** (enforced).
 - **Maintenance.** The real cost is legal currency: a quarterly reverification cycle per jurisdiction, surfaced as issues; expired data degrades to "needs reverification."
 - **Sustainability/sunset.** Corpus is portable structured data; if the project winds down, the verified corpus + methodology remain a reusable public asset.
+
+## Observability
+
+Specializes `/STANDARDS/OBSERVABILITY-STANDARD.md`. **Tier declaration: Tier A** (hosted
+service — deployed to AWS Lambda scale-to-zero preview and Render per
+`docs/DEPLOY-AWS-PREVIEW.md` / `docs/DEPLOY-PREVIEW.md`), plus the Tier-B Core-Web-Vitals
+surface for the rendered pages. This heading is the explicit tier declaration the standard
+requires (OBS-21) — previously undeclared, which made every unimplemented Tier-A control
+below a *silent* skip rather than a stated gap.
+
+| Area | Status | Note |
+|---|---|---|
+| Structured JSON logs | **Live** | `api/log.ts`, allowlist-only fields, fail-closed; `tests/observability.test.ts` |
+| `/livez` + `/readyz` (+ legacy `/healthz`) | **Live** | Fail-closed readiness (corpus/freshness dependency); no dependency calls on `/livez` |
+| Distributed tracing (OTel spans, `traceparent`) | **Not implemented** | Open gap. The only outbound call is the opt-in Bedrock generator seam (unconfigured by default); tracing has a real target once that path is live in production |
+| Metrics (`/metrics`, RED per endpoint, UCUM naming) | **Not implemented** | Open gap — no Prometheus/OTel metrics endpoint exists today |
+| SLO definitions + burn-rate alerts | **Not implemented** | Open gap — no `slos/*.yaml`; ROADMAP mentions an "error budget" aspirationally below, not yet formalized |
+| RUM (Real User Monitoring beacon) | **N/A — reason: privacy posture.** This repo's core safety property is zero client-side telemetry to a third party (see "Design guarantees" in the README and the DPIA). A RUM beacon would ship page/route data off-device to a monitoring vendor by design, which conflicts directly with the hostile-jurisdiction threat model. Core Web Vitals are instead measured in CI (lab data), not from real users. |
+| Continuous profiling | **N/A** | Alpha-stage signal, not required at this repo's scale; revisit if traffic/perf work warrants it |
+
+The Lighthouse-CI lab gate for the Tier-B Core-Web-Vitals budgets (LCP/INP/CLS) is tracked
+as an open P1 item in the remediation plan — the near-zero-client-JS server-rendered pages
+are expected to pass it immediately once wired.
 
 ## 12. Responsible-tech summary
 Top risks: (1) wrong/stale guidance harming users → citation + eval + freshness gates; (2) PII exposure endangering users in hostile jurisdictions → zero-server-PII, ephemeral default, client-side fill; (3) inequitable coverage/quality across jurisdictions and identities → disaggregated accuracy and inclusive content. Full treatment in [`RESPONSIBLE-TECH-AUDITS.md`](./RESPONSIBLE-TECH-AUDITS.md).

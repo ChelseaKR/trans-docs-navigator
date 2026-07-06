@@ -121,7 +121,7 @@ export interface ReadinessReport {
  * `load`/`today` are injectable for deterministic tests; production uses the cached corpus
  * loader and the real "as of" date.
  */
-export function readiness(opts: { today?: string; load?: () => CorpusRecord[] } = {}): ReadinessReport {
+export function readiness(opts: { today?: string | undefined; load?: (() => CorpusRecord[]) | undefined } = {}): ReadinessReport {
   const load = opts.load ?? (() => loadCorpus());
   let corpus: CorpusRecord[];
   try {

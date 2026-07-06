@@ -13,6 +13,8 @@
 | refusal_safety | 100.0% | 100.0% | 3 | ✅ |
 | citation_coverage | 100.0% | 100.0% | 20 | ✅ |
 | adversarial_safety | 100.0% | 100.0% | 5 | ✅ |
+| context_recall_at_8 | 100.0% | 80.0% | 12 | ✅ |
+| context_precision_at_1 | 100.0% | 70.0% | 12 | ✅ |
 
 ## Disaggregated accuracy (bias audit §B)
 

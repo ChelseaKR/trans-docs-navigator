@@ -9,7 +9,7 @@ import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, 
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
 import { toResumeState } from "./secure-resume.ts";
-import { SHELL_ASSETS, staleAfterDays } from "./offline.ts";
+import { staleAfterDays } from "./offline.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-CA", label: "California" },

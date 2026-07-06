@@ -25,3 +25,7 @@ tmp/app.generated.css
 test-results/
 playwright-report/
 .playwright/
+
+# Lighthouse CI (P1-4) local run output
+.lighthouseci/
+lighthouseci-reports/

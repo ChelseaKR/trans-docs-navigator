@@ -1,0 +1,62 @@
+name: scorecard
+
+# OpenSSF Scorecard (P1-2, SEC-36/37/38, CICD-03/11): a supply-chain-hygiene score
+# (Pinned-Dependencies, Token-Permissions, Branch-Protection, Dangerous-Workflow,
+# Vulnerabilities, …) computed weekly and on every push to main, published to the
+# Security tab as SARIF (same Advanced-Security caveat as codeql.yml: SARIF upload to
+# a *private* repo needs GitHub Advanced Security, so it's a no-op there, not a failure).
+# The result is also uploaded as a build artifact so `docs/audits/scorecard-YYYY-MM.md`
+# can be hand-transcribed from a real run each month (SEC-38).
+
+on:
+  branch_protection_rule:
+  schedule:
+    - cron: "30 1 * * 6" # Saturdays 01:30 UTC
+  push:
+    branches: [main]
+
+permissions: read-all
+
+concurrency:
+  group: scorecard-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write # to upload SARIF (no-op via the guard below if repo is private)
+      id-token: write # to publish results and get a badge
+    steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - name: Run analysis
+        uses: ossf/scorecard-action@4eaacf0543bb3f2c246792bd56e8cdeffafb205a # v2.4.3
+        with:
+          results_file: results.sarif
+          results_format: sarif
+          publish_results: true
+
+      - name: Upload Scorecard results as a build artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: scorecard-results
+          path: results.sarif
+          retention-days: 90
+
+      - name: Upload SARIF to Code Scanning
+        # Same guard as codeql.yml: Advanced Security (required for code-scanning SARIF
+        # upload on a private repo) is only free on public repos. No-op, not a failure,
+        # if this repo is ever flipped private.
+        if: ${{ !github.event.repository.private }}
+        uses: github/codeql-action/upload-sarif@8aad20d150bbac5944a9f9d289da16a4b0d87c1e # v4.36.2
+        with:
+          sarif_file: results.sarif
