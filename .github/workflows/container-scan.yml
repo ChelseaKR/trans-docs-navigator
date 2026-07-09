@@ -14,14 +14,12 @@ on:
       - ".dockerignore"
       - "package.json"
       - "package-lock.json"
-      - ".github/workflows/container-scan.yml"
   pull_request:
     paths:
       - "Dockerfile"
       - ".dockerignore"
       - "package.json"
       - "package-lock.json"
-      - ".github/workflows/container-scan.yml"
 
 # Least privilege: this job only reads the repo to build the image.
 permissions:
