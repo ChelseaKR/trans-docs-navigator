@@ -148,10 +148,14 @@ Adding states is content work (human), but the rails for it are code:
    language, whether a current record exists, is degraded, or is missing, written to
    `docs/audits/coverage.md`. Makes the "what's next" conversation concrete and shows
    honest gaps publicly.
-2. **Spanish parity for Texas state records.** The ES coverage note exists because TX
-   has no Spanish state records. The pipeline supports them already; this is corpus
-   authoring plus the existing parity tests. Flagged here because the machinery needs
-   zero changes, only content.
+2. **Spanish parity for Texas state records.** ✅ Done. Added `tx.court-order.name.es`,
+   `tx.drivers-license.name.es`, and `tx.drivers-license.gender-marker.es` to
+   `corpus/jurisdictions/spanish.json`, mirroring the three EN Texas records (including
+   the honest `needs_reverification` posture on the gender-marker record). The ES
+   thinner-coverage note no longer fires for TX name-change requests; `tests/spanish-parity.test.ts`
+   carries a regression assertion, and the WA jurisdiction (still ES-less) now exercises
+   the "thin coverage" note case instead. No pipeline changes — content only, as
+   scoped.
 3. **Third-language dry run.** The i18n registry claims a new language is one bundle +
    one registration. Prove it with a CI-only smoke locale (or a real one when a
    translator exists) to keep the claim true as the app grows.
