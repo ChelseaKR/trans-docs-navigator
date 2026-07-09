@@ -64,3 +64,39 @@ test("buildIcs with no summaries still produces a valid, empty calendar", () => 
   assert.match(ics, /END:VCALENDAR\r\n$/);
   assert.ok(!ics.includes("BEGIN:VTODO"));
 });
+
+test("buildIcs escapes a lone carriage return as \\n (RFC 5545 TEXT)", () => {
+  const ics = buildIcs(["carriage\rreturn"], STAMP);
+  assert.ok(ics.includes("SUMMARY:carriage\\nreturn"), "lone \\r must become \\n, not leak raw");
+  assert.ok(!/SUMMARY:[^\r\n]*\r(?!\n)/.test(ics), "no raw lone CR may survive in content");
+});
+
+test("buildIcs folds long lines at 75 octets (RFC 5545 §3.1) and unfolds losslessly", () => {
+  const long = "Update your driver's license, state ID, and vehicle registration at the department of motor vehicles ".repeat(2).trim();
+  const ics = buildIcs([long], STAMP);
+  const enc = new TextEncoder();
+  for (const line of ics.split("\r\n")) {
+    assert.ok(enc.encode(line).length <= 75, `physical line exceeds 75 octets: ${line.length} chars`);
+  }
+  // Unfolding (strip CRLF + single space) must reconstruct the logical line.
+  const unfolded = ics.replace(/\r\n /g, "");
+  assert.ok(unfolded.includes(`SUMMARY:${long.replaceAll(",", "\\,")}`));
+});
+
+test("buildIcs folding never splits a multi-byte character", () => {
+  const accented = "Actualicé la información del pasaporte y de la matrícula ".repeat(3).trim();
+  const ics = buildIcs([accented], STAMP);
+  const enc = new TextEncoder();
+  for (const line of ics.split("\r\n")) {
+    assert.ok(enc.encode(line).length <= 75);
+  }
+  const unfolded = ics.replace(/\r\n /g, "");
+  assert.ok(unfolded.includes(accented.replaceAll(",", "\\,")), "multi-byte content survives folding intact");
+});
+
+test("the .ics artifact carries no product branding (device/calendar discoverability)", () => {
+  const ics = buildIcs(["Get a court order"], STAMP);
+  assert.ok(!/trans[- ]docs/i.test(ics), "PRODID/UID must not brand the artifact");
+  assert.match(ics, /PRODID:-\/\/Reminders\/\/EN/);
+  assert.match(ics, /UID:1-20260101T000000Z@reminders\.local/);
+});

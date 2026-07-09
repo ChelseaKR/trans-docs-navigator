@@ -21,9 +21,35 @@ function icsStamp(d) {
     "Z"
   );
 }
-// RFC 5545 text escaping for SUMMARY values.
+// RFC 5545 text escaping for SUMMARY values (handles \r\n, lone \n, and lone \r).
 function escapeText(s) {
-  return s.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
+  return s.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n");
+}
+
+// RFC 5545 §3.1 line folding: a content line SHOULD NOT be longer than 75 octets
+// (excluding CRLF). Fold with CRLF + one space; continuation content is capped at 74
+// octets so the leading space keeps each physical line within 75. Byte-aware (UTF-8 via
+// TextEncoder) so multi-byte characters are never split mid-sequence.
+function foldLine(line) {
+  const enc = new TextEncoder();
+  if (enc.encode(line).length <= 75) return line;
+  const parts = [];
+  let cur = "";
+  let curBytes = 0;
+  let budget = 75; // first physical line
+  for (const ch of line) {
+    const chBytes = enc.encode(ch).length;
+    if (curBytes + chBytes > budget) {
+      parts.push(cur);
+      cur = "";
+      curBytes = 0;
+      budget = 74; // continuation lines spend 1 octet on the leading space
+    }
+    cur += ch;
+    curBytes += chBytes;
+  }
+  if (cur) parts.push(cur);
+  return parts.join("\r\n ");
 }
 
 /**
@@ -32,18 +58,21 @@ function escapeText(s) {
  * Pure and exported so the test suite can assert the format without a DOM.
  */
 export function buildIcs(summaries, stamp) {
-  const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Trans Docs Navigator//Reminders//EN", "CALSCALE:GREGORIAN"];
+  // PRODID/UID/filename are deliberately neutral: the .ics is designed to be imported
+  // into calendar apps (often cloud-synced), so the artifact itself must not brand the
+  // user's device or calendar with the product name (DPIA 2026-07-09 row).
+  const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Reminders//EN", "CALSCALE:GREGORIAN"];
   summaries.forEach((summary, i) => {
     lines.push(
       "BEGIN:VTODO",
-      `UID:tdn-${i + 1}-${stamp}@trans-docs-navigator`,
+      `UID:${i + 1}-${stamp}@reminders.local`,
       `DTSTAMP:${stamp}`,
       `SUMMARY:${escapeText(summary)}`,
       "END:VTODO",
     );
   });
   lines.push("END:VCALENDAR");
-  return lines.join("\r\n") + "\r\n";
+  return lines.map(foldLine).join("\r\n") + "\r\n";
 }
 
 const btn = document.getElementById("ics-btn");
@@ -56,7 +85,7 @@ if (btn) {
     const ics = buildIcs(summaries, icsStamp(new Date()));
     const a = document.createElement("a");
     a.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
-    a.download = "trans-docs-reminders.ics";
+    a.download = "reminders.ics"; // neutral filename — see PRODID note above
     document.body.appendChild(a);
     a.click();
     a.remove();

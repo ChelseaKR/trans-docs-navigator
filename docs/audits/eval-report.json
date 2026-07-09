@@ -135,8 +135,8 @@
     },
     {
       "jurisdiction": "US-TX",
-      "records": 3,
-      "current_records": 2,
+      "records": 6,
+      "current_records": 4,
       "gold_items": 1,
       "accuracy": 1,
       "mechanically_ready": true,

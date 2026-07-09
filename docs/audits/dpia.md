@@ -25,6 +25,7 @@
 | Server logs | stdout, structured JSON via `api/log.ts` | Ephemeral | Operators |
 | **[Added 2026-07-05] Save/resume selections** (jurisdiction, change types, documents, language — `ALLOWED_KEYS` in `src/secure-resume.ts`) | Browser `localStorage`, **AES-GCM encrypted** with a PBKDF2 (600k-iteration) passphrase-derived key (`public/assets/resume-crypto.js`) | Until the user clears it (one-click "clear" in the resume panel) or clears site data | The user, on their device; a forensic/shoulder read of `localStorage` sees only ciphertext without the passphrase. Identity fields are stripped server-side by `toResumeState()` before anything is offered to save — names never enter this path. |
 | **[Added 2026-07-05] Offline-saved pages** (explicit "Save for offline" only — `src/offline.ts`) | Browser **Cache Storage** (`tdn-saved-v1`), **NOT encrypted** (unlike the row above) | Until the user presses the "delete all saved pages" control, which clears every cache and unregisters the service worker | The user, on their device; also **device-discoverable to anyone with access to the device/browser profile** — this is a real, explicitly-documented trade-off (stated in the save panel copy and on `/privacy`), not an oversight. No network egress: the service worker only ever caches on an explicit user tap, never in its `fetch` handler, and has no background sync/push/periodic-sync listeners (enforced by `tests/offline.test.ts`). |
+| **[Added 2026-07-09] Downloadable `.ics` reminders** (explicit button tap only — `public/assets/reminders.js`): an unencrypted calendar/to-do file holding the checklist **step names only** — no dates, no contact fields, no identity data, built entirely in-page via a `data:` URL | The user's own filesystem/Downloads (this app never stores or receives it; zero egress from the app, backstopped by CSP `connect-src 'self'` and `tests/reminders.test.ts`) | Until the user deletes the file — outside this system's control once saved | The user; anyone with device access (file is cleartext); **and — the file's purpose is calendar import — if imported into a cloud-synced calendar (the common case), the step names replicate to the calendar provider and to anyone with calendar visibility or shared-calendar access.** Mitigations: neutral filename (`reminders.ics`), neutral `PRODID`/`UID` (no product branding on the artifact), disclosure note beside the button stating the cloud-calendar consequence (copy PENDING counsel review) |
 
 **Server-side PII fields: 0.** Form-fill is client-side (`src/pages.ts` + vendored
 `pdf-lib`); identity data never reaches the server. Both rows added above are also
@@ -68,3 +69,10 @@ counsel-review question, not a mechanical one — tracked as an open review gate
   save/resume feature, and the human review-gate sign-off for this DPIA needs to
   explicitly weigh whether the in-product disclosure of that trade-off is sufficient
   before launch — this note identifies the question; it does not answer it.
+- **[Added 2026-07-09]** The `.ics` reminders file (see §1) is a local artifact *designed
+  to leave the app boundary*: once imported into a cloud-synced calendar, the step names
+  (which reveal the nature of the legal process, though no identity data) live under the
+  calendar provider's retention and are visible to calendar-sharing relationships — a
+  real record under the subpoena/breach threat model, created off-device by user action.
+  The in-product disclosure states this; whether that notice is adequate for this
+  population is a counsel/human question for this DPIA's sign-off.

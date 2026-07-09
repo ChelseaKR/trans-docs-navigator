@@ -113,7 +113,8 @@ export const es: LocaleBundle = {
     offlineSavedHeading: "Guardado en este dispositivo",
     offlineNoneSaved: "No hay paginas guardadas para uso sin conexion en este dispositivo.",
     downloadIcs: "Agregue estos pasos a su calendario (.ics)",
-    downloadIcsNote: "Crea una lista de tareas en su dispositivo. Solo contiene los nombres de los pasos —sin datos personales— y no se envía nada a ningún lugar.",
+    // PENDING native-speaker review (no attestation) + counsel review — privacy-representation copy (docs/audits/dpia.md [Added 2026-07-09] .ics row).
+    downloadIcsNote: "Crea un archivo de lista de tareas en su dispositivo. Solo contiene los nombres de los pasos, sin datos personales. Este sitio no envía nada. Si agrega el archivo a un calendario en línea, su proveedor de calendario guardará los nombres de los pasos.",
   },
 
   docTitles: {
