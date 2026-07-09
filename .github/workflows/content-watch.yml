@@ -1,11 +1,14 @@
 name: content-watch
 
-# Weekly content operations (PRODUCTIONIZATION-PLAN Phase 3). Three checks, none
+# Weekly content operations (PRODUCTIONIZATION-PLAN Phase 3). Four checks, none
 # merge-blocking — their job is to convert content drift into a GitHub issue a human
 # can act on, never to change content automatically:
 #   1. link-check        — does every cited source URL still resolve?
 #   2. source-watch      — has any source page's content changed since its baseline?
-#   3. freshness (live)  — does any record expire its SLA within the next 14 days,
+#   3. policy-watch      — has an authoritative tracker (MAP, A4TE, a legislative
+#                          tracker) upstream of the cited sources changed, flagging
+#                          every record in its jurisdiction for re-verification?
+#   4. freshness (live)  — does any record expire its SLA within the next 14 days,
 #                          evaluated against TODAY's date (the merge gate pins its date
 #                          for determinism; this run is the calendar-true sweep)?
 
@@ -41,12 +44,16 @@ jobs:
         id: sources
         continue-on-error: true
         run: make source-watch 2>&1 | tee source-watch.out
+      - name: Policy-change sentinel
+        id: policy
+        continue-on-error: true
+        run: make policy-watch 2>&1 | tee policy-watch.out
       - name: Freshness against the real calendar
         id: freshness
         continue-on-error: true
         run: NAV_TODAY=$(date +%F) node --experimental-strip-types --no-warnings scripts/freshness.ts 2>&1 | tee freshness.out
       - name: Open an issue when anything needs a human
-        if: steps.links.outcome == 'failure' || steps.sources.outcome == 'failure' || steps.freshness.outcome == 'failure'
+        if: steps.links.outcome == 'failure' || steps.sources.outcome == 'failure' || steps.policy.outcome == 'failure' || steps.freshness.outcome == 'failure'
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
@@ -66,8 +73,11 @@ jobs:
               'Nothing was changed automatically; degraded records keep serving with their freshness warning.',
               '', '## link-check', '```', read('link-check.out'), '```',
               '', '## source-watch', '```', read('source-watch.out'), '```',
+              '', '## policy-watch', '```', read('policy-watch.out'), '```',
               '', '## freshness (live date)', '```', read('freshness.out'), '```',
               '', 'Runbook: re-verify each named record against its official source, update `last_verified`',
               'and the URL if it moved, then run `make source-baseline` and `make verify`.',
+              'If policy-watch flagged a tracker, re-verify every record in the named jurisdiction,',
+              'then run `make policy-baseline` once the review is done.',
             ].join('\n');
             await github.rest.issues.create({ ...context.repo, title, body, labels: ['content-watch'] });

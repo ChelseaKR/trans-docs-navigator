@@ -67,8 +67,13 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
   behind the `Retriever` seam (`api/embedding-retrieval.ts`); run `loadtest/p95.k6.js` in CI
   against a docker-compose instance for the §7 p95 target.
 - **D4 `P2` Supply chain:** pin GitHub Actions by SHA, add SBOM + Dependabot, generalize SRI.
-- **D5 `P3` Edge protection & observability:** edge rate-limiter/WAF in front of the
-  best-effort in-process limiter; ship OPERATIONS alarms/counters to a metrics backend.
+- **D5 `P3` Edge protection & observability — ✅ Done.** `aws_wafv2_web_acl.edge` (coarse
+  IP rate limit, deploy-optional via empty `alb_arn` + `count` guard) fronts the
+  best-effort in-process limiter; `aws_cloudwatch_log_metric_filter` resources route the
+  non-PII `safeLog` events to CloudWatch metrics, with `aws_cloudwatch_metric_alarm`
+  wiring each OPERATIONS.md "Alarms → actions" row (500s spike, quarantine, degraded
+  answers, rate-limit abuse) — see `infra/main.tf` and the updated alarm names in
+  `docs/OPERATIONS.md`.
 
 ## E. Governance / sustainability
 - **E1 `P2` Funding & maintenance plan** for the quarterly per-jurisdiction reverification

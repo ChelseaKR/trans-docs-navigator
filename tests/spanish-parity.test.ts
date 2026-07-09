@@ -52,13 +52,24 @@ test("error pages are Spanish under ?language=es", () => {
   assert.match(method.body, /Método no permitido/);
 });
 
-test("Spanish-thin states surface an honest coverage note (TX has no ES state records)", () => {
-  // Texas: EN has a current court-order record, Spanish does not → honest note.
-  const tx = handleRoute("GET", u("/checklist?jurisdiction=US-TX&change=name&doc=court-order&language=es"), today);
-  assert.match(tx.body, /Los pasos completos en español para este estado aún no están listos/);
+test("Spanish-thin states surface an honest coverage note (WA has no ES state records)", () => {
+  // Washington: EN has a current court-order record, Spanish does not → honest note.
+  const wa = handleRoute("GET", u("/checklist?jurisdiction=US-WA&change=name&doc=court-order&language=es"), today);
+  assert.match(wa.body, /Los pasos completos en español para este estado aún no están listos/);
   // California ES is complete for court-order → no note.
   const ca = handleRoute("GET", u("/checklist?jurisdiction=US-CA&change=name&doc=court-order&language=es"), today);
   assert.doesNotMatch(ca.body, /aún no están listos/);
+});
+
+test("Texas now has Spanish parity for name-change (court-order + drivers-license) — no thinner-coverage note", () => {
+  // Phase 6.2: tx.*.name.es records were added to mirror the EN Texas records, so the
+  // honest thinner-coverage note should no longer fire for TX name-change requests.
+  const tx = handleRoute(
+    "GET",
+    u("/checklist?jurisdiction=US-TX&change=name&doc=court-order&doc=drivers-license&language=es"),
+    today,
+  );
+  assert.doesNotMatch(tx.body, /aún no están listos/);
 });
 
 test("official-form page is localized and links to the real source (no auto-fill)", () => {
