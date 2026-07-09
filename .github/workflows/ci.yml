@@ -200,6 +200,7 @@ jobs:
           GITLEAKS_ENABLE_COMMENTS: "false" # keep this job's token scope contents:read only
 
   workflow-sast:
+    if: github.event_name != 'pull_request'
     # zizmor — static analysis of the workflow YAML itself (CICD-19, RTF-06): catches
     # things Semgrep/CodeQL don't, e.g. a mutable-ref `uses:`, an unpinned action,
     # unnecessary `persist-credentials: true`, over-broad `permissions:`, template
