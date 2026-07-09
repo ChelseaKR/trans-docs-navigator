@@ -11,6 +11,7 @@ import { loadCorpus, isPlaceholderVerifier } from "../api/corpus.ts";
 import { answer } from "../api/guidance.ts";
 import { checkCoverage } from "../api/citation.ts";
 import { isCurrent } from "../api/freshness.ts";
+import { retrieve } from "../api/retrieval.ts";
 import { GOLD } from "./gold.ts";
 import type { GoldItem } from "./gold.ts";
 
@@ -37,6 +38,8 @@ export interface Thresholds {
   citation_coverage: number;
   segment_accuracy: number;
   adversarial: number;
+  context_recall: number;
+  context_precision: number;
 }
 
 export const THRESHOLDS: Thresholds = {
@@ -46,7 +49,23 @@ export const THRESHOLDS: Thresholds = {
   citation_coverage: 1.0,
   segment_accuracy: 0.95,
   adversarial: 1.0,
+  // AI-EVALUATION-STANDARD AIEV-03/04 floors (recall@20 ≥0.80, precision ≥0.70). This
+  // corpus has 32 records total, so any per-query filtered candidate set is already
+  // far smaller than 20 — "recall@20" would be tautological here. RETRIEVAL_K (below)
+  // matches the real system's effective top-k (generator.ts's `maxRecords ?? 8`)
+  // instead, which is a meaningful depth for THIS corpus size, not the standard's k
+  // verbatim. The gold set defines exactly one expected-relevant record per accuracy
+  // item (GoldItem.expect.citesRecord), not a full multi-document relevance judgment
+  // set — so "precision" here is Precision@1 (does the top-ranked result match the
+  // expected record?), the standard single-relevant-document IR analogue, rather than
+  // Precision@20 (which has a hard ceiling of 1/20 for a single-relevant-doc gold set
+  // and would be an unmeetable, meaningless gate at this corpus size).
+  context_recall: 0.8,
+  context_precision: 0.7,
 };
+
+/** Retrieval depth this eval measures against — mirrors the generator's real top-k. */
+const RETRIEVAL_K = 8;
 
 export interface ItemResult {
   id: string;
@@ -132,7 +151,33 @@ function isFaithful(ans: GroundedAnswer, corpus: CorpusRecord[]): { faithful: nu
   return { faithful, total };
 }
 
-function evalItem(item: GoldItem, corpus: CorpusRecord[]): {
+/**
+ * Retrieval-quality metrics (AIEV-03/04): never measured before this pass, which meant
+ * the deterministic lexical retriever could be swapped for the planned pgvector/
+ * embedding store (ADR-2) with no gate noticing a regression. Runs `retrieve()`
+ * DIRECTLY (bypassing generation/citation) against every accuracy-suite gold item that
+ * names an expected record, so this is a pure retrieval measurement.
+ *   - context_recall@K: does the expected record appear anywhere in the top RETRIEVAL_K?
+ *   - context_precision@1: is the expected record the single top-ranked result?
+ * See the THRESHOLDS comment above for why K and "precision" are scaled to this corpus
+ * and this gold set's single-relevant-document shape, not the standard's literal @20.
+ */
+function retrievalQuality(items: GoldItem[], corpus: CorpusRecord[]): { recall: number; precision: number; n: number } {
+  let recallHits = 0;
+  let top1Hits = 0;
+  let n = 0;
+  for (const item of items) {
+    if (item.suite !== "accuracy" || !item.expect.citesRecord) continue;
+    n++;
+    const ranked = retrieve({ ...item.query, today: EVAL_TODAY }, corpus);
+    const topK = ranked.slice(0, RETRIEVAL_K).map((r) => r.record.id);
+    if (topK.includes(item.expect.citesRecord)) recallHits++;
+    if (ranked[0]?.record.id === item.expect.citesRecord) top1Hits++;
+  }
+  return { recall: ratio(recallHits, n), precision: ratio(top1Hits, n), n };
+}
+
+function evalItem(item: GoldItem): {
   result: ItemResult;
   answer: GroundedAnswer | null;
 } {
@@ -187,7 +232,7 @@ export function runEval(thresholds: Thresholds = THRESHOLDS): EvalReport {
   const answers: { item: GoldItem; ans: GroundedAnswer | null }[] = [];
 
   for (const item of GOLD) {
-    const { result, answer: ans } = evalItem(item, corpus);
+    const { result, answer: ans } = evalItem(item);
     items.push(result);
     answers.push({ item, ans });
   }
@@ -203,6 +248,10 @@ export function runEval(thresholds: Thresholds = THRESHOLDS): EvalReport {
   // Adversarial/robustness suite (kept out of headline accuracy + segment metrics).
   const adv = items.filter((i) => i.suite === "adversarial");
   const adversarial = ratio(adv.filter((i) => i.passed).length, adv.length);
+
+  // Retrieval quality (AIEV-03/04) — measured directly against `retrieve()`, independent
+  // of generation/citation. See retrievalQuality()'s doc comment for the metric shapes.
+  const retrievalStats = retrievalQuality(GOLD, corpus);
 
   // Groundedness/faithfulness over served (non-refused) accuracy answers.
   let faithful = 0;
@@ -272,6 +321,8 @@ export function runEval(thresholds: Thresholds = THRESHOLDS): EvalReport {
     { name: "refusal_safety", value: refusal, threshold: thresholds.refusal, n: ref.length, pass: ref.length > 0 && refusal >= thresholds.refusal },
     { name: "citation_coverage", value: minCoverage, threshold: thresholds.citation_coverage, n: covChecked, pass: covChecked > 0 && minCoverage >= thresholds.citation_coverage },
     { name: "adversarial_safety", value: adversarial, threshold: thresholds.adversarial, n: adv.length, pass: adv.length > 0 && adversarial >= thresholds.adversarial },
+    { name: `context_recall_at_${RETRIEVAL_K}`, value: retrievalStats.recall, threshold: thresholds.context_recall, n: retrievalStats.n, pass: retrievalStats.n > 0 && retrievalStats.recall >= thresholds.context_recall },
+    { name: "context_precision_at_1", value: retrievalStats.precision, threshold: thresholds.context_precision, n: retrievalStats.n, pass: retrievalStats.n > 0 && retrievalStats.precision >= thresholds.context_precision },
   ];
 
   // Honest-confidence invariant: a launch-cleared jurisdiction REQUIRES an independently

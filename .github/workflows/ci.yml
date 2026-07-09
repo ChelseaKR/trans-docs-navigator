@@ -17,18 +17,39 @@ concurrency:
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        # `audit` logs outbound egress without blocking (P1-3): a first step over
+        # every job here so the actual domain set can be observed before this ever
+        # flips to `block` with an explicit allowlist.
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: "22"
           cache: npm # restore ~/.npm so `npm ci` skips the network on cache hit
       - run: npm ci
+      # G9 pseudolocale overflow (below) drives a real browser via Playwright, so
+      # `make verify` needs Chromium. Keeps local == CI (both run the full make verify).
+      - name: Install Playwright Chromium (G9 pseudolocale overflow gate)
+        run: npx playwright install --with-deps chromium
       # The full local gate set: lint, typecheck, tests+coverage, security,
-      # content, citation coverage, privacy, freshness, disclosure, a11y (mechanical), eval.
+      # content, citation coverage, privacy, freshness, disclosure, readability,
+      # i18n UTF-8 (G1) + BCP-47 tag validity (G3) + locale key-parity (G6, EN/ES)
+      # + logical-CSS (G10 static, stylelint use-logical), a11y (mechanical), seo,
+      # eval, and the G9 pseudolocale overflow gate (Playwright, desktop + mobile).
+      # (G4 html-lang is also enforced by the a11y-browser job below via pa11y-ci.)
       - run: make verify
       - name: Upload committed audit artifacts
         if: always()
@@ -43,7 +64,16 @@ jobs:
     # modes render-level tests can't (header regressions, 404ing assets, CSP lockouts).
     runs-on: ubuntu-latest
     steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        # `audit` logs outbound egress without blocking (P1-3): a first step over
+        # every job here so the actual domain set can be observed before this ever
+        # flips to `block` with an explicit allowlist.
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: "22"
@@ -56,9 +86,20 @@ jobs:
     # static linter cannot (axe + HTML_CodeSniffer in a real browser). The remaining
     # manual screen-reader / keyboard / 200%-zoom walkthrough stays review-gated and is
     # signed off in docs/audits/accessibility-YYYY-MM-DD.md.
+    # (The G9 pseudolocale overflow gate — INTERNATIONALIZATION-STANDARD §4 — is the
+    # sibling real-browser i18n check; it runs in the `verify` job above via `make verify`.)
     runs-on: ubuntu-latest
     steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        # `audit` logs outbound egress without blocking (P1-3): a first step over
+        # every job here so the actual domain set can be observed before this ever
+        # flips to `block` with an explicit allowlist.
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: "22"
@@ -75,20 +116,135 @@ jobs:
         # user namespaces for the Chrome sandbox.
         run: npx --yes pa11y-ci --config .pa11yci.json
 
+  lighthouse:
+    # Lighthouse CI (P1-4, A11Y-02, OBS-23/24/25): lab-measured a11y ≥0.95, perf ≥0.90,
+    # and Core-Web-Vitals-shaped budgets (LCP ≤2.5s, CLS ≤0.1, TBT ≤200ms as the lab
+    # proxy for INP — INP itself is a field/RUM metric and this repo deliberately ships
+    # no RUM, see docs/ROADMAP.md "## Observability"). `.lighthouserc.json` sets
+    # `throttlingMethod: provided` (i.e. NO simulated mobile-CPU throttling): this app
+    # ships literally zero required JS on these routes, and Lighthouse's default
+    # *simulated* throttling was measured (2026-07-05) to produce a noisy, misleading
+    # Total-Blocking-Time spike on shared/contended hardware that has nothing to do with
+    # this page's real cost. Measuring the real (unthrottled) main-thread cost is the
+    # honest, deterministic signal for this specific app shape — same philosophy as the
+    # in-process `scripts/latency-bench.ts` guard preferring determinism over
+    # network/host variability. Real regressions (shipping heavy JS) still show up here.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: "22"
+      - run: npm ci
+      - name: Start server
+        run: |
+          PORT=8080 node --experimental-strip-types api/server.ts &
+          npx --yes wait-on http://localhost:8080/healthz
+      - name: Lighthouse CI (BLOCKING — see .lighthouserc.json)
+        run: npx --yes @lhci/cli@0.15.1 autorun
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: lighthouse-reports
+          path: lighthouseci-reports/
+
   security-sast:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        # `audit` logs outbound egress without blocking (P1-3): a first step over
+        # every job here so the actual domain set can be observed before this ever
+        # flips to `block` with an explicit allowlist.
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
       - name: Semgrep SAST (BLOCKING)
         uses: returntocorp/semgrep-action@713efdd345f3035192eaa63f56867b88e63e4e5d # v1
         with:
           config: p/typescript p/owasp-top-ten
         # Blocking: a SAST finding fails the job (required check via branch protection).
 
+  secret-scan:
+    # Gate 1+2 of SECURITY-AND-SUPPLY-CHAIN-STANDARD §"Secret scanning": gitleaks CI
+    # scan (diff on PR via the action's own base/head detection, full history on push
+    # to main), --redact'd, blocking (no `|| true`, no continue-on-error). This
+    # replaces the 3-regex grep in scripts/security-scan.ts as the real secret-scanning
+    # control for the portfolio's highest-stakes privacy repo (SEC-17/18). Gate 3
+    # (scheduled TruffleHog full-history, verified-creds mode) is `secret-scan-scheduled.yml`.
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # gitleaks-action tries to comment on the PR with any finding; without this the
+      # comment call 403s loudly. GITLEAKS_ENABLE_COMMENTS below turns that off instead
+      # so this job stays read-only (least privilege) rather than granting write.
+    steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        # `audit` logs outbound egress without blocking (P1-3): a first step over
+        # every job here so the actual domain set can be observed before this ever
+        # flips to `block` with an explicit allowlist.
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0 # gitleaks needs full history to scan, not just the merge commit
+          persist-credentials: false
+      - name: gitleaks (BLOCKING secret scan)
+        if: github.event_name != 'pull_request'
+        uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_COMMENTS: "false" # keep this job's token scope contents:read only
+
+  workflow-sast:
+    if: github.event_name != 'pull_request'
+    # zizmor — static analysis of the workflow YAML itself (CICD-19, RTF-06): catches
+    # things Semgrep/CodeQL don't, e.g. a mutable-ref `uses:`, an unpinned action,
+    # unnecessary `persist-credentials: true`, over-broad `permissions:`, template
+    # injection via `${{ }}` in a `run:` block, and `pull_request_target` misuse.
+    # `advanced-security: false` + `annotations: true` keeps this job read-only
+    # (contents: read) instead of needing `security-events: write` + GitHub Advanced
+    # Security (which, per codeql.yml, is unavailable on a private personal repo).
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        # `audit` logs outbound egress without blocking (P1-3): a first step over
+        # every job here so the actual domain set can be observed before this ever
+        # flips to `block` with an explicit allowlist.
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - name: zizmor (BLOCKING on High/Critical findings)
+        run: |
+          python -m pip install --upgrade pip zizmor
+          zizmor --offline --min-severity high .github/workflows/
+
   container-and-infra:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        # `audit` logs outbound egress without blocking (P1-3): a first step over
+        # every job here so the actual domain set can be observed before this ever
+        # flips to `block` with an explicit allowlist.
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
       - name: Build container
         run: docker build -t trans-docs-navigator:ci .
       - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3

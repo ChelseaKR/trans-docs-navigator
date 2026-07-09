@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Trans Docs Navigator"
+abstract: >-
+  Privacy-first, fully-cited navigator for legal name and gender-marker
+  changes. Information, never legal advice.
+type: software
+authors:
+  - family-names: "Kelly-Reif"
+    given-names: "Chelsea"
+version: "0.1.0"
+license: "AGPL-3.0-or-later"
+repository-code: "https://github.com/ChelseaKR/trans-docs-navigator"
+url: "https://github.com/ChelseaKR/trans-docs-navigator"
+keywords:
+  - civic-tech
+  - accessibility
+  - legal-name-change
+  - gender-marker
+  - rag

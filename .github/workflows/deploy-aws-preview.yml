@@ -14,6 +14,13 @@ permissions:
   contents: read
   id-token: write # OIDC
 
+# CICD-23: prevent two concurrent deploys of the same preview environment from racing
+# each other (e.g. two manual dispatches, or a re-run while one is in flight). Do NOT
+# cancel an in-flight deploy — a half-applied Lambda update is worse than a queued one.
+concurrency:
+  group: deploy-aws-preview-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -27,6 +34,8 @@ jobs:
           echo "configured=true" >> "$GITHUB_ENV"
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         if: env.configured == 'true'
+        with:
+          persist-credentials: false
       - name: Configure AWS credentials (OIDC, no long-lived keys)
         if: env.configured == 'true'
         uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4

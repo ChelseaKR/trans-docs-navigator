@@ -9,6 +9,7 @@ import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, 
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
 import { toResumeState } from "./secure-resume.ts";
+import { staleAfterDays } from "./offline.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-CA", label: "California" },
@@ -122,7 +123,13 @@ export function renderChecklistPage(
 <script type="module" src="/assets/progress.js"></script>`
     : "";
 
-  const body = intro + summary + actions + noSteps + more + gaps + renderResumePanel(s, query) + progress;
+  // Explicit offline saving (EXP-01) — URLs to cache are the current checklist only.
+  const offlineUrls = hasSteps
+    ? [`/checklist?${query}${lang === "es" && !query.includes("language=") ? "&language=es" : ""}`]
+    : [];
+  const offline = renderOfflinePanel(s, offlineUrls);
+
+  const body = intro + summary + actions + noSteps + more + gaps + renderResumePanel(s, query) + offline + progress;
   return page({ lang, title: s.checklistTitle, heading: s.checklistHeading, body });
 }
 
@@ -175,11 +182,20 @@ export function renderPacketPage(
   records: CorpusRecord[],
   lang: Language,
   generatedOn: string,
+  intakeQuery = "",
 ): string {
   const s = uiStrings(lang);
   const actions = `<p class="no-print"><button type="button" id="print-btn">🖨️ ${escapeHtml(s.print)}</button> <a href="/">${escapeHtml(s.startOver)}</a></p>
 <script type="module" src="/assets/packet.js"></script>`;
-  const body = actions + renderPacket(checklist, records, lang, generatedOn);
+  // Offline saving: the packet itself, plus the checklist to go back to.
+  const offlineUrls = intakeQuery
+    ? [
+        `/packet?${intakeQuery}${lang === "es" ? (intakeQuery.includes("language=") ? "" : "&language=es") : ""}`,
+        `/checklist?${intakeQuery}${lang === "es" ? (intakeQuery.includes("language=") ? "" : "&language=es") : ""}`,
+      ]
+    : [];
+  const offline = renderOfflinePanel(s, offlineUrls);
+  const body = actions + renderPacket(checklist, records, lang, generatedOn) + offline;
   return page({ lang, title: s.packetTitle, heading: s.packetHeading, body });
 }
 
@@ -216,4 +232,50 @@ ${jsonIsland("copy-cfg", cfg)}
 <script type="module" src="/assets/form-copy.js"></script>
 <p class="flag" role="note">${escapeHtml(s.notFilingNote)}</p>`;
   return page({ lang, title: form.title, heading: form.title, body });
+}
+
+/** Explicit "save for offline" panel (EXP-01; progressive enhancement). */
+function renderOfflinePanel(s: ReturnType<typeof uiStrings>, urls: string[]): string {
+  if (urls.length === 0) return "";
+  const cfg = {
+    urls,
+    staleAfterDays: staleAfterDays(),
+    M: {
+      banner: s.offlineBanner,
+      saving: s.offlineSaving,
+      saved: s.offlineSaved,
+      haveCopy: s.offlineHaveCopy,
+      removed: s.offlineRemoved,
+      error: s.offlineError,
+      unsupported: s.offlineUnsupported,
+      updated: s.offlineUpdated,
+      noneSaved: s.offlineNoneSaved,
+    },
+  };
+  return `
+<section class="no-print" aria-labelledby="offline-h">
+  <h2 id="offline-h">${escapeHtml(s.offlineTitle)}</h2>
+  <p class="meta">${escapeHtml(s.offlineIntro)}</p>
+  <div id="offline" role="group" aria-labelledby="offline-h">
+    <button type="button" id="offline-save">${escapeHtml(s.offlineSaveBtn)}</button>
+    <button type="button" id="offline-remove">${escapeHtml(s.offlineRemoveBtn)}</button>
+    <p id="offline-status" role="status" aria-live="polite" class="meta"></p>
+  </div>
+</section>
+${jsonIsland("offline-cfg", cfg)}
+<script type="module" src="/assets/offline.js"></script>`;
+}
+
+/** Offline notice page shown when there's no network and no cached copy. */
+export function renderOfflinePage(lang: Language = "en"): string {
+  const s = uiStrings(lang);
+  const body = `
+<p>${escapeHtml(s.offlineLead)}</p>
+<section aria-labelledby="saved-h">
+  <h2 id="saved-h">${escapeHtml(s.offlineSavedHeading)}</h2>
+  <ul id="offline-list"></ul>
+</section>
+${jsonIsland("offline-cfg", { urls: [], staleAfterDays: staleAfterDays(), M: { noneSaved: s.offlineNoneSaved } })}
+<script type="module" src="/assets/offline.js"></script>`;
+  return page({ lang, title: s.offlinePageTitle, heading: s.offlineHeading, body });
 }

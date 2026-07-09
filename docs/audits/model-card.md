@@ -42,3 +42,13 @@ disaggregated accuracy by jurisdiction and language.
 - The deterministic composer is intentionally conservative/templated; it does not
   paraphrase or synthesize across records the way a Bedrock-backed generator would.
 - No real Bedrock evaluation has run in this environment.
+
+## Environmental footprint
+**N/A — no training, API-only inference.** This project trains no model. The default
+generator (`GroundedComposer`) is a deterministic, CPU-only extractive composer with no
+GPU/accelerator cost. The production seam (`BedrockGenerator`) calls a hosted third-party
+inference API (AWS Bedrock, Claude Haiku/Sonnet) and is unconfigured in this environment —
+there is no local compute to measure, and per-request footprint for hosted third-party
+inference is not separately disclosed by the provider at a granularity this repo could
+report honestly. If/when `BedrockGenerator` is enabled in production, revisit this row
+against actual call volume rather than estimate a number with no basis.

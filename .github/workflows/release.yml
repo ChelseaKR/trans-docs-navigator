@@ -1,9 +1,21 @@
 name: release
 
-# Tagged-release packaging (PRODUCTIONIZATION-PLAN Phase 1): build the container,
-# push it to GHCR under this repo, and attach a CycloneDX SBOM. Uses only
-# GITHUB_TOKEN — no external registry account or long-lived credential. Deploy
-# targets pull a digest-pinned image from here.
+# Tagged-release packaging (RELEASE-AND-VERSIONING-STANDARD + SECURITY-AND-SUPPLY-CHAIN
+# §6). Previously this workflow ran ZERO gates on a tag push and published an unsigned,
+# unverified `:latest`-tagged image — a bad or hostile tag could ship straight to
+# `render.yaml`-deployable infrastructure. Fixed 2026-07-05 (P0-1 of the remediation plan):
+#
+#   version-check → verify → package (build, SBOM, schema-validate, cosign sign+attest,
+#                                      SLSA provenance, publish by digest — never `:latest`)
+#                          → verify-published (pull by digest, cosign verify, boot, /livez)
+#
+# Every job after version-check `needs:` the ones before it, so a bad/hostile tag cannot
+# publish anything unless the tagged commit passes the identical `make verify` gate set
+# that guards every merge to main, and nothing is considered "released" until the
+# published, signed artifact has been independently pulled back down and proven to boot.
+#
+# Uses only GITHUB_TOKEN + keyless OIDC (Sigstore Fulcio/Rekor) — no long-lived
+# credential, no repo secret to provision.
 
 on:
   push:
@@ -11,25 +23,192 @@ on:
 
 permissions:
   contents: read
-  packages: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  package:
+  version-check:
+    name: tag matches package.json version (REL-03)
     runs-on: ubuntu-latest
     steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
-      - name: Log in to GHCR
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
-      - name: Build and push
+        with:
+          persist-credentials: false
+      - name: Tag ↔ package.json version consistency
         run: |
-          IMAGE="ghcr.io/${{ github.repository }}"
-          TAG="${GITHUB_REF_NAME}"
-          docker build -t "$IMAGE:$TAG" -t "$IMAGE:latest" .
-          docker push "$IMAGE:$TAG"
-          docker push "$IMAGE:latest"
-      - name: SBOM (CycloneDX)
+          tag_version="${GITHUB_REF_NAME#v}"
+          pkg_version="$(jq -r .version package.json)"
+          echo "tag=$GITHUB_REF_NAME → $tag_version   package.json=$pkg_version"
+          if [ "$tag_version" != "$pkg_version" ]; then
+            echo "::error::tag $GITHUB_REF_NAME (version $tag_version) does not match package.json version $pkg_version — bump package.json or retag"
+            exit 1
+          fi
+
+  verify:
+    name: re-verify at the tagged commit (REL-14/15)
+    needs: [version-check]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: "22"
+          package-manager-cache: false
+      - run: npm ci
+      # make verify's last step (G9 pseudolocale overflow) drives a real browser.
+      - name: Install Playwright Chromium (G9 pseudolocale overflow gate)
+        run: npx playwright install --with-deps chromium
+      # The exact same 20-stage blocking pipeline that guards every merge to main —
+      # a tag can never publish an image that didn't earn a green `make verify`.
+      - run: make verify
+
+  package:
+    name: build · SBOM · sign · attest · publish (GHCR, by digest — never :latest)
+    needs: [verify]
+    runs-on: ubuntu-latest
+    # No caching in this job (SECURITY-AND-SUPPLY-CHAIN-STANDARD §6.4): caching in a
+    # job that builds/signs/publishes/attests provenance violates SLSA build isolation.
+    permissions:
+      contents: read
+      packages: write      # push image + attestation to GHCR
+      id-token: write      # keyless cosign (SEC-29) + SLSA provenance OIDC
+      attestations: write  # actions/attest-build-provenance
+    outputs:
+      image: ${{ steps.image.outputs.image }}
+      digest: ${{ steps.push.outputs.digest }}
+    steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - name: Compute image reference (GHCR requires lowercase; github.repository is not)
+        id: image
+        env:
+          REPOSITORY: ${{ github.repository }}
+        run: echo "image=ghcr.io/$(printf '%s' "$REPOSITORY" | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
+
+      - name: Log in to GHCR
+        env:
+          GHCR_USER: ${{ github.actor }}
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
+
+      - name: Build image (tagged only vX.Y.Z — REL-18/SEC-29, no :latest ever)
+        env:
+          IMAGE: ${{ steps.image.outputs.image }}
+          REF_NAME: ${{ github.ref_name }}
+        run: docker build -t "$IMAGE:$REF_NAME" .
+
+      - name: Push and capture the immutable digest
+        id: push
+        env:
+          IMAGE: ${{ steps.image.outputs.image }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          out="$(docker push "$IMAGE:$REF_NAME")"
+          echo "$out"
+          digest="$(echo "$out" | grep -oE 'sha256:[a-f0-9]{64}' | head -1)"
+          if [ -z "$digest" ]; then
+            echo "::error::could not parse the pushed image digest from docker push output"
+            exit 1
+          fi
+          echo "digest=$digest" >> "$GITHUB_OUTPUT"
+          echo "published: $IMAGE@$digest"
+
+      - name: SBOM (CycloneDX, generated from the published digest)
         uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0
         with:
-          image: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+          image: ${{ steps.image.outputs.image }}@${{ steps.push.outputs.digest }}
           format: cyclonedx-json
+          output-file: sbom.cdx.json
           artifact-name: sbom-${{ github.ref_name }}.cdx.json
+
+      - name: Validate SBOM against the CycloneDX schema (SEC-27) — fail on schema error
+        run: |
+          docker run --rm -v "$PWD":/wrk -w /wrk \
+            cyclonedx/cyclonedx-cli@sha256:dc5a886c592c49076ce09079433e961be94f1bb8521f837c1467b585b33f67e1 \
+            validate --input-file sbom.cdx.json --fail-on-errors
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+
+      - name: cosign sign the image (keyless — Fulcio cert + Rekor log, no long-lived key)
+        run: cosign sign --yes "${{ steps.image.outputs.image }}@${{ steps.push.outputs.digest }}"
+
+      - name: cosign attest the SBOM (CycloneDX predicate, keyless)
+        run: cosign attest --yes --predicate sbom.cdx.json --type cyclonedx "${{ steps.image.outputs.image }}@${{ steps.push.outputs.digest }}"
+
+      - name: Attest SLSA build provenance (SLSA Build L2)
+        uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4.1.1
+        with:
+          subject-name: ${{ steps.image.outputs.image }}
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: true
+
+  verify-published:
+    name: verify-published — pull by digest, cosign verify, boot, /livez (REL-16)
+    needs: [package]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
+      - name: Install cosign
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+
+      - name: Log in to GHCR (read)
+        env:
+          GHCR_USER: ${{ github.actor }}
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
+
+      - name: cosign verify (keyless — matches this repo's GitHub Actions OIDC identity)
+        env:
+          DIGEST: ${{ needs.package.outputs.digest }}
+          IMAGE: ${{ needs.package.outputs.image }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          cosign verify \
+            --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
+            --certificate-identity-regexp="^https://github.com/${REPOSITORY}/" \
+            "$IMAGE@$DIGEST"
+
+      - name: Pull the published image BY DIGEST (never a mutable tag) and boot it
+        env:
+          DIGEST: ${{ needs.package.outputs.digest }}
+          IMAGE: ${{ needs.package.outputs.image }}
+        run: |
+          docker pull "$IMAGE@$DIGEST"
+          docker run -d --name release-check -p 8080:8080 "$IMAGE@$DIGEST"
+
+      - name: Wait for health, then prove /livez responds on the real published artifact
+        run: |
+          for _ in $(seq 1 30); do
+            if curl -fsS http://localhost:8080/healthz >/dev/null 2>&1; then break; fi
+            sleep 1
+          done
+          curl -fsS http://localhost:8080/livez
+          echo
+          docker logs release-check
+
+      - name: Stop the container
+        if: always()
+        run: docker rm -f release-check || true

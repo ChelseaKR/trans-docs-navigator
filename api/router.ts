@@ -9,14 +9,16 @@
 import { buildChecklist, hasThinnerLanguageCoverage } from "./checklist.ts";
 import { answer } from "./guidance.ts";
 import { loadCorpus } from "./corpus.ts";
+import { isCurrent } from "./freshness.ts";
 import { formById } from "./forms.ts";
-import type { ChangeType, DocumentType, Intake, Language } from "./types.ts";
-import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
+import type { ChangeType, CorpusRecord, DocumentType, Intake, Language } from "./types.ts";
+import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
 import { renderAnswer, page, uiStrings, escapeHtml, STYLE } from "../src/render.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
 import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.ts";
 import { robotsTxt, sitemapXml } from "../src/seo.ts";
 import { asLanguage } from "../src/i18n/index.ts";
+import { serviceWorkerScript } from "../src/offline.ts";
 
 /** Input bounds — abuse/DoS resistance + predictable resource use. */
 export const LIMITS = {
@@ -101,6 +103,40 @@ export function parseIntake(url: URL): Intake | null {
 }
 
 const HTML = "text/html; charset=utf-8";
+const JSON_CT = "application/json";
+
+/** Result of the readiness probe: overall verdict + per-dependency check detail. */
+export interface ReadinessReport {
+  ready: boolean;
+  checks: Record<string, "ok" | "unavailable">;
+}
+
+/**
+ * Readiness for the `/readyz` probe — FAIL-CLOSED. The critical dependency here is the
+ * legal corpus and its freshness: the service is only "ready" when the corpus loads with
+ * ≥1 record AND at least one record is serveable-as-current (within its recheck SLA).
+ * If the corpus can't load, is empty, or has zero current records, we are NOT ready —
+ * "stale law is broken law", so we return 503 rather than route traffic to stale facts.
+ *
+ * `load`/`today` are injectable for deterministic tests; production uses the cached corpus
+ * loader and the real "as of" date.
+ */
+export function readiness(opts: { today?: string | undefined; load?: (() => CorpusRecord[]) | undefined } = {}): ReadinessReport {
+  const load = opts.load ?? (() => loadCorpus());
+  let corpus: CorpusRecord[];
+  try {
+    corpus = load();
+  } catch {
+    // A throwing corpus dependency is unavailable — never a 500 on a readiness probe.
+    return { ready: false, checks: { corpus: "unavailable", freshness: "unavailable" } };
+  }
+  const checks: Record<string, "ok" | "unavailable"> = {
+    corpus: corpus.length > 0 ? "ok" : "unavailable",
+    freshness: corpus.some((r) => isCurrent(r, opts.today)) ? "ok" : "unavailable",
+  };
+  const ready = checks.corpus === "ok" && checks.freshness === "ok";
+  return { ready, checks };
+}
 
 function badRequest(lang: Language): RouteResponse {
   const t = uiStrings(lang);
@@ -146,6 +182,12 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     return { status: 200, contentType: "text/css; charset=utf-8", body: STYLE };
   }
 
+  // Service worker for offline-capable PWA (EXP-01). Serves a generated script with
+  // the shell version hash burned in (content hash = versioning).
+  if (p === "/sw.js") {
+    return { status: 200, contentType: "text/javascript; charset=utf-8", body: serviceWorkerScript() };
+  }
+
   // Crawler files (generated from the route set, so they can't go stale).
   if (p === "/robots.txt") {
     return { status: 200, contentType: "text/plain; charset=utf-8", body: robotsTxt() };
@@ -157,8 +199,27 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
   if (p === "/healthz") {
     return {
       status: 200,
-      contentType: "application/json",
+      contentType: JSON_CT,
       body: JSON.stringify({ status: "ok", corpus_records: loadCorpus().length }),
+    };
+  }
+
+  // Liveness (K8s probe contract, OBSERVABILITY-STANDARD §6): the process is alive and
+  // not deadlocked. NO dependency calls — must stay trivially fast and never flap on a
+  // slow/absent dependency.
+  if (p === "/livez") {
+    return { status: 200, contentType: JSON_CT, body: JSON.stringify({ status: "ok" }) };
+  }
+
+  // Readiness (K8s probe contract, OBSERVABILITY-STANDARD §6): ready for traffic INCLUDING
+  // the critical dependency check. Fail-closed 503 when the corpus/freshness dependency is
+  // unavailable, so a not-ready instance is pulled from rotation instead of serving stale law.
+  if (p === "/readyz") {
+    const report = readiness({ today });
+    return {
+      status: report.ready ? 200 : 503,
+      contentType: JSON_CT,
+      body: JSON.stringify({ status: report.ready ? "ok" : "unavailable", checks: report.checks }),
     };
   }
 
@@ -211,9 +272,14 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     return {
       status: 200,
       contentType: HTML,
-      body: renderPacketPage(checklist, loadCorpus(), intake.language, generatedOn),
+      body: renderPacketPage(checklist, loadCorpus(), intake.language, generatedOn, intakeQuery(intake)),
       log: { event: "packet", fields: { jurisdiction: intake.jurisdiction, language: intake.language, status: 200 } },
     };
+  }
+
+  // Offline notice page — shown when there's no network and no cached copy.
+  if (p === "/offline") {
+    return { status: 200, contentType: HTML, body: renderOfflinePage(lang) };
   }
 
   if (p === "/answer") {
