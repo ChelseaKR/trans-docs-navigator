@@ -9,7 +9,17 @@ name: container-scan
 on:
   push:
     branches: [main]
+    paths:
+      - "Dockerfile"
+      - ".dockerignore"
+      - "package.json"
+      - "package-lock.json"
   pull_request:
+    paths:
+      - "Dockerfile"
+      - ".dockerignore"
+      - "package.json"
+      - "package-lock.json"
 
 # Least privilege: this job only reads the repo to build the image.
 permissions:
@@ -17,7 +27,7 @@ permissions:
 
 concurrency:
   group: container-scan-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   trivy:

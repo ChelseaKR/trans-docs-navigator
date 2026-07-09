@@ -9,11 +9,7 @@ name: scorecard
 # can be hand-transcribed from a real run each month (SEC-38).
 
 on:
-  branch_protection_rule:
-  schedule:
-    - cron: "30 1 * * 6" # Saturdays 01:30 UTC
-  push:
-    branches: [main]
+  workflow_dispatch: {}
 
 permissions: read-all
 
