@@ -10,6 +10,10 @@ on:
     branches: [main]
   pull_request:
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -34,6 +38,7 @@ jobs:
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: "22"
+          cache: npm # restore ~/.npm so `npm ci` skips the network on cache hit
       - run: npm ci
       # G9 pseudolocale overflow (below) drives a real browser via Playwright, so
       # `make verify` needs Chromium. Keeps local == CI (both run the full make verify).
@@ -72,6 +77,7 @@ jobs:
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: "22"
+          cache: npm # restore ~/.npm so `npm ci` skips the network on cache hit
       - run: npm ci
       - run: make smoke
 
@@ -97,6 +103,7 @@ jobs:
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: "22"
+          cache: npm # restore ~/.npm so `npm ci` skips the network on cache hit
       - run: npm ci
       - name: Start server
         run: |
