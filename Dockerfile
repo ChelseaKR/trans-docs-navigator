@@ -3,7 +3,7 @@
 # One image runs everywhere: a plain container host (Render) runs the CMD directly;
 # AWS Lambda activates the Lambda Web Adapter extension below to bridge function
 # invocations to the same HTTP server. Outside Lambda the adapter file is inert.
-FROM node:22-slim AS base
+FROM node:24-slim AS base
 WORKDIR /app
 
 # AWS Lambda Web Adapter (cost-light preview, infra/preview): lets Lambda run this
