@@ -12,7 +12,7 @@
 import { loadCorpus } from "../api/corpus.ts";
 import { buildChecklist } from "../api/checklist.ts";
 import { formById } from "../api/forms.ts";
-import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
+import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
 import { renderGuideIndex, renderGuidePage } from "../src/guide.ts";
 import { PALETTE, STYLE } from "../src/render.ts";
@@ -84,6 +84,11 @@ const pages: Page[] = [
   { name: "guide-index-es", html: renderGuideIndex("es") },
   { name: "guide-page", html: renderGuidePage("california", "name-change", "en")! },
   { name: "guide-page-es", html: renderGuidePage("texas", "gender-marker", "es")! },
+  // Added 2026-07-05 (P1-5): the offline-shell notice page (EXP-01, merged 2026-07-01)
+  // had no mechanical a11y coverage at all until now — neither this static gate nor
+  // the real-browser pa11y-ci URL list (.pa11yci.json) included it.
+  { name: "offline", html: renderOfflinePage("en") },
+  { name: "offline-es", html: renderOfflinePage("es") },
 ];
 
 function checkPage(p: Page): string[] {

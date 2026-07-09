@@ -1,0 +1,66 @@
+{
+  "url": "https://api.github.com/repos/ChelseaKR/trans-docs-navigator/branches/main/protection",
+  "required_status_checks": {
+    "url": "https://api.github.com/repos/ChelseaKR/trans-docs-navigator/branches/main/protection/required_status_checks",
+    "strict": true,
+    "contexts": [
+      "verify",
+      "smoke-journey",
+      "a11y-browser",
+      "security-sast",
+      "container-and-infra"
+    ],
+    "contexts_url": "https://api.github.com/repos/ChelseaKR/trans-docs-navigator/branches/main/protection/required_status_checks/contexts",
+    "checks": [
+      {
+        "context": "verify",
+        "app_id": 15368
+      },
+      {
+        "context": "smoke-journey",
+        "app_id": null
+      },
+      {
+        "context": "a11y-browser",
+        "app_id": 15368
+      },
+      {
+        "context": "security-sast",
+        "app_id": 15368
+      },
+      {
+        "context": "container-and-infra",
+        "app_id": 15368
+      }
+    ]
+  },
+  "required_signatures": {
+    "url": "https://api.github.com/repos/ChelseaKR/trans-docs-navigator/branches/main/protection/required_signatures",
+    "enabled": false
+  },
+  "enforce_admins": {
+    "url": "https://api.github.com/repos/ChelseaKR/trans-docs-navigator/branches/main/protection/enforce_admins",
+    "enabled": false
+  },
+  "required_linear_history": {
+    "enabled": false
+  },
+  "allow_force_pushes": {
+    "enabled": false
+  },
+  "allow_deletions": {
+    "enabled": false
+  },
+  "block_creations": {
+    "enabled": false
+  },
+  "required_conversation_resolution": {
+    "enabled": false
+  },
+  "lock_branch": {
+    "enabled": false
+  },
+  "allow_fork_syncing": {
+    "enabled": false
+  }
+}

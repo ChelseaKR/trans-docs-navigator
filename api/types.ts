@@ -117,8 +117,8 @@ export interface ChecklistStep {
   /** Record ids backing this step's substantive content. */
   record_ids: string[];
   prerequisites: string[]; // step keys
-  cost?: Cost;
-  timeline?: Timeline;
+  cost?: Cost | undefined;
+  timeline?: Timeline | undefined;
   discretionary: boolean;
   /** True when at least one backing record is degraded → step shows "needs reverification". */
   needs_reverification: boolean;

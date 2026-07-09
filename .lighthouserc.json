@@ -1,0 +1,32 @@
+{
+  "ci": {
+    "collect": {
+      "url": [
+        "http://localhost:8080/",
+        "http://localhost:8080/?language=es",
+        "http://localhost:8080/checklist?jurisdiction=US-CA&change=name&change=gender-marker",
+        "http://localhost:8080/packet?jurisdiction=US-CA&change=name",
+        "http://localhost:8080/terms",
+        "http://localhost:8080/guide/california/name-change"
+      ],
+      "numberOfRuns": 3,
+      "settings": {
+        "chromeFlags": "--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage --headless=new",
+        "throttlingMethod": "provided"
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:accessibility": ["error", { "minScore": 0.95 }],
+        "categories:performance": ["error", { "minScore": 0.9 }],
+        "largest-contentful-paint": ["error", { "maxNumericValue": 2500 }],
+        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],
+        "total-blocking-time": ["error", { "maxNumericValue": 200 }]
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": "./lighthouseci-reports"
+    }
+  }
+}
