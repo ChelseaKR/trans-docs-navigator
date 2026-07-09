@@ -356,5 +356,78 @@
     "verification_status": "needs_reverification",
     "recheck_sla_days": 30,
     "language": "es"
+  },
+  {
+    "id": "tx.court-order.name.es",
+    "jurisdiction": "US-TX",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Texas",
+    "statement": "En Texas usted cambia su nombre legal presentando una petición para cambiar el nombre de un adulto en el tribunal de distrito del condado donde vive, y un juez firma una orden que lo concede.",
+    "detail": "Texas exige un juego de huellas dactilares y una verificación de antecedentes penales como parte de la petición de cambio de nombre de un adulto. La orden firmada se usa luego para actualizar otros documentos.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Las tarifas de presentación varían según el condado; hay una exención de tarifa disponible (Declaración de Incapacidad para Pagar), y la verificación de huellas/antecedentes puede añadir un costo.",
+      "fee_waiver": true
+    },
+    "timeline": {
+      "typical": "varias semanas, en parte por la verificación de antecedentes"
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://texaslawhelp.org/family-divorce-children/name-change/name-change-of-an-adult",
+      "title": "TexasLawHelp — Cambie su Nombre (Adultos)",
+      "last_verified": "2026-06-16",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "tx.drivers-license.name.es",
+    "jurisdiction": "US-TX",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Texas",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Texas, visite el Departamento de Seguridad Pública dentro del plazo requerido después de su cambio de nombre, lleve su orden judicial y prueba de identidad, y solicite una tarjeta corregida.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dps.texas.gov/section/driver-license/how-change-information-your-driver-license-or-id-card",
+      "title": "DPS de Texas — Cambiar su Nombre",
+      "last_verified": "2026-06-16",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "tx.drivers-license.gender-marker.es",
+    "jurisdiction": "US-TX",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Política del marcador de sexo en la licencia de conducir de Texas",
+    "statement": "La política de Texas sobre el cambio del marcador de sexo en la licencia de conducir ha cambiado recientemente y está en disputa.",
+    "detail": "Por ser volátil, el navegador no presenta una regla actual aquí; debe reverificarse con la fuente oficial del Departamento de Seguridad Pública antes de mostrarse como un hecho.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dps.texas.gov/section/driver-license",
+      "title": "DPS de Texas — Licencia de Conducir",
+      "last_verified": "2025-02-01",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
   }
 ]
