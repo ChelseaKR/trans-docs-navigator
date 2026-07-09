@@ -18,6 +18,10 @@ permissions:
   contents: read
   issues: write
 
+concurrency:
+  group: content-watch
+  cancel-in-progress: false
+
 jobs:
   content-watch:
     runs-on: ubuntu-latest
