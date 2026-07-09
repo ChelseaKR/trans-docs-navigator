@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { escapeHtml, page, renderChecklist, renderAnswer, uiStrings, PALETTE } from "../src/render.ts";
+import { escapeHtml, page, renderChecklist, renderAnswer, uiStrings, PALETTE, reportErrorHref, reportErrorLinksEnabled } from "../src/render.ts";
 import type { Checklist, GroundedAnswer, CorpusRecord } from "../api/types.ts";
 
 test("escapeHtml neutralizes every HTML-significant character", () => {
@@ -78,4 +78,56 @@ test("uiStrings differ by language", () => {
 test("PALETTE exposes screen and print themes used by the contrast gate", () => {
   assert.equal(PALETTE.screen.bg, "#0f1419");
   assert.equal(PALETTE.print.bg, "#ffffff");
+});
+
+// --- Per-step "report an error / law changed" link (C1) ---
+
+const reportChecklist = (): Checklist => ({
+  jurisdiction: "US-CA",
+  change_types: ["name"],
+  language: "en",
+  steps: [{ key: "court-order", order: 1, document_type: "court-order", title: "Court order", record_ids: ["ca.court-order.name"], prerequisites: [], discretionary: false, needs_reverification: false }],
+  gaps: [],
+});
+
+test("reportErrorHref carries jurisdiction + document type only, fully encoded", () => {
+  const href = reportErrorHref("US-CA", "court-order");
+  const url = new URL(href);
+  assert.equal(url.origin + url.pathname, "https://github.com/ChelseaKR/trans-docs-navigator/issues/new");
+  assert.deepEqual([...url.searchParams.keys()].sort(), ["template", "title"]);
+  assert.equal(url.searchParams.get("template"), "law-changed.md");
+  assert.equal(url.searchParams.get("title"), "[law-changed] US-CA · court-order");
+  // No raw spaces/middots leak into the serialized URL (everything URL-encoded).
+  assert.doesNotMatch(href, /[ ·]/);
+});
+
+test("reportErrorLinksEnabled is fail-closed: off unless REPORT_ERROR_LINKS=on", () => {
+  assert.equal(reportErrorLinksEnabled({} as NodeJS.ProcessEnv), false);
+  assert.equal(reportErrorLinksEnabled({ REPORT_ERROR_LINKS: "true" } as NodeJS.ProcessEnv), false);
+  assert.equal(reportErrorLinksEnabled({ REPORT_ERROR_LINKS: "on" } as NodeJS.ProcessEnv), true);
+});
+
+test("report-an-error link does NOT render by default (repo is private; flag off)", () => {
+  delete process.env.REPORT_ERROR_LINKS;
+  const h = renderChecklist(reportChecklist(), [rec()], "en");
+  assert.doesNotMatch(h, /step-report/);
+  assert.doesNotMatch(h, /issues\/new/);
+});
+
+test("report-an-error link renders with escaping, noopener, and destination disclosure when enabled", () => {
+  process.env.REPORT_ERROR_LINKS = "on";
+  try {
+    const h = renderChecklist(reportChecklist(), [rec()], "en");
+    assert.match(h, /class="step-report meta no-print"/);
+    // Href is escaped per repo convention: the literal & joins as &amp; in the attribute.
+    assert.match(h, /template=law-changed\.md&amp;title=/);
+    // Screen-only (never in the printed packet surface) and safe against reverse-tabnabbing.
+    const m = h.match(/<p class="step-report[^]*?<\/p>/);
+    assert.ok(m, "report link block rendered");
+    assert.match(m![0], /rel="noopener noreferrer"/);
+    // The destination disclosure is structurally inseparable from the link.
+    assert.match(m![0], /Reports are public and need a GitHub account/);
+  } finally {
+    delete process.env.REPORT_ERROR_LINKS;
+  }
 });

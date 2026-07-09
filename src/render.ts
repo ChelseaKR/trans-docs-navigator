@@ -40,6 +40,17 @@ export function reportErrorHref(jurisdiction: string, documentType: string): str
   return `${LAW_CHANGED_ISSUE_URL}&title=${encodeURIComponent(`[law-changed] ${jurisdiction} · ${documentType}`)}`;
 }
 
+// The destination is a GitHub issue on a repo that is currently PRIVATE: for any
+// non-collaborator the link 404s — after GitHub has already logged the prefilled URL
+// against their IP/session. Rendering is therefore OFF unless the operator opts in
+// with REPORT_ERROR_LINKS=on. Flipping it on is part of the repo-visibility decision
+// (owner-only), and a filed issue is PUBLIC and tied to the reporter's GitHub
+// identity — which is why the disclosure note renders beside the link when enabled.
+// DPIA: docs/audits/dpia.md §1 row [Added 2026-07-09] + §5 residual-risk entry.
+export function reportErrorLinksEnabled(env: NodeJS.ProcessEnv = process.env): boolean {
+  return env.REPORT_ERROR_LINKS === "on";
+}
+
 
 /**
  * Colour tokens, exported so the a11y gate can assert WCAG 2.2 AA contrast ratios
@@ -202,7 +213,9 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
       // Per-step "report an error / law changed" link (RESEARCH-ROADMAP R11): a one-click
       // path to the law-changed issue template, so a user who spots stale guidance becomes
       // a freshness signal exactly where they noticed it.
-      const reportLink = `<p class="step-report meta no-print"><a href="${reportErrorHref(checklist.jurisdiction, s.document_type)}" rel="noopener noreferrer">${escapeHtml(t.reportError)}</a></p>`;
+      const reportLink = reportErrorLinksEnabled()
+        ? `<p class="step-report meta no-print"><a href="${escapeHtml(reportErrorHref(checklist.jurisdiction, s.document_type))}" rel="noopener noreferrer">${escapeHtml(t.reportError)}</a><br><small>${escapeHtml(t.reportErrorNote)}</small></p>`
+        : "";
       return `<li class="step" data-step="${escapeHtml(s.key)}">
   <div class="step-head"><h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
   <label class="done-toggle no-print"><input type="checkbox" data-step-toggle="${escapeHtml(s.key)}"> ${escapeHtml(t.markDone)}</label></div>

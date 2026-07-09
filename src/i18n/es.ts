@@ -85,6 +85,8 @@ export const es: LocaleBundle = {
     moreDetail: "Más detalle",
     markDone: "Marcar como hecho",
     reportError: "¿Desactualizado? Informe de un error o una ley que cambió",
+    // PENDING native-speaker review (no attestation) + counsel review — destination-disclosure copy; see docs/audits/dpia.md [Added 2026-07-09] row.
+    reportErrorNote: "Este enlace abre GitHub en una pestaña nueva. Los informes son públicos y requieren una cuenta de GitHub.",
     progressTemplate: "{done} de {total} pasos hechos",
     stepsLabel: "pasos",
     estimatedCost: "Costo estimado",
