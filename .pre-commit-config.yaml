@@ -1,0 +1,19 @@
+# Pre-commit hooks (SEC-17, CQ-12). Install with:
+#   pip install pre-commit && pre-commit install
+# or: pipx run pre-commit install
+#
+# `typecheck` runs through the project's own `tsc` (node_modules), so the version
+# always matches `make verify` / CI exactly — no separately-pinned mirror to drift.
+repos:
+  - repo: local
+    hooks:
+      - id: typecheck
+        name: typecheck (tsc --noEmit)
+        entry: npx --no-install tsc --noEmit
+        language: system
+        pass_filenames: false
+        types: [ts]
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks

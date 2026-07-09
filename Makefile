@@ -13,9 +13,10 @@ help:
 	@echo "Targets:"
 	@echo "  make install      Install dependencies"
 	@echo "  make dev          Run the local dev server"
-	@echo "  make verify       Run the full merge-blocking gate set (CI parity)"
+	@echo "  make verify       Run the full merge-blocking gate set (CI parity, 20 stages)"
 	@echo "  make eval         Run the groundedness/accuracy/refusal eval harness"
 	@echo "  make a11y         Run the accessibility gate"
+	@echo "  make loadtest     In-process p95 latency guard (merge-blocking, no server needed)"
 	@echo "  make deploy-plan  Validate infra (terraform plan)"
 
 install:
@@ -27,52 +28,52 @@ dev:
 # ---------------------------------------------------------------------------
 # The blocking pipeline, in standard order. Any non-zero exit fails the build.
 # ---------------------------------------------------------------------------
-verify: lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css a11y seo eval i18n-overflow
+verify: lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css a11y seo eval i18n-overflow loadtest
 	@echo ""
 	@echo "✅ make verify: all merge-blocking gates passed."
 
 lint:
-	@echo "── [1/17] lint ───────────────────────────────────────────"
+	@echo "── [1/20] lint ───────────────────────────────────────────"
 	@$(NODE) scripts/lint.ts
 
 typecheck:
-	@echo "── [2/17] type-check (tsc --strict) ──────────────────────"
+	@echo "── [2/20] type-check (tsc --strict) ──────────────────────"
 	@npx --no-install tsc --noEmit
 
 test:
-	@echo "── [3/17] unit + integration tests (coverage-gated) ──────"
+	@echo "── [3/20] unit + integration tests (coverage-gated) ──────"
 	@$(NODE) scripts/run-tests.ts
 
 security:
-	@echo "── [4/17] security: dependency audit + secret scan ───────"
+	@echo "── [4/20] security: dependency audit + secret scan ───────"
 	@$(NODE) scripts/security-scan.ts
 
 content:
-	@echo "── [5/17] corpus content validation (source+verifier+date)"
+	@echo "── [5/20] corpus content validation (source+verifier+date)"
 	@$(NODE) scripts/content-validate.ts
 
 forms:
-	@echo "── [6/17] forms: official links, no fake auto-fill ───────"
+	@echo "── [6/20] forms: official links, no fake auto-fill ───────"
 	@$(NODE) scripts/forms-check.ts
 
 citation:
-	@echo "── [7/17] citation coverage (100% required) ──────────────"
+	@echo "── [7/20] citation coverage (100% required) ──────────────"
 	@$(NODE) scripts/citation-coverage.ts
 
 privacy:
-	@echo "── [8/17] privacy lint (no PII in logs / no egress) ──────"
+	@echo "── [8/20] privacy lint (no PII in logs / no egress) ──────"
 	@$(NODE) scripts/privacy-lint.ts
 
 freshness:
-	@echo "── [9/17] corpus freshness SLA ───────────────────────────"
+	@echo "── [9/20] corpus freshness SLA ───────────────────────────"
 	@$(NODE) scripts/freshness.ts
 
 disclosure:
-	@echo "── [10/17] disclosure strings (info-not-advice / AI label) ─"
+	@echo "── [10/20] disclosure strings (info-not-advice / AI label) ─"
 	@$(NODE) scripts/disclosure-check.ts
 
 readability:
-	@echo "── [11/17] readability (plain-language ~8th-grade target) ─"
+	@echo "── [11/20] readability (plain-language ~8th-grade target) ─"
 	@$(NODE) scripts/readability.ts
 
 # Mechanical i18n gates (INTERNATIONALIZATION-STANDARD §4). G1 UTF-8 and G3 BCP-47
@@ -82,35 +83,35 @@ readability:
 # deferred; G12 (CLDR/tzdata pin) is N/A-until-used — the frontend does no Intl
 # number/date formatting yet. ar/he RTL mirror smoke is deferred. See docs/I18N.md.
 i18n-utf8:
-	@echo "── [12/19] i18n: UTF-8 encoding (all tracked text files) ──"
+	@echo "── [12/20] i18n: UTF-8 encoding (all tracked text files) ──"
 	@$(NODE) scripts/i18n-utf8.ts
 
 i18n-bcp47:
-	@echo "── [13/19] i18n: BCP 47 language-tag validity ────────────"
+	@echo "── [13/20] i18n: BCP 47 language-tag validity ────────────"
 	@$(NODE) scripts/i18n-bcp47.ts
 
 i18n:
-	@echo "── [14/19] locale key-parity (EN/ES, no empty translations) ─"
+	@echo "── [14/20] locale key-parity (EN/ES, no empty translations) ─"
 	@$(NODE) scripts/i18n-parity.ts
 
 # G10 (static) — logical-CSS for RTL readiness. Extracts the typed STYLE from
 # src/render.ts to a git-ignored artifact and lints the inline (writing-direction)
 # axis with stylelint-use-logical (stylelint.config.js). Fix findings in render.ts.
 i18n-logical-css:
-	@echo "── [15/19] i18n: logical-CSS (G10 static, stylelint use-logical) ─"
+	@echo "── [15/20] i18n: logical-CSS (G10 static, stylelint use-logical) ─"
 	@$(NODE) scripts/i18n-css-extract.ts
 	@npx --no-install stylelint tmp/app.generated.css
 
 a11y:
-	@echo "── [16/19] accessibility gate ────────────────────────────"
+	@echo "── [16/20] accessibility gate ────────────────────────────"
 	@$(NODE) scripts/a11y-lint.ts
 
 seo:
-	@echo "── [17/19] SEO (indexing contract, metadata, sitemap) ────"
+	@echo "── [17/20] SEO (indexing contract, metadata, sitemap) ────"
 	@$(NODE) scripts/seo-lint.ts
 
 eval:
-	@echo "── [18/19] eval harness (groundedness/accuracy/refusal) ──"
+	@echo "── [18/20] eval harness (groundedness/accuracy/refusal) ──"
 	@$(NODE) eval/run.ts
 
 # G9 (live) — pseudolocale overflow. Renders the key routes under the en-XA
@@ -118,8 +119,18 @@ eval:
 # truncation, or horizontal scroll. Playwright starts the test server itself
 # (TDN_I18N_TEST_HOOKS=1); production never registers en-XA. See docs/I18N.md.
 i18n-overflow:
-	@echo "── [19/19] i18n: pseudolocale overflow (G9, Playwright desktop+mobile) ─"
+	@echo "── [19/20] i18n: pseudolocale overflow (G9, Playwright desktop+mobile) ─"
 	@npx --no-install playwright test
+
+# Deterministic in-process latency guard for the request path (QM-02, ROADMAP §7).
+# Measures routing + retrieval + composition + render latency with no server/network
+# dependency, so it runs merge-blocking in `make verify` == CI without flake risk.
+# The network-level p95-first-token target remains a *separate*, opt-in check:
+# `BASE=http://localhost:8080 k6 run loadtest/p95.k6.js` against a live instance
+# (needs k6 + a running server, so it is not part of this merge-blocking target).
+loadtest:
+	@echo "── [20/20] request-path latency benchmark (in-process p95 guard) ─"
+	@$(NODE) scripts/latency-bench.ts
 
 # Opt-in model-path safety lane (not in `verify`; offline by default, real Bedrock with
 # TDN_BEDROCK=aws + AWS credentials). Proves the citation gate holds for the model path.
@@ -153,12 +164,6 @@ source-baseline:
 # Print a schema-valid corpus-record skeleton (dated today, placeholder verifier).
 new-record:
 	@$(NODE) scripts/new-record.ts
-
-# Deterministic in-process latency guard for the request path. The network-level p95
-# first-token target (ROADMAP §7) is loadtest/p95.k6.js, run against a live instance.
-loadtest:
-	@echo "── request-path latency benchmark ───────────────────────"
-	@$(NODE) scripts/latency-bench.ts
 
 deploy-plan:
 	@cd infra && terraform init -backend=false >/dev/null 2>&1 && terraform validate || \

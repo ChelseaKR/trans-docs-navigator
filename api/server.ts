@@ -10,7 +10,7 @@ import { randomUUID } from "node:crypto";
 import { join, normalize, extname, sep } from "node:path";
 import { REPO_ROOT, loadCorpus, LAST_QUARANTINE } from "./corpus.ts";
 import { safeLog } from "./log.ts";
-import { handleRoute } from "./router.ts";
+import { handleRoute, asLanguage } from "./router.ts";
 
 const PORT = Number(process.env.PORT ?? 8080);
 
@@ -40,6 +40,14 @@ const SECURITY_HEADERS: Record<string, string> = {
   "x-frame-options": "DENY",
   "referrer-policy": "no-referrer",
   "cross-origin-opener-policy": "same-origin",
+  // HSTS (2 years, subdomains included; no `preload` — this repo is deployed to
+  // multiple hosts per docs/DEPLOY-*.md and preload-list submission is a one-way
+  // door that should be a deliberate ops decision, not a default).
+  "strict-transport-security": "max-age=63072000; includeSubDomains",
+  // No feature this app uses needs a browser permission; deny every gated feature
+  // outright rather than allowlisting 'self' for anything (SEC-20).
+  "permissions-policy":
+    "geolocation=(), camera=(), microphone=(), payment=(), usb=(), fullscreen=(), interest-cohort=()",
 };
 
 function send(res: ServerResponse, status: number, contentType: string, body: string | Buffer, extra?: Record<string, string>): void {
@@ -114,7 +122,14 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
     if (tryStatic(route, res)) return;
 
     const r = handleRoute(req.method ?? "GET", url);
-    send(res, r.status, r.contentType, r.body, r.headers);
+    // I18N-13 (G11): declare the resolved rendered language on every localized HTML
+    // response, independent of how it was selected (explicit ?language= param here,
+    // not Accept-Language negotiation — see docs/I18N.md). Non-HTML responses (health
+    // probes, JSON, the stylesheet, robots/sitemap) carry no human-language content.
+    const langHeaders: Record<string, string> = r.contentType.startsWith("text/html")
+      ? { "content-language": asLanguage(url.searchParams.get("language")) }
+      : {};
+    send(res, r.status, r.contentType, r.body, { ...langHeaders, ...r.headers });
     if (r.log) safeLog(r.log.event, r.log.fields);
   } catch (err) {
     send(res, 500, "text/html; charset=utf-8", "<!doctype html><html lang=en><title>Error</title><p>Something went wrong. Please try again.</p>");

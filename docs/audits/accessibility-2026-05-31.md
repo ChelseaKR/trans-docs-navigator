@@ -3,14 +3,31 @@
 > RESPONSIBLE-TECH-FRAMEWORK §E / WCAG 2.2 AA. Target task: complete
 > intake → checklist → form-fill using a screen reader, keyboard, or magnification.
 
+> ⚠️ **STALENESS NOTE (added 2026-07-05, remediation pass — not a re-walkthrough):**
+> This artifact predates the offline-capable PWA shell (EXP-01, merged 2026-07-01,
+> commit `1bd85c4`) and its "Save for offline" / "delete all saved pages" UI, and the
+> client-side encrypted save/resume panel (2026-06-05). Neither JS-enhanced widget has
+> ever had a human keyboard/screen-reader pass. As of 2026-07-05, the **mechanical**
+> gate now also covers the offline-shell notice page (`scripts/a11y-lint.ts` templates
+> `offline`/`offline-es`; `.pa11yci.json` now includes `/offline` and
+> `/offline?language=es`) — that part of this note is a verified, mechanical fact, run
+> and green as of this pass. **The manual walkthrough below is still exactly as PENDING
+> as it was on 2026-05-31, now for a larger surface than it was written against.** No
+> screen-reader/keyboard pass has been fabricated or implied here — this note only
+> identifies what widened the walkthrough's scope; it does not perform it.
+
 ## Automated (auto-gated, merge-blocking) — PASS
 `make a11y` renders every page template and asserts the mechanical WCAG checks
 (~30–40% per the standard): `<html lang>`, non-empty `<title>`, viewport meta, exactly
 one `<h1>`, skip-to-content link + `#main` landmark, visible-focus styles,
 `prefers-reduced-motion` handling, image `alt`, labelled form controls, no positive
-`tabindex`, non-empty link/button text. **Result: 0 violations across 7 page templates**
-(intake EN/ES, checklist EN/ES, printable packet, form-fill, form-degraded). Keyboard-path
-properties are additionally asserted in `tests/pages.test.ts`.
+`tabindex`, non-empty link/button text. **Result (2026-05-31): 0 violations across the
+page templates then covered** (intake EN/ES, checklist EN/ES, printable packet, form-fill,
+form-degraded — this original count of 7 was itself already behind the gate's actual
+coverage by 2026-05-31, which had grown to include the legal/guide pages too).
+Keyboard-path properties are additionally asserted in `tests/pages.test.ts`.
+**(2026-07-05: the gate covers 17 templates today, +2 for the offline-shell notice page
+EN/ES added in this remediation pass — see the staleness note above. Still 0 violations.)**
 
 The printable packet (`/packet`) ships a print stylesheet (`@media print`) that switches
 to a high-contrast light palette, hides navigation (`.no-print`), expands link URLs for
@@ -32,6 +49,13 @@ Cannot be automated; requires a human and assistive tech. Each must be signed be
 - [ ] Form-error messages announced programmatically (`aria-live`)
 - [ ] Reduced-motion respected (verified: no animations defined; CSS guard present)
 - [ ] Readability target (~8th grade) met for English and Spanish content
+- [ ] **[Added 2026-07-05]** Save/resume panel: keyboard-operable save/restore/clear
+      controls, passphrase field correctly labelled and errors announced
+      (`public/assets/resume-panel.js`, `src/secure-resume.ts`)
+- [ ] **[Added 2026-07-05]** Offline shell: "Save for offline" and "delete all saved
+      pages" controls are keyboard-operable and announce their result; the offline
+      notice page (`/offline`) is navigable and announced correctly by a screen reader
+      when reached via a dead network (`src/offline.ts`, `public/assets/offline.js`)
 
 ## Design choices supporting AA
 - High-contrast dark palette (tokens in `src/render.ts`); 3px visible focus ring.

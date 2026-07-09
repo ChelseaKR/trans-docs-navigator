@@ -47,10 +47,10 @@ export interface RetrievalQuery {
   /** Optional document filter; when omitted, all relevant documents are considered. */
   documents?: DocumentType[];
   /** Optional free-text question to rank within the filtered set. */
-  question?: string;
+  question?: string | undefined;
   /** Language to serve; defaults to English. */
   language?: Language;
-  today?: string;
+  today?: string | undefined;
 }
 
 export interface Retrieved {
