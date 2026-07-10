@@ -14,7 +14,7 @@
 // non-refused citations. Fails CLOSED via runEval()'s report.passed gate — a property
 // failure on EITHER retriever fails the whole eval run.
 
-import type { GroundedAnswer } from "../api/types.ts";
+import type { GroundedAnswer, DocumentType } from "../api/types.ts";
 import type { RetrievalQuery, Retriever } from "../api/retrieval.ts";
 import { answer } from "../api/guidance.ts";
 import { EVAL_TODAY } from "./harness.ts";
@@ -109,7 +109,7 @@ const JURISDICTION_PAIRS: JurisdictionPair[] = [
 interface FilterPair {
   id: string;
   withoutFilter: RetrievalQuery; // no `documents`
-  documents: RetrievalQuery["documents"];
+  documents: DocumentType[];
 }
 
 const FILTER_PAIRS: FilterPair[] = [

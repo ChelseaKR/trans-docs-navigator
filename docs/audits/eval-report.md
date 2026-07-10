@@ -39,7 +39,7 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 | US-CA | 8 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-IL | 4 | 4 | 1 | 100.0% | ✅ | ❌ | ❌ |
 | US-NY | 6 | 4 | 2 | 100.0% | ✅ | ❌ | ❌ |
-| US-TX | 3 | 2 | 1 | 100.0% | ✅ | ❌ | ❌ |
+| US-TX | 6 | 4 | 1 | 100.0% | ✅ | ❌ | ❌ |
 | US-WA | 3 | 3 | 2 | 100.0% | ✅ | ❌ | ❌ |
 
 ## Metamorphic properties
