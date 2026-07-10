@@ -11,6 +11,7 @@ import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
+import { loadCorpus } from "../api/corpus.ts";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -46,13 +47,17 @@ test("dataset-build emits schema, records, verifiers, labels, and manifest", () 
   });
 });
 
-test("dataset-build exits 0 and record_count matches the data-card (32)", () => {
+test("dataset-build exits 0 and record_count matches the live corpus", () => {
+  // Not hardcoded: the corpus grows over time (content PRs land independently of
+  // this release pipeline), so pin against loadCorpus() — the same fail-closed
+  // loader dataset-build.ts itself uses — rather than a point-in-time count.
+  const expected = loadCorpus().length;
   withTmpDir((dir) => {
     buildInto(dir);
     const manifest = JSON.parse(readFileSync(join(dir, "manifest.json"), "utf8"));
     const records = JSON.parse(readFileSync(join(dir, "records.json"), "utf8"));
-    assert.equal(manifest.record_count, 32);
-    assert.equal(records.length, 32);
+    assert.equal(manifest.record_count, expected);
+    assert.equal(records.length, expected);
   });
 });
 
