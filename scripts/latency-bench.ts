@@ -22,6 +22,7 @@ const routes: [string, string][] = [
   ["packet", "/packet?jurisdiction=US-CA&change=name"],
   ["answer", "/answer?jurisdiction=US-CA&change=name&q=how%20do%20I%20change%20my%20name%20in%20superior%20court"],
   ["healthz", "/healthz"],
+  ["metrics", "/metrics"],
 ];
 
 function percentile(sorted: number[], p: number): number {

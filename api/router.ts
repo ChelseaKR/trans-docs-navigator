@@ -19,6 +19,7 @@ import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.
 import { robotsTxt, sitemapXml } from "../src/seo.ts";
 import { asLanguage } from "../src/i18n/index.ts";
 import { serviceWorkerScript } from "../src/offline.ts";
+import { renderMetrics } from "./metrics.ts";
 
 /** Input bounds — abuse/DoS resistance + predictable resource use. */
 export const LIMITS = {
@@ -157,6 +158,45 @@ function notFound(lang: Language): RouteResponse {
   };
 }
 
+// Exact-match routes, kept in one place so `routeTemplate()` (metrics labels) and the
+// static-file allowlist in server.ts stay in sync with the dispatch table below.
+const EXACT_ROUTES = new Set([
+  "/",
+  "/assets/app.css",
+  "/sw.js",
+  "/robots.txt",
+  "/sitemap.xml",
+  "/healthz",
+  "/livez",
+  "/readyz",
+  "/metrics",
+  "/terms",
+  "/privacy",
+  "/accessibility",
+  "/guide",
+  "/checklist",
+  "/packet",
+  "/offline",
+  "/answer",
+]);
+
+/**
+ * Collapse a request pathname to a bounded, low-cardinality template for metrics labels
+ * (OBSERVABILITY-STANDARD §2). NEVER return the raw pathname for anything outside this
+ * known set — an attacker probing arbitrary paths (or a 404 typo) must not be able to grow
+ * the in-process metrics registry without bound. Mirrors the dispatch order in
+ * `handleRoute()` and the static allowlist in `api/server.ts`'s `tryStatic()`.
+ */
+export function routeTemplate(pathname: string): string {
+  if (EXACT_ROUTES.has(pathname)) return pathname;
+  if (pathname.startsWith("/guide/")) return "/guide/:state/:topic";
+  if (pathname.startsWith("/forms/fixtures/")) return "/forms/fixtures/:file";
+  if (pathname.startsWith("/forms/")) return "/forms/:id";
+  if (pathname.startsWith("/vendor/")) return "/vendor/:file";
+  if (pathname.startsWith("/assets/")) return "/assets/:file";
+  return "other";
+}
+
 /**
  * Resolve a dynamic route. Static files and the HTTP plumbing live in server.ts;
  * `today` is injectable for deterministic tests.
@@ -221,6 +261,13 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
       contentType: JSON_CT,
       body: JSON.stringify({ status: report.ready ? "ok" : "unavailable", checks: report.checks }),
     };
+  }
+
+  // RED metrics (OBSERVABILITY-STANDARD §2): Prometheus text-exposition format, unauthenticated
+  // like the health probes above — labels are bounded route templates + method + status only,
+  // never a raw path or any request content (see `routeTemplate()`).
+  if (p === "/metrics") {
+    return { status: 200, contentType: "text/plain; version=0.0.4; charset=utf-8", body: renderMetrics() };
   }
 
   if (p === "/") {

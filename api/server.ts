@@ -10,7 +10,8 @@ import { randomUUID } from "node:crypto";
 import { join, normalize, extname, sep } from "node:path";
 import { REPO_ROOT, loadCorpus, LAST_QUARANTINE } from "./corpus.ts";
 import { safeLog } from "./log.ts";
-import { handleRoute, asLanguage } from "./router.ts";
+import { handleRoute, asLanguage, routeTemplate } from "./router.ts";
+import { recordRequest } from "./metrics.ts";
 
 const PORT = Number(process.env.PORT ?? 8080);
 
@@ -137,6 +138,12 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
     // allowlist logger wouldn't otherwise see. Stack/detail belong in a non-PII trace sink.
     safeLog("error", { route, status: 500, error: (err as Error).name }, "error");
   } finally {
+    // RED metrics (OBSERVABILITY-STANDARD §2): every request, by BOUNDED route template —
+    // never the raw path — so this can't be grown unboundedly by a probe/scan (see
+    // `routeTemplate()`). Recorded before the access-log skip below so probe/scrape traffic
+    // is still counted in the rate, even though it's kept out of the noisy log stream.
+    recordRequest(routeTemplate(route), req.method ?? "GET", res.statusCode, Date.now() - start);
+
     // Structured access log: one JSON line per request with the correlation id, method,
     // path, response status, and latency. Health probes are excluded (§6). `route` is a
     // matched pathname only — never the query string — so no query content is logged.
