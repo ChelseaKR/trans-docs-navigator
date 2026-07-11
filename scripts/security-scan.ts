@@ -10,7 +10,9 @@ import { fileURLToPath } from "node:url";
 import { dirname, join, relative } from "node:path";
 import { walk, read, pass, fail } from "./util.ts";
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+// Test-only override (tests/gate-efficacy): point the gate at a poisoned fixture
+// tree instead of the repo root. Unset in production, so behavior is unchanged.
+const ROOT = process.env.SECURITY_SCAN_ROOT ?? join(dirname(fileURLToPath(import.meta.url)), "..");
 
 // (c) Vendored-asset integrity. The app vendors no third-party browser bundles
 // (pdf-lib was removed with the auto-fill feature), so there is nothing to pin.
@@ -54,6 +56,9 @@ for (const file of walk(ROOT, scanFile)) {
   if (file.includes("/node_modules/") || file.endsWith("package-lock.json")) continue;
   const rel = relative(ROOT, file);
   if (rel.startsWith("scripts/security-scan.ts")) continue; // the patterns themselves
+  // Deliberately-poisoned negative-control fixtures (tests/gate-efficacy) — see
+  // scripts/security-scan.ts's own SECURITY_SCAN_ROOT test-only override above.
+  if (rel.startsWith("tests/gate-efficacy/fixtures/")) continue;
   const content = read(file);
   for (const [name, re] of SECRET_PATTERNS) {
     if (re.test(content)) findings.push(`${rel} — possible ${name}`);

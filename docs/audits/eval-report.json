@@ -1,6 +1,6 @@
 {
   "today": "2026-06-16",
-  "total": 20,
+  "total": 23,
   "metrics": [
     {
       "name": "groundedness",
@@ -27,14 +27,14 @@
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 20,
+      "n": 23,
       "pass": true
     },
     {
       "name": "adversarial_safety",
       "value": 1,
       "threshold": 1,
-      "n": 5,
+      "n": 8,
       "pass": true
     },
     {
@@ -358,6 +358,36 @@
       "suite": "adversarial",
       "segment": {
         "jurisdiction": "US-NV",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "adv-negation-flip",
+      "suite": "adversarial",
+      "segment": {
+        "jurisdiction": "US-CA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "adv-fee-mutation",
+      "suite": "adversarial",
+      "segment": {
+        "jurisdiction": "US-CA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "adv-form-swap",
+      "suite": "adversarial",
+      "segment": {
+        "jurisdiction": "US-CA",
         "language": "en"
       },
       "passed": true,

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ny.referral.srlp",
+    "jurisdiction": "US-NY",
+    "name": "Sylvia Rivera Law Project",
+    "url": "https://srlp.org",
+    "note": {
+      "en": "New York City-based legal collective founded to serve low-income transgender and gender-nonconforming people, including with name and gender-marker changes.",
+      "es": "Colectivo legal con sede en la ciudad de Nueva York fundado para atender a personas trans y no conformes con el género de bajos ingresos, incluidos cambios de nombre y de marcador de género."
+    },
+    "source": {
+      "url": "https://srlp.org",
+      "title": "Sylvia Rivera Law Project",
+      "last_verified": "2026-06-01",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ny.referral.lawhelpny",
+    "jurisdiction": "US-NY",
+    "name": "LawHelpNY",
+    "url": "https://www.lawhelpny.org",
+    "note": {
+      "en": "Statewide directory of free and low-cost legal aid programs in New York, searchable by topic and county, including name-change assistance.",
+      "es": "Directorio estatal de programas de ayuda legal gratuita y de bajo costo en Nueva York, con búsqueda por tema y condado, incluida asistencia para cambio de nombre."
+    },
+    "source": {
+      "url": "https://www.lawhelpny.org",
+      "title": "LawHelpNY",
+      "last_verified": "2026-06-01",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

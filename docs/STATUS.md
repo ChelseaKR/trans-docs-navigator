@@ -1,7 +1,7 @@
 # Build Status — Trans Docs Navigator
 
 > Snapshot of what the ROADMAP §8 implementation plan has produced.
-> Last updated: 2026-06-05. `make verify` is green (12/12 gates).
+> Last updated: 2026-06-05. `make verify` is green (21/21 gates).
 >
 > **2026-06-05 hardening pass** (see `docs/IMPROVEMENT-PLAN.md` for the full plan):
 > added a named-verifier roster + placeholder enforcement (§1.1), a gold-set provenance
@@ -28,7 +28,7 @@
 
 | Milestone | Status | Evidence |
 |-----------|--------|----------|
-| **M0 — Scaffold & gates** | ✅ Done | `make verify` runs the 11-stage blocking pipeline; CI in `.github/workflows/ci.yml`; `Dockerfile`; `infra/`. |
+| **M0 — Scaffold & gates** | ✅ Done | `make verify` runs the 21-stage blocking pipeline; CI in `.github/workflows/ci.yml`; `Dockerfile`; `infra/`. |
 | **M1 — Corpus & data model** | ✅ Done (seed) | 32 schema-validated records (CA/IL/NY/TX/WA + federal, EN + ES); `make content` + `make freshness` green. Content is **seed data**, not launch-verified (ADR-3). |
 | **M2 — Retrieval-mandatory guidance** | ✅ Done | `api/retrieval.ts` → `api/generator.ts` → `api/citation.enforce()`; groundedness 100%, citation coverage 100% on the gold set. |
 | **M3 — Checklist engine** | ✅ Done | `api/checklist.ts`; ordered, prerequisite-aware, freshness-flagged; matches gold expectations. |
