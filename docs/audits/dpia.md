@@ -20,7 +20,7 @@
 
 | Data | Where it lives | Retention | Who can access |
 |------|----------------|-----------|----------------|
-| Intake answers (state, change types, documents, language) | Client memory + URL query on GET `/checklist` | None — not persisted | Nobody server-side |
+| Intake answers (state, change types, documents, language, has-court-order bookkeeping bit) | Client memory + URL query on GET `/checklist` | None — not persisted | Nobody server-side |
 | Identity data for form-fill (current/new legal name, court-order flag) | **Client memory only**; filled into the PDF in-browser | None — never transmitted | The user, on their device |
 | Server logs | stdout, structured JSON via `api/log.ts` | Ephemeral | Operators |
 | **[Added 2026-07-05] Save/resume selections** (jurisdiction, change types, documents, language — `ALLOWED_KEYS` in `src/secure-resume.ts`) | Browser `localStorage`, **AES-GCM encrypted** with a PBKDF2 (600k-iteration) passphrase-derived key (`public/assets/resume-crypto.js`) | Until the user clears it (one-click "clear" in the resume panel) or clears site data | The user, on their device; a forensic/shoulder read of `localStorage` sees only ciphertext without the passphrase. Identity fields are stripped server-side by `toResumeState()` before anything is offered to save — names never enter this path. |
@@ -61,6 +61,12 @@ counsel-review question, not a mechanical one — tracked as an open review gate
 ## 5. Residual risk
 - URL query parameters (state/documents) may appear in browser history or upstream
   proxy logs. These are non-identifying, but the privacy notice should state it.
+- FIX-07 (`court_order=1`) adds one more bit to that same non-identifying query surface:
+  whether the user already has a court order. It is the same privacy class as
+  `change`/`doc` (a plan-selection bookkeeping bit, not an identity field), deliberately
+  added to `secure-resume.ts`'s save/resume allowlist alongside them, and carries the
+  same history/proxy-log exposure noted above — flagged here rather than silently
+  expanding R6's accepted surface.
 - A future Bedrock-backed generator sends the (non-PII) question + retrieved chunks to
   AWS; the prompt must continue to exclude identity data. Tracked in `residual-risk.md`.
 - **[Added 2026-07-05]** Offline-saved pages are device-discoverable in cleartext (by

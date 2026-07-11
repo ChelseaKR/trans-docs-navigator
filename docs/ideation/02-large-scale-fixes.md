@@ -142,6 +142,17 @@
   (picker, guides, sitemap, matrix) with zero non-corpus edits.
 
 ## FIX-07 — Use the intake the type system already models
+**Status: ✅ Done** (`roadmap/fix-07-use-has-court-order-intake-for-pr`). Rendered in
+`renderIntakePage()`, parsed/round-tripped in `parseIntake()`/`intakeQuery()`, allowlisted
+in `secure-resume.ts` (with a DPIA note), and `buildChecklist()` now marks the
+court-order step `done` and prunes it from dependents' prerequisites — citations stay
+visible, cost total excludes done steps, and `/checklist`/`/packet` render an "already
+done" badge. Tests added in `tests/checklist.test.ts`, `tests/router.test.ts`,
+`tests/secure-resume.test.ts`. The eval gold-item ask is not yet actionable: the current
+harness (`eval/gold.ts`, `eval/harness.ts`) only exercises the grounded-answer path
+(`answer()`), not `buildChecklist()`/intake — extending it to cover the checklist/
+pruning path is follow-up work, not done here.
+
 **Pitch:** `has_court_order` personalization, client-side and privacy-safe.
 - **Why it matters:** `Intake.has_court_order` (`api/types.ts:108`) is dead code.
   People mid-process — a large real segment (USTS: many stall between court order

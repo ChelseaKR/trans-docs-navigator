@@ -17,7 +17,11 @@
 
 export { encryptState, decryptState, PBKDF2_ITERATIONS } from "../public/assets/resume-crypto.js";
 
-const ALLOWED_KEYS = ["jurisdiction", "change", "doc", "language"] as const;
+// "court_order" (FIX-07, has_court_order intake) is deliberately included: it is the
+// same privacy class as change_types/doc — one non-identifying bookkeeping bit (whether
+// the court-order step is already done), never an identity field. Documented in the
+// DPIA (docs/audits/dpia.md) alongside the other selection-only keys below.
+const ALLOWED_KEYS = ["jurisdiction", "change", "doc", "language", "court_order"] as const;
 
 /** Strip an intake/query object down to the non-PII selection keys that may be saved. */
 export function toResumeState(params: URLSearchParams): URLSearchParams {

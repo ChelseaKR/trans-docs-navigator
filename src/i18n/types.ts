@@ -84,6 +84,8 @@ export interface UiMessages {
   getFormCta: string;
   moreDetail: string;
   markDone: string;
+  /** Badge shown on a step the intake already marked complete (e.g. has_court_order). */
+  alreadyDone: string;
   /** Per-step "report an error / law changed" link, wired to the law-changed issue template. */
   reportError: string;
   /** Destination disclosure rendered beside reportError: external GitHub link, public issue, account required. */

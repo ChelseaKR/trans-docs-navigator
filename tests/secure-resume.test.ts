@@ -35,3 +35,10 @@ test("toResumeState keeps only the non-PII selection keys (never identity fields
   assert.equal(safe.get("current_legal_name"), null); // PII never persisted
   assert.equal(safe.get("ssn"), null);
 });
+
+test("toResumeState keeps court_order (FIX-07: same privacy class as change/doc, not identity data)", () => {
+  const params = new URLSearchParams("jurisdiction=US-CA&court_order=1&current_legal_name=Alex");
+  const safe = toResumeState(params);
+  assert.equal(safe.get("court_order"), "1");
+  assert.equal(safe.get("current_legal_name"), null);
+});

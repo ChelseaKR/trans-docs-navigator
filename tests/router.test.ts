@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   handleRoute,
   parseIntake,
+  intakeQuery,
   validJurisdiction,
   sanitizeQuestion,
   asLanguage,
@@ -52,6 +53,22 @@ test("parseIntake defaults change_types to both when none valid", () => {
 
 test("parseIntake returns null for malformed jurisdiction", () => {
   assert.equal(parseIntake(u("/checklist?jurisdiction=Mars")), null);
+});
+
+test("parseIntake/intakeQuery round-trip court_order=1 (FIX-07 has_court_order intake)", () => {
+  const intake = parseIntake(u("/checklist?jurisdiction=US-CA&court_order=1"))!;
+  assert.equal(intake.has_court_order, true);
+  const q = intakeQuery(intake);
+  assert.match(q, /(^|&)court_order=1(&|$)/);
+  // Re-parsing the emitted query reproduces the same flag — the annotation survives
+  // round-tripping into /checklist, /packet, and resume links.
+  assert.equal(parseIntake(u(`/checklist?${q}`))!.has_court_order, true);
+});
+
+test("parseIntake omits has_court_order when the flag is absent or not '1'", () => {
+  assert.equal(parseIntake(u("/checklist?jurisdiction=US-CA"))!.has_court_order, undefined);
+  assert.equal(parseIntake(u("/checklist?jurisdiction=US-CA&court_order=0"))!.has_court_order, undefined);
+  assert.equal(intakeQuery(parseIntake(u("/checklist?jurisdiction=US-CA"))!).includes("court_order"), false);
 });
 
 test("GET / renders the intake page", () => {
