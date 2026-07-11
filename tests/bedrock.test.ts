@@ -35,6 +35,41 @@ test("a fabricated claim mis-cited to a real, current record is rejected (faithf
   await assert.rejects(() => answerAsync(caQuery, { generator: gen }), /unfaithful-claim|rejected/);
 });
 
+test("a NEGATION-FLIPPED claim mis-cited to a real, current record is rejected (polarity)", async () => {
+  // The record affirmatively requires a court order; the claim negates that requirement.
+  const gen = new BedrockGenerator(
+    transportOf("You do not need a court order for a California name change. [c:ca.court-order.name]"),
+  );
+  await assert.rejects(() => answerAsync(caQuery, { generator: gen }), /unfaithful-claim|rejected/);
+});
+
+test("a FEE-MUTATED claim mis-cited to a real, current record is rejected (quantity drift)", async () => {
+  // Real, current record; the dollar figure doesn't match the record's fee.
+  const gen = new BedrockGenerator(
+    transportOf("The California name change filing fee is a flat $50. [c:ca.court-order.name]"),
+  );
+  await assert.rejects(() => answerAsync(caQuery, { generator: gen }), /unfaithful-claim|rejected/);
+});
+
+test("a FORM-SWAPPED claim mis-cited to a real, current record is rejected (form-id drift)", async () => {
+  // Real, current record (Form NC-100); the claim names a different official form id.
+  const gen = new BedrockGenerator(
+    transportOf("File the California name change using Form DL 329 in superior court. [c:ca.court-order.name]"),
+  );
+  await assert.rejects(() => answerAsync(caQuery, { generator: gen }), /unfaithful-claim|rejected/);
+});
+
+test("a faithful paraphrase WITHOUT polarity/quantity/identifier drift still passes", async () => {
+  const gen = new BedrockGenerator(
+    transportOf(
+      "In California, you must file a Petition for Change of Name using Form NC-100 in the superior court for your county. A fee waiver is available if you cannot afford the filing fee. [c:ca.court-order.name]",
+    ),
+  );
+  const ans = await answerAsync(caQuery, { generator: gen });
+  assert.equal(ans.refused, false);
+  assert.ok(ans.cited_records.some((r) => r.id === "ca.court-order.name"));
+});
+
 test("a FABRICATED citation (no such record) is rejected", async () => {
   const gen = new BedrockGenerator(transportOf("Do this special thing. [c:totally.made.up]"));
   await assert.rejects(() => answerAsync(caQuery, { generator: gen }), /rejected/);

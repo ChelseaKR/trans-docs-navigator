@@ -79,8 +79,18 @@
   variant for re-translation (gate fails until reconciled); coverage matrix gains
   facet columns; every record answers "changed since X?" from its changelog.
 
-## FIX-04 — Harden the faithfulness gate against polarity and quantity drift
+## FIX-04 — Harden the faithfulness gate against polarity and quantity drift ✅ Done
 **Pitch:** Close the two cheapest hallucination channels the model path still has.
+> **Shipped:** `api/citation.ts` now runs three deterministic invariants inside
+> `checkCoverage()`'s `requireFaithful` path, ahead of the `FAITHFUL_PRECISION`
+> bag-of-words fallback — `numericLiteralsMatch()` (money/number/date literals),
+> `formIdsMatch()` (`NC-100`/`DL 329`/`SS-5`-style ids), and `polarityFlip()` (negation
+> particles `not/no/never/without/cannot/don't/doesn't` compared around a shared
+> content stem, firing only on a clean claim-vs-record flip). `tests/bedrock.test.ts`
+> gained negation-flip, fee-mutation, and form-swap probes plus a positive-control
+> paraphrase; `eval/gold.ts` gained matching `suite: "adversarial"` items. `npm test`
+> (193/193) and `make eval` / `make eval-bedrock` are green with no regression on
+> legitimate paraphrase.
 - **Why it matters:** `api/citation.ts` treats `not`/`no` as stop words
   (`FAITH_STOP`) and scores bag-of-words precision — a negation flip ("does not
   require" → "requires") or a changed dollar figure/form number inside a long
