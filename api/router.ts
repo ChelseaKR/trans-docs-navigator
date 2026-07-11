@@ -14,7 +14,7 @@ import { formById } from "./forms.ts";
 import type { ChangeType, CorpusRecord, DocumentType, Intake, Language } from "./types.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
 import { renderAnswer, page, uiStrings, escapeHtml, STYLE } from "../src/render.ts";
-import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
+import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.ts";
 import { robotsTxt, sitemapXml } from "../src/seo.ts";
 import { asLanguage } from "../src/i18n/index.ts";
@@ -86,6 +86,7 @@ export function intakeQuery(intake: Intake): string {
   for (const c of intake.change_types) sp.append("change", c);
   for (const d of intake.documents) sp.append("doc", d);
   if (intake.language !== "en") sp.set("language", intake.language);
+  if (intake.has_court_order) sp.set("court_order", "1");
   return sp.toString();
 }
 
@@ -94,11 +95,15 @@ export function parseIntake(url: URL): Intake | null {
   const jurisdiction = validJurisdiction(url.searchParams.get("jurisdiction"));
   if (jurisdiction === null) return null;
   const ct = changeTypes(url);
+  // Same privacy class as change_types (a single non-identifying bit; see docs/audits/dpia.md) —
+  // bookkeeping only, used to annotate the court-order step done and prune it as a prerequisite.
+  const hasCourtOrder = url.searchParams.get("court_order") === "1";
   return {
     jurisdiction,
     change_types: ct.length > 0 ? ct : ["name", "gender-marker"],
     documents: documents(url),
     language: asLanguage(url.searchParams.get("language")),
+    ...(hasCourtOrder ? { has_court_order: true } : {}),
   };
 }
 
@@ -227,10 +232,11 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     return { status: 200, contentType: HTML, body: renderIntakePage(asLanguage(url.searchParams.get("language"))) };
   }
 
-  // Static legal / policy pages (linked from every footer).
-  if (p === "/terms" || p === "/privacy" || p === "/accessibility") {
+  // Static legal / policy / trust pages (linked from every footer).
+  if (p === "/terms" || p === "/privacy" || p === "/accessibility" || p === "/methodology") {
     const lang = asLanguage(url.searchParams.get("language"));
-    const render = p === "/terms" ? renderTermsPage : p === "/privacy" ? renderPrivacyPage : renderAccessibilityPage;
+    const render =
+      p === "/terms" ? renderTermsPage : p === "/privacy" ? renderPrivacyPage : p === "/accessibility" ? renderAccessibilityPage : renderMethodologyPage;
     return { status: 200, contentType: HTML, body: render(lang) };
   }
 

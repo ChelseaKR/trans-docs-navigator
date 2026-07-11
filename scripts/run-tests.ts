@@ -11,6 +11,13 @@ import { pass, fail } from "./util.ts";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
+// Test-only override (tests/gate-efficacy): run a narrower glob (e.g. one
+// deliberately-failing fixture test) instead of the whole suite, so the negative
+// control doesn't have to poison the entire real test tree. Unset in production, so
+// behavior (and the coverage thresholds below, always measured against the real
+// api/src trees) is unchanged.
+const glob = process.env.RUN_TESTS_GLOB ?? "tests/**/*.test.ts";
+
 const args = [
   "--experimental-strip-types",
   "--no-warnings",
@@ -22,7 +29,7 @@ const args = [
   "--test-coverage-lines=90",
   "--test-coverage-branches=85",
   "--test-coverage-functions=90",
-  "tests/**/*.test.ts",
+  glob,
 ];
 
 const res = spawnSync(process.execPath, args, { cwd: ROOT, stdio: "inherit" });

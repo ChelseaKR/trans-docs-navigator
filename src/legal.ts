@@ -1,5 +1,6 @@
-// Legal & policy pages: Terms of Use, Privacy Notice, Accessibility Statement.
-// Served at /terms, /privacy, /accessibility and linked from every page footer.
+// Legal & policy pages: Terms of Use, Privacy Notice, Accessibility Statement, and the
+// "How We Source & Verify" methodology/trust page.
+// Served at /terms, /privacy, /accessibility, /methodology and linked from every page footer.
 // Content lives in the locale bundles (src/i18n/), one set of sections per language.
 //
 // PLAIN LANGUAGE by design (these are read by the same audience as the rest of the site).
@@ -39,5 +40,12 @@ export function renderAccessibilityPage(lang: Language = "en"): string {
   return page({
     lang, title: l.accessibilityTitle, heading: l.accessibilityTitle, body: legalBody(l.accessibility, l.updatedLabel),
     seo: { path: "/accessibility", description: locale(lang).seo.legalDescription.accessibility, index: true },
+  });
+}
+export function renderMethodologyPage(lang: Language = "en"): string {
+  const l = locale(lang).legal;
+  return page({
+    lang, title: l.methodologyTitle, heading: l.methodologyTitle, body: legalBody(l.methodology, l.updatedLabel),
+    seo: { path: "/methodology", description: locale(lang).seo.legalDescription.methodology, index: true },
   });
 }
