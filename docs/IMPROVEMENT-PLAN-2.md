@@ -45,8 +45,10 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
   cadence, not only on PRs.
 
 ## C. Product / UX (new user value, privacy-preserving)
-- **C1 `P2` Per-step "report an error / law changed" link** deep-linking to
-  `.github/ISSUE_TEMPLATE/law-changed.md`, prefilled with jurisdiction/document/record id.
+- **C1 `P2` DONE — Per-step "report an error / law changed" link** deep-linking to
+  `.github/ISSUE_TEMPLATE/law-changed.md`, prefilled with jurisdiction/document title
+  (`src/render.ts` `reportErrorHref`, wired into every checklist step, screen-only via
+  `.no-print`).
 - **C2 `P2` Privacy-safe reminders:** downloadable `.ics` / printable next-step reminders,
   entirely client-side — NO server, NO contact info (preserves the threat model).
 - **C3 `P2` DONE — Legal-aid referral directory:** static per-jurisdiction official/legal-aid
@@ -86,8 +88,8 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
 ---
 
 ## Sequencing
-1. **Round 3a (pre-launch, code):** B1 link-rot · D1 CSP nonce · B3 readability · C1
-   report-an-error links. Each a PR, `make verify` green, net-new assurance.
+1. **Round 3a (pre-launch, code):** B1 link-rot · D1 CSP nonce · B3 readability · ~~C1
+   report-an-error links (DONE)~~. Each a PR, `make verify` green, net-new assurance.
 2. **Round 3b (launch gates, human-led):** A1–A5. The true launch blockers; code prepares
    the artifacts, humans sign them.
 3. **Round 3c (scale/product):** B2/B4, C2/~~C3 referral directory (DONE)~~, D2–D4,
