@@ -79,8 +79,18 @@
   variant for re-translation (gate fails until reconciled); coverage matrix gains
   facet columns; every record answers "changed since X?" from its changelog.
 
-## FIX-04 — Harden the faithfulness gate against polarity and quantity drift
+## FIX-04 — Harden the faithfulness gate against polarity and quantity drift ✅ Done
 **Pitch:** Close the two cheapest hallucination channels the model path still has.
+> **Shipped:** `api/citation.ts` now runs three deterministic invariants inside
+> `checkCoverage()`'s `requireFaithful` path, ahead of the `FAITHFUL_PRECISION`
+> bag-of-words fallback — `numericLiteralsMatch()` (money/number/date literals),
+> `formIdsMatch()` (`NC-100`/`DL 329`/`SS-5`-style ids), and `polarityFlip()` (negation
+> particles `not/no/never/without/cannot/don't/doesn't` compared around a shared
+> content stem, firing only on a clean claim-vs-record flip). `tests/bedrock.test.ts`
+> gained negation-flip, fee-mutation, and form-swap probes plus a positive-control
+> paraphrase; `eval/gold.ts` gained matching `suite: "adversarial"` items. `npm test`
+> (193/193) and `make eval` / `make eval-bedrock` are green with no regression on
+> legitimate paraphrase.
 - **Why it matters:** `api/citation.ts` treats `not`/`no` as stop words
   (`FAITH_STOP`) and scores bag-of-words precision — a negation flip ("does not
   require" → "requires") or a changed dollar figure/form number inside a long
@@ -157,6 +167,17 @@
   (picker, guides, sitemap, matrix) with zero non-corpus edits.
 
 ## FIX-07 — Use the intake the type system already models
+**Status: ✅ Done** (`roadmap/fix-07-use-has-court-order-intake-for-pr`). Rendered in
+`renderIntakePage()`, parsed/round-tripped in `parseIntake()`/`intakeQuery()`, allowlisted
+in `secure-resume.ts` (with a DPIA note), and `buildChecklist()` now marks the
+court-order step `done` and prunes it from dependents' prerequisites — citations stay
+visible, cost total excludes done steps, and `/checklist`/`/packet` render an "already
+done" badge. Tests added in `tests/checklist.test.ts`, `tests/router.test.ts`,
+`tests/secure-resume.test.ts`. The eval gold-item ask is not yet actionable: the current
+harness (`eval/gold.ts`, `eval/harness.ts`) only exercises the grounded-answer path
+(`answer()`), not `buildChecklist()`/intake — extending it to cover the checklist/
+pruning path is follow-up work, not done here.
+
 **Pitch:** `has_court_order` personalization, client-side and privacy-safe.
 - **Why it matters:** `Intake.has_court_order` (`api/types.ts:108`) is dead code.
   People mid-process — a large real segment (USTS: many stall between court order
@@ -277,3 +298,15 @@
 - **Effort:** S. **Risks/deps:** none; not counsel-gated.
 - **Excellent looks like:** one authoritative gate count that cannot drift, and a
   CI failure if anyone hard-codes it again.
+
+**Status: ✅ Done** (`roadmap/fix-12-derive-the-gate-count-and-fix-sel`). New
+`scripts/gate-count.ts` gate parses the `verify:` prerequisite list straight off the
+Makefile (handling backslash line-continuation), fails if it can't find itself in that
+list, and cross-checks the derived count against `README.md`'s "N automated merge
+gates" line, `docs/STATUS.md`'s "N/N gates" and "N-stage blocking pipeline" strings,
+and any hard-coded gate/stage count in `.github/PULL_REQUEST_TEMPLATE.md`. Wired in as
+stage 1 of `verify:` so drift is caught before anything else runs. Makefile stage
+banners renumbered uniformly to `[n/21]` (was a `[n/17]`/`[n/19]` split, then `main`
+independently added the `loadtest` stage); README and STATUS corrected from the stale
+14/12/11 counts to the true 21. Verified the gate fails on a reverted count and passes
+clean; `make verify` is green end-to-end at 21/21.

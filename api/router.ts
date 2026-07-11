@@ -86,6 +86,7 @@ export function intakeQuery(intake: Intake): string {
   for (const c of intake.change_types) sp.append("change", c);
   for (const d of intake.documents) sp.append("doc", d);
   if (intake.language !== "en") sp.set("language", intake.language);
+  if (intake.has_court_order) sp.set("court_order", "1");
   return sp.toString();
 }
 
@@ -94,11 +95,15 @@ export function parseIntake(url: URL): Intake | null {
   const jurisdiction = validJurisdiction(url.searchParams.get("jurisdiction"));
   if (jurisdiction === null) return null;
   const ct = changeTypes(url);
+  // Same privacy class as change_types (a single non-identifying bit; see docs/audits/dpia.md) —
+  // bookkeeping only, used to annotate the court-order step done and prune it as a prerequisite.
+  const hasCourtOrder = url.searchParams.get("court_order") === "1";
   return {
     jurisdiction,
     change_types: ct.length > 0 ? ct : ["name", "gender-marker"],
     documents: documents(url),
     language: asLanguage(url.searchParams.get("language")),
+    ...(hasCourtOrder ? { has_court_order: true } : {}),
   };
 }
 
