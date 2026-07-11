@@ -113,8 +113,23 @@
   `make eval-bedrock`; documented residual shrinks from "any semantic drift ≤40% of
   tokens" to "paraphrase without polarity/quantity/identifier change".
 
-## FIX-05 — Gate-efficacy negative controls ("the gates must be able to fail")
+## FIX-05 — Gate-efficacy negative controls ("the gates must be able to fail") ✅ DONE
 **Pitch:** Prove each of the 19 gates still rejects the harm it exists to catch.
+- **Status:** Implemented on `roadmap/fix-05-gate-efficacy-negative-controls` —
+  `tests/gate-efficacy/` (`runner.ts` + `gate-efficacy.test.ts`) spawns each gate
+  script as a real child process against a poison fixture and asserts a non-zero
+  exit with the expected harm message, picked up automatically by `npm test`.
+  Covers 15 of the 17 CLI/spawnable gates (content, citation, privacy, freshness,
+  disclosure, forms, readability, i18n-parity, i18n-bcp47, i18n-logical-css,
+  i18n-utf8, seo, security, lint, test); `typecheck` and `eval` are left with a
+  documented TODO (not a `pass()`/`fail()`-contract script, and a same-scale eval
+  fixture set respectively — see the note at the end of the test file). Gates that
+  had no existing injection point got one guarded by an env var that no-ops when
+  unset (e.g. `CORPUS_DIR`, `PRIVACY_LINT_ROOT`, `CITATION_POISON`), so production
+  behavior is unchanged; `a11y-lint`/pa11y and the Playwright `i18n-overflow` gate
+  stay out of scope per this item's own risk note (CI broken-fixture pages instead).
+  Mutation-sanity spot-checked on `privacy-lint.ts` (short-circuiting it to
+  `pass()` fails the negative control; reverted before commit).
 - **Why it matters:** The gates are the product's trust story, but
   `scripts/*.ts` themselves have no tests. A refactor that accidentally
   short-circuits `privacy-lint.ts` or widens `disclosure-check.ts` would keep CI

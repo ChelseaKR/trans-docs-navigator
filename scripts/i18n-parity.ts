@@ -65,7 +65,23 @@ function diff(reference: unknown, candidate: unknown, path: string, out: string[
 const reference = t(REFERENCE);
 const problems: string[] = [];
 
-for (const locale of SUPPORTED_LOCALES) {
+// Test-only injection point (tests/gate-efficacy): I18N_PARITY_POISON=1 deletes one
+// key from a CLONE of the Spanish bundle before comparing, simulating a translator
+// key gap (a string added to en.ts but never ported to es.ts). Operates on a clone
+// so it never mutates the real locale registry; inert unless the env var is exactly
+// "1", so production behavior is unchanged.
+const locales: typeof SUPPORTED_LOCALES = process.env.I18N_PARITY_POISON === "1"
+  ? SUPPORTED_LOCALES.map((l) => {
+      if (l.language !== "es") return l;
+      // Shallow-clone (not structuredClone: GeneratorMessages carries functions,
+      // which structuredClone cannot copy) so the real bundle is never mutated.
+      const ui: Record<string, unknown> = { ...l.ui };
+      delete ui.skip;
+      return { ...l, ui } as unknown as typeof l;
+    })
+  : SUPPORTED_LOCALES;
+
+for (const locale of locales) {
   if (locale.language === REFERENCE) continue;
   diff(reference, locale, locale.language, problems);
 }

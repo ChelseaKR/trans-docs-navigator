@@ -1,0 +1,19 @@
+[
+  {
+    "id": "poison.stale-but-verified",
+    "jurisdiction": "US-CA",
+    "document_type": "court-order",
+    "change_type": ["name"],
+    "topic": "Poison fixture — stale record marked verified",
+    "statement": "This record is marked verified but its last_verified date is years past its recheck SLA, proving freshness.ts rejects stale-served-as-current data.",
+    "source": {
+      "url": "https://example.gov/poison",
+      "title": "Poison fixture source",
+      "last_verified": "2020-01-01",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]

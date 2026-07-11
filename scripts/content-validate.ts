@@ -5,7 +5,11 @@ import { validateCorpus } from "../api/corpus.ts";
 import { validateReferrals } from "../api/referrals.ts";
 import { pass, fail } from "./util.ts";
 
-const { records, issues, placeholderVerified } = validateCorpus();
+// Test-only override (tests/gate-efficacy): point the gate at a poisoned corpus
+// directory instead of corpus/jurisdictions/. validateCorpus() already defaults to
+// the real CORPUS_DIR when the argument is undefined, so production behavior is
+// unchanged whenever CORPUS_DIR is unset.
+const { records, issues, placeholderVerified } = validateCorpus(process.env.CORPUS_DIR);
 
 if (issues.length > 0) {
   fail(

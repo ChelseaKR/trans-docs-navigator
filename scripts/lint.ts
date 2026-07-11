@@ -7,7 +7,9 @@ import { fileURLToPath } from "node:url";
 import { dirname, join, relative } from "node:path";
 import { walk, read, isSource, pass, fail } from "./util.ts";
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+// Test-only override (tests/gate-efficacy): point the gate at a poisoned fixture
+// tree instead of the repo root. Unset in production, so behavior is unchanged.
+const ROOT = process.env.LINT_ROOT ?? join(dirname(fileURLToPath(import.meta.url)), "..");
 const APP_DIRS = ["api", "src"];
 
 const problems: string[] = [];

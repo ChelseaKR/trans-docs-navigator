@@ -9,7 +9,10 @@ import { fileURLToPath } from "node:url";
 import { dirname, join, relative } from "node:path";
 import { walk, read, isSource, pass, fail } from "./util.ts";
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+// Test-only override (tests/gate-efficacy): point the whole gate at a poisoned
+// fixture tree (its own api/server.ts, api/, src/, .gitignore) instead of the repo
+// root. Unset in production, so behavior is unchanged.
+const ROOT = process.env.PRIVACY_LINT_ROOT ?? join(dirname(fileURLToPath(import.meta.url)), "..");
 
 // Identity PII that must never touch the server or any log line.
 const PII_KEYS = [
