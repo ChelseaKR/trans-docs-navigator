@@ -1,0 +1,38 @@
+[
+  {
+    "id": "tx.referral.lone-star-legal-aid",
+    "jurisdiction": "US-TX",
+    "name": "Lone Star Legal Aid",
+    "url": "https://www.lonestarlegal.org",
+    "note": {
+      "en": "Free civil legal aid provider serving eastern and southeast Texas, including help with court petitions such as legal name changes.",
+      "es": "Proveedor de ayuda legal civil gratuita que atiende el este y sureste de Texas, incluida ayuda con peticiones judiciales como cambios legales de nombre."
+    },
+    "source": {
+      "url": "https://www.lonestarlegal.org",
+      "title": "Lone Star Legal Aid",
+      "last_verified": "2026-06-01",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "tx.referral.texas-legal-services-center",
+    "jurisdiction": "US-TX",
+    "name": "Texas Legal Services Center",
+    "url": "https://www.tlsc.org",
+    "note": {
+      "en": "Statewide nonprofit offering self-help legal resources and referrals for Texans, including guidance relevant to name-change petitions.",
+      "es": "Organización estatal sin fines de lucro que ofrece recursos legales de autoayuda y referencias para residentes de Texas, incluida orientación relevante para peticiones de cambio de nombre."
+    },
+    "source": {
+      "url": "https://www.tlsc.org",
+      "title": "Texas Legal Services Center",
+      "last_verified": "2026-06-01",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

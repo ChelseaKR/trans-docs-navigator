@@ -44,23 +44,153 @@ export interface CoverageOptions {
  * fabrication to a long faithful claim is a known residual — see docs/IMPROVEMENT-PLAN-2.md.)
  */
 const FAITHFUL_PRECISION = 0.6;
+// "not"/"no" stay here (generic function words for bag-of-words purposes) and are joined
+// by the rest of the negation vocabulary ("never", "without", "cannot", and the split
+// halves of "don't"/"doesn't" — the tokenizer below drops apostrophes) so none of these
+// polarity-bearing particles are mistaken for a "governing stem" in the polarity check.
 const FAITH_STOP = new Set([
   "the", "a", "an", "to", "of", "in", "for", "and", "or", "is", "are", "you", "your",
   "with", "that", "this", "will", "can", "may", "by", "on", "at", "it", "be", "do",
   "not", "no", "have", "has", "from", "use",
+  "never", "without", "cannot", "dont", "doesnt", "don", "doesn",
 ]);
 function contentTokens(s: string): string[] {
   return (s.toLowerCase().match(/[a-z0-9áéíóúüñ]+/gi) ?? []).filter((t) => t.length > 2 && !FAITH_STOP.has(t));
+}
+function recordText(rec: CorpusRecord): string {
+  return `${rec.topic} ${rec.statement} ${rec.detail ?? ""} ${rec.cost?.note ?? ""} ${rec.timeline?.typical ?? ""} ${rec.timeline?.note ?? ""}`;
 }
 /** Precision: is the claim's content supported by the cited record's text? */
 function isFaithfulTo(claimText: string, rec: CorpusRecord): boolean {
   const claimToks = contentTokens(claimText);
   if (claimToks.length === 0) return true;
-  const recToks = new Set(
-    contentTokens(`${rec.topic} ${rec.statement} ${rec.detail ?? ""} ${rec.cost?.note ?? ""} ${rec.timeline?.typical ?? ""} ${rec.timeline?.note ?? ""}`),
-  );
+  const recToks = new Set(contentTokens(recordText(rec)));
   const covered = claimToks.filter((t) => recToks.has(t)).length;
   return covered / claimToks.length >= FAITHFUL_PRECISION;
+}
+
+// ── Deterministic invariants ────────────────────────────────────────────────────────
+// A bag-of-words precision check alone is fooled by a claim that reuses the record's
+// vocabulary but flips a number, an official form id, or a negation — the residual gap
+// this module closes (FIX-04). Each invariant below is intentionally narrow (few, sharp
+// regexes; only fires when claim and record share a comparable literal/stem) to avoid
+// rejecting legitimate paraphrase.
+
+/** Normalize a numeric/money literal for comparison: strip $, commas, whitespace. */
+function normalizeNumber(raw: string): string {
+  return raw.replace(/[$,\s]/g, "");
+}
+const MONEY_RE = /\$\s?\d[\d,]*(?:\.\d+)?/g;
+const NUMBER_RE = /\b\d[\d,]*(?:\.\d+)?\b/g;
+const ISO_DATE_RE = /\b\d{4}-\d{2}-\d{2}\b/g;
+const MONTH_DATE_RE =
+  /\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s*\d{2,4}\b/gi;
+
+/** Extract every numeric/money/date literal from `text`, normalized for comparison. */
+function extractLiterals(text: string): string[] {
+  const out: string[] = [];
+  for (const re of [MONEY_RE, NUMBER_RE, ISO_DATE_RE, MONTH_DATE_RE]) {
+    for (const m of text.matchAll(re)) out.push(normalizeNumber(m[0].toLowerCase()));
+  }
+  return out;
+}
+
+/**
+ * (a) Numeric/dollar/date literals: every literal in the claim must appear (normalized)
+ * among the record's literals. Catches a fee/date/quantity mutation riding on otherwise
+ * faithful, on-topic vocabulary (e.g. "$50" swapped in for the record's "$435–$480").
+ */
+function numericLiteralsMatch(claimText: string, rec: CorpusRecord): boolean {
+  const claimLits = extractLiterals(claimText);
+  if (claimLits.length === 0) return true;
+  const recLits = new Set(extractLiterals(recordText(rec)));
+  return claimLits.every((l) => recLits.has(l));
+}
+
+/** Normalize a form id by upper-casing and collapsing the letter/number separator. */
+function normalizeFormId(letters: string, digits: string): string {
+  return `${letters.toUpperCase()}${digits}`;
+}
+const FORM_ID_RE = /\b([A-Z]{1,4})[- ]?(\d{2,4})\b/g;
+
+/** Extract every form id in `text`, normalized (e.g. "NC-100" / "NC 100" → "NC100"). */
+function extractFormIds(text: string): string[] {
+  return [...text.matchAll(FORM_ID_RE)].map((m) => normalizeFormId(m[1]!, m[2]!));
+}
+
+/**
+ * (b) Form identifiers: every official form id the claim cites (e.g. "NC-100", "DL 329")
+ * must have a matching normalized id in the cited record. Catches a form swap (citing the
+ * right record but naming the wrong form).
+ */
+function formIdsMatch(claimText: string, rec: CorpusRecord): boolean {
+  const claimIds = extractFormIds(claimText);
+  if (claimIds.length === 0) return true;
+  const recIds = new Set(extractFormIds(recordText(rec)));
+  return claimIds.every((id) => recIds.has(id));
+}
+
+// (c) Polarity: does the claim negate (or un-negate) something the record states the
+// opposite way, on a stem the two texts share? Deliberately narrow — it only compares
+// negation-particle presence around a SHARED content word, so it doesn't fire on claims
+// that merely discuss an unrelated negated detail elsewhere in the record.
+const NEGATIONS = new Set(["not", "no", "never", "without", "cannot", "dont", "doesnt"]);
+const NEGATION_WINDOW = 6;
+
+/** Lowercased word tokens (apostrophes stripped so "don't" → "dont"), split into clauses
+ *  on sentence/clause punctuation so a negation in one clause can't "reach" a stem in another. */
+function clauseTokens(text: string): string[][] {
+  return text
+    .toLowerCase()
+    .split(/[.;:!?]+/)
+    .map((c) => c.replace(/[’']/g, "").match(/[a-z0-9]+/g) ?? [])
+    .filter((toks) => toks.length > 0);
+}
+/** Is there a negation particle within NEGATION_WINDOW tokens before index `idx` (same clause)? */
+function isNegatedAt(toks: string[], idx: number): boolean {
+  const start = Math.max(0, idx - NEGATION_WINDOW);
+  for (let i = start; i < idx; i++) {
+    if (NEGATIONS.has(toks[i]!)) return true;
+  }
+  return false;
+}
+/** For each content stem in `clauses`, record whether every occurrence is negated / not-negated. */
+function stemPolarity(clauses: string[][]): Map<string, { negated: boolean; affirmed: boolean }> {
+  const out = new Map<string, { negated: boolean; affirmed: boolean }>();
+  for (const toks of clauses) {
+    for (let i = 0; i < toks.length; i++) {
+      const w = toks[i]!;
+      if (w.length <= 2 || FAITH_STOP.has(w)) continue;
+      const neg = isNegatedAt(toks, i);
+      const cur = out.get(w) ?? { negated: false, affirmed: false };
+      if (neg) cur.negated = true;
+      else cur.affirmed = true;
+      out.set(w, cur);
+    }
+  }
+  return out;
+}
+
+/**
+ * Returns the offending stem if the claim asserts the opposite polarity of the record on
+ * a shared content word (claim negates it while EVERY record occurrence is affirmative,
+ * or vice-versa); null when polarity is consistent (or the stem isn't shared).
+ */
+function polarityFlip(claimText: string, rec: CorpusRecord): string | null {
+  const claimStems = stemPolarity(clauseTokens(claimText));
+  const recStems = stemPolarity(clauseTokens(recordText(rec)));
+  for (const [stem, claimPol] of claimStems) {
+    const recPol = recStems.get(stem);
+    if (!recPol) continue; // not a shared stem — not this invariant's concern
+    // Flag only a clean flip: claim is exclusively one polarity, record is exclusively
+    // the other. Ambiguous (record states it both ways) never fires.
+    const claimNeg = claimPol.negated && !claimPol.affirmed;
+    const claimAff = claimPol.affirmed && !claimPol.negated;
+    const recNeg = recPol.negated && !recPol.affirmed;
+    const recAff = recPol.affirmed && !recPol.negated;
+    if ((claimNeg && recAff) || (claimAff && recNeg)) return stem;
+  }
+  return null;
 }
 
 export interface CoverageReport {
@@ -113,10 +243,39 @@ export function checkCoverage(
         violations.push({ block, reason: "stale-citation", detail: id });
         return false;
       }
-      if (opts.requireFaithful && !isFaithfulTo(block.text, rec)) {
-        // The citation is valid but the claim text isn't supported by it (hallucination).
-        violations.push({ block, reason: "unfaithful-claim", detail: `${id}: ${block.text.slice(0, 60)}` });
-        return false;
+      if (opts.requireFaithful) {
+        // Deterministic invariants first (cheap, sharp rejections of drift that a
+        // bag-of-words check would miss because the vocabulary otherwise overlaps).
+        if (!numericLiteralsMatch(block.text, rec)) {
+          violations.push({
+            block,
+            reason: "unfaithful-claim",
+            detail: `${id}: quantity/date drift — ${block.text.slice(0, 60)}`,
+          });
+          return false;
+        }
+        if (!formIdsMatch(block.text, rec)) {
+          violations.push({
+            block,
+            reason: "unfaithful-claim",
+            detail: `${id}: form-id drift — ${block.text.slice(0, 60)}`,
+          });
+          return false;
+        }
+        const flipped = polarityFlip(block.text, rec);
+        if (flipped) {
+          violations.push({
+            block,
+            reason: "unfaithful-claim",
+            detail: `${id}: polarity drift on "${flipped}" — ${block.text.slice(0, 60)}`,
+          });
+          return false;
+        }
+        if (!isFaithfulTo(block.text, rec)) {
+          // The citation is valid but the claim text isn't supported by it (hallucination).
+          violations.push({ block, reason: "unfaithful-claim", detail: `${id}: ${block.text.slice(0, 60)}` });
+          return false;
+        }
       }
       return true;
     });

@@ -18,7 +18,12 @@ import { pass, fail } from "./util.ts";
 
 // The language code of every registered locale bundle — the set that becomes
 // <html lang>, the language-picker value, and the negotiation key.
-const tags = [...new Set(SUPPORTED_LOCALES.map((l) => l.language))].sort();
+const tags: string[] = [...new Set(SUPPORTED_LOCALES.map((l) => l.language))].sort();
+
+// Test-only injection point (tests/gate-efficacy): I18N_BCP47_POISON=1 appends a
+// malformed/non-canonical tag, simulating a bad authored locale slipping into the
+// registry. Inert unless the env var is exactly "1", so production is unchanged.
+if (process.env.I18N_BCP47_POISON === "1") tags.push("EN_US");
 
 if (tags.length === 0) fail("i18n-bcp47", "no authored locale tags found in the registry");
 
