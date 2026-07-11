@@ -2,15 +2,31 @@
 // a source + named verifier + ISO date. Fails closed on any issue.
 
 import { validateCorpus } from "../api/corpus.ts";
+import { validateReferrals } from "../api/referrals.ts";
 import { pass, fail } from "./util.ts";
 
-const { records, issues, placeholderVerified } = validateCorpus();
+// Test-only override (tests/gate-efficacy): point the gate at a poisoned corpus
+// directory instead of corpus/jurisdictions/. validateCorpus() already defaults to
+// the real CORPUS_DIR when the argument is undefined, so production behavior is
+// unchanged whenever CORPUS_DIR is unset.
+const { records, issues, placeholderVerified } = validateCorpus(process.env.CORPUS_DIR);
 
 if (issues.length > 0) {
   fail(
     "content",
     `${issues.length} validation issue(s) across ${records} record(s)`,
     issues.map((i) => `${i.recordId} · ${i.field}: ${i.message}`),
+  );
+}
+
+// Legal-aid/official referrals ride the same verifier gate as the corpus (api/referrals.ts).
+// Fail closed here too — a bad referral link must never ship.
+const { records: referralCount, issues: referralIssues } = validateReferrals();
+if (referralIssues.length > 0) {
+  fail(
+    "content",
+    `${referralIssues.length} referral validation issue(s) across ${referralCount} record(s)`,
+    referralIssues.map((i) => `${i.recordId} · ${i.field}: ${i.message}`),
   );
 }
 
@@ -23,4 +39,4 @@ if (placeholderVerified > 0) {
       `mechanically valid but NOT launch-cleared. Replace with named human verifiers before launch.`,
   );
 }
-pass("content", `${records} corpus records valid (source + verifier in roster + date present)`);
+pass("content", `${records} corpus records + ${referralCount} referral records valid (source + verifier in roster + date present)`);

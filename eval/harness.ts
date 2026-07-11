@@ -12,8 +12,11 @@ import { answer } from "../api/guidance.ts";
 import { checkCoverage } from "../api/citation.ts";
 import { isCurrent } from "../api/freshness.ts";
 import { retrieve } from "../api/retrieval.ts";
+import { embeddingRetrieve } from "../api/embedding-retrieval.ts";
 import { GOLD } from "./gold.ts";
 import type { GoldItem } from "./gold.ts";
+import { runMetamorphic } from "./metamorphic.ts";
+import type { MetamorphicResult } from "./metamorphic.ts";
 
 export const EVAL_TODAY = "2026-06-16";
 
@@ -105,6 +108,8 @@ export interface EvalReport {
   jurisdiction_readiness: JurisdictionReadiness[];
   gold_provenance: GoldProvenance;
   items: ItemResult[];
+  /** Metamorphic invariance/sensitivity properties, run against every seam-swappable retriever (FIX-11). */
+  metamorphic: MetamorphicResult[];
   passed: boolean;
 }
 
@@ -332,8 +337,22 @@ export function runEval(thresholds: Thresholds = THRESHOLDS): EvalReport {
   const provenanceOk =
     gold_provenance.independent_author || jurisdiction_readiness.every((j) => !j.launch_cleared);
 
+  // Metamorphic invariance/sensitivity properties (FIX-11), run against BOTH the
+  // deterministic lexical retriever and the embedding retriever — the pairing is the
+  // gate that must stay green for a retriever seam swap to be safe. Fails CLOSED: a
+  // single property failure on either retriever fails the whole eval run, same as any
+  // other gate here.
+  const metamorphic = runMetamorphic([
+    { name: "retrieve", retriever: retrieve },
+    { name: "embeddingRetrieve", retriever: embeddingRetrieve },
+  ]);
+  const metamorphicOk = metamorphic.length > 0 && metamorphic.every((m) => m.passed);
+
   const passed =
-    metrics.every((m) => m.pass) && segment_accuracy.every((s) => s.pass) && provenanceOk;
+    metrics.every((m) => m.pass) &&
+    segment_accuracy.every((s) => s.pass) &&
+    provenanceOk &&
+    metamorphicOk;
   return {
     today: EVAL_TODAY,
     total: GOLD.length,
@@ -342,6 +361,7 @@ export function runEval(thresholds: Thresholds = THRESHOLDS): EvalReport {
     jurisdiction_readiness,
     gold_provenance,
     items,
+    metamorphic,
     passed,
   };
 }

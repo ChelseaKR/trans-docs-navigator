@@ -80,6 +80,28 @@ export interface CorpusRecord {
 }
 
 /**
+ * A legal-aid / official referral: a pointer to an organization or government resource
+ * that can help a person with their name/gender-marker change, rather than a fact about
+ * the process itself. Sibling record type to CorpusRecord (api/referrals.ts) — it rides
+ * the SAME verifier gate (named verifier in corpus/VERIFIERS.json, http(s) source,
+ * ISO last_verified) but is never conflated with CorpusRecord's document_type schema.
+ */
+export interface ReferralRecord {
+  id: string;
+  jurisdiction: JurisdictionId;
+  /** The organization or program name, e.g. "Sylvia Rivera Law Project". */
+  name: string;
+  /** The referral link itself — where the user goes for help. */
+  url: string;
+  /** Short plain-language description of what this referral offers, per language. */
+  note: Record<Language, string>;
+  source: Source;
+  verification_status: VerificationStatus;
+  /** Per-record freshness SLA in days. */
+  recheck_sla_days: number;
+}
+
+/**
  * An official government form referenced by a step. The app links the user to the
  * real blank form at its official source — it does NOT auto-fill it. (These are XFA/
  * LiveCycle PDFs that browser PDF tooling can't fill, and a mis-filled legal form is a
@@ -123,6 +145,13 @@ export interface ChecklistStep {
   /** True when at least one backing record is degraded → step shows "needs reverification". */
   needs_reverification: boolean;
   form_ref?: string;
+  /**
+   * True when intake bookkeeping (e.g. Intake.has_court_order) says this step is
+   * already complete. The step is still emitted with its citations — never deleted —
+   * it's just annotated done, and dependents that listed it as a prerequisite are
+   * unblocked (the satisfied prerequisite is pruned from their list).
+   */
+  done?: boolean;
 }
 
 export interface Checklist {

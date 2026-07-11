@@ -6,14 +6,14 @@ NODE := node --experimental-strip-types --no-warnings
 SHELL := /bin/bash
 
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
-        lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-overflow seo deploy-plan clean \
+        gate-count lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-overflow seo deploy-plan clean \
         smoke coverage link-check source-watch source-baseline policy-watch policy-baseline new-record
 
 help:
 	@echo "Targets:"
 	@echo "  make install      Install dependencies"
 	@echo "  make dev          Run the local dev server"
-	@echo "  make verify       Run the full merge-blocking gate set (CI parity, 20 stages)"
+	@echo "  make verify       Run the full merge-blocking gate set (CI parity, 21 stages)"
 	@echo "  make eval         Run the groundedness/accuracy/refusal eval harness"
 	@echo "  make a11y         Run the accessibility gate"
 	@echo "  make loadtest     In-process p95 latency guard (merge-blocking, no server needed)"
@@ -27,53 +27,60 @@ dev:
 
 # ---------------------------------------------------------------------------
 # The blocking pipeline, in standard order. Any non-zero exit fails the build.
+# gate-count runs first so a drifted self-description count fails fast.
 # ---------------------------------------------------------------------------
-verify: lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css a11y seo eval i18n-overflow loadtest
+verify: gate-count lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css a11y seo eval i18n-overflow loadtest
 	@echo ""
 	@echo "✅ make verify: all merge-blocking gates passed."
 
+# Derives the stage count from this file's own `verify:` prerequisite list and fails
+# if README.md / docs/STATUS.md / the PR template state a different number.
+gate-count:
+	@echo "── [1/21] gate-count (self-description drift check) ──────"
+	@$(NODE) scripts/gate-count.ts
+
 lint:
-	@echo "── [1/20] lint ───────────────────────────────────────────"
+	@echo "── [2/21] lint ───────────────────────────────────────────"
 	@$(NODE) scripts/lint.ts
 
 typecheck:
-	@echo "── [2/20] type-check (tsc --strict) ──────────────────────"
+	@echo "── [3/21] type-check (tsc --strict) ──────────────────────"
 	@npx --no-install tsc --noEmit
 
 test:
-	@echo "── [3/20] unit + integration tests (coverage-gated) ──────"
+	@echo "── [4/21] unit + integration tests (coverage-gated) ──────"
 	@$(NODE) scripts/run-tests.ts
 
 security:
-	@echo "── [4/20] security: dependency audit + secret scan ───────"
+	@echo "── [5/21] security: dependency audit + secret scan ───────"
 	@$(NODE) scripts/security-scan.ts
 
 content:
-	@echo "── [5/20] corpus content validation (source+verifier+date)"
+	@echo "── [6/21] corpus content validation (source+verifier+date)"
 	@$(NODE) scripts/content-validate.ts
 
 forms:
-	@echo "── [6/20] forms: official links, no fake auto-fill ───────"
+	@echo "── [7/21] forms: official links, no fake auto-fill ───────"
 	@$(NODE) scripts/forms-check.ts
 
 citation:
-	@echo "── [7/20] citation coverage (100% required) ──────────────"
+	@echo "── [8/21] citation coverage (100% required) ──────────────"
 	@$(NODE) scripts/citation-coverage.ts
 
 privacy:
-	@echo "── [8/20] privacy lint (no PII in logs / no egress) ──────"
+	@echo "── [9/21] privacy lint (no PII in logs / no egress) ──────"
 	@$(NODE) scripts/privacy-lint.ts
 
 freshness:
-	@echo "── [9/20] corpus freshness SLA ───────────────────────────"
+	@echo "── [10/21] corpus freshness SLA ───────────────────────────"
 	@$(NODE) scripts/freshness.ts
 
 disclosure:
-	@echo "── [10/20] disclosure strings (info-not-advice / AI label) ─"
+	@echo "── [11/21] disclosure strings (info-not-advice / AI label) ─"
 	@$(NODE) scripts/disclosure-check.ts
 
 readability:
-	@echo "── [11/20] readability (plain-language ~8th-grade target) ─"
+	@echo "── [12/21] readability (plain-language ~8th-grade target) ─"
 	@$(NODE) scripts/readability.ts
 
 # Mechanical i18n gates (INTERNATIONALIZATION-STANDARD §4). G1 UTF-8 and G3 BCP-47
@@ -83,35 +90,35 @@ readability:
 # deferred; G12 (CLDR/tzdata pin) is N/A-until-used — the frontend does no Intl
 # number/date formatting yet. ar/he RTL mirror smoke is deferred. See docs/I18N.md.
 i18n-utf8:
-	@echo "── [12/20] i18n: UTF-8 encoding (all tracked text files) ──"
+	@echo "── [13/21] i18n: UTF-8 encoding (all tracked text files) ──"
 	@$(NODE) scripts/i18n-utf8.ts
 
 i18n-bcp47:
-	@echo "── [13/20] i18n: BCP 47 language-tag validity ────────────"
+	@echo "── [14/21] i18n: BCP 47 language-tag validity ────────────"
 	@$(NODE) scripts/i18n-bcp47.ts
 
 i18n:
-	@echo "── [14/20] locale key-parity (EN/ES, no empty translations) ─"
+	@echo "── [15/21] locale key-parity (EN/ES, no empty translations) ─"
 	@$(NODE) scripts/i18n-parity.ts
 
 # G10 (static) — logical-CSS for RTL readiness. Extracts the typed STYLE from
 # src/render.ts to a git-ignored artifact and lints the inline (writing-direction)
 # axis with stylelint-use-logical (stylelint.config.js). Fix findings in render.ts.
 i18n-logical-css:
-	@echo "── [15/20] i18n: logical-CSS (G10 static, stylelint use-logical) ─"
+	@echo "── [16/21] i18n: logical-CSS (G10 static, stylelint use-logical) ─"
 	@$(NODE) scripts/i18n-css-extract.ts
 	@npx --no-install stylelint tmp/app.generated.css
 
 a11y:
-	@echo "── [16/20] accessibility gate ────────────────────────────"
+	@echo "── [17/21] accessibility gate ────────────────────────────"
 	@$(NODE) scripts/a11y-lint.ts
 
 seo:
-	@echo "── [17/20] SEO (indexing contract, metadata, sitemap) ────"
+	@echo "── [18/21] SEO (indexing contract, metadata, sitemap) ────"
 	@$(NODE) scripts/seo-lint.ts
 
 eval:
-	@echo "── [18/20] eval harness (groundedness/accuracy/refusal) ──"
+	@echo "── [19/21] eval harness (groundedness/accuracy/refusal) ──"
 	@$(NODE) eval/run.ts
 
 # G9 (live) — pseudolocale overflow. Renders the key routes under the en-XA
@@ -119,7 +126,7 @@ eval:
 # truncation, or horizontal scroll. Playwright starts the test server itself
 # (TDN_I18N_TEST_HOOKS=1); production never registers en-XA. See docs/I18N.md.
 i18n-overflow:
-	@echo "── [19/20] i18n: pseudolocale overflow (G9, Playwright desktop+mobile) ─"
+	@echo "── [20/21] i18n: pseudolocale overflow (G9, Playwright desktop+mobile) ─"
 	@npx --no-install playwright test
 
 # Deterministic in-process latency guard for the request path (QM-02, ROADMAP §7).
@@ -129,7 +136,7 @@ i18n-overflow:
 # `BASE=http://localhost:8080 k6 run loadtest/p95.k6.js` against a live instance
 # (needs k6 + a running server, so it is not part of this merge-blocking target).
 loadtest:
-	@echo "── [20/20] request-path latency benchmark (in-process p95 guard) ─"
+	@echo "── [21/21] request-path latency benchmark (in-process p95 guard) ─"
 	@$(NODE) scripts/latency-bench.ts
 
 # Opt-in model-path safety lane (not in `verify`; offline by default, real Bedrock with

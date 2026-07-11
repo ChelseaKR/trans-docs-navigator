@@ -1,0 +1,19 @@
+[
+  {
+    "id": "poison.unreadable",
+    "jurisdiction": "US-CA",
+    "document_type": "court-order",
+    "change_type": ["name"],
+    "topic": "Poison fixture — unreadable prose",
+    "statement": "Notwithstanding jurisdictional heterogeneity, the aforementioned administrative adjudicative procedural mechanisms necessitate comprehensive documentation substantiating identificatory nomenclature modifications predicated upon judicially sanctioned authorization instruments obtained exclusively through formalized petitionary jurisprudential channels established by legislative enactments governing municipal county superior courts throughout applicable geographic jurisdictions notwithstanding administrative discretionary considerations affecting procedural determinations.",
+    "source": {
+      "url": "https://example.gov/poison",
+      "title": "Poison fixture source",
+      "last_verified": "2026-06-01",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

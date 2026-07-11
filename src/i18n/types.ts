@@ -16,6 +16,7 @@ export interface UiMessages {
   termsLink: string;
   privacyLink: string;
   a11yLink: string;
+  methodologyLink: string;
   verifyNote: string;
   notFilingNote: string;
   sources: string;
@@ -84,6 +85,12 @@ export interface UiMessages {
   getFormCta: string;
   moreDetail: string;
   markDone: string;
+  /** Badge shown on a step the intake already marked complete (e.g. has_court_order). */
+  alreadyDone: string;
+  /** Per-step "report an error / law changed" link, wired to the law-changed issue template. */
+  reportError: string;
+  /** Destination disclosure rendered beside reportError: external GitHub link, public issue, account required. */
+  reportErrorNote: string;
   /** Progress counter template with {done}/{total} placeholders. */
   progressTemplate: string;
   stepsLabel: string;
@@ -119,6 +126,9 @@ export interface UiMessages {
   offlineLead: string;
   offlineSavedHeading: string;
   offlineNoneSaved: string;
+  // Privacy-safe reminders: a client-side .ics task list of the steps (no server, no contact info).
+  downloadIcs: string;
+  downloadIcsNote: string;
 }
 
 /**
@@ -142,15 +152,17 @@ export interface LegalSection {
   html: string;
 }
 
-/** The three legal/policy pages plus their titles and "last updated" label. */
+/** The legal/policy + trust pages plus their titles and "last updated" label. */
 export interface LegalMessages {
   updatedLabel: string;
   termsTitle: string;
   privacyTitle: string;
   accessibilityTitle: string;
+  methodologyTitle: string;
   terms: LegalSection[];
   privacy: LegalSection[];
   accessibility: LegalSection[];
+  methodology: LegalSection[];
 }
 
 /**
@@ -177,8 +189,8 @@ export interface SeoMessages {
   guideReviewed: string;
   breadcrumbHome: string;
   breadcrumbGuides: string;
-  /** Plain-language meta descriptions for the legal pages. */
-  legalDescription: { terms: string; privacy: string; accessibility: string };
+  /** Plain-language meta descriptions for the legal/trust pages. */
+  legalDescription: { terms: string; privacy: string; accessibility: string; methodology: string };
 }
 
 /** Everything one language needs. The compiler enforces parity across languages. */

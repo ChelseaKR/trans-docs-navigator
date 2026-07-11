@@ -116,3 +116,27 @@ test("carries cost, timeline, and a form reference onto steps", () => {
   assert.ok(step.timeline);
   assert.equal(step.form_ref, "ca-nc-100");
 });
+
+test("has_court_order marks the court-order step done and prunes it from dependents' prerequisites (FIX-07)", () => {
+  const withFlag = buildChecklist(
+    { jurisdiction: "US-CA", change_types: ["name"], documents: ["court-order", "ssa-card"], language: "en", has_court_order: true },
+    today,
+  );
+  const courtOrder = withFlag.steps.find((s) => s.document_type === "court-order")!;
+  const ssa = withFlag.steps.find((s) => s.document_type === "ssa-card")!;
+  assert.equal(courtOrder.done, true);
+  // Citations stay visible — the step is annotated, not deleted.
+  assert.ok(courtOrder.record_ids.length > 0);
+  // The dependent is unblocked: the satisfied prerequisite is pruned from its list.
+  assert.ok(!ssa.prerequisites.includes("court-order"));
+
+  // Without the flag, the same plan still shows the ordinary blocked/undone shape.
+  const withoutFlag = buildChecklist(
+    { jurisdiction: "US-CA", change_types: ["name"], documents: ["court-order", "ssa-card"], language: "en" },
+    today,
+  );
+  const courtOrder2 = withoutFlag.steps.find((s) => s.document_type === "court-order")!;
+  const ssa2 = withoutFlag.steps.find((s) => s.document_type === "ssa-card")!;
+  assert.equal(courtOrder2.done, undefined);
+  assert.ok(ssa2.prerequisites.includes("court-order"));
+});

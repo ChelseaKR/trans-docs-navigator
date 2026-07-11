@@ -14,8 +14,13 @@ import { REPO_ROOT } from "./corpus.ts";
 
 const REGISTRY = join(REPO_ROOT, "forms", "registry.json");
 
-export function loadForms(): FormDef[] {
-  return JSON.parse(readFileSync(REGISTRY, "utf8")) as FormDef[];
+/**
+ * Load the official-forms registry. `file` defaults to the real registry —
+ * overridable so the forms-check CI gate's tests/gate-efficacy negative controls
+ * can point it at a poisoned fixture registry without touching production callers.
+ */
+export function loadForms(file: string = REGISTRY): FormDef[] {
+  return JSON.parse(readFileSync(file, "utf8")) as FormDef[];
 }
 
 export function formById(id: string): FormDef | undefined {
