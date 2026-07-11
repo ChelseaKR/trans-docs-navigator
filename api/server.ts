@@ -11,6 +11,7 @@ import { join, normalize, extname, sep } from "node:path";
 import { REPO_ROOT, loadCorpus, LAST_QUARANTINE } from "./corpus.ts";
 import { safeLog } from "./log.ts";
 import { handleRoute, asLanguage } from "./router.ts";
+import { servingToday } from "./freshness.ts";
 
 const PORT = Number(process.env.PORT ?? 8080);
 
@@ -121,7 +122,10 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
 
     if (tryStatic(route, res)) return;
 
-    const r = handleRoute(req.method ?? "GET", url);
+    // Inject the real clock at the shell boundary (FIX-02): servingToday() resolves the
+    // real "as of" date (or a validated NAV_TODAY ops/demo pin), never the frozen
+    // TEST_TODAY constant, so no serving-path currency derives from a compile-time date.
+    const r = handleRoute(req.method ?? "GET", url, servingToday());
     // I18N-13 (G11): declare the resolved rendered language on every localized HTML
     // response, independent of how it was selected (explicit ?language= param here,
     // not Accept-Language negotiation — see docs/I18N.md). Non-HTML responses (health

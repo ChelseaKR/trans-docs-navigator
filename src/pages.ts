@@ -138,7 +138,15 @@ export function renderChecklistPage(
     : [];
   const offline = renderOfflinePanel(s, offlineUrls);
 
-  const body = intro + summary + actions + noSteps + more + gaps + renderResumePanel(s, query) + offline + progress;
+  // Privacy-safe reminders: a client-side .ics task list of the step titles already on
+  // the page. No server, no contact info, no dates invented — see assets/reminders.js.
+  const reminders = hasSteps
+    ? `<p class="no-print"><button type="button" id="ics-btn">📅 ${escapeHtml(s.downloadIcs)}</button></p>
+<p class="meta no-print">${escapeHtml(s.downloadIcsNote)}</p>
+<script type="module" src="/assets/reminders.js"></script>`
+    : "";
+
+  const body = intro + summary + actions + noSteps + reminders + more + gaps + renderResumePanel(s, query) + offline + progress;
   return page({ lang, title: s.checklistTitle, heading: s.checklistHeading, body });
 }
 

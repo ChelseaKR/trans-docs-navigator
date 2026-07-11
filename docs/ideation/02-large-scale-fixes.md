@@ -273,3 +273,15 @@ pruning path is follow-up work, not done here.
 - **Effort:** S. **Risks/deps:** none; not counsel-gated.
 - **Excellent looks like:** one authoritative gate count that cannot drift, and a
   CI failure if anyone hard-codes it again.
+
+**Status: ✅ Done** (`roadmap/fix-12-derive-the-gate-count-and-fix-sel`). New
+`scripts/gate-count.ts` gate parses the `verify:` prerequisite list straight off the
+Makefile (handling backslash line-continuation), fails if it can't find itself in that
+list, and cross-checks the derived count against `README.md`'s "N automated merge
+gates" line, `docs/STATUS.md`'s "N/N gates" and "N-stage blocking pipeline" strings,
+and any hard-coded gate/stage count in `.github/PULL_REQUEST_TEMPLATE.md`. Wired in as
+stage 1 of `verify:` so drift is caught before anything else runs. Makefile stage
+banners renumbered uniformly to `[n/21]` (was a `[n/17]`/`[n/19]` split, then `main`
+independently added the `loadtest` stage); README and STATUS corrected from the stale
+14/12/11 counts to the true 21. Verified the gate fails on a reverted count and passes
+clean; `make verify` is green end-to-end at 21/21.
