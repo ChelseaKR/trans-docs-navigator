@@ -117,6 +117,10 @@ export function buildChecklist(intake: Intake, today?: string, corpus = loadCorp
 
     const formRef = (currentRecords[0] ?? degraded[0])?.form_ref;
 
+    // has_court_order intake: annotate the court-order step done rather than dropping it
+    // (its citations stay visible), and don't leave it counted against the plan cost.
+    const done = doc === "court-order" && intake.has_court_order === true;
+
     steps.push({
       key: doc,
       order: order++,
@@ -129,7 +133,19 @@ export function buildChecklist(intake: Intake, today?: string, corpus = loadCorp
       discretionary: currentRecords.some((r) => r.discretionary),
       needs_reverification: currentRecords.length === 0 || degraded.length > 0,
       ...(formRef ? { form_ref: formRef } : {}),
+      ...(done ? { done: true } : {}),
     });
+  }
+
+  // Prerequisite pruning: once the court-order step is satisfied (already done), it no
+  // longer blocks anything — remove it from dependents' prerequisite lists so SSA/DMV/
+  // passport/etc. read as immediately actionable instead of gated behind a step the
+  // person already completed.
+  if (intake.has_court_order) {
+    for (const step of steps) {
+      if (step.key === "court-order") continue;
+      step.prerequisites = step.prerequisites.filter((p) => p !== "court-order");
+    }
   }
 
   return {

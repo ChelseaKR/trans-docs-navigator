@@ -14,7 +14,7 @@ import { buildChecklist } from "../api/checklist.ts";
 import { loadCorpus } from "../api/corpus.ts";
 import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
-import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
+import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.ts";
 import { robotsTxt, sitemapXml, SITE_NAME, SITE_ORIGIN } from "../src/seo.ts";
 import type { Language } from "../api/types.ts";
@@ -31,10 +31,19 @@ function attr(html: string, re: RegExp): string | undefined {
   return re.exec(html)?.[1];
 }
 
+// Test-only injection point (tests/gate-efficacy): SEO_POISON=1 strips the canonical
+// link from one indexable page, simulating a template regression that drops required
+// indexing metadata. Inert unless the env var is exactly "1", so production is
+// unchanged.
+const SEO_POISON = process.env.SEO_POISON === "1";
+function poisonCanonical(html: string): string {
+  return SEO_POISON ? html.replace(/<link rel="canonical"[^>]*>\n?/, "") : html;
+}
+
 // ── Indexable pages: full metadata, not noindex ────────────────────────────────
 interface Indexable { name: string; path: string; html: string; jsonLd?: boolean }
 const indexable: Indexable[] = [
-  { name: "home (en)", path: "/", html: renderIntakePage("en") },
+  { name: "home (en)", path: "/", html: poisonCanonical(renderIntakePage("en")) },
   { name: "home (es)", path: "/", html: renderIntakePage("es") },
   { name: "guide-index (en)", path: "/guide", html: renderGuideIndex("en") },
   { name: "guide-index (es)", path: "/guide", html: renderGuideIndex("es") },
@@ -43,6 +52,7 @@ const indexable: Indexable[] = [
   { name: "terms (en)", path: "/terms", html: renderTermsPage("en") },
   { name: "privacy (es)", path: "/privacy", html: renderPrivacyPage("es") },
   { name: "accessibility (en)", path: "/accessibility", html: renderAccessibilityPage("en") },
+  { name: "methodology (en)", path: "/methodology", html: renderMethodologyPage("en") },
 ];
 
 for (const p of indexable) {

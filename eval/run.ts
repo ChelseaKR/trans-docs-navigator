@@ -46,6 +46,16 @@ ${report.jurisdiction_readiness
   )
   .join("\n")}
 
+## Metamorphic properties
+
+Paired-query invariants run against BOTH retrievers (the seam FIX-11 gates for a swap):
+paraphrase stability, jurisdiction sensitivity, filter monotonicity, and (weaker,
+FIX-03-dependent) EN/ES citation-shape consistency.
+
+| Property | Retriever | Gate |
+|----------|-----------|:----:|
+${report.metamorphic.map((m) => `| ${m.name} | ${m.retrieverName} | ${mark(m.passed)} |`).join("\n")}
+
 ## Items
 
 | Item | Suite | Segment | Result | Notes |
@@ -82,6 +92,9 @@ for (const m of report.metrics) {
 }
 for (const s of report.segment_accuracy) {
   if (!s.pass) console.log(`     ❌ segment ${s.segment}: ${pct(s.value)} (n=${s.n})`);
+}
+for (const m of report.metamorphic) {
+  if (!m.passed) console.log(`     ❌ metamorphic ${m.name} [${m.retrieverName}]: ${m.detail}`);
 }
 
 if (!report.passed) fail("eval", "one or more eval gates below threshold (see docs/audits/eval-report.md)");

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "poison-form",
+    "jurisdiction": "US",
+    "document_type": "ssa-card",
+    "change_type": ["name"],
+    "title": "Poison fixture form",
+    "template_path": "forms/fixtures/poison-form.pdf",
+    "source": {
+      "url": "https://example.gov/poison-form",
+      "title": "Poison fixture source",
+      "last_verified": "2026-06-01",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  }
+]

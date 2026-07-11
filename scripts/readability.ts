@@ -52,7 +52,10 @@ function prose(rec: CorpusRecord): string {
   return [rec.statement, rec.detail ?? "", rec.cost?.note ?? "", rec.timeline?.note ?? ""].join(" ").trim();
 }
 
-const corpus = loadCorpus();
+// Test-only override (tests/gate-efficacy): point the gate at a poisoned corpus
+// directory. Omitting `dir` is loadCorpus()'s existing default-to-CORPUS_DIR path,
+// so production behavior is unchanged whenever CORPUS_DIR is unset.
+const corpus = loadCorpus(process.env.CORPUS_DIR ? { dir: process.env.CORPUS_DIR } : {});
 const failures: string[] = [];
 const belowTarget: string[] = [];
 let worst = 100;
