@@ -86,13 +86,16 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
 ## E. Governance / sustainability
 - **E1 `P2` Funding & maintenance plan** for the quarterly per-jurisdiction reverification
   cycle (ROADMAP §11 — the real ongoing cost).
-- **E2 `P2` DONE — Published methodology/trust page + partner-review cadence** (the GTM
-  trust story). Live at `/methodology` (`src/legal.ts` `renderMethodologyPage`, content in
-  `src/i18n/{en,es}.ts` `legal.methodology`), mirroring the terms/privacy/accessibility
-  pattern: sourcing principle (official government sources only), the verification
-  workflow, "last checked" freshness dates, a report-an-error path, and a documented
-  **quarterly partner review** with trans legal-aid partners for corrections. Linked from
-  every page footer and included in the sitemap/indexable-paths set.
+- **E2 `P2` DONE (structure) — Published methodology/trust page + partner-review cadence**
+  (the GTM trust story). Live at `/methodology` (`src/legal.ts` `renderMethodologyPage`,
+  content in `src/i18n/{en,es}.ts` `legal.methodology`), mirroring the
+  terms/privacy/accessibility pattern: sourcing principle (official government sources
+  only), the verification workflow, "last checked" freshness dates, a report-an-error
+  path, and the **target quarterly partner review** with trans legal-aid partners for
+  corrections — the page states explicitly that this cadence is **not yet established**
+  (no partners onboarded; no cycle has run) and that named-human verification of the seed
+  corpus is still in progress. Linked from every page footer and included in the
+  sitemap/indexable-paths set.
 
 ---
 

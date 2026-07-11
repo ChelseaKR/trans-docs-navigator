@@ -285,7 +285,7 @@ export const en: LocaleBundle = {
       {
         h: "How we verify a requirement",
         html:
-          "<p>Before a fact enters the corpus, a named reviewer reads the official source directly, records the exact page or document it came from, and records the date it was checked. That source URL and date travel with the fact everywhere it's shown — on a guide page, a checklist step, or a generated answer — so you can check our work.</p>",
+          "<p>Before a fact enters the corpus, a reviewer reads the official source directly, records the exact page or document it came from, and records the date it was checked. That source URL and date travel with the fact everywhere it's shown — on a guide page, a checklist step, or a generated answer — so you can check our work. <strong>Current status:</strong> this is a demonstration preview. Independent, named-human verification of the seed corpus is still in progress, and no jurisdiction is presented as having completed it yet.</p>",
       },
       {
         h: "“Last checked” and going stale",
@@ -300,7 +300,7 @@ export const en: LocaleBundle = {
       {
         h: "Partner review cadence",
         html:
-          "<p>Beyond individual reports, we run a standing <strong>quarterly review</strong> of every jurisdiction's requirements with trans legal-aid partners: each quarter, a partner organization (or, in a jurisdiction without a partner yet, a named volunteer reviewer) re-checks the official sources for that jurisdiction against what we publish. Corrections found in review are applied immediately, re-dated, and, where the change is substantive, noted in the project's release history. Jurisdictions without an assigned reviewer are marked accordingly rather than presented as reviewed.</p>",
+          "<p>Beyond individual reports, our target operating model is a standing <strong>quarterly review</strong> of every jurisdiction's requirements with trans legal-aid partners: each quarter, a partner organization (or a named volunteer reviewer) re-checks that jurisdiction's official sources against what we publish; corrections are applied immediately, re-dated, and, where the change is substantive, noted in the project's release history. <strong>This cadence is not yet established:</strong> no partner organizations are onboarded today and no quarterly review cycle has run yet. Until a jurisdiction has an assigned reviewer and a completed review, it is marked accordingly rather than presented as partner-reviewed.</p>",
       },
     ],
   },
@@ -330,7 +330,7 @@ export const en: LocaleBundle = {
       terms: "The terms for using Trans Docs Navigator: general information, not legal advice, with no warranty. Verify every requirement against the official source.",
       privacy: "How Trans Docs Navigator protects you: no account, nothing you type sent to a server, no trackers, forms filled on your device.",
       accessibility: "Our WCAG 2.2 AA accessibility commitment for Trans Docs Navigator, what we test automatically, and how to report a barrier.",
-      methodology: "How Trans Docs Navigator sources and verifies every requirement from official government sources, plus our quarterly partner-review cadence.",
+      methodology: "How Trans Docs Navigator sources and verifies every requirement from official government sources, plus the quarterly partner-review cadence we are establishing.",
     },
   },
 };
