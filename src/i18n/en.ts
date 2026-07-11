@@ -115,6 +115,9 @@ export const en: LocaleBundle = {
     offlineLead: "This page appears because you have no internet connection right now. If you saved pages for offline use, they're listed below and will open without a connection.",
     offlineSavedHeading: "Saved on this device",
     offlineNoneSaved: "No pages are saved for offline use on this device.",
+    downloadIcs: "Add these steps to your calendar (.ics)",
+    // PENDING counsel review — privacy-representation copy (docs/audits/dpia.md [Added 2026-07-09] .ics row).
+    downloadIcsNote: "Creates a to-do list file on your device. It holds only the step names — no personal details. This site sends nothing. If you add the file to an online calendar, your calendar provider will store the step names.",
   },
 
   docTitles: {
