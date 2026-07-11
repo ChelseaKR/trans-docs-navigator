@@ -14,7 +14,7 @@ import { formById } from "./forms.ts";
 import type { ChangeType, CorpusRecord, DocumentType, Intake, Language } from "./types.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
 import { renderAnswer, page, uiStrings, escapeHtml, STYLE } from "../src/render.ts";
-import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
+import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.ts";
 import { robotsTxt, sitemapXml } from "../src/seo.ts";
 import { asLanguage } from "../src/i18n/index.ts";
@@ -232,10 +232,11 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     return { status: 200, contentType: HTML, body: renderIntakePage(asLanguage(url.searchParams.get("language"))) };
   }
 
-  // Static legal / policy pages (linked from every footer).
-  if (p === "/terms" || p === "/privacy" || p === "/accessibility") {
+  // Static legal / policy / trust pages (linked from every footer).
+  if (p === "/terms" || p === "/privacy" || p === "/accessibility" || p === "/methodology") {
     const lang = asLanguage(url.searchParams.get("language"));
-    const render = p === "/terms" ? renderTermsPage : p === "/privacy" ? renderPrivacyPage : renderAccessibilityPage;
+    const render =
+      p === "/terms" ? renderTermsPage : p === "/privacy" ? renderPrivacyPage : p === "/accessibility" ? renderAccessibilityPage : renderMethodologyPage;
     return { status: 200, contentType: HTML, body: render(lang) };
   }
 

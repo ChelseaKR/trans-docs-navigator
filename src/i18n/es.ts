@@ -17,6 +17,7 @@ export const es: LocaleBundle = {
     termsLink: "Términos de uso",
     privacyLink: "Privacidad",
     a11yLink: "Accesibilidad",
+    methodologyLink: "Cómo obtenemos y verificamos la información",
     verifyNote: "Esto es información general, no asesoramiento legal. Los requisitos cambian, así que confirme siempre con la fuente oficial enlazada en cada paso, y hable con un abogado o una organización de ayuda legal sobre su situación específica.",
     notFilingNote: "Esta herramienta no presenta nada por usted y no es asesoramiento legal. Descargue el formulario oficial, complételo y preséntelo usted mismo.",
     sources: "Fuentes",
@@ -166,6 +167,7 @@ export const es: LocaleBundle = {
     termsTitle: "Términos de uso",
     privacyTitle: "Aviso de privacidad",
     accessibilityTitle: "Declaración de accesibilidad",
+    methodologyTitle: "Cómo obtenemos y verificamos la información",
     terms: [
       {
         h: "Información, no asesoramiento legal",
@@ -274,6 +276,35 @@ export const es: LocaleBundle = {
           "<p>Si algo es difícil de usar, háganoslo saber abriendo un problema en el repositorio del proyecto. Tratamos las barreras de accesibilidad como errores.</p>",
       },
     ],
+    methodology: [
+      {
+        h: "Solo fuentes oficiales",
+        html:
+          "<p>Cada requisito que mostramos — una tarifa, un formulario, un tiempo de espera, el orden de los pasos — proviene de una <strong>fuente oficial del gobierno</strong>: un tribunal, una agencia estatal (DMV, registro civil), la Administración del Seguro Social o el Departamento de Estado de EE. UU. No nos basamos en foros, resúmenes de segunda mano ni otros sitios de defensoría como fuente principal, aunque podemos enlazar a una guía de ayuda legal para contexto adicional.</p>",
+      },
+      {
+        h: "Cómo verificamos un requisito",
+        // PENDING native-speaker review (no attestation) — honesty-status copy added 2026-07-11.
+        html:
+          "<p>Antes de que un dato entre al corpus, un revisor lee la fuente oficial directamente, registra la página o el documento exacto de donde proviene y anota la fecha en que se verificó. Esa URL de origen y esa fecha acompañan al dato dondequiera que se muestre — en una guía, un paso de la lista o una respuesta generada — para que pueda comprobar nuestro trabajo. <strong>Estado actual:</strong> esto es una vista previa de demostración. La verificación independiente por personas identificadas del corpus inicial sigue en curso, y todavía no se presenta ninguna jurisdicción como verificada por completo.</p>",
+      },
+      {
+        h: "“Última verificación” y la vigencia de la información",
+        html:
+          "<p>Cada requisito lleva la fecha en que lo verificamos por última vez y una fecha límite de reverificación (su plazo de vigencia). Si un requisito supera ese plazo antes de que lo hayamos reverificado, dejamos de mostrarlo como vigente: se marca automáticamente como <strong>necesita reverificación</strong> y se señala en la interfaz, en lugar de quedar obsoleto sin aviso.</p>",
+      },
+      {
+        h: "Informe un error o un cambio en la ley",
+        html:
+          "<p>Las leyes cambian más rápido de lo que un equipo pequeño puede seguir por sí solo. Si nota que un requisito está desactualizado o es incorrecto, abra un problema en el repositorio del proyecto usando la plantilla de informe “la ley cambió”. Tratamos un requisito incorrecto como un error, y priorizamos corregirlo antes que agregar funciones nuevas.</p>",
+      },
+      {
+        h: "Ritmo de revisión con socios",
+        // PENDING native-speaker review (no attestation) — honesty-status copy added 2026-07-11.
+        html:
+          "<p>Además de los informes individuales, nuestro modelo de trabajo previsto es una <strong>revisión trimestral</strong> permanente de los requisitos de cada jurisdicción con socios de ayuda legal para personas trans: cada trimestre, una organización socia (o un revisor voluntario identificado) vuelve a verificar las fuentes oficiales de esa jurisdicción frente a lo que publicamos; las correcciones se aplican de inmediato, se les asigna una nueva fecha y, cuando el cambio es sustancial, se anotan en el historial de versiones del proyecto. <strong>Este ritmo aún no está establecido:</strong> hoy no hay organizaciones socias incorporadas y todavía no se ha realizado ningún ciclo de revisión trimestral. Hasta que una jurisdicción tenga un revisor asignado y una revisión completada, se marca como tal en lugar de presentarse como revisada por socios.</p>",
+      },
+    ],
   },
 
   seo: {
@@ -301,6 +332,7 @@ export const es: LocaleBundle = {
       terms: "Los términos para usar Trans Docs Navigator: información general, no asesoramiento legal, sin garantía. Verifique cada requisito con la fuente oficial.",
       privacy: "Cómo le protege Trans Docs Navigator: sin cuenta, nada de lo que escribe se envía a un servidor, sin rastreadores, formularios llenados en su dispositivo.",
       accessibility: "Nuestro compromiso de accesibilidad WCAG 2.2 AA para Trans Docs Navigator, lo que probamos automáticamente y cómo informar una barrera.",
+      methodology: "Cómo Trans Docs Navigator obtiene y verifica cada requisito de fuentes oficiales del gobierno, más el ritmo trimestral de revisión con socios que estamos estableciendo.",
     },
   },
 };

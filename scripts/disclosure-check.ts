@@ -10,7 +10,7 @@ import { buildChecklist } from "../api/checklist.ts";
 import { loadCorpus } from "../api/corpus.ts";
 import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
-import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage } from "../src/legal.ts";
+import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderAnswer, page } from "../src/render.ts";
 import type { Language } from "../api/types.ts";
 import { pass, fail } from "./util.ts";
@@ -69,6 +69,7 @@ for (const lang of ["en", "es"] as Language[]) {
     ["terms", renderTermsPage(lang)],
     ["privacy", renderPrivacyPage(lang)],
     ["accessibility", renderAccessibilityPage(lang)],
+    ["methodology", renderMethodologyPage(lang)],
   ];
   for (const [name, htmlStr] of pages) {
     checkPageDisclosure(name, htmlStr, lang);
