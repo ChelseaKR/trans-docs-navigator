@@ -53,9 +53,9 @@ function prose(rec: CorpusRecord): string {
 }
 
 // Test-only override (tests/gate-efficacy): point the gate at a poisoned corpus
-// directory. `dir: undefined` is loadCorpus()'s existing default-to-CORPUS_DIR path,
+// directory. Omitting `dir` is loadCorpus()'s existing default-to-CORPUS_DIR path,
 // so production behavior is unchanged whenever CORPUS_DIR is unset.
-const corpus = loadCorpus({ dir: process.env.CORPUS_DIR });
+const corpus = loadCorpus(process.env.CORPUS_DIR ? { dir: process.env.CORPUS_DIR } : {});
 const failures: string[] = [];
 const belowTarget: string[] = [];
 let worst = 100;
