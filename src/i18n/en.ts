@@ -84,6 +84,9 @@ export const en: LocaleBundle = {
     getFormCta: "Get the official form",
     moreDetail: "More detail",
     markDone: "Mark done",
+    reportError: "Out of date? Report an error or a law that changed",
+    // PENDING counsel review — destination-disclosure copy (privacy representation); see docs/audits/dpia.md [Added 2026-07-09] row.
+    reportErrorNote: "This link opens GitHub in a new tab. Reports are public and need a GitHub account.",
     progressTemplate: "{done} of {total} steps done",
     stepsLabel: "steps",
     estimatedCost: "Estimated cost",
