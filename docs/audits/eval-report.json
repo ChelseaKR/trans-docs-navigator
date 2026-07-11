@@ -394,5 +394,115 @@
       "notes": []
     }
   ],
+  "metamorphic": [
+    {
+      "name": "paraphrase-stability:ca-name-court-en",
+      "retrieverName": "retrieve",
+      "passed": true,
+      "detail": "both phrasings cite {ca.court-order.name}"
+    },
+    {
+      "name": "paraphrase-stability:ny-name-court-en",
+      "retrieverName": "retrieve",
+      "passed": true,
+      "detail": "both phrasings cite {ny.court-order.name}"
+    },
+    {
+      "name": "paraphrase-stability:ca-name-court-es",
+      "retrieverName": "retrieve",
+      "passed": true,
+      "detail": "both phrasings cite {ca.court-order.name.es}"
+    },
+    {
+      "name": "jurisdiction-sensitivity:ca-vs-tx-name-court",
+      "retrieverName": "retrieve",
+      "passed": true,
+      "detail": "US-CA cited {ca.court-order.name}, US-TX cited {tx.court-order.name} — disjoint"
+    },
+    {
+      "name": "jurisdiction-sensitivity:ca-vs-il-gender-marker-dl",
+      "retrieverName": "retrieve",
+      "passed": true,
+      "detail": "US-CA cited {ca.drivers-license.gender-marker}, US-IL cited {il.drivers-license.gender-marker} — disjoint"
+    },
+    {
+      "name": "filter-monotonicity:ca-name-documents-filter",
+      "retrieverName": "retrieve",
+      "passed": true,
+      "detail": "filtered {ca.court-order.name} ⊆ unfiltered {ca.court-order.name, ca.drivers-license.name, us.passport.name, us.ssa-card.name}"
+    },
+    {
+      "name": "filter-monotonicity:ny-name-documents-filter",
+      "retrieverName": "retrieve",
+      "passed": true,
+      "detail": "filtered {ny.court-order.name} ⊆ unfiltered {ny.court-order.name, ny.drivers-license.name, us.passport.name, us.ssa-card.name}"
+    },
+    {
+      "name": "language-consistency:ca-name-court",
+      "retrieverName": "retrieve",
+      "passed": true,
+      "detail": "EN {ca.court-order.name} and ES {ca.court-order.name.es} agree on emptiness and document/change-type shape (FIX-03-dependent: not asserting equal id sets)"
+    },
+    {
+      "name": "language-consistency:ny-name-court",
+      "retrieverName": "retrieve",
+      "passed": true,
+      "detail": "EN {ny.court-order.name} and ES {ny.court-order.name.es} agree on emptiness and document/change-type shape (FIX-03-dependent: not asserting equal id sets)"
+    },
+    {
+      "name": "paraphrase-stability:ca-name-court-en",
+      "retrieverName": "embeddingRetrieve",
+      "passed": true,
+      "detail": "both phrasings cite {ca.court-order.name}"
+    },
+    {
+      "name": "paraphrase-stability:ny-name-court-en",
+      "retrieverName": "embeddingRetrieve",
+      "passed": true,
+      "detail": "both phrasings cite {ny.court-order.name}"
+    },
+    {
+      "name": "paraphrase-stability:ca-name-court-es",
+      "retrieverName": "embeddingRetrieve",
+      "passed": true,
+      "detail": "both phrasings cite {ca.court-order.name.es}"
+    },
+    {
+      "name": "jurisdiction-sensitivity:ca-vs-tx-name-court",
+      "retrieverName": "embeddingRetrieve",
+      "passed": true,
+      "detail": "US-CA cited {ca.court-order.name}, US-TX cited {tx.court-order.name} — disjoint"
+    },
+    {
+      "name": "jurisdiction-sensitivity:ca-vs-il-gender-marker-dl",
+      "retrieverName": "embeddingRetrieve",
+      "passed": true,
+      "detail": "US-CA cited {ca.drivers-license.gender-marker}, US-IL cited {il.drivers-license.gender-marker} — disjoint"
+    },
+    {
+      "name": "filter-monotonicity:ca-name-documents-filter",
+      "retrieverName": "embeddingRetrieve",
+      "passed": true,
+      "detail": "filtered {ca.court-order.name} ⊆ unfiltered {ca.court-order.name, ca.drivers-license.name, us.passport.name, us.ssa-card.name}"
+    },
+    {
+      "name": "filter-monotonicity:ny-name-documents-filter",
+      "retrieverName": "embeddingRetrieve",
+      "passed": true,
+      "detail": "filtered {ny.court-order.name} ⊆ unfiltered {ny.court-order.name, ny.drivers-license.name, us.passport.name, us.ssa-card.name}"
+    },
+    {
+      "name": "language-consistency:ca-name-court",
+      "retrieverName": "embeddingRetrieve",
+      "passed": true,
+      "detail": "EN {ca.court-order.name} and ES {ca.court-order.name.es} agree on emptiness and document/change-type shape (FIX-03-dependent: not asserting equal id sets)"
+    },
+    {
+      "name": "language-consistency:ny-name-court",
+      "retrieverName": "embeddingRetrieve",
+      "passed": true,
+      "detail": "EN {ny.court-order.name} and ES {ny.court-order.name.es} agree on emptiness and document/change-type shape (FIX-03-dependent: not asserting equal id sets)"
+    }
+  ],
   "passed": true
 }

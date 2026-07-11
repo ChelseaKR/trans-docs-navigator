@@ -42,6 +42,33 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 | US-TX | 6 | 4 | 1 | 100.0% | ✅ | ❌ | ❌ |
 | US-WA | 3 | 3 | 2 | 100.0% | ✅ | ❌ | ❌ |
 
+## Metamorphic properties
+
+Paired-query invariants run against BOTH retrievers (the seam FIX-11 gates for a swap):
+paraphrase stability, jurisdiction sensitivity, filter monotonicity, and (weaker,
+FIX-03-dependent) EN/ES citation-shape consistency.
+
+| Property | Retriever | Gate |
+|----------|-----------|:----:|
+| paraphrase-stability:ca-name-court-en | retrieve | ✅ |
+| paraphrase-stability:ny-name-court-en | retrieve | ✅ |
+| paraphrase-stability:ca-name-court-es | retrieve | ✅ |
+| jurisdiction-sensitivity:ca-vs-tx-name-court | retrieve | ✅ |
+| jurisdiction-sensitivity:ca-vs-il-gender-marker-dl | retrieve | ✅ |
+| filter-monotonicity:ca-name-documents-filter | retrieve | ✅ |
+| filter-monotonicity:ny-name-documents-filter | retrieve | ✅ |
+| language-consistency:ca-name-court | retrieve | ✅ |
+| language-consistency:ny-name-court | retrieve | ✅ |
+| paraphrase-stability:ca-name-court-en | embeddingRetrieve | ✅ |
+| paraphrase-stability:ny-name-court-en | embeddingRetrieve | ✅ |
+| paraphrase-stability:ca-name-court-es | embeddingRetrieve | ✅ |
+| jurisdiction-sensitivity:ca-vs-tx-name-court | embeddingRetrieve | ✅ |
+| jurisdiction-sensitivity:ca-vs-il-gender-marker-dl | embeddingRetrieve | ✅ |
+| filter-monotonicity:ca-name-documents-filter | embeddingRetrieve | ✅ |
+| filter-monotonicity:ny-name-documents-filter | embeddingRetrieve | ✅ |
+| language-consistency:ca-name-court | embeddingRetrieve | ✅ |
+| language-consistency:ny-name-court | embeddingRetrieve | ✅ |
+
 ## Items
 
 | Item | Suite | Segment | Result | Notes |

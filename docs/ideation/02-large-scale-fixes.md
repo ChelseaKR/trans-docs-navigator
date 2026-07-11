@@ -265,6 +265,13 @@ pruning path is follow-up work, not done here.
   week; every form page lists what to bring, cited; zero per-request disk reads.
 
 ## FIX-11 — Metamorphic eval suite: invariance and sensitivity properties
+**Status:** ✅ Done — `eval/metamorphic.ts` + `tests/metamorphic.test.ts` land paraphrase-stability,
+jurisdiction-sensitivity, filter-monotonicity, and a weaker (FIX-03-dependent) EN/ES
+citation-shape property, each run against both `retrieve` and `embeddingRetrieve` and
+folded into `eval/harness.ts`'s fail-closed `report.passed` gate; `eval/run.ts` renders
+a "Metamorphic properties" section in the markdown/JSON report. `language-consistency`
+intentionally does NOT assert equal EN/ES id sets yet (no canonical linkage until
+FIX-03) — see the in-code comment for the exact tightening this needs later.
 **Pitch:** Test the *relationships* between answers, not just fixed gold points.
 - **Why it matters:** IMPROVEMENT-PLAN §1.4 grows gold items; what point-based gold
   can't catch is relational failure: a paraphrased question changing the answer, a
