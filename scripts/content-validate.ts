@@ -2,6 +2,7 @@
 // a source + named verifier + ISO date. Fails closed on any issue.
 
 import { validateCorpus } from "../api/corpus.ts";
+import { validateReferrals } from "../api/referrals.ts";
 import { pass, fail } from "./util.ts";
 
 const { records, issues, placeholderVerified } = validateCorpus();
@@ -14,6 +15,17 @@ if (issues.length > 0) {
   );
 }
 
+// Legal-aid/official referrals ride the same verifier gate as the corpus (api/referrals.ts).
+// Fail closed here too — a bad referral link must never ship.
+const { records: referralCount, issues: referralIssues } = validateReferrals();
+if (referralIssues.length > 0) {
+  fail(
+    "content",
+    `${referralIssues.length} referral validation issue(s) across ${referralCount} record(s)`,
+    referralIssues.map((i) => `${i.recordId} · ${i.field}: ${i.message}`),
+  );
+}
+
 // Honest-confidence: surface (don't hide) that the corpus is still seed-verified.
 // This is informational, not a failure — ADR-3 makes seed verification an explicit,
 // currently-OPEN review-gate. The number must reach 0 (real named verifiers) before launch.
@@ -23,4 +35,4 @@ if (placeholderVerified > 0) {
       `mechanically valid but NOT launch-cleared. Replace with named human verifiers before launch.`,
   );
 }
-pass("content", `${records} corpus records valid (source + verifier in roster + date present)`);
+pass("content", `${records} corpus records + ${referralCount} referral records valid (source + verifier in roster + date present)`);

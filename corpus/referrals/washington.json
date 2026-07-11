@@ -1,0 +1,38 @@
+[
+  {
+    "id": "wa.referral.nwjustice",
+    "jurisdiction": "US-WA",
+    "name": "Northwest Justice Project",
+    "url": "https://nwjustice.org",
+    "note": {
+      "en": "Washington's statewide civil legal aid program, including the CLEAR hotline that can help low-income residents with legal name-change filings.",
+      "es": "Programa estatal de ayuda legal civil de Washington, incluida la línea CLEAR que puede ayudar a residentes de bajos ingresos con solicitudes de cambio legal de nombre."
+    },
+    "source": {
+      "url": "https://nwjustice.org",
+      "title": "Northwest Justice Project",
+      "last_verified": "2026-06-01",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "wa.referral.legal-voice",
+    "jurisdiction": "US-WA",
+    "name": "Legal Voice",
+    "url": "https://legalvoice.org",
+    "note": {
+      "en": "Pacific Northwest legal advocacy organization publishing self-help legal information relevant to gender-marker and name changes.",
+      "es": "Organización de defensa legal del noroeste del Pacífico que publica información legal de autoayuda relevante para cambios de marcador de género y de nombre."
+    },
+    "source": {
+      "url": "https://legalvoice.org",
+      "title": "Legal Voice",
+      "last_verified": "2026-06-01",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]
