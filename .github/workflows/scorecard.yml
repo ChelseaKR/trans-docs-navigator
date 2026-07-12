@@ -10,6 +10,8 @@ name: scorecard
 
 on:
   workflow_dispatch: {}
+  schedule:
+    - cron: '23 5 11 * *' # monthly — re-armed 2026-07-11 (metrics plan Phase 0.2)
 
 permissions: read-all
 
@@ -39,7 +41,7 @@ jobs:
         with:
           results_file: results.sarif
           results_format: sarif
-          publish_results: true
+          publish_results: false # private repo — publishing requires a public repo
 
       - name: Upload Scorecard results as a build artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
