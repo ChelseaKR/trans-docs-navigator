@@ -10,7 +10,9 @@ const PORT = Number(process.env.PW_PORT ?? 8091);
 const baseURL = `http://localhost:${PORT}`;
 
 export default defineConfig({
-  testDir: "tests/e2e",
+  // This config is exclusively the test-only pseudolocale lane. The production-entry
+  // journey has its own config and server in playwright.journey.config.ts.
+  testDir: "tests/e2e/i18n",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,

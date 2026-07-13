@@ -7,7 +7,7 @@ SHELL := /bin/bash
 
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
         gate-count lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-overflow seo deploy-plan clean \
-        smoke coverage link-check source-watch source-baseline policy-watch policy-baseline new-record slo corpus-manifest build dataset
+        smoke e2e-journey coverage link-check source-watch source-baseline policy-watch policy-baseline new-record slo corpus-manifest build dataset
 
 help:
 	@echo "Targets:"
@@ -159,6 +159,12 @@ eval-bedrock:
 smoke:
 	@echo "── synthetic user journey (real server) ──────────────────"
 	@$(NODE) scripts/smoke-journey.ts
+
+# D2 — real-browser journey against the production server. This complements `smoke`
+# by executing the copy/resume client modules and pinning their no-request boundary.
+e2e-journey:
+	@echo "── real-browser E2E journey (Playwright, desktop+mobile) ─"
+	@npx --no-install playwright test --config playwright.journey.config.ts
 
 # Regenerate the public coverage matrix (docs/audits/coverage.md).
 coverage:
