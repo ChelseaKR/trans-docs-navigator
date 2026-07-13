@@ -94,7 +94,7 @@ test("healthz reports corpus size as JSON", () => {
   assert.ok(json.corpus_records > 5);
 });
 
-test("checklist route returns a checklist and a non-PII log", () => {
+test("checklist route returns a checklist and a bounded selection-metadata log", () => {
   const r = handleRoute("GET", u("/checklist?jurisdiction=US-CA&change=name"));
   assert.equal(r.status, 200);
   assert.equal(r.log?.event, "checklist");

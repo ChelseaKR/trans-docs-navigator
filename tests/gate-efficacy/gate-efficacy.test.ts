@@ -49,6 +49,14 @@ test("privacy gate fails on a PII field in a log call", () => {
   assert.match(r.output, /PII in a log call/);
 });
 
+// Harm: runtime API code starts reading a direct identity-form field outside the thin
+// HTTP shell. This proves the static gate covers the full runtime API directory.
+test("privacy gate fails on direct identity-field handling anywhere in runtime API code", () => {
+  const r = runGate("privacy-lint", { env: { PRIVACY_LINT_ROOT: fixture("privacy-api-poison") } });
+  assert.notEqual(r.code, 0);
+  assert.match(r.output, /runtime API references a direct identity field/);
+});
+
 // ── freshness (scripts/freshness.ts) ────────────────────────────────────────────
 // Harm: a record marked `verified` whose last_verified date is years past its SLA —
 // stale law served as current.

@@ -2,7 +2,8 @@
 // answers and static checklist HTML for cost/perf). Mirrors the bounded-map discipline
 // server.ts already uses for the rate limiter: a plain Map with a hard size cap and
 // oldest-first eviction, never an unbounded process-lifetime grow. Process-local only —
-// no persistence, no network, no PII (callers must key on non-identifying fields; see
+// no durable persistence or network egress. Callers exclude free text and direct identity
+// fields, but selection-only keys can still be sensitive; see
 // api/router.ts and scripts/privacy-lint.ts).
 
 const DEFAULT_MAX = 256;

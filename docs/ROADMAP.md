@@ -59,14 +59,15 @@ Targets specialize `/STANDARDS/QUALITY-AND-METRICS-STANDARD.md`.
 | Factual accuracy vs ground truth | ≥ 0.98 on live jurisdictions | eval harness | merge-blocking |
 | Corpus freshness | 0 jurisdictions past recheck SLA served as "current" | freshness job | merge-blocking + runtime alarm |
 | axe violations | 0 | pa11y-ci | merge-blocking |
-| Server-side PII fields | 0 in default mode | privacy lint + data-flow test | merge-blocking |
+| Direct identity-form fields handled by runtime API | 0 | static privacy gate | merge-blocking |
+| Raw request content reflected in application logs/responses | 0 sentinel matches | runtime non-reflection test + logger tests | merge-blocking |
 | Request-path p95 (in-process) | < 15 ms | `scripts/latency-bench.ts` (`make loadtest`) | **merge-blocking** — wired into `make verify` step 20/21 (2026-07-05) |
 | p95 first-token, network/deployed (< 1.5 s) | < 1.5 s | `loadtest/p95.k6.js` (k6, against a live instance) | **opt-in**, not merge-blocking — needs k6 + a running server; corrected from a prior "merge-blocking" claim that wasn't actually wired anywhere (2026-07-05) |
 | Line / branch coverage | ≥ 90% / ≥ 85% (safety-critical) | coverage | merge-blocking |
 | Retrieval context recall@8 | ≥ 0.80 | `eval/harness.ts` `retrievalQuality()` (`make eval`) | **merge-blocking** — added 2026-07-05 (AIEV-03). K=8 (not the standard's @20) because this corpus has 32 records total; @20 is tautological at this scale. Must gate before any embedding-retrieval swap (ADR-2) lands. |
 | Retrieval precision@1 | ≥ 0.70 | Same harness function (AIEV-04 analogue) | **merge-blocking** — added 2026-07-05. The gold set names exactly one expected-relevant record per accuracy item, so "precision" here is Precision@1 (top-ranked-result accuracy), the standard IR analogue for single-relevant-document ground truth, not Precision@20 (which has a hard ceiling of 1/20 at this gold-set shape). |
 
-**Testing strategy.** Unit (logic, field-mapping), integration (retrieval→generation→citation check), eval (groundedness/accuracy/refusal via the harness), a11y (axe + keyboard + screen-reader), privacy (no-PII-in-logs, ephemeral-by-default), and content tests (every corpus record has source + verifier + date).
+**Testing strategy.** Unit (logic, field-mapping), integration (retrieval→generation→citation check), eval (groundedness/accuracy/refusal via the harness), a11y (axe + keyboard + screen-reader), privacy (no direct identity fields in runtime API/log calls, no raw request-content reflection, local resume-state allowlist), and content tests (every corpus record has source + verifier + date).
 
 ## 8. Implementation plan for Claude Code
 Repo layout:
@@ -83,7 +84,7 @@ docs/   (this + audits + generated reports)
 - **M1 — Corpus & data model.** Structured records for ~3 pilot jurisdictions with sources + verifiers; ingest validation; freshness job. *Done when every record validates and freshness alarms work.*
 - **M2 — Retrieval-mandatory guidance.** RAG pipeline; generation that only speaks from retrieved chunks; post-gen uncited-claim rejection. *Done when groundedness ≥ target on the gold set.*
 - **M3 — Checklist engine.** Personalized, ordered checklist with prerequisites/costs/timelines from corpus. *Done when checklist matches expert expectations on gold set.*
-- **M4 — Client-side form pre-fill.** Field-mapped fill for fillable forms; graceful "download + steps" fallback for flat PDFs. *Done when fill works for pilot forms and no PII touches the server.*
+- **M4 — Client-side form pre-fill.** Field-mapped fill for fillable forms; graceful "download + steps" fallback for flat PDFs. *Done when fill works for pilot forms and direct identity-form fields remain on-device.*
 - **M5 — Experience & a11y hardening.** Full flow, ephemeral mode, printable packet, Spanish; screen-reader + keyboard sign-off. *Done when all §7 gates pass and audits sign off.*
 - **M6 — Expand jurisdictions.** Add jurisdictions only as each passes accuracy + freshness review.
 - **Claude Code approach.** Work corpus-first per jurisdiction; never widen coverage ahead of verification; keep the citation gate and eval gate on from M0.
@@ -97,12 +98,12 @@ docs/   (this + audits + generated reports)
 ## 10. Legal & compliance
 - **Unauthorized-practice-of-law.** Persistent "information, not legal advice" framing; no individualized legal conclusions; route edge cases to legal aid. Counsel review of disclaimers recommended pre-launch.
 - **Content licensing.** Government forms/text are generally public; record provenance regardless.
-- **Privacy law.** Design exceeds CCPA/GDPR by collecting essentially nothing server-side; still publish a plain-language notice and deletion path for any optional saved state.
+- **Privacy law.** Publish a plain-language notice that matches the actual request, cache, logging, hosting-provider, and local-state boundaries. Do not claim CCPA/GDPR compliance or exemption without jurisdiction-specific counsel review; keep deletion instructions precise about local state and bounded server records.
 - **Accessibility law.** WCAG 2.2 AA conformance + published accessibility statement.
 
 ## 11. Operations & sustainability
 - **Hosting/cost.** Bedrock token cost dominated by retrieval-grounded short answers; Haiku-first keeps per-session cost low; cache common jurisdiction answers.
-- **Observability.** Liveness/readiness, W3C trace correlation, low-cardinality RED metrics, formal availability/latency error budgets, eval/freshness alarms, and privacy-safe GenAI lifecycle telemetry; **no PII or prompt content in logs** (enforced).
+- **Observability.** Liveness/readiness, W3C trace correlation, low-cardinality RED metrics, formal availability/latency error budgets, eval/freshness alarms, and privacy-minimized GenAI lifecycle telemetry. Application logs exclude raw question/prompt/completion content and direct identity-form fields; they do contain bounded route, selection, and operational metadata.
 - **Maintenance.** The real cost is legal currency: a quarterly reverification cycle per jurisdiction, surfaced as issues; expired data degrades to "needs reverification."
 - **Sustainability/sunset.** Corpus is portable structured data; if the project winds down, the verified corpus + methodology remain a reusable public asset.
 
@@ -143,4 +144,4 @@ The Lighthouse-CI lab gate for the Tier-B Core-Web-Vitals budgets (LCP/INP/CLS) 
 blocking in `.github/workflows/ci.yml`; reports are retained as workflow artifacts.
 
 ## 12. Responsible-tech summary
-Top risks: (1) wrong/stale guidance harming users → citation + eval + freshness gates; (2) PII exposure endangering users in hostile jurisdictions → zero-server-PII, ephemeral default, client-side fill; (3) inequitable coverage/quality across jurisdictions and identities → disaggregated accuracy and inclusive content. Full treatment in [`RESPONSIBLE-TECH-AUDITS.md`](./RESPONSIBLE-TECH-AUDITS.md).
+Top risks: (1) wrong/stale guidance harming users → citation + eval + freshness gates; (2) request/identity exposure endangering users in hostile jurisdictions → no account/profile database, on-device identity-form fields, raw-question exclusion from application cache/logs/responses, bounded retention, and accurate notice; (3) inequitable coverage/quality across jurisdictions and identities → disaggregated accuracy and inclusive content. Full treatment in [`RESPONSIBLE-TECH-AUDITS.md`](./RESPONSIBLE-TECH-AUDITS.md).

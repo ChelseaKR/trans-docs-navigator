@@ -192,7 +192,7 @@ pruning path is follow-up work, not done here.
   Reflect it in `/packet` and the plan summary cost total.
 - **Effort:** M. **Risks/deps:** the *framing* ("you can skip this step") edges
   toward individualized guidance — keep it as prerequisite bookkeeping, and the
-  copy is **[counsel-gated]**. Query param adds one non-identifying bit to R6's
+  copy is **[counsel-gated]**. Query param adds one selection-only bit to R6's
   accepted history-leak surface; document in the DPIA.
 - **Excellent looks like:** a user with a court order sees steps 1..n annotated
   correctly with no server-side state and no new PII class; eval gains a gold item
@@ -222,7 +222,7 @@ pruning path is follow-up work, not done here.
   states exactly what it does and does not protect against.
 
 ## FIX-09 — Deployment threat-model closure: zero-egress runtime + corpus integrity attestation
-**Pitch:** Make "nothing to hand over" true of the infrastructure, not just the code.
+**Pitch:** Minimize infrastructure records and add runtime corpus-integrity attestation.
 - **Why it matters:** RESEARCH-ROADMAP R5 names the edge/CDN-log seam; what no plan
   covers is making the *runtime* incapable of egress: today the privacy invariant is
   a code property (allowlist logger) on infrastructure that could, if compromised,

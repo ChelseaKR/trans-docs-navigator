@@ -1,10 +1,11 @@
-// Transparency report: dated quarterly entries stating what data could and could not
-// be produced under legal compulsion (subpoena, warrant, court order). Served at
-// /transparency and linked from every page footer, mirroring src/legal.ts.
+// Transparency report: dated quarterly architecture inventories stating what records
+// may exist and which features stay local. Served at /transparency and linked from
+// every page footer, mirroring src/legal.ts.
 //
 // DRAFT POSTURE: this is a pre-launch reference build. The quarterly entries below are
 // a factual restatement of the data-inventory work already done in docs/audits/dpia.md
-// (what the server does and does not retain) — they are NOT a warrant canary. Any
+// (what the server processes, caches, and logs) — they are NOT demand statistics or a
+// warrant canary. Any
 // canary-style wording (e.g. an explicit "we have not received a court order" assertion)
 // is legally delicate and counsel review of that wording is an explicit, OPEN launch
 // gate (docs/STATUS.md §7.1), same posture as the Terms/Privacy disclaimers in
@@ -17,7 +18,7 @@ import { t as locale } from "./i18n/index.ts";
 import { page, escapeHtml } from "./render.ts";
 
 /** Date the current set of quarterly entries was last reviewed/appended. */
-export const TRANSPARENCY_UPDATED_DATE = "2026-06-30";
+export const TRANSPARENCY_UPDATED_DATE = "2026-07-12";
 
 function transparencyBody(sections: LegalSection[], updatedLabel: string): string {
   const body = sections.map((s) => `<section><h2>${escapeHtml(s.h)}</h2>${s.html}</section>`).join("\n");

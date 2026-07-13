@@ -12,7 +12,7 @@ export const es: LocaleBundle = {
     skip: "Saltar al contenido principal",
     bannerTitle: "Información, no asesoramiento legal",
     bannerBody: "Asistido por IA, basado en fuentes citadas.",
-    footer: "Sus respuestas permanecen en su navegador. Nada de lo que escribe se envía ni se almacena en un servidor.",
+    footer: "Sin cuenta. Los datos de identidad para formularios permanecen en su dispositivo. Las selecciones y preguntas opcionales se envían al servidor para generar una respuesta; consulte Privacidad.",
     legalNav: "Legal y políticas",
     termsLink: "Términos de uso",
     privacyLink: "Privacidad",
@@ -33,16 +33,16 @@ export const es: LocaleBundle = {
     startOver: "Empezar de nuevo",
     prepared: "Preparado el",
     packetIntro: "Su plan completo, listo para imprimir o guardar. No contiene información sobre usted más allá de las opciones que eligió.",
-    private: "Modo privado: sin cuenta, nada se guarda. Cerrar esta pestaña borra todo.",
+    private: "Modo privado: sin cuenta ni sesión guardada. Cerrar esta pestaña borra el estado local no guardado; ciertos metadatos de solicitud pueden conservarse según el Aviso de privacidad.",
     notCovered: "Aún no cubierto",
     resumeTitle: "Guarde su progreso (opcional, en este dispositivo)",
-    resumeIntro: "Guarde solo sus selecciones, sin nombres, cifradas con una contraseña que usted elige. Permanece en este dispositivo y nunca se envía a ningún lugar. Si olvida la contraseña, no se puede recuperar.",
+    resumeIntro: "Guarde solo sus selecciones, sin nombres, cifradas con una contraseña que usted elige. La copia cifrada permanece en este dispositivo y guardarla no hace ninguna solicitud de red; las selecciones ya se usaron para mostrar esta página. Si olvida la contraseña, no se puede recuperar.",
     passLabel: "Contraseña",
     saveBtn: "Guardar (cifrado)",
     resumeBtn: "Reanudar",
     deleteBtn: "Eliminar lo guardado",
     intakeHeading: "Planifique sus cambios legales de nombre y marcador de género",
-    intakeLead: "Responda algunas preguntas y obtenga una lista personalizada y ordenada con los formularios correctos y las fuentes oficiales para su estado. También puede usarla sin ingresar datos personales.",
+    intakeLead: "Responda algunas preguntas y obtenga una lista personalizada y ordenada con los formularios correctos y las fuentes oficiales para su estado. Puede usarla sin ingresar su nombre ni datos de una cuenta.",
     whereLive: "¿Dónde vive?",
     stateLabel: "Estado",
     whatChanging: "¿Qué está cambiando?",
@@ -57,7 +57,7 @@ export const es: LocaleBundle = {
     packetTitle: "Su paquete",
     packetHeading: "Su paquete de cambio de nombre y marcador de género",
     answerHeading: "Lo que dicen las fuentes",
-    formPrivacy: "Lo que escribe aquí permanece en su navegador. El formulario se llena en su dispositivo y nunca se envía a ningún lugar.",
+    formPrivacy: "Lo que escribe aquí permanece en su navegador y esta herramienta de formularios no lo transmite.",
     fillDownload: "Llenar y descargar",
     flatScanIntro: "Este formulario oficial es una imagen escaneada que no se puede llenar automáticamente. Descargue el formulario en blanco y complételo a mano:",
     gapNoRecords: "Aún no tenemos pasos verificados para esto. Consulte el sitio web oficial de su estado o una organización de ayuda legal para personas trans.",
@@ -73,7 +73,7 @@ export const es: LocaleBundle = {
     backToStart: "Empezar de nuevo",
     privacyLabel: "Privacidad:",
     resEnterPass: "Ingrese una contraseña primero.",
-    resSaved: "Guardado en este dispositivo, cifrado. No se envió nada a ningún lugar.",
+    resSaved: "Copia cifrada guardada en este dispositivo. Esta acción no hizo ninguna solicitud de red.",
     resNothing: "No hay nada guardado en este dispositivo.",
     resWrong: "Contraseña incorrecta, o los datos guardados fueron modificados.",
     resDeleted: "Eliminado de este dispositivo.",
@@ -99,15 +99,15 @@ export const es: LocaleBundle = {
     officialFormIntro: "Este es un formulario oficial del gobierno. Descárguelo desde la fuente a continuación y complételo usted mismo: no lo llenamos por usted, así que siempre trabaja con la versión oficial.",
     whatToBringTitle: "Qué traer",
     copyTitle: "Sus datos, listos para copiar",
-    copyIntro: "Ingrese su nombre una vez y cópielo en el formulario oficial. Esto permanece en su navegador: no se envía a ningún lugar.",
+    copyIntro: "Ingrese su nombre una vez y cópielo en el formulario oficial. El nombre ingresado aquí permanece en su navegador y esta herramienta no lo transmite.",
     copyBtn: "Copiar",
     copied: "Copiado al portapapeles.",
     offlineTitle: "Guardar sin conexion (opcional, en este dispositivo)",
-    offlineIntro: "Guarde una copia de su lista y paquete en este dispositivo para releerlos sin conexion a internet. Las copias guardadas no estan cifradas: cualquiera que pueda abrir este navegador puede leerlas. Si alguien revisando su dispositivo es un riesgo para usted, no guarde, o elimine las copias cuando termine.",
+    offlineIntro: "Guarde una copia de su lista y paquete en este dispositivo para leerlos sin conexión. Al pulsar Guardar, el navegador solicita esas páginas y los archivos de uso sin conexión a este servicio y luego los almacena localmente; después no hay sincronización en segundo plano ni notificaciones push. Las copias no están cifradas: cualquiera que pueda abrir este navegador puede leerlas. Si alguien que revise su dispositivo es un riesgo, no guarde o elimine las copias al terminar.",
     offlineSaveBtn: "Guardar sin conexion",
     offlineRemoveBtn: "Eliminar copias sin conexion",
     offlineSaving: "Guardando en este dispositivo...",
-    offlineSaved: "Guardado en este dispositivo el {date}. Nada se envio a ningun lugar.",
+    offlineSaved: "Obtenido de este servicio y guardado en este dispositivo el {date}. No hay sincronización en segundo plano.",
     offlineHaveCopy: "Una copia sin conexion de esta pagina esta guardada en este dispositivo.",
     offlineRemoved: "Todas las copias sin conexion se eliminaron de este dispositivo.",
     offlineError: "No se pudo guardar en este dispositivo. Aun puede imprimir o guardar como PDF.",
@@ -121,7 +121,7 @@ export const es: LocaleBundle = {
     offlineNoneSaved: "No hay paginas guardadas para uso sin conexion en este dispositivo.",
     downloadIcs: "Agregue estos pasos a su calendario (.ics)",
     // PENDING native-speaker review (no attestation) + counsel review — privacy-representation copy (docs/audits/dpia.md [Added 2026-07-09] .ics row).
-    downloadIcsNote: "Crea un archivo de lista de tareas en su dispositivo. Solo contiene los nombres de los pasos, sin datos personales. Este sitio no envía nada. Si agrega el archivo a un calendario en línea, su proveedor de calendario guardará los nombres de los pasos.",
+    downloadIcsNote: "Crea un archivo de lista de tareas en su dispositivo. Solo contiene los nombres de los pasos, sin datos personales, y crearlo no hace ninguna solicitud de red. Si agrega el archivo a un calendario en línea, su proveedor de calendario guardará los nombres de los pasos.",
   },
 
   docTitles: {
@@ -200,7 +200,7 @@ export const es: LocaleBundle = {
       {
         h: "Privacidad",
         html:
-          '<p>El servicio está hecho para no recopilar prácticamente nada sobre usted. Consulte el <a href="/privacy?language=es">Aviso de privacidad</a> para más detalles.</p>',
+          '<p>El servicio minimiza los registros: no tiene cuentas ni una base de datos de perfiles de identidad, aunque las páginas generadas por el servidor requieren datos de la solicitud y crean registros operativos limitados. Consulte el <a href="/privacy?language=es">Aviso de privacidad</a> para conocer los límites exactos.</p>',
       },
       {
         h: "Contenido y licencia",
@@ -216,22 +216,22 @@ export const es: LocaleBundle = {
       {
         h: "La versión corta",
         html:
-          "<p>Diseñamos este servicio para no recopilar prácticamente nada sobre usted. No necesita una cuenta. Sus respuestas permanecen en su navegador. Los formularios se llenan en su dispositivo. <strong>Nada de lo que escribe se envía ni se almacena en nuestros servidores.</strong></p>",
+          "<p>El servicio no tiene cuentas ni una base de datos de perfiles de usuarios. Los datos de identidad ingresados en la herramienta para formularios permanecen en su dispositivo. Para mostrar una lista o respuesta, el navegador envía al servidor las selecciones de la dirección de la página y cualquier pregunta opcional de texto libre. <strong>No incluya su nombre, número de Seguro Social ni otros datos identificativos en una pregunta.</strong></p>",
       },
       {
-        h: "Lo que nunca recibimos",
+        h: "Datos de identidad usados para formularios",
         html:
-          "<p>Su nombre, fecha de nacimiento, número de Seguro Social y cualquier dato de documentos de identidad <strong>nunca se envían a un servidor</strong>. El llenado de formularios ocurre completamente en su navegador.</p>",
+          "<p>La herramienta de formularios en el dispositivo no transmite su nombre, fecha de nacimiento, número de Seguro Social ni datos de documentos de identidad. Ese límite local no se aplica a la pregunta opcional: la pregunta se envía al servidor tal como se escribe.</p>",
       },
       {
-        h: "Lo que se procesa para mostrar su lista",
+        h: "Lo que procesa el servidor",
         html:
-          "<p>Para crear su lista, el servicio lee solo opciones no identificativas de la dirección web: su estado, los tipos de documento que eligió y su idioma. No se vinculan con usted como persona.</p>",
+          "<p>El servidor lee de forma transitoria el estado, los cambios y documentos elegidos, el idioma, la opción administrativa sobre una orden judicial y cualquier pregunta opcional de la URL. Las preguntas de texto libre no entran en la caché de la aplicación ni se copian en los registros o respuestas de la aplicación. Las listas y respuestas basadas solo en selecciones pueden permanecer en una caché limitada en memoria hasta su eliminación o el reinicio del proceso. Como son URLs GET, la dirección completa también puede quedar en el historial del navegador o en registros de acceso del proveedor de infraestructura.</p>",
       },
       {
-        h: "Registros del servidor",
+        h: "Registros de la aplicación y la infraestructura",
         html:
-          "<p>Nuestro servidor mantiene registros técnicos mínimos limitados a una lista fija de campos no identificativos (por ejemplo: qué página, el estado de la respuesta y un código de jurisdicción). No se registra información identificativa, por diseño.</p>",
+          "<p>Los registros de la aplicación usan una lista fija: plantilla de ruta, estado de respuesta, jurisdicción, tipos de cambio y documento elegidos, idioma y otros campos operativos limitados. Excluyen la pregunta sin procesar y los campos de identidad del formulario. La vista previa conserva esos registros durante 14 días; la plantilla de producción usa 30 días. Los proveedores de alojamiento y red pueden mantener metadatos separados según sus propias políticas.</p>",
       },
       {
         h: "Sin cookies, sin rastreadores",
@@ -240,22 +240,22 @@ export const es: LocaleBundle = {
       {
         h: "“Guardar su progreso” (opcional, en su dispositivo)",
         html:
-          "<p>Si elige guardar su progreso, solo sus <em>selecciones</em>, nunca su nombre, se cifran con una contraseña que usted elige y se guardan en su propio dispositivo. Nunca se envían a ningún lugar, y puede eliminarlas en cualquier momento con el botón “Eliminar lo guardado” o borrando el almacenamiento de su navegador.</p>",
+          "<p>Si elige guardar su progreso, solo sus <em>selecciones</em>, nunca su nombre, se cifran con una contraseña que usted elige y se guardan en su propio dispositivo. La acción de guardar no transmite el contenido cifrado; las selecciones ya se enviaron en la solicitud de la página, como se explicó arriba. Puede eliminar el contenido local con “Eliminar lo guardado” o borrando el almacenamiento del navegador.</p>",
       },
       {
         h: "Opcional \"Guardar sin conexion\" (en su dispositivo)",
         html:
-          "<p>Si elige guardar paginas para uso sin conexion, las copias se guardan <strong>sin cifrar</strong> en el almacenamiento de su navegador, en su propio dispositivo - nunca en nuestros servidores. Cualquiera que pueda abrir su navegador o inspeccionar el dispositivo podria leerlas. Si eso es un riesgo para usted, no guarde, o use el boton \"Eliminar copias sin conexion\" (o borre el almacenamiento de su navegador) cuando termine. Guardar nunca envia nada a ningun lugar: la funcion sin conexion no hace sincronizacion en segundo plano, notificaciones push ni obtiene nada que no le pidiera. Cada pagina guardada muestra la fecha en que se guardo, porque las leyes cambian y una copia antigua puede quedar obsoleta.</p>",
+          "<p>Si elige guardar páginas para uso sin conexión, el navegador hace solicitudes explícitas al mismo origen para las páginas indicadas y los archivos necesarios; esas URLs y sus metadatos se procesan como se explicó arriba. Las copias resultantes se guardan <strong>sin cifrar</strong> en el navegador de su dispositivo. Cualquiera que pueda abrir el navegador o inspeccionar el dispositivo podría leerlas. Después de esa descarga iniciada por usted, la función no hace sincronización en segundo plano, notificaciones push ni descargas periódicas. Abrir una copia mientras está sin conexión no hace una nueva solicitud. Use “Eliminar copias sin conexión” (o borre el almacenamiento del navegador) cuando termine. Cada página muestra su fecha de guardado porque las leyes cambian.</p>",
       },
       {
         h: "Por qué lo hicimos así",
         html:
-          "<p>Suponemos que algunas personas que lo usan pueden estar en lugares hostiles hacia las personas trans. La mejor protección es no tener nada que entregar, así que el servicio está hecho para no guardar nada sobre usted.</p>",
+          "<p>Suponemos que algunas personas que lo usan pueden estar en lugares hostiles hacia las personas trans. Por eso el servicio evita cuentas y bases de datos de identidad, mantiene los datos de formularios en el dispositivo, impide que las preguntas sin procesar entren en los registros o la caché de la aplicación y limita la retención de registros. Esto reduce los datos; no significa que no pueda existir ningún registro del servidor o la infraestructura.</p>",
       },
       {
         h: "Sus opciones",
         html:
-          "<p>Como no almacenamos nada sobre usted en nuestros servidores, no hay nada que podamos eliminar o divulgar a pedido. Usted mantiene el control de cualquier dato guardado localmente en su dispositivo.</p>",
+          "<p>Puede eliminar en cualquier momento el estado cifrado de reanudación y las copias sin conexión de su dispositivo. El servicio no tiene cuentas ni una base de datos de perfiles. Las entradas de la caché en memoria desaparecen al eliminarse o reiniciarse el proceso, los registros de la aplicación siguen los plazos anteriores y los proveedores de infraestructura pueden conservar registros separados fuera del control de esta aplicación.</p>",
       },
     ],
     accessibility: [
@@ -314,16 +314,15 @@ export const es: LocaleBundle = {
     {
       h: "Sobre este informe",
       html:
-        "<p>“La protección más fuerte es no tener nada que entregar” (vea nuestro <a href=\"/privacy?language=es\">Aviso de privacidad</a>) es una afirmación sobre la arquitectura del servicio. Esta página la convierte en un compromiso público, fechado y permanente: cada trimestre, indicamos con claridad qué datos guarda nuestro servidor y qué podría alcanzar, o no, una orden judicial, citación u otra solicitud de divulgación forzosa.</p>" +
-        "<p><strong>Esta página no incluye un “warrant canary”.</strong> Un canary —una declaración afirmativa y fechada sobre las solicitudes legales específicas que hemos recibido o no— es un texto legalmente delicado, y la revisión de ese tipo de declaración por un abogado con licencia es un requisito de lanzamiento explícito y <strong>pendiente</strong> (vea los <a href=\"/terms?language=es\">Términos de uso</a>). No agregaremos ese tipo de texto antes de esa revisión, y es posible que la asesoría legal decida no incluirlo en absoluto: un canary que no pudiéramos mantener actualizado con honestidad sería peor que no tener ninguno. Hasta que se revise, no debe inferirse ningún estado de canary —presente o ausente— de nada en esta página.</p>",
+        "<p>La minimización de datos es un compromiso de arquitectura, no una afirmación de que el servicio no tenga contacto con un servidor. Esta página trimestral resume qué registros puede crear la compilación de referencia y qué permanece en el dispositivo; consulte el <a href=\"/privacy?language=es\">Aviso de privacidad</a> para conocer el límite completo.</p>" +
+        "<p><strong>Este no es un informe de estadísticas sobre solicitudes legales y no incluye un “warrant canary”.</strong> Cualquier declaración sobre solicitudes recibidas, divulgaciones realizadas o el estado de un canary requiere revisión por un abogado con licencia, que sigue siendo un requisito de lanzamiento explícito y <strong>pendiente</strong> (vea los <a href=\"/terms?language=es\">Términos de uso</a>). No debe inferirse ningún estado de canary —presente o ausente— de esta página.</p>",
     },
     {
-      h: "2.º trimestre de 2026 (1 de abril – 30 de junio de 2026)",
+      h: "Resumen de arquitectura del 2.º trimestre de 2026 (revisado el 12 de julio de 2026)",
       html:
-        "<p>Al 30 de junio de 2026, según nuestra Evaluación de Impacto en la Protección de Datos (<code>docs/audits/dpia.md</code>):</p>" +
-        "<p><strong>Podría producirse bajo una solicitud de divulgación forzosa:</strong> registros efímeros del servidor o del borde de la red (marcas de tiempo, ruta de la solicitud, estado de la respuesta y campos operativos no identificativos, como el código de jurisdicción o el idioma —la lista fija que aplica <code>api/log.ts</code>) y metadatos del alojamiento/infraestructura (por ejemplo, registros de cuenta y de red que mantienen nuestros proveedores de infraestructura, no nosotros).</p>" +
-        "<p><strong>No podría producirse:</strong> el contenido de ninguna pregunta, respuesta de admisión o selección de documentos (nunca se envía ni se guarda en un servidor; se lee solo desde la dirección web al momento de la solicitud y nunca se registra ni se conserva), ningún dato de identidad ingresado para llenar formularios (nombre legal, fecha de nacimiento, número de Seguro Social —se completa enteramente en el dispositivo del usuario y nunca se transmite), ni ningún estado cifrado de “guardar su progreso” (se guarda solo en el dispositivo del usuario, nunca en los nuestros).</p>" +
-        "<p>No hubo cambios en la arquitectura del flujo de datos este trimestre.</p>",
+        "<p>Este es un inventario del código y la infraestructura de la compilación de referencia, no una declaración sobre solicitudes legales de producción. Según <code>docs/audits/dpia.md</code>:</p>" +
+        "<p><strong>Registros que pueden existir:</strong> URLs de solicitud con selecciones de la lista y una pregunta opcional; entradas limitadas en memoria para páginas basadas solo en selecciones; registros de la aplicación con metadatos de ruta y selección (14 días en la vista previa, 30 en la plantilla de producción); y metadatos de red, cuenta o acceso del proveedor según su propia retención. La pregunta sin procesar no entra en la caché, los registros ni la respuesta de la aplicación, pero una URL GET completa puede aparecer en el historial del navegador o en registros de acceso externos.</p>" +
+        "<p><strong>Límites del almacenamiento local:</strong> la herramienta de formularios no transmite los datos de identidad ingresados y la función de reanudación no transmite su contenido cifrado. “Guardar sin conexión” sí solicita explícitamente al mismo origen las páginas indicadas y los archivos necesarios, y luego conserva las copias sin cifrar en el navegador; no hace sincronización en segundo plano. Nada de esto afirma de forma absoluta qué registros mantienen los proveedores; no incluya datos identificativos en una pregunta opcional.</p>",
     },
   ],
 
@@ -350,7 +349,7 @@ export const es: LocaleBundle = {
     breadcrumbGuides: "Guías",
     legalDescription: {
       terms: "Los términos para usar Trans Docs Navigator: información general, no asesoramiento legal, sin garantía. Verifique cada requisito con la fuente oficial.",
-      privacy: "Cómo le protege Trans Docs Navigator: sin cuenta, nada de lo que escribe se envía a un servidor, sin rastreadores, formularios llenados en su dispositivo.",
+      privacy: "Cómo Trans Docs Navigator procesa selecciones y preguntas en el servidor, mantiene los datos de formularios en el dispositivo y limita sus registros.",
       accessibility: "Nuestro compromiso de accesibilidad WCAG 2.2 AA para Trans Docs Navigator, lo que probamos automáticamente y cómo informar una barrera.",
       methodology: "Cómo Trans Docs Navigator obtiene y verifica cada requisito de fuentes oficiales del gobierno, más el ritmo trimestral de revisión con socios que estamos estableciendo.",
     },

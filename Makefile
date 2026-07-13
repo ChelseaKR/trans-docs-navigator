@@ -69,7 +69,7 @@ citation:
 	@$(NODE) scripts/citation-coverage.ts
 
 privacy:
-	@echo "── [9/22] privacy lint (no PII in logs / no egress) ──────"
+	@echo "── [9/22] privacy lint (no runtime identity fields / log references)"
 	@$(NODE) scripts/privacy-lint.ts
 
 freshness:

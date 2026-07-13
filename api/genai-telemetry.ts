@@ -1,4 +1,4 @@
-// App-facing privacy-safe record/sink wrapper. Convention names, model resolution,
+// App-facing content-free record/sink wrapper. Convention names, model resolution,
 // and prices are owned by the immutable artifacts under api/_vendor/genai_telemetry.
 
 import {

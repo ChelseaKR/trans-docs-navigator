@@ -12,7 +12,7 @@ export const en: LocaleBundle = {
     skip: "Skip to main content",
     bannerTitle: "Information, not legal advice",
     bannerBody: DISCLOSURE.aiAssisted, // title already carries the "not legal advice" sentence
-    footer: "Your answers stay in your browser. Nothing you enter is sent to or stored on a server.",
+    footer: "No account. Form-fill identity details stay on your device. Checklist choices and optional questions are sent to the server to render a response; see Privacy.",
     legalNav: "Legal and policies",
     termsLink: "Terms of Use",
     privacyLink: "Privacy",
@@ -33,16 +33,16 @@ export const en: LocaleBundle = {
     startOver: "Start over",
     prepared: "Prepared on",
     packetIntro: "Your full plan, ready to print or save. It contains no information about you beyond the choices you made.",
-    private: "Private mode: no account, nothing saved. Closing this tab erases everything.",
+    private: "Private mode: no account or saved session. Closing this tab clears unsaved browser state; request metadata may be retained as described in Privacy.",
     notCovered: "Not yet covered",
     resumeTitle: "Save your progress (optional, on this device)",
-    resumeIntro: "Save only your selections, never names, encrypted with a passphrase you choose. It stays on this device and is never sent anywhere. Forget the passphrase and it can't be recovered.",
+    resumeIntro: "Save only your selections, never names, encrypted with a passphrase you choose. The encrypted resume copy stays on this device, and saving it makes no network request; the selections were already used to render this page. Forget the passphrase and it can't be recovered.",
     passLabel: "Passphrase",
     saveBtn: "Save (encrypted)",
     resumeBtn: "Resume",
     deleteBtn: "Delete saved",
     intakeHeading: "Plan your legal name and gender-marker changes",
-    intakeLead: "Answer a few questions and get a personalized, ordered checklist with the right forms and official sources for your state. You can also use this without entering any personal details.",
+    intakeLead: "Answer a few questions and get a personalized, ordered checklist with the right forms and official sources for your state. You can use it without entering your name or account details.",
     whereLive: "Where do you live?",
     stateLabel: "State",
     whatChanging: "What are you changing?",
@@ -57,7 +57,7 @@ export const en: LocaleBundle = {
     packetTitle: "Your packet",
     packetHeading: "Your name & gender-marker change packet",
     answerHeading: "What the sources say",
-    formPrivacy: "What you type here stays in your browser. The form is filled on your device and never sent anywhere.",
+    formPrivacy: "What you type here stays in your browser and is not transmitted by this form helper.",
     fillDownload: "Fill & download",
     flatScanIntro: "This official form is a flat scan that can't be auto-filled. Download the blank form and complete it by hand:",
     gapNoRecords: "We don't have verified steps for this yet. Check your state's official website or a trans legal-aid organization.",
@@ -73,7 +73,7 @@ export const en: LocaleBundle = {
     backToStart: "Start over",
     privacyLabel: "Privacy:",
     resEnterPass: "Enter a passphrase first.",
-    resSaved: "Saved on this device, encrypted. Nothing was sent anywhere.",
+    resSaved: "Encrypted resume copy saved on this device. This save made no network request.",
     resNothing: "Nothing saved on this device.",
     resWrong: "Wrong passphrase, or the saved data was changed.",
     resDeleted: "Deleted from this device.",
@@ -99,15 +99,15 @@ export const en: LocaleBundle = {
     officialFormIntro: "This is an official government form. Download it from the source below and complete it yourself — we don't fill it in for you, so you always work from the authoritative version.",
     whatToBringTitle: "What to bring",
     copyTitle: "Your details, ready to copy in",
-    copyIntro: "Enter your name once, then copy it into the official form. This stays in your browser — nothing is sent anywhere.",
+    copyIntro: "Enter your name once, then copy it into the official form. The name entered here stays in your browser and is not transmitted by this helper.",
     copyBtn: "Copy",
     copied: "Copied to clipboard.",
     offlineTitle: "Save for offline (optional, on this device)",
-    offlineIntro: "Keep a copy of your checklist and packet on this device so you can re-read them with no internet connection. Saved copies are not encrypted: anyone who can open this browser can read them. If someone checking your device is a risk for you, don't save - or delete the copies when you're done.",
+    offlineIntro: "Keep a copy of your checklist and packet on this device so you can re-read them with no internet connection. When you press Save, your browser requests those pages and the offline shell from this service, then stores them locally; no background sync or push follows. Saved copies are not encrypted: anyone who can open this browser can read them. If someone checking your device is a risk for you, don't save—or delete the copies when you're done.",
     offlineSaveBtn: "Save for offline",
     offlineRemoveBtn: "Delete offline copies",
     offlineSaving: "Saving on this device...",
-    offlineSaved: "Saved on this device on {date}. Nothing was sent anywhere.",
+    offlineSaved: "Fetched from this service and saved on this device on {date}. No background sync is enabled.",
     offlineHaveCopy: "An offline copy of this page is saved on this device.",
     offlineRemoved: "All offline copies were deleted from this device.",
     offlineError: "Couldn't save on this device. You can still print or save as PDF.",
@@ -121,7 +121,7 @@ export const en: LocaleBundle = {
     offlineNoneSaved: "No pages are saved for offline use on this device.",
     downloadIcs: "Add these steps to your calendar (.ics)",
     // PENDING counsel review — privacy-representation copy (docs/audits/dpia.md [Added 2026-07-09] .ics row).
-    downloadIcsNote: "Creates a to-do list file on your device. It holds only the step names — no personal details. This site sends nothing. If you add the file to an online calendar, your calendar provider will store the step names.",
+    downloadIcsNote: "Creates a to-do list file on your device. It holds only the step names—no personal details—and creating it makes no network request. If you add the file to an online calendar, your calendar provider will store the step names.",
   },
 
   docTitles: {
@@ -200,7 +200,7 @@ export const en: LocaleBundle = {
       {
         h: "Privacy",
         html:
-          '<p>The Service is built to collect essentially nothing about you. See the <a href="/privacy">Privacy Notice</a> for details.</p>',
+          '<p>The Service minimizes records: it has no account or identity-profile database, while server-rendered pages still require request data and create bounded operational records. See the <a href="/privacy">Privacy Notice</a> for the exact boundaries.</p>',
       },
       {
         h: "Content and licensing",
@@ -216,22 +216,22 @@ export const en: LocaleBundle = {
       {
         h: "The short version",
         html:
-          "<p>We designed this Service to collect essentially nothing about you. You don't need an account. Your answers stay in your browser. Forms are filled on your device. <strong>Nothing you type is sent to or stored on our servers.</strong></p>",
+          "<p>The Service has no account or user-profile database. Identity details entered in the form helper stay on your device. To render a checklist or answer, your browser sends the choices in the page address and any optional free-text question to the server. <strong>Do not put a name, Social Security number, or other identifying detail in a question.</strong></p>",
       },
       {
-        h: "What we never receive",
+        h: "Identity details used for forms",
         html:
-          "<p>Your name, date of birth, Social Security number, and any identity-document data are <strong>never sent to a server</strong>. Form pre-fill happens entirely in your browser.</p>",
+          "<p>The on-device form helper does not transmit your name, date of birth, Social Security number, or identity-document data. That local-only boundary does not apply to the optional question box: a question is sent to the server exactly as entered.</p>",
       },
       {
-        h: "What is processed to show your checklist",
+        h: "What the server processes",
         html:
-          "<p>To build your checklist, the Service reads only non-identifying choices from the web address: your state, the document types you picked, and your language. These are not linked to you as a person.</p>",
+          "<p>The server transiently reads your state, change and document choices, language, court-order bookkeeping choice, and any optional question from the request URL. Free-text questions bypass the application cache and are not copied into application logs or responses. Selection-only checklist and answer renders may remain in a bounded in-memory cache until eviction or process restart. Because these are GET URLs, the full address may also remain in browser history or in infrastructure-provider access records.</p>",
       },
       {
-        h: "Server logs",
+        h: "Application and infrastructure logs",
         html:
-          "<p>Our server keeps minimal technical logs limited to a fixed allowlist of non-identifying fields (for example: which page, the response status, and a jurisdiction code). No identifying information is logged, by design.</p>",
+          "<p>Application logs use a fixed allowlist: route template, response status, jurisdiction, selected change/document types, language, and other bounded operational fields. They exclude the raw question and identity-form fields. The live preview's application-log retention is 14 days; the production infrastructure template uses 30 days. Hosting and edge providers may keep separate network or access metadata under their own retention policies.</p>",
       },
       {
         h: "No cookies, no trackers",
@@ -240,22 +240,22 @@ export const en: LocaleBundle = {
       {
         h: "Optional “Save your progress” (on your device)",
         html:
-          "<p>If you choose to save your progress, only your <em>selections</em>, never your name, are encrypted with a passphrase you choose and stored on your own device. They are never sent anywhere, and you can delete them at any time with the “Delete saved” button or by clearing your browser storage.</p>",
+          "<p>If you choose to save your progress, only your <em>selections</em>, never your name, are encrypted with a passphrase you choose and stored on your own device. The encrypted resume blob is not transmitted by the save action; the selections were already sent in the page request as described above. You can delete the local blob at any time with the “Delete saved” button or by clearing your browser storage.</p>",
       },
       {
         h: "Optional \"Save for offline\" (on your device)",
         html:
-          "<p>If you choose to save pages for offline use, copies of those pages are stored <strong>unencrypted</strong> in your browser storage, on your own device - never on our servers. Anyone who can open your browser or inspect the device may be able to read them. If that is a risk for you, don't save, or use the \"Delete offline copies\" button (or clear your browser storage) when done. Saving never sends anything anywhere: the offline feature does no background syncing, no push notifications, and no fetching you didn't ask for. Every saved page shows the date it was saved, because laws change and an old copy can go stale.</p>",
+          "<p>If you choose to save pages for offline use, your browser makes explicit same-origin requests for the listed pages and offline shell; those request URLs and metadata are handled as described above. The resulting copies are stored <strong>unencrypted</strong> in browser storage on your device. Anyone who can open your browser or inspect the device may be able to read them. After that user-initiated fetch, the feature does no background syncing, push notifications, or periodic fetching. Opening a saved copy while offline makes no fresh request. Use “Delete offline copies” (or clear browser storage) when done. Every saved page shows its save date because laws change and an old copy can go stale.</p>",
       },
       {
         h: "Why we built it this way",
         html:
-          "<p>We assume some people who use this may be in places that are hostile to trans people. The strongest protection is to have nothing to hand over, so the Service is built to hold nothing about you.</p>",
+          "<p>We assume some people who use this may be in places that are hostile to trans people. The Service therefore avoids accounts and identity databases, keeps form identity details on-device, prevents raw questions from entering application logs or caches, and bounds application-log retention. This minimizes records; it does not mean no server or infrastructure record can exist.</p>",
       },
       {
         h: "Your choices",
         html:
-          "<p>Because we store nothing about you on our servers, there is nothing for us to delete or disclose on request. You remain in control of any data saved locally on your device.</p>",
+          "<p>You can delete encrypted resume state and offline copies from your device at any time. The Service has no account or user-profile database. In-memory render entries expire through eviction or restart, application logs follow the retention periods above, and infrastructure providers may hold separate records outside this application's control.</p>",
       },
     ],
     accessibility: [
@@ -312,16 +312,15 @@ export const en: LocaleBundle = {
     {
       h: "About this report",
       html:
-        "<p>“The strongest protection is having nothing to hand over” (see our <a href=\"/privacy\">Privacy Notice</a>) is an architecture claim. This page turns it into a standing, dated commitment: each quarter, we state plainly what data our server holds and what a court order, subpoena, or other legal-compulsion request could and could not reach.</p>" +
-        "<p><strong>This page does not include a warrant canary.</strong> A canary — an affirmative, dated statement about the specific legal demands we have or have not received — is legally delicate wording, and review of any such statement by a licensed attorney is an explicit, <strong>open</strong> launch gate (see <a href=\"/terms\">Terms of Use</a>). We will not add canary wording before that review, and counsel may decide against one entirely; a canary we could not keep honestly updated would be worse than no canary. Until reviewed, no canary status — present or absent — should be inferred from anything on this page.</p>",
+        "<p>Data minimization is an architecture commitment, not a claim that the Service has zero server contact. This quarterly page summarizes what records the reference build may create and what stays on a user's device; see the <a href=\"/privacy\">Privacy Notice</a> for the complete boundary.</p>" +
+        "<p><strong>This is not a legal-demand statistics report and does not include a warrant canary.</strong> Any statement about demands received, disclosures made, or canary status requires review by licensed counsel, which remains an explicit, <strong>open</strong> launch gate (see <a href=\"/terms\">Terms of Use</a>). No canary status — present or absent — should be inferred from this page.</p>",
     },
     {
-      h: "Q2 2026 (April 1 – June 30, 2026)",
+      h: "Q2 2026 architecture snapshot (reviewed July 12, 2026)",
       html:
-        "<p>As of June 30, 2026, per our Data Protection Impact Assessment (<code>docs/audits/dpia.md</code>):</p>" +
-        "<p><strong>Could be produced under compulsion:</strong> ephemeral edge/server logs (timestamps, request path, response status, and non-identifying operational fields such as jurisdiction code or language — the fixed allowlist enforced by <code>api/log.ts</code>) and host/infrastructure metadata (for example hosting-provider account and network records held by our infrastructure providers, not by us).</p>" +
-        "<p><strong>Could not be produced:</strong> the content of any question, intake answer, or document selection (never sent to or stored on a server — read only from the URL at request time and never logged or retained), any identity data entered for form-fill (legal name, date of birth, Social Security number — filled entirely on the user's own device and never transmitted), and any encrypted “save your progress” state (stored only on the user's device, never on ours).</p>" +
-        "<p>No changes to the data-flow architecture occurred this quarter.</p>",
+        "<p>This is a code-and-infrastructure inventory for the reference build, not a representation about any production legal demand. As documented in <code>docs/audits/dpia.md</code>:</p>" +
+        "<p><strong>Records that may exist:</strong> request URLs carrying checklist selections and an optional question; bounded in-memory selection-only render-cache entries; allowlisted application logs containing route and selection metadata (14-day retention in the live preview, 30 days in the production template); and hosting-provider network, account, or access metadata under provider-controlled retention. Raw questions are excluded from the application cache, application logs, and rendered response, but a full GET URL may still appear in browser history or upstream access records.</p>" +
+        "<p><strong>Local-storage boundaries:</strong> identity details typed into the form helper and the encrypted “save your progress” blob are not transmitted by those features. “Save for offline” explicitly requests the listed same-origin pages and shell assets, then keeps the resulting unencrypted copies in browser storage; it performs no background sync. None of these statements is an absolute claim about provider records, and users should not enter identifying details in an optional question.</p>",
     },
   ],
 
@@ -348,7 +347,7 @@ export const en: LocaleBundle = {
     breadcrumbGuides: "Guides",
     legalDescription: {
       terms: "The terms for using Trans Docs Navigator: general information, not legal advice, with no warranty. Verify every requirement against the official source.",
-      privacy: "How Trans Docs Navigator protects you: no account, nothing you type sent to a server, no trackers, forms filled on your device.",
+      privacy: "How Trans Docs Navigator handles server-rendered choices and questions, keeps identity form data on-device, and limits application logs and retention.",
       accessibility: "Our WCAG 2.2 AA accessibility commitment for Trans Docs Navigator, what we test automatically, and how to report a barrier.",
       methodology: "How Trans Docs Navigator sources and verifies every requirement from official government sources, plus the quarterly partner-review cadence we are establishing.",
     },

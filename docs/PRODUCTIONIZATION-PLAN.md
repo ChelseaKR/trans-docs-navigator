@@ -83,7 +83,7 @@ The app currently runs only on a laptop. Everything below is scripted work.
    in GitHub secrets.
 4. **Domain + uptime probe.** Point a subdomain at staging, add an external uptime check
    against `/readyz` (with `/livez` for process diagnosis), and alert on failure. Both
-   probes are non-PII and readiness fails closed on corpus/freshness dependencies.
+   probes carry no user request fields and readiness fails closed on corpus/freshness dependencies.
 5. **Live-demo link in the README.** Once staging is stable, replace the "no hosted demo
    yet" line. This is the single highest-leverage portfolio improvement left.
 
@@ -146,7 +146,7 @@ From the pre-publication security review:
    multi-window burn-rule definitions scoped to user traffic. In the deployed environment,
    run `promtool check rules slos/prometheus.rules.yml`, scrape the endpoint, load the
    validated rules, route page/ticket severities to real destinations, and retain
-   privacy-safe structured traces. This is deployment configuration, not missing
+   content-minimized structured traces. This is deployment configuration, not missing
    application code.
 2. **k6 against staging.** `loadtest/p95.k6.js` exists. Run it weekly against staging
    with the documented p95 < 1.5 s budget, publishing results as a CI artifact.

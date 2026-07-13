@@ -73,7 +73,7 @@ export function currentTraceparent(): string | undefined {
     : undefined;
 }
 
-/** Low-cardinality fields accepted by the privacy-safe log sink. */
+/** Low-cardinality, content-minimized fields accepted by the allowlist log sink. */
 export function currentTraceLogFields(): Record<string, string> {
   const context = storage.getStore();
   if (!context) return {};

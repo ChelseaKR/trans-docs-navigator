@@ -135,14 +135,14 @@ export interface FormDef {
   preparation?: PreparationItem[];
 }
 
-/** Minimal, respectful intake. Lives only in client memory/session — never persisted server-side. */
+/** Minimal, respectful selection shape; request/cache/log handling is documented in the DPIA. */
 export interface Intake {
   jurisdiction: JurisdictionId;
   change_types: ChangeType[];
   /** Documents the user wants to update; empty means "recommend the standard set". */
   documents: DocumentType[];
   language: Language;
-  /** Optional, all skippable — used only client-side for form pre-fill. */
+  /** Optional legacy/client-only form-helper fields; runtime API code must not read them. */
   current_legal_name?: string;
   new_legal_name?: string;
   has_court_order?: boolean;

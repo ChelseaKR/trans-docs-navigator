@@ -33,8 +33,9 @@ export function escapeHtml(s: string): string {
 
 // "Law changed in X" issue template (.github/ISSUE_TEMPLATE/law-changed.md). Wiring a
 // per-step report link to it turns users into a freshness signal (RESEARCH-ROADMAP R11).
-// The jurisdiction + document are non-PII selection metadata, prefilled into the title so
-// the report is actionable; no identity data is involved.
+// The jurisdiction + document are selection metadata, prefilled into the title so
+// the report is actionable. They contain no direct identity field but can still reveal
+// sensitive context, which is why the destination disclosure and no-referrer controls exist.
 const LAW_CHANGED_ISSUE_URL = "https://github.com/ChelseaKR/trans-docs-navigator/issues/new?template=law-changed.md";
 export function reportErrorHref(jurisdiction: string, documentType: string): string {
   return `${LAW_CHANGED_ISSUE_URL}&title=${encodeURIComponent(`[law-changed] ${jurisdiction} · ${documentType}`)}`;

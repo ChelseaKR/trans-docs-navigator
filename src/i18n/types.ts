@@ -107,8 +107,8 @@ export interface UiMessages {
   copyIntro: string;
   copyBtn: string;
   copied: string;
-  // Explicit "save for offline" shell (EXP-01): panel, statuses, the burned-in
-  // staleness banner, and the offline notice page. All local-only, like resume.
+  // Explicit "save for offline" shell (EXP-01): a user-initiated same-origin fetch,
+  // local browser copies, statuses, the staleness banner, and the offline notice page.
   offlineTitle: string;
   /** Plain-language intro that states the forensic trade-off (unencrypted, device-discoverable). */
   offlineIntro: string;
@@ -215,7 +215,7 @@ export interface LocaleBundle {
   legal: LegalMessages;
   /**
    * Dated quarterly transparency-report entries (LegalSection[] shape: `h` is the
-   * period label, `html` states what could/could not be produced under compulsion).
+   * period label, `html` inventories records that may exist and local-only boundaries).
    * DRAFT POSTURE: no warrant-canary assertion ships here — see src/transparency.ts.
    */
   transparency: LegalSection[];

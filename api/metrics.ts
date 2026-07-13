@@ -58,7 +58,7 @@ export function metricRoute(path: string): string {
   return "_unmatched";
 }
 
-/** Bound arbitrary HTTP method strings for both metrics and privacy-safe logs. */
+/** Bound arbitrary HTTP method strings for both metrics and content-minimized logs. */
 export function metricMethod(method: string): string {
   const upper = method.toUpperCase();
   return ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"].includes(upper)

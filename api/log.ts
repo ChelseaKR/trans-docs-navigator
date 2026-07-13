@@ -1,12 +1,14 @@
-// Privacy-safe structured logger (guardrail #3). Only an explicit allowlist of
-// non-PII fields may be logged; anything else is dropped. This is the single
+// Privacy-minimized structured logger (guardrail #3). Only an explicit allowlist of
+// bounded operational fields may be logged; anything else is dropped. This is the single
 // logging mechanism in server code — the lint gate forbids raw console.* there.
 //
 // Output shape: one JSON object per line (JSON-lines) carrying the observability
 // envelope required by OBSERVABILITY-STANDARD §3 — `ts` (ISO 8601 UTC), `level`,
-// `msg` — plus only the non-PII operational fields below. Query content and any
-// identity/PII field can never appear: the allowlist is a fail-closed filter, so a
-// field is logged only if it is named here. Path/method/server-span values are also
+// `msg` — plus only the operational fields below. Raw query content and direct
+// identity fields are structurally excluded: the allowlist is a fail-closed filter,
+// so a field is logged only if it is named here. Selection metadata such as jurisdiction
+// can still be sensitive and remains subject to the documented retention limit.
+// Path/method/server-span values are also
 // normalized to bounded templates before serialization, so attacker-controlled URL
 // segments cannot turn an allowed field into a content side channel.
 
@@ -15,7 +17,7 @@ import { metricMethod, metricRoute } from "./metrics.ts";
 /** Severity levels (maps to SeverityText / syslog-style levels). */
 export type LogLevel = "debug" | "info" | "warn" | "error";
 
-/** The only fields permitted in a log line. None of these can identify a person. */
+/** The only fields permitted in an application log line; raw content is excluded. */
 const ALLOWED_FIELDS = new Set([
   // Observability envelope (per OBSERVABILITY-STANDARD §3).
   "ts",
@@ -24,7 +26,7 @@ const ALLOWED_FIELDS = new Set([
   "request_id",
   "path",
   "latency_ms",
-  // Existing non-PII operational fields.
+  // Bounded operational and selection metadata (potentially sensitive, not raw content).
   "event",
   "route",
   "method",
@@ -40,7 +42,7 @@ const ALLOWED_FIELDS = new Set([
   "degraded",
   "quarantined",
   "error",
-  // Privacy-safe GenAI lifecycle telemetry (api/genai-telemetry.ts).
+  // Content-free GenAI lifecycle telemetry (api/genai-telemetry.ts).
   "semconv_version",
   "provider",
   "model",
@@ -84,8 +86,9 @@ function sanitizeAllowedValue(key: string, value: unknown): unknown {
 /**
  * Emit one structured JSON log line. `event` is the machine-stable message code
  * (also surfaced as `msg`); `level` defaults to "info". Every line carries the
- * `ts`/`level`/`msg` envelope; any field not on the non-PII allowlist is dropped
- * before it is ever serialized — the request path never logs query content or PII.
+ * `ts`/`level`/`msg` envelope; any field not on the operational allowlist is dropped
+ * before it is ever serialized — the request path never logs raw query content or
+ * direct identity fields.
  */
 export function safeLog(event: string, fields: LogFields = {}, level: LogLevel = "info"): void {
   const safe: LogFields = {

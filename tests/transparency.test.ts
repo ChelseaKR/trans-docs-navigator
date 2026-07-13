@@ -5,15 +5,18 @@ import { handleRoute } from "../api/router.ts";
 
 const u = (p: string) => new URL(p, "http://localhost:8080");
 
-test("Transparency page renders in English with a dated entry and could/could-not statements", () => {
+test("Transparency page renders an English architecture inventory with bounded claims", () => {
   const h = renderTransparencyPage("en");
   assert.match(h, /Transparency Report/);
   assert.match(h, /Q2 2026/); // dated quarterly entry label
   assert.match(h, new RegExp(TRANSPARENCY_UPDATED_DATE));
-  assert.match(h, /Could be produced under compulsion/i);
-  assert.match(h, /Could not be produced/i);
-  assert.match(h, /edge\/server logs|edge logs/i);
-  assert.match(h, /host\/infrastructure metadata|host metadata/i);
+  assert.match(h, /Records that may exist/i);
+  assert.match(h, /Local-storage boundaries/i);
+  assert.match(h, /Save for offline.*explicitly requests/i);
+  assert.match(h, /14-day retention/i);
+  assert.match(h, /optional question/i);
+  assert.doesNotMatch(h, /Could not be produced/i);
+  assert.doesNotMatch(h, /question.*never sent to.*server/i);
 });
 
 test("Transparency page renders in Spanish with parity content", () => {
@@ -21,8 +24,10 @@ test("Transparency page renders in Spanish with parity content", () => {
   assert.match(h, /Informe de transparencia/);
   assert.match(h, /2\.º trimestre de 2026/);
   assert.match(h, new RegExp(TRANSPARENCY_UPDATED_DATE));
-  assert.match(h, /Podría producirse/i);
-  assert.match(h, /No podría producirse/i);
+  assert.match(h, /Registros que pueden existir/i);
+  assert.match(h, /Límites del almacenamiento local/i);
+  assert.match(h, /Guardar sin conexión.*solicita explícitamente/i);
+  assert.doesNotMatch(h, /No podría producirse/i);
 });
 
 test("Transparency page does not present unreviewed canary text as final", () => {

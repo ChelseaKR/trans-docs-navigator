@@ -29,7 +29,7 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
   `independent_author: true` in `eval/gold.provenance.json`. The eval withholds
   launch-clearance until then.
 - **A4 `P1` DPIA + STRIDE sign-off** (`docs/audits/dpia.md`), aligned with the published
-  Privacy Notice and the runtime PII-egress test.
+  Privacy Notice and the runtime request-content non-reflection test.
 - **A5 `P1` Manual SR / keyboard / 200%-zoom / 320px walkthrough** — now including the three
   legal pages — committed as `docs/audits/accessibility-YYYY-MM-DD.md`.
 
@@ -60,7 +60,7 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
   `scripts/content-validate.ts` so a bad referral link fails closed like a bad corpus
   record). Seeded 2 real official/legal-aid links per covered jurisdiction (federal, CA,
   IL, NY, TX, WA); kept as a sibling record type so `CorpusRecord.document_type` is
-  untouched. No PII.
+  untouched. This is static corpus content and introduces no user-data input.
 - **C4 `P3` Jurisdiction-change handling** (moved states mid-process) — ROADMAP §3 "Could".
 - **C5 `P3` Light theme + `prefers-color-scheme`** (currently dark-only via `PALETTE.screen`).
 
@@ -78,7 +78,7 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
 - **D5 `P3` Edge protection & observability — ✅ Done.** `aws_wafv2_web_acl.edge` (coarse
   IP rate limit, deploy-optional via empty `alb_arn` + `count` guard) fronts the
   best-effort in-process limiter; `aws_cloudwatch_log_metric_filter` resources route the
-  non-PII `safeLog` events to CloudWatch metrics, with `aws_cloudwatch_metric_alarm`
+  bounded, content-minimized `safeLog` events to CloudWatch metrics, with `aws_cloudwatch_metric_alarm`
   wiring each OPERATIONS.md "Alarms → actions" row (500s spike, quarantine, degraded
   answers, rate-limit abuse) — see `infra/main.tf` and the updated alarm names in
   `docs/OPERATIONS.md`.

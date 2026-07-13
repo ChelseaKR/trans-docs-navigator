@@ -1,5 +1,5 @@
-// HTTP shell. The PRIVACY INVARIANT (enforced by privacy-lint) holds here: this file
-// references no identity PII. All routing/validation logic lives in api/router.ts (which
+// HTTP shell. The privacy gate ensures runtime API code does not reference direct
+// identity-form fields. All routing/validation logic lives in api/router.ts (which
 // is unit-tested and coverage-gated); this file only does HTTP plumbing — security
 // headers, request bounds, a simple rate limit, timeouts, and static-file serving.
 
@@ -155,7 +155,8 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
     } catch (err) {
       send(res, 500, "text/html; charset=utf-8", "<!doctype html><html lang=en><title>Error</title><p>Something went wrong. Please try again.</p>");
       // Log the error CLASS only, never the message — a message can interpolate content the
-      // allowlist logger wouldn't otherwise see. Stack/detail belong in a non-PII trace sink.
+      // allowlist logger wouldn't otherwise see. Stack/detail require a separately reviewed,
+      // access-controlled diagnostic sink; they are not safe for the application log.
       safeLog(
         "error",
         { route: metricRoute(route), status: 500, error: (err as Error).name },

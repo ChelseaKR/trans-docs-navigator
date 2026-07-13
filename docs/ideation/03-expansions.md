@@ -15,10 +15,12 @@
 **Pitch:** Deliver ROADMAP §6's promised offline PWA — as a privacy feature, not a
 convenience feature. (`site.webmanifest` exists; no service worker or plan item does.)
 - **Impact:** Users in hostile jurisdictions or with poor connectivity can re-read
-  their checklist without generating fresh network traffic; clinics can load once
-  and run all day.
+  a saved checklist while offline without generating fresh network traffic. The
+  initial explicit save does make disclosed same-origin page/shell requests; clinics
+  can then use the local copies without background synchronization.
 - **Shape:** Service worker with cache-only strategy plus an explicit, user-initiated
-  "save for offline" action — never background sync or push (new observability
+  "save for offline" action whose initial same-origin fetch is disclosed — never
+  background sync or push (new observability
   surfaces). Cached pages carry a burned-in "saved on DATE — laws change" banner
   keyed to `api/freshness.ts`. Document the forensic trade-off (cached content is
   device-discoverable) on `/privacy`, alongside the threat-model note in
@@ -52,7 +54,7 @@ convenience feature. (`site.webmanifest` exists; no service worker or plan item 
   have no way to ask "is this still right?" short of redoing intake and diffing by
   eye.
 - **Shape:** Print a compact URL/QR on the packet (`/changes?since=DATE&` + the
-  existing non-PII `intakeQuery()` fields). The route compares `since` against
+  existing selection-only `intakeQuery()` fields). The route compares `since` against
   per-record changelogs (FIX-03) and renders "unchanged / re-verified / CHANGED —
   see step N" with citations. No server state.
 - **Effort:** M (after FIX-03). **Risks/deps:** FIX-03 changelog is a hard
@@ -203,7 +205,7 @@ secondary audience.
 - **Impact:** Helpers get first-person UI ("your state") that is wrong for a parent
   or case worker — and helper-mediated use is how low-literacy/low-connectivity
   users (personas S3, U5) actually reach tools like this.
-- **Shape:** A view toggle (non-PII query param) switching to supporter-framed
+- **Shape:** A view toggle (selection-only query param) switching to supporter-framed
   strings (the `LocaleBundle` structure in `src/i18n/types.ts` makes a parallel
   message set cheap), plus "how to help without taking over" guidance and prominent
   referrals. Explicitly not a caseload tool; no storage.
@@ -229,18 +231,17 @@ secondary audience.
   tracked like the clearnet preview.
 
 ### EXP-12 — Transparency report and legal-demand canary — **Status: Shipped**
-**Pitch:** Report on a fixed cadence what the service was asked to hand over —
-which, by design, is nothing.
+**Pitch:** Publish a fixed-cadence architecture inventory of what records the reference
+build may create, what remains local-only, and which provider boundaries remain.
 - **Shipped:** `/transparency` (`src/transparency.ts`, routed in `api/router.ts`,
-  linked from every page footer) with a dated Q2 2026 entry stating what could/could
-  not be produced under compulsion (edge/server logs and host metadata could; corpus,
-  query, and identity content could not), per FIX-09's DPIA work. No canary wording
-  shipped — the page carries a clearly-marked DRAFT-posture note that any canary text
-  remains **[counsel-gated]** and open, same posture as `src/legal.ts`. Future
+  linked from every page footer) with a dated Q2 2026 architecture snapshot. It lists
+  request URLs, bounded process-local caches, allowlisted application logs and retention,
+  possible provider metadata, plus identity-form/resume local boundaries and the explicit
+  same-origin fetch that creates offline copies. It does not publish legal-demand statistics and makes no "could not be
+  produced" promise. No canary wording shipped; counsel approval remains open. Future
   quarters are appended by PR to the locale bundles (`src/i18n/en.ts`/`es.ts`).
-- **Impact:** "The strongest protection is having nothing to hand over" (README) is
-  an architecture claim; a standing transparency page converts it into an
-  accountable public commitment that partners and press (persona A3) can check.
+- **Impact:** A standing transparency page makes the minimization architecture and its
+  residual provider/browser boundaries independently checkable by users and partners.
 - **Shape:** A `/transparency` page (static, in-repo like `src/legal.ts` pages) with
   dated quarterly entries via PR, each tied to the current DPIA and residual-risk
   register revisions.

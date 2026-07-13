@@ -1,10 +1,11 @@
 // Pure request routing + input hardening, factored out of the HTTP shell (api/server.ts)
 // so it is unit-testable and covered by the test gate. Given a method + parsed URL it
-// returns a RouteResponse describing exactly what to send — no sockets, no fs, no PII.
+// returns a RouteResponse describing exactly what to send — no sockets or filesystem I/O.
 //
 // SECURITY: all user-controlled inputs are bounded and validated here (jurisdiction
 // format, enum filtering, array caps, question length) before they reach retrieval or
-// rendering. The PRIVACY INVARIANT holds: only non-identifying query fields are read.
+// rendering. Checklist selections and optional question text are server inputs; direct
+// identity-form fields are not read. See the Privacy Notice for cache/log boundaries.
 
 import { buildChecklist, hasThinnerLanguageCoverage } from "./checklist.ts";
 import { answer } from "./guidance.ts";
@@ -48,7 +49,7 @@ export interface RouteResponse {
   body: string;
   /** Extra response headers to merge (e.g. Allow on a 405). */
   headers?: Record<string, string>;
-  /** Optional structured log to emit (non-PII fields only). */
+  /** Optional structured log descriptor (bounded allowlisted metadata only). */
   log?: { event: string; fields: Record<string, unknown> };
 }
 
@@ -81,7 +82,8 @@ function documents(url: URL): DocumentType[] {
 /**
  * Rebuild a canonical query string from the parsed intake ONLY. Never echo the raw
  * query string back into a link/page — that reflects arbitrary appended params
- * (including PII-shaped ones) into the response. We emit exactly the known-safe fields.
+ * (including identity-shaped ones) into the response. We emit exactly the canonical
+ * selection fields; those can still be sensitive and are covered by the Privacy Notice.
  */
 export function intakeQuery(intake: Intake): string {
   const sp = new URLSearchParams();
@@ -93,12 +95,12 @@ export function intakeQuery(intake: Intake): string {
   return sp.toString();
 }
 
-/** Parse the non-PII intake from query params. Returns null when jurisdiction is malformed. */
+/** Parse bounded checklist selections from query params. Returns null when jurisdiction is malformed. */
 export function parseIntake(url: URL): Intake | null {
   const jurisdiction = validJurisdiction(url.searchParams.get("jurisdiction"));
   if (jurisdiction === null) return null;
   const ct = changeTypes(url);
-  // Same privacy class as change_types (a single non-identifying bit; see docs/audits/dpia.md) —
+  // Same privacy class as change_types (a single selection-only bit; see docs/audits/dpia.md) —
   // bookkeeping only, used to annotate the court-order step done and prune it as a prerequisite.
   const hasCourtOrder = url.searchParams.get("court_order") === "1";
   return {
@@ -157,10 +159,10 @@ function badRequest(lang: Language): RouteResponse {
 }
 
 // --- Render caching (IP §5.2) ---------------------------------------------------
-// Both caches key on non-PII enum/date fields only (jurisdiction, change/doc enums,
+// Both caches key on bounded enum/date fields only (jurisdiction, change/doc enums,
 // language, the injectable `today`) — never on free text — so cache keys carry the
-// same non-identity guarantee as the rest of the router (privacy:lint enforces this
-// for logs; these keys are a subset of what already flows into intakeQuery()/logs).
+// same no-direct-identity-field guarantee as the rest of the router. These selections
+// can still be sensitive; they are a subset of what already flows into URLs and logs.
 // A corpus edit on disk clears both via api/cache.ts's clearAllCaches() (see api/corpus.ts).
 
 interface ChecklistCacheKey {
@@ -222,7 +224,7 @@ function buildAnswerValue(
   const claims = result.blocks.filter((b) => b.kind === "claim").length;
   const degraded = result.blocks.some((b) => b.kind === "freshness");
   // Always give a way forward (no dead-end): back to the checklist for the same query,
-  // or start over. Preserves the non-PII query so the user lands back where they were.
+  // or start over. Preserves the canonical selection query so the user lands back where they were.
   const back = intakeQuery({ jurisdiction, change_types, documents, language });
   const actions = `<p class="no-print"><a href="/checklist?${back}">← ${escapeHtml(t.backToChecklist)}</a> · <a href="/">${escapeHtml(t.backToStart)}</a></p>`;
   const body = page({ lang: language, title: t.answerHeading, heading: t.answerHeading, body: renderAnswer(result, language) + actions });
@@ -400,12 +402,13 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     const question = sanitizeQuestion(url.searchParams.get("q"));
     // Cached (IP §5.2) only for the common (jurisdiction × change-type) set the roadmap
     // item names: a free-text question bypasses the cache entirely (never mixed into the
-    // key), so cache keys stay jurisdiction/enum/language/date only — no PII, no free text.
+    // key), so cache keys stay jurisdiction/enum/language/date only — no direct identity
+    // fields and no free text.
     const value =
       question === undefined
         ? cachedAnswer({ jurisdiction, change_types, documents: docs, language: lang, today })
         : buildAnswerValue(jurisdiction, change_types, docs, lang, today, question);
-    // Non-PII observability counters (OPERATIONS alarms): how many claims were served,
+    // Content-free observability counters (OPERATIONS alarms): how many claims were served,
     // and whether any stale/volatile record was surfaced as "needs reverification".
     // Stored alongside the cached body (not recomputed) so counters stay accurate on hits.
     return {

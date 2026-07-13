@@ -15,11 +15,17 @@ test("Terms page states the key protective clauses", () => {
   assert.match(h, new RegExp(LEGAL_EFFECTIVE_DATE));
 });
 
-test("Privacy page states the zero-server-PII posture", () => {
+test("Privacy page distinguishes server requests from local-only identity fields", () => {
   const h = renderPrivacyPage("en");
   assert.match(h, /Privacy Notice/);
-  assert.match(h, /collect essentially nothing/i);
-  assert.match(h, /never sent to a server/i);
+  assert.match(h, /browser sends.*optional free-text question.*server/i);
+  assert.match(h, /form helper does not transmit your name/i);
+  assert.match(h, /bounded in-memory cache/i);
+  assert.match(h, /14 days/i);
+  assert.match(h, /same-origin requests.*offline shell/i);
+  assert.match(h, /Opening a saved copy while offline makes no fresh request/i);
+  assert.doesNotMatch(h, /Nothing you type is sent/i);
+  assert.doesNotMatch(h, /Saving never sends anything/i);
   assert.match(h, /no.*trackers|no cookies/i);
 });
 
@@ -43,6 +49,7 @@ test("Methodology page documents sourcing, verification, and the partner-review 
 test("legal pages render in Spanish", () => {
   assert.match(renderTermsPage("es"), /Términos de uso/);
   assert.match(renderPrivacyPage("es"), /Aviso de privacidad/);
+  assert.match(renderPrivacyPage("es"), /solicitudes explícitas al mismo origen/i);
   assert.match(renderAccessibilityPage("es"), /Declaración de accesibilidad/);
   assert.match(renderMethodologyPage("es"), /Cómo obtenemos y verificamos/);
   // Spanish footer links preserve language.

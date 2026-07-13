@@ -27,7 +27,7 @@ test("two encryptions of the same data differ (random salt + IV)", async () => {
   assert.notEqual(a, b);
 });
 
-test("toResumeState keeps only the non-PII selection keys (never identity fields)", () => {
+test("toResumeState keeps only selection keys and drops direct identity fields", () => {
   const params = new URLSearchParams("jurisdiction=US-CA&change=name&doc=passport&language=en&current_legal_name=Alex&ssn=123");
   const safe = toResumeState(params);
   assert.equal(safe.get("jurisdiction"), "US-CA");

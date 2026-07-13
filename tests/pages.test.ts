@@ -16,9 +16,10 @@ const corpus = loadCorpus();
 const clEn = buildChecklist({ jurisdiction: "US-CA", change_types: ["name", "gender-marker"], documents: [], language: "en" });
 const clEs = buildChecklist({ jurisdiction: "US-CA", change_types: ["name"], documents: [], language: "es" });
 
-test("intake page states the ephemeral/private posture", () => {
+test("intake page states the private-mode request and local-state boundary", () => {
   const h = renderIntakePage("en");
-  assert.match(h, /Private mode: no account, nothing saved/);
+  assert.match(h, /Private mode: no account or saved session/);
+  assert.match(h, /request metadata may be retained as described in Privacy/);
 });
 
 test("checklist page links to the packet (carrying the query) and start-over", () => {
