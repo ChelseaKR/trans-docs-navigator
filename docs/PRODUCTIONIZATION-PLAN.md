@@ -1,6 +1,7 @@
 # Productionization Plan — everything left that does not need a human
 
-> Drafted 2026-06-12 against the M6 build (12 gates green, modular i18n landed,
+> Drafted 2026-06-12 against the M6 build; reconciled 2026-07-12 against the 22-stage
+> gate set (modular i18n landed,
 > readability target met corpus-wide). This plan covers the remaining work that code,
 > infrastructure, and automation can deliver on their own. It deliberately excludes the
 > open review gates that need human judgment — named-human record verification, counsel
@@ -11,7 +12,7 @@
 > Priorities: `P0` = before any public deployment, `P1` = first weeks after,
 > `P2` = hardening that can trail.
 
-## Execution status (updated 2026-06-12)
+## Execution status (updated 2026-07-12)
 
 **Landed (this pass):**
 - Phase 4.1+4.2 — no inline scripts or styles anywhere: client JS now lives in
@@ -31,6 +32,15 @@
 - Phase 5.3 — `make smoke`: a real-server synthetic journey (EN+ES pages, every
   static asset, strict-CSP assertion on each HTML response), run on every push as a
   required check.
+- Phase 5.1 (repository half) — W3C trace-context propagation, correlated server and
+  Bedrock client span records, bounded-route RED metrics at `/metrics`, 99.9%
+  availability and 99% ≤1.5 s response-latency SLOs, and fast/slow Prometheus burn-rate
+  rule definitions. Scrape/probe routes are excluded from both numerators and denominators.
+  `make slo` parses rule YAML and prevents objective/window/rate/scope drift; real PromQL
+  parsing with `promtool check rules` is required in the deployment environment.
+- GenAI lifecycle measurement — the real Bedrock transport records actual token usage,
+  duration, model/finish/error metadata, and estimated cost without prompt/completion
+  content, using an immutable copy of the portfolio semantic-convention/pricing shim.
 - Phase 6.1 — `make coverage` regenerates `docs/audits/coverage.md`
   (jurisdiction × document × change type × language).
 - Phase 6.3 — `tests/i18n-parity.test.ts` enforces locale-registry shape parity at
@@ -50,8 +60,9 @@ the issue open.
 - Phase 2.1 — AWS credentials to run `make eval-bedrock` against real Claude on
   Bedrock and commit the report.
 - Phase 2.2 — a provisioned pgvector/OpenSearch instance for the real retrieval index.
-- Phase 5.1–5.2 — CloudWatch alarms and scheduled k6 both presuppose the deployed
-  staging environment.
+- Phase 5.1 (deployment half) — a Prometheus-compatible collector/rule loader and
+  page/ticket destinations; the repository already exposes the metrics and rules.
+- Phase 5.2 — scheduled k6 presupposes the deployed staging environment.
 
 ## Phase 1 — Stand up a real deployment (P0)
 
@@ -71,7 +82,8 @@ The app currently runs only on a laptop. Everything below is scripted work.
    attestation, and deploy to staging via OIDC role assumption. No long-lived AWS keys
    in GitHub secrets.
 4. **Domain + uptime probe.** Point a subdomain at staging, add an external uptime check
-   against `/healthz`, and alert on failure. `/healthz` is already non-PII.
+   against `/readyz` (with `/livez` for process diagnosis), and alert on failure. Both
+   probes are non-PII and readiness fails closed on corpus/freshness dependencies.
 5. **Live-demo link in the README.** Once staging is stable, replace the "no hosted demo
    yet" line. This is the single highest-leverage portfolio improvement left.
 
@@ -129,16 +141,18 @@ From the pre-publication security review:
 
 ## Phase 5 — Observability and performance (P1–P2)
 
-1. **Ship the counters.** `api/log.ts` already emits non-PII structured events. In the
-   deployed environment, route them to CloudWatch Logs with metric filters for the
-   alarm conditions `docs/OPERATIONS.md` names (5xx rate, refusal spike, corpus
-   quarantine). Wire the alarms to email. The runbook's alarm→action table is already
-   written; this makes it real.
+1. **Connect the shipped observability controls.** The app already exposes bounded-route
+   RED metrics at `/metrics`, propagates W3C trace context, and commits Prometheus
+   multi-window burn-rule definitions scoped to user traffic. In the deployed environment,
+   run `promtool check rules slos/prometheus.rules.yml`, scrape the endpoint, load the
+   validated rules, route page/ticket severities to real destinations, and retain
+   privacy-safe structured traces. This is deployment configuration, not missing
+   application code.
 2. **k6 against staging.** `loadtest/p95.k6.js` exists. Run it weekly against staging
    with the documented p95 < 1.5 s budget, publishing results as a CI artifact.
-3. **Synthetic user journey.** A scheduled headless-browser run of intake → checklist →
-   packet in both languages, asserting status codes and the disclosure banner. Catches
-   regressions a unit test can't, like a CSP change breaking the form-fill script.
+3. **Synthetic user journey — landed.** `make smoke` runs intake → checklist → packet
+   in both languages, assets, CSP, W3C trace continuity, and `/metrics`; CI runs it as a
+   required check.
 
 ## Phase 6 — Coverage growth scaffolding (P2)
 

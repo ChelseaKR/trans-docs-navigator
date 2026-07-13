@@ -58,9 +58,17 @@ const CHECKS: Check[] = [
   { name: "copy-helper module", path: "/assets/form-copy.js", contentType: "text/javascript", contains: ["clipboard"] },
   { name: "packet module", path: "/assets/packet.js", contentType: "text/javascript" },
   { name: "healthz", path: "/healthz", contentType: "application/json", contains: ["corpus_records"] },
+  { name: "metrics", path: "/metrics", contentType: "text/plain", contains: ["tdn_http_server_requests_total", "tdn_http_server_request_duration_seconds"] },
 ];
 
 const errors: string[] = [];
+
+function assertTraceparent(response: Response, label: string): void {
+  const traceparent = response.headers.get("traceparent") ?? "";
+  if (!/^00-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$/.test(traceparent)) {
+    errors.push(`${label}: invalid or missing traceparent response header`);
+  }
+}
 
 try {
   await waitForServer();
@@ -73,6 +81,7 @@ try {
       continue;
     }
     const ct = res.headers.get("content-type") ?? "";
+    assertTraceparent(res, c.name);
     if (c.contentType && !ct.includes(c.contentType)) errors.push(`${c.name}: content-type ${ct}`);
     for (const s of c.contains ?? []) {
       if (!body.includes(s)) errors.push(`${c.name}: missing "${s}"`);
@@ -90,8 +99,43 @@ try {
   // Error paths stay humane and localized.
   const bad = await fetch(`${BASE}/checklist?jurisdiction=US-XYZ&language=es`);
   if (bad.status !== 400) errors.push(`malformed jurisdiction: HTTP ${bad.status}, expected 400`);
+  assertTraceparent(bad, "malformed jurisdiction");
   const missing = await fetch(`${BASE}/nope`);
   if (missing.status !== 404) errors.push(`unknown route: HTTP ${missing.status}, expected 404`);
+  assertTraceparent(missing, "unknown route");
+
+  const tooLong = await fetch(`${BASE}/${"x".repeat(5_000)}`);
+  if (tooLong.status !== 414) errors.push(`oversized URI: HTTP ${tooLong.status}, expected 414`);
+  assertTraceparent(tooLong, "oversized URI");
+
+  const upstreamTrace = "0123456789abcdef0123456789abcdef";
+  const upstreamParent = "0123456789abcdef";
+  const continued = await fetch(`${BASE}/livez`, {
+    headers: { traceparent: `00-${upstreamTrace}-${upstreamParent}-01` },
+  });
+  const returnedTraceparent = continued.headers.get("traceparent") ?? "";
+  if (!returnedTraceparent.startsWith(`00-${upstreamTrace}-`)) {
+    errors.push("trace context: server did not continue the caller's trace id");
+  }
+
+  // Exhaust the process-local limiter and prove its exceptional branch still uses the
+  // common traced response helper. Keep this last so its state cannot affect checks.
+  let limited: Response | undefined;
+  for (let attempt = 0; attempt < 130; attempt++) {
+    const response = await fetch(`${BASE}/robots.txt`);
+    if (response.status === 429) {
+      limited = response;
+      break;
+    }
+  }
+  if (!limited) {
+    errors.push("rate limit: no 429 after 130 requests");
+  } else {
+    assertTraceparent(limited, "rate limit");
+    if (limited.headers.get("retry-after") !== "60") {
+      errors.push("rate limit: missing Retry-After header");
+    }
+  }
 } catch (err) {
   errors.push(`journey aborted: ${(err as Error).message}`);
 } finally {

@@ -19,6 +19,7 @@ import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.
 import { robotsTxt, sitemapXml } from "../src/seo.ts";
 import { asLanguage } from "../src/i18n/index.ts";
 import { serviceWorkerScript } from "../src/offline.ts";
+import { metricMethod, metricRoute, renderPrometheusMetrics } from "./metrics.ts";
 
 /** Input bounds — abuse/DoS resistance + predictable resource use. */
 export const LIMITS = {
@@ -175,7 +176,10 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
       contentType: HTML,
       headers: { allow: "GET, HEAD" }, // HTTP requires Allow on a 405
       body: page({ lang, title: t.methodHeading, heading: t.methodHeading, body: `<p>${escapeHtml(t.methodBody)}</p>` }),
-      log: { event: "method_not_allowed", fields: { method, status: 405 } },
+      log: {
+        event: "method_not_allowed",
+        fields: { method: metricMethod(method), status: 405 },
+      },
     };
   }
 
@@ -206,6 +210,14 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
       status: 200,
       contentType: JSON_CT,
       body: JSON.stringify({ status: "ok", corpus_records: loadCorpus().length }),
+    };
+  }
+
+  if (p === "/metrics") {
+    return {
+      status: 200,
+      contentType: "text/plain; version=0.0.4; charset=utf-8",
+      body: renderPrometheusMetrics(),
     };
   }
 
@@ -327,5 +339,8 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     return { status: 200, contentType: HTML, body: renderFormFillPage(form, lang) };
   }
 
-  return { ...notFound(lang), log: { event: "not_found", fields: { route: p, status: 404 } } };
+  return {
+    ...notFound(lang),
+    log: { event: "not_found", fields: { route: metricRoute(p), status: 404 } },
+  };
 }

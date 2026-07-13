@@ -2,7 +2,7 @@
 
 > The buildable spec. Reads top-to-bottom as product → research → design → architecture → quality → build plan → GTM → legal → ops. Generic enforcement lives in `/STANDARDS`; this document carries the decisions and the project-specific values.
 >
-> **Last verified: 2026-05-31 · Recheck cadence: quarterly for legal content; per-API for integrations.** Legal requirements change; treat every jurisdiction fact as needing reverification before launch.
+> **Last verified: 2026-07-12 · Recheck cadence: quarterly for legal content; per-API for integrations.** Legal requirements change; treat every jurisdiction fact as needing reverification before launch.
 
 ## 1. Snapshot
 A privacy-first, fully-cited PWA that generates a personalized, ordered checklist and pre-filled forms for legal name and gender-marker changes, jurisdiction by jurisdiction. Correctness is a safety property; the system is built on the civic RAG starter kit and gated by the civic AI eval harness.
@@ -60,7 +60,7 @@ Targets specialize `/STANDARDS/QUALITY-AND-METRICS-STANDARD.md`.
 | Corpus freshness | 0 jurisdictions past recheck SLA served as "current" | freshness job | merge-blocking + runtime alarm |
 | axe violations | 0 | pa11y-ci | merge-blocking |
 | Server-side PII fields | 0 in default mode | privacy lint + data-flow test | merge-blocking |
-| Request-path p95 (in-process) | < 15 ms | `scripts/latency-bench.ts` (`make loadtest`) | **merge-blocking** — wired into `make verify` step 20/20 (2026-07-05) |
+| Request-path p95 (in-process) | < 15 ms | `scripts/latency-bench.ts` (`make loadtest`) | **merge-blocking** — wired into `make verify` step 20/21 (2026-07-05) |
 | p95 first-token, network/deployed (< 1.5 s) | < 1.5 s | `loadtest/p95.k6.js` (k6, against a live instance) | **opt-in**, not merge-blocking — needs k6 + a running server; corrected from a prior "merge-blocking" claim that wasn't actually wired anywhere (2026-07-05) |
 | Line / branch coverage | ≥ 90% / ≥ 85% (safety-critical) | coverage | merge-blocking |
 | Retrieval context recall@8 | ≥ 0.80 | `eval/harness.ts` `retrievalQuality()` (`make eval`) | **merge-blocking** — added 2026-07-05 (AIEV-03). K=8 (not the standard's @20) because this corpus has 32 records total; @20 is tautological at this scale. Must gate before any embedding-retrieval swap (ADR-2) lands. |
@@ -102,7 +102,7 @@ docs/   (this + audits + generated reports)
 
 ## 11. Operations & sustainability
 - **Hosting/cost.** Bedrock token cost dominated by retrieval-grounded short answers; Haiku-first keeps per-session cost low; cache common jurisdiction answers.
-- **Observability.** Health endpoint, eval-regression alarms, freshness alarms, error budget; **no PII in logs** (enforced).
+- **Observability.** Liveness/readiness, W3C trace correlation, low-cardinality RED metrics, formal availability/latency error budgets, eval/freshness alarms, and privacy-safe GenAI lifecycle telemetry; **no PII or prompt content in logs** (enforced).
 - **Maintenance.** The real cost is legal currency: a quarterly reverification cycle per jurisdiction, surfaced as issues; expired data degrades to "needs reverification."
 - **Sustainability/sunset.** Corpus is portable structured data; if the project winds down, the verified corpus + methodology remain a reusable public asset.
 
@@ -119,15 +119,28 @@ below a *silent* skip rather than a stated gap.
 |---|---|---|
 | Structured JSON logs | **Live** | `api/log.ts`, allowlist-only fields, fail-closed; `tests/observability.test.ts` |
 | `/livez` + `/readyz` (+ legacy `/healthz`) | **Live** | Fail-closed readiness (corpus/freshness dependency); no dependency calls on `/livez` |
-| Distributed tracing (OTel spans, `traceparent`) | **Not implemented** | Open gap. The only outbound call is the opt-in Bedrock generator seam (unconfigured by default); tracing has a real target once that path is live in production |
-| Metrics (`/metrics`, RED per endpoint, UCUM naming) | **Not implemented** | Open gap — no Prometheus/OTel metrics endpoint exists today |
-| SLO definitions + burn-rate alerts | **Not implemented** | Open gap — no `slos/*.yaml`; ROADMAP mentions an "error budget" aspirationally below, not yet formalized |
+| Distributed tracing (`traceparent`, server/client spans) | **Live, exporter-neutral** | `api/trace.ts` continues valid W3C context, creates server and Bedrock client spans, returns `traceparent`, and emits correlated structured records. A deployment may route those records to an OTel collector without changing the request boundary |
+| Metrics (`/metrics`, RED per endpoint, UCUM naming) | **Live** | `api/metrics.ts`; process-local Prometheus counters/gauge/duration summary with bounded route templates and seconds units; covered by `tests/metrics.test.ts` and the real-server smoke journey |
+| SLO definitions + burn-rate alerts | **Live in repository** | `slos/service.yaml` defines request-based 99.9% availability and 99% ≤1.5 s response latency, excluding scrape/probe routes; `slos/prometheus.rules.yml` supplies fast/slow multi-window alert definitions. `make slo` parses the YAML and blocks objective/window/rate/scope drift; `promtool check rules` plus loading/delivery remain deployment gates because no PromQL parser is vendored here |
 | RUM (Real User Monitoring beacon) | **N/A — reason: privacy posture.** This repo's core safety property is zero client-side telemetry to a third party (see "Design guarantees" in the README and the DPIA). A RUM beacon would ship page/route data off-device to a monitoring vendor by design, which conflicts directly with the hostile-jurisdiction threat model. Core Web Vitals are instead measured in CI (lab data), not from real users. |
 | Continuous profiling | **N/A** | Alpha-stage signal, not required at this repo's scale; revisit if traffic/perf work warrants it |
 
-The Lighthouse-CI lab gate for the Tier-B Core-Web-Vitals budgets (LCP/INP/CLS) is tracked
-as an open P1 item in the remediation plan — the near-zero-client-JS server-rendered pages
-are expected to pass it immediately once wired.
+### GenAI lifecycle measurement
+
+The only real model boundary is `makeAwsBedrockTransport`. It records actual provider
+usage, normalized model identity, duration, finish/error metadata, and estimated cost on
+both success and failure, while structurally excluding prompts and completions. Semantic
+names, inference-profile resolution, cache-token semantics, and prices come from the
+immutable portfolio shim vendored at
+`e8150c82fc35267f022af46ac71fe5a851e2d042`; see
+`docs/audits/genai-lifecycle-telemetry-2026-07-12.md`. The default composer and CI model
+path remain deterministic and offline. A recurring judge run against real Bedrock is an
+explicit deployment/credential dependency and remains an open launch gate, not a silently
+skipped CI claim. Streaming/first-chunk instrumentation is N/A because this transport is
+request/response only.
+
+The Lighthouse-CI lab gate for the Tier-B Core-Web-Vitals budgets (LCP/INP/CLS) is
+blocking in `.github/workflows/ci.yml`; reports are retained as workflow artifacts.
 
 ## 12. Responsible-tech summary
 Top risks: (1) wrong/stale guidance harming users → citation + eval + freshness gates; (2) PII exposure endangering users in hostile jurisdictions → zero-server-PII, ephemeral default, client-side fill; (3) inequitable coverage/quality across jurisdictions and identities → disaggregated accuracy and inclusive content. Full treatment in [`RESPONSIBLE-TECH-AUDITS.md`](./RESPONSIBLE-TECH-AUDITS.md).

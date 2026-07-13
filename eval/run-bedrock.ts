@@ -23,7 +23,7 @@ import { pass, fail } from "../scripts/util.ts";
 const useAws = process.env.TDN_BEDROCK === "aws";
 const transport = useAws
   ? makeAwsBedrockTransport({
-      modelId: process.env.TDN_BEDROCK_MODEL ?? "anthropic.claude-3-5-haiku-20241022-v1:0",
+      modelId: process.env.TDN_BEDROCK_MODEL ?? "anthropic.claude-haiku-4-5-20251001-v1:0",
       region: process.env.TDN_BEDROCK_REGION ?? "us-east-1",
     })
   : localGroundedTransport;

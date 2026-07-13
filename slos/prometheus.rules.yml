@@ -1,0 +1,35 @@
+groups:
+  - name: trans-docs-navigator-slo-burn
+    rules:
+      - alert: TdnAvailabilityFastBurn
+        expr: |
+          (sum(rate(tdn_http_server_errors_total{http_route!~"/(metrics|livez|readyz|healthz)"}[5m])) / clamp_min(sum(rate(tdn_http_server_requests_total{http_route!~"/(metrics|livez|readyz|healthz)"}[5m])), 0.001) > 0.0144)
+          and
+          (sum(rate(tdn_http_server_errors_total{http_route!~"/(metrics|livez|readyz|healthz)"}[1h])) / clamp_min(sum(rate(tdn_http_server_requests_total{http_route!~"/(metrics|livez|readyz|healthz)"}[1h])), 0.001) > 0.0144)
+        for: 5m
+        labels: { severity: page, slo: availability }
+        annotations: { summary: "Availability is burning error budget at least 14.4x" }
+      - alert: TdnAvailabilitySlowBurn
+        expr: |
+          (sum(rate(tdn_http_server_errors_total{http_route!~"/(metrics|livez|readyz|healthz)"}[30m])) / clamp_min(sum(rate(tdn_http_server_requests_total{http_route!~"/(metrics|livez|readyz|healthz)"}[30m])), 0.001) > 0.006)
+          and
+          (sum(rate(tdn_http_server_errors_total{http_route!~"/(metrics|livez|readyz|healthz)"}[6h])) / clamp_min(sum(rate(tdn_http_server_requests_total{http_route!~"/(metrics|livez|readyz|healthz)"}[6h])), 0.001) > 0.006)
+        for: 30m
+        labels: { severity: ticket, slo: availability }
+        annotations: { summary: "Availability is burning error budget at least 6x" }
+      - alert: TdnLatencyFastBurn
+        expr: |
+          (sum(rate(tdn_http_server_slow_requests_total{http_route!~"/(metrics|livez|readyz|healthz)"}[5m])) / clamp_min(sum(rate(tdn_http_server_requests_total{http_route!~"/(metrics|livez|readyz|healthz)"}[5m])), 0.001) > 0.144)
+          and
+          (sum(rate(tdn_http_server_slow_requests_total{http_route!~"/(metrics|livez|readyz|healthz)"}[1h])) / clamp_min(sum(rate(tdn_http_server_requests_total{http_route!~"/(metrics|livez|readyz|healthz)"}[1h])), 0.001) > 0.144)
+        for: 5m
+        labels: { severity: page, slo: response_latency }
+        annotations: { summary: "Latency is burning error budget at least 14.4x" }
+      - alert: TdnLatencySlowBurn
+        expr: |
+          (sum(rate(tdn_http_server_slow_requests_total{http_route!~"/(metrics|livez|readyz|healthz)"}[30m])) / clamp_min(sum(rate(tdn_http_server_requests_total{http_route!~"/(metrics|livez|readyz|healthz)"}[30m])), 0.001) > 0.06)
+          and
+          (sum(rate(tdn_http_server_slow_requests_total{http_route!~"/(metrics|livez|readyz|healthz)"}[6h])) / clamp_min(sum(rate(tdn_http_server_requests_total{http_route!~"/(metrics|livez|readyz|healthz)"}[6h])), 0.001) > 0.06)
+        for: 30m
+        labels: { severity: ticket, slo: response_latency }
+        annotations: { summary: "Latency is burning error budget at least 6x" }

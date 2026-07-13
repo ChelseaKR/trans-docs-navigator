@@ -1,7 +1,16 @@
 # Build Status — Trans Docs Navigator
 
 > Snapshot of what the ROADMAP §8 implementation plan has produced.
-> Last updated: 2026-06-05. `make verify` is green (21/21 gates).
+> Last updated: 2026-07-12. `make verify` is green (22/22 gates).
+>
+> **2026-07-12 observability and lifecycle pass** — added W3C trace-context
+> continuation and correlated server/Bedrock client records, bounded-route RED metrics
+> at `/metrics`, formal request-based availability/response-latency SLOs with fast/slow
+> multi-window burn-alert definitions, and privacy-safe GenAI usage/duration/cost telemetry pinned
+> to the portfolio's immutable semantic-convention/pricing shim. `make slo` is stage 22;
+> the real-server smoke journey also checks trace continuity and metrics. Loading alert
+> rules into a monitoring backend and running recurring real-Bedrock evals remain honest
+> deployment/credential dependencies.
 >
 > **2026-06-05 hardening pass** (see `docs/IMPROVEMENT-PLAN.md` for the full plan):
 > added a named-verifier roster + placeholder enforcement (§1.1), a gold-set provenance
@@ -28,7 +37,7 @@
 
 | Milestone | Status | Evidence |
 |-----------|--------|----------|
-| **M0 — Scaffold & gates** | ✅ Done | `make verify` runs the 21-stage blocking pipeline; CI in `.github/workflows/ci.yml`; `Dockerfile`; `infra/`. |
+| **M0 — Scaffold & gates** | ✅ Done | `make verify` runs the 22-stage blocking pipeline; CI in `.github/workflows/ci.yml`; `Dockerfile`; `infra/`. |
 | **M1 — Corpus & data model** | ✅ Done (seed) | 32 schema-validated records (CA/IL/NY/TX/WA + federal, EN + ES); `make content` + `make freshness` green. Content is **seed data**, not launch-verified (ADR-3). |
 | **M2 — Retrieval-mandatory guidance** | ✅ Done | `api/retrieval.ts` → `api/generator.ts` → `api/citation.enforce()`; groundedness 100%, citation coverage 100% on the gold set. |
 | **M3 — Checklist engine** | ✅ Done | `api/checklist.ts`; ordered, prerequisite-aware, freshness-flagged; matches gold expectations. |
@@ -59,6 +68,9 @@
 | Server-side PII fields | 0 | 0 ✅ |
 | Core-logic coverage | ≥ 90% / ≥ 85% | 99.7% lines / 94.6% branches ✅ (now incl. router + render surface) |
 | Adversarial/injection safety | 1.0 | 1.00 ✅ (5 stress cases) |
+| HTTP availability SLO | 99.9% / 30 d | Request-based and drift-gated ✅; probes/scrapes excluded; PromQL parser + page/ticket delivery await deployment |
+| HTTP response-latency SLO | 99% ≤ 1.5 s / 30 d | Request-based and drift-gated ✅; probes/scrapes excluded; process-local RED counters exported at `/metrics` |
+| GenAI content capture | Off | `content_captured: false`; prompt/completion fields structurally absent ✅ |
 
 ## Explicitly OPEN review-gates (not signed — required before any real launch)
 Each now has machine-checkable scaffolding that *blocks a launch claim until the human
@@ -79,12 +91,14 @@ step is done* — the gate is enforced; the human sign-off is what's outstanding
 ## Repo map
 ```
 api/      retrieval, grounded generation, citation enforcement, checklist, forms, log;
-          router (pure routing + input hardening) + server (thin HTTP shell)
+          trace + RED metrics + pinned GenAI telemetry; router (pure routing + input
+          hardening) + server (thin HTTP shell)
 src/      accessible rendering + intake/checklist/form-fill pages (client-side fill)
 corpus/   structured jurisdiction records + VERIFIERS.json (named-verifier roster)
 forms/    form field maps + generated fillable fixtures
 eval/     gold set + provenance + deterministic harness + report writer
-scripts/  CI gates (lint/test/security/content/citation/privacy/freshness/disclosure/readability/a11y)
+scripts/  CI gates (lint/test/security/content/citation/privacy/freshness/disclosure/readability/a11y/SLO)
+slos/     30-day objectives + Prometheus multi-window burn-alert definitions
 tests/    unit + integration (node:test) incl. router, render, and PII-egress proof
 infra/    terraform (closed VPC, PII-free) ; Dockerfile at root
 docs/     ROADMAP, IMPROVEMENT-PLAN, audits, OPERATIONS, this file

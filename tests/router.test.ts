@@ -139,5 +139,5 @@ test("form route renders a known form and 404s an unknown one", () => {
 test("unknown route 404s with a not_found log", () => {
   const r = handleRoute("GET", u("/whatever"));
   assert.equal(r.status, 404);
-  assert.equal(r.log?.fields.route, "/whatever");
+  assert.equal(r.log?.fields.route, "_unmatched");
 });

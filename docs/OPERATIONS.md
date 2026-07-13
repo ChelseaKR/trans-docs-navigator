@@ -9,8 +9,13 @@ A stateless Node server (`api/server.ts`) that renders accessible pages and grou
 cited guidance from a version-controlled corpus. No database. Form-fill is client-side.
 
 ## Health & rollback
-- **Health:** `GET /healthz` → `{ "status": "ok", "corpus_records": N }`. Non-200 or a
-  crash → the container healthcheck fails and the orchestrator restarts/replaces it.
+- **Liveness:** `GET /livez` only proves the process can answer; it never calls a
+  dependency. A non-200/crash means restart or replace the container.
+- **Readiness:** `GET /readyz` checks that the corpus loads and at least one record is
+  current. A 503 removes the instance from rotation; do not override it merely to keep
+  traffic flowing. `GET /healthz` remains as a legacy inventory-compatible probe.
+- **Metrics:** scrape `GET /metrics` as Prometheus text. Do not put this endpoint on a
+  public internet route; restrict it to the deployment's monitoring network.
 - **It's stateless.** Rollback = redeploy the previous image tag. No migrations, no
   data to restore.
 - **Kill switch:** scale to zero / take the ALB target out of service. No cleanup needed.
@@ -26,6 +31,10 @@ cited guidance from a version-controlled corpus. No database. Form-fill is clien
 | `answer` logs `degraded: true` spiking — CloudWatch alarm `trans-docs-navigator-degraded-answer-spike` (metric `DegradedAnswerCount`, filter `trans-docs-navigator-degraded-answer`) | Users are hitting stale/volatile records surfaced as "needs reverification" | Expected near a known volatile rule; if unexpected, check whether a record fell past its freshness SLA and reverify it. |
 | `rate_limited` (429s) spiking — CloudWatch alarm `trans-docs-navigator-rate-limited-spike` (metric `Rate429Count`, filter `trans-docs-navigator-rate-limited`); coarse outer bound also enforced by the `aws_wafv2_web_acl.edge` WAF in front of the ALB | Sustained abuse past the in-process per-IP limiter (`api/server.ts`) and/or the edge WAF rate rule | Confirm it's not a single client retry-looping on a bug; if it's abuse, the WAF rate-based rule already blocks the offending IPs — no action needed beyond monitoring unless the edge limit itself needs tightening. |
 | p95 first-token regression (Bedrock path) | Model latency | Confirm Bedrock region/endpoint; Haiku-first; check the VPC endpoint. |
+| `TdnAvailabilityFastBurn` | 5xx events are spending the 99.9% availability budget at ≥14.4× across both 5m and 1h | **Page.** Check recent deploys and correlated `trace_id`; roll back a bad release. A citation-gate 500 is still safer than uncited output, but it consumes the same budget. |
+| `TdnAvailabilitySlowBurn` | Availability budget is spending at ≥6× across 30m and 6h | Open an incident ticket, identify the highest-error bounded route, and remediate before the long window exhausts the budget. |
+| `TdnLatencyFastBurn` | Responses over 1.5 s are spending the 99% latency budget at ≥14.4× across 5m and 1h | **Page.** Split by `http_route`; inspect Bedrock client-span duration for model-path traffic and infrastructure latency otherwise. |
+| `TdnLatencySlowBurn` | Latency budget is spending at ≥6× across 30m and 6h | Open a performance ticket, preserve traces, and run the live k6 check before and after the change. |
 
 Metrics are populated by `aws_cloudwatch_log_metric_filter` resources in `infra/main.tf`
 reading `aws_cloudwatch_log_group.app` (`/trans-docs-navigator/app`), fed from the non-PII
@@ -41,11 +50,23 @@ structured events emitted by `api/log.ts`'s `safeLog`. Alarm notifications requi
   The runtime degrades it to "needs reverification" and the checklist flags the step.
 - **Regenerate audit artifacts:** `make eval` (eval report); the other audit docs in
   `docs/audits/` are maintained by hand and reviewed per release.
+- **Validate observability contracts:** run `make slo && make smoke`. The first checks
+  parsed rule-YAML structure plus SLO/runtime/window/rate/scope consistency; the second
+  checks normal and exceptional trace continuity and metrics on a real server. In
+  production, run `promtool check rules slos/prometheus.rules.yml` before loading the
+  definitions into the monitoring backend. The request-based SLI excludes `/metrics`,
+  `/livez`, `/readyz`, and `/healthz` from every numerator and denominator so monitoring
+  traffic cannot dilute user-visible error or latency rates.
 
 ## Logging & privacy
 Logs are structured JSON via `api/log.ts`, which **allowlists only non-PII fields**.
 If you need a new log field, add it to the allowlist — never log raw request data.
 There is no PII in logs by construction (enforced by `make privacy`).
+
+Every HTTP response carries a W3C `traceparent`. Request records are server spans and
+real Bedrock call records are child client spans sharing the same `trace_id`. Search by
+`trace_id`, never by query content. GenAI records contain token counts, duration,
+model/finish/error metadata, and cost only; `content_captured` must remain `false`.
 
 ## Escalation
 - Wrong legal guidance reported by a user → treat as **P1**: pull the record (flip to

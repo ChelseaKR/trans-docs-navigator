@@ -6,8 +6,11 @@
 // envelope required by OBSERVABILITY-STANDARD §3 — `ts` (ISO 8601 UTC), `level`,
 // `msg` — plus only the non-PII operational fields below. Query content and any
 // identity/PII field can never appear: the allowlist is a fail-closed filter, so a
-// field is logged only if it is named here, and none of these can reveal a user's
-// legal situation.
+// field is logged only if it is named here. Path/method/server-span values are also
+// normalized to bounded templates before serialization, so attacker-controlled URL
+// segments cannot turn an allowed field into a content side channel.
+
+import { metricMethod, metricRoute } from "./metrics.ts";
 
 /** Severity levels (maps to SeverityText / syslog-style levels). */
 export type LogLevel = "debug" | "info" | "warn" | "error";
@@ -37,9 +40,43 @@ const ALLOWED_FIELDS = new Set([
   "degraded",
   "quarantined",
   "error",
+  // Privacy-safe GenAI lifecycle telemetry (api/genai-telemetry.ts).
+  "semconv_version",
+  "provider",
+  "model",
+  "response_model",
+  "operation",
+  "input_tokens",
+  "output_tokens",
+  "cache_creation_input_tokens",
+  "cache_read_input_tokens",
+  "finish_reason",
+  "error_type",
+  "estimated_cost_usd",
+  "unpriced",
+  "content_captured",
+  // W3C trace context and exporter-neutral span identity (api/trace.ts).
+  "trace_id",
+  "span_id",
+  "parent_span_id",
+  "trace_flags",
+  "span_kind",
+  "span_name",
 ]);
 
 export type LogFields = Record<string, unknown>;
+
+function sanitizeAllowedValue(key: string, value: unknown): unknown {
+  if ((key === "path" || key === "route") && typeof value === "string") {
+    return metricRoute(value);
+  }
+  if (key === "method" && typeof value === "string") return metricMethod(value);
+  if (key === "span_name" && typeof value === "string" && value.startsWith("HTTP ")) {
+    const [, rawMethod = "OTHER", ...rawRoute] = value.split(" ");
+    return `HTTP ${metricMethod(rawMethod)} ${metricRoute(rawRoute.join(" "))}`;
+  }
+  return value;
+}
 
 /**
  * Emit one structured JSON log line. `event` is the machine-stable message code
@@ -55,7 +92,7 @@ export function safeLog(event: string, fields: LogFields = {}, level: LogLevel =
     event,
   };
   for (const [k, v] of Object.entries(fields)) {
-    if (ALLOWED_FIELDS.has(k)) safe[k] = v;
+    if (ALLOWED_FIELDS.has(k)) safe[k] = sanitizeAllowedValue(k, v);
     // Unknown keys are intentionally dropped — never logged, never inspected.
   }
   // eslint-disable-next-line no-console -- the one sanctioned logging sink
