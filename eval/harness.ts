@@ -20,7 +20,16 @@ import type { MetamorphicResult } from "./metamorphic.ts";
 import { claimIsFaithful, decomposeClaim, defaultJudge } from "./faithfulness.ts";
 import type { FaithfulnessJudge } from "./faithfulness.ts";
 
-export const EVAL_TODAY = "2026-06-16";
+/**
+ * The simulated evaluation date. Fixed, so the harness is deterministic and reproducible.
+ *
+ * INVARIANT: it must never lag the newest `source.last_verified` in the corpus. Freshness
+ * treats a verification date in the FUTURE relative to `today` as `future-date` → not current
+ * → the answer refuses (api/freshness.ts). So a record re-verified *after* this date silently
+ * turns every gold case that touches it into a refusal — which reads like an accuracy
+ * regression but is really just a stale clock. Bump this whenever the corpus is re-verified.
+ */
+export const EVAL_TODAY = "2026-07-13";
 
 export interface GoldProvenance {
   independent_author: boolean;

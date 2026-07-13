@@ -67,6 +67,7 @@ export function renderIntakePage(lang: Language = "en"): string {
   </fieldset>
   <button type="submit">${escapeHtml(s.submitChecklist)}</button>
 </form>
+<p><a href="/move${lang === "es" ? "?language=es" : ""}">🚚 ${escapeHtml(locale(lang).relocation.planCta)}</a></p>
 <p><a href="/guide">${escapeHtml(locale(lang).seo.guideIndexTitle)}</a></p>`;
   return page({
     lang,

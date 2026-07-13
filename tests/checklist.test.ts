@@ -114,7 +114,7 @@ test("carries cost, timeline, and a form reference onto steps", () => {
   const step = cl.steps[0]!;
   assert.ok(step.cost);
   assert.ok(step.timeline);
-  assert.equal(step.form_ref, "ca-nc-100");
+  assert.deepEqual(step.form_refs, ["ca-nc-100"]);
 });
 
 test("has_court_order marks the court-order step done and prunes it from dependents' prerequisites (FIX-07)", () => {
@@ -142,10 +142,67 @@ test("has_court_order marks the court-order step done and prunes it from depende
 });
 
 test("picks up a form reference declared on ANY backing record, not just the first", () => {
-  // In the real corpus, US-CA drivers-license carries ca-dl-329 on its second record.
+  // In the real corpus, the US-TX birth-certificate step is backed by four records and only
+  // the THIRD (tx.birth-certificate.name) declares a form (tx-vs-170). An engine that read
+  // form_ref off the first backing record only would hand the user nothing here.
+  // (This previously used US-CA drivers-license + ca-dl-329; the CA DMV retired that form
+  // route in 2026, so the fixture moved to a case the live corpus still exercises.)
   const cl = buildChecklist(
-    { jurisdiction: "US-CA", change_types: ["name", "gender-marker"], documents: ["drivers-license"], language: "en" },
+    { jurisdiction: "US-TX", change_types: ["name", "gender-marker"], documents: ["birth-certificate"], language: "en" },
     today,
   );
-  assert.equal(cl.steps[0]!.form_ref, "ca-dl-329");
+  assert.deepEqual(cl.steps[0]!.form_refs, ["tx-vs-170"]);
+});
+
+test("a step needing TWO official forms links both — not just the first (birth-certificate)", () => {
+  // California's birth-record step legitimately takes two forms: VS 24B amends the sex
+  // field, VS 23 applies a court-ordered name change. An engine that emitted only the
+  // first would name VS 23 in the step's prose and then never hand it over.
+  const ca = buildChecklist(
+    { jurisdiction: "US-CA", change_types: ["name", "gender-marker"], documents: ["birth-certificate"], language: "en" },
+    "2026-07-13",
+  );
+  assert.deepEqual(ca.steps[0]!.form_refs, ["ca-vs-24b", "ca-vs-23"]);
+
+  // Same shape in Spanish, and in Washington (DOH 422-143 + DOH 422-126).
+  const wa = buildChecklist(
+    { jurisdiction: "US-WA", change_types: ["name", "gender-marker"], documents: ["birth-certificate"], language: "es" },
+    "2026-07-13",
+  );
+  assert.deepEqual(wa.steps[0]!.form_refs, ["wa-doh-422-143", "wa-doh-422-126"]);
+
+  // New York's gender-designation route needs the DOH-5305 application AND the notarized
+  // DOH-5303 affidavit — both are required by the cited source, so both must be linked.
+  const ny = buildChecklist(
+    { jurisdiction: "US-NY", change_types: ["gender-marker"], documents: ["birth-certificate"], language: "en" },
+    "2026-07-13",
+  );
+  assert.deepEqual(ny.steps[0]!.form_refs, ["ny-doh-5305", "ny-doh-5303"]);
+});
+
+test("duplicate form references across a step's records collapse to one CTA (Illinois)", () => {
+  // Illinois uses ONE form (the Affidavit and Certificate of Correction Request) for both
+  // the sex designation and the name, so the step must not link it twice.
+  const il = buildChecklist(
+    { jurisdiction: "US-IL", change_types: ["name", "gender-marker"], documents: ["birth-certificate"], language: "en" },
+    "2026-07-13",
+  );
+  assert.deepEqual(il.steps[0]!.form_refs, ["il-affidavit-correction"]);
+});
+
+test("Texas's birth-certificate sex-field route links no form — the source provides none", () => {
+  // Texas publishes VS-170 for a court-ordered NAME change, but lists no gender-marker
+  // amendment route at all. The gender-only step must therefore link no form; inventing
+  // one (or reusing VS-170) would imply a route the state does not offer.
+  const genderOnly = buildChecklist(
+    { jurisdiction: "US-TX", change_types: ["gender-marker"], documents: ["birth-certificate"], language: "en" },
+    "2026-07-13",
+  );
+  assert.equal(genderOnly.steps[0]!.form_refs, undefined);
+
+  const nameOnly = buildChecklist(
+    { jurisdiction: "US-TX", change_types: ["name"], documents: ["birth-certificate"], language: "en" },
+    "2026-07-13",
+  );
+  assert.deepEqual(nameOnly.steps[0]!.form_refs, ["tx-vs-170"]);
 });

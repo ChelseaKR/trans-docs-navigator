@@ -1,5 +1,5 @@
 {
-  "today": "2026-06-16",
+  "today": "2026-07-13",
   "total": 23,
   "metrics": [
     {
@@ -105,8 +105,8 @@
   "jurisdiction_readiness": [
     {
       "jurisdiction": "US-CA",
-      "records": 8,
-      "current_records": 8,
+      "records": 16,
+      "current_records": 16,
       "gold_items": 4,
       "accuracy": 1,
       "mechanically_ready": true,
@@ -115,8 +115,8 @@
     },
     {
       "jurisdiction": "US-IL",
-      "records": 4,
-      "current_records": 4,
+      "records": 8,
+      "current_records": 8,
       "gold_items": 1,
       "accuracy": 1,
       "mechanically_ready": true,
@@ -125,8 +125,8 @@
     },
     {
       "jurisdiction": "US-NY",
-      "records": 6,
-      "current_records": 4,
+      "records": 12,
+      "current_records": 10,
       "gold_items": 2,
       "accuracy": 1,
       "mechanically_ready": true,
@@ -135,8 +135,8 @@
     },
     {
       "jurisdiction": "US-TX",
-      "records": 6,
-      "current_records": 4,
+      "records": 14,
+      "current_records": 12,
       "gold_items": 1,
       "accuracy": 1,
       "mechanically_ready": true,
@@ -145,8 +145,8 @@
     },
     {
       "jurisdiction": "US-WA",
-      "records": 3,
-      "current_records": 3,
+      "records": 10,
+      "current_records": 10,
       "gold_items": 2,
       "accuracy": 1,
       "mechanically_ready": true,
@@ -429,13 +429,13 @@
       "name": "filter-monotonicity:ca-name-documents-filter",
       "retrieverName": "retrieve",
       "passed": true,
-      "detail": "filtered {ca.court-order.name} ⊆ unfiltered {ca.court-order.name, ca.drivers-license.name, us.passport.name, us.ssa-card.name}"
+      "detail": "filtered {ca.court-order.name} ⊆ unfiltered {ca.birth-certificate.fees, ca.birth-certificate.name, ca.court-order.name, ca.drivers-license.name, us.passport.name, us.ssa-card.name}"
     },
     {
       "name": "filter-monotonicity:ny-name-documents-filter",
       "retrieverName": "retrieve",
       "passed": true,
-      "detail": "filtered {ny.court-order.name} ⊆ unfiltered {ny.court-order.name, ny.drivers-license.name, us.passport.name, us.ssa-card.name}"
+      "detail": "filtered {ny.court-order.name} ⊆ unfiltered {ny.birth-certificate.name, ny.court-order.name, ny.drivers-license.name, us.passport.name, us.ssa-card.name}"
     },
     {
       "name": "language-consistency:ca-name-court",
@@ -483,13 +483,13 @@
       "name": "filter-monotonicity:ca-name-documents-filter",
       "retrieverName": "embeddingRetrieve",
       "passed": true,
-      "detail": "filtered {ca.court-order.name} ⊆ unfiltered {ca.court-order.name, ca.drivers-license.name, us.passport.name, us.ssa-card.name}"
+      "detail": "filtered {ca.court-order.name} ⊆ unfiltered {ca.birth-certificate.fees, ca.birth-certificate.name, ca.court-order.name, ca.drivers-license.name, us.passport.name, us.ssa-card.name}"
     },
     {
       "name": "filter-monotonicity:ny-name-documents-filter",
       "retrieverName": "embeddingRetrieve",
       "passed": true,
-      "detail": "filtered {ny.court-order.name} ⊆ unfiltered {ny.court-order.name, ny.drivers-license.name, us.passport.name, us.ssa-card.name}"
+      "detail": "filtered {ny.court-order.name} ⊆ unfiltered {ny.birth-certificate.name, ny.court-order.name, ny.drivers-license.name, us.passport.name, us.ssa-card.name}"
     },
     {
       "name": "language-consistency:ca-name-court",

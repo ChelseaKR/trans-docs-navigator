@@ -28,6 +28,8 @@ Direct identity-form fields stay in the browser.
 | Alarm | Meaning | Action |
 |-------|---------|--------|
 | `freshness` job fails (CI or scheduled) | A `verified` record is past its SLA → would be served as stale | Re-verify the record against its source, then bump `last_verified` **or** flip `verification_status` to `needs_reverification`. Do NOT just bump the date without checking. |
+| `source-watch` reports **drift** | A cited official page changed under a record — the law, fee, timeline, or process may have moved | Read the page, reconcile the record (EN + ES), then re-baseline **only that URL** — see the safe procedure under Common tasks. Never run `make source-baseline` to clear it. |
+| `source-watch` reports a **baseline coverage issue** | A cited URL has no baseline (`missingBaseline`), or a baseline URL is no longer cited (`staleBaseline`) | Review the addition/removal deliberately. Note that coverage issues and drift are reported **together in one run** — a coverage gap does not suppress the drift report (it used to; see docs/STATUS.md). |
 | Eval regression (`make eval` red) | groundedness/accuracy/refusal/coverage dropped | Block the release. Inspect `docs/audits/eval-report.md` → the failing item's notes point at the corpus record or generator change. |
 | Citation gate throws at runtime (500s spike) — CloudWatch alarm `trans-docs-navigator-500s-spike` (metric `ServerErrorCount`, filter `trans-docs-navigator-server-error`) | The generator produced an uncited claim | This is the gate working. Roll back the generator/corpus change. A 500 is correct behavior — better than rendering an unsourced legal claim. |
 | `privacy` gate fails in CI | Runtime API code references a direct identity field, a log call references one, or the session-artifact ignore rule drifted | Block the merge. Find the offending line; keep identity-form handling client-side and keep raw content out of application logs. |
@@ -54,6 +56,51 @@ structured events emitted by `api/log.ts`'s `safeLog`. Alarm notifications requi
   The runtime degrades it to "needs reverification" and the checklist flags the step.
 - **Regenerate audit artifacts:** `make eval` (eval report); the other audit docs in
   `docs/audits/` are maintained by hand and reviewed per release.
+- **Baseline a source that Node cannot fetch:** `make source-baseline` hashes every cited
+  URL with `scripts/source-watch.ts` (`contentHash` for corpus pages, raw-bytes `binaryHash`
+  for form PDFs). A few government hosts reject Node's `fetch` outright — **CDPH**
+  (`www.cdph.ca.gov`) serves an incomplete TLS chain, and **`health.ny.gov`** WAFs a
+  non-browser user-agent. For those, `binaryHash` returns `null`, so `--update` writes **no**
+  baseline entry at all. That matters, because a URL with no baseline is a *missingBaseline*
+  error (**fails**), whereas a URL that has one but can't be fetched is merely *unreachable*
+  (**tolerated** — an outage is not a content change). So a Node-unfetchable source must still
+  get a baseline, produced through the **identical hash path**, just fetched with `curl`:
+
+  ```sh
+  curl -sL -A "$UA" "$URL" | shasum -a 256   # forms: raw response bytes, redirects followed
+  ```
+
+  and merged into `forms/form-hashes.json` (or `corpus/source-hashes.json`). This is only
+  legitimate because it is byte-identical to what `binaryHash` computes — verify that against
+  a form PDF on a host Node *can* reach before trusting it. Today this covers CA `VS 24B` /
+  `VS 23` and NY `DOH-5305` / `DOH-5303`.
+- **⚠️ `make source-baseline` is a loaded gun. It adopts everything.** It rewrites *both*
+  baseline files wholesale from whatever the sources serve at that moment, so it will
+  **silently adopt genuine upstream drift** on any source you did not actually re-verify —
+  converting "a human must re-check this record" into "unchanged", permanently and
+  invisibly. The drift signal is destroyed, not deferred. It is human-review-only, and
+  running it to "make the gate green" is the single worst thing you can do to this repo:
+  the gate going green is precisely the failure.
+
+  **The safe procedure — re-baseline only what you actually re-read:**
+  1. Run `make source-watch` and write down exactly which URLs it reports as drifted.
+  2. For each one, **open the official page and read it.** Reconcile the record against
+     what the page says *now* — statement, fee, timeline, prerequisites, form ids. A drifted
+     source may mean the law or the process changed; correcting the record is the whole
+     point of the machinery. Do it in EN *and* ES (the i18n parity gate).
+  3. Re-baseline **only those URLs**, computed through the *identical* hash path — import
+     `contentHash` / `binaryHash` from `scripts/source-watch.ts` in a throwaway script and
+     patch just those keys, rather than running `--update` over everything.
+  4. **Diff both baseline files before committing** (`git diff corpus/source-hashes.json
+     forms/form-hashes.json`) and confirm every changed hash corresponds to a page you
+     personally read. Any hash that moved without a matching record review is drift you
+     just adopted blind — restore it.
+  5. Remove a baseline entry only when no record/form cites the URL any more (e.g. you
+     repointed a record to a source that actually supports its claim). A leftover entry is
+     reported as a *staleBaseline* coverage issue, which is the gate asking you that question.
+
+  If `--update` is ever the convenient answer, you are about to launder unread content into
+  a "verified" claim about someone's legal name or gender marker. Take the slow path.
 - **Validate observability contracts:** run `make slo && make smoke`. The first checks
   parsed rule-YAML structure plus SLO/runtime/window/rate/scope consistency; the second
   checks normal and exceptional trace continuity and metrics on a real server. In

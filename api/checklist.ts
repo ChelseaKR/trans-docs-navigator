@@ -115,9 +115,13 @@ export function buildChecklist(intake: Intake, today?: string, corpus = loadCorp
       (d) => d !== doc && declaredPrereqs.has(d) && orderedDocs.indexOf(d) < orderedDocs.indexOf(doc),
     );
 
-    // First declared form_ref among the backing records (current first) — not just the
-    // first record's, which silently dropped the form CTA when a later record carried it.
-    const formRef = [...currentRecords, ...degraded].find((r) => r.form_ref)?.form_ref;
+    // EVERY form declared by the backing records (current first), deduped — not just the
+    // first, which silently dropped a form the step's own prose names. A birth-record step
+    // routinely needs two (e.g. California VS 24B for the sex field AND VS 23 for the
+    // court-ordered name change), and handing over only one is the "told, not handed" bug.
+    const formRefs = [
+      ...new Set([...currentRecords, ...degraded].map((r) => r.form_ref).filter((f): f is string => !!f)),
+    ];
 
     // has_court_order intake: annotate the court-order step done rather than dropping it
     // (its citations stay visible), and don't leave it counted against the plan cost.
@@ -134,7 +138,7 @@ export function buildChecklist(intake: Intake, today?: string, corpus = loadCorp
       timeline: pickTimeline(currentRecords),
       discretionary: currentRecords.some((r) => r.discretionary),
       needs_reverification: currentRecords.length === 0 || degraded.length > 0,
-      ...(formRef ? { form_ref: formRef } : {}),
+      ...(formRefs.length > 0 ? { form_refs: formRefs } : {}),
       ...(done ? { done: true } : {}),
     });
   }

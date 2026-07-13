@@ -7,22 +7,18 @@
       "name"
     ],
     "topic": "Washington name change petition",
-    "statement": "In Washington you change your legal name by filing a petition in district court, and the judge signs an order granting the new name.",
-    "detail": "Washington courts can seal the name-change record when openness could harm the petitioner's safety; this is decided by the court. The signed order is then used to update other documents.",
+    "statement": "In Washington you usually file a name change petition in the district court of the county where you reside. In some cases it is filed in superior court instead.",
+    "detail": "Generally you complete a Petition for Name Change and an Order for Name Change. The Washington Courts website does not publish these forms. You have to contact the court you are filing in to get them, and the court directory lists every county court. Once the petition is done, a judge reviews it and signs it.",
     "cost": {
       "amount_usd": null,
-      "note": "Filing fees vary by county district court; a fee waiver is available for those who cannot afford them.",
-      "fee_waiver": true
-    },
-    "timeline": {
-      "typical": "often a few weeks, depending on the court"
+      "note": "Fees vary by county, and may also depend on how many people are named on the petition. Contact the court you are filing in for the exact fee."
     },
     "discretionary": true,
     "prerequisites": [],
     "source": {
-      "url": "https://www.courts.wa.gov/forms/?fa=forms.contribute&formID=49",
-      "title": "Washington Courts — Name Change Forms",
-      "last_verified": "2026-05-31",
+      "url": "https://www.courts.wa.gov/forms/?fa=forms.static&staticID=13",
+      "title": "Washington Courts — Name Changes",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -37,14 +33,15 @@
       "name"
     ],
     "topic": "Washington driver's license name change",
-    "statement": "To change the name on your Washington driver's license or ID, bring your court order and proof of identity to a Department of Licensing office and apply for a replacement.",
+    "statement": "To change the name on your Washington driver's license or ID, make an appointment at a driver licensing office and bring a document that proves the name change, such as a court order filed and certified by the court.",
+    "detail": "You pay the fee for a new license with the updated information, and a new photo is taken at the appointment. If you have a sealed name change order from a Washington superior court, the Department of Licensing asks you to contact its Identity Management Team instead. It says it follows a special process for sealed name changes to protect your privacy.",
     "prerequisites": [
       "court-order"
     ],
     "source": {
       "url": "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-name-or-address-your-driver-license",
       "title": "Washington DOL — Changing Your Name",
-      "last_verified": "2026-06-16",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -59,23 +56,74 @@
       "gender-marker"
     ],
     "topic": "Washington driver's license gender designation",
-    "statement": "Washington lets you choose a gender designation of F, M, or X on your driver's license or ID by self-attesting — no medical documentation is required.",
+    "statement": "Washington offers three gender designations on a driver's license or ID: M (male), F (female), and X (not exclusively male or female). You can change yours in person or by mail; there is no online option.",
+    "detail": "In person, you bring your current card to a driver licensing office and confirm your gender designation out loud. By mail, you complete a Gender Designation Request form and mail it to the address on the form. The page does not ask for any medical documentation.",
     "cost": {
       "amount_usd": 0,
-      "note": "No additional fee to change the designation during another transaction."
-    },
-    "timeline": {
-      "typical": "processed during your visit"
+      "note": "If the gender designation is the only thing you update, the new card is free. If you update anything else at the same time, such as your name, there may be an extra fee."
     },
     "prerequisites": [],
     "source": {
       "url": "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-gender-designation",
       "title": "Washington DOL — Gender Designation",
-      "last_verified": "2026-06-16",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "wa.birth-certificate.gender-marker",
+    "jurisdiction": "US-WA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Washington birth certificate sex designation",
+    "statement": "People who were born in Washington state can change the sex designation on their birth certificate by sending a completed request form to the state health department. A Washington birth certificate has three options: M, F, and X.",
+    "detail": "Adults use the Request to Change Sex Designation on a Birth Certificate for an Adult (form DOH 422-143) and sign it in front of a notary. A court order or a letter from your physician will not be accepted. You do not get a new certificate on your own: to get one, send in the birth certificate order form as well.",
+    "cost": {
+      "amount_usd": 0,
+      "note": "There is no fee to amend the record. A certified copy of the new birth certificate costs $25 each."
+    },
+    "timeline": {
+      "typical": "about 3 business days to process, plus up to 2 weeks for mail"
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://doh.wa.gov/licenses-permits-and-certificates/vital-records/sex-designation-change-birth-certificate",
+      "title": "Washington State Department of Health — Sex Designation Change on a Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "wa-doh-422-143",
+    "language": "en"
+  },
+  {
+    "id": "wa.birth-certificate.name",
+    "jurisdiction": "US-WA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Washington birth certificate name change",
+    "statement": "Washington only changes the names on birth certificates for people who were born in Washington State. To change yours after a court-ordered name change, send a certified copy of the court order with the Court Order Legal Name Change Request (form DOH 422-126).",
+    "detail": "The certified copy of the court order will not be returned to you, and photocopies are not accepted. A certified copy of the new birth certificate costs $25. The health department says these requests currently take about ten months to process.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://doh.wa.gov/licenses-permits-and-certificates/vital-records/court-ordered-name-change",
+      "title": "Washington State Department of Health — Court-Ordered Name Change on a Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "wa-doh-422-126",
     "language": "en"
   }
 ]

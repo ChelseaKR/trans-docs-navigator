@@ -13,9 +13,12 @@ import { loadCorpus } from "../api/corpus.ts";
 import { buildChecklist } from "../api/checklist.ts";
 import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
+import { renderMovePage, renderPlanPage } from "../src/relocation.ts";
+import { buildRelocationPlan } from "../api/relocation.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderGuideIndex, renderGuidePage } from "../src/guide.ts";
 import { PALETTE, STYLE } from "../src/render.ts";
+import type { DocumentType } from "../api/types.ts";
 import { pass, fail } from "./util.ts";
 
 // ── Colour-contrast (WCAG 2.2 SC 1.4.3) ───────────────────────────────────────
@@ -68,6 +71,10 @@ interface Page {
 const corpus = loadCorpus();
 const enChecklist = buildChecklist({ jurisdiction: "US-CA", change_types: ["name", "gender-marker"], documents: [], language: "en" });
 const esChecklist = buildChecklist({ jurisdiction: "US-CA", change_types: ["name"], documents: [], language: "es" });
+
+/** TX → WA is the canonical relocation case: a hostile origin with a residency-bound court. */
+const relocationPlan = (language: "en" | "es", held: DocumentType[]) =>
+  buildRelocationPlan({ origin: "US-TX", destination: "US-WA", held, change_types: ["name", "gender-marker"], language });
 const pages: Page[] = [
   { name: "intake", html: renderIntakePage("en") },
   { name: "intake-es", html: renderIntakePage("es") },
@@ -91,6 +98,15 @@ const pages: Page[] = [
   // the real-browser pa11y-ci URL list (.pa11yci.json) included it.
   { name: "offline", html: renderOfflinePage("en") },
   { name: "offline-es", html: renderOfflinePage("es") },
+  // Relocation planner (docs/RELOCATION.md): a new user-facing surface joins the gate at
+  // the same time as the feature, in both languages — including the same-state error state
+  // and a plan with a held document, which take different render branches.
+  { name: "move", html: renderMovePage("en") },
+  { name: "move-es", html: renderMovePage("es") },
+  { name: "move-error", html: renderMovePage("en", "same-state") },
+  { name: "plan", html: renderPlanPage(relocationPlan("en", []), corpus, "en") },
+  { name: "plan-es", html: renderPlanPage(relocationPlan("es", []), corpus, "es") },
+  { name: "plan-held", html: renderPlanPage(relocationPlan("en", ["court-order"]), corpus, "en") },
 ];
 
 function checkPage(p: Page): string[] {

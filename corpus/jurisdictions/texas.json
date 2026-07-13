@@ -27,6 +27,9 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
     "language": "en"
   },
   {
@@ -59,17 +62,108 @@
       "gender-marker"
     ],
     "topic": "Texas driver's license sex marker policy",
-    "statement": "Texas's policy on changing the sex marker on a driver's license has changed recently and is contested.",
-    "detail": "Because this is volatile, the navigator does not present a current rule here; it must be reverified against the official Department of Public Safety source before being shown as fact.",
+    "statement": "The Texas State Law Library says the Texas Department of Public Safety in 2024 stopped accepting court orders that change a person's sex, and stopped accepting combined orders that grant a name change and a gender-marker change in the same document.",
+    "detail": "Texas enacted House Bill 229 in 2025, which defines words like female, male, woman, and man where other laws use them. Attorney General Opinion KP-0489 addresses whether a district court order can direct a state agency to amend a person's sex on a state identification document. The library says it cannot tell you what the law means for your situation. This area is contested and moving — read the official sources before you file anything.",
     "prerequisites": [],
     "source": {
-      "url": "https://www.dps.texas.gov/section/driver-license",
-      "title": "Texas DPS — Driver License",
-      "last_verified": "2025-02-01",
+      "url": "https://guides.sll.texas.gov/name-changes/gender-marker-and-name-change",
+      "title": "Texas State Law Library — Gender Marker Change (Name Changes in Texas)",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",
     "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "tx.birth-certificate.gender-marker",
+    "jurisdiction": "US-TX",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Texas birth certificate sex field",
+    "statement": "Texas Vital Statistics lists only two documents it will take to correct the sex on a birth certificate: a hospital or medical record from the birth, or a letter from the hospital saying what clerical error it made. It lists no way to change the sex on a Texas birth certificate to match your gender identity.",
+    "detail": "The same page does take a certified court order for other changes to a birth record, such as a legal name change. It does not list one for the sex field. Read the official page yourself before you file anything. Do not assume a route is open here.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dshs.texas.gov/vital-statistics/requirements-requesting-changing-vital-records/supporting-documentation-record-changes",
+      "title": "Texas DSHS Vital Statistics — Supporting Documentation for Record Changes and Corrections",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "tx.birth-certificate.gender-marker.law",
+    "jurisdiction": "US-TX",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Texas law on sex on state records",
+    "statement": "The Texas State Law Library says that in 2025 Texas enacted House Bill 229, which defines sex as an individual's biological sex, either male or female, in laws that did not already define it.",
+    "detail": "The library also points to Attorney General Opinion KP-0489, from March 2025, on whether a district court order can direct a state agency to amend a person's sex on a state ID document. The library says it cannot tell you what the law means for your situation.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://guides.sll.texas.gov/name-changes/gender-marker-and-name-change",
+      "title": "Texas State Law Library — Gender Marker Change (Name Changes in Texas)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "tx.birth-certificate.name",
+    "jurisdiction": "US-TX",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Texas birth certificate name change",
+    "statement": "To change the legal name on a Texas birth certificate, Texas Vital Statistics asks for a certified copy of a court order affecting the information shown on the birth certificate.",
+    "detail": "You apply by mail. Get the signed court order first.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dshs.texas.gov/vital-statistics/requirements-requesting-changing-vital-records/supporting-documentation-record-changes",
+      "title": "Texas DSHS Vital Statistics — Supporting Documentation for Record Changes and Corrections",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "tx-vs-170",
+    "language": "en"
+  },
+  {
+    "id": "tx.birth-certificate.fees",
+    "jurisdiction": "US-TX",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Texas birth record amendment fees",
+    "statement": "Texas lists a $15 fee to correct a birth certificate for most changes, and $22 for a new certified copy of the corrected birth record.",
+    "detail": "Adding, removing, or replacing a parent costs $25 instead. Fees are not refunded, even if the record is not found.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "A new certified copy of the corrected record costs $22 more. Fees are not refunded."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dshs.texas.gov/vital-statistics/costs-fees",
+      "title": "Texas DSHS Vital Statistics — Costs and Fees",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
     "language": "en"
   }
 ]

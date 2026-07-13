@@ -4,7 +4,7 @@
 // disclosure (guardrail #2). Colour tokens meet AA contrast; focus is always
 // visible; motion respects prefers-reduced-motion.
 
-import type { Checklist, GroundedAnswer, CorpusRecord, DocumentType, Language, PreparationItem } from "../api/types.ts";
+import type { Checklist, FormDef, GroundedAnswer, CorpusRecord, DocumentType, Language, PreparationItem } from "../api/types.ts";
 import type { UiMessages } from "./i18n/index.ts";
 import { t as locale } from "./i18n/index.ts";
 import type { SeoMeta } from "./seo.ts";
@@ -105,6 +105,12 @@ footer{max-width:60rem;margin:0 auto;padding:1.5rem 1rem;color:var(--muted);bord
 .copy-helper{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.5rem 1rem 1rem;margin:1.5rem 0}
 .prep{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.5rem 1rem 1rem;margin:1.5rem 0}
 .copy-out{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:.4rem;padding:.5rem;min-height:1.4rem;margin:.5rem 0}
+.phase{margin:2rem 0}
+.phase > h2{border-block-end:1px solid var(--line);padding-block-end:.3rem}
+.hazards{list-style:none;padding-inline-start:0;margin:.6rem 0}
+.hazards li{border-inline-start:.25rem solid var(--warn);padding-inline-start:.6rem;margin:.4rem 0}
+.hazards li.meta{border-inline-start-color:var(--line)}
+.alt-route{border-inline-start:.25rem solid var(--accent);padding-inline-start:.6rem}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media print{
   :root{--bg:${PALETTE.print.bg};--fg:${PALETTE.print.fg};--muted:${PALETTE.print.muted};--accent:${PALETTE.print.accent};--card:${PALETTE.print.card};--warn:${PALETTE.print.warn};--line:${PALETTE.print.line}}
@@ -226,12 +232,17 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
         ? `<details class="step-detail no-print"><summary>${escapeHtml(t.moreDetail)}</summary><ul>${details.map((d) => `<li>${escapeHtml(d)}</li>`).join("")}</ul></details>`
         : "";
 
-      // Link straight to the official form for this step (download + complete it
-      // yourself; we don't auto-fill — see api/forms.ts).
-      const form = s.form_ref ? formById(s.form_ref) : undefined;
-      const formCta = form
-        ? `<p class="step-cta no-print"><a href="/forms/${escapeHtml(form.id)}${langQ}">📝 ${escapeHtml(t.getFormCta)}</a></p>`
-        : "";
+      // Link straight to the official form(s) for this step (download + complete them
+      // yourself; we don't auto-fill — see api/forms.ts). A step can need more than one
+      // (e.g. CA VS 24B + VS 23), so each gets its own CTA, named so they're tellable apart.
+      const formCta = (s.form_refs ?? [])
+        .map((id) => formById(id))
+        .filter((f): f is FormDef => !!f)
+        .map(
+          (form) =>
+            `<p class="step-cta no-print"><a href="/forms/${escapeHtml(form.id)}${langQ}">📝 ${escapeHtml(t.getFormCta)}: ${escapeHtml(form.title)}</a></p>`,
+        )
+        .join("");
 
       // Per-step "report an error / law changed" link (RESEARCH-ROADMAP R11): a one-click
       // path to the law-changed issue template, so a user who spots stale guidance becomes

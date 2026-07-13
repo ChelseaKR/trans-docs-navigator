@@ -28,6 +28,9 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "form_ref": "ca-nc-100",
+    "relocation": {
+      "residency_bound": true
+    },
     "language": "es"
   },
   {
@@ -39,20 +42,20 @@
     ],
     "topic": "Petición de cambio de género en California",
     "statement": "California le permite solicitar el reconocimiento judicial de un cambio de género e identificador de sexo, y puede pedir un cambio de nombre en el mismo conjunto de formularios.",
-    "detail": "California no exige una declaración de un médico para obtener el reconocimiento judicial del cambio de género. Los mismos formularios pueden solicitar una designación masculina, femenina o no binaria.",
+    "detail": "No tiene que dar ninguna documentación médica para obtener una orden judicial que reconozca un cambio de género, ni para cambiar los documentos emitidos por el estado de California. Puede pedir un marcador de género de femenino, masculino o no binario.",
     "cost": {
       "amount_usd": null,
-      "note": "Las tarifas varían según el condado; hay una exención disponible.",
+      "note": "La cuota de presentación es de $435–$450. Si no puede pagarla, puede pedirle a la corte que la exente.",
       "fee_waiver": true
     },
     "timeline": {
-      "typical": "a menudo unas pocas semanas; varía según el condado"
+      "typical": "alrededor de dos meses; un juez decide en aproximadamente 1 a 2 meses"
     },
     "prerequisites": [],
     "source": {
       "url": "https://selfhelp.courts.ca.gov/es/reconocimiento-de-genero",
       "title": "Ayuda Legal de las Cortes de California — Cambie su Género Legal",
-      "last_verified": "2026-06-16",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -96,24 +99,24 @@
       "gender-marker"
     ],
     "topic": "Categoría de género en la licencia de California",
-    "statement": "California le permite elegir una categoría de género de femenino, masculino o no binario en su licencia de conducir o identificación enviando una Solicitud de Categoría de Género (Formulario DL 329) — no se requiere documentación médica.",
+    "statement": "California le permite elegir una categoría de género de masculino (M), femenino (F) o no binario (X) en su licencia de conducir o tarjeta de identificación. Usa la solicitud en línea del DMV para pedir una tarjeta nueva con la categoría de género actualizada.",
+    "detail": "El DMV dice que el cambio de categoría de género no se completa hasta que usted vaya en persona a una oficina del DMV. La página del DMV ya no nombra un formulario de papel de Solicitud de Categoría de Género; ahora encamina el cambio por la solicitud en línea de licencia/identificación. Esté preparado para pagar la tarifa de licencia correspondiente.",
     "cost": {
-      "amount_usd": 0,
-      "note": "No hay tarifa para cambiar la categoría de género cuando se hace junto con otro trámite."
+      "amount_usd": null,
+      "note": "La página del DMV no indica una tarifa aparte por la categoría de género. Dice que esté preparado para pagar la tarifa de licencia correspondiente."
     },
     "timeline": {
-      "typical": "se procesa durante su visita al DMV"
+      "typical": "no se completa hasta que visite una oficina del DMV"
     },
     "prerequisites": [],
     "source": {
       "url": "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/updating-information-on-your-driver-license-or-identification-dl-id-card/",
-      "title": "DMV de California — Categoría de Género en Licencias/ID",
-      "last_verified": "2026-06-16",
+      "title": "DMV de California — Actualizar la Información de su Licencia o Identificación",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
-    "form_ref": "ca-dl-329",
     "language": "es"
   },
   {
@@ -154,19 +157,13 @@
       "gender-marker"
     ],
     "topic": "Designación de sexo en la licencia de Nueva York",
-    "statement": "Nueva York le permite seleccionar una designación de sexo de F, M o X en su licencia de conducir o identificación al autocertificarse en el formulario de designación del DMV — no se requiere prueba médica.",
-    "cost": {
-      "amount_usd": 0,
-      "note": "No hay tarifa adicional para cambiar la designación."
-    },
-    "timeline": {
-      "typical": "se procesa con su trámite del DMV"
-    },
+    "statement": "Nueva York le permite cambiar la designación de sexo/género en su documento con foto del DMV. El DMV dice que puede hacer el cambio en línea con su información personal, o completando la Solicitud de Permiso, Licencia de Conducir o Identificación de No Conductor (formulario MV-44) y yendo a una oficina del DMV.",
+    "detail": "Este registro está marcado para reverificación. La página del DMV describe las vías en línea y con el formulario MV-44, pero no dice qué designaciones de sexo están disponibles, si se puede elegir una designación X, ni cuánto cuesta el cambio. Pregunte directamente al DMV antes de contar con una designación específica.",
     "prerequisites": [],
     "source": {
       "url": "https://dmv.ny.gov/driver-license/change-information-on-dmv-photo-documents",
-      "title": "DMV de NY — Cambiar la Designación de Sexo en su Licencia/ID",
-      "last_verified": "2026-06-16",
+      "title": "DMV de NY — Cambiar Información en los Documentos con Foto del DMV",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",
@@ -181,14 +178,22 @@
       "name"
     ],
     "topic": "Cambio de nombre en la licencia de Nueva York",
-    "statement": "Para cambiar el nombre en su licencia o identificación de Nueva York, lleve su orden judicial y una prueba de identidad al DMV y solicite un documento modificado.",
+    "statement": "Para cambiar el nombre en una licencia, permiso o identificación de no conductor Estándar de Nueva York, puede solicitarlo por correo con el formulario MV-44NC y una copia de una prueba de su cambio de nombre, como una orden judicial emitida por el gobierno. Para un documento REAL ID o Mejorado (Enhanced), debe ir a una oficina del DMV con el formulario MV-44 y el original o una copia certificada de los documentos judiciales.",
+    "detail": "Con la solicitud por correo también envía una copia de su nueva tarjeta de Seguro Social y su documento actual de Nueva York. Una vez pedido, su documento nuevo llega en unas 2 semanas; si va a una oficina, el DMV le da un documento temporal sin foto para usar mientras tanto.",
+    "cost": {
+      "amount_usd": null,
+      "note": "$12.50 por una licencia o permiso, $5.00 por una identificación de no conductor."
+    },
+    "timeline": {
+      "typical": "el documento nuevo llega unas 2 semanas después de pedirlo"
+    },
     "prerequisites": [
       "court-order"
     ],
     "source": {
       "url": "https://dmv.ny.gov/driver-license/change-information-on-dmv-photo-documents",
-      "title": "DMV de NY — Cambiar el Nombre en sus Registros del DMV",
-      "last_verified": "2026-06-16",
+      "title": "DMV de NY — Cambiar Información en los Documentos con Foto del DMV",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -204,25 +209,25 @@
     ],
     "topic": "Petición de cambio de nombre en Illinois",
     "statement": "En Illinois, usted cambia su nombre legal presentando una Solicitud de Cambio de Nombre en el tribunal de circuito del condado donde vive, y un juez firma una orden que la concede.",
-    "detail": "Illinois generalmente requiere la publicación de la solicitud en un periódico, pero un tribunal puede renunciar a la publicación cuando podría poner en peligro al solicitante; esto lo decide el juez.",
+    "detail": "Llena una Solicitud de Cambio de Nombre y una Orden de Cambio de Nombre, las presenta ante el secretario del tribunal de circuito (por lo general con presentación electrónica), recibe una fecha de audiencia y va ante un juez. Si necesita privacidad, también puede presentar una Moción para Sellar el expediente (Motion to Impound). La guía dice que las leyes sobre el cambio de nombre de adultos se actualizaron a partir del 1 de enero de 2024 y de nuevo el 1 de marzo de 2025. La guía ya no incluye un paso de publicación en un periódico.",
     "cost": {
       "amount_usd": null,
-      "note": "Las tarifas de presentación varían según el condado; hay una exención disponible, y la publicación puede añadir un costo aparte del periódico.",
+      "note": "Las tarifas de presentación cambian de caso a caso y de condado a condado — pregunte al secretario del tribunal de circuito. Hay una exención de tarifas disponible si califica.",
       "fee_waiver": true
-    },
-    "timeline": {
-      "typical": "aproximadamente 6 semanas, en parte por el período de publicación"
     },
     "discretionary": true,
     "prerequisites": [],
     "source": {
       "url": "https://www.illinoislegalaid.org/legal-information/changing-your-name",
-      "title": "Illinois Legal Aid Online — Cambiar su Nombre (Adulto)",
-      "last_verified": "2026-06-16",
+      "title": "Illinois Legal Aid Online — Iniciar un Caso para Cambiar el Nombre de un Adulto",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
     "language": "es"
   },
   {
@@ -233,19 +238,20 @@
       "gender-marker"
     ],
     "topic": "Designación de sexo en la licencia de Illinois",
-    "statement": "Illinois le permite elegir la designación de sexo en su licencia de conducir o identificación estatal mediante autocertificación ante el Secretario de Estado — no se requiere documentación médica.",
+    "statement": "La identificación de Illinois puede llevar una designación de sexo masculino, femenino o X. Para cambiar la designación de sexo en una licencia de conducir o identificación estatal, complete un formulario de Cambio de Designación de Género (Gender Designation Change) y llévelo, junto con su licencia o identificación actual de Illinois, a una oficina del Secretario de Estado.",
+    "detail": "Va en persona a una oficina del Secretario de Estado, y es posible que necesite una cita. La guía no indica un requisito de documentación médica para este cambio.",
     "cost": {
-      "amount_usd": 0,
-      "note": "No hay tarifa adicional para actualizar la designación durante otro trámite."
+      "amount_usd": null,
+      "note": "La guía no indica una tarifa aparte por el cambio de designación. Las tarifas de identificaciones nuevas y corregidas están publicadas en el sitio del Secretario de Estado."
     },
     "timeline": {
-      "typical": "se procesa durante su visita"
+      "typical": "se hace en persona en una oficina del Secretario de Estado; es posible que necesite una cita"
     },
     "prerequisites": [],
     "source": {
       "url": "https://www.illinoislegalaid.org/legal-information/updating-sex-and-gender-markers-identification",
       "title": "Illinois Legal Aid Online — Actualizar Marcadores de Sexo y Género en su Identificación",
-      "last_verified": "2026-06-16",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -291,23 +297,20 @@
       "name"
     ],
     "topic": "Cambio de nombre en el pasaporte de EE. UU.",
-    "statement": "Para actualizar el nombre en su pasaporte de EE. UU., envíe una solicitud de pasaporte con una copia certificada del documento que cambió su nombre legalmente, como una orden judicial.",
-    "detail": "Si su pasaporte más reciente se emitió en el último año, la corrección puede ser gratuita; de lo contrario, solicita con el Formulario DS-82 (renovación por correo) o DS-11 (en persona) y paga la tarifa correspondiente.",
+    "statement": "Para actualizar el nombre en su pasaporte de EE. UU., envíe una solicitud de pasaporte con el original o una copia certificada del documento que cambió su nombre legalmente, como una orden judicial.",
+    "detail": "Si su nombre cambió dentro del año siguiente a la emisión de su pasaporte más reciente, envíe por correo el Formulario DS-5504 con el documento del cambio de nombre — no tendrá que pagar ningún costo por este servicio. Si pasó más de un año, renueve por correo con el Formulario DS-82 y una copia certificada del documento del cambio de nombre, o solicite en persona con el Formulario DS-11. Si no tiene documentación legal del cambio, solicita en persona con el Formulario DS-11 y el Formulario DS-60, Declaración Jurada sobre un Cambio de Nombre.",
     "cost": {
       "amount_usd": null,
-      "note": "Gratis para pasaportes recientes corregidos en un año; de lo contrario, se aplican las tarifas estándar de solicitud.",
+      "note": "Sin costo con el Formulario DS-5504 dentro del año de la emisión ($60 si desea trámite expedito). De lo contrario, se aplican las tarifas estándar de solicitud.",
       "fee_waiver": false
-    },
-    "timeline": {
-      "typical": "varias semanas; hay servicio acelerado disponible por una tarifa adicional"
     },
     "prerequisites": [
       "court-order"
     ],
     "source": {
       "url": "https://travel.state.gov/es/pasaportes/renovar-o-reemplazar/cambiar-o-corregir.html",
-      "title": "Departamento de Estado de EE. UU. — Pasaportes",
-      "last_verified": "2026-06-16",
+      "title": "Departamento de Estado de EE. UU. — Cambiar o Corregir un Pasaporte",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -344,13 +347,13 @@
       "gender-marker"
     ],
     "topic": "Política del marcador de sexo del pasaporte de EE. UU.",
-    "statement": "La política federal sobre el marcador de sexo impreso en los pasaportes de EE. UU. ha cambiado recientemente y está sujeta a litigio en curso.",
-    "detail": "Por ser volátil, el navegador no presenta una regla actual aquí; debe reverificarse con la fuente oficial del Departamento de Estado antes de mostrarse como un hecho.",
+    "statement": "El Departamento de Estado de EE. UU. dice que solo emite pasaportes con un marcador de sexo M o F que coincide con su sexo biológico al nacer. Ya no emite pasaportes de EE. UU. ni Informes Consulares de Nacimiento en el Extranjero con un marcador X.",
+    "detail": "El Departamento cita la Orden Ejecutiva 14168, emitida el 20 de enero de 2025. El 6 de noviembre de 2025, la Corte Suprema de EE. UU. suspendió la medida cautelar preliminar dictada en junio de 2025, así que el Departamento solo emite pasaportes que reflejan el sexo al nacer. Los pasaportes ya emitidos siguen siendo válidos hasta que venzan, sean reemplazados por el titular, o sean invalidados bajo los reglamentos federales. Esto está en litigio activo y puede cambiar — lea la página oficial antes de solicitar.",
     "prerequisites": [],
     "source": {
       "url": "https://travel.state.gov/en/passports/apply/unique-needs/sex-markers.html",
-      "title": "Departamento de Estado de EE. UU. — Pasaportes",
-      "last_verified": "2026-06-16",
+      "title": "Departamento de Estado de EE. UU. — Marcadores de Sexo en los Pasaportes",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",
@@ -385,6 +388,9 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
     "language": "es"
   },
   {
@@ -417,17 +423,458 @@
       "gender-marker"
     ],
     "topic": "Política del marcador de sexo en la licencia de conducir de Texas",
-    "statement": "La política de Texas sobre el cambio del marcador de sexo en la licencia de conducir ha cambiado recientemente y está en disputa.",
-    "detail": "Por ser volátil, el navegador no presenta una regla actual aquí; debe reverificarse con la fuente oficial del Departamento de Seguridad Pública antes de mostrarse como un hecho.",
+    "statement": "La Biblioteca Jurídica Estatal de Texas dice que el Departamento de Seguridad Pública de Texas dejó de aceptar en 2024 las órdenes judiciales que cambian el sexo de una persona, y dejó de aceptar órdenes combinadas que otorgan un cambio de nombre y un cambio de marcador de género en el mismo documento.",
+    "detail": "Texas promulgó en 2025 la Ley HB 229, que define palabras como femenino, masculino, mujer y hombre donde otras leyes las usan. La Opinión KP-0489 del Procurador General trata si una orden de un tribunal de distrito puede ordenar a una agencia estatal que modifique el sexo de una persona en un documento de identificación estatal. La biblioteca dice que no puede decirle qué significa la ley en su situación. Esta área está en disputa y sigue cambiando — lea las fuentes oficiales antes de presentar cualquier cosa.",
     "prerequisites": [],
     "source": {
-      "url": "https://www.dps.texas.gov/section/driver-license",
-      "title": "DPS de Texas — Licencia de Conducir",
-      "last_verified": "2025-02-01",
+      "url": "https://guides.sll.texas.gov/name-changes/gender-marker-and-name-change",
+      "title": "Biblioteca Jurídica Estatal de Texas — Cambio de Marcador de Género",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",
     "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ca.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-CA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Campo de sexo en el acta de nacimiento de California",
+    "statement": "Si usted nació en California, puede cambiar el campo de sexo en su registro de nacimiento para reflejar su identidad de género enviando por correo el formulario VS 24B, la Solicitud para Enmendar un Registro de Nacimiento.",
+    "detail": "Registros Vitales de California recibe todas las solicitudes de enmienda por correo. La página de enmiendas no indica una tarifa ni un tiempo de trámite. En su lugar, enlaza a la página de tarifas y a la de tiempos de trámite.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Amending-a-California-Birth-Record.aspx",
+      "title": "Departamento de Salud Pública de California — Enmendar un Registro de Nacimiento de California",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ca-vs-24b",
+    "language": "es"
+  },
+  {
+    "id": "ca.birth-certificate.gender-marker.no-court-order.es",
+    "jurisdiction": "US-CA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Acta de nacimiento de California: sin orden judicial",
+    "statement": "En California usted puede cambiar el marcador de género o el identificador de sexo en un acta de nacimiento sin una orden judicial y sin certificación médica.",
+    "detail": "La guía de ayuda legal de las cortes dice que la enmienda del acta de nacimiento de California se hace ante el Departamento de Salud Pública de California.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://selfhelp.courts.ca.gov/gender-recognition/update-gender-marker-ID-documents",
+      "title": "Ayuda Legal de las Cortes de California — Actualice su marcador de género en sus documentos de identidad",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ca.birth-certificate.name.es",
+    "jurisdiction": "US-CA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de California",
+    "statement": "Para cambiar el nombre en un registro de nacimiento de California después de una orden judicial, envíe por correo el formulario VS 23, la Solicitud para Enmendar un Registro de Nacimiento Después de un Cambio de Nombre por Orden Judicial.",
+    "detail": "Primero necesita la orden judicial firmada. Registros Vitales de California recibe estas solicitudes por correo y le pedirá más papeles si falta algo.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Amending-a-California-Birth-Record.aspx",
+      "title": "Departamento de Salud Pública de California — Enmendar un Registro de Nacimiento de California",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ca-vs-23",
+    "language": "es"
+  },
+  {
+    "id": "ca.birth-certificate.fees.es",
+    "jurisdiction": "US-CA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Tarifas para enmendar un acta de nacimiento en California",
+    "statement": "La lista de tarifas de California indica $26 para enmendar un registro de nacimiento. Cubre el cambio de nombre por orden judicial (formulario VS 23) y el cambio del campo de sexo, e incluye una copia gratis del nuevo registro.",
+    "detail": "La tarifa para cambiar o corregir el campo de sexo es de $26 sin importar cuándo lo pida. Cada copia certificada adicional del acta cuesta $31. Pague con cheque o giro postal, no con efectivo.",
+    "cost": {
+      "amount_usd": 26,
+      "note": "Incluye una copia gratis del registro enmendado. Cada copia certificada adicional cuesta $31."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Vital-Records-Fees.aspx",
+      "title": "Departamento de Salud Pública de California — Tarifas de Registros Vitales",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "il.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-IL",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Illinois",
+    "statement": "Si usted nació en Illinois y tiene un acta de nacimiento de Illinois, puede cambiar la designación de sexo enviando al departamento de salud del estado una Declaración Jurada y Solicitud de Corrección firmada ante notario. Puede elegir M, F o X.",
+    "detail": "Desde el 1 de julio de 2023, la ley estatal permite cambiar el género en el acta de nacimiento al firmar una declaración que afirma su designación de género o su condición intersexual. El departamento crea un acta nueva. El acta anterior y los papeles del trámite quedan en un archivo sellado.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "La tarifa de $15 incluye una copia certificada del acta nueva. Las copias adicionales cuestan $2 cada una si las pide al mismo tiempo."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dph.illinois.gov/topics-services/birth-death-other-records/birth-records/gender-reassignment.html",
+      "title": "Departamento de Salud Pública de Illinois — Cambio de Género en el Acta de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "il-affidavit-correction",
+    "language": "es"
+  },
+  {
+    "id": "il.birth-certificate.name.es",
+    "jurisdiction": "US-IL",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Illinois",
+    "statement": "Si va a cambiar el género en su acta de nacimiento de Illinois y quiere cambiar su nombre al mismo tiempo, también debe enviar una copia certificada de su Orden Judicial de Cambio de Nombre Legal.",
+    "detail": "Pida el cambio de nombre en la segunda sección del formulario de Declaración Jurada y Solicitud de Corrección. El departamento hará un acta nueva con la nueva designación de sexo y el nuevo nombre.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "La tarifa de $15 incluye una copia certificada del acta nueva. Las copias adicionales cuestan $2 cada una si las pide al mismo tiempo."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dph.illinois.gov/topics-services/birth-death-other-records/birth-records/gender-reassignment.html",
+      "title": "Departamento de Salud Pública de Illinois — Cambio de Género en el Acta de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "il-affidavit-correction",
+    "language": "es"
+  },
+  {
+    "id": "ny.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-NY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en el acta de nacimiento de Nueva York",
+    "statement": "Registros Vitales del estado de Nueva York puede enmendar la designación de género en las actas de nacimiento de todo el estado, menos las de la ciudad de Nueva York. Si usted nació en la ciudad de Nueva York, debe acudir a Registros Vitales de la ciudad.",
+    "detail": "Si tiene 17 años o más, envíe la solicitud (formulario DOH-5305) con una declaración jurada ante notario que afirme su identidad de género (formulario DOH-5303). Puede pedir la designación X. El acta anterior y los papeles del trámite quedan en un archivo sellado, y después solo se entrega el acta enmendada. La oficina dice que tiene demoras importantes en el trámite de los pedidos.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página no indica una tarifa para enmendar el registro. Una copia certificada del acta enmendada es gratis, y las copias adicionales cuestan $30 cada una."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
+      "title": "Departamento de Salud del Estado de Nueva York — Enmiendas de Designación de Género",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ny-doh-5305",
+    "language": "es"
+  },
+  {
+    "id": "ny.birth-certificate.gender-marker.affidavit.es",
+    "jurisdiction": "US-NY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Declaración jurada de género para el acta de nacimiento de Nueva York",
+    "statement": "Nueva York pide a los adultos enviar un segundo formulario junto con la solicitud: una declaración jurada ante notario (formulario DOH-5303). Usted la firma ante un notario.",
+    "detail": "El departamento de salud enumera los dos papeles juntos para los adultos de 17 años o más: la solicitud (formulario DOH-5305) y la declaración jurada (formulario DOH-5303). Envíelos juntos.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
+      "title": "Departamento de Salud del Estado de Nueva York — Enmiendas de Designación de Género",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ny-doh-5303",
+    "language": "es"
+  },
+  {
+    "id": "ny.birth-certificate.name.es",
+    "jurisdiction": "US-NY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Nueva York",
+    "statement": "Nueva York puede cambiar su nombre en el acta de nacimiento al mismo tiempo que la designación de género, pero solo si envía una copia de la orden judicial que autorizó el cambio de nombre. Un cambio de nombre no se puede autorizar sin una orden judicial.",
+    "detail": "Indique el cambio de nombre en la solicitud (formulario DOH-5305) e incluya una copia de la orden judicial.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página no indica una tarifa para enmendar el registro. Una copia certificada del acta enmendada es gratis, y las copias adicionales cuestan $30 cada una."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
+      "title": "Departamento de Salud del Estado de Nueva York — Enmiendas de Designación de Género",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ny-doh-5305",
+    "language": "es"
+  },
+  {
+    "id": "tx.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-TX",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Campo de sexo en el acta de nacimiento de Texas",
+    "statement": "Estadísticas Vitales de Texas solo acepta dos documentos para corregir el sexo en un acta de nacimiento: un registro médico o del hospital del parto, o una carta del hospital que explique el error administrativo que cometió. No indica ninguna vía para cambiar el sexo en un acta de nacimiento de Texas y que coincida con su identidad de género.",
+    "detail": "La misma página sí acepta una orden judicial certificada para otros cambios en el acta, como un cambio de nombre legal. No la acepta para el campo de sexo. Lea usted mismo la página oficial antes de presentar algo. No dé por hecho que hay una vía abierta aquí.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dshs.texas.gov/vital-statistics/requirements-requesting-changing-vital-records/supporting-documentation-record-changes",
+      "title": "Estadísticas Vitales del DSHS de Texas — Documentación de Respaldo para Cambios y Correcciones",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "tx.birth-certificate.gender-marker.law.es",
+    "jurisdiction": "US-TX",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "La ley de Texas sobre el sexo en los registros del estado",
+    "statement": "La Biblioteca Jurídica del Estado de Texas dice que en 2025 Texas aprobó la Ley 229 de la Cámara, que define el sexo como el sexo biológico de la persona, masculino o femenino, en las leyes que aún no lo definían.",
+    "detail": "La biblioteca también señala la Opinión KP-0489 del Fiscal General, de marzo de 2025, sobre si una orden de un tribunal de distrito puede ordenar a una agencia estatal que enmiende el sexo de una persona en un documento de identidad del estado. La biblioteca dice que no puede decirle qué significa la ley en su caso.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://guides.sll.texas.gov/name-changes/gender-marker-and-name-change",
+      "title": "Biblioteca Jurídica del Estado de Texas — Cambio del Marcador de Género",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "tx.birth-certificate.name.es",
+    "jurisdiction": "US-TX",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Texas",
+    "statement": "Para cambiar el nombre legal en un acta de nacimiento de Texas, Estadísticas Vitales de Texas pide una copia certificada de una orden judicial que afecte la información que aparece en el acta.",
+    "detail": "La solicitud se hace por correo. Consiga primero la orden judicial firmada.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dshs.texas.gov/vital-statistics/requirements-requesting-changing-vital-records/supporting-documentation-record-changes",
+      "title": "Estadísticas Vitales del DSHS de Texas — Documentación de Respaldo para Cambios y Correcciones",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "tx-vs-170",
+    "language": "es"
+  },
+  {
+    "id": "tx.birth-certificate.fees.es",
+    "jurisdiction": "US-TX",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Tarifas para enmendar un acta de nacimiento en Texas",
+    "statement": "Texas indica una tarifa de $15 para corregir un acta de nacimiento en la mayoría de los cambios, y $22 por una copia certificada nueva del acta corregida.",
+    "detail": "Agregar, quitar o reemplazar a un padre o madre cuesta $25. Las tarifas no se devuelven, aunque no se encuentre el registro.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "Una copia certificada nueva del acta corregida cuesta $22 más. Las tarifas no se devuelven."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dshs.texas.gov/vital-statistics/costs-fees",
+      "title": "Estadísticas Vitales del DSHS de Texas — Costos y Tarifas",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "wa.court-order.name.es",
+    "jurisdiction": "US-WA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Washington",
+    "statement": "En Washington, por lo general usted presenta la petición de cambio de nombre en el tribunal de distrito del condado donde reside. En algunos casos se presenta en el tribunal superior.",
+    "detail": "Por lo general se completan una Petición de Cambio de Nombre y una Orden de Cambio de Nombre. El sitio de los Tribunales de Washington no publica estos formularios. Tiene que comunicarse con el tribunal donde va a presentar la petición para obtenerlos. Cuando la petición está lista, un juez la revisa y la firma.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Las tarifas varían según el condado y también pueden depender de cuántas personas se nombran en la petición. Comuníquese con el tribunal donde va a presentar la petición para saber la tarifa exacta."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.courts.wa.gov/forms/?fa=forms.static&staticID=13",
+      "title": "Tribunales de Washington — Cambios de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "wa.drivers-license.name.es",
+    "jurisdiction": "US-WA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Washington",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Washington, haga una cita en una oficina de licencias y lleve un documento que compruebe el cambio de nombre, como una orden judicial presentada y certificada por el tribunal.",
+    "detail": "Usted paga la tarifa de una licencia nueva con la información actualizada, y le toman una foto nueva en la cita. Si tiene una orden de cambio de nombre sellada de un tribunal superior de Washington, el Departamento de Licencias le pide que se comunique con su Equipo de Manejo de Identidad. Dice que sigue un proceso especial para los cambios de nombre sellados para proteger su privacidad.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-name-or-address-your-driver-license",
+      "title": "DOL de Washington — Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "wa.drivers-license.gender-marker.es",
+    "jurisdiction": "US-WA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de Washington",
+    "statement": "Washington ofrece tres designaciones de género en la licencia de conducir o identificación: M (masculino), F (femenino) y X (no exclusivamente masculino ni femenino). Puede cambiarla en persona o por correo; no hay opción en línea.",
+    "detail": "En persona, lleve su tarjeta actual a una oficina de licencias y confirme su designación de género en voz alta. Por correo, complete un formulario de Solicitud de Designación de Género y envíelo a la dirección que aparece en el formulario. La página no pide ninguna documentación médica.",
+    "cost": {
+      "amount_usd": 0,
+      "note": "Si la designación de género es lo único que actualiza, la tarjeta nueva es gratis. Si actualiza algo más al mismo tiempo, como su nombre, puede haber una tarifa adicional."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-gender-designation",
+      "title": "DOL de Washington — Designación de Género",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "wa.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-WA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Washington",
+    "statement": "Las personas que nacieron en el estado de Washington pueden cambiar la designación de sexo en su acta de nacimiento enviando un formulario de solicitud al departamento de salud del estado. Un acta de nacimiento de Washington tiene tres opciones: M, F y X.",
+    "detail": "Los adultos usan la Solicitud para Cambiar la Designación de Sexo en un Acta de Nacimiento para Adultos (formulario DOH 422-143) y la firman ante notario. No se acepta una orden judicial ni una carta de su médico. El acta nueva no llega sola: para recibirla, envíe también el formulario de pedido de acta de nacimiento.",
+    "cost": {
+      "amount_usd": 0,
+      "note": "No hay tarifa para enmendar el registro. Cada copia certificada del acta nueva cuesta $25."
+    },
+    "timeline": {
+      "typical": "unos 3 días hábiles de trámite, y hasta 2 semanas más por el correo"
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://doh.wa.gov/licenses-permits-and-certificates/vital-records/sex-designation-change-birth-certificate",
+      "title": "Departamento de Salud del Estado de Washington — Cambio de Designación de Sexo en el Acta de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "wa-doh-422-143",
+    "language": "es"
+  },
+  {
+    "id": "wa.birth-certificate.name.es",
+    "jurisdiction": "US-WA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Washington",
+    "statement": "Washington solo cambia el nombre en las actas de nacimiento de las personas que nacieron en el estado de Washington. Para cambiar el suyo después de una orden judicial de cambio de nombre, envíe una copia certificada de la orden con la Solicitud de Cambio de Nombre por Orden Judicial (formulario DOH 422-126).",
+    "detail": "La copia certificada de la orden judicial no se le devuelve, y no se aceptan fotocopias. Una copia certificada del acta nueva cuesta $25. El departamento de salud dice que estas solicitudes tardan unos diez meses en tramitarse.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://doh.wa.gov/licenses-permits-and-certificates/vital-records/court-ordered-name-change",
+      "title": "Departamento de Salud del Estado de Washington — Cambio de Nombre por Orden Judicial en el Acta de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "wa-doh-422-126",
     "language": "es"
   }
 ]

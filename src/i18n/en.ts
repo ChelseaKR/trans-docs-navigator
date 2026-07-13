@@ -148,6 +148,77 @@ export const en: LocaleBundle = {
     has_court_order: "I have a court order",
   },
 
+  // Relocation planner. Structural labels + cautions ONLY — see RelocationMessages.
+  relocation: {
+    moveTitle: "Plan a move to another state",
+    moveHeading: "Moving to another state",
+    moveLead:
+      "Tell us where you are moving from and to, and which documents you already have. We will show you what the move changes, in what order, and what each step costs — with a source for every step.",
+    movePrivacy:
+      "Where you are moving is not saved. There is no account. We do not log the states you pick or keep them after this page is built.",
+    fromLegend: "Where you live now",
+    fromLabel: "Current state",
+    toLegend: "Where you are moving",
+    toLabel: "New state",
+    holdLegend: "What you already have",
+    holdLead: "Check the documents you already hold. Leave them all unchecked if you are not sure.",
+    submitPlan: "Show me the plan",
+    sameStateError: "Pick two different states so we can show you what changes.",
+
+    planTitle: "Your moving plan",
+    planHeading: (from: string, to: string) => `Moving from ${from} to ${to}`,
+    planIntro:
+      "Each step below comes from an official source, with the date we last checked it. Steps are ordered so you do not get stuck: anything that is easier to do before you move comes first.",
+
+    phaseHave: "What you already have",
+    phaseHaveLead:
+      "You told us you already hold these. They are here for reference, and because later steps ask for them.",
+    phaseBefore: "Before you move",
+    phaseBeforeLead:
+      "These steps follow the rules of the state you are leaving. Our source for that state says the step happens where you live — so this route is open to you now and may not be later.",
+    phaseEither: "Any time",
+    phaseEitherLead: "These are federal documents. The same rules apply in both states, so the move does not change them.",
+    phaseBirth: "Where you were born",
+    phaseBirthLead:
+      "Your birth certificate is held by the state you were born in. Moving does not change that, so it does not change whose rules apply. We do not ask where you were born, so both states in this plan are shown below. If you were born in another state, that state's rules apply and we do not cover it yet.",
+    phaseAfter: "After you arrive",
+    phaseAfterLead: "These steps follow the rules of the state you are moving to.",
+
+    classCarriesOver: "Federal — the move does not change this",
+    classRedo: "The new state has its own requirements",
+    classDoInOrigin: "Done under the rules of the state you are leaving",
+    classKeep: "You already have this",
+    classBirthState: "Handled by the state you were born in — the move does not change this",
+    classUnknown: "We do not have a verified source for this yet",
+    keepUnknownNote:
+      "This document was issued by the state you are leaving. Our sources do not say what the new state does with a document issued elsewhere, so we will not guess. Check the source on the step that asks for it.",
+    alternativeRoute: (n: number) => `This is one of two routes to the same document. Do this one or step ${n} — not both.`,
+
+    hazardsHeading: "Order matters",
+    hazardPrereq: (step: string, blocker: string) =>
+      `“${step}” asks you to bring the result of “${blocker}”. Do that one first, or you may be turned away.`,
+    hazardOriginWindow:
+      "The source for the state you are leaving says this step happens where you live. If you move first, you will likely have to start it over under the new state's rules instead.",
+    hazardUnverified:
+      "At least one rule behind this step changed recently, or our check on it is out of date. We will not show that rule as current. Read the official source before you act on this step.",
+    hazardCreatesRecord:
+      "Applying to a government agency creates a government record of your application. That is true of any application, and it is worth deciding on purpose — not by accident.",
+
+    costHeading: "What this costs",
+    costFloor: (amt: number) => `Fees our sources actually state: $${amt}.`,
+    costNothingPriced: "Our sources do not state a fee for any step in this plan.",
+    costVariable: (n: number) => `${n} step(s) have a fee that varies (for example, by county). We do not estimate it.`,
+    costUnpriced: (n: number) => `${n} step(s) have no fee listed in our sources at all. Treat the total as incomplete.`,
+    costWaiver: "A fee waiver is documented for at least one step. Look for it on the step below.",
+    costHonesty:
+      "This is a floor, not a total. We add up only the fees our sources state, and we say when we cannot price a step rather than guessing.",
+
+    gapsHeading: "What we could not cover",
+    gapNoDestinationRecords: (state: string) => `We do not have a verified source for this document in ${state} yet.`,
+    noStepsLead: "We could not build a verified plan for that pair of states yet. Please check the official sources directly.",
+    planCta: "Plan a move to another state",
+  },
+
   generator: {
     costVaries: (note?: string) => (note ? ` Cost varies: ${note}` : " Cost varies."),
     costAbout: (amt: number, waiver: boolean) =>

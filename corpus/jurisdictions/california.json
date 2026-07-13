@@ -28,6 +28,9 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "form_ref": "ca-nc-100",
+    "relocation": {
+      "residency_bound": true
+    },
     "language": "en"
   },
   {
@@ -39,20 +42,20 @@
     ],
     "topic": "California petition for change of gender",
     "statement": "California lets you petition for a court recognition of a change of gender and sex identifier, and you can request a name change in the same set of forms.",
-    "detail": "California does not require a physician's statement to obtain a court recognition of gender change. The same forms can request a male, female, or nonbinary designation.",
+    "detail": "You do not need to give any medical documentation to get a court order recognizing a gender change, or to change California state-issued documents. You can ask for a gender marker of female, male, or nonbinary.",
     "cost": {
       "amount_usd": null,
-      "note": "Filing fees vary by county; a fee waiver is available.",
+      "note": "The filing fee is $435–$450. If you cannot afford it, you can ask the court to waive it.",
       "fee_waiver": true
     },
     "timeline": {
-      "typical": "often a few weeks; varies by county"
+      "typical": "about two months; a judge decides in about 1 to 2 months"
     },
     "prerequisites": [],
     "source": {
       "url": "https://selfhelp.courts.ca.gov/gender-recognition",
       "title": "California Courts Self-Help — Change Your Legal Gender",
-      "last_verified": "2026-06-16",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -96,24 +99,117 @@
       "gender-marker"
     ],
     "topic": "California driver's license gender category",
-    "statement": "California lets you choose a gender category of female, male, or nonbinary on your driver's license or ID by submitting a Gender Category Request (Form DL 329) — no medical documentation is required.",
+    "statement": "California lets you pick a gender category of male (M), female (F), or nonbinary (X) on your driver's license or ID card. You use the DMV's online application to apply for a new card with the updated gender category.",
+    "detail": "The DMV says your gender category change is not complete until you come into a field office. The DMV page no longer names a paper Gender Category Request form; it routes the change through the online DL/ID application instead. Be ready to pay the appropriate licensing fee.",
     "cost": {
-      "amount_usd": 0,
-      "note": "No fee to change the gender category when done with another transaction."
+      "amount_usd": null,
+      "note": "The DMV page does not list a separate gender-category fee. It says to be ready to pay the appropriate licensing fee."
     },
     "timeline": {
-      "typical": "processed with your DMV visit"
+      "typical": "not complete until you visit a DMV field office"
     },
     "prerequisites": [],
     "source": {
       "url": "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/updating-information-on-your-driver-license-or-identification-dl-id-card/",
-      "title": "California DMV — Gender Category on DL/ID Cards",
-      "last_verified": "2026-06-16",
+      "title": "California DMV — Update Information on Your Driver's License or ID Card",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
-    "form_ref": "ca-dl-329",
+    "language": "en"
+  },
+  {
+    "id": "ca.birth-certificate.gender-marker",
+    "jurisdiction": "US-CA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "California birth certificate sex field",
+    "statement": "If you were born in California, you can change the sex field on your birth record to reflect your gender identity by mailing in form VS 24B, the Application to Amend a Birth Record.",
+    "detail": "California Vital Records takes all birth amendment requests by mail. The amendment page does not state a fee or a processing time. It links to the current fee page and the current processing-time page instead.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Amending-a-California-Birth-Record.aspx",
+      "title": "California Department of Public Health — Amending a California Birth Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ca-vs-24b",
+    "language": "en"
+  },
+  {
+    "id": "ca.birth-certificate.gender-marker.no-court-order",
+    "jurisdiction": "US-CA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "California birth certificate: no court order needed",
+    "statement": "In California you can change the gender marker or sex identifier on a birth certificate without a court order and without medical certification.",
+    "detail": "The state courts' self-help guide says to update (amend) your California birth certificate through the California Department of Public Health.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://selfhelp.courts.ca.gov/gender-recognition/update-gender-marker-ID-documents",
+      "title": "California Courts Self-Help — Update your gender marker or sex identifier on your identity documents",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ca.birth-certificate.name",
+    "jurisdiction": "US-CA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "California birth certificate name change",
+    "statement": "To change the name on a California birth record after a court order, mail in form VS 23, the Application to Amend a Birth Certificate After a Court Order Name Change.",
+    "detail": "You need the signed court order first. California Vital Records takes all birth amendment requests by mail, and it will ask you for more paperwork if your request is short of what it needs.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Amending-a-California-Birth-Record.aspx",
+      "title": "California Department of Public Health — Amending a California Birth Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ca-vs-23",
+    "language": "en"
+  },
+  {
+    "id": "ca.birth-certificate.fees",
+    "jurisdiction": "US-CA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "California birth record amendment fees",
+    "statement": "California's fee list shows a $26 fee to amend a birth record. It covers a court-order name change (form VS 23) and a change to the sex field, and it includes one free copy of the new record.",
+    "detail": "The fee to change or correct the sex field is $26 no matter when you ask for it. Extra certified copies of a California birth record cost $31 each. Pay by check or money order, not cash.",
+    "cost": {
+      "amount_usd": 26,
+      "note": "Includes one free copy of the amended record. Extra certified copies are $31 each."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Vital-Records-Fees.aspx",
+      "title": "California Department of Public Health — Vital Records Fees",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
     "language": "en"
   }
 ]

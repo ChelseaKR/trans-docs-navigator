@@ -8,6 +8,19 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Birth-certificate corpus coverage** for all five jurisdictions (CA, IL, NY, TX, WA) in
+  EN and ES, from each state's own vital-records/health-department source: 28 records,
+  including the `court-order → birth-certificate` prerequisite edge every one of those
+  states states in its own words, and a **cited, plainly-stated closed route in Texas**
+  (Vital Statistics lists only hospital/clerical-error evidence for the sex field, and no
+  route to change it to match gender identity). No fee is estimated anywhere: where a
+  source states one it is recorded, and where it does not, the step is reported unpriced.
+- **`state-of-birth` portability** in the relocation planner (`api/relocation.ts`) — a birth
+  certificate is governed by the state you were *born* in, which is neither the origin nor
+  the destination of a move and which the app never asks for. It is therefore never
+  classified `redo-in-destination`, never given a closing-residency window, and never marked
+  done by the "what you already have" checkbox; it gets its own plan phase ("Where you were
+  born") that says the move changes nothing about it. See `docs/RELOCATION.md`.
 - Offline-capable PWA shell with explicit user-initiated saving (EXP-01) — service
   worker, save-for-offline UI, no background sync, review-gate approved before merge.
 - Structured JSON logging + `/livez` and `/readyz` fail-closed health/readiness probes.

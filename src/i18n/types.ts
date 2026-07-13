@@ -135,6 +135,92 @@ export interface UiMessages {
 }
 
 /**
+ * Strings for the relocation planner (docs/RELOCATION.md).
+ *
+ * READ THIS BEFORE ADDING ONE. Nothing in here may be a legal claim. These are STRUCTURAL
+ * labels ("Do this before you move", "Cost we can't price yet") and CAUTIONS ("check this
+ * against the official source") — the same non-substantive class as the existing
+ * `ui.verifyNote` and `ui.discretionary`. Every substantive sentence on a relocation plan
+ * comes from a corpus record's own statement, with its citation and last-verified date.
+ * A jurisdiction-specific fact written here would be an uncited claim: the citation gate
+ * (scripts/citation-coverage.ts, which now exercises the relocation surface) cannot see it,
+ * which is precisely why it must not exist.
+ */
+export interface RelocationMessages {
+  moveTitle: string;
+  moveHeading: string;
+  moveLead: string;
+  /** The privacy promise for the most sensitive input this app takes. */
+  movePrivacy: string;
+  fromLegend: string;
+  fromLabel: string;
+  toLegend: string;
+  toLabel: string;
+  holdLegend: string;
+  holdLead: string;
+  submitPlan: string;
+  sameStateError: string;
+
+  planTitle: string;
+  planHeading(originName: string, destName: string): string;
+  planIntro: string;
+
+  // Phase headings — structure, not law.
+  phaseHave: string;
+  phaseHaveLead: string;
+  phaseBefore: string;
+  phaseBeforeLead: string;
+  phaseEither: string;
+  phaseEitherLead: string;
+  /**
+   * The birth-certificate group. Structural, and the one place the plan states the asymmetry:
+   * a birth record belongs to the state you were BORN in, the move does not change that, and we
+   * never ask which state that is — so the plan shows both states it covers and says so. It
+   * asserts no jurisdiction's rule; each state's rule comes from its own cited record.
+   */
+  phaseBirth: string;
+  phaseBirthLead: string;
+  phaseAfter: string;
+  phaseAfterLead: string;
+
+  // Per-step classification badges.
+  classCarriesOver: string;
+  classRedo: string;
+  /** For a step taken under the OLD state's rules — must never read as "the new state". */
+  classDoInOrigin: string;
+  classKeep: string;
+  /** For a birth certificate: the state of birth governs it, and moving does not change that. */
+  classBirthState: string;
+  classUnknown: string;
+  /** Says plainly that we do not know what the destination does with an origin-issued document. */
+  keepUnknownNote: string;
+  /** Cross-link between the two routes to the same document: do ONE of them, not both. */
+  alternativeRoute(otherStepOrder: number): string;
+
+  // Ordering hazards.
+  hazardsHeading: string;
+  hazardPrereq(stepTitle: string, blockingTitle: string): string;
+  hazardOriginWindow: string;
+  hazardUnverified: string;
+  /** The "applying is itself an act on a government record" caution. Asserts no rule. */
+  hazardCreatesRecord: string;
+
+  // Cost model — the #1 barrier, so it is explicit about its own gaps.
+  costHeading: string;
+  costFloor(amountUsd: number): string;
+  costNothingPriced: string;
+  costVariable(n: number): string;
+  costUnpriced(n: number): string;
+  costWaiver: string;
+  costHonesty: string;
+
+  gapsHeading: string;
+  gapNoDestinationRecords(stateName: string): string;
+  noStepsLead: string;
+  planCta: string;
+}
+
+/**
  * Scaffolding sentences the answer composer writes around record statements
  * (which are already in the record's own language).
  */
@@ -211,6 +297,8 @@ export interface LocaleBundle {
   docLabels: Record<DocumentType, string>;
   /** Friendly labels for form-fill intake keys (a small fixed set; unknown keys fall back). */
   fieldLabels: Record<string, string>;
+  /** Relocation-planner chrome. Structural labels and cautions only — never a legal claim. */
+  relocation: RelocationMessages;
   generator: GeneratorMessages;
   legal: LegalMessages;
   /**

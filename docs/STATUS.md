@@ -1,7 +1,41 @@
 # Build Status — Trans Docs Navigator
 
 > Snapshot of what the ROADMAP §8 implementation plan has produced.
-> Last updated: 2026-07-12. `make verify` is green (22/22 gates).
+> Last updated: 2026-07-13. `make verify` is green (22/22 gates).
+>
+> **2026-07-13 source-watch fail-quiet fix + first real churn-detection pass.**
+> `scripts/source-watch.ts` returned on baseline-coverage issues (missingBaseline /
+> staleBaseline) **before** it evaluated drift. Because the repo deliberately carries four
+> review-gated baseline gaps (SS-5 ×2, SSA home, NY-Courts), **real drift at every other
+> source was silently never reported** — a fail-quiet in the exact mechanism the product's
+> safety story depends on. Drift and coverage are now reported together in one run (both
+> still fail the build; neither suppresses the other), via a pure, testable `summarize()`;
+> `tests/source-watch.test.ts` pins the regression. `policy-watch.ts` had the same class of
+> bug in a second form — a tracker configured with **no** baseline entry was silently
+> unwatched forever (this was live: the MAP *Identity Document Laws* tracker, the one most
+> on-point for this corpus, had no baseline) — and now reports it as a coverage issue.
+>
+> Un-masking the bug surfaced **11** drifted sources, not the 7 previously known. The four
+> extra were all **federal passport** pages — the most legally volatile area in the corpus.
+> Substantive changes found and corrected in the records (EN + ES):
+> - **U.S. passport sex marker:** State now issues **only M/F matching sex at birth and no
+>   X markers** (EO 14168; SCOTUS stayed the injunction on 2025-11-06). The record said only
+>   "policy has changed and is being litigated" and cited a page carrying no sex-marker
+>   content at all; it now cites the official sex-markers page and states the operative rule.
+> - **Illinois name change:** the **newspaper-publication requirement is gone** from the
+>   official guide (laws updated 2024-01-01 and again 2025-03-01). The record still asserted
+>   publication was usually required, with a 6-week timeline driven by the publication period.
+> - **Texas driver's license:** DPS **stopped accepting court orders that change sex** (and
+>   combined name+gender orders) in 2024 — repointed from a DPS landing page that says
+>   nothing about gender markers to the Texas State Law Library page that actually supports it.
+> - **California DMV:** retired the **DL 329** "Gender Category Request" paper-form route; the
+>   page now names no form and routes through the online DL/ID application finished in a field
+>   office. The `ca-dl-329` form entry was removed and the (unsupported) $0-fee claim dropped.
+> - Also corrected: CA gender-recognition fee/timeline ($435–$450, ~1–2 months), IL DL
+>   designation route, NY DMV name-change fees/forms, and NY's now-unsupported X-marker claim.
+>
+> Records are reconciled to what the official pages say **today**; baselines were re-taken
+> only for pages actually re-read (see the safe re-baseline procedure in docs/OPERATIONS.md).
 >
 > **2026-07-12 observability and lifecycle pass** — added W3C trace-context
 > continuation and correlated server/Bedrock client records, bounded-route RED metrics

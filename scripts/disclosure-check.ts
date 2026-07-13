@@ -10,6 +10,8 @@ import { buildChecklist } from "../api/checklist.ts";
 import { loadCorpus } from "../api/corpus.ts";
 import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
+import { renderMovePage, renderPlanPage } from "../src/relocation.ts";
+import { buildRelocationPlan } from "../api/relocation.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderTransparencyPage } from "../src/transparency.ts";
 import { renderAnswer, page } from "../src/render.ts";
@@ -67,10 +69,21 @@ function checkFooterLegalLinks(name: string, html: string): void {
 
 for (const lang of ["en", "es"] as Language[]) {
   const cl = buildChecklist({ jurisdiction: "US-CA", change_types: ["name", "gender-marker"], documents: [], language: lang });
+  // The relocation planner is a full user-facing surface and rides the SAME disclosure
+  // gate as every other page: banner in both languages, legal footer, no exceptions.
+  const plan = buildRelocationPlan({
+    origin: "US-TX",
+    destination: "US-WA",
+    held: [],
+    change_types: ["name", "gender-marker"],
+    language: lang,
+  });
   const pages: [string, string][] = [
     ["intake", renderIntakePage(lang)],
     ["checklist", poison(renderChecklistPage(cl, corpus, lang))],
     ["packet", renderPacketPage(cl, corpus, lang, "2026-05-31")],
+    ["move", renderMovePage(lang)],
+    ["plan", renderPlanPage(plan, corpus, lang)],
     ["form-fill", renderFormFillPage(formById("us-ss-5")!, lang)],
     ["answer-page", page({ lang, title: "A", heading: "A", body: renderAnswer(answer({ jurisdiction: "US-CA", change_types: ["name"], language: lang }), lang) })],
     ["terms", renderTermsPage(lang)],

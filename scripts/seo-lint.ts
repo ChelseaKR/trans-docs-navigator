@@ -14,6 +14,8 @@ import { buildChecklist } from "../api/checklist.ts";
 import { loadCorpus } from "../api/corpus.ts";
 import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
+import { renderMovePage, renderPlanPage } from "../src/relocation.ts";
+import { buildRelocationPlan } from "../api/relocation.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderTransparencyPage } from "../src/transparency.ts";
 import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.ts";
@@ -82,10 +84,23 @@ for (const p of indexable) {
 }
 
 // ── Non-indexable pages: noindex, no canonical ─────────────────────────────────
+// /move and /plan are here on purpose. A relocation plan carries an (origin → destination)
+// pair in its URL — intent to leave a hostile state. It must never be indexed, shared as a
+// social card, or handed to a crawler. The `page()` noindex default gives us that; this
+// gate is what keeps it true if someone later adds `seo:` to the render call.
 const noindex: { name: string; html: string }[] = [
   { name: "checklist", html: renderChecklistPage(cl("en"), corpus, "en", "jurisdiction=US-CA&change=name") },
   { name: "packet", html: renderPacketPage(cl("en"), corpus, "en", "2026-05-31") },
   { name: "form-fill", html: renderFormFillPage(formById("us-ss-5")!, "en") },
+  { name: "move", html: renderMovePage("en") },
+  {
+    name: "plan",
+    html: renderPlanPage(
+      buildRelocationPlan({ origin: "US-TX", destination: "US-WA", held: [], change_types: ["name"], language: "en" }),
+      corpus,
+      "en",
+    ),
+  },
 ];
 for (const p of noindex) {
   note(/content="noindex,follow"/.test(p.html), `${p.name}: must be noindex,follow`);
@@ -96,7 +111,7 @@ for (const p of noindex) {
 // ── robots.txt + sitemap.xml ───────────────────────────────────────────────────
 const robots = robotsTxt();
 note(/Sitemap: https?:\/\/\S+\/sitemap\.xml/.test(robots), "robots.txt: missing Sitemap line");
-for (const d of ["/checklist", "/packet", "/answer", "/forms/"]) {
+for (const d of ["/checklist", "/packet", "/answer", "/forms/", "/move", "/plan"]) {
   note(robots.includes(`Disallow: ${d}`), `robots.txt: should disallow ${d}`);
 }
 note(!/Disallow:\s*\/assets/.test(robots) && !/Disallow:\s*\/vendor/.test(robots), "robots.txt: must NOT block CSS/JS (crawlers need them to render)");

@@ -137,6 +137,21 @@ const SCHEMA = {
     },
     recheck_sla_days: { type: "number", exclusiveMinimum: 0 },
     form_ref: { type: "string" },
+    relocation: {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        residency_bound: {
+          type: "boolean",
+          description:
+            "True when this record's OWN statement/detail conditions the action on living in the " +
+            "jurisdiction (e.g. \"the court of the county where you live\"). Used by the relocation " +
+            "delta engine to identify steps that are only available before a person moves away. The " +
+            "content gate rejects the flag unless the record's own prose supports it, so it never " +
+            "introduces a claim the cited source does not make.",
+        },
+      },
+    },
     language: { type: "string", enum: [...LANGUAGES] },
   },
 } as const;
