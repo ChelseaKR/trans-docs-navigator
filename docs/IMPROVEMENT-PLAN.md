@@ -20,7 +20,8 @@ A hardening pass executed every item that code can deliver; `make verify` is gre
 
 **Done (code/tests/gates landed):**
 - §1.1 verifier roster + placeholder enforcement · §1.2 gold-provenance gate · §1.3
-  adversarial/injection eval suite + paraphrase-tolerant faithfulness · §1.5 calendar-date
+  adversarial/injection eval suite + atomic claim-decomposition faithfulness (lexical
+  pre-filter, numeric/form-ID/scoped-negation support; no short-claim bypass) · §1.5 calendar-date
   validation + conflicting-cost detection · §2.1 request-content non-reflection test *(caught & fixed a real
   query-string reflection bug)* · §2.2 HTTP hardening (testable router, input bounds,
   security headers, rate limit, timeouts) · §2.4 vendored-asset SRI + pinned hash · §3.1
@@ -89,7 +90,7 @@ the spine of the pre-launch plan.
 |---|---|---|
 | Factual accuracy `1.00`, groundedness `1.00` | Gold set is **co-authored with the corpus** (`eval/gold.ts:4-7`); the oracle was written to match the data it grades. It tests the *harness*, not the *content*. | §1.1, §1.2 |
 | Citation coverage `100%` | The default `GroundedComposer` is *extractive* (`api/generator.ts`) — it can only emit text it copied from a record, so coverage is true by construction. A real LLM (`BedrockGenerator`) can fail this. | §1.3 |
-| Groundedness `≥0.95` | Faithfulness is a **substring match** (`eval/harness.ts:~82`), not semantic. "File a petition" scores faithful against any longer sentence containing it. | §1.3 |
+| Groundedness `≥0.95` | The offline lane now decomposes blocks and requires every atomic assertion to clear record-derived lexical, numeric, form-ID, and scoped-negation support. It is still a deterministic approximation, not a networked semantic judge, and the default composer remains extractive. | §1.3 |
 | `0 axe violations` / a11y gate green | Mechanical lint covers only ~30–40% of WCAG (ADR-4). Manual SR/keyboard/zoom walkthrough is **review-gated and PENDING**. | §3.1 |
 | `make verify` green = "ready" | `verifier` fields are placeholders (ADR-3); **no jurisdiction is launch-cleared**. Mechanical readiness ≠ legal correctness. | §1.1 |
 | Privacy gate green | Static scanning catches named direct-identity fields and the runtime sentinel catches reflection into app logs/responses. Neither proves that request inputs were never received or that browser/provider records do not exist. Defense-in-depth, not a zero-record proof. | §2.1 |
@@ -117,7 +118,13 @@ This is where wrong work hurts people. It is the highest-value dimension.
 - **Dimension:** Eval rigor · **Concern:** technical · **Evidence:** §0 rows 2–3; `eval/harness.ts`.
 - **Actions:**
   - Run at least one eval pass through the **real `BedrockGenerator`** (Haiku) — not only the extractive composer — so citation coverage and groundedness are tested against a model that *can* hallucinate. This is STATUS open-gate #6.
-  - Upgrade faithfulness from substring match to a semantic check (entailment via an LLM-judge with its own rubric, or at minimum claim-decomposition + per-claim source support). Keep the deterministic check as a fast pre-filter.
+  - **DONE (minimum deterministic lane):** replace substring matching with sentence/clause
+    decomposition and per-assertion support against the exact record-derived composer text.
+    Numeric/date literals, form IDs, and scoped negation must agree; short assertions get
+    no exemption. The lexical pre-filter remains intentionally cheap and offline.
+  - **OPEN (real-model lane):** run entailment through an independently rubriced semantic
+    judge during the Bedrock-backed eval. Do not describe the deterministic support score
+    as semantic entailment.
   - Add an **adversarial suite**: typo'd questions, ambiguous queries, jurisdiction-not-in-corpus, prompt-injection in the question field, mixed-language input. Assert *refusal/degradation*, not answers.
 
 ### 1.4 — `P1` Grow gold-set coverage to match claims

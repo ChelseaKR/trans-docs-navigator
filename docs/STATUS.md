@@ -86,8 +86,10 @@ step is done* — the gate is enforced; the human sign-off is what's outstanding
   mechanical a11y + contrast auto-gated; real-browser pa11y/axe now **blocking** in CI.
 - [ ] DPIA + STRIDE threat-model sign-off. *Enforced:* privacy lint + runtime request-content non-reflection test.
 - [ ] Real Bedrock-backed eval (default build uses the deterministic composer, ADR-1).
-  *Scaffolding:* faithfulness now accepts reworded/paraphrased output (token-coverage),
-  so the harness stays meaningful once the model seam is enabled.
+  *Scaffolding:* the offline harness decomposes claim blocks into atomic assertions and
+  rejects unsupported numeric/date literals, form IDs, scoped-negation flips, and short
+  fabricated fragments. Its lexical support score is not represented as a semantic judge;
+  the real Bedrock/semantic-judge run remains explicitly open.
 
 ## Repo map
 ```
