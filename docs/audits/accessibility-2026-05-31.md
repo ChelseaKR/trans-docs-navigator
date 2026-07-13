@@ -26,8 +26,9 @@ page templates then covered** (intake EN/ES, checklist EN/ES, printable packet, 
 form-degraded — this original count of 7 was itself already behind the gate's actual
 coverage by 2026-05-31, which had grown to include the legal/guide pages too).
 Keyboard-path properties are additionally asserted in `tests/pages.test.ts`.
-**(2026-07-05: the gate covers 17 templates today, +2 for the offline-shell notice page
-EN/ES added in this remediation pass — see the staleness note above. Still 0 violations.)**
+**(2026-07-05: the gate covers 19 templates total: 17 previously covered, plus the
+offline-shell notice page in EN/ES added in that remediation pass — see the staleness
+note above. Still 0 violations.)**
 
 The printable packet (`/packet`) ships a print stylesheet (`@media print`) that switches
 to a high-contrast light palette, hides navigation (`.no-print`), expands link URLs for

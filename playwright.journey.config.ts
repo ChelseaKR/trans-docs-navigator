@@ -18,7 +18,7 @@ export default defineConfig({
     { name: "journey-mobile", use: { ...devices["Pixel 7"] } },
   ],
   webServer: {
-    command: `PORT=${PORT} node --experimental-strip-types --no-warnings api/server.ts`,
+    command: `NODE_ENV=test PORT=${PORT} node --experimental-strip-types --no-warnings api/server.ts`,
     url: `${baseURL}/livez`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

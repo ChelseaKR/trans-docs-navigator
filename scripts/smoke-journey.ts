@@ -12,7 +12,7 @@ const PORT = 8123;
 const BASE = `http://localhost:${PORT}`;
 
 const server = spawn(process.execPath, ["--experimental-strip-types", "--no-warnings", "api/server.ts"], {
-  env: { ...process.env, PORT: String(PORT) },
+  env: { ...process.env, NODE_ENV: "test", PORT: String(PORT) },
   stdio: "ignore",
 });
 

@@ -109,7 +109,7 @@ jobs:
       - run: npm ci
       - name: Start server
         run: |
-          PORT=8080 node --experimental-strip-types api/server.ts &
+          NODE_ENV=test PORT=8080 node --experimental-strip-types api/server.ts &
           npx --yes wait-on http://localhost:8080/healthz
       - name: pa11y-ci (axe-core + htmlcs, zero violations)
         # Explicit URL list in .pa11yci.json (the app serves no sitemap). Zero-violation
@@ -146,7 +146,7 @@ jobs:
       - run: npm ci
       - name: Start server
         run: |
-          PORT=8080 node --experimental-strip-types api/server.ts &
+          NODE_ENV=test PORT=8080 node --experimental-strip-types api/server.ts &
           npx --yes wait-on http://localhost:8080/healthz
       - name: Lighthouse CI (BLOCKING — see .lighthouserc.json)
         run: npx --yes @lhci/cli@0.15.1 autorun

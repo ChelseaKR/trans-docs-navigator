@@ -176,7 +176,7 @@ Adding states is content work (human), but the rails for it are code:
 
 ## Explicitly out of scope (needs humans)
 
-Named-human verification of all 32 records · independently authored expert gold set ·
+Named-human verification of all 35 records · independently authored expert gold set ·
 counsel review of Terms/Privacy/disclaimers · DPIA/STRIDE sign-off · manual
 screen-reader, keyboard-only, and zoom walkthrough · community/partner review with trans
 legal-aid organizations before anything is promoted to real users. Each already has a
@@ -187,4 +187,4 @@ blocking review gate in `docs/STATUS.md`; this plan does not weaken them.
 Phase 1 items 1–2 → Phase 4 items 3–4 (cheap, immediate) → Phase 2 item 1 → Phase 3
 items 1–2 → Phase 1 items 3–5 → Phase 4 items 1–2 → Phase 5 → Phase 2 item 2 → Phase 6.
 The thread through all of it: every new behavior lands with a gate or a scheduled check,
-same as the existing twelve.
+same as the existing 22-stage merge-blocking pipeline.

@@ -47,7 +47,7 @@ A privacy-first, fully-cited PWA that generates a personalized, ordered checklis
 - **ADR-2 — Retrieval is a deterministic lexical filter in this build.** `api/retrieval.ts` filters by jurisdiction + change-type + document + language and ranks by token overlap. The pgvector/OpenSearch embedding store from §6 plugs in behind the same `retrieve()` signature. *Rejected:* standing up a vector DB for the reference build — adds infra without changing the safety contract.
 - **ADR-3 — Corpus is illustrative seed data; launch verification is an explicit, currently-OPEN review-gate.** The mechanical gates (schema, citation, freshness, eval) run green on seed data, but `verifier` is a placeholder and the gold set is co-authored with the corpus. No jurisdiction is launch-cleared. See `docs/audits/data-card.md`. *Rejected:* fabricating named human verifiers — dishonest and unsafe.
 - **ADR-4 — a11y is split: mechanical checks auto-gated locally, full axe + manual SR walkthrough in CI/review.** `make a11y` enforces the mechanical WCAG subset without a headless browser (dependency-free, fast). Real-browser pa11y/axe runs in CI and the manual screen-reader/keyboard/zoom walkthrough is review-gated in `docs/audits/accessibility-*.md`. *Rejected:* claiming the static linter equals axe — the standard itself says automation covers only ~30–40%.
-- **ADR-5 — Stack is TypeScript run via Node's native type-stripping (no build step), not Next.js, for the reference build.** Delivers a runnable, fully-tested, accessible server-rendered PWA shell + client-side form-fill with zero bundler. The Next.js PWA from §6 remains the production target; the core engine (`api/`) is framework-agnostic and ports directly. *Rejected:* a full Next.js app — heavy to make `make verify`-green end-to-end in one pass, and the safety-critical logic lives in `api/`, not the framework.
+- **ADR-5 — Stack is TypeScript run via Node's native type-stripping (no build step), not Next.js, for the reference build.** Delivers a runnable, fully-tested, accessible server-rendered PWA shell with authoritative form links and an on-device copy helper, with zero bundler. It does not satisfy M4's field-mapped PDF-fill done condition. The Next.js PWA from §6 remains the production target; the core engine (`api/`) is framework-agnostic and ports directly. *Rejected:* a full Next.js app — heavy to make `make verify`-green end-to-end in one pass, and the safety-critical logic lives in `api/`, not the framework.
 
 ## 7. Quality attributes & metrics
 Targets specialize `/STANDARDS/QUALITY-AND-METRICS-STANDARD.md`.
@@ -64,7 +64,7 @@ Targets specialize `/STANDARDS/QUALITY-AND-METRICS-STANDARD.md`.
 | Request-path p95 (in-process) | < 15 ms | `scripts/latency-bench.ts` (`make loadtest`) | **merge-blocking** — wired into `make verify` step 20/21 (2026-07-05) |
 | p95 first-token, network/deployed (< 1.5 s) | < 1.5 s | `loadtest/p95.k6.js` (k6, against a live instance) | **opt-in**, not merge-blocking — needs k6 + a running server; corrected from a prior "merge-blocking" claim that wasn't actually wired anywhere (2026-07-05) |
 | Line / branch coverage | ≥ 90% / ≥ 85% (safety-critical) | coverage | merge-blocking |
-| Retrieval context recall@8 | ≥ 0.80 | `eval/harness.ts` `retrievalQuality()` (`make eval`) | **merge-blocking** — added 2026-07-05 (AIEV-03). K=8 (not the standard's @20) because this corpus has 32 records total; @20 is tautological at this scale. Must gate before any embedding-retrieval swap (ADR-2) lands. |
+| Retrieval context recall@8 | ≥ 0.80 | `eval/harness.ts` `retrievalQuality()` (`make eval`) | **merge-blocking** — added 2026-07-05 (AIEV-03). K=8 (not the standard's @20) because this corpus has 35 records total; @20 is weakly discriminating at this scale. Must gate before any embedding-retrieval swap (ADR-2) lands. |
 | Retrieval precision@1 | ≥ 0.70 | Same harness function (AIEV-04 analogue) | **merge-blocking** — added 2026-07-05. The gold set names exactly one expected-relevant record per accuracy item, so "precision" here is Precision@1 (top-ranked-result accuracy), the standard IR analogue for single-relevant-document ground truth, not Precision@20 (which has a hard ceiling of 1/20 at this gold-set shape). |
 
 **Testing strategy.** Unit (logic, field-mapping), integration (retrieval→generation→citation check), eval (groundedness/accuracy/refusal via the harness), a11y (axe + keyboard + screen-reader), privacy (no direct identity fields in runtime API/log calls, no raw request-content reflection, local resume-state allowlist), and content tests (every corpus record has source + verifier + date).
@@ -75,7 +75,7 @@ Repo layout:
 src/  (app: intake, checklist, step-detail, form-fill)
 api/  (retrieval + grounded generation, citation enforcement)
 corpus/ (structured jurisdiction records + sources, version-controlled)
-forms/  (form field maps + fixtures)
+forms/  (current: official-form registry; planned M4: reviewed field maps for safely fillable forms)
 eval/   (gold sets + harness config)
 infra/  (terraform)
 docs/   (this + audits + generated reports)

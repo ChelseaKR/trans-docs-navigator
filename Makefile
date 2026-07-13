@@ -24,7 +24,7 @@ install:
 	npm install
 
 dev:
-	$(NODE) api/server.ts
+	NODE_ENV=development $(NODE) api/server.ts
 
 # ---------------------------------------------------------------------------
 # The blocking pipeline, in standard order. Any non-zero exit fails the build.

@@ -49,7 +49,7 @@ without surprise costs, prefer a fixed-size paid instance over autoscaling.
 
 After the first deploy, check:
 
-- `https://<your-preview>/healthz` returns `{"status":"ok","corpus_records":32}`
+- `https://<your-preview>/healthz` returns `{"status":"ok","corpus_records":35}`
 - `https://<your-preview>/` (intake) and `https://<your-preview>/guide` load
 - `https://<your-preview>/sitemap.xml` lists the indexable URLs at your real origin
 

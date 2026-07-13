@@ -6,10 +6,10 @@
 ## What the corpus is
 A version-controlled set of structured records (`corpus/jurisdictions/*.json`), one
 per `(jurisdiction × document × change-type × language)`. Each record is the unit of
-retrieval and the unit of citation. **32 records:** federal (SSA, passport) +
+retrieval and the unit of citation. **35 records:** federal (SSA, passport) +
 California, Illinois, New York, Texas, Washington. English coverage spans all five
-states + federal; **Spanish coverage** (13 records) spans California, New York,
-Illinois + federal (Texas and Washington are English-only so far — a tracked gap).
+states + federal; **Spanish coverage** (16 records) spans California, Illinois, New
+York, Texas + federal (Washington is English-only so far — a tracked gap).
 
 ## Provenance & verification
 - Every record carries `source = { url, title, last_verified, verifier }`. The
@@ -33,10 +33,14 @@ This is **engineering seed data**, not launch-cleared content:
 
 ## Known limitations
 - Coverage is 5 states + federal; most states absent (shown as checklist `gaps`, never hidden).
-- Spanish covers 3 states + federal; Texas/Washington are English-only — a fairness gap
+- Spanish covers 4 states + federal; Washington is English-only — a fairness gap
   tracked in the bias audit (the gate measures EN and ES separately).
 - Federal gender-marker policy (SSA, passport) and the **Texas** DMV sex-marker policy are
   deliberately `needs_reverification` (volatile/contested) and are never served as current fact.
+- Scheduled source-drift monitoring currently fails closed on four missing reviewed-baseline
+  entries: three corpus URLs (SSA SS-5, SSA home, New York Courts name change) and one
+  form URL (SSA SS-5 again in the separate raw-form baseline). No hash is auto-adopted;
+  a verifier must review those sources before running `make source-baseline`.
 - Per-jurisdiction **mechanical readiness** is reported in `eval-report.md`; **launch-clearance
   (named-human verification + counsel) is review-gated and OPEN for every jurisdiction.**
 

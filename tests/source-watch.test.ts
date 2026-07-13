@@ -57,6 +57,8 @@ test("computeUrlHashes reports drift against baseline and never flags an unreach
 
   assert.deepEqual(result.drifted, ["https://a.gov/x.pdf → re-verify: form-a"]);
   assert.deepEqual(result.unreachable, ["https://b.gov/y.pdf"]);
+  assert.deepEqual(result.missingBaseline, []);
+  assert.deepEqual(result.staleBaseline, []);
   assert.equal(result.next["https://a.gov/x.pdf"], "newhash");
   assert.equal(result.next["https://b.gov/y.pdf"], "bhash"); // kept the old baseline on fetch failure
 });
@@ -77,5 +79,63 @@ test("computeUrlHashes against an empty baseline (first run) records hashes with
 
   assert.deepEqual(result.drifted, []);
   assert.deepEqual(result.unreachable, []);
+  assert.deepEqual(result.missingBaseline, []); // main reports the explicit no-baseline failure
+  assert.deepEqual(result.staleBaseline, []);
   assert.equal(result.next["https://a.gov/x.pdf"], "firsthash");
+});
+
+test("computeUrlHashes fails coverage for a new URL absent from a non-empty baseline", async () => {
+  const byUrl = new Map<string, string[]>([
+    ["https://a.gov/known.pdf", ["form-known"]],
+    ["https://a.gov/new.pdf", ["form-new"]],
+  ]);
+  const hashFn = async (url: string) => (url.endsWith("known.pdf") ? "knownhash" : "newhash");
+  const result = await computeUrlHashes(
+    byUrl,
+    hashFn,
+    { "https://a.gov/known.pdf": "knownhash" },
+    false,
+  );
+
+  assert.deepEqual(result.drifted, []);
+  assert.deepEqual(result.missingBaseline, [
+    "https://a.gov/new.pdf → baseline required for: form-new",
+  ]);
+  assert.equal(result.next["https://a.gov/new.pdf"], "newhash");
+});
+
+test("missing baseline and fetch outage remain separate signals", async () => {
+  const byUrl = new Map<string, string[]>([
+    ["https://a.gov/known.pdf", ["form-known"]],
+    ["https://a.gov/new.pdf", ["form-new"]],
+  ]);
+  const result = await computeUrlHashes(
+    byUrl,
+    async (url) => (url.endsWith("known.pdf") ? "knownhash" : null),
+    { "https://a.gov/known.pdf": "knownhash" },
+    false,
+  );
+
+  assert.deepEqual(result.unreachable, ["https://a.gov/new.pdf"]);
+  assert.deepEqual(result.missingBaseline, [
+    "https://a.gov/new.pdf → baseline required for: form-new",
+  ]);
+  assert.equal(result.next["https://a.gov/new.pdf"], undefined);
+});
+
+test("computeUrlHashes flags stale baseline URLs until an intentional update removes them", async () => {
+  const byUrl = new Map<string, string[]>([["https://a.gov/current.pdf", ["form-current"]]]);
+  const baseline = {
+    "https://a.gov/current.pdf": "currenthash",
+    "https://a.gov/removed.pdf": "removedhash",
+  };
+
+  const check = await computeUrlHashes(byUrl, async () => "currenthash", baseline, false);
+  assert.deepEqual(check.staleBaseline, [
+    "https://a.gov/removed.pdf → no current record/form cites this baseline",
+  ]);
+
+  const update = await computeUrlHashes(byUrl, async () => "currenthash", baseline, true);
+  assert.deepEqual(update.staleBaseline, []);
+  assert.deepEqual(Object.keys(update.next), ["https://a.gov/current.pdf"]);
 });

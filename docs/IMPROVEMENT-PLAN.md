@@ -66,8 +66,9 @@ launch claim until the human step is signed; see `docs/STATUS.md`):
   `/answer` in `api/router.ts`, keyed on the canonical `intakeQuery()` fields + `today` (no
   free text or direct identity fields; selections may still be sensitive); `api/corpus.ts`'s `loadCorpus()` gains a dev-ergonomics mtime watch
   (`NODE_ENV !== 'production'` or `CORPUS_WATCH=1`) that force-reloads and cascades
-  `clearAllCaches()` on a corpus edit, so a stale cached answer/checklist can never
-  outlive the file it was rendered from. See `tests/cache.test.ts`, `tests/router.test.ts`,
+  `clearAllCaches()` and refreshes the verifier-roster cache on a corpus/roster edit,
+  so neither a stale rendered answer/checklist nor stale verifier membership can outlive
+  the file it came from. See `tests/cache.test.ts`, `tests/router.test.ts`,
   `tests/corpus.test.ts`.
 
 ## How to read this

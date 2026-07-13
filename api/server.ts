@@ -8,7 +8,13 @@ import type { IncomingMessage, ServerResponse } from "node:http";
 import { readFileSync, existsSync, statSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 import { join, normalize, extname, sep } from "node:path";
-import { REPO_ROOT, loadCorpus, LAST_QUARANTINE, verifyCorpusManifest } from "./corpus.ts";
+import {
+  REPO_ROOT,
+  loadCorpus,
+  LAST_QUARANTINE,
+  verifyCorpusManifest,
+  corpusIntegrityAllowsStartup,
+} from "./corpus.ts";
 import { safeLog } from "./log.ts";
 import { handleRoute, asLanguage } from "./router.ts";
 import { servingToday } from "./freshness.ts";
@@ -205,11 +211,8 @@ if (LAST_QUARANTINE.length > 0) {
 // image, a bad deploy, a stray hand-edit), so we refuse to come up at all rather than
 // silently serve unverified content.
 const integrity = verifyCorpusManifest();
-if (integrity.status === "absent") {
-  // No manifest baked in: the normal case in local dev, where nobody runs
-  // `npm run corpus:manifest` before `npm run dev`. Logged once at info, never fatal.
-  safeLog("corpus_integrity", { status: 200 }, "info");
-} else if (!integrity.ok) {
+const integrityAllowsStartup = corpusIntegrityAllowsStartup(integrity, process.env.NODE_ENV);
+if (!integrityAllowsStartup) {
   safeLog(
     "corpus_integrity",
     {
@@ -221,6 +224,10 @@ if (integrity.status === "absent") {
     "error",
   );
   process.exit(1); // loud quarantine: refuse to serve corpus-backed routes at all
+} else if (integrity.status === "absent") {
+  // Explicit development/test processes may run without a generated build artifact.
+  // Production and undeclared environments take the fatal branch above.
+  safeLog("corpus_integrity", { status: 200 }, "info");
 }
 
 server.requestTimeout = REQUEST_TIMEOUT_MS;

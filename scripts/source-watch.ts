@@ -70,6 +70,10 @@ export interface WatchResult {
   next: Record<string, string>;
   drifted: string[];
   unreachable: string[];
+  /** Current URLs absent from an otherwise non-empty committed baseline. */
+  missingBaseline: string[];
+  /** Committed baseline URLs no longer referenced by the current corpus/forms registry. */
+  staleBaseline: string[];
 }
 
 /**
@@ -86,20 +90,30 @@ export async function computeUrlHashes(
   const next: Record<string, string> = {};
   const drifted: string[] = [];
   const unreachable: string[] = [];
+  const missingBaseline: string[] = [];
+  const baselineKeys = Object.keys(baseline);
+  const hasBaseline = baselineKeys.length > 0;
 
   for (const [url, ids] of byUrl) {
+    const hasUrlBaseline = Object.prototype.hasOwnProperty.call(baseline, url);
+    if (!update && hasBaseline && !hasUrlBaseline) {
+      missingBaseline.push(`${url} → baseline required for: ${ids.join(", ")}`);
+    }
     const hash = await hashFn(url);
     if (hash === null) {
       unreachable.push(url);
-      if (baseline[url]) next[url] = baseline[url]; // keep the old baseline; an outage is not a change
+      if (hasUrlBaseline) next[url] = baseline[url]!; // keep the old baseline; an outage is not a change
       continue;
     }
     next[url] = hash;
-    if (!update && baseline[url] && baseline[url] !== hash) {
+    if (!update && hasUrlBaseline && baseline[url] !== hash) {
       drifted.push(`${url} → re-verify: ${ids.join(", ")}`);
     }
   }
-  return { next, drifted, unreachable };
+  const staleBaseline = !update && hasBaseline
+    ? baselineKeys.filter((url) => !byUrl.has(url)).map((url) => `${url} → no current record/form cites this baseline`)
+    : [];
+  return { next, drifted, unreachable, missingBaseline, staleBaseline };
 }
 
 function readBaseline(path: string): Record<string, string> {
@@ -143,6 +157,21 @@ async function main(): Promise<void> {
 
   if (Object.keys(corpusBaseline).length === 0 || Object.keys(formsBaseline).length === 0) {
     fail("source-watch", "no baseline committed — run `make source-baseline` after verifying records/forms");
+    return;
+  }
+
+  const baselineCoverageIssues = [
+    ...corpusResult.missingBaseline,
+    ...formsResult.missingBaseline,
+    ...corpusResult.staleBaseline,
+    ...formsResult.staleBaseline,
+  ];
+  if (baselineCoverageIssues.length > 0) {
+    fail(
+      "source-watch",
+      `${baselineCoverageIssues.length} baseline coverage issue(s) — run \`make source-baseline\` only after reviewing additions/removals`,
+      baselineCoverageIssues,
+    );
     return;
   }
 

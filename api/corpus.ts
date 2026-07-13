@@ -63,6 +63,15 @@ export interface VerifierEntry {
 
 let ROSTER_CACHE: Map<string, VerifierEntry> | null = null;
 
+/**
+ * Drop the default verifier roster cache when the default corpus is explicitly or
+ * watch-reloaded. Keeping this separate from the general render-cache registry is
+ * important: the roster is an input to corpus validation, not a derived page value.
+ */
+function clearVerifierRosterCache(): void {
+  ROSTER_CACHE = null;
+}
+
 /** Load the named-verifier roster (corpus/VERIFIERS.json). Cached per process. */
 export function loadVerifierRoster(file: string = VERIFIERS_FILE): Map<string, VerifierEntry> {
   if (ROSTER_CACHE && file === VERIFIERS_FILE) return ROSTER_CACHE;
@@ -208,7 +217,10 @@ export function loadCorpus(opts: { force?: boolean; dir?: string; quarantine?: b
     // A custom dir bypasses the process cache entirely, and an explicit force reload
     // both start fresh — neither should carry a stale watch baseline forward.
     CACHE_VERSION = null;
-    if (useCache && force) clearAllCaches();
+    if (useCache && force) {
+      clearVerifierRosterCache();
+      clearAllCaches();
+    }
   } else if (CACHE && corpusWatchEnabled()) {
     // On each cached call, check whether the corpus changed on disk since CACHE was
     // built; if so, force a reload AND drop every cache derived from it (answers,
@@ -216,6 +228,7 @@ export function loadCorpus(opts: { force?: boolean; dir?: string; quarantine?: b
     const current = corpusVersion(dir);
     if (CACHE_VERSION !== null && current !== CACHE_VERSION) {
       force = true;
+      clearVerifierRosterCache();
       clearAllCaches();
     }
   }
@@ -316,9 +329,9 @@ export interface CorpusIntegrityResult {
  * rather than serving corpus-backed routes.
  *
  * An absent manifest (the normal case in local dev, where nothing runs
- * `npm run corpus:manifest`) is distinguished from an invalid manifest. That distinction
- * is security-significant: malformed build metadata must fail closed at startup, while
- * a genuinely absent local-development artifact remains allowed.
+ * `npm run corpus:manifest`) is distinguished from an invalid manifest. The pure
+ * `corpusIntegrityAllowsStartup` policy below permits that absence only for explicitly
+ * declared development/test processes; production and undeclared environments fail closed.
  */
 export function verifyCorpusManifest(opts: { repoRoot?: string } = {}): CorpusIntegrityResult {
   const repoRoot = opts.repoRoot ?? REPO_ROOT;
@@ -337,4 +350,17 @@ export function verifyCorpusManifest(opts: { repoRoot?: string } = {}): CorpusIn
   if (expected === null) return { ok: false, status: "invalid", expected: null, actual };
   const ok = expected === actual;
   return { ok, status: ok ? "valid" : "mismatch", expected, actual };
+}
+
+/**
+ * Pure startup policy for the corpus attestation. A missing manifest is permitted only
+ * in an explicitly declared development/test process. Production and undeclared
+ * environments fail closed, so deleting a baked manifest cannot bypass attestation.
+ */
+export function corpusIntegrityAllowsStartup(
+  result: CorpusIntegrityResult,
+  nodeEnv: string | undefined,
+): boolean {
+  if (result.status !== "absent") return result.ok;
+  return nodeEnv === "development" || nodeEnv === "test";
 }

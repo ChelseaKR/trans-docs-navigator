@@ -42,7 +42,7 @@
     "a11y": "node --experimental-strip-types scripts/a11y-lint.ts",
     "dataset:build": "node --experimental-strip-types scripts/dataset-build.ts",
     "dataset:diff": "node --experimental-strip-types scripts/dataset-diff.ts",
-    "dev": "node --experimental-strip-types api/server.ts"
+    "dev": "NODE_ENV=development node --experimental-strip-types api/server.ts"
   },
   "devDependencies": {
     "@playwright/test": "1.61.1",

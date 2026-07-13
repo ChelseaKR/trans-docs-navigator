@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, writeFileSync, rmSync, readdirSync, statSync, utimesSync } from "node:fs";
+import { mkdtempSync, readFileSync, writeFileSync, rmSync, renameSync, readdirSync, statSync, utimesSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { loadCorpus, validateRecord, validateCorpus, recordById, loadVerifierRoster, isPlaceholderVerifier, isValidIsoDate, LAST_QUARANTINE, REPO_ROOT } from "../api/corpus.ts";
@@ -80,6 +80,56 @@ test("corpus watch is inert on a custom dir (the cached path only applies to the
     assert.equal(b.length, 1);
   } finally {
     rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("corpus watch re-reads a changed verifier roster while normal production calls retain the cache", () => {
+  const rosterPath = join(REPO_ROOT, "corpus", "VERIFIERS.json");
+  const original = readFileSync(rosterPath, "utf8");
+  const before = statSync(rosterPath);
+  const previousNodeEnv = process.env.NODE_ENV;
+  const previousWatch = process.env.CORPUS_WATCH;
+  const addedName = "Roster Watch Regression Reviewer";
+  const swapPath = `${rosterPath}.test-${process.pid}.tmp`;
+  const replaceRoster = (contents: string): void => {
+    writeFileSync(swapPath, contents);
+    renameSync(swapPath, rosterPath); // concurrent test workers never observe a partial JSON write
+  };
+
+  try {
+    process.env.NODE_ENV = "production";
+    delete process.env.CORPUS_WATCH;
+    const cachedCorpus = loadCorpus({ force: true });
+    assert.equal(loadVerifierRoster().has(addedName), false);
+
+    const changed = JSON.parse(original) as { roster: Array<Record<string, unknown>> };
+    changed.roster.push({ name: addedName, role: "test", placeholder: true });
+    const changedJson = JSON.stringify(changed, null, 2) + "\n";
+    replaceRoster(changedJson);
+
+    // A normal production call remains process-lifetime cached.
+    assert.equal(loadCorpus(), cachedCorpus);
+    assert.equal(loadVerifierRoster().has(addedName), false);
+
+    // Establish a separate watch-enabled cache against the restored original roster.
+    // The next edit must then invalidate both the corpus and verifier caches.
+    replaceRoster(original);
+    process.env.CORPUS_WATCH = "1";
+    const watchedCorpus = loadCorpus({ force: true });
+    assert.equal(loadVerifierRoster().has(addedName), false);
+    replaceRoster(changedJson);
+
+    assert.notEqual(loadCorpus(), watchedCorpus);
+    assert.equal(loadVerifierRoster().has(addedName), true);
+  } finally {
+    replaceRoster(original);
+    rmSync(swapPath, { force: true });
+    utimesSync(rosterPath, before.atime, before.mtime);
+    if (previousNodeEnv === undefined) delete process.env.NODE_ENV;
+    else process.env.NODE_ENV = previousNodeEnv;
+    if (previousWatch === undefined) delete process.env.CORPUS_WATCH;
+    else process.env.CORPUS_WATCH = previousWatch;
+    loadCorpus({ force: true });
   }
 });
 

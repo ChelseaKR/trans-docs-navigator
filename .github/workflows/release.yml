@@ -77,7 +77,7 @@ jobs:
       # make verify's last step (G9 pseudolocale overflow) drives a real browser.
       - name: Install Playwright Chromium (G9 pseudolocale overflow gate)
         run: npx playwright install --with-deps chromium
-      # The exact same 20-stage blocking pipeline that guards every merge to main —
+      # The exact same 22-stage blocking pipeline that guards every merge to main —
       # a tag can never publish an image that didn't earn a green `make verify`.
       - run: make verify
 

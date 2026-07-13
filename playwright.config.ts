@@ -25,7 +25,7 @@ export default defineConfig({
   webServer: {
     // The pseudolocale is registered only when TDN_I18N_TEST_HOOKS=1 (test build);
     // the production server never sets it, so en-XA can never ship.
-    command: `TDN_I18N_TEST_HOOKS=1 PORT=${PORT} node --experimental-strip-types --no-warnings tests/e2e/i18n/pseudo-server.ts`,
+    command: `NODE_ENV=test TDN_I18N_TEST_HOOKS=1 PORT=${PORT} node --experimental-strip-types --no-warnings tests/e2e/i18n/pseudo-server.ts`,
     url: `${baseURL}/livez`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

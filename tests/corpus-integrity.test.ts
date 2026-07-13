@@ -10,7 +10,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { computeCorpusManifest, manifestPath } from "../scripts/corpus-manifest.ts";
-import { verifyCorpusManifest } from "../api/corpus.ts";
+import { corpusIntegrityAllowsStartup, verifyCorpusManifest } from "../api/corpus.ts";
 
 /** A minimal fake repo root with the two content trees the manifest hashes. */
 function makeTempRepoRoot(): string {
@@ -80,7 +80,7 @@ test("verifyCorpusManifest returns ok=false with expected!=actual after the corp
   }
 });
 
-test("verifyCorpusManifest returns ok=true with expected=null when no manifest is baked (dev mode)", () => {
+test("verifyCorpusManifest classifies a missing build artifact as absent", () => {
   const root = makeTempRepoRoot();
   try {
     const result = verifyCorpusManifest({ repoRoot: root });
@@ -88,6 +88,35 @@ test("verifyCorpusManifest returns ok=true with expected=null when no manifest i
     assert.equal(result.status, "absent");
     assert.equal(result.expected, null);
     assert.equal(result.actual.length, 64);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("startup policy allows an absent manifest only in explicit development/test environments", () => {
+  const root = makeTempRepoRoot();
+  try {
+    const absent = verifyCorpusManifest({ repoRoot: root });
+    assert.equal(corpusIntegrityAllowsStartup(absent, "development"), true);
+    assert.equal(corpusIntegrityAllowsStartup(absent, "test"), true);
+    assert.equal(corpusIntegrityAllowsStartup(absent, "production"), false);
+    assert.equal(corpusIntegrityAllowsStartup(absent, undefined), false);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("startup policy accepts a valid manifest in production and rejects tampering in every environment", () => {
+  const root = makeTempRepoRoot();
+  try {
+    const manifest = computeCorpusManifest(root);
+    writeFileSync(manifestPath(root), JSON.stringify(manifest, null, 2) + "\n");
+    assert.equal(corpusIntegrityAllowsStartup(verifyCorpusManifest({ repoRoot: root }), "production"), true);
+
+    writeFileSync(join(root, "forms", "registry.json"), JSON.stringify([{ id: "tampered" }]));
+    const mismatch = verifyCorpusManifest({ repoRoot: root });
+    assert.equal(corpusIntegrityAllowsStartup(mismatch, "production"), false);
+    assert.equal(corpusIntegrityAllowsStartup(mismatch, "development"), false);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
