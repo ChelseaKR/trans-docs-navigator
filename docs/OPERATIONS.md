@@ -30,6 +30,9 @@ Direct identity-form fields stay in the browser.
 | `freshness` job fails (CI or scheduled) | A `verified` record is past its SLA → would be served as stale | Re-verify the record against its source, then bump `last_verified` **or** flip `verification_status` to `needs_reverification`. Do NOT just bump the date without checking. |
 | `source-watch` reports **drift** | A cited official page changed under a record — the law, fee, timeline, or process may have moved | Read the page, reconcile the record (EN + ES), then re-baseline **only that URL** — see the safe procedure under Common tasks. Never run `make source-baseline` to clear it. |
 | `source-watch` reports a **baseline coverage issue** | A cited URL has no baseline (`missingBaseline`), or a baseline URL is no longer cited (`staleBaseline`) | Review the addition/removal deliberately. Note that coverage issues and drift are reported **together in one run** — a coverage gap does not suppress the drift report (it used to; see docs/STATUS.md). |
+| `fidelity` gate fails with **`… not supported by their cited source`** | A record asserts a fee, a timeline, a form id, or a requirement that **the page it cites never states**. This is the class of bug the citation gate structurally cannot see: the citation is valid, the source hash never moved, and the record is still wrong | **Do not touch the snapshot.** Open the cited page and read it. Either correct the record to what the page says (EN + ES), or repoint it to a source that actually supports the claim, or drop the claim. Then `make source-snapshot` + re-baseline that URL. |
+| `fidelity` gate fails with **`baseline-mismatch`** | A committed snapshot no longer hashes to the drift baseline for the same URL. Either the page moved and the snapshot was refreshed without re-baselining, or someone edited a snapshot to make the gate pass | Treat as **drift**: read the page, reconcile the record, then re-baseline that one URL (procedure below). This mismatch is the anti-laundering interlock — a doctored snapshot cannot buy a green build. |
+| `fidelity` gate fails with **`unwatched-snapshot`** | A cited source has a snapshot but no entry in `corpus/source-hashes.json` — the fidelity gate would keep checking records against a frozen copy of a page that has since moved | Add the drift baseline for that URL (procedure below). The two mechanisms are only safe together: the snapshot says *what the page said*, the baseline notices *when it stops saying it*. |
 | Eval regression (`make eval` red) | groundedness/accuracy/refusal/coverage dropped | Block the release. Inspect `docs/audits/eval-report.md` → the failing item's notes point at the corpus record or generator change. |
 | Citation gate throws at runtime (500s spike) — CloudWatch alarm `trans-docs-navigator-500s-spike` (metric `ServerErrorCount`, filter `trans-docs-navigator-server-error`) | The generator produced an uncited claim | This is the gate working. Roll back the generator/corpus change. A 500 is correct behavior — better than rendering an unsourced legal claim. |
 | `privacy` gate fails in CI | Runtime API code references a direct identity field, a log call references one, or the session-artifact ignore rule drifted | Block the merge. Find the offending line; keep identity-form handling client-side and keep raw content out of application logs. |
@@ -50,8 +53,37 @@ structured events emitted by `api/log.ts`'s `safeLog`. Alarm notifications requi
 
 ## Common tasks
 - **Add/fix a jurisdiction record:** edit `corpus/jurisdictions/*.json`, run
-  `make content && make freshness && make citation && make eval`. A PR requires a real
-  source + named verifier (see contribution path, ROADMAP §9).
+  `make content && make freshness && make citation && make fidelity && make eval`. A PR requires a real
+  source + named verifier (see contribution path, ROADMAP §9). If you cited a **new URL**, you must
+  also produce its two artifacts — a snapshot (`make source-snapshot`) and a drift baseline (below) —
+  or `make fidelity` fails closed with `missing-snapshot` / `unwatched-snapshot`.
+- **Refresh the source snapshots (`make source-snapshot`):** fetches every cited corpus source,
+  normalizes it through the *same* `normalize()` the drift watcher hashes, and writes
+  `corpus/snapshots/`. The merge-blocking `fidelity` gate reads those files **offline** — a live
+  fetch inside CI would be flaky, and hammering a state health department on every PR is rude.
+
+  ⚠️ **The `make source-baseline` warning applies here too, but the interlock is different — and
+  that difference is the whole design.** This command adopts whatever the sources serve right now.
+  What stops that from laundering drift is not discipline, it is arithmetic: every snapshot's
+  sha256 must equal the drift baseline committed in `corpus/source-hashes.json` (both hash the same
+  `normalize()` output). So refreshing a snapshot over a page that genuinely moved makes
+  `make fidelity` fail with `baseline-mismatch`, and it keeps failing until a human runs the
+  review-only re-baseline procedure below for that URL. **You cannot make the fidelity gate green
+  by editing a snapshot.** That is the one property that makes an offline gate trustworthy.
+
+  After running it: `git diff corpus/snapshots` and **read it**. A changed snapshot means an
+  official page changed under a record.
+- **Four cited sources cannot be watched at all, and that is reported, not hidden.** `www.ssa.gov`
+  (incl. the SS-5 PDF), `www.nycourts.gov`, and `www.health.ny.gov` return **HTTP 403 to this
+  project's declared user-agent** — and to `curl` with the same UA. They serve a browser and refuse
+  a bot. We do **not** spoof a browser user-agent to get around a host that has said no, and we do
+  **not** accept a hand-pasted snapshot (a snapshot whose provenance is "a human pasted it" is
+  precisely the laundering path this machinery exists to close). The consequence is stated plainly
+  rather than papered over: **12 records — every SSA record, the New York court-order records, and
+  all six New York birth-certificate records — have claims that no gate can verify.** They are
+  counted as UNCHECKABLE in `docs/audits/source-fidelity.md` and surfaced in the launch-gate table.
+  A human reading those pages in a browser is the only verification available; that is exactly what
+  the named-human review gate is for.
 - **Mark volatile law as not-current:** set `verification_status: "needs_reverification"`.
   The runtime degrades it to "needs reverification" and the checklist flags the step.
 - **Regenerate audit artifacts:** `make eval` (eval report); the other audit docs in
@@ -98,6 +130,9 @@ structured events emitted by `api/log.ts`'s `safeLog`. Alarm notifications requi
   5. Remove a baseline entry only when no record/form cites the URL any more (e.g. you
      repointed a record to a source that actually supports its claim). A leftover entry is
      reported as a *staleBaseline* coverage issue, which is the gate asking you that question.
+  6. Re-run `make source-snapshot` so the offline snapshot for that URL matches the baseline you
+     just took, then `make fidelity` to confirm the record's claims are actually in the new text.
+     If they are not, the page changed the *substance*, not just the markup — fix the record.
 
   If `--update` is ever the convenient answer, you are about to launder unread content into
   a "verified" claim about someone's legal name or gender marker. Take the slow path.

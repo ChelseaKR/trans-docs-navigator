@@ -1,0 +1,10 @@
+{
+  "_comment": "Gate-efficacy fixture. The snapshot text below supports NEITHER the fee nor the form the poisoned record asserts.",
+  "snapshots": {
+    "https://example.test/dmv/update-your-card": {
+      "file": "example-test-dmv-update-your-card-c751af8f.txt",
+      "fetched": "2026-07-13",
+      "sha256": "7a4120d28ed07552158edcb41bd8b4427f4d1f656d90261780a0a397cd4710db"
+    }
+  }
+}

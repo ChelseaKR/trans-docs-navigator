@@ -17,7 +17,11 @@
 - [ ] `last_verified` is the date I actually checked the claim against that source.
 - [ ] The `verifier` is listed by exact name in `corpus/VERIFIERS.json`.
 - [ ] Volatile/unconfirmed claims are set to `verification_status: needs_reverification`.
-- [ ] `make content freshness citation readability eval` pass locally.
+- [ ] Every claim in the record — **every fee, timeline, form id, and requirement** — is stated by
+      the page the record cites. Not by a page it links to. Not by a page you know is right. **That
+      page.** If it isn't there, cite a source that says it or drop the claim.
+- [ ] If you cited a new URL: `make source-snapshot` + a reviewed drift baseline (docs/OPERATIONS.md).
+- [ ] `make content freshness citation fidelity readability eval` pass locally.
 
 ## Checks
 

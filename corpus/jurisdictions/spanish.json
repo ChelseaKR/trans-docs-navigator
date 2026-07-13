@@ -7,30 +7,48 @@
       "name"
     ],
     "topic": "Petición de cambio de nombre en California",
-    "statement": "En California, usted cambia su nombre legal presentando una Petición para Cambio de Nombre (Formulario NC-100) y los formularios relacionados en el tribunal superior del condado donde vive.",
-    "detail": "El tribunal emite una orden de cambio de nombre que luego usa para actualizar otros documentos. Si no puede pagar la tarifa, puede solicitar una exención con el Formulario FW-001.",
+    "statement": "En California usted cambia su nombre legal presentando documentos en la corte. Si un juez está de acuerdo, le da una orden de la corte que indica su nuevo nombre legal, y usted usa esa orden para cambiar su nombre en sus documentos de identidad.",
+    "detail": "Usted paga una cuota de presentación de $435 a $450. Si no puede pagarla, puede pedir a la corte que le otorgue una exención de cuotas. Antes de que un juez pueda decidir, debe publicar los formularios en un periódico durante un mes. Pero no tiene que publicar si su cambio de nombre es para que coincida con su identidad de género, o si lo presenta junto con una solicitud para reconocer su cambio de género. Un juez toma una decisión en aproximadamente 2 a 3 meses.",
     "cost": {
       "amount_usd": null,
-      "note": "La tarifa varía según el condado (frecuentemente alrededor de $435–$480); hay una exención de tarifa disponible.",
+      "note": "La cuota de presentación es de $435 a $450. Si no puede pagarla, puede pedir a la corte que le otorgue una exención de cuotas. Publicar en un periódico tiene su propia cuota, que la guía no indica.",
       "fee_waiver": true
     },
     "timeline": {
-      "typical": "aproximadamente de 6 a 12 semanas desde la presentación hasta la orden firmada"
+      "typical": "un juez toma una decisión en aproximadamente 2 a 3 meses"
     },
     "discretionary": true,
     "prerequisites": [],
     "source": {
       "url": "https://selfhelp.courts.ca.gov/es/cambie-su-nombre-en-california",
       "title": "Ayuda Legal de las Cortes de California — Cambie su Nombre",
-      "last_verified": "2026-06-16",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
-    "form_ref": "ca-nc-100",
-    "relocation": {
-      "residency_bound": true
+    "language": "es"
+  },
+  {
+    "id": "ca.court-order.name.form.es",
+    "jurisdiction": "US-CA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Formulario de cambio de nombre de California por identidad de género",
+    "statement": "Para cambiar su nombre por razones relacionadas con la identidad de género, California usa el formulario NC-200, la Petición de Cambio de Nombre para Conformarse con la Identidad de Género. Con él se inicia un caso para cambiar su nombre, o el de su hijo menor.",
+    "detail": "El Consejo Judicial indica el formulario NC-200 como la petición con la que se inicia este tipo de caso. Las cortes también publican instrucciones y paquetes de formularios para el cambio de nombre y para el cambio de género.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://selfhelp.courts.ca.gov/jcc-form/NC-200",
+      "title": "Cortes de California — Petición de Cambio de Nombre para Conformarse con la Identidad de Género (NC-200)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
     },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ca-nc-200",
     "language": "es"
   },
   {
@@ -70,21 +88,19 @@
       "name"
     ],
     "topic": "Cambio de nombre en la licencia de conducir de California",
-    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de California, visite el DMV con prueba de su cambio de nombre legal, como su orden judicial, y solicite una tarjeta de reemplazo.",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de California, primero cambie su nombre con la Administración del Seguro Social. Luego use la solicitud en línea del DMV para pedir una tarjeta nueva con su nombre nuevo. El cambio de nombre no se completa hasta que usted vaya en persona a una oficina del DMV.",
+    "detail": "El DMV verifica su información con el Seguro Social primero. Si los dos no coinciden, su solicitud es denegada. Lleve prueba de su nombre completo verdadero, de la lista de documentos aceptables del DMV. Si ya cambió su nombre legalmente antes, el DMV también puede pedirle un documento de cambio de nombre que muestre su nombre legal antes y después del cambio.",
     "cost": {
       "amount_usd": null,
-      "note": "Se aplica una tarifa por la tarjeta de reemplazo; consulte la tabla de tarifas actual del DMV."
-    },
-    "timeline": {
-      "typical": "se emite una tarjeta temporal en la visita; la tarjeta permanente llega por correo"
+      "note": "La página no indica una cantidad. Dice que esté preparado para pagar la tarifa de licencia correspondiente."
     },
     "prerequisites": [
       "court-order"
     ],
     "source": {
-      "url": "https://www.dmv.ca.gov/portal/es/driver-licenses-identification-cards/",
-      "title": "DMV de California — Licencias de Conducir e Identificaciones",
-      "last_verified": "2026-05-31",
+      "url": "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/updating-information-on-your-driver-license-or-identification-dl-id-card/",
+      "title": "DMV de California — Actualizar la Información de su Licencia o Identificación",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -208,8 +224,8 @@
       "name"
     ],
     "topic": "Petición de cambio de nombre en Illinois",
-    "statement": "En Illinois, usted cambia su nombre legal presentando una Solicitud de Cambio de Nombre en el tribunal de circuito del condado donde vive, y un juez firma una orden que la concede.",
-    "detail": "Llena una Solicitud de Cambio de Nombre y una Orden de Cambio de Nombre, las presenta ante el secretario del tribunal de circuito (por lo general con presentación electrónica), recibe una fecha de audiencia y va ante un juez. Si necesita privacidad, también puede presentar una Moción para Sellar el expediente (Motion to Impound). La guía dice que las leyes sobre el cambio de nombre de adultos se actualizaron a partir del 1 de enero de 2024 y de nuevo el 1 de marzo de 2025. La guía ya no incluye un paso de publicación en un periódico.",
+    "statement": "En Illinois usted cambia su nombre legal presentando una Solicitud de Cambio de Nombre ante el secretario del tribunal de circuito, y un juez firma una Orden de Cambio de Nombre que la concede.",
+    "detail": "Llena una Solicitud de Cambio de Nombre y una Orden de Cambio de Nombre, las presenta ante el secretario del tribunal de circuito (por lo general con presentación electrónica), recibe una fecha de audiencia y va ante un juez. Si tener su expediente judicial abierto al público dañaría su salud o su seguridad, también puede presentar una Moción para Sellar el expediente (Motion to Impound). La guía dice que las leyes sobre el cambio de nombre de adultos se actualizaron a partir del 1 de enero de 2024 y de nuevo el 1 de marzo de 2025. La guía ya no incluye un paso de publicación en un periódico.",
     "cost": {
       "amount_usd": null,
       "note": "Las tarifas de presentación cambian de caso a caso y de condado a condado — pregunte al secretario del tribunal de circuito. Hay una exención de tarifas disponible si califica.",
@@ -225,9 +241,6 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
-    "relocation": {
-      "residency_bound": true
-    },
     "language": "es"
   },
   {
@@ -368,22 +381,19 @@
       "name"
     ],
     "topic": "Petición de cambio de nombre en Texas",
-    "statement": "En Texas usted cambia su nombre legal presentando una petición para cambiar el nombre de un adulto en el tribunal de distrito del condado donde vive, y un juez firma una orden que lo concede.",
-    "detail": "Texas exige un juego de huellas dactilares y una verificación de antecedentes penales como parte de la petición de cambio de nombre de un adulto. La orden firmada se usa luego para actualizar otros documentos.",
+    "statement": "En Texas usted presenta una petición de cambio de nombre en el condado de Texas donde vive, y un juez firma una orden que lo concede. Debe tener al menos 18 años.",
+    "detail": "Le toman un juego de huellas dactilares legible y completo, y le da a la corte información completa sobre todos los delitos graves y los delitos menores de Clase A o B. Presenta su petición en la oficina del secretario de distrito de su condado. En algunos condados también paga por una verificación de antecedentes penales. La orden firmada se usa luego para actualizar otros documentos.",
     "cost": {
       "amount_usd": null,
-      "note": "Las tarifas de presentación varían según el condado; hay una exención de tarifa disponible (Declaración de Incapacidad para Pagar), y la verificación de huellas/antecedentes puede añadir un costo.",
+      "note": "La cuota de presentación puede ser de entre $150 y $300 según dónde viva — pregunte en la oficina del secretario de distrito de su condado. Si tiene bajos ingresos, puede pedir a la corte que le exente la cuota con una Declaración de Incapacidad para Pagar los Costos de la Corte. También paga por las huellas dactilares y, en algunos condados, por la verificación de antecedentes penales.",
       "fee_waiver": true
-    },
-    "timeline": {
-      "typical": "varias semanas, en parte por la verificación de antecedentes"
     },
     "discretionary": true,
     "prerequisites": [],
     "source": {
-      "url": "https://texaslawhelp.org/family-divorce-children/name-change/name-change-of-an-adult",
-      "title": "TexasLawHelp — Cambie su Nombre (Adultos)",
-      "last_verified": "2026-06-16",
+      "url": "https://texaslawhelp.org/guide/i-want-to-change-my-name",
+      "title": "TexasLawHelp — Quiero Cambiar mi Nombre (Guía de Cambio de Nombre para Adultos)",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",

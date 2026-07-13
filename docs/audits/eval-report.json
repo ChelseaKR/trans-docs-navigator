@@ -6,7 +6,7 @@
       "name": "groundedness",
       "value": 1,
       "threshold": 0.95,
-      "n": 12,
+      "n": 14,
       "pass": true
     },
     {
@@ -105,8 +105,8 @@
   "jurisdiction_readiness": [
     {
       "jurisdiction": "US-CA",
-      "records": 16,
-      "current_records": 16,
+      "records": 18,
+      "current_records": 18,
       "gold_items": 4,
       "accuracy": 1,
       "mechanically_ready": true,
@@ -399,7 +399,7 @@
       "name": "paraphrase-stability:ca-name-court-en",
       "retrieverName": "retrieve",
       "passed": true,
-      "detail": "both phrasings cite {ca.court-order.name}"
+      "detail": "both phrasings cite {ca.court-order.name, ca.court-order.name.form}"
     },
     {
       "name": "paraphrase-stability:ny-name-court-en",
@@ -411,13 +411,13 @@
       "name": "paraphrase-stability:ca-name-court-es",
       "retrieverName": "retrieve",
       "passed": true,
-      "detail": "both phrasings cite {ca.court-order.name.es}"
+      "detail": "both phrasings cite {ca.court-order.name.es, ca.court-order.name.form.es}"
     },
     {
       "name": "jurisdiction-sensitivity:ca-vs-tx-name-court",
       "retrieverName": "retrieve",
       "passed": true,
-      "detail": "US-CA cited {ca.court-order.name}, US-TX cited {tx.court-order.name} — disjoint"
+      "detail": "US-CA cited {ca.court-order.name, ca.court-order.name.form}, US-TX cited {tx.court-order.name} — disjoint"
     },
     {
       "name": "jurisdiction-sensitivity:ca-vs-il-gender-marker-dl",
@@ -429,7 +429,7 @@
       "name": "filter-monotonicity:ca-name-documents-filter",
       "retrieverName": "retrieve",
       "passed": true,
-      "detail": "filtered {ca.court-order.name} ⊆ unfiltered {ca.birth-certificate.fees, ca.birth-certificate.name, ca.court-order.name, ca.drivers-license.name, us.passport.name, us.ssa-card.name}"
+      "detail": "filtered {ca.court-order.name, ca.court-order.name.form} ⊆ unfiltered {ca.birth-certificate.fees, ca.birth-certificate.name, ca.court-order.name, ca.court-order.name.form, ca.drivers-license.name, us.passport.name, us.ssa-card.name}"
     },
     {
       "name": "filter-monotonicity:ny-name-documents-filter",
@@ -441,7 +441,7 @@
       "name": "language-consistency:ca-name-court",
       "retrieverName": "retrieve",
       "passed": true,
-      "detail": "EN {ca.court-order.name} and ES {ca.court-order.name.es} agree on emptiness and document/change-type shape (FIX-03-dependent: not asserting equal id sets)"
+      "detail": "EN {ca.court-order.name, ca.court-order.name.form} and ES {ca.court-order.name.es, ca.court-order.name.form.es} agree on emptiness and document/change-type shape (FIX-03-dependent: not asserting equal id sets)"
     },
     {
       "name": "language-consistency:ny-name-court",
@@ -453,7 +453,7 @@
       "name": "paraphrase-stability:ca-name-court-en",
       "retrieverName": "embeddingRetrieve",
       "passed": true,
-      "detail": "both phrasings cite {ca.court-order.name}"
+      "detail": "both phrasings cite {ca.court-order.name, ca.court-order.name.form}"
     },
     {
       "name": "paraphrase-stability:ny-name-court-en",
@@ -465,13 +465,13 @@
       "name": "paraphrase-stability:ca-name-court-es",
       "retrieverName": "embeddingRetrieve",
       "passed": true,
-      "detail": "both phrasings cite {ca.court-order.name.es}"
+      "detail": "both phrasings cite {ca.court-order.name.es, ca.court-order.name.form.es}"
     },
     {
       "name": "jurisdiction-sensitivity:ca-vs-tx-name-court",
       "retrieverName": "embeddingRetrieve",
       "passed": true,
-      "detail": "US-CA cited {ca.court-order.name}, US-TX cited {tx.court-order.name} — disjoint"
+      "detail": "US-CA cited {ca.court-order.name, ca.court-order.name.form}, US-TX cited {tx.court-order.name} — disjoint"
     },
     {
       "name": "jurisdiction-sensitivity:ca-vs-il-gender-marker-dl",
@@ -483,7 +483,7 @@
       "name": "filter-monotonicity:ca-name-documents-filter",
       "retrieverName": "embeddingRetrieve",
       "passed": true,
-      "detail": "filtered {ca.court-order.name} ⊆ unfiltered {ca.birth-certificate.fees, ca.birth-certificate.name, ca.court-order.name, ca.drivers-license.name, us.passport.name, us.ssa-card.name}"
+      "detail": "filtered {ca.court-order.name, ca.court-order.name.form} ⊆ unfiltered {ca.birth-certificate.fees, ca.birth-certificate.name, ca.court-order.name, ca.court-order.name.form, ca.drivers-license.name, us.passport.name, us.ssa-card.name}"
     },
     {
       "name": "filter-monotonicity:ny-name-documents-filter",
@@ -495,7 +495,7 @@
       "name": "language-consistency:ca-name-court",
       "retrieverName": "embeddingRetrieve",
       "passed": true,
-      "detail": "EN {ca.court-order.name} and ES {ca.court-order.name.es} agree on emptiness and document/change-type shape (FIX-03-dependent: not asserting equal id sets)"
+      "detail": "EN {ca.court-order.name, ca.court-order.name.form} and ES {ca.court-order.name.es, ca.court-order.name.form.es} agree on emptiness and document/change-type shape (FIX-03-dependent: not asserting equal id sets)"
     },
     {
       "name": "language-consistency:ny-name-court",

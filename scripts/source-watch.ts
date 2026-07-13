@@ -28,7 +28,16 @@ const FORMS_BASELINE_PATH = join(REPO_ROOT, "forms", "form-hashes.json");
 const TIMEOUT_MS = 20_000;
 const UA = "trans-docs-navigator-source-watch/1.0 (+https://github.com/ChelseaKR/trans-docs-navigator)";
 
-function normalize(html: string): string {
+/**
+ * Lossy text normalization for an HTML source page: tags, scripts, styles, comments and
+ * entities out; whitespace collapsed; lower-cased. Exported because the source-fidelity
+ * snapshot store (scripts/source-snapshot.ts) MUST produce byte-identical text to what
+ * this watcher hashes — that identity is what lets the fidelity gate cross-check a
+ * committed snapshot against the committed drift baseline in corpus/source-hashes.json.
+ * A snapshot that has been doctored to make the fidelity gate pass no longer hashes to
+ * its baseline, and the cross-check fails.
+ */
+export function normalize(html: string): string {
   return html
     .replace(/<script[\s\S]*?<\/script>/gi, "")
     .replace(/<style[\s\S]*?<\/style>/gi, "")

@@ -44,7 +44,7 @@ test("readiness degrades freshness to unavailable once every record is past its 
 });
 
 test("/readyz degrades to 503 unavailable once the injected clock outruns every record's SLA", () => {
-  const ok = handleRoute("GET", u("/readyz"), "2026-06-16");
+  const ok = handleRoute("GET", u("/readyz"), TEST_TODAY);
   assert.equal(ok.status, 200);
   assert.equal(JSON.parse(ok.body).checks.freshness, "ok");
 
@@ -60,7 +60,7 @@ test("/checklist flags a verified-but-past-SLA record as needing reverification,
 
   // At a `today` matching the record's own last_verified window, it is served as current —
   // no reverification flag in the rendered page.
-  const fresh = handleRoute("GET", u(route), "2026-06-16");
+  const fresh = handleRoute("GET", u(route), TEST_TODAY);
   assert.equal(fresh.status, 200);
   assert.doesNotMatch(fresh.body, /Needs reverification/);
 

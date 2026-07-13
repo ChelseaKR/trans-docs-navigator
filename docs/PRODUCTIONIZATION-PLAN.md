@@ -187,4 +187,4 @@ blocking review gate in `docs/STATUS.md`; this plan does not weaken them.
 Phase 1 items 1–2 → Phase 4 items 3–4 (cheap, immediate) → Phase 2 item 1 → Phase 3
 items 1–2 → Phase 1 items 3–5 → Phase 4 items 1–2 → Phase 5 → Phase 2 item 2 → Phase 6.
 The thread through all of it: every new behavior lands with a gate or a scheduled check,
-same as the existing 22-stage merge-blocking pipeline.
+same as the existing 24-stage merge-blocking pipeline.

@@ -8,14 +8,19 @@ import { BedrockGenerator, buildBedrockPrompt, parseTaggedOutput } from "../api/
 import type { BedrockTransport } from "../api/generator.ts";
 import { localGroundedTransport } from "../api/bedrock-transport.ts";
 import { answerAsync } from "../api/guidance.ts";
+import { TEST_TODAY } from "../api/freshness.ts";
 
-const today = "2026-05-31";
+// The corpus's own frozen "as of" date — NOT a hand-pinned one. A re-verification pass
+// advances TEST_TODAY, and a test pinned behind it reads every freshly re-verified record as
+// FUTURE-dated (freshnessOf → "future-date" → not current), so the citation gate rejects it
+// and the suite fails for a reason that has nothing to do with the code under test.
+const today = TEST_TODAY;
 const caQuery = { jurisdiction: "US-CA", change_types: ["name"] as ("name")[], documents: ["court-order"] as ("court-order")[], today };
 
 const transportOf = (text: string): BedrockTransport => async () => text;
 
 test("a faithful (validly tagged) model answer passes the citation gate", async () => {
-  const gen = new BedrockGenerator(transportOf("File a Petition for Change of Name in the superior court. [c:ca.court-order.name]"));
+  const gen = new BedrockGenerator(transportOf("You change your legal name in California by filing papers in court. [c:ca.court-order.name]"));
   const ans = await answerAsync(caQuery, { generator: gen });
   assert.equal(ans.refused, false);
   assert.ok(ans.cited_records.some((r) => r.id === "ca.court-order.name"));
@@ -52,9 +57,9 @@ test("a FEE-MUTATED claim mis-cited to a real, current record is rejected (quant
 });
 
 test("a FORM-SWAPPED claim mis-cited to a real, current record is rejected (form-id drift)", async () => {
-  // Real, current record (Form NC-100); the claim names a different official form id.
+  // Real, current record; the claim names an official form id the record never states.
   const gen = new BedrockGenerator(
-    transportOf("File the California name change using Form DL 329 in superior court. [c:ca.court-order.name]"),
+    transportOf("File the California name change using Form DL 329. [c:ca.court-order.name]"),
   );
   await assert.rejects(() => answerAsync(caQuery, { generator: gen }), /unfaithful-claim|rejected/);
 });
@@ -62,7 +67,7 @@ test("a FORM-SWAPPED claim mis-cited to a real, current record is rejected (form
 test("a faithful paraphrase WITHOUT polarity/quantity/identifier drift still passes", async () => {
   const gen = new BedrockGenerator(
     transportOf(
-      "In California, you must file a Petition for Change of Name using Form NC-100 in the superior court for your county. A fee waiver is available if you cannot afford the filing fee. [c:ca.court-order.name]",
+      "In California you change your legal name by filing papers in court. You pay a filing fee of $435 to $450, and you can ask the court to waive it if you cannot afford it. [c:ca.court-order.name]",
     ),
   );
   const ans = await answerAsync(caQuery, { generator: gen });

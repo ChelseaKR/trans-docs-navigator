@@ -40,6 +40,30 @@ Validated by `api/corpus.ts` and enforced by `make content`. Required fields:
 
 Optional: `detail`, `cost`, `timeline`, `prerequisites`, `discretionary`, `form_ref`.
 
+## `snapshots/` — what the cited source actually said
+
+`corpus/snapshots/` holds the normalized text of every cited source page, plus an index.
+`make fidelity` (`scripts/source-fidelity.ts`, stage 9 of `make verify`) reads them **offline**
+and fails the build when a record asserts a fee, a duration, a form id, a hard requirement, or a
+`residency_bound` flag that **its own cited page never states**.
+
+This is the check the citation gate structurally cannot make. `make citation` proves an answer
+cites a *record*; only this proves the *record* matches its *source*. Without it, a record could
+name a retired form and a $0 fee that its cited page never mentioned — with a completely valid
+citation and an unchanged source hash, so nothing went red. That is not hypothetical; it is what
+happened, and it is what this directory exists to prevent.
+
+Two rules, both load-bearing:
+
+1. **Never hand-edit a snapshot.** Each one's `sha256` must equal the drift baseline in
+   `source-hashes.json` (both hash the same `normalize()` output), so a snapshot doctored to make
+   the gate pass fails with `baseline-mismatch`. Refresh them only with `make source-snapshot`,
+   and read `git diff corpus/snapshots` afterwards.
+2. **A source with no snapshot is UNCHECKABLE, not "fine".** SSA, NY Courts and health.ny.gov
+   return 403 to any non-browser client. We do not spoof a browser user-agent, and we do not
+   accept a pasted snapshot — so their records' claims are counted as unverifiable in
+   `docs/audits/source-fidelity.md` rather than passed in silence.
+
 ## Freshness demonstration (guardrail #4 in action)
 
 `us.ssa-card.gender-marker` and `us.passport.gender-marker` are deliberately marked

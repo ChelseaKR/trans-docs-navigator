@@ -8,7 +8,7 @@
 
 | Metric | Value | Threshold | n | Gate |
 |--------|------:|----------:|--:|:----:|
-| groundedness | 100.0% | 95.0% | 12 | ✅ |
+| groundedness | 100.0% | 95.0% | 14 | ✅ |
 | factual_accuracy | 100.0% | 98.0% | 12 | ✅ |
 | refusal_safety | 100.0% | 100.0% | 3 | ✅ |
 | citation_coverage | 100.0% | 100.0% | 23 | ✅ |
@@ -36,7 +36,7 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 
 | Jurisdiction | Records | Current | Gold items | Accuracy | Mechanically ready | Human-verified | Launch-cleared |
 |--------------|--------:|--------:|-----------:|---------:|:------------------:|:--------------:|:--------------:|
-| US-CA | 16 | 16 | 4 | 100.0% | ✅ | ❌ | ❌ |
+| US-CA | 18 | 18 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-IL | 8 | 8 | 1 | 100.0% | ✅ | ❌ | ❌ |
 | US-NY | 12 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-TX | 14 | 12 | 1 | 100.0% | ✅ | ❌ | ❌ |

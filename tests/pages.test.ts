@@ -71,11 +71,11 @@ test("Spanish pages render in Spanish", () => {
   assert.match(intake, /Modo privado/);
   const packet = renderPacketPage(clEs, corpus, "es", "2026-05-31");
   assert.match(packet, /Preparado el/);
-  assert.match(packet, /Petición para Cambio de Nombre/);
+  assert.match(packet, /cambia su nombre legal presentando documentos en la corte/);
 });
 
 test("form page links to the official source and never auto-fills", () => {
-  for (const id of ["us-ss-5", "us-ds-82", "ca-nc-100"]) {
+  for (const id of ["us-ss-5", "us-ds-82", "ca-nc-200"]) {
     const h = renderFormFillPage(formById(id)!, "en");
     assert.match(h, /rel="noopener noreferrer"/); // links out to the official form
     assert.match(h, /complete it yourself/); // honest: we don't fill it

@@ -7,30 +7,48 @@
       "name"
     ],
     "topic": "California petition for change of name",
-    "statement": "In California you change your legal name by filing a Petition for Change of Name (Form NC-100) and related forms in the superior court for the county where you live.",
-    "detail": "The court issues a decree of change of name that you then use to update other documents. If you cannot afford the filing fee, you can request a fee waiver with Form FW-001.",
+    "statement": "In California you change your legal name by filing papers in court. If a judge agrees, you get a court order that states your new legal name, and you use that order to change your name on your identity documents.",
+    "detail": "You pay a filing fee of $435 to $450. If you cannot afford it, you can ask the court to waive it. Before a judge can decide, your forms must be published in a newspaper for one month. But you do not have to publish if your name change is to match your gender identity, or if you file it with a request for gender change recognition. A judge makes a decision in about 2 to 3 months.",
     "cost": {
       "amount_usd": null,
-      "note": "The filing fee varies by county (commonly around $435–$480); a fee waiver is available if you cannot afford it.",
+      "note": "The filing fee is $435 to $450. If you cannot afford it, you can ask the court to waive it. Publishing in a newspaper has its own fee, which the guide does not state.",
       "fee_waiver": true
     },
     "timeline": {
-      "typical": "roughly 6–12 weeks from filing to a signed order"
+      "typical": "a judge makes a decision in about 2 to 3 months"
     },
     "discretionary": true,
     "prerequisites": [],
     "source": {
       "url": "https://selfhelp.courts.ca.gov/name-change",
       "title": "California Courts Self-Help — Change Your Name",
-      "last_verified": "2026-05-31",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
-    "form_ref": "ca-nc-100",
-    "relocation": {
-      "residency_bound": true
+    "language": "en"
+  },
+  {
+    "id": "ca.court-order.name.form",
+    "jurisdiction": "US-CA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "California name-change form for a gender-identity name change",
+    "statement": "To change your name for reasons related to gender identity, California uses form NC-200, the Petition for Change of Name to Conform to Gender Identity. You use it to start a case to change your name, or your minor child's name.",
+    "detail": "The Judicial Council lists form NC-200 as the petition that starts this kind of case. The courts also publish how-to instructions and form packets for a name change and for a gender change.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://selfhelp.courts.ca.gov/jcc-form/NC-200",
+      "title": "California Courts — Petition for Change of Name to Conform to Gender Identity (NC-200)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
     },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ca-nc-200",
     "language": "en"
   },
   {
@@ -70,21 +88,19 @@
       "name"
     ],
     "topic": "California driver's license name change",
-    "statement": "To change the name on your California driver's license or ID, visit the DMV with proof of your legal name change, such as your court order, and apply for a replacement card.",
+    "statement": "To change the name on your California driver's license or ID, first change your name with the Social Security Administration. Then use the DMV's online application to apply for a new DL/ID card with your new name. Your name change is not complete until you come into a DMV field office.",
+    "detail": "The DMV checks your information with Social Security first. If the two do not match, your application is denied. Bring proof of your true full name from the DMV's acceptable documents list. If you have legally changed your name before, the DMV may also ask for a name change document that shows your legal name both before and after the change.",
     "cost": {
       "amount_usd": null,
-      "note": "A replacement card fee applies; check the current DMV fee schedule."
-    },
-    "timeline": {
-      "typical": "a temporary card is issued at the visit; the permanent card arrives by mail"
+      "note": "The page does not state an amount. It says to be ready to pay the appropriate licensing fee."
     },
     "prerequisites": [
       "court-order"
     ],
     "source": {
-      "url": "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/",
-      "title": "California DMV — Driver's Licenses & ID Cards",
-      "last_verified": "2026-05-31",
+      "url": "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/updating-information-on-your-driver-license-or-identification-dl-id-card/",
+      "title": "California DMV — Update Information on Your Driver's License or ID Card",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",

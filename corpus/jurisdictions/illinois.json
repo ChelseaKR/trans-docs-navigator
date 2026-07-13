@@ -7,8 +7,8 @@
       "name"
     ],
     "topic": "Illinois name change petition",
-    "statement": "In Illinois you change your legal name by filing a Request for Name Change in the circuit court of the county where you live, and a judge signs an order granting it.",
-    "detail": "You fill out a Request for Name Change and an Order for Name Change, file them with the circuit clerk (usually by electronic filing), get a hearing date, and go in front of a judge. If you need privacy, you can also file a Motion to Impound. The guide says the laws on adult name change were updated beginning January 1, 2024, and again on March 1, 2025. The guide no longer lists a newspaper publication step.",
+    "statement": "In Illinois you change your legal name by filing a Request for Name Change with the circuit clerk, and a judge signs an Order for Name Change granting it.",
+    "detail": "You fill out a Request for Name Change and an Order for Name Change, file them with the circuit clerk (usually by electronic filing), get a hearing date, and go in front of a judge. If having your court file open to the public would harm your health or safety, you can also file a Motion to Impound. The guide says the laws on adult name change were updated beginning January 1, 2024, and again on March 1, 2025. The guide no longer lists a newspaper publication step.",
     "cost": {
       "amount_usd": null,
       "note": "Filing fees differ from case to case and county to county — ask the circuit clerk. A fee waiver is available if you qualify.",
@@ -24,9 +24,6 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
-    "relocation": {
-      "residency_bound": true
-    },
     "language": "en"
   },
   {

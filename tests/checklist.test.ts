@@ -2,8 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildChecklist } from "../api/checklist.ts";
 import type { Intake, CorpusRecord } from "../api/types.ts";
+import { TEST_TODAY } from "../api/freshness.ts";
 
-const today = "2026-06-16";
+const today = TEST_TODAY; // the corpus's frozen as-of date; see tests/bedrock.test.ts
 
 function rec(over: Partial<CorpusRecord>): CorpusRecord {
   return {
@@ -114,7 +115,9 @@ test("carries cost, timeline, and a form reference onto steps", () => {
   const step = cl.steps[0]!;
   assert.ok(step.cost);
   assert.ok(step.timeline);
-  assert.deepEqual(step.form_refs, ["ca-nc-100"]);
+  // California's own NC-100 form page says a name change "related to gender identity" uses
+  // NC-200 instead — so this app's users get NC-200. (Found by the source-fidelity gate.)
+  assert.deepEqual(step.form_refs, ["ca-nc-200"]);
 });
 
 test("has_court_order marks the court-order step done and prunes it from dependents' prerequisites (FIX-07)", () => {
