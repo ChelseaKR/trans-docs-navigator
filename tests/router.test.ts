@@ -124,6 +124,13 @@ test("answer route 400s on malformed jurisdiction", () => {
   assert.equal(handleRoute("GET", u("/answer?jurisdiction=zzz")).status, 400);
 });
 
+test("answer route with no change param defaults to both change types (like /checklist) instead of refusing", () => {
+  const r = handleRoute("GET", u("/answer?jurisdiction=US-CA&q=how%20much%20does%20it%20cost"), "2026-05-31");
+  assert.equal(r.status, 200);
+  assert.equal(r.log?.fields.refused, false);
+  assert.ok((r.log?.fields.claims as number) > 0);
+});
+
 test("form route renders a known form and 404s an unknown one", () => {
   assert.equal(handleRoute("GET", u("/forms/us-ss-5")).status, 200);
   assert.equal(handleRoute("GET", u("/forms/nope")).status, 404);

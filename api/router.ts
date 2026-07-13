@@ -292,10 +292,15 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     const jurisdiction = validJurisdiction(url.searchParams.get("jurisdiction"));
     if (jurisdiction === null) return badRequest(lang);
     const t = uiStrings(lang);
+    // Same default as parseIntake: no `change` param means "both change types" —
+    // otherwise an empty array matches no record and every answer refuses.
+    const ct = changeTypes(url);
+    const change_types = ct.length > 0 ? ct : [...CHANGE_TYPES];
+    const docs = documents(url);
     const result = answer({
       jurisdiction,
-      change_types: changeTypes(url),
-      documents: documents(url),
+      change_types,
+      documents: docs,
       question: sanitizeQuestion(url.searchParams.get("q")),
       language: lang,
       today,
@@ -306,7 +311,7 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     const degraded = result.blocks.some((b) => b.kind === "freshness");
     // Always give a way forward (no dead-end): back to the checklist for the same query,
     // or start over. Preserves the non-PII query so the user lands back where they were.
-    const back = intakeQuery({ jurisdiction, change_types: changeTypes(url), documents: documents(url), language: lang });
+    const back = intakeQuery({ jurisdiction, change_types, documents: docs, language: lang });
     const actions = `<p class="no-print"><a href="/checklist?${back}">← ${escapeHtml(t.backToChecklist)}</a> · <a href="/">${escapeHtml(t.backToStart)}</a></p>`;
     return {
       status: 200,

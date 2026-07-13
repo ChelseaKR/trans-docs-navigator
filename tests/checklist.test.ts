@@ -140,3 +140,12 @@ test("has_court_order marks the court-order step done and prunes it from depende
   assert.equal(courtOrder2.done, undefined);
   assert.ok(ssa2.prerequisites.includes("court-order"));
 });
+
+test("picks up a form reference declared on ANY backing record, not just the first", () => {
+  // In the real corpus, US-CA drivers-license carries ca-dl-329 on its second record.
+  const cl = buildChecklist(
+    { jurisdiction: "US-CA", change_types: ["name", "gender-marker"], documents: ["drivers-license"], language: "en" },
+    today,
+  );
+  assert.equal(cl.steps[0]!.form_ref, "ca-dl-329");
+});
