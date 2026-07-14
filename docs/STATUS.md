@@ -3,6 +3,54 @@
 > Snapshot of what the ROADMAP §8 implementation plan has produced.
 > Last updated: 2026-07-13. `make verify` is green (24/24 gates).
 >
+> **2026-07-13 the SSA records — a blocked host is not an excuse for a stale claim.**
+> Both SSA records cited pages that **no gate could read**: every host under `www.ssa.gov` returns
+> **403** to any non-browser client. Behind that unreadable citation sat the corpus's worst
+> remaining claim — the sex-marker record said only *"policy has changed and is being litigated"*
+> and deliberately presented **no rule at all** — plus a `$0` fee and a `2–4 week` timeline nobody
+> could check. The rule against spoofing a browser UA is what kept it that way, and that rule is
+> right. **The fix was not to defeat the block but to find the authority.** SSA publishes its
+> **binding internal policy manual** — POMS — on `secure.ssa.gov`, which serves this project's own
+> declared user-agent a clean **HTTP 200**. It is *more* authoritative than the public page it
+> replaced, not a workaround for it.
+>
+> What POMS actually says, and what the records now say plainly (EN + ES):
+> - **Sex marker: the route is closed.** RM 10212.200 (TN 36, effective **2026-06-29**): *"The
+>   agency is only correcting or changing the sex field on the NUMIDENT to reflect the NH's sex at
+>   birth."* Evidence must be a birth certificate or CRBA **showing sex at birth**. There is no
+>   route to a marker matching gender identity. A truthful, cited *"this is not available"* is far
+>   more useful to a trans user than the silence that stood here before.
+> - **Name: the route is open.** RM 10212.010 routes a name change to RM 10212.080 — *"US court
+>   order for a name change"* — and RM 10212.001 defines a valid court order as an event that
+>   changes the legal name, applied for on **Form SS-5**. The federal landscape is **bifurcated**,
+>   and the corpus now says so instead of blurring the two.
+> - **The `$0` fee and the `2–4 week` timeline were dropped, not re-cited.** No fetchable official
+>   source states either, and POMS RM 10205.100 actually says *"within 2 weeks"* — so the timeline
+>   was not merely unverifiable, it was **wrong**. A claim we cannot source does not render.
+>
+> Both URLs are now snapshotted, drift-baselined and fidelity-checked like any other source, so the
+> machinery finally watches the most volatile records in the corpus: **UNCHECKABLE assertions fell
+> 42 → 32** and **unwatchable cited sources 4 → 3** (the SS-5 PDF remains, as a *forms-registry*
+> link; NY Courts and health.ny.gov remain 403). Only then were the **MAP Nondiscrimination** and
+> **A4TE** trackers re-baselined — after reading them and confirming the eight federal records they
+> implicate had been re-verified. Two limitations are now written down rather than discovered again:
+> `policy-watch` stores **hashes, not content** (so a true tracker diff is impossible), and the MAP
+> Nondiscrimination tracker is **mis-scoped** — tagged `US`, it points its drift at the federal
+> records while containing zero federal identity-document content.
+>
+> **2026-07-13 `link-check`: a broken server is not a dead link.**
+> CDPH sends its leaf certificate without the intermediate that signs it, so Node's `fetch` threw
+> `UNABLE_TO_VERIFY_LEAF_SIGNATURE` and **four live CDPH URLs** — HTTP 200 in any browser — were
+> reported as **rot**. A rot-detector that cries wolf gets switched off, and then it protects
+> nobody. The gate now separates the two **on evidence**: a chain error can only be raised *after*
+> the server hands us a certificate, which proves the host is up, while a genuinely dead host fails
+> with `ENOTFOUND`/`ECONNREFUSED`/timeout and is **still reported dead**. The condition is named
+> `incomplete-TLS-chain`, printed on every run, and does not fail the build. **Certificate
+> verification is never disabled** — no `-k`, no `rejectUnauthorized: false`; the status is
+> confirmed through a client that completes the chain from the certificate's AIA exactly as a
+> browser does. The carve-out is scoped to the TLS error and **not** to the host: a genuine 404
+> behind CDPH's broken chain still fails the gate (there is a negative control for precisely that).
+>
 > **2026-07-13 source-fidelity gate — closing the bottom link of the citation chain.**
 > The citation gate proves an answer cites a *record*. `eval/faithfulness.ts` proves a generated
 > claim is supported by *the record it cites*. **Nothing proved the record was supported by the
@@ -166,8 +214,8 @@ can be cleared by editing this table. **No record in this corpus has been verifi
 | Launch gate | Status | Machine-derived evidence | Derived from |
 |---|---|---|---|
 | Named-human verification of every record | 🔴 **OPEN** | **0 of 93** records verified by a named human. 93 carry the `Pilot Seed Reviewer` placeholder. | `corpus/` + `forms/registry.json` × `corpus/VERIFIERS.json` |
-| Every record's claims backed by its own cited source | 🔴 **OPEN** | 148 assertion(s) located in their cited source, 0 unsupported (merge-blocking), **42 UNCHECKABLE**. Separately, **246 of 313 prose sentences carry no checkable literal** and no gate vouches for them. | `make fidelity` (`scripts/source-fidelity.ts`) |
-| Every cited source actually under drift watch | 🔴 **OPEN** | **4** cited source(s) are UNWATCHABLE — they refuse this project's declared user-agent (403), so no baseline can be taken or compared and drift there is undetectable: `https://www.ssa.gov/forms/ss-5.pdf`, `https://www.ssa.gov/`, `https://www.nycourts.gov/courthelp/Family/nameChange.shtml`, `https://www.health.ny.gov/vital_records/gender_designation_corrections.htm` | `corpus/source-hashes.json` + `forms/form-hashes.json` + `corpus/snapshots/index.json` |
+| Every record's claims backed by its own cited source | 🔴 **OPEN** | 152 assertion(s) located in their cited source, 0 unsupported (merge-blocking), **32 UNCHECKABLE**. Separately, **255 of 322 prose sentences carry no checkable literal** and no gate vouches for them. | `make fidelity` (`scripts/source-fidelity.ts`) |
+| Every cited source actually under drift watch | 🔴 **OPEN** | **3** cited source(s) are UNWATCHABLE — they refuse this project's declared user-agent (403), so no baseline can be taken or compared and drift there is undetectable: `https://www.nycourts.gov/courthelp/Family/nameChange.shtml`, `https://www.ssa.gov/forms/ss-5.pdf`, `https://www.health.ny.gov/vital_records/gender_designation_corrections.htm` | `corpus/source-hashes.json` + `forms/form-hashes.json` + `corpus/snapshots/index.json` |
 | Independently authored expert gold set | 🔴 **OPEN** | `independent_author: false` — the gold set was co-authored with the corpus, so accuracy is partly tautological | `eval/gold.provenance.json` |
 | Counsel review of the disclaimers (UPL) | 🔴 **OPEN** | no sign-off in `docs/signoffs/` — this gate cannot be cleared by editing a doc | docs/signoffs/*.json (gate: `counsel-review`) |
 | Manual screen-reader / keyboard / 200%-zoom walkthrough | 🔴 **OPEN** | no sign-off in `docs/signoffs/` — this gate cannot be cleared by editing a doc | docs/signoffs/*.json (gate: `accessibility-walkthrough`) |

@@ -1,17 +1,15 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
   "records": 70,
-  "supported": 148,
+  "supported": 152,
   "unsupported": 0,
-  "uncheckable": 42,
+  "uncheckable": 32,
   "unfetchable_sources": [
-    "https://www.ssa.gov/forms/ss-5.pdf → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
-    "https://www.ssa.gov/ → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 246,
-  "total_prose_sentences": 313,
+  "unchecked_prose_sentences": 255,
+  "total_prose_sentences": 322,
   "audits": [
     {
       "recordId": "ca.court-order.name",
@@ -311,25 +309,16 @@
     {
       "recordId": "us.ssa-card.name",
       "language": "en",
-      "url": "https://www.ssa.gov/forms/ss-5.pdf",
+      "url": "https://secure.ssa.gov/poms.nsf/lnx/0110212001",
       "results": [
-        {
-          "kind": "money",
-          "key": "0",
-          "label": "this step is free (amount_usd: 0)",
-          "field": "cost.amount_usd",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        },
         {
           "kind": "form-id",
           "key": "SS5",
           "label": "official form SS5 backs this step (form_ref: us-ss-5)",
           "field": "form_ref",
           "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
+          "verdict": "supported",
+          "why": "the source names SS5"
         },
         {
           "kind": "requirement",
@@ -337,40 +326,22 @@
           "label": "a court order is required",
           "field": "statement",
           "strength": "necessary-condition",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        },
-        {
-          "kind": "duration",
-          "key": "2 week",
-          "label": "states \"2 week\"",
-          "field": "timeline.typical",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        },
-        {
-          "kind": "duration",
-          "key": "4 week",
-          "label": "states \"4 week\"",
-          "field": "timeline.typical",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
         }
       ],
-      "uncheckedProse": 3,
-      "negatedClaims": 1,
-      "totalSentences": 4
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 5
     },
     {
       "recordId": "us.ssa-card.gender-marker",
       "language": "en",
-      "url": "https://www.ssa.gov/",
+      "url": "https://secure.ssa.gov/poms.nsf/lnx/0110212200",
       "results": [],
-      "uncheckedProse": 3,
+      "uncheckedProse": 6,
       "negatedClaims": 1,
-      "totalSentences": 3
+      "totalSentences": 6
     },
     {
       "recordId": "us.passport.name",
@@ -1141,25 +1112,16 @@
     {
       "recordId": "us.ssa-card.name.es",
       "language": "es",
-      "url": "https://www.ssa.gov/forms/ss-5.pdf",
+      "url": "https://secure.ssa.gov/poms.nsf/lnx/0110212001",
       "results": [
-        {
-          "kind": "money",
-          "key": "0",
-          "label": "this step is free (amount_usd: 0)",
-          "field": "cost.amount_usd",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        },
         {
           "kind": "form-id",
           "key": "SS5",
           "label": "official form SS5 backs this step (form_ref: us-ss-5)",
           "field": "form_ref",
           "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
+          "verdict": "supported",
+          "why": "the source names SS5"
         },
         {
           "kind": "requirement",
@@ -1167,31 +1129,13 @@
           "label": "a court order is required",
           "field": "statement",
           "strength": "necessary-condition",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        },
-        {
-          "kind": "duration",
-          "key": "2 week",
-          "label": "states \"2 week\"",
-          "field": "timeline.typical",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        },
-        {
-          "kind": "duration",
-          "key": "4 week",
-          "label": "states \"4 week\"",
-          "field": "timeline.typical",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
         }
       ],
-      "uncheckedProse": 2,
-      "negatedClaims": 1,
-      "totalSentences": 3
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 5
     },
     {
       "recordId": "us.passport.name.es",
@@ -1269,11 +1213,11 @@
     {
       "recordId": "us.ssa-card.gender-marker.es",
       "language": "es",
-      "url": "https://www.ssa.gov/",
+      "url": "https://secure.ssa.gov/poms.nsf/lnx/0110212200",
       "results": [],
-      "uncheckedProse": 3,
+      "uncheckedProse": 6,
       "negatedClaims": 1,
-      "totalSentences": 3
+      "totalSentences": 6
     },
     {
       "recordId": "us.passport.gender-marker.es",

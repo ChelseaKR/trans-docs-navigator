@@ -149,8 +149,16 @@ test("answer route 400s on malformed jurisdiction", () => {
   assert.equal(handleRoute("GET", u("/answer?jurisdiction=zzz")).status, 400);
 });
 
+// The simulated "today" must be on/after the corpus's last_verified dates, or this test
+// stops testing what it says. freshnessOf() deliberately treats a FUTURE last_verified as
+// not-current ("future-date"), so a clock set before the corpus was verified makes EVERY
+// record non-current and the answer refuses for freshness reasons — which would pass/fail
+// for nothing to do with the change-param defaulting this test exists to pin. This clock
+// was 2026-05-31 and silently decayed into exactly that state: after the SSA records were
+// re-verified to 2026-07-13, `us.ssa-card.name` (the last record still dated 2026-05-31)
+// stopped being the one current record propping the assertion up, and it went red.
 test("answer route with no change param defaults to both change types (like /checklist) instead of refusing", () => {
-  const r = handleRoute("GET", u("/answer?jurisdiction=US-CA&q=how%20much%20does%20it%20cost"), "2026-05-31");
+  const r = handleRoute("GET", u("/answer?jurisdiction=US-CA&q=how%20much%20does%20it%20cost"), "2026-07-13");
   assert.equal(r.status, 200);
   assert.equal(r.log?.fields.refused, false);
   assert.ok((r.log?.fields.claims as number) > 0);

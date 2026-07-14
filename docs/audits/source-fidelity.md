@@ -13,29 +13,27 @@
 | | Count |
 |---|---|
 | Records audited | 70 |
-| Load-bearing assertions found | 190 |
-| — checked and **supported** by the cited source | 148 |
+| Load-bearing assertions found | 184 |
+| — checked and **supported** by the cited source | 152 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 42 |
-| of the checked: literal (fee / duration / form-id) matches | 99 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 49 |
+| — **UNCHECKABLE** (reported, never passed) | 32 |
+| of the checked: literal (fee / duration / form-id) matches | 101 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 51 |
 
 ## What this gate cannot vouch for
 
-- **246 of 313 prose sentences** in the corpus carry no extractable
+- **255 of 322 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **73 sentences state a negative** (`you do not need a court order`, `the page no
+- **71 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **49 assertions are necessary-condition only**: the source discusses the topic, which
+- **51 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
-- **4 cited sources refuse automated fetching entirely**, so no
+- **2 cited sources refuse automated fetching entirely**, so no
   snapshot exists and every assertion in every record citing them is unverifiable by any
   gate. We will not spoof a browser user-agent to get around a site that has said no.
-  - https://www.ssa.gov/forms/ss-5.pdf → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
-  - https://www.ssa.gov/ → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
   - https://www.nycourts.gov/courthelp/Family/nameChange.shtml → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
   - https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
 
@@ -45,13 +43,8 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 
 ## Uncheckable assertions (reported, never passed)
 
-**the source refuses automated fetching (HTTP 403)** — 38 assertion(s):
+**the source refuses automated fetching (HTTP 403)** — 28 assertion(s):
 
-- `us.ssa-card.name · this step is free (amount_usd: 0)`
-- `us.ssa-card.name · official form SS5 backs this step (form_ref: us-ss-5)`
-- `us.ssa-card.name · a court order is required`
-- `us.ssa-card.name · states "2 week"`
-- `us.ssa-card.name · states "4 week"`
 - `ny.court-order.name · a fee waiver is available (cost.fee_waiver: true)`
 - `ny.court-order.name · publication in a newspaper is required`
 - `ny.birth-certificate.gender-marker · official form DOH5305 backs this step (form_ref: ny-doh-5305)`
@@ -67,11 +60,6 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ny.birth-certificate.name · states $30`
 - `ny.court-order.name.es · a fee waiver is available (cost.fee_waiver: true)`
 - `ny.court-order.name.es · publication in a newspaper is required`
-- `us.ssa-card.name.es · this step is free (amount_usd: 0)`
-- `us.ssa-card.name.es · official form SS5 backs this step (form_ref: us-ss-5)`
-- `us.ssa-card.name.es · a court order is required`
-- `us.ssa-card.name.es · states "2 week"`
-- `us.ssa-card.name.es · states "4 week"`
 - `ny.birth-certificate.gender-marker.es · official form DOH5305 backs this step (form_ref: ny-doh-5305)`
 - `ny.birth-certificate.gender-marker.es · states "17 year"`
 - `ny.birth-certificate.gender-marker.es · names form DOH5303`
@@ -153,10 +141,10 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `us.passport.gender-marker.es` | es | 1 | 0 | 0 | 12/12 |
 | `us.passport.name` | en | 7 | 0 | 0 | 1/4 |
 | `us.passport.name.es` | es | 7 | 0 | 0 | 2/5 |
-| `us.ssa-card.gender-marker` | en | 0 | 0 | 0 | 3/3 |
-| `us.ssa-card.gender-marker.es` | es | 0 | 0 | 0 | 3/3 |
-| `us.ssa-card.name` | en | 0 | 0 | 5 | 3/4 |
-| `us.ssa-card.name.es` | es | 0 | 0 | 5 | 2/3 |
+| `us.ssa-card.gender-marker` | en | 0 | 0 | 0 | 6/6 |
+| `us.ssa-card.gender-marker.es` | es | 0 | 0 | 0 | 6/6 |
+| `us.ssa-card.name` | en | 2 | 0 | 0 | 4/5 |
+| `us.ssa-card.name.es` | es | 2 | 0 | 0 | 4/5 |
 | `wa.birth-certificate.gender-marker` | en | 7 | 0 | 0 | 4/5 |
 | `wa.birth-certificate.gender-marker.es` | es | 7 | 0 | 0 | 4/5 |
 | `wa.birth-certificate.name` | en | 4 | 0 | 0 | 2/5 |

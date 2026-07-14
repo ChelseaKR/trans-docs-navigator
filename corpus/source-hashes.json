@@ -25,5 +25,7 @@
   "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-gender-designation": "e79017b519b59d4e8d980b260d3f2011f5763ac208729c37e8691f1e1cd386bd",
   "https://doh.wa.gov/licenses-permits-and-certificates/vital-records/sex-designation-change-birth-certificate": "cd7d7243d94ad08db1d346ba1c47d3701ef0efa27b01a87c18a5d9d012f94af6",
   "https://doh.wa.gov/licenses-permits-and-certificates/vital-records/court-ordered-name-change": "daecc385886a0bf98476fecb84363ae0e827301ac3fa210c4679bd1392f03d61",
-  "https://selfhelp.courts.ca.gov/jcc-form/NC-200": "680813eac257a41f17d1e2b374a76daf71eefae3b008949ddd74ff98188ec16e"
+  "https://selfhelp.courts.ca.gov/jcc-form/NC-200": "680813eac257a41f17d1e2b374a76daf71eefae3b008949ddd74ff98188ec16e",
+  "https://secure.ssa.gov/poms.nsf/lnx/0110212001": "49d35251740e8d3c2bd81003533d98f40ff8c83a6665bf3dfaded9279cfca27e",
+  "https://secure.ssa.gov/poms.nsf/lnx/0110212200": "6b332776b1b2909d7239ef6b9d35e3b7d8bda841f755074cf9ba0f0b9f53ed57"
 }

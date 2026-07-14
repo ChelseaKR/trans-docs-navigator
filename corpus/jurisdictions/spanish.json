@@ -279,22 +279,15 @@
       "name"
     ],
     "topic": "Cambio de nombre en el registro del Seguro Social",
-    "statement": "Para cambiar el nombre en su registro del Seguro Social, presente el Formulario SS-5 y muestre documentos originales que prueben su cambio de nombre legal, como una orden judicial, y prueba de identidad.",
-    "detail": "Puede presentarlo por correo o en una oficina local del Seguro Social. No hay cargo.",
-    "cost": {
-      "amount_usd": 0,
-      "note": "El Seguro Social no cobra una tarifa por una tarjeta corregida."
-    },
-    "timeline": {
-      "typical": "de 2 a 4 semanas para recibir la tarjeta actualizada"
-    },
+    "statement": "El Seguro Social sigue cambiando el nombre legal en su registro del Seguro Social. Una orden judicial válida de cambio de nombre es uno de los eventos que el Seguro Social reconoce como un cambio de su nombre legal, y usted lo solicita con el Formulario SS-5, la Solicitud de Tarjeta de Seguro Social.",
+    "detail": "El manual de políticas del Seguro Social define su nombre legal como su primer nombre y su apellido — el nombre que usa para firmar documentos legales. Para una persona nacida en los Estados Unidos, ese es generalmente el nombre que aparece en el certificado de nacimiento, a menos que el nombre haya cambiado por un evento como un matrimonio o una orden judicial válida de cambio de nombre. El marcador de sexo en su registro se maneja por separado y bajo una regla distinta.",
     "prerequisites": [
       "court-order"
     ],
     "source": {
-      "url": "https://www.ssa.gov/forms/ss-5.pdf",
-      "title": "Formulario SS-5 del Seguro Social, Solicitud de Tarjeta de Seguro Social",
-      "last_verified": "2026-05-31",
+      "url": "https://secure.ssa.gov/poms.nsf/lnx/0110212001",
+      "title": "Manual de Operaciones del Seguro Social (POMS) RM 10212.001 — Definición del nombre legal para un SSN",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -338,14 +331,14 @@
     "change_type": [
       "gender-marker"
     ],
-    "topic": "Política del marcador de género del Seguro Social",
-    "statement": "La política federal sobre el marcador de sexo/género en los registros del Seguro Social ha cambiado recientemente y está en litigio.",
-    "detail": "Por ser volátil, el navegador no presenta una regla actual aquí; debe reverificarse con la fuente oficial antes de mostrarse como un hecho.",
+    "topic": "Política del marcador de sexo del Seguro Social",
+    "statement": "El Seguro Social no actualiza el marcador de sexo en su registro del Seguro Social para que coincida con su identidad de género. Su manual de políticas dice que la agencia solo corrige o cambia el campo de sexo en el Numident para reflejar el sexo al nacer del titular del número.",
+    "detail": "Como evidencia del sexo, el Seguro Social pide un certificado de nacimiento emitido por una oficina estatal o local de estadísticas vitales que refleje el sexo al nacer, o el sexo registrado al nacer; si usted nació en el extranjero, un certificado de nacimiento extranjero o un Informe Consular de Nacimiento en el Extranjero que indique el sexo al nacer. Esto revierte la práctica anterior del Seguro Social de aceptar una designación de sexo autoidentificada, y la política federal subyacente está en litigio, así que confírmelo con la fuente oficial antes de confiar en ella. Su nombre legal es un asunto separado y el Seguro Social todavía procesa un cambio de nombre legal.",
     "prerequisites": [],
     "source": {
-      "url": "https://www.ssa.gov/",
-      "title": "Administración del Seguro Social",
-      "last_verified": "2025-01-15",
+      "url": "https://secure.ssa.gov/poms.nsf/lnx/0110212200",
+      "title": "Manual de Operaciones del Seguro Social (POMS) RM 10212.200 — Cambios de datos del NUMIDENT por razones distintas al cambio de nombre",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",
