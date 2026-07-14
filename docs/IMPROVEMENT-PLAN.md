@@ -4,7 +4,8 @@
 > technical. Drafted 2026-06-05 against the M6-in-progress build (`make verify` green, 11 gates).
 >
 > **Framing.** This is a strong codebase: the safety architecture (retrieval-mandatory
-> generation, citation enforcement, freshness SLA, zero-server-PII) is real and CI-enforced.
+> generation, citation enforcement, freshness SLA, on-device identity-form fields, and
+> request-content non-reflection) is real and CI-enforced.
 > The biggest risks are not missing features — they are **gates that are green for the wrong
 > reason**. Several "passing" metrics are mechanically guaranteed by the reference build's
 > deterministic stand-ins (extractive composer, co-authored gold set, lexical retriever) and
@@ -19,13 +20,14 @@ A hardening pass executed every item that code can deliver; `make verify` is gre
 
 **Done (code/tests/gates landed):**
 - §1.1 verifier roster + placeholder enforcement · §1.2 gold-provenance gate · §1.3
-  adversarial/injection eval suite + paraphrase-tolerant faithfulness · §1.5 calendar-date
-  validation + conflicting-cost detection · §2.1 PII-egress test *(caught & fixed a real
+  adversarial/injection eval suite + atomic claim-decomposition faithfulness (lexical
+  pre-filter, numeric/form-ID/scoped-negation support; no short-claim bypass) · §1.5 calendar-date
+  validation + conflicting-cost detection · §2.1 request-content non-reflection test *(caught & fixed a real
   query-string reflection bug)* · §2.2 HTTP hardening (testable router, input bounds,
   security headers, rate limit, timeouts) · §2.4 vendored-asset SRI + pinned hash · §3.1
   contrast assertions + pa11y/SAST made blocking · §3.2 readability gate · §3.3 form-fill
   failure feedback + field caps · §4.1 full Spanish answer localization · §4.2
-  language-aware retrieval · §6.1 router/render now tested & coverage-gated · §6.2 non-PII
+  language-aware retrieval · §6.1 router/render now tested & coverage-gated · §6.2 content-free
   observability counters · §6.3 runtime corpus quarantine · §7.2 CONTRIBUTING + templates.
 
 **Still OPEN — requires humans, not code** (each now has an enforcing gate that blocks a
@@ -51,11 +53,23 @@ launch claim until the human step is signed; see `docs/STATUS.md`):
   `make loadtest` (deterministic in-process latency guard).
 - §2.5 **Encrypted save/resume** — `src/secure-resume.ts` (PBKDF2 → AES-GCM, tested:
   round-trip, wrong-passphrase, tamper, identity-field stripping) + a checklist-page panel
-  that saves ONLY non-PII selections, local-only, deletable. Identity data is never persisted.
+  that saves only selection fields in an encrypted local blob, deletable. Direct identity
+  fields are never persisted; the selections have already traveled in normal page requests.
 
 **Still deferred (genuinely external):**
 - A real Bedrock accuracy pass (needs AWS credentials) · standing up the actual
   pgvector/OpenSearch index + running k6 in CI against a deployed instance.
+
+**Previously deferred — now landed as code (2026-07-03, third pass):**
+- §5.2 **Answer/render caching** — `api/cache.ts` (bounded, LRU-ish `memoize()` +
+  `clearAllCaches()` registry) wraps `/checklist` and the no-question-text set of
+  `/answer` in `api/router.ts`, keyed on the canonical `intakeQuery()` fields + `today` (no
+  free text or direct identity fields; selections may still be sensitive); `api/corpus.ts`'s `loadCorpus()` gains a dev-ergonomics mtime watch
+  (`NODE_ENV !== 'production'` or `CORPUS_WATCH=1`) that force-reloads and cascades
+  `clearAllCaches()` and refreshes the verifier-roster cache on a corpus/roster edit,
+  so neither a stale rendered answer/checklist nor stale verifier membership can outlive
+  the file it came from. See `tests/cache.test.ts`, `tests/router.test.ts`,
+  `tests/corpus.test.ts`.
 
 ## How to read this
 
@@ -77,10 +91,10 @@ the spine of the pre-launch plan.
 |---|---|---|
 | Factual accuracy `1.00`, groundedness `1.00` | Gold set is **co-authored with the corpus** (`eval/gold.ts:4-7`); the oracle was written to match the data it grades. It tests the *harness*, not the *content*. | §1.1, §1.2 |
 | Citation coverage `100%` | The default `GroundedComposer` is *extractive* (`api/generator.ts`) — it can only emit text it copied from a record, so coverage is true by construction. A real LLM (`BedrockGenerator`) can fail this. | §1.3 |
-| Groundedness `≥0.95` | Faithfulness is a **substring match** (`eval/harness.ts:~82`), not semantic. "File a petition" scores faithful against any longer sentence containing it. | §1.3 |
+| Groundedness `≥0.95` | The offline lane now decomposes blocks and requires every atomic assertion to clear record-derived lexical, numeric, form-ID, and scoped-negation support. It is still a deterministic approximation, not a networked semantic judge, and the default composer remains extractive. | §1.3 |
 | `0 axe violations` / a11y gate green | Mechanical lint covers only ~30–40% of WCAG (ADR-4). Manual SR/keyboard/zoom walkthrough is **review-gated and PENDING**. | §3.1 |
 | `make verify` green = "ready" | `verifier` fields are placeholders (ADR-3); **no jurisdiction is launch-cleared**. Mechanical readiness ≠ legal correctness. | §1.1 |
-| Privacy gate green | Regex scan catches *direct* PII references; it can miss obfuscated/derived flows (`scripts/privacy-lint.ts`). Defense-in-depth, not proof. | §2.1 |
+| Privacy gate green | Static scanning catches named direct-identity fields and the runtime sentinel catches reflection into app logs/responses. Neither proves that request inputs were never received or that browser/provider records do not exist. Defense-in-depth, not a zero-record proof. | §2.1 |
 | Retrieval "works" | Lexical token-overlap (ADR-2) with no IDF/field-weighting and **English stop-words applied to Spanish** (`api/retrieval.ts`). Fine at 32 records, degrades with scale and hurts ES relevance. | §5.1, §4.2 |
 
 **Principle:** never widen jurisdiction coverage ahead of verification (ROADMAP §8 already
@@ -105,7 +119,13 @@ This is where wrong work hurts people. It is the highest-value dimension.
 - **Dimension:** Eval rigor · **Concern:** technical · **Evidence:** §0 rows 2–3; `eval/harness.ts`.
 - **Actions:**
   - Run at least one eval pass through the **real `BedrockGenerator`** (Haiku) — not only the extractive composer — so citation coverage and groundedness are tested against a model that *can* hallucinate. This is STATUS open-gate #6.
-  - Upgrade faithfulness from substring match to a semantic check (entailment via an LLM-judge with its own rubric, or at minimum claim-decomposition + per-claim source support). Keep the deterministic check as a fast pre-filter.
+  - **DONE (minimum deterministic lane):** replace substring matching with sentence/clause
+    decomposition and per-assertion support against the exact record-derived composer text.
+    Numeric/date literals, form IDs, and scoped negation must agree; short assertions get
+    no exemption. The lexical pre-filter remains intentionally cheap and offline.
+  - **OPEN (real-model lane):** run entailment through an independently rubriced semantic
+    judge during the Bedrock-backed eval. Do not describe the deterministic support score
+    as semantic entailment.
   - Add an **adversarial suite**: typo'd questions, ambiguous queries, jurisdiction-not-in-corpus, prompt-injection in the question field, mixed-language input. Assert *refusal/degradation*, not answers.
 
 ### 1.4 — `P1` Grow gold-set coverage to match claims
@@ -125,11 +145,11 @@ This is where wrong work hurts people. It is the highest-value dimension.
 ## 2. Privacy & security — *user safety in a hostile-jurisdiction threat model*
 
 The architecture is privacy-first and genuinely good. The gaps are HTTP-surface hardening
-and proving the privacy invariant rather than spot-checking it.
+and proving each stated privacy control without turning it into an absolute no-record claim.
 
-### 2.1 — `P1` Data-flow proof, not just regex scan
-- **Dimension:** Privacy · **Concern:** user safety · **Evidence:** `scripts/privacy-lint.ts` is regex-based; RESPONSIBLE-TECH §C promises a "data-flow test asserting no PII egress."
-- **Action:** Add the promised egress test: drive the server with PII-laden inputs and assert nothing PII-shaped appears in any log sink or response the server emits. Keep the allowlist logger (`api/log.ts`) as the single sink. This upgrades the guarantee from "no obvious reference" to "no observed egress."
+### 2.1 — `P1` Runtime non-reflection proof, not just regex scan
+- **Dimension:** Privacy · **Concern:** user safety · **Evidence:** `scripts/privacy-lint.ts` is a static named-field gate; it cannot observe runtime reflection.
+- **Action:** Drive the server with identity-shaped sentinel inputs and assert the sentinel does not appear in any application log descriptor or response body. Keep the allowlist logger (`api/log.ts`) as the single sink. This upgrades the guarantee from "no obvious direct-identity reference" to "no observed app-log/response reflection" while explicitly acknowledging that request inputs reach the server.
 
 ### 2.2 — `P1` HTTP-server hardening (production surface)
 - **Dimension:** Security/reliability · **Concern:** technical · **Evidence:** `api/server.ts` has no request-size limit, no rate limiting, no socket timeout, no method guard, no security headers.
@@ -191,9 +211,9 @@ and proving the privacy invariant rather than spot-checking it.
 - **Dimension:** Performance/relevance · **Concern:** technical · **Evidence:** ADR-2; lexical full-corpus scan with no IDF; ROADMAP §6 specifies pgvector/OpenSearch behind the same `retrieve()` signature.
 - **Action:** Implement the embedding-backed retriever behind the existing interface; keep the lexical one as a deterministic test/eval fallback. Re-run the eval through it to prove the safety contract holds across the swap. Add a `p95 first-token < 1.5 s` load test (ROADMAP §7 names k6; no harness exists yet) — currently an *unmeasured* target.
 
-### 5.2 — `P3` Caching & render reuse
+### 5.2 — `P3` Caching & render reuse — **DONE**
 - **Dimension:** Performance/cost · **Concern:** technical · **Evidence:** pages re-render per request; ROADMAP §11 wants common-jurisdiction answer caching for Bedrock cost.
-- **Action:** Cache common `(jurisdiction × change_type)` answers and static checklist HTML (it's stateless and PII-free, so cacheable). Add corpus cache-invalidation on file change for dev ergonomics (`api/corpus.ts` caches for process lifetime).
+- **Action:** ~~Cache common `(jurisdiction × change_type)` answers and static checklist HTML with a bounded selection-only key, and add corpus cache-invalidation on file change for dev ergonomics.~~ **DONE**: `api/cache.ts` adds a tiny generic `memoize()` (bounded Map, LRU-ish eviction, default max 256) plus a `clearAllCaches()` registry. `api/router.ts` wraps `/checklist` (keyed on the canonical `intakeQuery(intake)` + `today` + the thinner-coverage flag — this already collapses to (jurisdiction × change × doc × language), so it naturally caches common (jurisdiction × change-type) combos) and `/answer` (keyed on jurisdiction + sorted change/doc enums + language + `today`, cached **only** when no free-text `q` is present — a question always bypasses the cache; observability counters are stored alongside the cached body so the allowlist log call still fires real numbers on a hit). `api/corpus.ts`'s `loadCorpus()` now stats the corpus dir + `VERIFIERS.json` on each cached call (gated behind `NODE_ENV !== 'production'` or `CORPUS_WATCH=1`, so production keeps its zero-syscall process-lifetime cache) and, on a newer mtime, force-reloads **and** calls `clearAllCaches()` so stale answers/checklist HTML can't survive a corpus edit. The selection keys may still be sensitive and are inventoried in the DPIA. See `tests/cache.test.ts`, and the caching/invalidation coverage added to `tests/router.test.ts` and `tests/corpus.test.ts`.
 
 ---
 
@@ -240,7 +260,7 @@ and proving the privacy invariant rather than spot-checking it.
 - *Gate to add:* no jurisdiction flips to `launch_cleared` until its records are independently verified **and** covered by the independent gold set.
 
 **P1 — pre-launch hardening:**
-- §1.3 real-model + semantic eval · §1.4 gold-set depth · §2.1 egress proof · §2.2 HTTP hardening · §2.3 DPIA/STRIDE sign-off · §3.2 readability gate · §3.3 fill feedback · §4.1 corpus localization · §6.1 test the HTTP/render shells.
+- §1.3 real-model + semantic eval · §1.4 gold-set depth · §2.1 non-reflection proof · §2.2 HTTP hardening · §2.3 DPIA/STRIDE sign-off · §3.2 readability gate · §3.3 fill feedback · §4.1 corpus localization · §6.1 test the HTTP/render shells.
 
 **P2 — post-launch / scale:**
 - §1.5 corpus integrity · §1.6 disclosure rigor · §2.4 supply-chain/SAST blocking · §2.5 safe save/resume · §4.2 language-aware retrieval · §5.1 vector retriever + load test · §6.2 observability · §6.3 graceful degradation · §7.2 contribution path.
@@ -251,7 +271,7 @@ and proving the privacy invariant rather than spot-checking it.
 ## Suggested new/strengthened CI gates (net-new assurance)
 1. **Real-model eval lane** — at least one Bedrock-backed eval pass (§1.3).
 2. **Independent-gold drift check** — fails if gold-set authorship overlaps corpus authorship (§1.2).
-3. **PII-egress data-flow test** — promised in RESPONSIBLE-TECH §C, not yet present (§2.1).
+3. **Request-content non-reflection test** — now present: sentinel content must not appear in application logs or response bodies (§2.1).
 4. **Blocking axe/pa11y + contrast** — promote from advisory (§3.1).
 5. **Readability gate (EN+ES)** — new (§3.2).
 6. **Server/render coverage included** — stop excluding the HTTP surface (§6.1).

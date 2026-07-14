@@ -14,13 +14,26 @@ import { REPO_ROOT } from "./corpus.ts";
 
 const REGISTRY = join(REPO_ROOT, "forms", "registry.json");
 
+// Cached like loadCorpus() — the real registry is small and static per process, so
+// formById() does not re-read it once per step and request. Fixture paths deliberately
+// bypass the cache so gate-efficacy tests stay isolated.
+let CACHE: FormDef[] | null = null;
+
 /**
  * Load the official-forms registry. `file` defaults to the real registry —
  * overridable so the forms-check CI gate's tests/gate-efficacy negative controls
  * can point it at a poisoned fixture registry without touching production callers.
  */
 export function loadForms(file: string = REGISTRY): FormDef[] {
-  return JSON.parse(readFileSync(file, "utf8")) as FormDef[];
+  if (file === REGISTRY && CACHE) return CACHE;
+  const forms = JSON.parse(readFileSync(file, "utf8")) as FormDef[];
+  if (file === REGISTRY) CACHE = forms;
+  return forms;
+}
+
+/** Test-only hook: drop the cache so a test can force a fresh disk read. */
+export function clearFormsCache(): void {
+  CACHE = null;
 }
 
 export function formById(id: string): FormDef | undefined {

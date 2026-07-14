@@ -20,7 +20,7 @@ import { mkdtempSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { execFileSync } from "node:child_process";
-import { runGate, fixture, REPO_ROOT } from "./runner.ts";
+import { runGate, fixture, REPO_ROOT, isolatedChildEnv } from "./runner.ts";
 
 // ── content (scripts/content-validate.ts) ──────────────────────────────────────
 // Harm: a corpus record ships with no source block (a claim with no provenance).
@@ -47,6 +47,14 @@ test("privacy gate fails on a PII field in a log call", () => {
   const r = runGate("privacy-lint", { env: { PRIVACY_LINT_ROOT: fixture("privacy-poison") } });
   assert.notEqual(r.code, 0);
   assert.match(r.output, /PII in a log call/);
+});
+
+// Harm: runtime API code starts reading a direct identity-form field outside the thin
+// HTTP shell. This proves the static gate covers the full runtime API directory.
+test("privacy gate fails on direct identity-field handling anywhere in runtime API code", () => {
+  const r = runGate("privacy-lint", { env: { PRIVACY_LINT_ROOT: fixture("privacy-api-poison") } });
+  assert.notEqual(r.code, 0);
+  assert.match(r.output, /runtime API references a direct identity field/);
 });
 
 // ── freshness (scripts/freshness.ts) ────────────────────────────────────────────
@@ -137,16 +145,33 @@ test("i18n logical-css gate fails on a physical inline-axis property", () => {
 // `git ls-files` in its cwd — so the negative control is a disposable, real git repo
 // (never committed to the real repo) containing one non-UTF-8 tracked file. No
 // source-code injection point was needed or added.
+test("fixture child environments drop ambient Git repository identity", () => {
+  assert.deepEqual(
+    Object.keys(isolatedChildEnv()).filter((key) => key.startsWith("GIT_")),
+    [],
+  );
+});
+
 test("i18n-utf8 gate fails on a non-UTF-8 tracked file", () => {
   const dir = mkdtempSync(join(tmpdir(), "gate-efficacy-utf8-"));
+  const gitEnv = isolatedChildEnv({
+    GIT_CONFIG_NOSYSTEM: "1",
+    GIT_CONFIG_GLOBAL: "/dev/null",
+  });
   try {
-    execFileSync("git", ["init", "-q"], { cwd: dir });
-    execFileSync("git", ["config", "user.email", "poison@example.test"], { cwd: dir });
-    execFileSync("git", ["config", "user.name", "Poison Fixture"], { cwd: dir });
+    execFileSync("git", ["init", "-q"], { cwd: dir, env: gitEnv });
+    execFileSync("git", ["config", "user.email", "poison@example.test"], {
+      cwd: dir,
+      env: gitEnv,
+    });
+    execFileSync("git", ["config", "user.name", "Poison Fixture"], {
+      cwd: dir,
+      env: gitEnv,
+    });
     // A latin1 byte sequence (0xE9 = "é" in latin1) that is NOT valid UTF-8.
     writeFileSync(join(dir, "bad-encoding.txt"), Buffer.from([0x63, 0x61, 0x66, 0xe9]));
-    execFileSync("git", ["add", "-A"], { cwd: dir });
-    execFileSync("git", ["commit", "-q", "-m", "poison"], { cwd: dir });
+    execFileSync("git", ["add", "-A"], { cwd: dir, env: gitEnv });
+    execFileSync("git", ["commit", "-q", "-m", "poison"], { cwd: dir, env: gitEnv });
 
     const r = runGate("i18n-utf8", { cwd: dir });
     assert.notEqual(r.code, 0);

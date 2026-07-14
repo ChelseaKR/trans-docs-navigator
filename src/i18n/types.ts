@@ -15,6 +15,7 @@ export interface UiMessages {
   legalNav: string;
   termsLink: string;
   privacyLink: string;
+  transparencyLink: string;
   a11yLink: string;
   methodologyLink: string;
   verifyNote: string;
@@ -99,13 +100,15 @@ export interface UiMessages {
   moreHeading: string;
   seeDetailedAnswer: string;
   officialFormIntro: string;
+  /** "What to bring" preparation-list heading on the form-fill page (rendered only when a form has cited items). */
+  whatToBringTitle: string;
   // On-device "copy your details into the official form" helper (no PDF, no egress).
   copyTitle: string;
   copyIntro: string;
   copyBtn: string;
   copied: string;
-  // Explicit "save for offline" shell (EXP-01): panel, statuses, the burned-in
-  // staleness banner, and the offline notice page. All local-only, like resume.
+  // Explicit "save for offline" shell (EXP-01): a user-initiated same-origin fetch,
+  // local browser copies, statuses, the staleness banner, and the offline notice page.
   offlineTitle: string;
   /** Plain-language intro that states the forensic trade-off (unencrypted, device-discoverable). */
   offlineIntro: string;
@@ -159,6 +162,7 @@ export interface LegalMessages {
   privacyTitle: string;
   accessibilityTitle: string;
   methodologyTitle: string;
+  transparencyTitle: string;
   terms: LegalSection[];
   privacy: LegalSection[];
   accessibility: LegalSection[];
@@ -191,6 +195,8 @@ export interface SeoMessages {
   breadcrumbGuides: string;
   /** Plain-language meta descriptions for the legal/trust pages. */
   legalDescription: { terms: string; privacy: string; accessibility: string; methodology: string };
+  /** Meta description for the /transparency report page. */
+  transparencyDescription: string;
 }
 
 /** Everything one language needs. The compiler enforces parity across languages. */
@@ -207,5 +213,11 @@ export interface LocaleBundle {
   fieldLabels: Record<string, string>;
   generator: GeneratorMessages;
   legal: LegalMessages;
+  /**
+   * Dated quarterly transparency-report entries (LegalSection[] shape: `h` is the
+   * period label, `html` inventories records that may exist and local-only boundaries).
+   * DRAFT POSTURE: no warrant-canary assertion ships here — see src/transparency.ts.
+   */
+  transparency: LegalSection[];
   seo: SeoMessages;
 }

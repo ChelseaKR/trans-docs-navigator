@@ -1,11 +1,10 @@
 // Page assembly: the intake form, the checklist page, and the client-side
-// form-fill page. The intake form collects NO PII — only jurisdiction, change
-// types, documents, and language — and submits via GET (no request body, no PII
-// on the wire). Identity fields are collected only on the form-fill page and
-// filled entirely in the browser.
+// form-fill page. The intake asks for jurisdiction, change types, documents, and
+// language — not direct identity fields — and submits those selections via GET.
+// Identity fields are entered only in the form-helper page and stay in the browser.
 
 import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from "../api/types.ts";
-import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel } from "./render.ts";
+import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel, preparationList } from "./render.ts";
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
 import { toResumeState } from "./secure-resume.ts";
@@ -32,7 +31,7 @@ export function renderIntakePage(lang: Language = "en"): string {
   const docs = DOCUMENT_IDS.map(
     (d) => `<label><input type="checkbox" name="doc" value="${d}"> ${escapeHtml(locale(lang).docLabels[d])}</label>`,
   ).join("");
-  // Skippable, non-identifying bookkeeping bit (same privacy class as change_types —
+  // Skippable, selection-only bookkeeping bit (same privacy class as change_types —
   // see docs/audits/dpia.md). It only lets the checklist annotate the court-order step
   // as already done and prune it from dependents' prerequisite lists; it is bookkeeping,
   // never individualized guidance, so the copy stays neutral.
@@ -157,9 +156,10 @@ function jsonIsland(id: string, value: unknown): string {
 }
 
 /**
- * Optional client-side encrypted save/resume (§2.5). Saves ONLY the non-PII selection
- * query, AES-GCM-encrypted with a passphrase, into localStorage — never to a server, and
- * never any identity field. The behavior lives in the static module
+ * Optional client-side encrypted save/resume (§2.5). Saves only the canonical selection
+ * query, AES-GCM-encrypted with a passphrase, into localStorage. The save action makes no
+ * network request and includes no direct identity field; the selections were already part
+ * of the server-rendered page request. The behavior lives in the static module
  * /assets/resume-panel.js (crypto in /assets/resume-crypto.js, the same module the test
  * suite exercises); this function only emits markup + a JSON config island, so the page
  * carries no inline script. Progressive enhancement: no-JS users simply don't see it.
@@ -167,7 +167,7 @@ function jsonIsland(id: string, value: unknown): string {
  */
 function renderResumePanel(s: ReturnType<typeof uiStrings>, query: string): string {
   if (!query) return "";
-  // Defense-in-depth: persist ONLY the allowlisted non-PII selection keys, regardless of
+  // Defense-in-depth: persist only the allowlisted selection keys, regardless of
   // what query reached this page. Identity fields can never be saved even if a future
   // caller passed a richer query string.
   const safeQuery = toResumeState(new URLSearchParams(query)).toString();
@@ -234,6 +234,7 @@ export function renderFormFillPage(form: FormDef, lang: Language = "en"): string
   const body = `
 <p>${escapeHtml(s.officialFormIntro)}</p>
 <p class="cta"><a href="${escapeHtml(form.source.url)}" rel="noopener noreferrer">${escapeHtml(s.getFormCta)}: ${escapeHtml(form.source.title)}</a></p>
+${preparationList(form.preparation, lang)}
 <section class="copy-helper no-print" aria-labelledby="copy-h">
   <h2 id="copy-h">${escapeHtml(s.copyTitle)}</h2>
   <p class="meta">${escapeHtml(s.copyIntro)}</p>

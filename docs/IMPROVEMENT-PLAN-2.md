@@ -29,7 +29,7 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
   `independent_author: true` in `eval/gold.provenance.json`. The eval withholds
   launch-clearance until then.
 - **A4 `P1` DPIA + STRIDE sign-off** (`docs/audits/dpia.md`), aligned with the published
-  Privacy Notice and the runtime PII-egress test.
+  Privacy Notice and the runtime request-content non-reflection test.
 - **A5 `P1` Manual SR / keyboard / 200%-zoom / 320px walkthrough** — now including the three
   legal pages — committed as `docs/audits/accessibility-YYYY-MM-DD.md`.
 
@@ -60,7 +60,7 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
   `scripts/content-validate.ts` so a bad referral link fails closed like a bad corpus
   record). Seeded 2 real official/legal-aid links per covered jurisdiction (federal, CA,
   IL, NY, TX, WA); kept as a sibling record type so `CorpusRecord.document_type` is
-  untouched. No PII.
+  untouched. This is static corpus content and introduces no user-data input.
 - **C4 `P3` Jurisdiction-change handling** (moved states mid-process) — ROADMAP §3 "Could".
 - **C5 `P3` Light theme + `prefers-color-scheme`** (currently dark-only via `PALETTE.screen`).
 
@@ -69,8 +69,11 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
   `src/pages.ts`, the resume panel) to SRI'd `/vendor/*.js`, then drop `'unsafe-inline'` from
   `script-src` in `api/server.ts`. Reuse the vendored-asset hash check in
   `scripts/security-scan.ts`.
-- **D2 `P2` Playwright E2E:** intake → checklist → form-fill download → encrypted
-  save/resume round-trip in a real browser (complements the unit-tested `src/secure-resume.ts`).
+- **D2 `P2` DONE — Playwright E2E:** intake → checklist → packet → on-device form-copy
+  helper → encrypted save/resume round-trip in a real browser, on desktop and mobile,
+  against the production server entry. The test also proves the copy-helper and encrypted
+  save interactions issue no network requests (complements the unit-tested
+  `src/secure-resume.ts` and the fetch-only `scripts/smoke-journey.ts`).
 - **D3 `P2` Real retrieval backend:** wire a real embedding model + pgvector/OpenSearch
   behind the `Retriever` seam (`api/embedding-retrieval.ts`); run `loadtest/p95.k6.js` in CI
   against a docker-compose instance for the §7 p95 target.
@@ -78,7 +81,7 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
 - **D5 `P3` Edge protection & observability — ✅ Done.** `aws_wafv2_web_acl.edge` (coarse
   IP rate limit, deploy-optional via empty `alb_arn` + `count` guard) fronts the
   best-effort in-process limiter; `aws_cloudwatch_log_metric_filter` resources route the
-  non-PII `safeLog` events to CloudWatch metrics, with `aws_cloudwatch_metric_alarm`
+  bounded, content-minimized `safeLog` events to CloudWatch metrics, with `aws_cloudwatch_metric_alarm`
   wiring each OPERATIONS.md "Alarms → actions" row (500s spike, quarantine, degraded
   answers, rate-limit abuse) — see `infra/main.tf` and the updated alarm names in
   `docs/OPERATIONS.md`.
@@ -105,12 +108,12 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
 2. **Round 3b (launch gates, human-led):** A1–A5. The true launch blockers; code prepares
    the artifacts, humans sign them.
 3. **Round 3c (scale/product):** B2/B4, ~~C2 privacy-safe reminders (DONE)~~/~~C3 referral
-   directory (DONE)~~, D2–D4,
+   directory (DONE)~~, ~~D2 (DONE)~~, D3–D4,
    E1/E2 as capacity allows.
 
 ## New/strengthened CI gates this round adds
 1. Source-liveness (link-rot) gate (B1) · 2. CSP without script `'unsafe-inline'` + SRI on
-the externalized bundles (D1) · 3. Scheduled freshness/eval cron (B4) · 4. Playwright E2E (D2).
+the externalized bundles (D1) · 3. Scheduled freshness/eval cron (B4) · 4. Playwright E2E (D2 — DONE).
 
 ---
 

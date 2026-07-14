@@ -1,9 +1,13 @@
 // Privacy gate (audit §C, guardrail #3) — merge-blocking.
-// Asserts the two mechanical privacy invariants:
-//   (1) No PII egress: the server never references identity-document PII fields,
-//       because form-fill is client-side and PII never reaches the server.
-//   (2) No PII in logs: no logging call anywhere carries a PII field.
+// Asserts two deliberately narrow, mechanical privacy invariants:
+//   (1) Runtime API code never references the direct identity fields used by the
+//       on-device form helper.
+//   (2) No logging call in application code carries one of those identity fields.
 // The runtime safe-logger allowlist (api/log.ts) is verified separately by tests.
+// This gate does not prove that request data never reaches the server: checklist
+// selections and an optional free-text question are request inputs. The runtime
+// data-flow test separately proves that attacker-controlled content is not reflected
+// into an application log descriptor or response body.
 
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative } from "node:path";
@@ -14,7 +18,7 @@ import { walk, read, isSource, pass, fail } from "./util.ts";
 // root. Unset in production, so behavior is unchanged.
 const ROOT = process.env.PRIVACY_LINT_ROOT ?? join(dirname(fileURLToPath(import.meta.url)), "..");
 
-// Identity PII that must never touch the server or any log line.
+// Direct identity fields that runtime API code must never handle or log.
 const PII_KEYS = [
   "current_legal_name",
   "new_legal_name",
@@ -27,19 +31,23 @@ const logRe = /\b(console\.\w+|safeLog|logger?\.\w+)\s*\(/;
 
 const problems: string[] = [];
 
-// (1) Server must be PII-free. types.ts defines the Intake shape and is exempt
-//     (it is a compile-time type, not a runtime data flow).
-const serverFile = join(ROOT, "api", "server.ts");
-const serverSrc = read(serverFile);
-serverSrc.split("\n").forEach((line, i) => {
-  if (piiRe.test(line)) problems.push(`api/server.ts:${i + 1} — server references PII field (no PII may reach the server)`);
-});
+// (1) Runtime API code must not handle direct identity fields. types.ts is exempt:
+//     it is a compile-time shape retained for client-side form-helper compatibility.
+for (const file of walk(join(ROOT, "api"), isSource)) {
+  const rel = relative(ROOT, file);
+  if (rel === join("api", "types.ts")) continue;
+  read(file)
+    .split("\n")
+    .forEach((line, i) => {
+      if (piiRe.test(line)) problems.push(`${rel}:${i + 1} — runtime API references a direct identity field`);
+    });
+}
 
-// (2) No PII in any log call across app code.
+// (2) No direct identity field in any log call across application code.
 for (const dir of ["api", "src"]) {
   for (const file of walk(join(ROOT, dir), isSource)) {
     const rel = relative(ROOT, file);
-    if (rel.endsWith("types.ts")) continue;
+    if (rel === join("api", "types.ts")) continue;
     read(file)
       .split("\n")
       .forEach((line, i) => {
@@ -55,4 +63,4 @@ if (!/\*\.session\.json/.test(gitignore)) {
 }
 
 if (problems.length > 0) fail("privacy", `${problems.length} privacy violation(s)`, problems);
-pass("privacy", "no PII reaches the server; no PII in logs; sessions ephemeral");
+pass("privacy", "no direct identity fields in runtime API/log calls; session artifacts ignored");

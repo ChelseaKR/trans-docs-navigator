@@ -2,12 +2,15 @@
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { handleRoute } from "../api/router.ts";
 import { SW_VERSION, serviceWorkerScript, SHELL_ASSETS, staleAfterDays, SAVED_CACHE } from "../src/offline.ts";
 import { renderOfflinePage } from "../src/pages.ts";
 import { loadCorpus } from "../api/corpus.ts";
 
 const u = (path: string) => new URL(path, "http://localhost:8080");
+const OFFLINE_CLIENT = readFileSync(join(import.meta.dirname, "..", "public", "assets", "offline.js"), "utf8");
 
 test("GET /offline renders the offline notice page", () => {
   const r = handleRoute("GET", u("/offline"));
@@ -86,6 +89,14 @@ test("service worker has no background-sync, push, or periodic-sync listeners", 
   assert.ok(!sw.includes('addEventListener("sync"'), "no background sync listener");
   assert.ok(!sw.includes('addEventListener("push"'), "no push listener");
   assert.ok(!sw.includes('addEventListener("periodicsync"'), "no periodic sync listener");
+});
+
+test("offline save makes disclosed same-origin fetches only after an explicit save action", () => {
+  const save = OFFLINE_CLIENT.match(/const save = async \(\) => \{[\s\S]*?\n  \};/)?.[0] ?? "";
+  assert.match(OFFLINE_CLIENT, /saveBtn\.addEventListener\("click", save\)/);
+  assert.match(save, /navigator\.serviceWorker\.register\("\/sw\.js"\)/);
+  assert.match(save, /await fetch\(url, \{ credentials: "same-origin" \}\)/);
+  assert.doesNotMatch(OFFLINE_CLIENT, /sendBeacon|WebSocket|EventSource|XMLHttpRequest/);
 });
 
 test("SAVED_CACHE constant is defined and exported", () => {

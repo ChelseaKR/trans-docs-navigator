@@ -38,13 +38,28 @@ export interface GateResult {
 // top-level environment `make verify` would give it.
 const NODE_TEST_ENV_KEYS = ["NODE_TEST_CONTEXT", "NODE_TEST_WORKER_ID"];
 
+/**
+ * Hooks such as pre-push export GIT_DIR/GIT_WORK_TREE for the caller repository.
+ * Never let that ambient repository identity escape into a child whose `cwd` is a
+ * disposable fixture: a `git init`/`git add` there would otherwise mutate the real
+ * worktree's index and branch. Child processes rediscover Git state from their cwd.
+ */
+export function isolatedChildEnv(
+  overrides: Record<string, string> = {},
+): NodeJS.ProcessEnv {
+  const env: NodeJS.ProcessEnv = { ...process.env };
+  for (const key of Object.keys(env)) {
+    if (key.startsWith("GIT_") || NODE_TEST_ENV_KEYS.includes(key)) delete env[key];
+  }
+  return { ...env, ...overrides };
+}
+
 export function runGate(
   gate: string,
   opts: { env?: Record<string, string>; cwd?: string } = {},
 ): GateResult {
   const scriptPath = join(REPO_ROOT, "scripts", `${gate}.ts`);
-  const env = { ...process.env, ...opts.env };
-  for (const key of NODE_TEST_ENV_KEYS) delete env[key];
+  const env = isolatedChildEnv(opts.env);
   const res = spawnSync(
     process.execPath,
     ["--experimental-strip-types", "--no-warnings", scriptPath],

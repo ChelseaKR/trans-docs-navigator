@@ -107,6 +107,12 @@ export interface ReferralRecord {
  * LiveCycle PDFs that browser PDF tooling can't fill, and a mis-filled legal form is a
  * real harm; we send people to the authoritative form instead. See docs/STATUS.md.)
  */
+/** One "what to bring" item for a form's preparation checklist — always cited. */
+export interface PreparationItem {
+  item: string;
+  citation: string;
+}
+
 export interface FormDef {
   id: string;
   jurisdiction: JurisdictionId;
@@ -115,16 +121,28 @@ export interface FormDef {
   title: string;
   /** Official source for the blank form (the link the user follows). */
   source: Source;
+  /** Revision string scraped/entered from the official page (e.g. "Rev. 2024-11"). */
+  version_hint?: string;
+  /** SHA-256 of raw PDF bytes when this source is a directly linked PDF. */
+  pdf_sha256?: string;
+  /** ISO date (YYYY-MM-DD) the form source was last checked. */
+  checked?: string;
+  /**
+   * "What to bring" checklist (certified copies, payment types, etc.), each item
+   * cited. Legal content here is [counsel-gated] — left empty/absent until
+   * verified content is authored; the field is typed and rendered ahead of that.
+   */
+  preparation?: PreparationItem[];
 }
 
-/** Minimal, respectful intake. Lives only in client memory/session — never persisted server-side. */
+/** Minimal, respectful selection shape; request/cache/log handling is documented in the DPIA. */
 export interface Intake {
   jurisdiction: JurisdictionId;
   change_types: ChangeType[];
   /** Documents the user wants to update; empty means "recommend the standard set". */
   documents: DocumentType[];
   language: Language;
-  /** Optional, all skippable — used only client-side for form pre-fill. */
+  /** Optional legacy/client-only form-helper fields; runtime API code must not read them. */
   current_legal_name?: string;
   new_legal_name?: string;
   has_court_order?: boolean;

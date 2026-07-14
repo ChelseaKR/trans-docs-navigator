@@ -4,7 +4,7 @@
 // disclosure (guardrail #2). Colour tokens meet AA contrast; focus is always
 // visible; motion respects prefers-reduced-motion.
 
-import type { Checklist, GroundedAnswer, CorpusRecord, DocumentType, Language } from "../api/types.ts";
+import type { Checklist, GroundedAnswer, CorpusRecord, DocumentType, Language, PreparationItem } from "../api/types.ts";
 import type { UiMessages } from "./i18n/index.ts";
 import { t as locale } from "./i18n/index.ts";
 import type { SeoMeta } from "./seo.ts";
@@ -33,8 +33,9 @@ export function escapeHtml(s: string): string {
 
 // "Law changed in X" issue template (.github/ISSUE_TEMPLATE/law-changed.md). Wiring a
 // per-step report link to it turns users into a freshness signal (RESEARCH-ROADMAP R11).
-// The jurisdiction + document are non-PII selection metadata, prefilled into the title so
-// the report is actionable; no identity data is involved.
+// The jurisdiction + document are selection metadata, prefilled into the title so
+// the report is actionable. They contain no direct identity field but can still reveal
+// sensitive context, which is why the destination disclosure and no-referrer controls exist.
 const LAW_CHANGED_ISSUE_URL = "https://github.com/ChelseaKR/trans-docs-navigator/issues/new?template=law-changed.md";
 export function reportErrorHref(jurisdiction: string, documentType: string): string {
   return `${LAW_CHANGED_ISSUE_URL}&title=${encodeURIComponent(`[law-changed] ${jurisdiction} · ${documentType}`)}`;
@@ -102,6 +103,7 @@ footer{max-width:60rem;margin:0 auto;padding:1.5rem 1rem;color:var(--muted);bord
 .step-detail summary{cursor:pointer;color:var(--accent)}
 .more{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.5rem 1rem 1rem;margin:1.5rem 0}
 .copy-helper{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.5rem 1rem 1rem;margin:1.5rem 0}
+.prep{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.5rem 1rem 1rem;margin:1.5rem 0}
 .copy-out{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:.4rem;padding:.5rem;min-height:1.4rem;margin:.5rem 0}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media print{
@@ -160,6 +162,7 @@ ${headTags(fullTitle, opts.lang, seo)}
   <nav aria-label="${escapeHtml(t.legalNav)}">
     <a href="/terms${langQ}">${escapeHtml(t.termsLink)}</a> ·
     <a href="/privacy${langQ}">${escapeHtml(t.privacyLink)}</a> ·
+    <a href="/transparency${langQ}">${escapeHtml(t.transparencyLink)}</a> ·
     <a href="/accessibility${langQ}">${escapeHtml(t.a11yLink)}</a> ·
     <a href="/methodology${langQ}">${escapeHtml(t.methodologyLink)}</a>
   </nav>
@@ -180,6 +183,21 @@ function sourceList(records: CorpusRecord[], lang: Language, level: 2 | 3 = 3): 
     )
     .join("");
   return `<h${level}>${escapeHtml(t.sources)}</h${level}><ul>${items}</ul>`;
+}
+
+/**
+ * "What to bring" preparation checklist for a form-fill page (FIX-10). Renders nothing
+ * when `items` is absent/empty — the underlying legal content (what a given form
+ * actually requires) is [counsel-gated] and not yet authored in forms/registry.json,
+ * so an empty/absent list must never render a placeholder claim.
+ */
+export function preparationList(items: PreparationItem[] | undefined, lang: Language): string {
+  if (!items || items.length === 0) return "";
+  const t = locale(lang).ui;
+  const rows = items
+    .map((p) => `<li>${escapeHtml(p.item)} — <span class="meta">${escapeHtml(p.citation)}</span></li>`)
+    .join("");
+  return `<section class="prep" aria-labelledby="prep-h"><h2 id="prep-h">${escapeHtml(t.whatToBringTitle)}</h2><ul>${rows}</ul></section>`;
 }
 
 export function renderChecklist(checklist: Checklist, records: CorpusRecord[], lang: Language): string {

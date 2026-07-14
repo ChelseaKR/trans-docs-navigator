@@ -17,7 +17,7 @@
 # The privacy-invariant logging sink (allowlist-only fields, fail-closed).
 /api/log.ts @ChelseaKR
 
-# The static privacy lint that proves no PII reaches logs/egress.
+# Static privacy gate for direct identity fields and log-call references.
 /scripts/privacy-lint.ts @ChelseaKR
 
 # The hand-verified legal corpus — every record needs a real source + verifier.

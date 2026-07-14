@@ -16,6 +16,13 @@ name: release
 #
 # Uses only GITHUB_TOKEN + keyless OIDC (Sigstore Fulcio/Rekor) — no long-lived
 # credential, no repo secret to provision.
+#
+# The `dataset` job (EXP-08) packages the corpus as a versioned, signed dataset bundle
+# (schema + records + verifier roster + per-jurisdiction labels + hash manifest, see
+# scripts/dataset-build.ts). It publishes the files on the tagged GitHub Release and
+# attests them with keyless OIDC provenance. Release assets inherit repository
+# visibility; while this repository is private, they are release-ready but not public.
+# Like every shipped artifact, the dataset depends on version-check + full verification.
 
 on:
   push:
@@ -37,7 +44,7 @@ jobs:
         uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
         with:
           egress-policy: audit
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
       - name: Tag ↔ package.json version consistency
@@ -59,7 +66,7 @@ jobs:
         uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
         with:
           egress-policy: audit
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
@@ -70,7 +77,7 @@ jobs:
       # make verify's last step (G9 pseudolocale overflow) drives a real browser.
       - name: Install Playwright Chromium (G9 pseudolocale overflow gate)
         run: npx playwright install --with-deps chromium
-      # The exact same 20-stage blocking pipeline that guards every merge to main —
+      # The exact same 22-stage blocking pipeline that guards every merge to main —
       # a tag can never publish an image that didn't earn a green `make verify`.
       - run: make verify
 
@@ -93,7 +100,7 @@ jobs:
         uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
         with:
           egress-policy: audit
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
 
@@ -212,3 +219,46 @@ jobs:
       - name: Stop the container
         if: always()
         run: docker rm -f release-check || true
+
+  # Versioned, signed dataset release (EXP-08). No new deps: the build script
+  # is native `node --experimental-strip-types` reusing api/corpus.ts's fail-closed
+  # validator. Provenance is keyless (GitHub OIDC) — no secrets, only the two extra
+  # permissions below (job-scoped; they do not widen the `package` job above).
+  dataset:
+    needs: [verify]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # create/update the tagged GitHub Release assets
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: "22"
+          # This privileged tag job publishes release assets; never restore an
+          # untrusted package-manager cache into it (zizmor cache-poisoning audit).
+          package-manager-cache: false
+      - name: Build dataset release bundle
+        run: node --experimental-strip-types scripts/dataset-build.ts dist/dataset
+      - name: Attest build provenance (keyless, OIDC)
+        uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4.1.1
+        with:
+          subject-path: "dist/dataset/*"
+      - name: Publish versioned dataset files on the tagged GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" dist/dataset/* --clobber
+          else
+            gh release create "$TAG" dist/dataset/* --verify-tag --title "$TAG" --generate-notes
+          fi
+      - name: Upload dataset artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: dataset-${{ github.ref_name }}
+          path: dist/dataset/

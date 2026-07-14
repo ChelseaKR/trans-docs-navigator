@@ -17,6 +17,8 @@ import { GOLD } from "./gold.ts";
 import type { GoldItem } from "./gold.ts";
 import { runMetamorphic } from "./metamorphic.ts";
 import type { MetamorphicResult } from "./metamorphic.ts";
+import { claimIsFaithful, decomposeClaim, defaultJudge } from "./faithfulness.ts";
+import type { FaithfulnessJudge } from "./faithfulness.ts";
 
 export const EVAL_TODAY = "2026-06-16";
 
@@ -117,40 +119,31 @@ function answerText(ans: GroundedAnswer): string {
   return ans.blocks.map((b) => b.text).join("\n");
 }
 
-const FAITHFUL_TOKEN_COVERAGE = 0.6; // a claim must carry ≥60% of its cited record's content tokens
-
-function contentTokens(s: string): string[] {
-  return (s.toLowerCase().replace(/[^a-z0-9áéíóúüñ\s]/gi, " ").match(/[a-z0-9áéíóúüñ]+/gi) ?? [])
-    .filter((t) => t.length > 3); // drop short function words; keep content-bearing tokens
-}
-
 /**
- * Faithfulness check. The deterministic composer is extractive, so an exact substring
- * match holds today; but we ALSO accept a token-coverage match (≥60% of the cited
- * record's content tokens present in the claim). The token measure is a deterministic
- * stand-in for semantic entailment that stays meaningful once a real model
- * (BedrockGenerator) rewords output — substring alone would spuriously fail a faithful
- * paraphrase. A real launch swaps this for an LLM-judge entailment check (ROADMAP §7).
+ * Faithfulness check. Each claim block is decomposed into sentence/clause-sized
+ * assertions, and every assertion must be supported by at least one record actually
+ * cited by that block. The default offline judge combines lexical support with exact
+ * numeric/form-ID checks and scoped negation; an unsupported second sentence can no
+ * longer ride on a supported first sentence. A networked LLM-judge remains a separate
+ * pre-launch eval lane (IMPROVEMENT-PLAN §1.3).
  */
-function claimIsFaithful(claimText: string, rec: CorpusRecord): boolean {
-  if (claimText.includes(rec.statement.trim())) return true; // exact extractive match
-  const need = contentTokens(rec.statement);
-  if (need.length === 0) return true;
-  const have = new Set(contentTokens(claimText));
-  const covered = need.filter((t) => have.has(t)).length / need.length;
-  return covered >= FAITHFUL_TOKEN_COVERAGE;
-}
-
-function isFaithful(ans: GroundedAnswer, corpus: CorpusRecord[]): { faithful: number; total: number } {
+function isFaithful(
+  ans: GroundedAnswer,
+  corpus: CorpusRecord[],
+  judge: FaithfulnessJudge = defaultJudge,
+): { faithful: number; total: number } {
   let faithful = 0;
   let total = 0;
   for (const block of ans.blocks) {
     if (block.kind !== "claim") continue;
     total++;
-    const ok = block.citations.some((id) => {
-      const rec = corpus.find((r) => r.id === id);
-      return rec ? claimIsFaithful(block.text, rec) : false;
-    });
+    const assertions = decomposeClaim(block.text);
+    const ok = assertions.length > 0 && assertions.every((assertion) =>
+      block.citations.some((id) => {
+        const rec = corpus.find((r) => r.id === id);
+        return rec ? claimIsFaithful(assertion, rec, judge) : false;
+      }),
+    );
     if (ok) faithful++;
   }
   return { faithful, total };
@@ -231,7 +224,7 @@ function ratio(pass: number, total: number): number {
   return total === 0 ? 0 : pass / total;
 }
 
-export function runEval(thresholds: Thresholds = THRESHOLDS): EvalReport {
+export function runEval(thresholds: Thresholds = THRESHOLDS, judge: FaithfulnessJudge = defaultJudge): EvalReport {
   const corpus = loadCorpus();
   const items: ItemResult[] = [];
   const answers: { item: GoldItem; ans: GroundedAnswer | null }[] = [];
@@ -263,7 +256,7 @@ export function runEval(thresholds: Thresholds = THRESHOLDS): EvalReport {
   let claimTotal = 0;
   for (const { item, ans } of answers) {
     if (item.suite !== "accuracy" || !ans || ans.refused) continue;
-    const f = isFaithful(ans, corpus);
+    const f = isFaithful(ans, corpus, judge);
     faithful += f.faithful;
     claimTotal += f.total;
   }

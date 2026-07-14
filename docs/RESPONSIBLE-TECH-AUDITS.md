@@ -8,7 +8,7 @@ For this system, several of these audits are not compliance overhead — they ar
 
 ## A. Ethics & responsibility
 - **Worst plausible failure:** confident, wrong guidance that costs a user money/time or exposes them. → Mitigated by retrieval-mandatory generation, citation coverage, accuracy eval, and freshness gates.
-- **Worst plausible misuse:** an adversary using stored user data to identify or target trans people. → Mitigated by collecting essentially nothing server-side (§C).
+- **Worst plausible misuse:** an adversary using request, log, browser-history, or provider records to identify or target trans people. → Reduced through minimization and bounded retention (§C), but not eliminated.
 - **"Works as intended" harm:** a user follows a step that's discretionary in their court and is surprised. → Mitigated by explicitly framing discretionary steps and never overstating certainty.
 - **Non-goals (committed):** not legal advice; not a filing service; not a data collector. **Auto-gated:** tests assert disclaimer presence and that no individualized legal conclusion templates exist. **Review-gated:** ethics sign-off per release.
 
@@ -19,10 +19,10 @@ For this system, several of these audits are not compliance overhead — they ar
 - **Commitment:** no jurisdiction launches below the accuracy bar; content reviewed for inclusivity. **Auto-gated:** per-segment accuracy thresholds. **Review-gated:** representational-harm content review.
 
 ## C. Privacy & data-protection (DPIA)
-- **Data inventory (default mode):** intake answers live only in client memory/session; identity data for form-fill is processed client-side; **server stores no PII**.
-- **Threat model (hostile-jurisdiction):** assume an adversary with subpoena power or breach access. The defense is to have nothing to take: ephemeral by default, no accounts required, client-side form-fill, and no PII in logs or analytics.
-- **Optional saved state:** if a user opts into resume, it is local-only and encrypted; a clear deletion path exists.
-- **Commitment:** zero server-side PII fields in default mode; encryption for any opt-in local state; plain-language notice. **Auto-gated:** privacy-lint (no PII in logs), data-flow test asserting no PII egress, secret scanning. **Review-gated:** DPIA sign-off committed as `docs/audits/dpia.md`.
+- **Data inventory (default mode):** the server processes checklist selections and any optional free-text question from a GET URL. Selection-only renders may enter a bounded in-memory cache; application logs contain allowlisted route/selection/operational metadata. Raw question text bypasses that cache and is excluded from application logs and responses. Identity fields typed into the form helper stay on-device. Browser history and infrastructure-provider records are separate surfaces; see the DPIA.
+- **Threat model (hostile-jurisdiction):** assume an adversary with subpoena power or breach access. Minimize what can exist: no accounts or identity-profile database, on-device identity-form fields, no raw questions in application cache/logs/responses, bounded application-log retention, and explicit provider/browser residual risk.
+- **Optional saved state:** if a user opts into resume, the encrypted resume blob is local-only and deletable. Its selection data has already been used in normal server-rendered requests.
+- **Commitment:** accurate data-flow notice, no runtime handling of direct identity-form fields, no raw request-content reflection, local encryption for opt-in resume state, and bounded documented retention. **Auto-gated:** static identity/log-call gate, runtime non-reflection and logger tests, secret scanning. **Review-gated:** DPIA/counsel sign-off committed as `docs/audits/dpia.md`.
 
 ## D. Transparency & explainability
 - **Every claim is attributable:** answers render source + `last_verified`; uncited claims are rejected pre-render (auto-gated at 100% coverage).
@@ -36,7 +36,7 @@ For this system, several of these audits are not compliance overhead — they ar
 - **Commitment:** primary tasks completable by screen-reader/keyboard/magnification users; published accessibility statement. **Auto-gated:** axe + keyboard-path tests. **Review-gated:** manual walkthrough sign-off as `docs/audits/accessibility-YYYY-MM-DD.md`.
 
 ## F. Security
-- **Threat model (STRIDE on the data flows):** primary assets are user PII (minimized to near-zero) and corpus integrity (a poisoned corpus = harmful guidance).
+- **Threat model (STRIDE on the data flows):** primary assets are sensitive user request/identity data and corpus integrity (a poisoned corpus = harmful guidance).
 - **Controls:** OWASP ASVS L2 posture (touches sensitive contexts even with minimal storage); corpus changes require reviewed PRs with sources; SAST + dependency + secret scans merge-blocking; least-privilege infra.
 - **Residual-risk register:** committed in `docs/audits/`, with owners and review dates. **Auto-gated:** scanners. **Review-gated:** threat-model sign-off.
 

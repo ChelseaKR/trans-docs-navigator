@@ -1,7 +1,8 @@
-// PII-egress data-flow proof (RESPONSIBLE-TECH §C, guardrail #3). The regex privacy
-// lint proves no PII is *referenced* in server/log code; this proves no PII *escapes*
-// at runtime: we inject a unique sentinel into every conceivable request field and the
-// log sink, then assert it never appears in any response body or emitted log line.
+// Request-content non-reflection proof (RESPONSIBLE-TECH §C, guardrail #3). The
+// static privacy gate rejects direct identity-field handling in runtime API/log code;
+// this runtime test injects a unique sentinel into every request field and the log
+// sink, then proves it is not copied into a response body or application log descriptor.
+// The request itself still reaches the server, as the Privacy Notice discloses.
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -22,7 +23,7 @@ function poisoned(path: string, jurisdiction = "US-CA"): URL {
   return url;
 }
 
-test("no request-borne PII reaches any response body or log descriptor", () => {
+test("request-borne content is not reflected into a response body or log descriptor", () => {
   const routes = ["/", "/checklist", "/packet", "/answer", "/forms/us-ss-5", "/healthz"];
   for (const path of routes) {
     const r = handleRoute("GET", poisoned(path), "2026-05-31");

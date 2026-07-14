@@ -11,6 +11,7 @@ import { loadCorpus } from "../api/corpus.ts";
 import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
+import { renderTransparencyPage } from "../src/transparency.ts";
 import { renderAnswer, page } from "../src/render.ts";
 import type { Language } from "../api/types.ts";
 import { pass, fail } from "./util.ts";
@@ -51,7 +52,13 @@ function checkPageDisclosure(name: string, html: string, lang: Language): void {
 }
 
 // Every page must carry the banner disclosure AND footer links to the legal/policy pages.
-const LEGAL_LINKS = [/href="\/terms/, /href="\/privacy/, /href="\/accessibility/];
+const LEGAL_LINKS = [
+  /href="\/terms/,
+  /href="\/privacy/,
+  /href="\/transparency/,
+  /href="\/accessibility/,
+  /href="\/methodology/,
+];
 function checkFooterLegalLinks(name: string, html: string): void {
   for (const re of LEGAL_LINKS) {
     if (!re.test(html)) problems.push(`${name}: footer missing legal/policy link ${re}`);
@@ -70,6 +77,7 @@ for (const lang of ["en", "es"] as Language[]) {
     ["privacy", renderPrivacyPage(lang)],
     ["accessibility", renderAccessibilityPage(lang)],
     ["methodology", renderMethodologyPage(lang)],
+    ["transparency", renderTransparencyPage(lang)],
   ];
   for (const [name, htmlStr] of pages) {
     checkPageDisclosure(name, htmlStr, lang);

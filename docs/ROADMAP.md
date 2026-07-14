@@ -2,7 +2,7 @@
 
 > The buildable spec. Reads top-to-bottom as product → research → design → architecture → quality → build plan → GTM → legal → ops. Generic enforcement lives in `/STANDARDS`; this document carries the decisions and the project-specific values.
 >
-> **Last verified: 2026-05-31 · Recheck cadence: quarterly for legal content; per-API for integrations.** Legal requirements change; treat every jurisdiction fact as needing reverification before launch.
+> **Last verified: 2026-07-12 · Recheck cadence: quarterly for legal content; per-API for integrations.** Legal requirements change; treat every jurisdiction fact as needing reverification before launch.
 
 ## 1. Snapshot
 A privacy-first, fully-cited PWA that generates a personalized, ordered checklist and pre-filled forms for legal name and gender-marker changes, jurisdiction by jurisdiction. Correctness is a safety property; the system is built on the civic RAG starter kit and gated by the civic AI eval harness.
@@ -47,7 +47,7 @@ A privacy-first, fully-cited PWA that generates a personalized, ordered checklis
 - **ADR-2 — Retrieval is a deterministic lexical filter in this build.** `api/retrieval.ts` filters by jurisdiction + change-type + document + language and ranks by token overlap. The pgvector/OpenSearch embedding store from §6 plugs in behind the same `retrieve()` signature. *Rejected:* standing up a vector DB for the reference build — adds infra without changing the safety contract.
 - **ADR-3 — Corpus is illustrative seed data; launch verification is an explicit, currently-OPEN review-gate.** The mechanical gates (schema, citation, freshness, eval) run green on seed data, but `verifier` is a placeholder and the gold set is co-authored with the corpus. No jurisdiction is launch-cleared. See `docs/audits/data-card.md`. *Rejected:* fabricating named human verifiers — dishonest and unsafe.
 - **ADR-4 — a11y is split: mechanical checks auto-gated locally, full axe + manual SR walkthrough in CI/review.** `make a11y` enforces the mechanical WCAG subset without a headless browser (dependency-free, fast). Real-browser pa11y/axe runs in CI and the manual screen-reader/keyboard/zoom walkthrough is review-gated in `docs/audits/accessibility-*.md`. *Rejected:* claiming the static linter equals axe — the standard itself says automation covers only ~30–40%.
-- **ADR-5 — Stack is TypeScript run via Node's native type-stripping (no build step), not Next.js, for the reference build.** Delivers a runnable, fully-tested, accessible server-rendered PWA shell + client-side form-fill with zero bundler. The Next.js PWA from §6 remains the production target; the core engine (`api/`) is framework-agnostic and ports directly. *Rejected:* a full Next.js app — heavy to make `make verify`-green end-to-end in one pass, and the safety-critical logic lives in `api/`, not the framework.
+- **ADR-5 — Stack is TypeScript run via Node's native type-stripping (no build step), not Next.js, for the reference build.** Delivers a runnable, fully-tested, accessible server-rendered PWA shell with authoritative form links and an on-device copy helper, with zero bundler. It does not satisfy M4's field-mapped PDF-fill done condition. The Next.js PWA from §6 remains the production target; the core engine (`api/`) is framework-agnostic and ports directly. *Rejected:* a full Next.js app — heavy to make `make verify`-green end-to-end in one pass, and the safety-critical logic lives in `api/`, not the framework.
 
 ## 7. Quality attributes & metrics
 Targets specialize `/STANDARDS/QUALITY-AND-METRICS-STANDARD.md`.
@@ -59,14 +59,15 @@ Targets specialize `/STANDARDS/QUALITY-AND-METRICS-STANDARD.md`.
 | Factual accuracy vs ground truth | ≥ 0.98 on live jurisdictions | eval harness | merge-blocking |
 | Corpus freshness | 0 jurisdictions past recheck SLA served as "current" | freshness job | merge-blocking + runtime alarm |
 | axe violations | 0 | pa11y-ci | merge-blocking |
-| Server-side PII fields | 0 in default mode | privacy lint + data-flow test | merge-blocking |
-| Request-path p95 (in-process) | < 15 ms | `scripts/latency-bench.ts` (`make loadtest`) | **merge-blocking** — wired into `make verify` step 20/20 (2026-07-05) |
+| Direct identity-form fields handled by runtime API | 0 | static privacy gate | merge-blocking |
+| Raw request content reflected in application logs/responses | 0 sentinel matches | runtime non-reflection test + logger tests | merge-blocking |
+| Request-path p95 (in-process) | < 15 ms | `scripts/latency-bench.ts` (`make loadtest`) | **merge-blocking** — wired into `make verify` step 20/21 (2026-07-05) |
 | p95 first-token, network/deployed (< 1.5 s) | < 1.5 s | `loadtest/p95.k6.js` (k6, against a live instance) | **opt-in**, not merge-blocking — needs k6 + a running server; corrected from a prior "merge-blocking" claim that wasn't actually wired anywhere (2026-07-05) |
 | Line / branch coverage | ≥ 90% / ≥ 85% (safety-critical) | coverage | merge-blocking |
-| Retrieval context recall@8 | ≥ 0.80 | `eval/harness.ts` `retrievalQuality()` (`make eval`) | **merge-blocking** — added 2026-07-05 (AIEV-03). K=8 (not the standard's @20) because this corpus has 32 records total; @20 is tautological at this scale. Must gate before any embedding-retrieval swap (ADR-2) lands. |
+| Retrieval context recall@8 | ≥ 0.80 | `eval/harness.ts` `retrievalQuality()` (`make eval`) | **merge-blocking** — added 2026-07-05 (AIEV-03). K=8 (not the standard's @20) because this corpus has 35 records total; @20 is weakly discriminating at this scale. Must gate before any embedding-retrieval swap (ADR-2) lands. |
 | Retrieval precision@1 | ≥ 0.70 | Same harness function (AIEV-04 analogue) | **merge-blocking** — added 2026-07-05. The gold set names exactly one expected-relevant record per accuracy item, so "precision" here is Precision@1 (top-ranked-result accuracy), the standard IR analogue for single-relevant-document ground truth, not Precision@20 (which has a hard ceiling of 1/20 at this gold-set shape). |
 
-**Testing strategy.** Unit (logic, field-mapping), integration (retrieval→generation→citation check), eval (groundedness/accuracy/refusal via the harness), a11y (axe + keyboard + screen-reader), privacy (no-PII-in-logs, ephemeral-by-default), and content tests (every corpus record has source + verifier + date).
+**Testing strategy.** Unit (logic, field-mapping), integration (retrieval→generation→citation check), eval (groundedness/accuracy/refusal via the harness), a11y (axe + keyboard + screen-reader), privacy (no direct identity fields in runtime API/log calls, no raw request-content reflection, local resume-state allowlist), and content tests (every corpus record has source + verifier + date).
 
 ## 8. Implementation plan for Claude Code
 Repo layout:
@@ -74,7 +75,7 @@ Repo layout:
 src/  (app: intake, checklist, step-detail, form-fill)
 api/  (retrieval + grounded generation, citation enforcement)
 corpus/ (structured jurisdiction records + sources, version-controlled)
-forms/  (form field maps + fixtures)
+forms/  (current: official-form registry; planned M4: reviewed field maps for safely fillable forms)
 eval/   (gold sets + harness config)
 infra/  (terraform)
 docs/   (this + audits + generated reports)
@@ -83,7 +84,7 @@ docs/   (this + audits + generated reports)
 - **M1 — Corpus & data model.** Structured records for ~3 pilot jurisdictions with sources + verifiers; ingest validation; freshness job. *Done when every record validates and freshness alarms work.*
 - **M2 — Retrieval-mandatory guidance.** RAG pipeline; generation that only speaks from retrieved chunks; post-gen uncited-claim rejection. *Done when groundedness ≥ target on the gold set.*
 - **M3 — Checklist engine.** Personalized, ordered checklist with prerequisites/costs/timelines from corpus. *Done when checklist matches expert expectations on gold set.*
-- **M4 — Client-side form pre-fill.** Field-mapped fill for fillable forms; graceful "download + steps" fallback for flat PDFs. *Done when fill works for pilot forms and no PII touches the server.*
+- **M4 — Client-side form pre-fill.** Field-mapped fill for fillable forms; graceful "download + steps" fallback for flat PDFs. *Done when fill works for pilot forms and direct identity-form fields remain on-device.*
 - **M5 — Experience & a11y hardening.** Full flow, ephemeral mode, printable packet, Spanish; screen-reader + keyboard sign-off. *Done when all §7 gates pass and audits sign off.*
 - **M6 — Expand jurisdictions.** Add jurisdictions only as each passes accuracy + freshness review.
 - **Claude Code approach.** Work corpus-first per jurisdiction; never widen coverage ahead of verification; keep the citation gate and eval gate on from M0.
@@ -97,12 +98,12 @@ docs/   (this + audits + generated reports)
 ## 10. Legal & compliance
 - **Unauthorized-practice-of-law.** Persistent "information, not legal advice" framing; no individualized legal conclusions; route edge cases to legal aid. Counsel review of disclaimers recommended pre-launch.
 - **Content licensing.** Government forms/text are generally public; record provenance regardless.
-- **Privacy law.** Design exceeds CCPA/GDPR by collecting essentially nothing server-side; still publish a plain-language notice and deletion path for any optional saved state.
+- **Privacy law.** Publish a plain-language notice that matches the actual request, cache, logging, hosting-provider, and local-state boundaries. Do not claim CCPA/GDPR compliance or exemption without jurisdiction-specific counsel review; keep deletion instructions precise about local state and bounded server records.
 - **Accessibility law.** WCAG 2.2 AA conformance + published accessibility statement.
 
 ## 11. Operations & sustainability
 - **Hosting/cost.** Bedrock token cost dominated by retrieval-grounded short answers; Haiku-first keeps per-session cost low; cache common jurisdiction answers.
-- **Observability.** Health endpoint, eval-regression alarms, freshness alarms, error budget; **no PII in logs** (enforced).
+- **Observability.** Liveness/readiness, W3C trace correlation, low-cardinality RED metrics, formal availability/latency error budgets, eval/freshness alarms, and privacy-minimized GenAI lifecycle telemetry. Application logs exclude raw question/prompt/completion content and direct identity-form fields; they do contain bounded route, selection, and operational metadata.
 - **Maintenance.** The real cost is legal currency: a quarterly reverification cycle per jurisdiction, surfaced as issues; expired data degrades to "needs reverification."
 - **Sustainability/sunset.** Corpus is portable structured data; if the project winds down, the verified corpus + methodology remain a reusable public asset.
 
@@ -119,15 +120,28 @@ below a *silent* skip rather than a stated gap.
 |---|---|---|
 | Structured JSON logs | **Live** | `api/log.ts`, allowlist-only fields, fail-closed; `tests/observability.test.ts` |
 | `/livez` + `/readyz` (+ legacy `/healthz`) | **Live** | Fail-closed readiness (corpus/freshness dependency); no dependency calls on `/livez` |
-| Distributed tracing (OTel spans, `traceparent`) | **Not implemented** | Open gap. The only outbound call is the opt-in Bedrock generator seam (unconfigured by default); tracing has a real target once that path is live in production |
-| Metrics (`/metrics`, RED per endpoint, UCUM naming) | **Not implemented** | Open gap — no Prometheus/OTel metrics endpoint exists today |
-| SLO definitions + burn-rate alerts | **Not implemented** | Open gap — no `slos/*.yaml`; ROADMAP mentions an "error budget" aspirationally below, not yet formalized |
+| Distributed tracing (`traceparent`, server/client spans) | **Live, exporter-neutral** | `api/trace.ts` continues valid W3C context, creates server and Bedrock client spans, returns `traceparent`, and emits correlated structured records. A deployment may route those records to an OTel collector without changing the request boundary |
+| Metrics (`/metrics`, RED per endpoint, UCUM naming) | **Live** | `api/metrics.ts`; process-local Prometheus counters/gauge/duration summary with bounded route templates and seconds units; covered by `tests/metrics.test.ts` and the real-server smoke journey |
+| SLO definitions + burn-rate alerts | **Live in repository** | `slos/service.yaml` defines request-based 99.9% availability and 99% ≤1.5 s response latency, excluding scrape/probe routes; `slos/prometheus.rules.yml` supplies fast/slow multi-window alert definitions. `make slo` parses the YAML and blocks objective/window/rate/scope drift; `promtool check rules` plus loading/delivery remain deployment gates because no PromQL parser is vendored here |
 | RUM (Real User Monitoring beacon) | **N/A — reason: privacy posture.** This repo's core safety property is zero client-side telemetry to a third party (see "Design guarantees" in the README and the DPIA). A RUM beacon would ship page/route data off-device to a monitoring vendor by design, which conflicts directly with the hostile-jurisdiction threat model. Core Web Vitals are instead measured in CI (lab data), not from real users. |
 | Continuous profiling | **N/A** | Alpha-stage signal, not required at this repo's scale; revisit if traffic/perf work warrants it |
 
-The Lighthouse-CI lab gate for the Tier-B Core-Web-Vitals budgets (LCP/INP/CLS) is tracked
-as an open P1 item in the remediation plan — the near-zero-client-JS server-rendered pages
-are expected to pass it immediately once wired.
+### GenAI lifecycle measurement
+
+The only real model boundary is `makeAwsBedrockTransport`. It records actual provider
+usage, normalized model identity, duration, finish/error metadata, and estimated cost on
+both success and failure, while structurally excluding prompts and completions. Semantic
+names, inference-profile resolution, cache-token semantics, and prices come from the
+immutable portfolio shim vendored at
+`e8150c82fc35267f022af46ac71fe5a851e2d042`; see
+`docs/audits/genai-lifecycle-telemetry-2026-07-12.md`. The default composer and CI model
+path remain deterministic and offline. A recurring judge run against real Bedrock is an
+explicit deployment/credential dependency and remains an open launch gate, not a silently
+skipped CI claim. Streaming/first-chunk instrumentation is N/A because this transport is
+request/response only.
+
+The Lighthouse-CI lab gate for the Tier-B Core-Web-Vitals budgets (LCP/INP/CLS) is
+blocking in `.github/workflows/ci.yml`; reports are retained as workflow artifacts.
 
 ## 12. Responsible-tech summary
-Top risks: (1) wrong/stale guidance harming users → citation + eval + freshness gates; (2) PII exposure endangering users in hostile jurisdictions → zero-server-PII, ephemeral default, client-side fill; (3) inequitable coverage/quality across jurisdictions and identities → disaggregated accuracy and inclusive content. Full treatment in [`RESPONSIBLE-TECH-AUDITS.md`](./RESPONSIBLE-TECH-AUDITS.md).
+Top risks: (1) wrong/stale guidance harming users → citation + eval + freshness gates; (2) request/identity exposure endangering users in hostile jurisdictions → no account/profile database, on-device identity-form fields, raw-question exclusion from application cache/logs/responses, bounded retention, and accurate notice; (3) inequitable coverage/quality across jurisdictions and identities → disaggregated accuracy and inclusive content. Full treatment in [`RESPONSIBLE-TECH-AUDITS.md`](./RESPONSIBLE-TECH-AUDITS.md).

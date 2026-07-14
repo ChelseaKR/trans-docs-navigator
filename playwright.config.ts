@@ -10,7 +10,9 @@ const PORT = Number(process.env.PW_PORT ?? 8091);
 const baseURL = `http://localhost:${PORT}`;
 
 export default defineConfig({
-  testDir: "tests/e2e",
+  // This config is exclusively the test-only pseudolocale lane. The production-entry
+  // journey has its own config and server in playwright.journey.config.ts.
+  testDir: "tests/e2e/i18n",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
@@ -23,7 +25,7 @@ export default defineConfig({
   webServer: {
     // The pseudolocale is registered only when TDN_I18N_TEST_HOOKS=1 (test build);
     // the production server never sets it, so en-XA can never ship.
-    command: `TDN_I18N_TEST_HOOKS=1 PORT=${PORT} node --experimental-strip-types --no-warnings tests/e2e/i18n/pseudo-server.ts`,
+    command: `NODE_ENV=test TDN_I18N_TEST_HOOKS=1 PORT=${PORT} node --experimental-strip-types --no-warnings tests/e2e/i18n/pseudo-server.ts`,
     url: `${baseURL}/livez`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

@@ -1,5 +1,5 @@
-// HTTP shell. The PRIVACY INVARIANT (enforced by privacy-lint) holds here: this file
-// references no identity PII. All routing/validation logic lives in api/router.ts (which
+// HTTP shell. The privacy gate ensures runtime API code does not reference direct
+// identity-form fields. All routing/validation logic lives in api/router.ts (which
 // is unit-tested and coverage-gated); this file only does HTTP plumbing — security
 // headers, request bounds, a simple rate limit, timeouts, and static-file serving.
 
@@ -8,10 +8,23 @@ import type { IncomingMessage, ServerResponse } from "node:http";
 import { readFileSync, existsSync, statSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 import { join, normalize, extname, sep } from "node:path";
-import { REPO_ROOT, loadCorpus, LAST_QUARANTINE } from "./corpus.ts";
+import {
+  REPO_ROOT,
+  loadCorpus,
+  LAST_QUARANTINE,
+  verifyCorpusManifest,
+  corpusIntegrityAllowsStartup,
+} from "./corpus.ts";
 import { safeLog } from "./log.ts";
 import { handleRoute, asLanguage } from "./router.ts";
 import { servingToday } from "./freshness.ts";
+import { metricMethod, metricRoute, startRequest } from "./metrics.ts";
+import {
+  currentTraceLogFields,
+  currentTraceparent,
+  runWithTrace,
+  startServerTrace,
+} from "./trace.ts";
 
 const PORT = Number(process.env.PORT ?? 8080);
 
@@ -52,7 +65,13 @@ const SECURITY_HEADERS: Record<string, string> = {
 };
 
 function send(res: ServerResponse, status: number, contentType: string, body: string | Buffer, extra?: Record<string, string>): void {
-  res.writeHead(status, { "content-type": contentType, ...SECURITY_HEADERS, ...extra });
+  const traceparent = currentTraceparent();
+  res.writeHead(status, {
+    "content-type": contentType,
+    ...SECURITY_HEADERS,
+    ...(traceparent ? { traceparent } : {}),
+    ...extra,
+  });
   res.end(body);
 }
 
@@ -101,59 +120,80 @@ function rateLimited(ip: string, now: number): boolean {
 }
 
 const server = createServer((req: IncomingMessage, res: ServerResponse) => {
-  const start = Date.now();
-  const requestId = randomUUID(); // correlation id; not derived from and never carries user data
-  const ip = req.socket.remoteAddress ?? "unknown";
-  let route = "/";
-  try {
-    if ((req.url ?? "").length > MAX_URL_LEN) {
-      send(res, 414, "text/plain; charset=utf-8", "URI too long");
-      return;
-    }
-    if (rateLimited(ip, start)) {
-      res.writeHead(429, { "content-type": "text/plain; charset=utf-8", "retry-after": "60", ...SECURITY_HEADERS });
-      res.end("Too many requests");
-      safeLog("rate_limited", { status: 429 });
-      return;
-    }
+  const trace = startServerTrace(req.headers.traceparent);
+  runWithTrace(trace, () => {
+    const start = Date.now();
+    const finishMetrics = startRequest();
+    const requestId = randomUUID(); // correlation id; not derived from and never carries user data
+    const ip = req.socket.remoteAddress ?? "unknown";
+    let route = "/";
+    try {
+      if ((req.url ?? "").length > MAX_URL_LEN) {
+        send(res, 414, "text/plain; charset=utf-8", "URI too long");
+        return;
+      }
+      if (rateLimited(ip, start)) {
+        send(res, 429, "text/plain; charset=utf-8", "Too many requests", {
+          "retry-after": "60",
+        });
+        safeLog("rate_limited", { status: 429 });
+        return;
+      }
 
-    const url = new URL(req.url ?? "/", `http://localhost:${PORT}`);
-    route = url.pathname;
+      const url = new URL(req.url ?? "/", `http://localhost:${PORT}`);
+      route = url.pathname;
 
-    if (tryStatic(route, res)) return;
+      if (tryStatic(route, res)) return;
 
-    // Inject the real clock at the shell boundary (FIX-02): servingToday() resolves the
-    // real "as of" date (or a validated NAV_TODAY ops/demo pin), never the frozen
-    // TEST_TODAY constant, so no serving-path currency derives from a compile-time date.
-    const r = handleRoute(req.method ?? "GET", url, servingToday());
-    // I18N-13 (G11): declare the resolved rendered language on every localized HTML
-    // response, independent of how it was selected (explicit ?language= param here,
-    // not Accept-Language negotiation — see docs/I18N.md). Non-HTML responses (health
-    // probes, JSON, the stylesheet, robots/sitemap) carry no human-language content.
-    const langHeaders: Record<string, string> = r.contentType.startsWith("text/html")
-      ? { "content-language": asLanguage(url.searchParams.get("language")) }
-      : {};
-    send(res, r.status, r.contentType, r.body, { ...langHeaders, ...r.headers });
-    if (r.log) safeLog(r.log.event, r.log.fields);
-  } catch (err) {
-    send(res, 500, "text/html; charset=utf-8", "<!doctype html><html lang=en><title>Error</title><p>Something went wrong. Please try again.</p>");
-    // Log the error CLASS only, never the message — a message can interpolate content the
-    // allowlist logger wouldn't otherwise see. Stack/detail belong in a non-PII trace sink.
-    safeLog("error", { route, status: 500, error: (err as Error).name }, "error");
-  } finally {
-    // Structured access log: one JSON line per request with the correlation id, method,
-    // path, response status, and latency. Health probes are excluded (§6). `route` is a
-    // matched pathname only — never the query string — so no query content is logged.
-    if (!HEALTH_PATHS.has(route)) {
-      safeLog("request", {
-        request_id: requestId,
+      // Inject the real clock at the shell boundary (FIX-02): servingToday() resolves the
+      // real "as of" date (or a validated NAV_TODAY ops/demo pin), never the frozen
+      // TEST_TODAY constant, so no serving-path currency derives from a compile-time date.
+      const r = handleRoute(req.method ?? "GET", url, servingToday());
+      // I18N-13 (G11): declare the resolved rendered language on every localized HTML
+      // response, independent of how it was selected (explicit ?language= param here,
+      // not Accept-Language negotiation — see docs/I18N.md). Non-HTML responses (health
+      // probes, JSON, the stylesheet, robots/sitemap) carry no human-language content.
+      const langHeaders: Record<string, string> = r.contentType.startsWith("text/html")
+        ? { "content-language": asLanguage(url.searchParams.get("language")) }
+        : {};
+      send(res, r.status, r.contentType, r.body, { ...langHeaders, ...r.headers });
+      if (r.log) safeLog(r.log.event, r.log.fields);
+    } catch (err) {
+      send(res, 500, "text/html; charset=utf-8", "<!doctype html><html lang=en><title>Error</title><p>Something went wrong. Please try again.</p>");
+      // Log the error CLASS only, never the message — a message can interpolate content the
+      // allowlist logger wouldn't otherwise see. Stack/detail require a separately reviewed,
+      // access-controlled diagnostic sink; they are not safe for the application log.
+      safeLog(
+        "error",
+        { route: metricRoute(route), status: 500, error: (err as Error).name },
+        "error",
+      );
+    } finally {
+      const latencyMs = Date.now() - start;
+      finishMetrics({
         method: req.method ?? "GET",
         path: route,
         status: res.statusCode,
-        latency_ms: Date.now() - start,
+        durationSeconds: latencyMs / 1_000,
       });
+      const boundedRoute = metricRoute(route);
+      const boundedMethod = metricMethod(req.method ?? "GET");
+      // Bound access-log and server-span labels before serialization. Neither an
+      // attacker-controlled path segment nor an extension method can enter the sink.
+      if (!HEALTH_PATHS.has(route)) {
+        safeLog("request", {
+          request_id: requestId,
+          method: boundedMethod,
+          path: boundedRoute,
+          status: res.statusCode,
+          latency_ms: latencyMs,
+          span_kind: "server",
+          span_name: `HTTP ${boundedMethod} ${boundedRoute}`,
+          ...currentTraceLogFields(),
+        });
+      }
     }
-  }
+  });
 });
 
 // Warm the corpus in fail-DEGRADED mode at startup: a single malformed record is
@@ -162,6 +202,32 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
 loadCorpus({ quarantine: true });
 if (LAST_QUARANTINE.length > 0) {
   safeLog("corpus_quarantine", { quarantined: LAST_QUARANTINE.length, status: 200 });
+}
+
+// Corpus integrity attestation (FIX-09 §A): the digest baked into corpus.manifest.json
+// at build/image time must match a live recompute of the corpus/forms bytes on disk
+// right now. Extends the quarantine pattern above, but LOUD rather than degraded — a
+// mismatch means what's on disk is not what CI's content gate cleared (a tampered
+// image, a bad deploy, a stray hand-edit), so we refuse to come up at all rather than
+// silently serve unverified content.
+const integrity = verifyCorpusManifest();
+const integrityAllowsStartup = corpusIntegrityAllowsStartup(integrity, process.env.NODE_ENV);
+if (!integrityAllowsStartup) {
+  safeLog(
+    "corpus_integrity",
+    {
+      status: 500,
+      expected: integrity.expected,
+      actual: integrity.actual,
+      error: integrity.status,
+    },
+    "error",
+  );
+  process.exit(1); // loud quarantine: refuse to serve corpus-backed routes at all
+} else if (integrity.status === "absent") {
+  // Explicit development/test processes may run without a generated build artifact.
+  // Production and undeclared environments take the fatal branch above.
+  safeLog("corpus_integrity", { status: 200 }, "info");
 }
 
 server.requestTimeout = REQUEST_TIMEOUT_MS;

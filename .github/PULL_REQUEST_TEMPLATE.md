@@ -22,5 +22,5 @@
 ## Checks
 
 - [ ] `make verify` is green (all blocking gates).
-- [ ] No PII is sent to or logged by the server (privacy + egress gates pass).
+- [ ] No direct identity fields enter runtime API/log code, and raw request content is not reflected (privacy gates pass).
 - [ ] Accessibility unaffected or improved (mechanical a11y + contrast pass).

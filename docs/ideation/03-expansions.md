@@ -15,10 +15,12 @@
 **Pitch:** Deliver ROADMAP §6's promised offline PWA — as a privacy feature, not a
 convenience feature. (`site.webmanifest` exists; no service worker or plan item does.)
 - **Impact:** Users in hostile jurisdictions or with poor connectivity can re-read
-  their checklist without generating fresh network traffic; clinics can load once
-  and run all day.
+  a saved checklist while offline without generating fresh network traffic. The
+  initial explicit save does make disclosed same-origin page/shell requests; clinics
+  can then use the local copies without background synchronization.
 - **Shape:** Service worker with cache-only strategy plus an explicit, user-initiated
-  "save for offline" action — never background sync or push (new observability
+  "save for offline" action whose initial same-origin fetch is disclosed — never
+  background sync or push (new observability
   surfaces). Cached pages carry a burned-in "saved on DATE — laws change" banner
   keyed to `api/freshness.ts`. Document the forensic trade-off (cached content is
   device-discoverable) on `/privacy`, alongside the threat-model note in
@@ -52,7 +54,7 @@ convenience feature. (`site.webmanifest` exists; no service worker or plan item 
   have no way to ask "is this still right?" short of redoing intake and diffing by
   eye.
 - **Shape:** Print a compact URL/QR on the packet (`/changes?since=DATE&` + the
-  existing non-PII `intakeQuery()` fields). The route compares `since` against
+  existing selection-only `intakeQuery()` fields). The route compares `since` against
   per-record changelogs (FIX-03) and renders "unchanged / re-verified / CHANGED —
   see step N" with citations. No server state.
 - **Effort:** M (after FIX-03). **Risks/deps:** FIX-03 changelog is a hard
@@ -138,7 +140,7 @@ checklist with the guarantees structurally attached.
 - **Excellence bar:** an embedded checklist visibly degrades when a record does;
   provenance fields are non-optional keys in every response.
 
-### EXP-08 — Corpus as a versioned, signed public dataset
+### EXP-08 — Corpus as a versioned, signed public dataset — ✅ DONE
 **Pitch:** Publish the corpus — schema, changelog, signatures — as a first-class
 open-data artifact.
 - **Impact:** ROADMAP §11's "the verified corpus + methodology remain a reusable
@@ -155,6 +157,33 @@ open-data artifact.
   **[counsel-gated]**.
 - **Excellence bar:** a third party can validate any release offline and diff two
   releases to see exactly which legal facts changed and who verified them.
+- **Status:** Release pipeline shipped; public distribution awaits repository
+  visibility. `scripts/dataset-build.ts` assembles a release bundle
+  (`schema.json`, `records.json`, `verifiers.json`, `labels.json`, `manifest.json`
+  with per-file sha256 + `corpus/source-hashes.json` provenance) under `dist/dataset/`,
+  reusing `api/corpus.ts`'s fail-closed validator so a release can never ship a record
+  the `content` gate would reject. `labels.json` is mechanically derived per
+  jurisdiction from `verification_status` counts and the `placeholder:true` roster
+  flag (`mechanical_verification_complete:false` wherever any record is unverified or
+  uses a placeholder); `launch_cleared` always remains false because a build script
+  cannot grant a human/counsel gate. No new legal wording is introduced, matching
+  `docs/audits/data-card.md`. `scripts/dataset-diff.ts`
+  diffs two releases (dirs, records.json paths, or a `git:<ref>` snapshot of
+  `corpus/jurisdictions/`) keyed by record `id` into `changelog.md`/`diff.json`,
+  surfacing which `statement`/`verification_status`/`verifier` fields changed and by
+  whom — satisfying the excellence bar. `.github/workflows/release.yml`'s new
+  `dataset` job runs the build on the same `tags: v*` trigger after full verification,
+  uploads each file to the tagged GitHub Release (and as a workflow artifact), and
+  attests keyless build provenance via
+  `actions/attest-build-provenance` (OIDC; only `id-token: write` +
+  `attestations: write`, no secrets) — mirroring the SBOM job. `npm run dataset:build`
+  / `dataset:diff` and `make dataset` wrap the same scripts locally. Tests in
+  `tests/dataset.test.ts` assert the bundle's shape, schema-validity, verifier-roster
+  membership, mechanical-verification labels, and the never-auto-grant-launch invariant.
+  GitHub Release assets inherit this repository's current private visibility, so calling
+  them a public download today would be false. Zenodo DOI minting and the repository-
+  visibility decision remain open — this ships the build/sign/diff/release pipeline
+  those distribution steps attach to.
 
 ### EXP-09 — Clinic mode for legal-aid workshops
 **Pitch:** A facilitation view for people who already run name-change clinics.
@@ -176,7 +205,7 @@ secondary audience.
 - **Impact:** Helpers get first-person UI ("your state") that is wrong for a parent
   or case worker — and helper-mediated use is how low-literacy/low-connectivity
   users (personas S3, U5) actually reach tools like this.
-- **Shape:** A view toggle (non-PII query param) switching to supporter-framed
+- **Shape:** A view toggle (selection-only query param) switching to supporter-framed
   strings (the `LocaleBundle` structure in `src/i18n/types.ts` makes a parallel
   message set cheap), plus "how to help without taking over" guidance and prominent
   referrals. Explicitly not a caseload tool; no storage.
@@ -201,12 +230,18 @@ secondary audience.
 - **Excellence bar:** the mirror passes the full `scripts/smoke-journey.ts`; uptime
   tracked like the clearnet preview.
 
-### EXP-12 — Transparency report and legal-demand canary
-**Pitch:** Report on a fixed cadence what the service was asked to hand over —
-which, by design, is nothing.
-- **Impact:** "The strongest protection is having nothing to hand over" (README) is
-  an architecture claim; a standing transparency page converts it into an
-  accountable public commitment that partners and press (persona A3) can check.
+### EXP-12 — Transparency report and legal-demand canary — **Status: Shipped**
+**Pitch:** Publish a fixed-cadence architecture inventory of what records the reference
+build may create, what remains local-only, and which provider boundaries remain.
+- **Shipped:** `/transparency` (`src/transparency.ts`, routed in `api/router.ts`,
+  linked from every page footer) with a dated Q2 2026 architecture snapshot. It lists
+  request URLs, bounded process-local caches, allowlisted application logs and retention,
+  possible provider metadata, plus identity-form/resume local boundaries and the explicit
+  same-origin fetch that creates offline copies. It does not publish legal-demand statistics and makes no "could not be
+  produced" promise. No canary wording shipped; counsel approval remains open. Future
+  quarters are appended by PR to the locale bundles (`src/i18n/en.ts`/`es.ts`).
+- **Impact:** A standing transparency page makes the minimization architecture and its
+  residual provider/browser boundaries independently checkable by users and partners.
 - **Shape:** A `/transparency` page (static, in-repo like `src/legal.ts` pages) with
   dated quarterly entries via PR, each tied to the current DPIA and residual-risk
   register revisions.

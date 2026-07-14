@@ -192,7 +192,7 @@ pruning path is follow-up work, not done here.
   Reflect it in `/packet` and the plan summary cost total.
 - **Effort:** M. **Risks/deps:** the *framing* ("you can skip this step") edges
   toward individualized guidance — keep it as prerequisite bookkeeping, and the
-  copy is **[counsel-gated]**. Query param adds one non-identifying bit to R6's
+  copy is **[counsel-gated]**. Query param adds one selection-only bit to R6's
   accepted history-leak surface; document in the DPIA.
 - **Excellent looks like:** a user with a court order sees steps 1..n annotated
   correctly with no server-side state and no new PII class; eval gains a gold item
@@ -222,7 +222,7 @@ pruning path is follow-up work, not done here.
   states exactly what it does and does not protect against.
 
 ## FIX-09 — Deployment threat-model closure: zero-egress runtime + corpus integrity attestation
-**Pitch:** Make "nothing to hand over" true of the infrastructure, not just the code.
+**Pitch:** Minimize infrastructure records and add runtime corpus-integrity attestation.
 - **Why it matters:** RESEARCH-ROADMAP R5 names the edge/CDN-log seam; what no plan
   covers is making the *runtime* incapable of egress: today the privacy invariant is
   a code property (allowlist logger) on infrastructure that could, if compromised,
@@ -244,6 +244,18 @@ pruning path is follow-up work, not done here.
   hash mismatches the build manifest.
 
 ## FIX-10 — Forms layer depth: caching, version pinning, and preparation metadata
+**Status:** ✅ Done (structural parts) — `api/forms.ts` now caches the registry like
+`loadCorpus()` (`loadForms()`/`formById()` reuse a module-level array; `clearFormsCache()`
+is the test-only reset hook). `FormDef` gained optional `version_hint`, `pdf_sha256`,
+`checked`, and a typed `preparation: {item, citation}[]`. `scripts/source-watch.ts` now
+also fetches each official form source, hashes the raw bytes (PDF or agency HTML page),
+and compares against a new `forms/form-hashes.json` baseline — reusing the
+same fetch-failure-tolerant, `--update`-aware pattern as the corpus watch (refactored into
+a shared `computeUrlHashes()` helper). `renderFormFillPage()` renders a "What to bring"
+section with each item's citation when `form.preparation` is present, and renders nothing
+when it's absent/empty. `preparation` content itself is **[counsel-gated]** and intentionally
+left empty in `forms/registry.json` — this lands the plumbing/schema/rendering so real
+"what to bring" items can be added once verified.
 **Pitch:** Treat official forms as first-class, drift-watched artifacts.
 - **Why it matters:** `api/forms.ts` re-reads `forms/registry.json` from disk on
   every `formById()` call (per step, per request — trivial now, wasteful at scale),

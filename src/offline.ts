@@ -8,9 +8,11 @@
 //     only when the user presses "Save for offline" (public/assets/offline.js).
 //     The fetch handler NEVER writes to a cache; there is no background sync, no
 //     push, no periodic sync, no speculative prefetch. Ever.
-//   • LOCAL ONLY — saving writes to the browser's Cache Storage on the device;
-//     nothing is sent anywhere. One button deletes every cache and unregisters
-//     the worker.
+//   • EXPLICIT NETWORK BOUNDARY — pressing Save registers the worker (whose install
+//     fetches the same-origin shell) and fetches the configured same-origin pages.
+//     Those request URLs/metadata follow the normal server/provider policy. The
+//     resulting copies live in browser Cache Storage; one button deletes every cache
+//     and unregisters the worker. There is no background sync, push, or periodic fetch.
 //   • HONEST STALENESS — every saved page gets a "saved on DATE — laws change"
 //     banner burned into its HTML at save time, with a re-check window keyed to
 //     the corpus freshness SLAs (api/freshness.ts semantics: the tightest
@@ -88,7 +90,8 @@ export function staleAfterDays(load: () => CorpusRecord[] = () => loadCorpus()):
 // an explicit user action and the worker never generates traffic on its own.
 const SW_TEMPLATE = `// Trans Docs Navigator service worker — generated from src/offline.ts. Do not edit here.
 // Privacy invariants: never caches in the fetch handler (saving is an explicit user
-// action in /assets/offline.js), no background sync, no push. Local-first, egress-free.
+// action in /assets/offline.js), no background sync, no push. Saving itself performs
+// disclosed same-origin requests for the shell and selected pages.
 "use strict";
 
 const VERSION = "__VERSION__";

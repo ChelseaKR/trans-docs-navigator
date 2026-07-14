@@ -1,9 +1,10 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, writeFileSync, rmSync } from "node:fs";
+import { mkdtempSync, readFileSync, writeFileSync, rmSync, renameSync, readdirSync, statSync, utimesSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { loadCorpus, validateRecord, validateCorpus, recordById, loadVerifierRoster, isPlaceholderVerifier, isValidIsoDate, LAST_QUARANTINE } from "../api/corpus.ts";
+import { loadCorpus, validateRecord, validateCorpus, recordById, loadVerifierRoster, isPlaceholderVerifier, isValidIsoDate, LAST_QUARANTINE, REPO_ROOT } from "../api/corpus.ts";
+import { memoize } from "../api/cache.ts";
 
 const valid = {
   id: "x.court-order.name",
@@ -24,6 +25,112 @@ test("loadCorpus loads and caches the real corpus", () => {
   assert.ok(a.length > 5);
   assert.equal(a, b); // cached identity
   assert.ok(loadCorpus({ force: true }).length === a.length);
+});
+
+test("corpus watch (IP §5.2, dev ergonomics): an on-disk edit's mtime forces a reload and cascades a downstream cache clear", () => {
+  const dir = join(REPO_ROOT, "corpus", "jurisdictions");
+  const files = readdirSync(dir).filter((f) => f.endsWith(".json"));
+  assert.ok(files.length > 0);
+  const target = join(dir, files[0]!);
+  const before = statSync(target);
+
+  const prevWatch = process.env.CORPUS_WATCH;
+  process.env.CORPUS_WATCH = "1";
+  try {
+    const a = loadCorpus({ force: true }); // establish a fresh cached baseline under the watch flag
+
+    // A downstream cache (mirrors how api/router.ts wraps rendered HTML in api/cache.ts's
+    // memoize) must be cleared when the corpus reloads — this proves the cascade, not
+    // just that loadCorpus() itself reloaded.
+    let computeCalls = 0;
+    const downstream = memoize((k: string) => {
+      computeCalls++;
+      return k;
+    });
+    downstream("x");
+    downstream("x");
+    assert.equal(computeCalls, 1);
+
+    // Touch the file's mtime forward (content unchanged) to simulate an edit on disk.
+    const future = new Date(before.mtimeMs + 10_000);
+    utimesSync(target, future, future);
+
+    const b = loadCorpus(); // a plain cached call must detect the newer mtime and reload
+    assert.notEqual(b, a); // a fresh array — not the stale cached reference
+    assert.equal(b.length, a.length); // same content, just reloaded
+
+    downstream("x"); // the corpus reload must have cascaded clearAllCaches()
+    assert.equal(computeCalls, 2);
+  } finally {
+    utimesSync(target, before.atime, before.mtime); // restore exactly — don't leave the repo dirty
+    if (prevWatch === undefined) delete process.env.CORPUS_WATCH;
+    else process.env.CORPUS_WATCH = prevWatch;
+    loadCorpus({ force: true }); // reset the process cache/baseline for later tests
+  }
+});
+
+test("corpus watch is inert on a custom dir (the cached path only applies to the default corpus dir)", () => {
+  const dir = mkdtempSync(join(tmpdir(), "corpus-watch-"));
+  try {
+    const rec = { ...valid, source: { ...valid.source, verifier: "Pilot Seed Reviewer" } };
+    writeFileSync(join(dir, "one.json"), JSON.stringify(rec));
+    const a = loadCorpus({ dir });
+    const b = loadCorpus({ dir });
+    assert.equal(a.length, 1);
+    assert.equal(b.length, 1);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("corpus watch re-reads a changed verifier roster while normal production calls retain the cache", () => {
+  const rosterPath = join(REPO_ROOT, "corpus", "VERIFIERS.json");
+  const original = readFileSync(rosterPath, "utf8");
+  const before = statSync(rosterPath);
+  const previousNodeEnv = process.env.NODE_ENV;
+  const previousWatch = process.env.CORPUS_WATCH;
+  const addedName = "Roster Watch Regression Reviewer";
+  const swapPath = `${rosterPath}.test-${process.pid}.tmp`;
+  const replaceRoster = (contents: string): void => {
+    writeFileSync(swapPath, contents);
+    renameSync(swapPath, rosterPath); // concurrent test workers never observe a partial JSON write
+  };
+
+  try {
+    process.env.NODE_ENV = "production";
+    delete process.env.CORPUS_WATCH;
+    const cachedCorpus = loadCorpus({ force: true });
+    assert.equal(loadVerifierRoster().has(addedName), false);
+
+    const changed = JSON.parse(original) as { roster: Array<Record<string, unknown>> };
+    changed.roster.push({ name: addedName, role: "test", placeholder: true });
+    const changedJson = JSON.stringify(changed, null, 2) + "\n";
+    replaceRoster(changedJson);
+
+    // A normal production call remains process-lifetime cached.
+    assert.equal(loadCorpus(), cachedCorpus);
+    assert.equal(loadVerifierRoster().has(addedName), false);
+
+    // Establish a separate watch-enabled cache against the restored original roster.
+    // The next edit must then invalidate both the corpus and verifier caches.
+    replaceRoster(original);
+    process.env.CORPUS_WATCH = "1";
+    const watchedCorpus = loadCorpus({ force: true });
+    assert.equal(loadVerifierRoster().has(addedName), false);
+    replaceRoster(changedJson);
+
+    assert.notEqual(loadCorpus(), watchedCorpus);
+    assert.equal(loadVerifierRoster().has(addedName), true);
+  } finally {
+    replaceRoster(original);
+    rmSync(swapPath, { force: true });
+    utimesSync(rosterPath, before.atime, before.mtime);
+    if (previousNodeEnv === undefined) delete process.env.NODE_ENV;
+    else process.env.NODE_ENV = previousNodeEnv;
+    if (previousWatch === undefined) delete process.env.CORPUS_WATCH;
+    else process.env.CORPUS_WATCH = previousWatch;
+    loadCorpus({ force: true });
+  }
 });
 
 test("recordById finds known and misses unknown", () => {

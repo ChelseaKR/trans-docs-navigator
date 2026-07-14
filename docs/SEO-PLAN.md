@@ -99,7 +99,8 @@ Write down, in one place, which surfaces are indexable and which are not. Propos
 - **Index:** `/` (homepage), the new guide pages (Phase 2), `/terms`, `/privacy`,
   `/accessibility`.
 - **`noindex`:** `/checklist`, `/packet`, `/answer`, `/forms/*`. These are user-state
-  or interaction endpoints. They carry no PII (selections only), but they are not
+  or interaction endpoints. Their URLs can carry sensitive selections and optional
+  question text even though the UI does not ask direct identity fields; they are not
   content to rank, and indexing them wastes crawl budget and muddies the index.
 - **Disallow in robots.txt:** the user-state HTML routes above plus `/healthz`. Do
   **not** disallow `/assets/*` or `/vendor/*` — search engines must fetch the CSS and
@@ -189,11 +190,12 @@ The no-analytics stance is correct and worth protecting. You can still measure:
    own crawl and click data, set no client-side cookies, and collect nothing the user's
    browser sends to you. Fully compatible with the privacy posture. This is the primary
    instrument: impressions, queries, CTR, index coverage, Core Web Vitals.
-2. **Server-side, non-PII landing data.** The allowlist logger (`api/log.ts`) already
+2. **Server-side, bounded landing metadata.** The allowlist logger (`api/log.ts`) already
    emits structured events. Add the *referrer host only* (not the full referrer URL,
    not the query) and the landing path to the existing event allowlist, so you can see
-   which guide pages draw traffic without logging anything about the person. Run it past
-   `privacy-lint` and the egress test before shipping.
+   which guide pages draw traffic without logging a full referrer, query, or direct
+   identity field. Treat even this metadata as potentially sensitive; update the notice,
+   retention inventory, logger tests, and privacy gates before shipping.
 3. No third-party analytics, no client beacons. Keep it that way; it's a differentiator
    and a safety property.
 

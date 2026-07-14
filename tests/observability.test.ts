@@ -7,6 +7,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { handleRoute, readiness } from "../api/router.ts";
 import { safeLog } from "../api/log.ts";
+import { metricMethod, metricRoute } from "../api/metrics.ts";
 
 const u = (path: string) => new URL(path, "http://localhost:8080");
 
@@ -145,6 +146,27 @@ test("a log line never leaks query content or identity/PII, even if passed", () 
   for (const leak of ["how do I change", "am I safe", "Jordan Rivers", "Alex Rivers", "1990-01-01", "123-45-6789", "user@example.com"]) {
     assert.ok(!line.includes(leak), `log line leaked forbidden content: ${leak}`);
   }
+});
+
+test("bounded access-log identities exclude attacker-controlled path and method values", () => {
+  assert.equal(metricMethod("SENTINEL-METHOD"), "OTHER");
+  assert.equal(metricRoute("/SENTINEL-private-path"), "_unmatched");
+  const line = captureLine(() =>
+    safeLog("request", {
+      request_id: "33333333-3333-3333-3333-333333333333",
+      method: "SENTINEL-METHOD",
+      path: "/SENTINEL-private-path",
+      status: 404,
+      latency_ms: 1,
+      span_kind: "server",
+      span_name: "HTTP SENTINEL-METHOD /SENTINEL-private-path",
+    }),
+  );
+  assert.doesNotMatch(line, /SENTINEL/);
+  const record = JSON.parse(line);
+  assert.equal(record.method, "OTHER");
+  assert.equal(record.path, "_unmatched");
+  assert.equal(record.span_name, "HTTP OTHER _unmatched");
 });
 
 test("safeLog honors an explicit severity level", () => {

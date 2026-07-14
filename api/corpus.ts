@@ -3,9 +3,10 @@
 // Validation here is the single source of truth used by both the runtime and the
 // content-validation CI gate (scripts/content-validate.ts).
 
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { clearAllCaches } from "./cache.ts";
 import type {
   CorpusRecord,
   DocumentType,
@@ -13,6 +14,7 @@ import type {
   VerificationStatus,
   Language,
 } from "./types.ts";
+import { computeCorpusManifest, manifestPath } from "../scripts/corpus-manifest.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const REPO_ROOT = join(HERE, "..");
@@ -60,6 +62,15 @@ export interface VerifierEntry {
 }
 
 let ROSTER_CACHE: Map<string, VerifierEntry> | null = null;
+
+/**
+ * Drop the default verifier roster cache when the default corpus is explicitly or
+ * watch-reloaded. Keeping this separate from the general render-cache registry is
+ * important: the roster is an input to corpus validation, not a derived page value.
+ */
+function clearVerifierRosterCache(): void {
+  ROSTER_CACHE = null;
+}
 
 /** Load the named-verifier roster (corpus/VERIFIERS.json). Cached per process. */
 export function loadVerifierRoster(file: string = VERIFIERS_FILE): Map<string, VerifierEntry> {
@@ -158,9 +169,36 @@ export function validateRecord(raw: unknown): ValidationIssue[] {
 }
 
 let CACHE: CorpusRecord[] | null = null;
+// mtime (ms) captured when CACHE was last built, for the dev-ergonomics watch below.
+let CACHE_VERSION: string | null = null;
 
 /** Issues from the most recent quarantine load — for runtime alarming. */
 export let LAST_QUARANTINE: ValidationIssue[] = [];
+
+/**
+ * Dev-ergonomics watch gate (IP §5.2): production keeps the zero-syscall process-lifetime
+ * cache; dev (or CORPUS_WATCH=1) pays one extra stat-per-call so editing the corpus on
+ * disk is picked up without a server restart.
+ */
+function corpusWatchEnabled(): boolean {
+  return process.env.CORPUS_WATCH === "1" || process.env.NODE_ENV !== "production";
+}
+
+/**
+ * Cheap version signature across every corpus file and the verifier roster. Tracking
+ * each file's mtime and size (rather than only the newest mtime) catches edits to an
+ * older file, backwards timestamp changes after a checkout, additions, and removals.
+ */
+function corpusVersion(dir: string): string {
+  const files = readdirSync(dir).filter((f) => f.endsWith(".json")).sort();
+  const entries = files.map((file) => {
+    const stat = statSync(join(dir, file));
+    return `${file}:${stat.mtimeMs}:${stat.size}`;
+  });
+  const roster = statSync(VERIFIERS_FILE);
+  entries.push(`VERIFIERS.json:${roster.mtimeMs}:${roster.size}`);
+  return entries.join("|");
+}
 
 /**
  * Load + validate every record.
@@ -173,7 +211,29 @@ export let LAST_QUARANTINE: ValidationIssue[] = [];
 export function loadCorpus(opts: { force?: boolean; dir?: string; quarantine?: boolean } = {}): CorpusRecord[] {
   const dir = opts.dir ?? CORPUS_DIR;
   const useCache = !opts.dir; // a custom dir is never cached (test-only path)
-  if (CACHE && useCache && !opts.force) return CACHE;
+  let force = opts.force === true;
+
+  if (!useCache || force) {
+    // A custom dir bypasses the process cache entirely, and an explicit force reload
+    // both start fresh — neither should carry a stale watch baseline forward.
+    CACHE_VERSION = null;
+    if (useCache && force) {
+      clearVerifierRosterCache();
+      clearAllCaches();
+    }
+  } else if (CACHE && corpusWatchEnabled()) {
+    // On each cached call, check whether the corpus changed on disk since CACHE was
+    // built; if so, force a reload AND drop every cache derived from it (answers,
+    // checklist HTML — api/router.ts) so stale renders can't survive a corpus edit.
+    const current = corpusVersion(dir);
+    if (CACHE_VERSION !== null && current !== CACHE_VERSION) {
+      force = true;
+      clearVerifierRosterCache();
+      clearAllCaches();
+    }
+  }
+
+  if (CACHE && useCache && !force) return CACHE;
   const files = readdirSync(dir).filter((f) => f.endsWith(".json"));
   const roster = loadVerifierRoster();
   const records: CorpusRecord[] = [];
@@ -204,7 +264,10 @@ export function loadCorpus(opts: { force?: boolean; dir?: string; quarantine?: b
   LAST_QUARANTINE = opts.quarantine ? allIssues : [];
   // Cache the valid record set in both modes (a fail-closed load with issues already
   // threw above, so reaching here means the records are safe to serve).
-  if (useCache) CACHE = records;
+  if (useCache) {
+    CACHE = records;
+    CACHE_VERSION = corpusWatchEnabled() ? corpusVersion(dir) : null;
+  }
   return records;
 }
 
@@ -247,4 +310,57 @@ export function validateCorpus(dir: string = CORPUS_DIR): {
 
 export function recordById(id: string, corpus = loadCorpus()): CorpusRecord | undefined {
   return corpus.find((r) => r.id === id);
+}
+
+export interface CorpusIntegrityResult {
+  ok: boolean;
+  status: "absent" | "valid" | "mismatch" | "invalid";
+  /** Digest baked into corpus.manifest.json at build time. `null` if the file is absent. */
+  expected: string | null;
+  /** Digest recomputed live from the corpus/forms files on disk right now. */
+  actual: string;
+}
+
+/**
+ * Corpus integrity attestation (FIX-09 §A): recompute the live corpus hash and compare
+ * it against the digest baked into corpus.manifest.json at build/image time. A
+ * mismatch means the corpus-backed content being served right now is not the content
+ * the image was built and gated on — the caller (api/server.ts) loudly quarantines
+ * rather than serving corpus-backed routes.
+ *
+ * An absent manifest (the normal case in local dev, where nothing runs
+ * `npm run corpus:manifest`) is distinguished from an invalid manifest. The pure
+ * `corpusIntegrityAllowsStartup` policy below permits that absence only for explicitly
+ * declared development/test processes; production and undeclared environments fail closed.
+ */
+export function verifyCorpusManifest(opts: { repoRoot?: string } = {}): CorpusIntegrityResult {
+  const repoRoot = opts.repoRoot ?? REPO_ROOT;
+  const actual = computeCorpusManifest(repoRoot).hash;
+  const path = manifestPath(repoRoot);
+  if (!existsSync(path)) {
+    return { ok: true, status: "absent", expected: null, actual };
+  }
+  let expected: string | null = null;
+  try {
+    const parsed = JSON.parse(readFileSync(path, "utf8")) as { hash?: unknown };
+    expected = typeof parsed.hash === "string" ? parsed.hash : null;
+  } catch {
+    expected = null;
+  }
+  if (expected === null) return { ok: false, status: "invalid", expected: null, actual };
+  const ok = expected === actual;
+  return { ok, status: ok ? "valid" : "mismatch", expected, actual };
+}
+
+/**
+ * Pure startup policy for the corpus attestation. A missing manifest is permitted only
+ * in an explicitly declared development/test process. Production and undeclared
+ * environments fail closed, so deleting a baked manifest cannot bypass attestation.
+ */
+export function corpusIntegrityAllowsStartup(
+  result: CorpusIntegrityResult,
+  nodeEnv: string | undefined,
+): boolean {
+  if (result.status !== "absent") return result.ok;
+  return nodeEnv === "development" || nodeEnv === "test";
 }

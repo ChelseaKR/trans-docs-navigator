@@ -115,7 +115,9 @@ export function buildChecklist(intake: Intake, today?: string, corpus = loadCorp
       (d) => d !== doc && declaredPrereqs.has(d) && orderedDocs.indexOf(d) < orderedDocs.indexOf(doc),
     );
 
-    const formRef = (currentRecords[0] ?? degraded[0])?.form_ref;
+    // First declared form_ref among the backing records (current first) — not just the
+    // first record's, which silently dropped the form CTA when a later record carried it.
+    const formRef = [...currentRecords, ...degraded].find((r) => r.form_ref)?.form_ref;
 
     // has_court_order intake: annotate the court-order step done rather than dropping it
     // (its citations stay visible), and don't leave it counted against the plan cost.

@@ -1,24 +1,28 @@
 // Pure request routing + input hardening, factored out of the HTTP shell (api/server.ts)
 // so it is unit-testable and covered by the test gate. Given a method + parsed URL it
-// returns a RouteResponse describing exactly what to send — no sockets, no fs, no PII.
+// returns a RouteResponse describing exactly what to send — no sockets or filesystem I/O.
 //
 // SECURITY: all user-controlled inputs are bounded and validated here (jurisdiction
 // format, enum filtering, array caps, question length) before they reach retrieval or
-// rendering. The PRIVACY INVARIANT holds: only non-identifying query fields are read.
+// rendering. Checklist selections and optional question text are server inputs; direct
+// identity-form fields are not read. See the Privacy Notice for cache/log boundaries.
 
 import { buildChecklist, hasThinnerLanguageCoverage } from "./checklist.ts";
 import { answer } from "./guidance.ts";
 import { loadCorpus } from "./corpus.ts";
 import { isCurrent } from "./freshness.ts";
 import { formById } from "./forms.ts";
+import { memoize } from "./cache.ts";
 import type { ChangeType, CorpusRecord, DocumentType, Intake, Language } from "./types.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
 import { renderAnswer, page, uiStrings, escapeHtml, STYLE } from "../src/render.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
+import { renderTransparencyPage } from "../src/transparency.ts";
 import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.ts";
 import { robotsTxt, sitemapXml } from "../src/seo.ts";
 import { asLanguage } from "../src/i18n/index.ts";
 import { serviceWorkerScript } from "../src/offline.ts";
+import { metricMethod, metricRoute, renderPrometheusMetrics } from "./metrics.ts";
 
 /** Input bounds — abuse/DoS resistance + predictable resource use. */
 export const LIMITS = {
@@ -45,7 +49,7 @@ export interface RouteResponse {
   body: string;
   /** Extra response headers to merge (e.g. Allow on a 405). */
   headers?: Record<string, string>;
-  /** Optional structured log to emit (non-PII fields only). */
+  /** Optional structured log descriptor (bounded allowlisted metadata only). */
   log?: { event: string; fields: Record<string, unknown> };
 }
 
@@ -78,7 +82,8 @@ function documents(url: URL): DocumentType[] {
 /**
  * Rebuild a canonical query string from the parsed intake ONLY. Never echo the raw
  * query string back into a link/page — that reflects arbitrary appended params
- * (including PII-shaped ones) into the response. We emit exactly the known-safe fields.
+ * (including identity-shaped ones) into the response. We emit exactly the canonical
+ * selection fields; those can still be sensitive and are covered by the Privacy Notice.
  */
 export function intakeQuery(intake: Intake): string {
   const sp = new URLSearchParams();
@@ -90,12 +95,12 @@ export function intakeQuery(intake: Intake): string {
   return sp.toString();
 }
 
-/** Parse the non-PII intake from query params. Returns null when jurisdiction is malformed. */
+/** Parse bounded checklist selections from query params. Returns null when jurisdiction is malformed. */
 export function parseIntake(url: URL): Intake | null {
   const jurisdiction = validJurisdiction(url.searchParams.get("jurisdiction"));
   if (jurisdiction === null) return null;
   const ct = changeTypes(url);
-  // Same privacy class as change_types (a single non-identifying bit; see docs/audits/dpia.md) —
+  // Same privacy class as change_types (a single selection-only bit; see docs/audits/dpia.md) —
   // bookkeeping only, used to annotate the court-order step done and prune it as a prerequisite.
   const hasCourtOrder = url.searchParams.get("court_order") === "1";
   return {
@@ -153,6 +158,86 @@ function badRequest(lang: Language): RouteResponse {
   };
 }
 
+// --- Render caching (IP §5.2) ---------------------------------------------------
+// Both caches key on bounded enum/date fields only (jurisdiction, change/doc enums,
+// language, the injectable `today`) — never on free text — so cache keys carry the
+// same no-direct-identity-field guarantee as the rest of the router. These selections
+// can still be sensitive; they are a subset of what already flows into URLs and logs.
+// A corpus edit on disk clears both via api/cache.ts's clearAllCaches() (see api/corpus.ts).
+
+interface ChecklistCacheKey {
+  intake: Intake;
+  today: string | undefined;
+  thinnerCoverage: boolean;
+}
+
+/** Canonical checklist cache key: (jurisdiction × change × doc × language) + today + coverage flag. */
+function checklistCacheKeyOf(k: ChecklistCacheKey): string {
+  return `${intakeQuery(k.intake)}|${k.today ?? ""}|${k.thinnerCoverage}`;
+}
+
+// The rendered checklist page is pure given (intake, today, thinnerCoverage) — cache it.
+const cachedChecklistPage = memoize<ChecklistCacheKey, string>(
+  (k) => renderChecklistPage(buildChecklist(k.intake, k.today), loadCorpus(), k.intake.language, intakeQuery(k.intake), { thinnerCoverage: k.thinnerCoverage }),
+  { keyOf: checklistCacheKeyOf },
+);
+
+interface AnswerKey {
+  jurisdiction: string;
+  change_types: ChangeType[];
+  documents: DocumentType[];
+  language: Language;
+  today: string | undefined;
+}
+
+interface AnswerCacheValue {
+  body: string;
+  refused: boolean;
+  /** Observability counters, stored alongside the cached body so the safe-log call still
+   *  fires with real numbers on a cache hit (OPERATIONS alarms must not go blind to hits). */
+  claims: number;
+  degraded: boolean;
+}
+
+function answerCacheKeyOf(k: AnswerKey): string {
+  const sp = new URLSearchParams();
+  sp.set("jurisdiction", k.jurisdiction);
+  for (const c of [...k.change_types].sort()) sp.append("change", c);
+  for (const d of [...k.documents].sort()) sp.append("doc", d);
+  sp.set("language", k.language);
+  sp.set("today", k.today ?? "");
+  return sp.toString();
+}
+
+/** Compute the full `/answer` response. Shared by the cached (no free-text `q`) and
+ *  uncached (a `q` was supplied) paths so caching never changes the answer logic itself. */
+function buildAnswerValue(
+  jurisdiction: string,
+  change_types: ChangeType[],
+  documents: DocumentType[],
+  language: Language,
+  today: string | undefined,
+  question: string | undefined,
+): AnswerCacheValue {
+  const t = uiStrings(language);
+  const result = answer({ jurisdiction, change_types, documents, question, language, today });
+  const claims = result.blocks.filter((b) => b.kind === "claim").length;
+  const degraded = result.blocks.some((b) => b.kind === "freshness");
+  // Always give a way forward (no dead-end): back to the checklist for the same query,
+  // or start over. Preserves the canonical selection query so the user lands back where they were.
+  const back = intakeQuery({ jurisdiction, change_types, documents, language });
+  const actions = `<p class="no-print"><a href="/checklist?${back}">← ${escapeHtml(t.backToChecklist)}</a> · <a href="/">${escapeHtml(t.backToStart)}</a></p>`;
+  const body = page({ lang: language, title: t.answerHeading, heading: t.answerHeading, body: renderAnswer(result, language) + actions });
+  return { body, refused: result.refused, claims, degraded };
+}
+
+// Only cache the free-text-free "common (jurisdiction × change-type)" combos the roadmap
+// item names — a `q` present means we skip the cache entirely (see the /answer route).
+const cachedAnswer = memoize<AnswerKey, AnswerCacheValue>(
+  (k) => buildAnswerValue(k.jurisdiction, k.change_types, k.documents, k.language, k.today, undefined),
+  { keyOf: answerCacheKeyOf },
+);
+
 function notFound(lang: Language): RouteResponse {
   const t = uiStrings(lang);
   return {
@@ -175,7 +260,10 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
       contentType: HTML,
       headers: { allow: "GET, HEAD" }, // HTTP requires Allow on a 405
       body: page({ lang, title: t.methodHeading, heading: t.methodHeading, body: `<p>${escapeHtml(t.methodBody)}</p>` }),
-      log: { event: "method_not_allowed", fields: { method, status: 405 } },
+      log: {
+        event: "method_not_allowed",
+        fields: { method: metricMethod(method), status: 405 },
+      },
     };
   }
 
@@ -209,6 +297,14 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     };
   }
 
+  if (p === "/metrics") {
+    return {
+      status: 200,
+      contentType: "text/plain; version=0.0.4; charset=utf-8",
+      body: renderPrometheusMetrics(),
+    };
+  }
+
   // Liveness (K8s probe contract, OBSERVABILITY-STANDARD §6): the process is alive and
   // not deadlocked. NO dependency calls — must stay trivially fast and never flap on a
   // slow/absent dependency.
@@ -233,10 +329,14 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
   }
 
   // Static legal / policy / trust pages (linked from every footer).
-  if (p === "/terms" || p === "/privacy" || p === "/accessibility" || p === "/methodology") {
+  if (p === "/terms" || p === "/privacy" || p === "/accessibility" || p === "/methodology" || p === "/transparency") {
     const lang = asLanguage(url.searchParams.get("language"));
     const render =
-      p === "/terms" ? renderTermsPage : p === "/privacy" ? renderPrivacyPage : p === "/accessibility" ? renderAccessibilityPage : renderMethodologyPage;
+      p === "/terms" ? renderTermsPage :
+      p === "/privacy" ? renderPrivacyPage :
+      p === "/accessibility" ? renderAccessibilityPage :
+      p === "/methodology" ? renderMethodologyPage :
+      renderTransparencyPage;
     return { status: 200, contentType: HTML, body: render(lang) };
   }
 
@@ -260,12 +360,15 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
   if (p === "/checklist") {
     const intake = parseIntake(url);
     if (!intake) return badRequest(lang);
-    const checklist = buildChecklist(intake, today);
     const thinnerCoverage = hasThinnerLanguageCoverage(intake, today);
     return {
       status: 200,
       contentType: HTML,
-      body: renderChecklistPage(checklist, loadCorpus(), intake.language, intakeQuery(intake), { thinnerCoverage }),
+      // Cached (IP §5.2): the canonical intakeQuery(intake) already collapses to
+      // (jurisdiction × change × doc × language), so this naturally caches common
+      // (jurisdiction × change-type) combos. Keying on today ?? '' keeps per-day
+      // freshness correct without special-casing whether today was injected.
+      body: cachedChecklistPage({ intake, today, thinnerCoverage }),
       log: { event: "checklist", fields: { jurisdiction: intake.jurisdiction, change_types: intake.change_types, documents: intake.documents, language: intake.language, status: 200 } },
     };
   }
@@ -291,28 +394,28 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
   if (p === "/answer") {
     const jurisdiction = validJurisdiction(url.searchParams.get("jurisdiction"));
     if (jurisdiction === null) return badRequest(lang);
-    const t = uiStrings(lang);
-    const result = answer({
-      jurisdiction,
-      change_types: changeTypes(url),
-      documents: documents(url),
-      question: sanitizeQuestion(url.searchParams.get("q")),
-      language: lang,
-      today,
-    });
-    // Non-PII observability counters (OPERATIONS alarms): how many claims were served,
+    // Same default as parseIntake: no `change` param means "both change types" —
+    // otherwise an empty array matches no record and every answer refuses.
+    const ct = changeTypes(url);
+    const change_types = ct.length > 0 ? ct : [...CHANGE_TYPES];
+    const docs = documents(url);
+    const question = sanitizeQuestion(url.searchParams.get("q"));
+    // Cached (IP §5.2) only for the common (jurisdiction × change-type) set the roadmap
+    // item names: a free-text question bypasses the cache entirely (never mixed into the
+    // key), so cache keys stay jurisdiction/enum/language/date only — no direct identity
+    // fields and no free text.
+    const value =
+      question === undefined
+        ? cachedAnswer({ jurisdiction, change_types, documents: docs, language: lang, today })
+        : buildAnswerValue(jurisdiction, change_types, docs, lang, today, question);
+    // Content-free observability counters (OPERATIONS alarms): how many claims were served,
     // and whether any stale/volatile record was surfaced as "needs reverification".
-    const claims = result.blocks.filter((b) => b.kind === "claim").length;
-    const degraded = result.blocks.some((b) => b.kind === "freshness");
-    // Always give a way forward (no dead-end): back to the checklist for the same query,
-    // or start over. Preserves the non-PII query so the user lands back where they were.
-    const back = intakeQuery({ jurisdiction, change_types: changeTypes(url), documents: documents(url), language: lang });
-    const actions = `<p class="no-print"><a href="/checklist?${back}">← ${escapeHtml(t.backToChecklist)}</a> · <a href="/">${escapeHtml(t.backToStart)}</a></p>`;
+    // Stored alongside the cached body (not recomputed) so counters stay accurate on hits.
     return {
       status: 200,
       contentType: HTML,
-      body: page({ lang, title: t.answerHeading, heading: t.answerHeading, body: renderAnswer(result, lang) + actions }),
-      log: { event: "answer", fields: { jurisdiction, refused: result.refused, claims, degraded, status: 200 } },
+      body: value.body,
+      log: { event: "answer", fields: { jurisdiction, refused: value.refused, claims: value.claims, degraded: value.degraded, status: 200 } },
     };
   }
 
@@ -322,5 +425,8 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     return { status: 200, contentType: HTML, body: renderFormFillPage(form, lang) };
   }
 
-  return { ...notFound(lang), log: { event: "not_found", fields: { route: p, status: 404 } } };
+  return {
+    ...notFound(lang),
+    log: { event: "not_found", fields: { route: metricRoute(p), status: 404 } },
+  };
 }

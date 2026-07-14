@@ -7,80 +7,81 @@ SHELL := /bin/bash
 
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
         gate-count lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-overflow seo deploy-plan clean \
-        smoke coverage link-check source-watch source-baseline policy-watch policy-baseline new-record
+        smoke e2e-journey coverage link-check source-watch source-baseline policy-watch policy-baseline new-record slo corpus-manifest build dataset
 
 help:
 	@echo "Targets:"
 	@echo "  make install      Install dependencies"
 	@echo "  make dev          Run the local dev server"
-	@echo "  make verify       Run the full merge-blocking gate set (CI parity, 21 stages)"
+	@echo "  make verify       Run the full merge-blocking gate set (CI parity, 22 stages)"
 	@echo "  make eval         Run the groundedness/accuracy/refusal eval harness"
 	@echo "  make a11y         Run the accessibility gate"
 	@echo "  make loadtest     In-process p95 latency guard (merge-blocking, no server needed)"
+	@echo "  make build        Build the production container image"
 	@echo "  make deploy-plan  Validate infra (terraform plan)"
 
 install:
 	npm install
 
 dev:
-	$(NODE) api/server.ts
+	NODE_ENV=development $(NODE) api/server.ts
 
 # ---------------------------------------------------------------------------
 # The blocking pipeline, in standard order. Any non-zero exit fails the build.
 # gate-count runs first so a drifted self-description count fails fast.
 # ---------------------------------------------------------------------------
-verify: gate-count lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css a11y seo eval i18n-overflow loadtest
+verify: gate-count lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css a11y seo eval i18n-overflow loadtest slo
 	@echo ""
 	@echo "✅ make verify: all merge-blocking gates passed."
 
 # Derives the stage count from this file's own `verify:` prerequisite list and fails
 # if README.md / docs/STATUS.md / the PR template state a different number.
 gate-count:
-	@echo "── [1/21] gate-count (self-description drift check) ──────"
+	@echo "── [1/22] gate-count (self-description drift check) ──────"
 	@$(NODE) scripts/gate-count.ts
 
 lint:
-	@echo "── [2/21] lint ───────────────────────────────────────────"
+	@echo "── [2/22] lint ───────────────────────────────────────────"
 	@$(NODE) scripts/lint.ts
 
 typecheck:
-	@echo "── [3/21] type-check (tsc --strict) ──────────────────────"
+	@echo "── [3/22] type-check (tsc --strict) ──────────────────────"
 	@npx --no-install tsc --noEmit
 
 test:
-	@echo "── [4/21] unit + integration tests (coverage-gated) ──────"
+	@echo "── [4/22] unit + integration tests (coverage-gated) ──────"
 	@$(NODE) scripts/run-tests.ts
 
 security:
-	@echo "── [5/21] security: dependency audit + secret scan ───────"
+	@echo "── [5/22] security: dependency audit + secret scan ───────"
 	@$(NODE) scripts/security-scan.ts
 
 content:
-	@echo "── [6/21] corpus content validation (source+verifier+date)"
+	@echo "── [6/22] corpus content validation (source+verifier+date)"
 	@$(NODE) scripts/content-validate.ts
 
 forms:
-	@echo "── [7/21] forms: official links, no fake auto-fill ───────"
+	@echo "── [7/22] forms: official links, no fake auto-fill ───────"
 	@$(NODE) scripts/forms-check.ts
 
 citation:
-	@echo "── [8/21] citation coverage (100% required) ──────────────"
+	@echo "── [8/22] citation coverage (100% required) ──────────────"
 	@$(NODE) scripts/citation-coverage.ts
 
 privacy:
-	@echo "── [9/21] privacy lint (no PII in logs / no egress) ──────"
+	@echo "── [9/22] privacy lint (no runtime identity fields / log references)"
 	@$(NODE) scripts/privacy-lint.ts
 
 freshness:
-	@echo "── [10/21] corpus freshness SLA ───────────────────────────"
+	@echo "── [10/22] corpus freshness SLA ───────────────────────────"
 	@$(NODE) scripts/freshness.ts
 
 disclosure:
-	@echo "── [11/21] disclosure strings (info-not-advice / AI label) ─"
+	@echo "── [11/22] disclosure strings (info-not-advice / AI label) ─"
 	@$(NODE) scripts/disclosure-check.ts
 
 readability:
-	@echo "── [12/21] readability (plain-language ~8th-grade target) ─"
+	@echo "── [12/22] readability (plain-language ~8th-grade target) ─"
 	@$(NODE) scripts/readability.ts
 
 # Mechanical i18n gates (INTERNATIONALIZATION-STANDARD §4). G1 UTF-8 and G3 BCP-47
@@ -90,35 +91,35 @@ readability:
 # deferred; G12 (CLDR/tzdata pin) is N/A-until-used — the frontend does no Intl
 # number/date formatting yet. ar/he RTL mirror smoke is deferred. See docs/I18N.md.
 i18n-utf8:
-	@echo "── [13/21] i18n: UTF-8 encoding (all tracked text files) ──"
+	@echo "── [13/22] i18n: UTF-8 encoding (all tracked text files) ──"
 	@$(NODE) scripts/i18n-utf8.ts
 
 i18n-bcp47:
-	@echo "── [14/21] i18n: BCP 47 language-tag validity ────────────"
+	@echo "── [14/22] i18n: BCP 47 language-tag validity ────────────"
 	@$(NODE) scripts/i18n-bcp47.ts
 
 i18n:
-	@echo "── [15/21] locale key-parity (EN/ES, no empty translations) ─"
+	@echo "── [15/22] locale key-parity (EN/ES, no empty translations) ─"
 	@$(NODE) scripts/i18n-parity.ts
 
 # G10 (static) — logical-CSS for RTL readiness. Extracts the typed STYLE from
 # src/render.ts to a git-ignored artifact and lints the inline (writing-direction)
 # axis with stylelint-use-logical (stylelint.config.js). Fix findings in render.ts.
 i18n-logical-css:
-	@echo "── [16/21] i18n: logical-CSS (G10 static, stylelint use-logical) ─"
+	@echo "── [16/22] i18n: logical-CSS (G10 static, stylelint use-logical) ─"
 	@$(NODE) scripts/i18n-css-extract.ts
 	@npx --no-install stylelint tmp/app.generated.css
 
 a11y:
-	@echo "── [17/21] accessibility gate ────────────────────────────"
+	@echo "── [17/22] accessibility gate ────────────────────────────"
 	@$(NODE) scripts/a11y-lint.ts
 
 seo:
-	@echo "── [18/21] SEO (indexing contract, metadata, sitemap) ────"
+	@echo "── [18/22] SEO (indexing contract, metadata, sitemap) ────"
 	@$(NODE) scripts/seo-lint.ts
 
 eval:
-	@echo "── [19/21] eval harness (groundedness/accuracy/refusal) ──"
+	@echo "── [19/22] eval harness (groundedness/accuracy/refusal) ──"
 	@$(NODE) eval/run.ts
 
 # G9 (live) — pseudolocale overflow. Renders the key routes under the en-XA
@@ -126,7 +127,7 @@ eval:
 # truncation, or horizontal scroll. Playwright starts the test server itself
 # (TDN_I18N_TEST_HOOKS=1); production never registers en-XA. See docs/I18N.md.
 i18n-overflow:
-	@echo "── [20/21] i18n: pseudolocale overflow (G9, Playwright desktop+mobile) ─"
+	@echo "── [20/22] i18n: pseudolocale overflow (G9, Playwright desktop+mobile) ─"
 	@npx --no-install playwright test
 
 # Deterministic in-process latency guard for the request path (QM-02, ROADMAP §7).
@@ -136,8 +137,12 @@ i18n-overflow:
 # `BASE=http://localhost:8080 k6 run loadtest/p95.k6.js` against a live instance
 # (needs k6 + a running server, so it is not part of this merge-blocking target).
 loadtest:
-	@echo "── [21/21] request-path latency benchmark (in-process p95 guard) ─"
+	@echo "── [21/22] request-path latency benchmark (in-process p95 guard) ─"
 	@$(NODE) scripts/latency-bench.ts
+
+slo:
+	@echo "── [22/22] SLO definitions + multi-window burn alerts ────────────"
+	@$(NODE) scripts/slo-check.ts
 
 # Opt-in model-path safety lane (not in `verify`; offline by default, real Bedrock with
 # TDN_BEDROCK=aws + AWS credentials). Proves the citation gate holds for the model path.
@@ -154,6 +159,12 @@ eval-bedrock:
 smoke:
 	@echo "── synthetic user journey (real server) ──────────────────"
 	@$(NODE) scripts/smoke-journey.ts
+
+# D2 — real-browser journey against the production server. This complements `smoke`
+# by executing the copy/resume client modules and pinning their no-request boundary.
+e2e-journey:
+	@echo "── real-browser E2E journey (Playwright, desktop+mobile) ─"
+	@npx --no-install playwright test --config playwright.journey.config.ts
 
 # Regenerate the public coverage matrix (docs/audits/coverage.md).
 coverage:
@@ -180,9 +191,32 @@ policy-baseline:
 new-record:
 	@$(NODE) scripts/new-record.ts
 
+# Build the versioned, signed public-dataset release bundle (EXP-08): schema,
+# records, verifier roster, per-jurisdiction labels, and a hash manifest under
+# dist/dataset/. `.github/workflows/release.yml`'s `dataset` job runs the same
+# command on tagged releases and attests provenance over the result.
+dataset:
+	@echo "── dataset release bundle (schema+records+verifiers+labels+manifest) ─"
+	@$(NODE) scripts/dataset-build.ts
+
 deploy-plan:
 	@cd infra && terraform init -backend=false >/dev/null 2>&1 && terraform validate || \
 		echo "terraform not installed — see infra/README.md for the validated plan"
+
+# ---------------------------------------------------------------------------
+# Build (FIX-09 §A): the corpus integrity attestation. Regenerates
+# corpus.manifest.json from the corpus/forms bytes about to ship, so the digest
+# baked into the image always matches what's actually in it. The Dockerfile also
+# runs `scripts/corpus-manifest.ts` itself as a RUN step, so the manifest is baked
+# in regardless of whether the image is built through this target or a bare
+# `docker build .` (as CI's container-scan/release/deploy workflows do).
+# ---------------------------------------------------------------------------
+corpus-manifest:
+	@echo "── corpus integrity manifest (FIX-09 §A) ─────────────────"
+	@npm run --silent corpus:manifest
+
+build: corpus-manifest
+	docker build -t trans-docs-navigator .
 
 clean:
 	rm -rf coverage dist tmp

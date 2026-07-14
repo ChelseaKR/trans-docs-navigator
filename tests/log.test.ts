@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { safeLog, isLoggableField } from "../api/log.ts";
 
-test("safeLog drops fields outside the non-PII allowlist", () => {
+test("safeLog drops fields outside the bounded operational allowlist", () => {
   const lines: string[] = [];
   const orig = console.log;
   console.log = (s: string) => lines.push(s);
@@ -23,7 +23,7 @@ test("safeLog drops fields outside the non-PII allowlist", () => {
   assert.ok(!out.includes("ALSO NOT"));
 });
 
-test("isLoggableField allows non-PII fields and rejects PII", () => {
+test("isLoggableField allows selection metadata and rejects direct identity fields", () => {
   assert.equal(isLoggableField("jurisdiction"), true);
   assert.equal(isLoggableField("language"), true);
   assert.equal(isLoggableField("new_legal_name"), false);

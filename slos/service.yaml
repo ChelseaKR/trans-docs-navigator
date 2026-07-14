@@ -1,0 +1,27 @@
+{
+  "service": "trans-docs-navigator",
+  "window_days": 30,
+  "sli_scope": {
+    "kind": "request_based",
+    "excluded_routes": ["/metrics", "/livez", "/readyz", "/healthz"]
+  },
+  "objectives": [
+    {
+      "name": "availability",
+      "target": 0.999,
+      "bad_events": "tdn_http_server_errors_total",
+      "total_events": "tdn_http_server_requests_total"
+    },
+    {
+      "name": "response_latency",
+      "target": 0.99,
+      "threshold_seconds": 1.5,
+      "bad_events": "tdn_http_server_slow_requests_total",
+      "total_events": "tdn_http_server_requests_total"
+    }
+  ],
+  "multi_window_burn_alerts": [
+    { "name": "fast", "short_window": "5m", "long_window": "1h", "burn_rate": 14.4, "severity": "page" },
+    { "name": "slow", "short_window": "30m", "long_window": "6h", "burn_rate": 6, "severity": "ticket" }
+  ]
+}
