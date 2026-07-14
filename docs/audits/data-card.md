@@ -1,15 +1,25 @@
 # Data Card — Trans Docs Navigator corpus
 
-> Last verified: 2026-05-31 · Recheck cadence: quarterly per jurisdiction.
+> Last verified: 2026-07-13 · Recheck cadence: quarterly per jurisdiction.
 > Auto-gated by `make content` (schema + provenance) and `make freshness` (SLA).
 
 ## What the corpus is
 A version-controlled set of structured records (`corpus/jurisdictions/*.json`), one
 per `(jurisdiction × document × change-type × language)`. Each record is the unit of
-retrieval and the unit of citation. **35 records:** federal (SSA, passport) +
+retrieval and the unit of citation. **63 records:** federal (SSA, passport) +
 California, Illinois, New York, Texas, Washington. English coverage spans all five
-states + federal; **Spanish coverage** (16 records) spans California, Illinois, New
-York, Texas + federal (Washington is English-only so far — a tracked gap).
+states + federal; **Spanish coverage** (30 records) spans California, Illinois, New
+York, Texas + federal, plus Washington's birth-certificate records (Washington's
+court-order and driver's-licence rows are still English-only — a tracked gap).
+
+**Birth certificates (added 2026-07-13, 28 records, EN + ES).** Every state's own
+vital-records/health-department source, including the `court-order → birth-certificate`
+prerequisite edge each of the five states states in its own words, and the closed route
+in Texas: its Vital Statistics page lists only hospital records or a hospital
+clerical-error letter as evidence for the sex field, and no route to change it to match
+gender identity. That "not available here" is a **cited, served claim**, not a silence —
+see `docs/RELOCATION.md` for why the planner treats a birth certificate as governed by
+the state of *birth*, which a move cannot change.
 
 ## Provenance & verification
 - Every record carries `source = { url, title, last_verified, verifier }`. The

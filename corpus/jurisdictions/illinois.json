@@ -7,22 +7,19 @@
       "name"
     ],
     "topic": "Illinois name change petition",
-    "statement": "In Illinois you change your legal name by filing a Request for Name Change in the circuit court of the county where you live, and a judge signs an order granting it.",
-    "detail": "Illinois usually requires newspaper publication of the request, but a court can waive publication when it could endanger the petitioner — this is decided by the judge.",
+    "statement": "In Illinois you change your legal name by filing a Request for Name Change with the circuit clerk, and a judge signs an Order for Name Change granting it.",
+    "detail": "You fill out a Request for Name Change and an Order for Name Change, file them with the circuit clerk (usually by electronic filing), get a hearing date, and go in front of a judge. If having your court file open to the public would harm your health or safety, you can also file a Motion to Impound. The guide says the laws on adult name change were updated beginning January 1, 2024, and again on March 1, 2025. The guide no longer lists a newspaper publication step.",
     "cost": {
       "amount_usd": null,
-      "note": "Filing fees vary by county; a fee waiver is available, and publication may add a separate newspaper cost.",
+      "note": "Filing fees differ from case to case and county to county — ask the circuit clerk. A fee waiver is available if you qualify.",
       "fee_waiver": true
-    },
-    "timeline": {
-      "typical": "roughly 6 weeks, partly driven by the publication period"
     },
     "discretionary": true,
     "prerequisites": [],
     "source": {
       "url": "https://www.illinoislegalaid.org/legal-information/changing-your-name",
-      "title": "Illinois Legal Aid Online — Changing Your Name (Adult)",
-      "last_verified": "2026-06-16",
+      "title": "Illinois Legal Aid Online — Starting a Case to Change the Name of an Adult",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
@@ -37,23 +34,78 @@
       "gender-marker"
     ],
     "topic": "Illinois driver's license sex designation",
-    "statement": "Illinois lets you choose the sex designation on your driver's license or state ID by self-certifying with the Secretary of State — medical documentation is not required.",
+    "statement": "Illinois identification can carry a male, female, or X sex designation. To change the sex designation on a driver's license or state ID, you complete a Gender Designation Change form and bring it, with your current Illinois license or ID, to a Secretary of State facility.",
+    "detail": "You go in person to a Secretary of State facility, and an appointment may be required. The guide does not list a medical-documentation requirement for this change.",
     "cost": {
-      "amount_usd": 0,
-      "note": "No additional fee to update the designation during another transaction."
+      "amount_usd": null,
+      "note": "The guide does not state a separate fee for the designation change. Fees for new and corrected identification are listed on the Secretary of State's website."
     },
     "timeline": {
-      "typical": "processed during your visit"
+      "typical": "handled in person at a Secretary of State facility; an appointment may be required"
     },
     "prerequisites": [],
     "source": {
       "url": "https://www.illinoislegalaid.org/legal-information/updating-sex-and-gender-markers-identification",
-      "title": "Illinois Legal Aid Online — Updating Sex and Gender Markers on ID",
-      "last_verified": "2026-06-16",
+      "title": "Illinois Legal Aid Online — Updating Sex and Gender Markers on Identification",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "il.birth-certificate.gender-marker",
+    "jurisdiction": "US-IL",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Illinois birth certificate sex designation",
+    "statement": "If you were born in Illinois and have an Illinois birth certificate, you can change the sex designation on it by sending the state health department a signed, notarized Affidavit and Certificate of Correction Request. You can pick M, F, or X.",
+    "detail": "Since July 1, 2023, state law lets you change the gender on your birth certificate by signing a statement affirming your gender designation or intersex condition. The health department then creates a new birth record. Your old birth certificate and the papers behind the change go into a sealed file.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "The $15 fee includes one certified copy of the new birth certificate. Extra copies are $2 each if you order them at the same time."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dph.illinois.gov/topics-services/birth-death-other-records/birth-records/gender-reassignment.html",
+      "title": "Illinois Department of Public Health — Gender Change on a Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "il-affidavit-correction",
+    "language": "en"
+  },
+  {
+    "id": "il.birth-certificate.name",
+    "jurisdiction": "US-IL",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Illinois birth certificate name change",
+    "statement": "If you are changing the gender on your Illinois birth certificate and want your name changed at the same time, you must also send a certified copy of your Court Order of Legal Name Change.",
+    "detail": "Ask for the name change in the second section of the Affidavit and Certificate of Correction Request form. The health department will then make a new birth record with the new sex designation and the new name.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "The $15 fee includes one certified copy of the new birth certificate. Extra copies are $2 each if you order them at the same time."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dph.illinois.gov/topics-services/birth-death-other-records/birth-records/gender-reassignment.html",
+      "title": "Illinois Department of Public Health — Gender Change on a Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "il-affidavit-correction",
     "language": "en"
   }
 ]

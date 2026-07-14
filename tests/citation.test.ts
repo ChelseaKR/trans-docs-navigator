@@ -99,3 +99,49 @@ test("disclosure strings are non-empty", () => {
   assert.ok(DISCLOSURE.notLegalAdvice.length > 0);
   assert.ok(DISCLOSURE.aiAssisted.length > 0);
 });
+
+// ── Polarity: negation scope stops at the clause boundary (FIX: false-positive on the model path) ──
+// The polarity invariant used to let a negation reach across a comma into a stem it does not
+// govern. "If you cannot afford it, you can ask the court to waive it" scored "ask" NEGATED
+// (5 tokens after "cannot"), while the identical claim with its clauses swapped scored it
+// AFFIRMED — a phantom flip between two sentences that mean the same thing. On the live model
+// path (requireFaithful) that is a 500 on a CORRECT answer, which is a real availability bug
+// dressed up as a safety check. Both directions are pinned here.
+const waiverRec: CorpusRecord = {
+  ...rec,
+  id: "waiver.rec",
+  statement: "You pay a filing fee of $435 to $450.",
+  detail: "If you cannot afford it, you can ask the court to waive it.",
+};
+
+test("a faithful paraphrase that only REORDERS a negated subordinate clause is accepted", () => {
+  const report = checkCoverage(
+    answerWith([
+      {
+        text: "You can ask the court to waive it if you cannot afford it.",
+        citations: ["waiver.rec"],
+        kind: "claim",
+      },
+    ]),
+    [waiverRec],
+    today,
+    { requireFaithful: true },
+  );
+  assert.equal(report.violations.length, 0, "rejected a faithful paraphrase over clause order");
+  assert.equal(report.coverage, 1);
+});
+
+test("a REAL polarity flip inside one clause is still rejected", () => {
+  const report = checkCoverage(
+    answerWith([
+      { text: "You cannot ask the court to waive the filing fee.", citations: ["waiver.rec"], kind: "claim" },
+    ]),
+    [waiverRec],
+    today,
+    { requireFaithful: true },
+  );
+  assert.ok(
+    report.violations.some((v) => v.reason === "unfaithful-claim" && /polarity/.test(v.detail)),
+    "a genuine negation flip must still be caught",
+  );
+});

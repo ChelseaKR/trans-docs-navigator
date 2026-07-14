@@ -108,6 +108,12 @@ export function robotsTxt(): string {
     "Disallow: /checklist",
     "Disallow: /packet",
     "Disallow: /answer",
+    // The relocation planner. /plan carries an (origin → destination) pair in its query
+    // string — the most sensitive selection this app takes — and /move is its entry form.
+    // Neither is a ranking surface, and neither should ever appear in an index or a
+    // crawler's logs. (`page()` already renders both noindex; this is the second lock.)
+    "Disallow: /move",
+    "Disallow: /plan",
     "Disallow: /forms/",
     "Disallow: /healthz",
     "",

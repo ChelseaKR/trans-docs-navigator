@@ -39,14 +39,26 @@ export const GOLD: GoldItem[] = [
     suite: "accuracy",
     segment: { jurisdiction: "US-CA", language: "en" },
     query: { jurisdiction: "US-CA", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in California" },
-    expect: { refused: false, citesRecord: "ca.court-order.name", mustContain: ["NC-100", "superior court"] },
+    // 2026-07-13 (source-fidelity gate): this item used to require "NC-100" and "superior court".
+    // NEITHER is stated by the cited California Courts self-help page — and worse, California's own
+    // NC-100 form page says a name change "related to gender identity" must use form NC-200 instead,
+    // so the gold set was pinning the WRONG FORM for this app's users. The co-authored gold set had
+    // simply inherited the corpus's unsupported claims and then certified them as correct: exactly
+    // the failure mode `eval/gold.provenance.json` (independent_author: false) exists to disclose.
+    // The expectation now names what the source actually says: the publication requirement (with its
+    // gender-identity exemption) and the correct form.
+    expect: { refused: false, citesRecord: "ca.court-order.name", mustContain: ["newspaper", "NC-200"] },
   },
   {
     id: "ca-marker-dmv",
     suite: "accuracy",
     segment: { jurisdiction: "US-CA", language: "en" },
     query: { jurisdiction: "US-CA", change_types: ["gender-marker"], documents: ["drivers-license"], question: "nonbinary gender on California license" },
-    expect: { refused: false, citesRecord: "ca.drivers-license.gender-marker", mustContain: ["DL 329", "nonbinary"] },
+    // 2026-07-13: the DMV retired the paper "Gender Category Request (DL 329)" route — its
+    // page now names no form and sends you through the online DL/ID application, finished in
+    // a field office. The old expectation (mustContain "DL 329") encoded a form the official
+    // source no longer publishes; source-watch caught the drift and the record was corrected.
+    expect: { refused: false, citesRecord: "ca.drivers-license.gender-marker", mustContain: ["nonbinary", "field office"] },
   },
   {
     id: "ssa-name",
@@ -66,15 +78,18 @@ export const GOLD: GoldItem[] = [
     id: "il-marker-dl",
     suite: "accuracy",
     segment: { jurisdiction: "US-IL", language: "en" },
-    query: { jurisdiction: "US-IL", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Illinois license sex designation self certify" },
-    expect: { refused: false, citesRecord: "il.drivers-license.gender-marker", mustContain: ["self-certif"] },
+    query: { jurisdiction: "US-IL", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Illinois license sex designation change" },
+    // 2026-07-13: the ILAO guide no longer describes this as bare "self-certification" — it
+    // names a Gender Designation Change form taken to a Secretary of State facility.
+    expect: { refused: false, citesRecord: "il.drivers-license.gender-marker", mustContain: ["Gender Designation Change", "Secretary of State"] },
   },
   {
     id: "ca-name-court-es",
     suite: "accuracy",
     segment: { jurisdiction: "US-CA", language: "es" },
     query: { jurisdiction: "US-CA", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en California" },
-    expect: { refused: false, citesRecord: "ca.court-order.name.es", mustContain: ["NC-100", "tribunal superior"] },
+    // See ca-name-court: "NC-100"/"tribunal superior" were never stated by the cited source.
+    expect: { refused: false, citesRecord: "ca.court-order.name.es", mustContain: ["periódico", "NC-200"] },
   },
   {
     id: "wa-name-court",
@@ -88,14 +103,24 @@ export const GOLD: GoldItem[] = [
     suite: "accuracy",
     segment: { jurisdiction: "US-WA", language: "en" },
     query: { jurisdiction: "US-WA", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Washington X gender designation license" },
-    expect: { refused: false, citesRecord: "wa.drivers-license.gender-marker", mustContain: ["F, M, or X"] },
+    // The three designations, in the Department of Licensing's own words ("We offer 3 options:
+    // 'M' (male), 'F' (female) and 'X' (not exclusively male or female)"). The earlier
+    // expectation ("F, M, or X") was keyed to a paraphrase the source never used.
+    expect: {
+      refused: false,
+      citesRecord: "wa.drivers-license.gender-marker",
+      mustContain: ["M (male)", "F (female)", "not exclusively male or female"],
+    },
   },
   {
     id: "tx-name-court",
     suite: "accuracy",
     segment: { jurisdiction: "US-TX", language: "en" },
     query: { jurisdiction: "US-TX", change_types: ["name"], documents: ["court-order"], question: "Texas name change fingerprints background check" },
-    expect: { refused: false, citesRecord: "tx.court-order.name", mustContain: ["district court", "fingerprints"] },
+    // 2026-07-13 (source-fidelity gate): the record was repointed from a TexasLawHelp landing stub
+    // (which states no fee, no waiver, no fingerprint requirement at all) to the guide page that
+    // actually states them. That page says "district clerk's office", not "district court".
+    expect: { refused: false, citesRecord: "tx.court-order.name", mustContain: ["district clerk", "fingerprints"] },
   },
   {
     id: "tx-marker-volatile",
@@ -109,7 +134,7 @@ export const GOLD: GoldItem[] = [
     suite: "accuracy",
     segment: { jurisdiction: "US-CA", language: "es" },
     query: { jurisdiction: "US-CA", change_types: ["gender-marker"], documents: ["drivers-license"], language: "es", question: "género no binario licencia California" },
-    expect: { refused: false, citesRecord: "ca.drivers-license.gender-marker.es", mustContain: ["DL 329", "no binario"] },
+    expect: { refused: false, citesRecord: "ca.drivers-license.gender-marker.es", mustContain: ["no binario", "oficina del DMV"] },
   },
   {
     id: "ny-name-court-es",

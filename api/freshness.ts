@@ -11,7 +11,12 @@ import type { CorpusRecord } from "./types.ts";
 // uses servingToday()/the real clock, or "stale law is broken law" only holds at merge
 // time. Named TEST_* (not DEFAULT_*) so any serving-path import is trivially grep-able
 // and can be rejected in review.
-export const TEST_TODAY = "2026-06-16";
+//
+// It advances when the corpus does: a record verified against its source AFTER this date reads
+// as FUTURE-dated to the freshness gate, which fails closed on future dates and is right to. So
+// moving it forward is part of a re-verification pass — and it is safe by construction, because
+// advancing it can only ever make MORE records stale, never fewer.
+export const TEST_TODAY = "2026-07-13";
 
 const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 

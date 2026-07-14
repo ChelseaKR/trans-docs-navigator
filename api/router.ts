@@ -8,13 +8,15 @@
 // identity-form fields are not read. See the Privacy Notice for cache/log boundaries.
 
 import { buildChecklist, hasThinnerLanguageCoverage } from "./checklist.ts";
+import { buildRelocationPlan } from "./relocation.ts";
 import { answer } from "./guidance.ts";
 import { loadCorpus } from "./corpus.ts";
 import { isCurrent } from "./freshness.ts";
 import { formById } from "./forms.ts";
 import { memoize } from "./cache.ts";
-import type { ChangeType, CorpusRecord, DocumentType, Intake, Language } from "./types.ts";
+import type { ChangeType, CorpusRecord, DocumentType, Intake, Language, RelocationIntake } from "./types.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
+import { renderMovePage, renderPlanPage } from "../src/relocation.ts";
 import { renderAnswer, page, uiStrings, escapeHtml, STYLE } from "../src/render.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderTransparencyPage } from "../src/transparency.ts";
@@ -93,6 +95,34 @@ export function intakeQuery(intake: Intake): string {
   if (intake.language !== "en") sp.set("language", intake.language);
   if (intake.has_court_order) sp.set("court_order", "1");
   return sp.toString();
+}
+
+/**
+ * Parse a relocation intake. Same bounded-enum discipline as parseIntake: two jurisdiction
+ * ids, a capped document list, change types, language. Nothing free-text, no identity fields.
+ *
+ * Returns `null` for a malformed jurisdiction (→ 400) and `"same-state"` when origin equals
+ * destination — there is no delta to compute, and re-rendering the intake with a message is
+ * kinder than a 400.
+ */
+export function parseRelocationIntake(url: URL): RelocationIntake | null | "same-state" {
+  const origin = url.searchParams.get("origin");
+  const destination = url.searchParams.get("destination");
+  if (origin === null || destination === null) return null;
+  if (!JURISDICTION_RE.test(origin) || !JURISDICTION_RE.test(destination)) return null;
+  if (origin === destination) return "same-state";
+
+  const held = (url.searchParams.getAll("hold") as DocumentType[])
+    .filter((d) => DOCUMENT_TYPES.includes(d))
+    .slice(0, LIMITS.maxArrayItems);
+  const ct = changeTypes(url);
+  return {
+    origin,
+    destination,
+    held,
+    change_types: ct.length > 0 ? ct : ["name", "gender-marker"],
+    language: asLanguage(url.searchParams.get("language")),
+  };
 }
 
 /** Parse bounded checklist selections from query params. Returns null when jurisdiction is malformed. */
@@ -383,6 +413,44 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
       contentType: HTML,
       body: renderPacketPage(checklist, loadCorpus(), intake.language, generatedOn, intakeQuery(intake)),
       log: { event: "packet", fields: { jurisdiction: intake.jurisdiction, language: intake.language, status: 200 } },
+    };
+  }
+
+  // ── Relocation planner (docs/RELOCATION.md) ────────────────────────────────────
+  // PRIVACY, and why these two routes look poorer than the others:
+  //
+  //   • NOT LOGGED. Neither route emits a `log` descriptor. An (origin → destination)
+  //     pair is the single most sensitive thing this app can learn about a trans person
+  //     in a hostile state — it is intent to flee, timestamped. api/log.ts's allowlist has
+  //     no `origin`/`destination` field, so safeLog would drop them anyway; emitting NO
+  //     descriptor at all means we don't even record that a plan was built. The
+  //     defense-in-depth is deliberate: two independent mechanisms, not one.
+  //
+  //   • NOT CACHED. Every other rendered page here is memoized (IP §5.2), and /plan is
+  //     just as pure — but a memo key IS retention: it would hold "someone is leaving
+  //     Texas for Washington" in process memory for the lifetime of the process. We pay
+  //     the recompute on every request instead. That is the intended trade.
+  if (p === "/move") {
+    return { status: 200, contentType: HTML, body: renderMovePage(lang) };
+  }
+
+  if (p === "/plan") {
+    const intake = parseRelocationIntake(url);
+    if (intake === null) return badRequest(lang);
+    if (intake === "same-state") {
+      return { status: 200, contentType: HTML, body: renderMovePage(lang, "same-state") };
+    }
+    // Coverage honesty: does the user's language have thinner coverage than English for
+    // the DESTINATION state? (Washington, for instance, has no Spanish records yet.)
+    const thinner = hasThinnerLanguageCoverage(
+      { jurisdiction: intake.destination, change_types: intake.change_types, documents: [], language: intake.language },
+      today,
+    );
+    const plan = buildRelocationPlan(intake, today);
+    return {
+      status: 200,
+      contentType: HTML,
+      body: renderPlanPage(plan, loadCorpus(), intake.language, { thinnerCoverage: thinner }),
     };
   }
 

@@ -109,16 +109,26 @@ function negatedAt(tokens: string[], index: number): boolean {
   return false;
 }
 
+/**
+ * Polarity per content stem, computed CLAUSE BY CLAUSE. The clause boundary (including the
+ * comma) is what stops a negation from reaching across a subordinate clause into a stem it
+ * does not govern: "If you cannot afford it, you can ask the court to waive it" would
+ * otherwise score "ask" as negated, and the same sentence with its clauses swapped would
+ * score it affirmed — a phantom polarity flip between two identical claims. Same fix, same
+ * reason, as api/citation.ts:clauseTokens.
+ */
 function polarityByStem(text: string): Map<string, { affirmed: boolean; negated: boolean }> {
-  const tokens = words(text);
   const result = new Map<string, { affirmed: boolean; negated: boolean }>();
-  for (let index = 0; index < tokens.length; index++) {
-    const stem = tokens[index]!;
-    if (!contentTokens(stem).includes(stem)) continue;
-    const current = result.get(stem) ?? { affirmed: false, negated: false };
-    if (negatedAt(tokens, index)) current.negated = true;
-    else current.affirmed = true;
-    result.set(stem, current);
+  for (const clause of text.split(/[.;:!?,]+/)) {
+    const tokens = words(clause);
+    for (let index = 0; index < tokens.length; index++) {
+      const stem = tokens[index]!;
+      if (!contentTokens(stem).includes(stem)) continue;
+      const current = result.get(stem) ?? { affirmed: false, negated: false };
+      if (negatedAt(tokens, index)) current.negated = true;
+      else current.affirmed = true;
+      result.set(stem, current);
+    }
   }
   return result;
 }

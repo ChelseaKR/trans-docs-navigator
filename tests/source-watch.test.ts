@@ -5,7 +5,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { contentHash, binaryHash, computeUrlHashes } from "../scripts/source-watch.ts";
+import { contentHash, binaryHash, computeUrlHashes, summarize } from "../scripts/source-watch.ts";
 
 function withMockedFetch<T>(impl: typeof fetch, run: () => Promise<T>): Promise<T> {
   const original = globalThis.fetch;
@@ -121,6 +121,92 @@ test("missing baseline and fetch outage remain separate signals", async () => {
     "https://a.gov/new.pdf → baseline required for: form-new",
   ]);
   assert.equal(result.next["https://a.gov/new.pdf"], undefined);
+});
+
+// --- Regression: a baseline-coverage issue must never SUPPRESS the drift report. -------
+// summarize() used to be an early `return` on missingBaseline/staleBaseline that ran
+// before drift was ever evaluated. Because this repo deliberately carries baseline gaps
+// (the four review-gated SS-5/SSA/NY-Courts references), that meant real drift at every
+// other source was silently never reported — a fail-quiet in the exact mechanism the
+// product's safety story rests on. These tests pin both signals surviving one run.
+
+test("REGRESSION: drift is still reported when a baseline-coverage issue is present", async () => {
+  const byUrl = new Map<string, string[]>([
+    ["https://drifted.gov/page", ["rec-drifted"]], // real drift
+    ["https://uncovered.gov/page", ["rec-uncovered"]], // deliberate baseline gap
+  ]);
+  const result = await computeUrlHashes(
+    byUrl,
+    async (url) => (url.includes("drifted") ? "newhash" : "somehash"),
+    { "https://drifted.gov/page": "oldhash" }, // uncovered.gov has no baseline entry
+    false,
+  );
+
+  // Both signals must be present on the result...
+  assert.deepEqual(result.drifted, ["https://drifted.gov/page → re-verify: rec-drifted"]);
+  assert.deepEqual(result.missingBaseline, [
+    "https://uncovered.gov/page → baseline required for: rec-uncovered",
+  ]);
+
+  // ...and both must survive into the reported verdict. The coverage gap must not mask
+  // the drift: a human reading this run has to learn that drifted.gov moved.
+  const summary = summarize([result]);
+  assert.equal(summary.ok, false);
+  assert.equal(summary.drifted.length, 1);
+  assert.equal(summary.coverageIssues.length, 1);
+  assert.ok(
+    summary.details.some((d) => d.includes("drift: https://drifted.gov/page")),
+    "drift must appear in the reported details even alongside a coverage issue",
+  );
+  assert.ok(
+    summary.details.some((d) => d.includes("coverage: https://uncovered.gov/page")),
+    "the coverage issue must still be reported",
+  );
+  assert.match(summary.message, /1 source\(s\) changed since baseline/);
+  assert.match(summary.message, /1 baseline coverage issue\(s\)/);
+});
+
+test("summarize: a coverage issue alone still fails the build", () => {
+  const summary = summarize([
+    { next: {}, drifted: [], unreachable: [], missingBaseline: ["https://a.gov → baseline required for: r"], staleBaseline: [] },
+  ]);
+  assert.equal(summary.ok, false);
+  assert.equal(summary.drifted.length, 0);
+  assert.match(summary.message, /baseline coverage issue/);
+});
+
+test("summarize: drift alone fails the build", () => {
+  const summary = summarize([
+    { next: {}, drifted: ["https://a.gov → re-verify: r"], unreachable: [], missingBaseline: [], staleBaseline: [] },
+  ]);
+  assert.equal(summary.ok, false);
+  assert.match(summary.message, /changed since baseline/);
+});
+
+test("summarize: clean run passes; unreachable URLs are not drift", () => {
+  const summary = summarize([
+    { next: { "https://a.gov": "h" }, drifted: [], unreachable: ["https://b.gov"], missingBaseline: [], staleBaseline: [] },
+  ]);
+  assert.equal(summary.ok, true);
+  assert.deepEqual(summary.details, []);
+});
+
+test("summarize: drift across BOTH watches (corpus + forms) is aggregated, not shadowed", () => {
+  const summary = summarize([
+    { next: {}, drifted: ["https://corpus.gov → re-verify: rec"], unreachable: [], missingBaseline: ["https://gap.gov → baseline required for: x"], staleBaseline: [] },
+    { next: {}, drifted: ["https://form.gov/f.pdf → re-verify: form"], unreachable: [], missingBaseline: [], staleBaseline: [] },
+  ], "source");
+  assert.equal(summary.drifted.length, 2);
+  assert.equal(summary.coverageIssues.length, 1);
+  assert.ok(summary.details.some((d) => d.includes("drift: https://form.gov/f.pdf")));
+});
+
+test("summarize: `unit` labels the verdict (shared with policy-watch)", () => {
+  const summary = summarize(
+    [{ next: {}, drifted: ["tracker 'X' changed"], unreachable: [], missingBaseline: [], staleBaseline: [] }],
+    "tracker",
+  );
+  assert.match(summary.message, /1 tracker\(s\) changed since baseline/);
 });
 
 test("computeUrlHashes flags stale baseline URLs until an intentional update removes them", async () => {

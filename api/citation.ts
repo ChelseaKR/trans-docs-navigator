@@ -137,12 +137,26 @@ function formIdsMatch(claimText: string, rec: CorpusRecord): boolean {
 const NEGATIONS = new Set(["not", "no", "never", "without", "cannot", "dont", "doesnt"]);
 const NEGATION_WINDOW = 6;
 
-/** Lowercased word tokens (apostrophes stripped so "don't" → "dont"), split into clauses
- *  on sentence/clause punctuation so a negation in one clause can't "reach" a stem in another. */
+/**
+ * Lowercased word tokens (apostrophes stripped so "don't" → "dont"), split into clauses
+ * on sentence/clause punctuation so a negation in one clause can't "reach" a stem in another.
+ *
+ * The COMMA is a clause boundary here, and it has to be. Without it, negation scope bleeds
+ * across a subordinate clause and this invariant rejects a faithful paraphrase purely for
+ * reordering it: in "If you cannot afford it, you can ask the court to waive it", the stem
+ * "ask" sits 5 tokens after "cannot" and is scored NEGATED, while in the identical claim
+ * "You can ask the court to waive it if you cannot afford it" it is AFFIRMED — a clean
+ * "polarity flip" between two sentences that mean exactly the same thing. That fires on the
+ * live model path (`requireFaithful`), where the cost is a 500 on a correct answer. Narrowing
+ * negation to its own clause is what the invariant already claims to do ("deliberately
+ * narrow ... so it doesn't fire on claims that merely discuss an unrelated negated detail");
+ * a real flip ("you do not need a court order" → "you need a court order") is inside one
+ * clause and is still caught — tests/citation.test.ts pins both directions.
+ */
 function clauseTokens(text: string): string[][] {
   return text
     .toLowerCase()
-    .split(/[.;:!?]+/)
+    .split(/[.;:!?,]+/)
     .map((c) => c.replace(/[’']/g, "").match(/[a-z0-9]+/g) ?? [])
     .filter((toks) => toks.length > 0);
 }

@@ -7,7 +7,7 @@
 // short-circuited (e.g. refactored to `return pass(...)`) fails these tests even
 // though every OTHER test in the repo stays green — that is the whole point.
 //
-// SCOPE: covers the 17 CLI/spawnable merge gates. Two gates are out of scope per the
+// SCOPE: covers the 19 CLI/spawnable merge gates. Two gates are out of scope per the
 // roadmap item's own spec and are covered by CI broken-fixture pages instead:
 //   - a11y-lint.ts (pa11y-ci runs the deep accessibility pass in a real browser)
 //   - i18n-overflow (Playwright pseudolocale-overflow gate; starts a browser+server)
@@ -16,9 +16,10 @@
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, writeFileSync, rmSync } from "node:fs";
+import { mkdtempSync, writeFileSync, readFileSync, rmSync, cpSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { runGate, fixture, REPO_ROOT, isolatedChildEnv } from "./runner.ts";
 
@@ -39,6 +40,81 @@ test("citation gate fails on an uncited-claim answer path", () => {
   const r = runGate("citation-coverage", { env: { CITATION_POISON: "uncited-claim" } });
   assert.notEqual(r.code, 0);
   assert.match(r.output, /uncited-claim/);
+});
+
+// ── fidelity (scripts/source-fidelity.ts) ───────────────────────────────────────
+// Harm: THE bug this whole gate exists for. A record asserts a fee, a form, and a timeline
+// that its cited source never states — and every other gate stays green, because the citation
+// is perfectly valid and the source's hash never moved. The fixture is the California DMV
+// record as it actually shipped: "Gender Category Request (Form DL 329)", "no fee", "2 weeks",
+// citing a page that says none of those things.
+test("fidelity gate fails on a record asserting a fee and a form its cited source never states", () => {
+  const dir = fixture("fidelity-poison");
+  const r = runGate("source-fidelity", {
+    env: {
+      CORPUS_DIR: join(dir, "corpus"),
+      FIDELITY_INDEX: join(dir, "snapshots", "index.json"),
+      FIDELITY_SNAPSHOT_DIR: join(dir, "snapshots"),
+      FIDELITY_BASELINE: join(dir, "source-hashes.json"),
+    },
+  });
+  assert.notEqual(r.code, 0);
+  assert.match(r.output, /the source never states it is free/);
+  assert.match(r.output, /the source never names DL329/);
+  assert.match(r.output, /"2 week" does not appear anywhere in the source/);
+});
+
+// Harm: someone "fixes" a red fidelity gate by editing the committed snapshot instead of the
+// record — laundering an unsourced legal claim into a green build. The snapshot's hash must
+// still equal the human-review-only drift baseline in corpus/source-hashes.json, so it can't.
+test("fidelity gate fails when a snapshot has been edited to make a record pass", () => {
+  const src = fixture("fidelity-poison");
+  const dir = mkdtempSync(join(tmpdir(), "gate-efficacy-fidelity-"));
+  try {
+    cpSync(src, dir, { recursive: true });
+    const index = JSON.parse(readFileSync(join(dir, "snapshots", "index.json"), "utf8")) as {
+      snapshots: Record<string, { file: string; sha256: string }>;
+    };
+    const entry = Object.values(index.snapshots)[0]!;
+    const snapshotPath = join(dir, "snapshots", entry.file);
+    // Doctor the snapshot so it now "says" everything the poisoned record claims, and update
+    // the index hash to match — i.e. do the laundering as competently as possible.
+    const doctored =
+      readFileSync(snapshotPath, "utf8") +
+      " complete the gender category request form dl 329. there is no fee. the card arrives in 2 weeks.";
+    writeFileSync(snapshotPath, doctored);
+    index.snapshots[Object.keys(index.snapshots)[0]!]!.sha256 = createHash("sha256")
+      .update(doctored)
+      .digest("hex");
+    writeFileSync(join(dir, "snapshots", "index.json"), JSON.stringify(index, null, 2));
+
+    const r = runGate("source-fidelity", {
+      env: {
+        CORPUS_DIR: join(dir, "corpus"),
+        FIDELITY_INDEX: join(dir, "snapshots", "index.json"),
+        FIDELITY_SNAPSHOT_DIR: join(dir, "snapshots"),
+        // The drift baseline is NOT doctored — it is the one artifact the procedure in
+        // docs/OPERATIONS.md says a human must review before it ever changes.
+        FIDELITY_BASELINE: join(src, "source-hashes.json"),
+      },
+    });
+    assert.notEqual(r.code, 0, "a doctored snapshot must not be able to make the gate pass");
+    assert.match(r.output, /baseline-mismatch/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// ── launch-gates (scripts/launch-gates.ts) ──────────────────────────────────────
+// Harm: the README claims the corpus has been human-verified (or that counsel signed off)
+// when no such thing happened. The launch-gate status is derived from the artifacts, so a
+// doc that says otherwise fails the build — it cannot be cleared with a text editor.
+test("launch-gates gate fails when a doc overclaims a launch gate the artifacts don't support", () => {
+  const r = runGate("launch-gates", {
+    env: { LAUNCH_GATES_DOC_ROOT: fixture("launch-gates-poison") },
+  });
+  assert.notEqual(r.code, 0);
+  assert.match(r.output, /drifted from the derived launch-gate status/);
 });
 
 // ── privacy (scripts/privacy-lint.ts) ───────────────────────────────────────────

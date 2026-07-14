@@ -109,6 +109,52 @@ function isObj(v: unknown): v is Record<string, unknown> {
   return typeof v === "object" && v !== null && !Array.isArray(v);
 }
 
+/**
+ * Where-you-live phrases, per language. A record may only claim `relocation.residency_bound`
+ * if its OWN cited prose says the action happens where the person lives — the annotation
+ * must be readable straight off the source that is already on the page, never asserted
+ * about it. Anything else would be a new, uncited legal claim smuggled in as metadata.
+ */
+const RESIDENCY_PHRASES: Record<Language, RegExp> = {
+  en: /where you live|county where you (?:live|reside)|where you reside/i,
+  es: /donde (?:usted )?(?:vive|reside)|condado donde (?:usted )?(?:vive|reside)/i,
+};
+
+/**
+ * Validate the optional relocation annotation (api/types.ts:RelocationTraits). Fails closed:
+ * an unknown key, a non-boolean flag, or a `residency_bound: true` that the record's own
+ * text does not support is a content violation, not a warning.
+ */
+function relocationIssues(raw: Record<string, unknown>, push: (f: string, m: string) => void): void {
+  const rel = raw.relocation;
+  if (rel === undefined) return;
+  if (!isObj(rel)) {
+    push("relocation", "must be an object");
+    return;
+  }
+  for (const k of Object.keys(rel)) {
+    if (k !== "residency_bound") push(`relocation.${k}`, "unknown relocation trait");
+  }
+  if (rel.residency_bound === undefined) return;
+  if (typeof rel.residency_bound !== "boolean") {
+    push("relocation.residency_bound", "must be a boolean");
+    return;
+  }
+  if (rel.residency_bound !== true) return;
+
+  const lang = raw.language as Language;
+  const re = RESIDENCY_PHRASES[lang];
+  if (!re) return; // an invalid language is already flagged by the schema check
+  const prose = `${typeof raw.statement === "string" ? raw.statement : ""} ${typeof raw.detail === "string" ? raw.detail : ""}`;
+  if (!re.test(prose)) {
+    push(
+      "relocation.residency_bound",
+      "asserted true, but the record's own statement/detail never says the action happens where you live — " +
+        "the annotation may only restate what the cited source already says",
+    );
+  }
+}
+
 /** Validate one parsed record. Returns the list of issues (empty = valid). */
 export function validateRecord(raw: unknown): ValidationIssue[] {
   const issues: ValidationIssue[] = [];
@@ -164,6 +210,8 @@ export function validateRecord(raw: unknown): ValidationIssue[] {
   }
   if (raw.prerequisites !== undefined && !Array.isArray(raw.prerequisites))
     push("prerequisites", "must be an array of ids/step keys");
+
+  relocationIssues(raw, push);
 
   return issues;
 }

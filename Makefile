@@ -6,14 +6,14 @@ NODE := node --experimental-strip-types --no-warnings
 SHELL := /bin/bash
 
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
-        gate-count lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-overflow seo deploy-plan clean \
-        smoke e2e-journey coverage link-check source-watch source-baseline policy-watch policy-baseline new-record slo corpus-manifest build dataset
+        gate-count lint typecheck test security content forms citation fidelity privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-overflow seo launch-gates launch-gates-write deploy-plan clean \
+        smoke e2e-journey coverage link-check source-watch source-baseline source-snapshot policy-watch policy-baseline new-record slo corpus-manifest build dataset
 
 help:
 	@echo "Targets:"
 	@echo "  make install      Install dependencies"
 	@echo "  make dev          Run the local dev server"
-	@echo "  make verify       Run the full merge-blocking gate set (CI parity, 22 stages)"
+	@echo "  make verify       Run the full merge-blocking gate set (CI parity, 24 stages)"
 	@echo "  make eval         Run the groundedness/accuracy/refusal eval harness"
 	@echo "  make a11y         Run the accessibility gate"
 	@echo "  make loadtest     In-process p95 latency guard (merge-blocking, no server needed)"
@@ -30,58 +30,67 @@ dev:
 # The blocking pipeline, in standard order. Any non-zero exit fails the build.
 # gate-count runs first so a drifted self-description count fails fast.
 # ---------------------------------------------------------------------------
-verify: gate-count lint typecheck test security content forms citation privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css a11y seo eval i18n-overflow loadtest slo
+verify: gate-count lint typecheck test security content forms citation fidelity privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css a11y seo eval i18n-overflow loadtest slo launch-gates
 	@echo ""
 	@echo "✅ make verify: all merge-blocking gates passed."
 
 # Derives the stage count from this file's own `verify:` prerequisite list and fails
 # if README.md / docs/STATUS.md / the PR template state a different number.
 gate-count:
-	@echo "── [1/22] gate-count (self-description drift check) ──────"
+	@echo "── [1/24] gate-count (self-description drift check) ──────"
 	@$(NODE) scripts/gate-count.ts
 
 lint:
-	@echo "── [2/22] lint ───────────────────────────────────────────"
+	@echo "── [2/24] lint ───────────────────────────────────────────"
 	@$(NODE) scripts/lint.ts
 
 typecheck:
-	@echo "── [3/22] type-check (tsc --strict) ──────────────────────"
+	@echo "── [3/24] type-check (tsc --strict) ──────────────────────"
 	@npx --no-install tsc --noEmit
 
 test:
-	@echo "── [4/22] unit + integration tests (coverage-gated) ──────"
+	@echo "── [4/24] unit + integration tests (coverage-gated) ──────"
 	@$(NODE) scripts/run-tests.ts
 
 security:
-	@echo "── [5/22] security: dependency audit + secret scan ───────"
+	@echo "── [5/24] security: dependency audit + secret scan ───────"
 	@$(NODE) scripts/security-scan.ts
 
 content:
-	@echo "── [6/22] corpus content validation (source+verifier+date)"
+	@echo "── [6/24] corpus content validation (source+verifier+date)"
 	@$(NODE) scripts/content-validate.ts
 
 forms:
-	@echo "── [7/22] forms: official links, no fake auto-fill ───────"
+	@echo "── [7/24] forms: official links, no fake auto-fill ───────"
 	@$(NODE) scripts/forms-check.ts
 
 citation:
-	@echo "── [8/22] citation coverage (100% required) ──────────────"
+	@echo "── [8/24] citation coverage (100% required) ──────────────"
 	@$(NODE) scripts/citation-coverage.ts
 
+# The bottom link of the citation chain. `citation` proves an answer cites a RECORD;
+# `fidelity` proves the RECORD is supported by the SOURCE IT CITES. Nothing checked that
+# before, which is how the corpus came to assert a form and a $0 fee the DMV page never
+# mentioned — with an unchanged source hash, so source-watch saw nothing either. Runs
+# offline against the committed snapshots in corpus/snapshots/ (refresh: make source-snapshot).
+fidelity:
+	@echo "── [9/24] source fidelity (does each record match its cited source?) ─"
+	@$(NODE) scripts/source-fidelity.ts --report
+
 privacy:
-	@echo "── [9/22] privacy lint (no runtime identity fields / log references)"
+	@echo "── [10/24] privacy lint (no runtime identity fields / log references)"
 	@$(NODE) scripts/privacy-lint.ts
 
 freshness:
-	@echo "── [10/22] corpus freshness SLA ───────────────────────────"
+	@echo "── [11/24] corpus freshness SLA ───────────────────────────"
 	@$(NODE) scripts/freshness.ts
 
 disclosure:
-	@echo "── [11/22] disclosure strings (info-not-advice / AI label) ─"
+	@echo "── [12/24] disclosure strings (info-not-advice / AI label) ─"
 	@$(NODE) scripts/disclosure-check.ts
 
 readability:
-	@echo "── [12/22] readability (plain-language ~8th-grade target) ─"
+	@echo "── [13/24] readability (plain-language ~8th-grade target) ─"
 	@$(NODE) scripts/readability.ts
 
 # Mechanical i18n gates (INTERNATIONALIZATION-STANDARD §4). G1 UTF-8 and G3 BCP-47
@@ -91,35 +100,35 @@ readability:
 # deferred; G12 (CLDR/tzdata pin) is N/A-until-used — the frontend does no Intl
 # number/date formatting yet. ar/he RTL mirror smoke is deferred. See docs/I18N.md.
 i18n-utf8:
-	@echo "── [13/22] i18n: UTF-8 encoding (all tracked text files) ──"
+	@echo "── [14/24] i18n: UTF-8 encoding (all tracked text files) ──"
 	@$(NODE) scripts/i18n-utf8.ts
 
 i18n-bcp47:
-	@echo "── [14/22] i18n: BCP 47 language-tag validity ────────────"
+	@echo "── [15/24] i18n: BCP 47 language-tag validity ────────────"
 	@$(NODE) scripts/i18n-bcp47.ts
 
 i18n:
-	@echo "── [15/22] locale key-parity (EN/ES, no empty translations) ─"
+	@echo "── [16/24] locale key-parity (EN/ES, no empty translations) ─"
 	@$(NODE) scripts/i18n-parity.ts
 
 # G10 (static) — logical-CSS for RTL readiness. Extracts the typed STYLE from
 # src/render.ts to a git-ignored artifact and lints the inline (writing-direction)
 # axis with stylelint-use-logical (stylelint.config.js). Fix findings in render.ts.
 i18n-logical-css:
-	@echo "── [16/22] i18n: logical-CSS (G10 static, stylelint use-logical) ─"
+	@echo "── [17/24] i18n: logical-CSS (G10 static, stylelint use-logical) ─"
 	@$(NODE) scripts/i18n-css-extract.ts
 	@npx --no-install stylelint tmp/app.generated.css
 
 a11y:
-	@echo "── [17/22] accessibility gate ────────────────────────────"
+	@echo "── [18/24] accessibility gate ────────────────────────────"
 	@$(NODE) scripts/a11y-lint.ts
 
 seo:
-	@echo "── [18/22] SEO (indexing contract, metadata, sitemap) ────"
+	@echo "── [19/24] SEO (indexing contract, metadata, sitemap) ────"
 	@$(NODE) scripts/seo-lint.ts
 
 eval:
-	@echo "── [19/22] eval harness (groundedness/accuracy/refusal) ──"
+	@echo "── [20/24] eval harness (groundedness/accuracy/refusal) ──"
 	@$(NODE) eval/run.ts
 
 # G9 (live) — pseudolocale overflow. Renders the key routes under the en-XA
@@ -127,7 +136,7 @@ eval:
 # truncation, or horizontal scroll. Playwright starts the test server itself
 # (TDN_I18N_TEST_HOOKS=1); production never registers en-XA. See docs/I18N.md.
 i18n-overflow:
-	@echo "── [20/22] i18n: pseudolocale overflow (G9, Playwright desktop+mobile) ─"
+	@echo "── [21/24] i18n: pseudolocale overflow (G9, Playwright desktop+mobile) ─"
 	@npx --no-install playwright test
 
 # Deterministic in-process latency guard for the request path (QM-02, ROADMAP §7).
@@ -137,12 +146,25 @@ i18n-overflow:
 # `BASE=http://localhost:8080 k6 run loadtest/p95.k6.js` against a live instance
 # (needs k6 + a running server, so it is not part of this merge-blocking target).
 loadtest:
-	@echo "── [21/22] request-path latency benchmark (in-process p95 guard) ─"
+	@echo "── [22/24] request-path latency benchmark (in-process p95 guard) ─"
 	@$(NODE) scripts/latency-bench.ts
 
 slo:
-	@echo "── [22/22] SLO definitions + multi-window burn alerts ────────────"
+	@echo "── [23/24] SLO definitions + multi-window burn alerts ────────────"
 	@$(NODE) scripts/slo-check.ts
+
+# Anti-drift on the OPEN REVIEW GATES, the way gate-count is anti-drift on the stage count.
+# Derives each launch gate's status from the artifacts themselves (verifier roster, the
+# source-fidelity audit, drift baselines, gold provenance, docs/signoffs/) and fails if
+# README.md or docs/STATUS.md claim anything else. A launch gate cannot be cleared by
+# editing a sentence — only by producing the evidence.
+launch-gates:
+	@echo "── [24/24] launch-gate status (machine-derived, anti-drift) ──────"
+	@$(NODE) scripts/launch-gates.ts
+
+# Regenerate the launch-gate block in README.md + docs/STATUS.md after a real change.
+launch-gates-write:
+	@$(NODE) scripts/launch-gates.ts --write
 
 # Opt-in model-path safety lane (not in `verify`; offline by default, real Bedrock with
 # TDN_BEDROCK=aws + AWS credentials). Proves the citation gate holds for the model path.
@@ -178,6 +200,14 @@ source-watch:
 	@$(NODE) scripts/source-watch.ts
 source-baseline:
 	@$(NODE) scripts/source-watch.ts --update
+
+# Refresh the offline snapshots the merge-blocking `fidelity` gate reads (corpus/snapshots/).
+# ⚠️ Deliberate, human-driven, and NOT a way to make a red gate green: every snapshot must
+# still hash to the drift baseline in corpus/source-hashes.json, so refreshing a snapshot over
+# genuine upstream drift makes `make fidelity` fail with a baseline-mismatch until a human runs
+# the review-only re-baseline procedure. See docs/OPERATIONS.md.
+source-snapshot:
+	@$(NODE) scripts/source-snapshot.ts
 
 # Weekly content-ops (content-watch.yml): watch the authoritative trackers (MAP, A4TE,
 # legislative-tracker pages) upstream of any single cited source, and annotate affected

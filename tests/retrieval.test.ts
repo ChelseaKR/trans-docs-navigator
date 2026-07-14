@@ -1,8 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { retrieve } from "../api/retrieval.ts";
+import { TEST_TODAY } from "../api/freshness.ts";
 
-const today = "2026-05-31";
+const today = TEST_TODAY;
 
 test("filters by jurisdiction and includes federal records", () => {
   const r = retrieve({ jurisdiction: "US-CA", change_types: ["name"], today });

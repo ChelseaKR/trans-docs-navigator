@@ -52,6 +52,22 @@ export interface Timeline {
 }
 
 /**
+ * Relocation semantics for a single record, used by the destination-delta engine
+ * (api/relocation.ts). This is an ANNOTATION over a record that is already sourced and
+ * verified — it never introduces a new claim, and it may only assert what the record's
+ * own cited text already says.
+ *
+ * `residency_bound` means: this record's own statement/detail conditions the action on
+ * living in that jurisdiction (e.g. "the district court of the county where you live").
+ * The content gate (api/corpus.ts:validateRecord) REJECTS the annotation unless the
+ * record's own prose actually contains a where-you-live phrase in its language, so the
+ * flag cannot be asserted about a source that does not support it.
+ */
+export interface RelocationTraits {
+  residency_bound?: boolean;
+}
+
+/**
  * One citable corpus record: a single requirement/fact for a (jurisdiction × document × change).
  * This IS the retrieval unit and the citation unit.
  */
@@ -76,6 +92,8 @@ export interface CorpusRecord {
   recheck_sla_days: number;
   /** id into the forms registry, when an official form backs this step. */
   form_ref?: string;
+  /** Relocation annotation, supported by this record's OWN cited text (see RelocationTraits). */
+  relocation?: RelocationTraits;
   language: Language;
 }
 
@@ -162,7 +180,15 @@ export interface ChecklistStep {
   discretionary: boolean;
   /** True when at least one backing record is degraded → step shows "needs reverification". */
   needs_reverification: boolean;
-  form_ref?: string;
+  /**
+   * Official forms backing this step, in record order, deduped. A step can legitimately need
+   * MORE than one: California's birth-record amendment takes VS 24B for the sex field and VS 23
+   * for a court-ordered name change; Washington's takes DOH 422-143 and DOH 422-126; New York's
+   * takes the DOH-5305 application AND the notarized DOH-5303 affidavit. Emitting only the first
+   * would name a form in the step's prose and then not hand it over — the exact failure the forms
+   * gate exists to prevent.
+   */
+  form_refs?: string[];
   /**
    * True when intake bookkeeping (e.g. Intake.has_court_order) says this step is
    * already complete. The step is still emitted with its citations — never deleted —
@@ -196,4 +222,193 @@ export interface GroundedAnswer {
   cited_records: CorpusRecord[];
   /** True when retrieval found nothing serveable and the system refused. */
   refused: boolean;
+}
+
+// ── Relocation planner (docs/RELOCATION.md) ──────────────────────────────────────────
+// A "moving from X to Y" plan is a DESTINATION DELTA over the same corpus the checklist
+// reads: which held documents the move leaves alone, which the destination re-issues on
+// its own terms, in what order, what it costs, and — the part that actually strands
+// people — which doors close the day you stop being a resident of the origin state.
+
+/**
+ * Relocation intake. Deliberately the same shape-class as `Intake`: bounded enums only,
+ * no account, no identity fields. `held` is the documents the person says they already
+ * have; it is a selection, exactly like `Intake.documents`.
+ *
+ * PRIVACY: an (origin → destination) pair is among the most sensitive facts about a
+ * trans person in a hostile state. It is never logged (api/log.ts drops it: there is no
+ * `origin`/`destination` field on the allowlist) and never persisted server-side.
+ */
+export interface RelocationIntake {
+  origin: JurisdictionId;
+  destination: JurisdictionId;
+  /** Documents the person currently holds, issued under the origin/federal regime. */
+  held: DocumentType[];
+  change_types: ChangeType[];
+  language: Language;
+}
+
+/**
+ * How a document travels when a person moves. A definitional property of the DOCUMENT
+ * (what kind of thing it is), not a legal rule about what anyone must do — it only
+ * decides which jurisdiction's records the delta engine reads. No user-visible sentence
+ * is ever generated from it; see docs/RELOCATION.md §"What the engine will not say".
+ */
+export type Portability =
+  /** Federal authority; the same records govern wherever you live (SSA card, passport). */
+  | "federal"
+  /** Issued by the state you live in, so the destination's rules apply (driver's license). */
+  | "state-of-residence"
+  /** Held by the state that issued it; moving does not move it (a court order). */
+  | "state-of-record"
+  /**
+   * Held by the state you were BORN in — which is neither the origin nor the destination of a
+   * move, and which this app never asks for (a birth certificate). This is the asymmetry that
+   * makes a birth certificate unlike every other document here: moving does not change where
+   * you were born, so it cannot change whose rules apply. The engine must therefore never
+   * route one to the destination ("redo it there") — see api/relocation.ts:birthStateSteps.
+   */
+  | "state-of-birth"
+  /** Not a government-issued document (bank/employer/school records). */
+  | "non-government";
+
+/** What the move does to one document. */
+export type StepClass =
+  /** Federal document: the move does not change which records govern it. */
+  | "carries-over"
+  /** State-of-residence document: the destination has its own cited requirements. */
+  | "redo-in-destination"
+  /**
+   * An action taken under the ORIGIN's rules, while the person still lives there. Distinct
+   * from `redo-in-destination`: labelling this one "the new state has its own requirements"
+   * would be plainly false — it is the OLD state's requirements, and that is the whole point
+   * of the step (it is the route with a deadline).
+   */
+  | "do-in-origin"
+  /** A document you already hold from the origin, which the destination does not re-issue. */
+  | "keep-from-origin"
+  /**
+   * A `state-of-birth` document: the state that issued it is the one you were born in, so the
+   * move changes nothing about it. Deliberately NOT `redo-in-destination` (the destination does
+   * not re-issue someone else's birth record) and NOT `keep-from-origin` (the state you are
+   * leaving is not necessarily the state you were born in). The plan shows the rules of the
+   * states it covers, and says plainly that the state of birth is the one that governs.
+   */
+  | "governed-by-birth-state"
+  /** We have no serveable record for this in the destination. Say so; never guess. */
+  | "unknown";
+
+/**
+ * When a step can be done, relative to the move itself. `already-have` is not a time at all —
+ * it is the context you are starting from, and it gets its own group so a document you hold
+ * is never filed under a heading that describes an action (or, worse, under "federal").
+ */
+export type RelocationPhase =
+  | "already-have"
+  | "before-you-move"
+  | "either"
+  /**
+   * Not a time either: a `state-of-birth` step is not gated on the move at all. It gets its own
+   * group so it can never be filed under "before you move" (the route does not close when you
+   * leave) or "after you arrive" (the destination is not the state that governs it).
+   */
+  | "birth-state"
+  | "after-you-arrive";
+
+/**
+ * An ordering hazard: doing things in the wrong order strands people. Every hazard is
+ * either backed by corpus record ids (a substantive claim) or is a non-substantive
+ * CAUTION about the act of applying (`creates-government-record`), which asserts no
+ * jurisdiction-specific fact and therefore carries no citation — the same class as the
+ * existing "verify this against the official source" note.
+ */
+export interface OrderingHazard {
+  kind:
+    /** Step B's own source names document A as something to bring. Do A first. */
+    | "prerequisite-order"
+    /** The origin's source says you file where you live — that door closes when you move. */
+    | "origin-window-closes"
+    /** The destination's record for this step is stale/volatile: we cannot state the rule. */
+    | "unverified-destination-rule"
+    /** Applying to a government agency may itself create a government record. */
+    | "creates-government-record";
+  /** The step this hazard is attached to. */
+  step_key: string;
+  /** For `prerequisite-order`: the step that must come first. */
+  blocked_by?: string;
+  /** Record ids that support this hazard. Empty ONLY for `creates-government-record`. */
+  citations: string[];
+}
+
+/** One line of the cost model. `amount_usd: null` means UNKNOWN — never estimated. */
+export interface CostLine {
+  step_key: string;
+  document_type: DocumentType;
+  jurisdiction: JurisdictionId;
+  amount_usd: number | null;
+  note?: string | undefined;
+  fee_waiver: boolean;
+  /** Record ids the amount/note came from. Empty when nothing in the corpus prices it. */
+  citations: string[];
+}
+
+/**
+ * Cost is the #1 reported barrier to relocation, so the model is explicit rather than
+ * tidy: a floor built only from amounts the corpus actually states, a count of the steps
+ * it cannot price, and the steps whose sources record a fee waiver.
+ */
+export interface CostModel {
+  lines: CostLine[];
+  /** Sum of the KNOWN amounts. A floor, never a total. */
+  known_total_usd: number;
+  /** Steps whose cost the corpus states as variable ("varies by county"). */
+  variable_step_keys: string[];
+  /** Steps for which the corpus prices nothing at all. */
+  unpriced_step_keys: string[];
+  /** Steps whose sources record a fee-waiver path. */
+  fee_waiver_step_keys: string[];
+}
+
+export interface RelocationStep {
+  key: string;
+  order: number;
+  document_type: DocumentType;
+  /** Whose rules this step follows: the destination, the origin, or "US" (federal). */
+  jurisdiction: JurisdictionId;
+  portability: Portability;
+  step_class: StepClass;
+  phase: RelocationPhase;
+  title: string;
+  /** Backing, current corpus records — the ONLY source of this step's substantive text. */
+  record_ids: string[];
+  /** Step keys that this step's own records name as prerequisites. */
+  prerequisites: string[];
+  cost?: Cost | undefined;
+  timeline?: Timeline | undefined;
+  discretionary: boolean;
+  needs_reverification: boolean;
+  /** Official forms backing this step, in record order, deduped. See ChecklistStep.form_refs. */
+  form_refs?: string[];
+  /** True when the person already holds this document (from the intake). */
+  held: boolean;
+  /**
+   * The OTHER route to the same document, when one exists. A state-of-record document the
+   * person does not yet hold can often be obtained under the origin's rules (while they
+   * still live there) OR under the destination's — those are alternatives, not two
+   * separate things to do, and presenting them as a sequence would be a lie of structure.
+   */
+  alternative_to?: string;
+}
+
+export interface RelocationPlan {
+  origin: JurisdictionId;
+  destination: JurisdictionId;
+  change_types: ChangeType[];
+  language: Language;
+  /** Ordered: everything gated on origin residency first, then the destination steps. */
+  steps: RelocationStep[];
+  hazards: OrderingHazard[];
+  costs: CostModel;
+  /** Documents we cannot produce a verified destination step for. Shown, never hidden. */
+  gaps: { document_type: DocumentType; jurisdiction: JurisdictionId; reason: "no-records" | "all-degraded" }[];
 }

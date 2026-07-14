@@ -29,6 +29,10 @@ const MARK = "⟦"; // ⟦
 // non-shipping test locale has no entry there. This never affects production
 // (asLanguage() only ever yields en/es in prod), and the guide layout — a
 // renderChecklist() list plus prose — is already covered by /checklist and /terms.
+// The relocation planner (/move, /plan) is included: it is a new user-facing surface with
+// its own layout (phase sections, hazard lists with a logical border, a cost panel), and its
+// copy is the longest in the app — the classification badges and hazard sentences are exactly
+// the strings a 40%-expanding locale would break first.
 const ROUTES = [
   "/?language=en-XA",
   "/checklist?jurisdiction=US-CA&change=name&change=gender-marker&language=en-XA",
@@ -36,6 +40,8 @@ const ROUTES = [
   "/answer?jurisdiction=US-CA&change=name&language=en-XA",
   "/forms/us-ss-5?language=en-XA",
   "/terms?language=en-XA",
+  "/move?language=en-XA",
+  "/plan?origin=US-TX&destination=US-WA&hold=court-order&language=en-XA",
 ];
 
 test.describe("G9 — pseudolocale overflow (en-XA, ~40% expansion)", () => {

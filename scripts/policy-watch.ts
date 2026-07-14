@@ -21,6 +21,7 @@ import { join } from "node:path";
 import { createHash } from "node:crypto";
 import { loadCorpus, REPO_ROOT } from "../api/corpus.ts";
 import type { JurisdictionId } from "../api/types.ts";
+import { summarize } from "./source-watch.ts";
 import { pass, fail } from "./util.ts";
 
 interface PolicyTracker {
@@ -63,20 +64,31 @@ async function contentHash(url: string): Promise<string | null> {
 const trackers: PolicyTracker[] = existsSync(TRACKERS_PATH) ? JSON.parse(readFileSync(TRACKERS_PATH, "utf8")) : [];
 
 const baseline: Record<string, string> = existsSync(BASELINE_PATH) ? JSON.parse(readFileSync(BASELINE_PATH, "utf8")) : {};
+const hasBaseline = Object.keys(baseline).length > 0;
 const next: Record<string, string> = {};
 const drifted: string[] = [];
 const unreachable: string[] = [];
+// Same fail-quiet class source-watch had, in a second form: a tracker configured with no
+// baseline entry used to be *silently unwatched* — `baseline[url] && ...` is simply false,
+// so it produced neither drift nor an error, forever. (This was live: the MAP Identity
+// Document Laws tracker — the one most on-point for this corpus — had no baseline entry.)
+// A configured-but-unbaselined tracker is now a coverage issue, reported alongside drift.
+const missingBaseline: string[] = [];
 
 for (const tracker of trackers) {
   const { url } = tracker;
+  const hasUrlBaseline = Object.prototype.hasOwnProperty.call(baseline, url);
+  if (!update && hasBaseline && !hasUrlBaseline) {
+    missingBaseline.push(`${url} → baseline required for tracker '${tracker.name}' (${tracker.jurisdiction})`);
+  }
   const hash = await contentHash(url);
   if (hash === null) {
     unreachable.push(url);
-    if (baseline[url]) next[url] = baseline[url]; // keep the old baseline; an outage is not a change
+    if (hasUrlBaseline) next[url] = baseline[url]!; // keep the old baseline; an outage is not a change
     continue;
   }
   next[url] = hash;
-  if (!update && baseline[url] && baseline[url] !== hash) {
+  if (!update && hasUrlBaseline && baseline[url] !== hash) {
     // Affected records are the record's jurisdiction, computed fresh (not derived from
     // the tracker config) — the tracker's own jurisdiction tag is the unit a human
     // re-verifies against.
@@ -87,6 +99,13 @@ for (const tracker of trackers) {
   }
 }
 
+const trackerUrls = new Set(trackers.map((t) => t.url));
+const staleBaseline = !update && hasBaseline
+  ? Object.keys(baseline)
+      .filter((url) => !trackerUrls.has(url))
+      .map((url) => `${url} → no configured tracker cites this baseline`)
+  : [];
+
 for (const u of unreachable) console.log(`  ⚠️  unreachable (skipped): ${u}`);
 
 if (update) {
@@ -94,10 +113,13 @@ if (update) {
   pass("policy-watch", `baseline written for ${Object.keys(next).length} tracker(s) → corpus/policy-hashes.json`);
 } else if (trackers.length === 0) {
   fail("policy-watch", "no trackers configured — add entries to corpus/policy-trackers.json");
-} else if (Object.keys(baseline).length === 0) {
+} else if (!hasBaseline) {
   fail("policy-watch", "no baseline committed — run `make policy-baseline` after reviewing the trackers");
-} else if (drifted.length > 0) {
-  fail("policy-watch", `${drifted.length} tracker(s) changed since baseline — affected records need re-verification`, drifted);
 } else {
+  // Drift and coverage are reported together; neither suppresses the other.
+  const summary = summarize([{ next, drifted, unreachable, missingBaseline, staleBaseline }], "tracker");
+  if (!summary.ok) {
+    fail("policy-watch", summary.message, summary.details);
+  }
   pass("policy-watch", `${Object.keys(next).length - unreachable.length} tracker(s) unchanged since baseline`);
 }

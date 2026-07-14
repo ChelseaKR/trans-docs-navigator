@@ -1,0 +1,161 @@
+{
+  "_comment": "Offline snapshots of every cited corpus source, normalized with the SAME normalize() that scripts/source-watch.ts hashes, so each `sha256` here must equal the drift baseline in corpus/source-hashes.json for the same URL. scripts/source-fidelity.ts (`make fidelity`) reads these offline to check that each record's load-bearing assertions are actually locatable in the source it cites. Regenerate deliberately with `make source-snapshot`, then READ THE DIFF — see docs/OPERATIONS.md. A source recorded as `unfetchable` has no snapshot and its records' claims are UNCHECKABLE, never silently passed.",
+  "snapshots": {
+    "https://dmv.ny.gov/driver-license/change-information-on-dmv-photo-documents": {
+      "file": "dmv-ny-gov-driver-license-change-information-on-dmv-photo-documents-cb331605.txt",
+      "fetched": "2026-07-13",
+      "sha256": "9e40a98886b7d0e21d17e0464ebfdd852631bd31d18ba16b59f40b24a2b7eac0"
+    },
+    "https://doh.wa.gov/licenses-permits-and-certificates/vital-records/court-ordered-name-change": {
+      "file": "doh-wa-gov-licenses-permits-and-certificates-vital-records-court-order-c6ba25c7.txt",
+      "fetched": "2026-07-13",
+      "sha256": "daecc385886a0bf98476fecb84363ae0e827301ac3fa210c4679bd1392f03d61"
+    },
+    "https://doh.wa.gov/licenses-permits-and-certificates/vital-records/sex-designation-change-birth-certificate": {
+      "file": "doh-wa-gov-licenses-permits-and-certificates-vital-records-sex-designa-38b47886.txt",
+      "fetched": "2026-07-13",
+      "sha256": "cd7d7243d94ad08db1d346ba1c47d3701ef0efa27b01a87c18a5d9d012f94af6"
+    },
+    "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-gender-designation": {
+      "file": "dol-wa-gov-driver-licenses-and-permits-update-driver-license-informati-562ee48e.txt",
+      "fetched": "2026-07-13",
+      "sha256": "e79017b519b59d4e8d980b260d3f2011f5763ac208729c37e8691f1e1cd386bd"
+    },
+    "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-name-or-address-your-driver-license": {
+      "file": "dol-wa-gov-driver-licenses-and-permits-update-driver-license-informati-7612f6c6.txt",
+      "fetched": "2026-07-13",
+      "sha256": "c84899d41c9a6c37c956c586e2a544b142ccfc03b37985ba6f8c4ec59c970346"
+    },
+    "https://dph.illinois.gov/topics-services/birth-death-other-records/birth-records/gender-reassignment.html": {
+      "file": "dph-illinois-gov-topics-services-birth-death-other-records-birth-recor-fc815b8a.txt",
+      "fetched": "2026-07-13",
+      "sha256": "65742e7866a13131eef9ee32924bba39d28da00b9c1c9e1b441b85447ad9b5bd"
+    },
+    "https://guides.sll.texas.gov/name-changes/gender-marker-and-name-change": {
+      "file": "guides-sll-texas-gov-name-changes-gender-marker-and-name-change-43b83bfe.txt",
+      "fetched": "2026-07-13",
+      "sha256": "f7c3985611a8e80e8403d385e1caeb1346c793675bc389e868cadacabb12af91"
+    },
+    "https://secure.ssa.gov/poms.nsf/lnx/0110212001": {
+      "file": "secure-ssa-gov-poms-nsf-lnx-0110212001-d8264d28.txt",
+      "fetched": "2026-07-14",
+      "sha256": "49d35251740e8d3c2bd81003533d98f40ff8c83a6665bf3dfaded9279cfca27e"
+    },
+    "https://secure.ssa.gov/poms.nsf/lnx/0110212200": {
+      "file": "secure-ssa-gov-poms-nsf-lnx-0110212200-4b8c6565.txt",
+      "fetched": "2026-07-14",
+      "sha256": "6b332776b1b2909d7239ef6b9d35e3b7d8bda841f755074cf9ba0f0b9f53ed57"
+    },
+    "https://selfhelp.courts.ca.gov/es/cambie-su-nombre-en-california": {
+      "file": "selfhelp-courts-ca-gov-es-cambie-su-nombre-en-california-fca18756.txt",
+      "fetched": "2026-07-13",
+      "sha256": "157b99fb5721e58445d01de6a5bc13ae5f65a058e33a45423657e0c2d3043d2d"
+    },
+    "https://selfhelp.courts.ca.gov/es/reconocimiento-de-genero": {
+      "file": "selfhelp-courts-ca-gov-es-reconocimiento-de-genero-b51f8ccc.txt",
+      "fetched": "2026-07-13",
+      "sha256": "bc2ec0c2cc6f17eb05f62cc34d580813b885c86703eca799a9a83e4b0f7187a4"
+    },
+    "https://selfhelp.courts.ca.gov/gender-recognition": {
+      "file": "selfhelp-courts-ca-gov-gender-recognition-74fc2dfa.txt",
+      "fetched": "2026-07-13",
+      "sha256": "90c0dd042074b4d43c6c29c70f173c5ae85304211a5259b3df6968c2a349cd5b"
+    },
+    "https://selfhelp.courts.ca.gov/gender-recognition/update-gender-marker-ID-documents": {
+      "file": "selfhelp-courts-ca-gov-gender-recognition-update-gender-marker-id-docu-eff0f941.txt",
+      "fetched": "2026-07-13",
+      "sha256": "972c31c7430d5075d815fcb913153084d77e2957df9c466becd33d6bd67269ff"
+    },
+    "https://selfhelp.courts.ca.gov/jcc-form/NC-200": {
+      "file": "selfhelp-courts-ca-gov-jcc-form-nc-200-7f1442ce.txt",
+      "fetched": "2026-07-13",
+      "sha256": "680813eac257a41f17d1e2b374a76daf71eefae3b008949ddd74ff98188ec16e"
+    },
+    "https://selfhelp.courts.ca.gov/name-change": {
+      "file": "selfhelp-courts-ca-gov-name-change-7a40a099.txt",
+      "fetched": "2026-07-13",
+      "sha256": "874e03a2294d678ac377cf92f0bed64554a54561254a9f54e36c6249d71689fd"
+    },
+    "https://texaslawhelp.org/guide/i-want-to-change-my-name": {
+      "file": "texaslawhelp-org-guide-i-want-to-change-my-name-1cde92b3.txt",
+      "fetched": "2026-07-13",
+      "sha256": "7e27aa24e521575f4c2d7d61b849294b7630fec0a471d8de3a39467a39bc33d5"
+    },
+    "https://travel.state.gov/content/travel/en/passports/have-passport/change-correct.html": {
+      "file": "travel-state-gov-content-travel-en-passports-have-passport-change-corr-fad0ebc8.txt",
+      "fetched": "2026-07-13",
+      "sha256": "e57d514c0bf0844ee91c909a41674a10d53a9c86a5ee6db271ea7a6bc4577ed5"
+    },
+    "https://travel.state.gov/en/passports/apply/unique-needs/sex-markers.html": {
+      "file": "travel-state-gov-en-passports-apply-unique-needs-sex-markers-html-ba0839d2.txt",
+      "fetched": "2026-07-13",
+      "sha256": "1e73e42be7eba7287ba85961700e9c0fe8498c4ec3a82fc4cc4f816e968164b5"
+    },
+    "https://travel.state.gov/es/pasaportes/renovar-o-reemplazar/cambiar-o-corregir.html": {
+      "file": "travel-state-gov-es-pasaportes-renovar-o-reemplazar-cambiar-o-corregir-53d6445a.txt",
+      "fetched": "2026-07-13",
+      "sha256": "cd236fa8c69012b04fba56a9fb7c9786d53505dddcfa9e56b2d0136b2e4d7313"
+    },
+    "https://www.cdph.ca.gov/Programs/CHSI/Pages/Amending-a-California-Birth-Record.aspx": {
+      "file": "cdph-ca-gov-programs-chsi-pages-amending-a-california-birth-record-asp-2d85b264.txt",
+      "fetched": "2026-07-13",
+      "sha256": "4a8d4673f8317dc1b4c799d6e0b5ef4ea1ec963f23b0b265482eb481b75da386"
+    },
+    "https://www.cdph.ca.gov/Programs/CHSI/Pages/Vital-Records-Fees.aspx": {
+      "file": "cdph-ca-gov-programs-chsi-pages-vital-records-fees-aspx-d354351b.txt",
+      "fetched": "2026-07-13",
+      "sha256": "cfcf3d5ca6a6315424bde3e978e1a320847f6c90ff6b4a96d206e3a92f434e92"
+    },
+    "https://www.courts.wa.gov/forms/?fa=forms.static&staticID=13": {
+      "file": "courts-wa-gov-forms-86a65aee.txt",
+      "fetched": "2026-07-13",
+      "sha256": "815f6264ca366339f2f49bad45374a6730d2733f84016e29fe8b01bd9e403498"
+    },
+    "https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/updating-information-on-your-driver-license-or-identification-dl-id-card/": {
+      "file": "dmv-ca-gov-portal-driver-licenses-identification-cards-updating-inform-7207a6ab.txt",
+      "fetched": "2026-07-13",
+      "sha256": "53bb9423399b6292c22a8d0748877ea2200ff25cf77faafea41988da38710c9e"
+    },
+    "https://www.dps.texas.gov/section/driver-license/how-change-information-your-driver-license-or-id-card": {
+      "file": "dps-texas-gov-section-driver-license-how-change-information-your-drive-d1b2e244.txt",
+      "fetched": "2026-07-13",
+      "sha256": "18c04a2e7ce6811f6e05d014a3be3df8a5b538b9cca0941f3771f58d676a8e43"
+    },
+    "https://www.dshs.texas.gov/vital-statistics/costs-fees": {
+      "file": "dshs-texas-gov-vital-statistics-costs-fees-33a82743.txt",
+      "fetched": "2026-07-13",
+      "sha256": "1b7e69fcc1c5748e590d34849d1b1ac336a3538c24d9ccc279e3282fc5d9d88c"
+    },
+    "https://www.dshs.texas.gov/vital-statistics/requirements-requesting-changing-vital-records/supporting-documentation-record-changes": {
+      "file": "dshs-texas-gov-vital-statistics-requirements-requesting-changing-vital-00409814.txt",
+      "fetched": "2026-07-13",
+      "sha256": "c3588254b805f81730a3421988e9d53982c36d98e2e83668703c78747e2790f5"
+    },
+    "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm": {
+      "file": null,
+      "fetched": "2026-07-14",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://www.illinoislegalaid.org/legal-information/changing-your-name": {
+      "file": "illinoislegalaid-org-legal-information-changing-your-name-0473d245.txt",
+      "fetched": "2026-07-13",
+      "sha256": "6e79bf3fb02cabc2e5b1e46f706ed7444dbc1a193feeeaf88f7e92f0edf37ab6"
+    },
+    "https://www.illinoislegalaid.org/legal-information/updating-sex-and-gender-markers-identification": {
+      "file": "illinoislegalaid-org-legal-information-updating-sex-and-gender-markers-02f8a5f6.txt",
+      "fetched": "2026-07-13",
+      "sha256": "147d6d139b7a709f9608f9d494eb9189aaa9bb43ad0d8339307f9e837cd2fd9e"
+    },
+    "https://www.nycourts.gov/courthelp/Family/nameChange.shtml": {
+      "file": null,
+      "fetched": "2026-07-14",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    }
+  }
+}

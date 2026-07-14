@@ -102,8 +102,20 @@ for (const m of prTemplate.matchAll(/(\d+)[\s-](?:gates?|stage)\b/gi)) {
   }
 }
 
+// --- .github/workflows/release.yml: the release job claims to re-run "the same N-stage
+// pipeline". A CI file that misstates which gate set guards a tagged release is drift with
+// teeth, so it is held to the same standard as the prose.
+const releasePath = ".github/workflows/release.yml";
+const release = read(join(ROOT, releasePath));
+for (const m of release.matchAll(/(\d+)-stage\b/g)) {
+  const n = Number(m[1]);
+  if (n !== derived) {
+    mismatches.push(`${releasePath}: "${m[0]}" states ${n}, derived ${derived}`);
+  }
+}
+
 if (mismatches.length > 0) {
   fail("gate-count", `${mismatches.length} doc(s) drifted from the derived gate count (${derived})`, mismatches);
 }
 
-pass("gate-count", `Makefile \`verify:\` has ${derived} stages; README/STATUS/PR-template agree`);
+pass("gate-count", `Makefile \`verify:\` has ${derived} stages; README/STATUS/PR-template/release.yml agree`);

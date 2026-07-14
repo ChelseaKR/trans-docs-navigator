@@ -148,6 +148,82 @@ export const es: LocaleBundle = {
     has_court_order: "Tengo una orden judicial",
   },
 
+  // Planificador de mudanza. Solo etiquetas estructurales y advertencias — vea RelocationMessages.
+  // PENDING native-speaker review (no attestation) — same posture as the rest of this bundle.
+  relocation: {
+    moveTitle: "Planifique una mudanza a otro estado",
+    moveHeading: "Mudarse a otro estado",
+    moveLead:
+      "Díganos desde dónde y hacia dónde se muda, y qué documentos ya tiene. Le mostraremos qué cambia con la mudanza, en qué orden y cuánto cuesta cada paso — con una fuente para cada paso.",
+    movePrivacy:
+      "No guardamos a dónde se muda. No hay cuenta. No registramos los estados que elige ni los conservamos después de crear esta página.",
+    fromLegend: "Dónde vive ahora",
+    fromLabel: "Estado actual",
+    toLegend: "A dónde se muda",
+    toLabel: "Estado nuevo",
+    holdLegend: "Lo que ya tiene",
+    holdLead: "Marque los documentos que ya tiene. Déjelos sin marcar si no está seguro.",
+    submitPlan: "Muéstreme el plan",
+    sameStateError: "Elija dos estados distintos para poder mostrarle qué cambia.",
+
+    planTitle: "Su plan de mudanza",
+    planHeading: (from: string, to: string) => `Mudanza de ${from} a ${to}`,
+    planIntro:
+      "Cada paso viene de una fuente oficial, con la fecha en que lo verificamos por última vez. Los pasos están ordenados para que no se quede atascado: lo que es más fácil hacer antes de mudarse va primero.",
+
+    phaseHave: "Lo que ya tiene",
+    phaseHaveLead:
+      "Usted nos dijo que ya tiene estos documentos. Aparecen aquí como referencia, y porque pasos posteriores se los piden.",
+    phaseBefore: "Antes de mudarse",
+    phaseBeforeLead:
+      "Estos pasos siguen las reglas del estado que deja. Nuestra fuente para ese estado dice que el paso ocurre donde usted vive — así que esta vía está abierta ahora y puede no estarlo después.",
+    phaseEither: "En cualquier momento",
+    phaseEitherLead:
+      "Estos son documentos federales. Las mismas reglas aplican en ambos estados, así que la mudanza no los cambia.",
+    phaseBirth: "Dónde nació usted",
+    phaseBirthLead:
+      "Su acta de nacimiento la guarda el estado donde usted nació. La mudanza no cambia eso, así que tampoco cambia qué reglas aplican. No le preguntamos dónde nació, por eso abajo aparecen los dos estados de este plan. Si nació en otro estado, aplican las reglas de ese estado y todavía no lo cubrimos.",
+    phaseAfter: "Después de llegar",
+    phaseAfterLead: "Estos pasos siguen las reglas del estado al que se muda.",
+
+    classCarriesOver: "Federal — la mudanza no cambia esto",
+    classRedo: "El estado nuevo tiene sus propios requisitos",
+    classDoInOrigin: "Se hace bajo las reglas del estado que usted deja",
+    classKeep: "Usted ya tiene esto",
+    classBirthState: "Lo maneja el estado donde usted nació — la mudanza no cambia esto",
+    classUnknown: "Todavía no tenemos una fuente verificada para esto",
+    keepUnknownNote:
+      "Este documento lo emitió el estado que usted deja. Nuestras fuentes no dicen qué hace el estado nuevo con un documento emitido en otro lugar, así que no vamos a adivinar. Consulte la fuente del paso que se lo pida.",
+    alternativeRoute: (n: number) => `Esta es una de dos vías para el mismo documento. Haga esta o el paso ${n} — no ambas.`,
+
+    hazardsHeading: "El orden importa",
+    hazardPrereq: (step: string, blocker: string) =>
+      `«${step}» le pide traer el resultado de «${blocker}». Haga ese primero, o pueden rechazarle el trámite.`,
+    hazardOriginWindow:
+      "La fuente del estado que deja dice que este paso ocurre donde usted vive. Si se muda primero, es probable que tenga que empezarlo de nuevo bajo las reglas del estado nuevo.",
+    hazardUnverified:
+      "Al menos una regla detrás de este paso cambió hace poco, o nuestra verificación está vencida. No la mostraremos como vigente. Lea la fuente oficial antes de actuar en este paso.",
+    hazardCreatesRecord:
+      "Solicitar un trámite ante una agencia del gobierno crea un registro gubernamental de su solicitud. Eso pasa con cualquier solicitud, y conviene decidirlo a propósito, no por accidente.",
+
+    costHeading: "Cuánto cuesta esto",
+    costFloor: (amt: number) => `Tarifas que nuestras fuentes indican: $${amt}.`,
+    costNothingPriced: "Nuestras fuentes no indican una tarifa para ningún paso de este plan.",
+    costVariable: (n: number) => `${n} paso(s) tienen una tarifa que varía (por ejemplo, según el condado). No la estimamos.`,
+    costUnpriced: (n: number) =>
+      `${n} paso(s) no tienen ninguna tarifa indicada en nuestras fuentes. Considere el total como incompleto.`,
+    costWaiver: "Hay una exención de tarifa documentada para al menos un paso. Búsquela en el paso más abajo.",
+    costHonesty:
+      "Esto es un mínimo, no un total. Solo sumamos las tarifas que nuestras fuentes indican, y decimos cuándo no podemos calcular un paso en vez de adivinar.",
+
+    gapsHeading: "Lo que no pudimos cubrir",
+    gapNoDestinationRecords: (state: string) =>
+      `Todavía no tenemos una fuente verificada para este documento en ${state}.`,
+    noStepsLead:
+      "Todavía no pudimos crear un plan verificado para ese par de estados. Consulte las fuentes oficiales directamente.",
+    planCta: "Planifique una mudanza a otro estado",
+  },
+
   generator: {
     costVaries: (note?: string) => (note ? ` El costo varía: ${note}` : " El costo varía."),
     costAbout: (amt: number, waiver: boolean) =>

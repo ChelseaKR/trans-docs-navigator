@@ -1,0 +1,30 @@
+[
+  {
+    "id": "poison.drivers-license.gender-marker",
+    "jurisdiction": "US-CA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Poisoned record: a fee and a form the cited page never states",
+    "statement": "To change the gender category on your card, complete the Gender Category Request (Form DL 329) and bring it to a field office.",
+    "detail": "There is no fee for this change, and the new card arrives in 2 weeks.",
+    "cost": {
+      "amount_usd": 0,
+      "note": "There is no fee for a gender category change."
+    },
+    "timeline": {
+      "typical": "2 weeks"
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://example.test/dmv/update-your-card",
+      "title": "Example DMV — Update Your Card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

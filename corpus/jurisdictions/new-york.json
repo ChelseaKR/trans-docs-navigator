@@ -37,19 +37,13 @@
       "gender-marker"
     ],
     "topic": "New York driver's license sex designation",
-    "statement": "New York lets you select a sex designation of F, M, or X on your driver's license or ID by self-attesting on the DMV's designation form — no medical proof is required.",
-    "cost": {
-      "amount_usd": 0,
-      "note": "No additional fee to change the designation."
-    },
-    "timeline": {
-      "typical": "processed with your DMV transaction"
-    },
+    "statement": "New York lets you change the sex/gender designation on your DMV photo document. The DMV says you can make the change online with your personal information, or by completing the Application for Permit, Driver License or Non-Driver ID Card (form MV-44) and visiting a DMV office.",
+    "detail": "This record is flagged for re-verification. The DMV page describes the online and MV-44 routes but does not state which sex designations are available, whether an X designation can be chosen, or what the change costs. Ask the DMV directly before you rely on a specific designation.",
     "prerequisites": [],
     "source": {
       "url": "https://dmv.ny.gov/driver-license/change-information-on-dmv-photo-documents",
-      "title": "NY DMV — Changing the Sex Designation on Your License/ID",
-      "last_verified": "2026-06-16",
+      "title": "NY DMV — Change Information on DMV Photo Documents",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",
@@ -64,18 +58,102 @@
       "name"
     ],
     "topic": "New York driver's license name change",
-    "statement": "To change the name on your New York license or ID, bring your court order and proof of identity to the DMV and apply for an amended document.",
+    "statement": "To change the name on a Standard New York license, permit, or non-driver ID, you can apply by mail with form MV-44NC and a copy of a proof of your name change, such as a government-issued court order. For a REAL ID or Enhanced document you must go to a DMV office with form MV-44 and the original or a certified copy of the court papers.",
+    "detail": "With the mailed application you also send a copy of your new Social Security card and your current New York document. Once your new document is ordered it comes in about 2 weeks; if you go to an office, the DMV gives you a temporary non-photo document to use meanwhile.",
+    "cost": {
+      "amount_usd": null,
+      "note": "$12.50 for a license or permit, $5.00 for a non-driver ID."
+    },
+    "timeline": {
+      "typical": "the new document arrives about 2 weeks after it is ordered"
+    },
     "prerequisites": [
       "court-order"
     ],
     "source": {
       "url": "https://dmv.ny.gov/driver-license/change-information-on-dmv-photo-documents",
-      "title": "NY DMV — Change the Name on Your DMV Records",
-      "last_verified": "2026-06-16",
+      "title": "NY DMV — Change Information on DMV Photo Documents",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ny.birth-certificate.gender-marker",
+    "jurisdiction": "US-NY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "New York birth certificate gender designation",
+    "statement": "New York State Vital Records can amend the gender designation on birth records for all of New York State except New York City. If you were born in New York City, you must go to New York City Vital Records instead.",
+    "detail": "If you are 17 or older, send in the application (form DOH-5305) with a notarized affidavit affirming your gender identity (form DOH-5303). You can ask for an X gender designation. Your old birth certificate and the papers behind the change are kept in a sealed file, and only the amended certificate is released later. The office says it has significant delays in processing orders.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page does not list a fee to amend the record. One certified copy of the amended birth certificate is free, and extra copies are $30 each."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
+      "title": "New York State Department of Health — Gender Designation Amendments",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ny-doh-5305",
+    "language": "en"
+  },
+  {
+    "id": "ny.birth-certificate.gender-marker.affidavit",
+    "jurisdiction": "US-NY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "New York birth certificate gender affidavit",
+    "statement": "New York asks adults to send a second form with the application: a notarized affidavit (form DOH-5303). You sign it in front of a notary.",
+    "detail": "The health department lists both papers together for adults 17 and older: the application (form DOH-5305) and the affidavit (form DOH-5303). Send them together.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
+      "title": "New York State Department of Health — Gender Designation Amendments",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ny-doh-5303",
+    "language": "en"
+  },
+  {
+    "id": "ny.birth-certificate.name",
+    "jurisdiction": "US-NY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "New York birth certificate name change",
+    "statement": "New York can change your name on your birth certificate at the same time as your gender designation, but only if you send a copy of the court order that authorized the name change. A name change cannot be authorized without a court order.",
+    "detail": "Note the name change on the application (form DOH-5305) and put a copy of the court order in with it.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page does not list a fee to amend the record. One certified copy of the amended birth certificate is free, and extra copies are $30 each."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
+      "title": "New York State Department of Health — Gender Designation Amendments",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ny-doh-5305",
     "language": "en"
   }
 ]

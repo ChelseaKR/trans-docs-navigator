@@ -4,10 +4,12 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { handleRoute } from "../api/router.ts";
+import { hasThinnerLanguageCoverage } from "../api/checklist.ts";
+import type { CorpusRecord } from "../api/types.ts";
 import { renderIntakePage } from "../src/pages.ts";
 
 const u = (p: string) => new URL(p, "http://localhost:8080");
-const today = "2026-06-16";
+const today = "2026-07-13";
 
 test("intake page is fully Spanish under ?language=es (no English chrome)", () => {
   const h = renderIntakePage("es");
@@ -52,13 +54,55 @@ test("error pages are Spanish under ?language=es", () => {
   assert.match(method.body, /Método no permitido/);
 });
 
-test("Spanish-thin states surface an honest coverage note (WA has no ES state records)", () => {
-  // Washington: EN has a current court-order record, Spanish does not → honest note.
-  const wa = handleRoute("GET", u("/checklist?jurisdiction=US-WA&change=name&doc=court-order&language=es"), today);
-  assert.match(wa.body, /Los pasos completos en español para este estado aún no están listos/);
-  // California ES is complete for court-order → no note.
+test("Washington now has Spanish parity (court-order + drivers-license) — no thinner-coverage note", () => {
+  // Washington was the last Spanish gap: EN had court-order and driver's-licence records
+  // with no ES twin, so a Spanish user got the honest "not ready yet" note instead of steps.
+  // Those records now exist, so the note must no longer fire — and the ES steps must render.
+  const wa = handleRoute(
+    "GET",
+    u("/checklist?jurisdiction=US-WA&change=name&change=gender-marker&doc=court-order&doc=drivers-license&language=es"),
+    today,
+  );
+  assert.doesNotMatch(wa.body, /aún no están listos/);
+  assert.match(wa.body, /tribunal de distrito del condado donde reside/); // wa.court-order.name.es
+  assert.match(wa.body, /no exclusivamente masculino ni femenino/); // wa.drivers-license.gender-marker.es
+
+  // California ES is complete for court-order → no note (unchanged).
   const ca = handleRoute("GET", u("/checklist?jurisdiction=US-CA&change=name&doc=court-order&language=es"), today);
   assert.doesNotMatch(ca.body, /aún no están listos/);
+});
+
+test("the thinner-coverage note still fires when a language IS genuinely thin", () => {
+  // The real corpus now has full EN/ES parity, so no live request can exercise this. The
+  // honesty mechanism must stay covered regardless — a future EN-only record must still
+  // produce the note rather than silently showing a Spanish user a gap. Synthetic corpus.
+  const enOnly: CorpusRecord[] = [
+    {
+      id: "zz.court-order.name",
+      jurisdiction: "US-CA",
+      document_type: "court-order",
+      change_type: ["name"],
+      topic: "t",
+      statement: "A sufficiently long English-only statement.",
+      source: { url: "https://e.gov", title: "T", last_verified: today, verifier: "Pilot Seed Reviewer" },
+      verification_status: "verified",
+      recheck_sla_days: 90,
+      language: "en",
+    },
+  ];
+  const intake = {
+    jurisdiction: "US-CA",
+    change_types: ["name"],
+    documents: ["court-order"],
+    language: "es",
+  } as const;
+  assert.equal(hasThinnerLanguageCoverage({ ...intake, change_types: ["name"], documents: ["court-order"] }, today, enOnly), true);
+  // …and it does NOT fire once the Spanish twin exists.
+  const withEs: CorpusRecord[] = [
+    ...enOnly,
+    { ...enOnly[0]!, id: "zz.court-order.name.es", statement: "Una declaración suficientemente larga.", language: "es" },
+  ];
+  assert.equal(hasThinnerLanguageCoverage({ ...intake, change_types: ["name"], documents: ["court-order"] }, today, withEs), false);
 });
 
 test("Texas now has Spanish parity for name-change (court-order + drivers-license) — no thinner-coverage note", () => {
@@ -96,9 +140,10 @@ test("answer-page Sources heading is h2 (no h1→h3 skip)", () => {
 });
 
 test("gaps render a humane Spanish sentence, not a raw slug", () => {
-  // US-CA + birth-certificate has no CA records → a gap.
-  const r = handleRoute("GET", u("/checklist?jurisdiction=US-CA&change=name&doc=birth-certificate&language=es"), today);
-  assert.match(r.body, /Acta de nacimiento/); // localized document label
+  // US-CA + financial-records has no records in any language → a gap. (This used to be
+  // birth-certificate, which the corpus now covers in EN and ES for all five states.)
+  const r = handleRoute("GET", u("/checklist?jurisdiction=US-CA&change=name&doc=financial-records&language=es"), today);
+  assert.match(r.body, /Registros financieros/); // localized document label
   assert.match(r.body, /Aún no tenemos pasos verificados/); // humane reason
-  assert.doesNotMatch(r.body, /no-records|birth-certificate:/); // no slug/code leak
+  assert.doesNotMatch(r.body, /no-records|financial-records:/); // no slug/code leak
 });

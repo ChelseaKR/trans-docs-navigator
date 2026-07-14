@@ -3,8 +3,9 @@ import assert from "node:assert/strict";
 import { embeddingRetrieve, embed } from "../api/embedding-retrieval.ts";
 import { answer } from "../api/guidance.ts";
 import { loadCorpus } from "../api/corpus.ts";
+import { TEST_TODAY } from "../api/freshness.ts";
 
-const today = "2026-05-31";
+const today = TEST_TODAY;
 const corpus = loadCorpus();
 
 test("embeddingRetrieve applies the same structured filter (jurisdiction + federal, change, language)", () => {

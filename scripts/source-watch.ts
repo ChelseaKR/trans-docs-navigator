@@ -28,7 +28,16 @@ const FORMS_BASELINE_PATH = join(REPO_ROOT, "forms", "form-hashes.json");
 const TIMEOUT_MS = 20_000;
 const UA = "trans-docs-navigator-source-watch/1.0 (+https://github.com/ChelseaKR/trans-docs-navigator)";
 
-function normalize(html: string): string {
+/**
+ * Lossy text normalization for an HTML source page: tags, scripts, styles, comments and
+ * entities out; whitespace collapsed; lower-cased. Exported because the source-fidelity
+ * snapshot store (scripts/source-snapshot.ts) MUST produce byte-identical text to what
+ * this watcher hashes — that identity is what lets the fidelity gate cross-check a
+ * committed snapshot against the committed drift baseline in corpus/source-hashes.json.
+ * A snapshot that has been doctored to make the fidelity gate pass no longer hashes to
+ * its baseline, and the cross-check fails.
+ */
+export function normalize(html: string): string {
   return html
     .replace(/<script[\s\S]*?<\/script>/gi, "")
     .replace(/<style[\s\S]*?<\/style>/gi, "")
@@ -120,6 +129,55 @@ function readBaseline(path: string): Record<string, string> {
   return existsSync(path) ? (JSON.parse(readFileSync(path, "utf8")) as Record<string, string>) : {};
 }
 
+export interface WatchSummary {
+  ok: boolean;
+  drifted: string[];
+  coverageIssues: string[];
+  message: string;
+  details: string[];
+}
+
+/**
+ * Combines the corpus and forms watch results into one verdict.
+ *
+ * Drift and baseline-coverage issues are ALWAYS reported in the same run. Coverage
+ * issues still fail the build, but they must never *suppress* the drift report.
+ *
+ * They used to: this returned on missingBaseline/staleBaseline before it ever looked at
+ * drift. Because the repo deliberately carries baseline gaps (the four review-gated
+ * SS-5/SSA/NY-Courts references), that early return meant real drift at every *other*
+ * source was silently never reported — a fail-quiet in the exact mechanism this tool
+ * exists to provide. A coverage gap is a statement about one URL; it says nothing about
+ * whether the other thirty moved under their records.
+ *
+ * Shared with policy-watch.ts, which had the same latent gap (`unit` names the thing
+ * being watched in the verdict line).
+ */
+export function summarize(results: WatchResult[], unit = "source"): WatchSummary {
+  const drifted = results.flatMap((r) => r.drifted);
+  const coverageIssues = results.flatMap((r) => [...r.missingBaseline, ...r.staleBaseline]);
+
+  const details = [
+    ...drifted.map((d) => `drift: ${d}`),
+    ...coverageIssues.map((c) => `coverage: ${c}`),
+  ];
+
+  if (drifted.length === 0 && coverageIssues.length === 0) {
+    return { ok: true, drifted, coverageIssues, message: "", details };
+  }
+
+  const parts: string[] = [];
+  if (drifted.length > 0) {
+    parts.push(`${drifted.length} ${unit}(s) changed since baseline — affected records need re-verification`);
+  }
+  if (coverageIssues.length > 0) {
+    parts.push(
+      `${coverageIssues.length} baseline coverage issue(s) — re-baseline only after reviewing additions/removals`,
+    );
+  }
+  return { ok: false, drifted, coverageIssues, message: parts.join("; "), details };
+}
+
 async function main(): Promise<void> {
   const update = process.argv.includes("--update");
 
@@ -160,24 +218,10 @@ async function main(): Promise<void> {
     return;
   }
 
-  const baselineCoverageIssues = [
-    ...corpusResult.missingBaseline,
-    ...formsResult.missingBaseline,
-    ...corpusResult.staleBaseline,
-    ...formsResult.staleBaseline,
-  ];
-  if (baselineCoverageIssues.length > 0) {
-    fail(
-      "source-watch",
-      `${baselineCoverageIssues.length} baseline coverage issue(s) — run \`make source-baseline\` only after reviewing additions/removals`,
-      baselineCoverageIssues,
-    );
-    return;
-  }
-
-  const drifted = [...corpusResult.drifted, ...formsResult.drifted];
-  if (drifted.length > 0) {
-    fail("source-watch", `${drifted.length} source(s) changed since baseline — records/forms need re-verification`, drifted);
+  // Report drift and coverage together — a coverage gap must not mask real drift.
+  const summary = summarize([corpusResult, formsResult]);
+  if (!summary.ok) {
+    fail("source-watch", summary.message, summary.details);
     return;
   }
 
