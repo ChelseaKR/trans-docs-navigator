@@ -8,6 +8,12 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **ADR directory completed** (`docs/adr/`): the five build ADRs migrated out of
+  `docs/ROADMAP.md` §6 into individual Nygard-format files (0001–0005, decision content
+  unchanged), plus a new ADR-0006 recording the deliberate no-ESLint/no-Prettier/no-bundler
+  toolchain deviation, its compensating controls, and its known open limit (lint scope is
+  `api/`+`src/` only). `docs/ROADMAP.md` §6 now points at the files; README conformance
+  rows updated to match.
 - **Birth-certificate corpus coverage** for all five jurisdictions (CA, IL, NY, TX, WA) in
   EN and ES, from each state's own vital-records/health-department source: 28 records,
   including the `court-order → birth-certificate` prerequisite edge every one of those
