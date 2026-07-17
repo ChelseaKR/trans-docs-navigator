@@ -48,3 +48,10 @@ For this system, several of these audits are not compliance overhead — they ar
 - `docs/audits/dpia.md`
 - `docs/audits/model-card.md`, `docs/audits/data-card.md`
 - `docs/audits/residual-risk.md`
+
+## Committed governance drafts (hand-maintained, review-gated — not regenerated)
+- `docs/audits/ai-risk-register.md` — NIST AI RMF view over `residual-risk.md` (RTF-09)
+- `docs/audits/ai-impact-assessment.md` — ISO/IEC 42001 §6.1.4-structured impact assessment (RTF-10)
+- `docs/audits/eu-ai-act-classification.md` — provisional classification, **[human-only to finalize]** (RTF-12)
+
+All three are unreviewed drafts dated 2026-07-17; each states its own PENDING sign-off. Signatures happen only via `docs/signoffs/` (`scripts/launch-gates.ts`), never by editing the drafts.
