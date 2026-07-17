@@ -21,6 +21,10 @@ lives under `[Unreleased]`.
   (Vital Statistics lists only hospital/clerical-error evidence for the sex field, and no
   route to change it to match gender identity). No fee is estimated anywhere: where a
   source states one it is recorded, and where it does not, the step is reported unpriced.
+- **`DEFINITION_OF_DONE.md`** at the repo root (audit P2, QM-18/QM-13/CQ-42): defines
+  "done" with an explicit gate/review/human-gate enforcement split — it claims nothing as
+  machine-enforced that isn't. The PR template gains the matching rollback, observability,
+  and ISO 25010 quality-characteristic lines; CONTRIBUTING links it.
 - **`state-of-birth` portability** in the relocation planner (`api/relocation.ts`) — a birth
   certificate is governed by the state you were *born* in, which is neither the origin nor
   the destination of a move and which the app never asks for. It is therefore never

@@ -1,4 +1,5 @@
-<!-- Thanks for contributing! Keep PRs focused. Run `make verify` before opening. -->
+<!-- Thanks for contributing! Keep PRs focused. Run `make verify` before opening.
+     "Done" is defined in DEFINITION_OF_DONE.md at the repo root. -->
 
 ## What & why
 
@@ -28,3 +29,20 @@
 - [ ] `make verify` is green (all blocking gates).
 - [ ] No direct identity fields enter runtime API/log code, and raw request content is not reflected (privacy gates pass).
 - [ ] Accessibility unaffected or improved (mechanical a11y + contrast pass).
+
+## Definition of done (DEFINITION_OF_DONE.md §7–§9)
+
+- [ ] **Rollback:** reverting the merge commit undoes this change — or the manual
+      rollback steps are stated below (required for snapshot/baseline files, cache or
+      corpus-schema format changes, and workflow changes).
+- [ ] **Observability:** if this changes server-visible behavior, the signal an operator
+      would watch is named below (structured-log field, `/metrics` counter, or SLO) —
+      or state "no runtime surface".
+- [ ] **Quality characteristics:** the primary ISO 25010 characteristic(s) this change
+      affects are named in "What & why" (e.g. reliability, security, maintainability,
+      usability/accessibility).
+
+<!-- Rollback / observability notes (if any):
+
+-->
+

@@ -45,6 +45,8 @@ artifacts for staleness against it on every push and PR.
 
 ## Pull requests
 
+- "Done" is defined in [`DEFINITION_OF_DONE.md`](./DEFINITION_OF_DONE.md) — including the
+  rollback, observability, and quality-characteristic lines the PR template asks for.
 - Keep PRs focused; a corpus PR should touch corpus + verifier roster, not app code.
 - Fill in the PR template — the source + verifier checklist is required for corpus changes.
 - All of `make verify` must be green. CI also runs a real-browser accessibility gate
