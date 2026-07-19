@@ -9,6 +9,7 @@ authors:
   - family-names: "Kelly-Reif"
     given-names: "Chelsea"
 version: "0.1.0"
+date-released: 2026-07-17
 license: "AGPL-3.0-or-later"
 repository-code: "https://github.com/ChelseaKR/trans-docs-navigator"
 url: "https://github.com/ChelseaKR/trans-docs-navigator"
