@@ -2,6 +2,21 @@
 
 **A state-by-state navigator for legal name and gender-marker changes.** It turns the bureaucratic maze (vital records, courts, DMV, SSA, passport) into a personalized, ordered checklist, links the exact official form for each step, and explains everything in plain language with a citation and a last-checked date. Information, never legal advice. Built privacy-first, for users who may be in hostile jurisdictions.
 
+## Quickstart
+
+```sh
+npm install        # install the pinned development and test tooling
+make verify        # the full 24-gate pipeline (CI parity)
+make dev           # http://localhost:8080 → intake → checklist → official form links
+make eval          # regenerates docs/audits/eval-report.{md,json}
+```
+
+Requires Node ≥ 22.6 (TypeScript runs via native type-stripping; no build step). The server is plain `node:http`; the current reference build has zero production package dependencies.
+
+Operations runbook: [`docs/OPERATIONS.md`](./docs/OPERATIONS.md). Build log and status: [`docs/STATUS.md`](./docs/STATUS.md). Audit artifacts (DPIA, eval reports, accessibility audit, residual-risk register) live in [`docs/audits/`](./docs/audits/).
+
+## Project status
+
 **Status:** in build (M6). Five states (CA, IL, NY, TX, WA) plus federal, in English and Spanish. All 24 automated merge gates pass (`make verify`): gate-count (self-description drift), lint, typecheck, tests with coverage, security scan, content validation, forms, citation coverage, source fidelity, privacy, freshness, disclosure, readability, i18n (UTF-8, BCP-47, EN/ES key parity, logical-CSS, pseudolocale overflow), accessibility, SEO, eval, an in-process p95-latency guard, SLO-definition/burn-alert validation, and a machine-derived launch-gate status check. CI additionally runs a real-browser accessibility gate, Lighthouse CI, Semgrep/CodeQL SAST, gitleaks + scheduled TruffleHog secret scanning, a container CVE scan, and zizmor over the workflows themselves. The remaining launch gates need human judgment, not code. Their status is **derived from the repository's artifacts on every `make verify` run** (`make launch-gates`), not written by hand — see the table below; keeping them open is a decision, not a gap.
 
 **Supported versions:** `main` only — there are no maintained release lines yet (see [`SECURITY.md`](./SECURITY.md) for the vulnerability-reporting process and current pre-1.0 scope).
@@ -64,19 +79,6 @@ Four properties are enforced by merge-blocking CI gates, not by convention:
 4. **Stale law is broken law.** Every record has a freshness SLA. Expired data is shown as "needs reverification," never silently served as current.
 
 The privacy controls are checked three ways: a static gate rejects direct identity-field handling in runtime API and log-call code, the application logger drops fields outside a fixed allowlist, and a data-flow test injects sentinel content into every request field and proves it is not reflected into an application log descriptor or response body. Those checks do not claim that request inputs never reach the server; the exact request, cache, log, and provider boundaries are documented in the [Privacy Notice](https://7cddozrk6sfpsq7foszis7tcza0boyka.lambda-url.us-west-2.on.aws/privacy) and [`docs/audits/dpia.md`](./docs/audits/dpia.md).
-
-## Quickstart
-
-```sh
-npm install        # install the pinned development and test tooling
-make verify        # the full 24-gate pipeline (CI parity)
-make dev           # http://localhost:8080 → intake → checklist → official form links
-make eval          # regenerates docs/audits/eval-report.{md,json}
-```
-
-Requires Node ≥ 22.6 (TypeScript runs via native type-stripping; no build step). The server is plain `node:http`; the current reference build has zero production package dependencies.
-
-Operations runbook: [`docs/OPERATIONS.md`](./docs/OPERATIONS.md). Build log and status: [`docs/STATUS.md`](./docs/STATUS.md). Audit artifacts (DPIA, eval reports, accessibility audit, residual-risk register) live in [`docs/audits/`](./docs/audits/).
 
 ## Architecture in one paragraph
 
