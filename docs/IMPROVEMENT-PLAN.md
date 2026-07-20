@@ -248,7 +248,7 @@ and proving each stated privacy control without turning it into an absolute no-r
 - **Action:** Keep out of v1. Document the design so they don't get bolted on in a way that breaks the privacy invariant (reminders especially imply contact info → server-side PII → re-opens the threat model).
 
 ### 7.4 — `P3` Accessibility statement & methodology publication
-- **Dimension:** Transparency · **Concern:** user, GTM · **Evidence:** ROADMAP §9/§10 — publish sourcing/verification methodology and a WCAG statement as the trust story.
+- **Dimension:** Transparency · **Concern:** user, trust · **Evidence:** ROADMAP §9/§10 — publish sourcing/verification methodology and a WCAG statement as the trust story.
 - **Action:** Publish both once §1 and §3.1 are signed.
 
 ---

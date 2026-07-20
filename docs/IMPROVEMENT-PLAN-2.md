@@ -90,7 +90,7 @@ The OPEN gates from `docs/STATUS.md`; each now has concrete artifacts to act on.
 - **E1 `P2` Funding & maintenance plan** for the quarterly per-jurisdiction reverification
   cycle (ROADMAP §11 — the real ongoing cost).
 - **E2 `P2` DONE (structure) — Published methodology/trust page + partner-review cadence**
-  (the GTM trust story). Live at `/methodology` (`src/legal.ts` `renderMethodologyPage`,
+  (the trust story). Live at `/methodology` (`src/legal.ts` `renderMethodologyPage`,
   content in `src/i18n/{en,es}.ts` `legal.methodology`), mirroring the
   terms/privacy/accessibility pattern: sourcing principle (official government sources
   only), the verification workflow, "last checked" freshness dates, a report-an-error

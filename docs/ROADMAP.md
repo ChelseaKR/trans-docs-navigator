@@ -1,6 +1,6 @@
 # Trans Docs Navigator — Implementation Roadmap
 
-> The buildable spec. Reads top-to-bottom as product → research → design → architecture → quality → build plan → GTM → legal → ops. Generic enforcement lives in `/STANDARDS`; this document carries the decisions and the project-specific values.
+> The buildable spec. Reads top-to-bottom as product → research → design → architecture → quality → build plan → community → legal → ops. Generic enforcement lives in `/STANDARDS`; this document carries the decisions and the project-specific values.
 >
 > **Last verified: 2026-07-12 · Recheck cadence: quarterly for legal content; per-API for integrations.** Legal requirements change; treat every jurisdiction fact as needing reverification before launch.
 
@@ -93,10 +93,9 @@ docs/   (this + audits + generated reports)
 - **M6 — Expand jurisdictions.** Add jurisdictions only as each passes accuracy + freshness review.
 - **Claude Code approach.** Work corpus-first per jurisdiction; never widen coverage ahead of verification; keep the citation gate and eval gate on from M0.
 
-## 9. Go-to-market & community
-- **Positioning.** "Current, cited, and safe." Differentiator vs forum lore and paywalled help: transparency (sources + dates) and privacy.
-- **Launch.** Soft-launch with a few pilot jurisdictions; partner with trans legal-aid and community orgs for review and distribution; publish the methodology (sourcing + verification) as the trust story.
-- **Marketing/comms.** Lead with the responsible-tech posture; the project also reads as portfolio evidence of grounded, audited, accessible public-interest AI.
+## 9. Community & partner review
+- **Partner review.** Partner with trans legal-aid and community orgs to review corpus records and the gold set; their review is the trust story, not a self-attestation.
+- **Methodology.** Publish the methodology (sourcing + verification) so the sourcing and last-verified discipline is checkable by anyone.
 - **Community.** Contribution path for *verified* corpus updates (PRs require a source + named verifier); issue templates for "law changed in X."
 
 ## 10. Legal & compliance
