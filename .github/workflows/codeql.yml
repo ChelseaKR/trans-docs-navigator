@@ -2,6 +2,15 @@ name: codeql
 
 # Scheduled + PR static analysis (PRODUCTIONIZATION-PLAN Phase 4). Complements the
 # blocking Semgrep job in ci.yml with GitHub's own query packs.
+#
+# 2026-08-01: the `analyze` job was gated on `!github.event.repository.private`. This repo
+# IS private, so the job skipped on every run and the skip rendered as a green check —
+# CodeQL had never analyzed a line of the TypeScript app or the workflow YAML on the repo
+# SECURITY-AND-SUPPLY-CHAIN-STANDARD calls the portfolio's highest-stakes privacy repo.
+# The guard is gone. Code scanning (the SARIF-upload API) genuinely is unavailable without
+# GitHub Advanced Security, so the analysis now writes SARIF locally (`upload: never`) and
+# `scripts/codeql-gate.mjs` reads it and fails the job on error-severity findings. There is
+# no code-scanning dashboard to review here, so that gate step IS the enforcement.
 
 on:
   # PRs into main analyze the diff before merge; the weekly schedule keeps the
@@ -11,6 +20,9 @@ on:
     branches: [main]
   schedule:
     - cron: "41 3 * * 3" # Wednesdays 03:41 UTC
+  # Manual dispatch is what to reach for when you need a full-tree scan: the
+  # pull_request run is diff-informed and only reasons about the code the PR touches.
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -21,18 +33,24 @@ concurrency:
 
 jobs:
   analyze:
-    # Code-scanning upload is unavailable on private personal repos (needs Advanced
-    # Security) and free on public ones. This guard makes the job a no-op until the
-    # repo flips public, at which point CodeQL starts running with no other change.
-    if: ${{ !github.event.repository.private }}
+    name: analyze (${{ matrix.language }})
     runs-on: ubuntu-latest
-    # Write scopes declared at job level, not workflow level (OpenSSF Scorecard
+    # Scopes declared at job level, not workflow level (OpenSSF Scorecard
     # Token-Permissions prefers this even for a single-job workflow — it's the
     # pattern that stays minimal if a second job is ever added here).
     permissions:
       contents: read
-      security-events: write
-      actions: read # required for SARIF upload on private repos
+      # `security-events: write` was dropped along with the upload: nothing is sent to the
+      # code-scanning API any more, so the job is read-only. `actions: read` is still
+      # required on private repos — codeql-action reads its own workflow-run metadata.
+      actions: read
+    strategy:
+      fail-fast: false
+      matrix:
+        # `actions` (CICD-20) analyzes the workflow YAML itself (the same surface
+        # zizmor covers from a different angle, in ci.yml); `javascript-typescript`
+        # covers the application code.
+        language: [javascript-typescript, actions]
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
@@ -43,9 +61,20 @@ jobs:
           persist-credentials: false
       - uses: github/codeql-action/init@f205ea1c3313d32999d8d6a48b4f6530d4437b38 # v4.37.4
         with:
-          # `actions` (CICD-20) analyzes the workflow YAML itself (the same surface
-          # zizmor covers from a different angle, in ci.yml); `javascript-typescript`
-          # covers the application code.
-          languages: javascript-typescript,actions
+          languages: ${{ matrix.language }}
           queries: security-and-quality
+      # Code scanning is not enabled on this private repo (no GitHub Advanced Security), so the
+      # SARIF-upload API is unavailable and `analyze` fails outright with "Code scanning is not
+      # enabled for this repository". Write the SARIF locally and gate on it ourselves instead —
+      # there is no code-scanning dashboard to review, so the gate step below IS the enforcement.
       - uses: github/codeql-action/analyze@f205ea1c3313d32999d8d6a48b4f6530d4437b38 # v4.37.4
+        with:
+          category: "/language:${{ matrix.language }}"
+          upload: never
+          output: sarif-results
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+      - name: Fail on error-severity findings
+        run: node scripts/codeql-gate.mjs sarif-results
