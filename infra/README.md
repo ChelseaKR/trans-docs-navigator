@@ -32,6 +32,36 @@ turnkey Lambda preview intentionally runs *outside* this VPC and has different,
 weaker egress guarantees — don't mistake a working preview deploy for a proof of this
 posture).
 
+## Cost allocation
+Both configurations set `project = "trans-docs-navigator"` (plus a `stack` of
+`prod` / `preview`) via the AWS provider's `default_tags` block, so every taggable
+resource they create is attributable in Cost Explorer and to a per-project budget.
+`project` is the activated cost-allocation tag key; anything created without it
+lands in the account's untagged bucket, where a per-project budget cannot see it.
+
+These are billing labels on infrastructure. They observe nothing about users and
+collect no data, so they do not touch the no-analytics posture.
+
+Resource-level `tags` blocks merge *over* provider defaults, so the `Name` and
+`PII = "none"` tags on individual resources are unaffected.
+
+**Not covered by `default_tags`** — these AWS resource types accept no tags at all,
+so they will always appear untagged (they are also free, so they carry no spend of
+their own; the billable parents they attach to *are* tagged):
+
+- `aws_route_table_association`, `aws_security_group_rule`
+- `aws_cloudwatch_log_metric_filter`
+- `aws_wafv2_web_acl_association`
+- preview: `aws_ecr_lifecycle_policy`, `aws_iam_role_policy`,
+  `aws_iam_role_policy_attachment`, `aws_lambda_function_url`,
+  `aws_budgets_budget`
+
+Also outside this Terraform, and therefore not tagged by it: the Render deployment
+(`render.yaml`, billed by Render, not AWS), the ECR image pushed by CD, and any
+resource created by hand in the console. Tags apply from the next `apply` onward —
+resources already live in the account keep whatever tags they were created with
+until Terraform next reconciles them.
+
 ## Commands
 ```sh
 cd infra
