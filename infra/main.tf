@@ -27,6 +27,24 @@ variable "bedrock_model_id" {
 
 provider "aws" {
   region = var.region
+
+  # Cost allocation. `project` is the activated cost-allocation tag key in Cost
+  # Explorer; without it this stack's spend lands in the untagged bucket and no
+  # per-project budget can see it. Setting it here (rather than on each resource)
+  # means every taggable resource this configuration creates carries it, including
+  # any added later. `stack` distinguishes this closed-VPC production skeleton from
+  # the cost-light preview in ./preview, which sets the same pair.
+  #
+  # Resource-level `tags` blocks MERGE over these defaults, so the existing
+  # Name/PII tags below are untouched. Nothing here observes users or collects
+  # data — these are billing labels on infrastructure, not runtime telemetry, so
+  # the no-analytics posture is unaffected.
+  default_tags {
+    tags = {
+      project = "trans-docs-navigator"
+      stack   = "prod"
+    }
+  }
 }
 
 # Closed VPC: private subnets only for the app; no public ingress except via the ALB.
