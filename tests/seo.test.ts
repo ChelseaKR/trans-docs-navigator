@@ -49,7 +49,9 @@ test("guide page renders cited content, a checklist CTA, and valid JSON-LD", () 
   assert.ok(h);
   assert.equal((h!.match(/<h1/g) ?? []).length, 1);
   assert.match(h!, /href="\/checklist\?jurisdiction=US-CA&change=name"/); // funnels into the tool
-  assert.match(h!, /selfhelp\.courts\.ca\.gov/); // a real cited source from the corpus
+  // Scheme-anchored: an unanchored host substring (CodeQL js/regex/missing-regexp-anchor) would
+  // also be satisfied by a lookalike host or by the name appearing in body prose.
+  assert.match(h!, /https:\/\/selfhelp\.courts\.ca\.gov\//); // a real cited source from the corpus
   const ld = [...h!.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
   assert.ok(ld.length >= 1);
   const parsed = JSON.parse(ld[0]![1]!.replace(/\\u003c/g, "<"));

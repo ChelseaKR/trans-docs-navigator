@@ -39,9 +39,32 @@ const UA = "trans-docs-navigator-source-watch/1.0 (+https://github.com/ChelseaKR
  */
 export function normalize(html: string): string {
   return html
-    .replace(/<script[\s\S]*?<\/script>/gi, "")
-    .replace(/<style[\s\S]*?<\/style>/gi, "")
-    .replace(/<!--[\s\S]*?-->/g, "")
+    // The <script>/<style> end-tag patterns must accept every spelling a BROWSER closes the
+    // element on — `</script >`, `</script\n>`, `</script foo="bar">` — not only the tight
+    // `</script>`. They used to require the tight form (CodeQL js/bad-tag-filter, and a live
+    // bug elsewhere in this portfolio): against a page whose CMS emits a loose end tag, the
+    // non-greedy match runs past it to the NEXT tight `</script>` or fails outright, and the
+    // whole JavaScript body survives into the hashed text. Minified bundles carry per-build
+    // cache-busting ids and per-response nonces, so the hash then changes on every fetch and
+    // the watcher reports DRIFT on a document that did not change — a false "this policy
+    // source moved under a record" on exactly the documents this project exists to watch,
+    // and the fastest way to teach a human to ignore the alert that matters.
+    //
+    // `\b` after the tag name is load-bearing in both directions: it lets `</script >` close
+    // the element, and it stops `</scriptfoo>` from closing it — which is also how the HTML
+    // tokenizer treats each.
+    .replace(/<script\b[\s\S]*?<\/script\b[^>]*>/gi, "")
+    .replace(/<style\b[\s\S]*?<\/style\b[^>]*>/gi, "")
+    // `--!>` terminates a comment for a browser exactly as `-->` does; matching only `-->`
+    // let a comment closed the other way spill its contents into the hashed text.
+    .replace(/<!--[\s\S]*?--!?>/g, "")
+    // NOTE (CodeQL js/incomplete-multi-character-sanitization, reported on the three
+    // replaces above): the rule reads this chain as an HTML SANITIZER whose single pass can
+    // be walked out of. It is not one. Nothing here ever reaches an HTML sink — the only
+    // consumer of this string is sha256() (drift hashing) and an offline substring/token
+    // search (source-fidelity.ts). It is a deliberately lossy text extractor, and what it
+    // owes its callers is DETERMINISM, which single-pass replacement gives it. Left as-is
+    // rather than suppressed; see the PR body.
     .replace(/<[^>]+>/g, " ")
     .replace(/&[a-z#0-9]+;/gi, " ")
     .replace(/\s+/g, " ")

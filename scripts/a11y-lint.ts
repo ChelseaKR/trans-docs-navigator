@@ -134,6 +134,15 @@ function checkPage(p: Page): string[] {
     if (Number(m.replace(/\D/g, "")) > 0) errs.push(`${p.name}: positive tabindex`);
   }
   // Links and buttons need accessible text.
+  //
+  // NOTE (CodeQL js/incomplete-multi-character-sanitization, on the two `<[^>]+>` strips
+  // below): the rule reads them as an HTML sanitizer that a single pass can be walked out
+  // of. They are not sanitizing anything. `h` is the output of THIS repo's own render
+  // templates, not untrusted input, and the stripped result is only measured for length and
+  // then discarded — it is never written back into a page, a header, or a log. The failure
+  // mode a real bypass would produce (residual markup counted as visible link text) needs a
+  // literal `>` inside an attribute value, which src/render.ts escapes on every interpolated
+  // value. Left as-is rather than suppressed; see the PR body.
   for (const a of h.match(/<a\b[^>]*>(.*?)<\/a>/gis) ?? []) {
     const text = a.replace(/<[^>]+>/g, "").trim();
     if (text.length === 0 && !/aria-label=/.test(a)) errs.push(`${p.name}: link without text`);

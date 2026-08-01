@@ -5,7 +5,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { contentHash, binaryHash, computeUrlHashes, summarize } from "../scripts/source-watch.ts";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { contentHash, binaryHash, computeUrlHashes, summarize, normalize } from "../scripts/source-watch.ts";
 
 function withMockedFetch<T>(impl: typeof fetch, run: () => Promise<T>): Promise<T> {
   const original = globalThis.fetch;
@@ -224,4 +226,78 @@ test("computeUrlHashes flags stale baseline URLs until an intentional update rem
   const update = await computeUrlHashes(byUrl, async () => "currenthash", baseline, true);
   assert.deepEqual(update.staleBaseline, []);
   assert.deepEqual(Object.keys(update.next), ["https://a.gov/current.pdf"]);
+});
+
+// ── REGRESSION (CodeQL js/bad-tag-filter): loose end tags must close the element ───────
+//
+// normalize() stripped <script>/<style> with `/<script[\s\S]*?<\/script>/gi` — an end-tag
+// pattern that only accepts the tight `</script>`. HTML lets a browser close the element on
+// `</script >`, `</script\n>` and `</script foo="bar">` as well, and against a page that
+// emits any of those the non-greedy match runs PAST the real end tag to the next tight one
+// (or fails entirely), leaving the whole JavaScript body inside the text that gets hashed.
+//
+// That is not a lint nit here. Minified bundles carry per-build cache-busting ids and
+// per-response nonces, so the content hash then changes on every fetch and source-watch /
+// policy-watch report DRIFT — "this official source moved under a record" — for a document
+// that did not change. False drift on the trans policy documents this project exists to
+// monitor is worse than no watcher: it trains a human to dismiss the alert that is real.
+//
+// THIS TEST FAILS ON THE UNFIXED normalize(): every loose-end-tag case below leaks `alert`
+// and `buildid` into the output, which is exactly the per-build id that would then churn the
+// content hash on every fetch.
+test("REGRESSION: normalize() drops script bodies closed with a loose end tag", () => {
+  const cases: Array<[string, string]> = [
+    ["tight", '<p>keep</p><script>var buildid="a1";alert(1)</script><p>me</p>'],
+    ["trailing space", '<p>keep</p><script>var buildid="a1";alert(1)</script ><p>me</p>'],
+    ["newline", '<p>keep</p><script>var buildid="a1";alert(1)</script\n><p>me</p>'],
+    ["attributes on the end tag", '<p>keep</p><script>var buildid="a1";alert(1)</script foo="bar"><p>me</p>'],
+    ["slash", '<p>keep</p><script>var buildid="a1";alert(1)</script/><p>me</p>'],
+    ["loose start tag too", '<p>keep</p><script type="text/javascript" >var buildid="a1";alert(1)</script ><p>me</p>'],
+  ];
+  for (const [label, html] of cases) {
+    const text = normalize(html);
+    assert.doesNotMatch(text, /alert|buildid/, `script body survived normalize() (${label})`);
+    assert.equal(text, "keep me", `surrounding text not preserved (${label})`);
+  }
+});
+
+test("REGRESSION: normalize() drops style bodies closed with a loose end tag", () => {
+  for (const html of [
+    "<p>keep</p><style>.x{color:red}</style><p>me</p>",
+    "<p>keep</p><style>.x{color:red}</style ><p>me</p>",
+    '<p>keep</p><style>.x{color:red}</style media="all"><p>me</p>',
+  ]) {
+    assert.equal(normalize(html), "keep me", `style body survived normalize(): ${html}`);
+  }
+});
+
+// Pins the OTHER half of the `\b` in `</script\b[^>]*>`. `[^>]*` on its own would happily
+// let `</scriptfoo>` close the element; a browser does not close on it, and if we did, a page
+// could hide text from the hash between the fake close and the real one. (This case already
+// held before the fix — it is pinned so a future "simplify the regex" cannot quietly lose it.)
+test("`</scriptfoo>` does NOT close a script element", () => {
+  const text = normalize("<p>keep</p><script>a</scriptfoo>b</script><p>me</p>");
+  assert.equal(text, "keep me");
+  assert.doesNotMatch(text, /scriptfoo/);
+});
+
+// FAILS ON THE UNFIXED normalize(): with only `-->` recognized, the comment is not removed as
+// a comment, the generic tag-strip tears it in half at the `>` inside it, and the tail leaks
+// into the hashed text as `b --!`.
+test("REGRESSION: normalize() honours `--!>` as a comment terminator, as browsers do", () => {
+  assert.equal(normalize("<p>keep</p><!-- a > b --><p>me</p>"), "keep me");
+  assert.equal(normalize("<p>keep</p><!-- a > b --!><p>me</p>"), "keep me");
+});
+
+// Pins the property scripts/source-snapshot.ts and scripts/policy-watch.ts both depend on:
+// there is ONE normalize(), so a snapshot, a drift baseline and a tracker hash can never be
+// computed by three subtly different implementations. policy-watch used to hold a
+// byte-identical copy, which meant the fix above would have had to be made twice.
+test("policy-watch and source-snapshot share the one normalize() implementation", async () => {
+  const policyWatchSrc = readFileSync(
+    join(import.meta.dirname, "..", "scripts", "policy-watch.ts"),
+    "utf8",
+  );
+  assert.match(policyWatchSrc, /import \{[^}]*normalize[^}]*\} from "\.\/source-watch\.ts"/);
+  assert.doesNotMatch(policyWatchSrc, /function normalize\s*\(/, "policy-watch must not re-implement normalize()");
 });
