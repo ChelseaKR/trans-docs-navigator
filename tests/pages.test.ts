@@ -16,6 +16,22 @@ const corpus = loadCorpus();
 const clEn = buildChecklist({ jurisdiction: "US-CA", change_types: ["name", "gender-marker"], documents: [], language: "en" });
 const clEs = buildChecklist({ jurisdiction: "US-CA", change_types: ["name"], documents: [], language: "es" });
 
+/**
+ * Matches an EXECUTABLE INLINE `<script>` — a script start tag carrying neither `src=` nor a
+ * data `type=`. The pages below legitimately emit `<script type="module" src="/assets/…">`
+ * (external behaviour) and `<script type="application/json">` / `application/ld+json`
+ * (inert config islands and structured data); neither is inline code, and both must pass.
+ *
+ * The assertions below used to be `assert.doesNotMatch(h, /<script>/)`, which CodeQL flagged
+ * as js/bad-tag-filter and which was a genuinely weak guard: it only ever recognized the
+ * tight, attribute-less spelling. `<script >`, `<script\n>` and `<script type="text/javascript">`
+ * are all executed by a browser and all sailed straight past it, so the assertion attested to
+ * a property ("no inline script") much narrower than the one it claimed. On this repo that
+ * assertion is the test-side half of a privacy control: the CSP is `script-src 'self'`, and
+ * these tests are what would catch a template regressing to inline code before the CSP has to.
+ */
+const INLINE_SCRIPT = /<script\b(?![^>]*(?:\bsrc=|\btype="application\/(?:ld\+)?json"))[^>]*>/i;
+
 test("intake page states the private-mode request and local-state boundary", () => {
   const h = renderIntakePage("en");
   assert.match(h, /Private mode: no account or saved session/);
@@ -43,7 +59,7 @@ test("checklist shows a plan summary, progress toggles, and deeper links", () =>
   assert.match(h, /\/assets\/progress\.js/);
   assert.match(h, /href="\/guide\/california\/name-change"/); // matching state guide
   assert.match(h, /href="\/answer\?jurisdiction=US-CA&change=name"/); // grounded Q&A
-  assert.doesNotMatch(h, /<script>/); // strict CSP: no inline script
+  assert.doesNotMatch(h, INLINE_SCRIPT); // strict CSP: no inline script
 });
 
 test("progress is local-only with no network egress", () => {
@@ -58,7 +74,10 @@ test("printable packet renders full steps, sources, prepared date, and print con
   assert.match(h, /\/assets\/packet\.js/);
   assert.match(h, /Prepared on 2026-05-31/);
   assert.match(h, /Petition for Change of Name/); // statement
-  assert.match(h, /selfhelp\.courts\.ca\.gov/); // source url
+  // Anchored to the scheme so the host boundary is exact: an unanchored `selfhelp.courts.ca.gov`
+  // (CodeQL js/regex/missing-regexp-anchor) is also satisfied by `evil-selfhelp.courts.ca.gov.example`
+  // or by the bare string appearing in prose, neither of which is the cited official source.
+  assert.match(h, /href="https:\/\/selfhelp\.courts\.ca\.gov\//); // the real cited source url
   // Print stylesheet (linked, served from the same STYLE constant) hides nav and expands link URLs.
   assert.match(h, /<link rel="stylesheet" href="\/assets\/app\.css">/);
   assert.match(STYLE, /@media print/);
@@ -92,7 +111,7 @@ test("form page offers an on-device copy-helper that can't submit anything", () 
   assert.match(h, /\/assets\/form-copy\.js/);
   assert.doesNotMatch(h, /<form/); // no form element → nothing can be submitted
   assert.doesNotMatch(h, /<input[^>]*\bname=/); // inputs have no name → never serialized to a request
-  assert.doesNotMatch(h, /<script>/); // strict CSP: no inline script
+  assert.doesNotMatch(h, INLINE_SCRIPT); // strict CSP: no inline script
 });
 
 test("the copy-helper is local-only with no network egress", () => {
@@ -108,7 +127,7 @@ test("encrypted save/resume panel renders with a labeled passphrase when there's
   assert.match(h, /for="resume-pass"/); // labeled (a11y)
   assert.match(h, /id="resume-cfg"/); // config island for the static module
   assert.match(h, /\/assets\/resume-panel\.js/); // behavior is external — no inline script
-  assert.doesNotMatch(h, /<script>/); // CSP is script-src 'self'; nothing inline
+  assert.doesNotMatch(h, INLINE_SCRIPT); // CSP is script-src 'self'; nothing inline
   assert.doesNotMatch(h, /current_legal_name|new_legal_name/); // never persists identity
 });
 
@@ -144,5 +163,36 @@ test("keyboard-path: no positive tabindex, skip link has a target, controls have
     for (const m of h.matchAll(/<input[^>]*\bid="([^"]+)"[^>]*>/g)) {
       assert.ok(h.includes(`for="${m[1]}"`), `input ${m[1]} lacks a label`);
     }
+  }
+});
+
+// ── REGRESSION (CodeQL js/bad-tag-filter) ─────────────────────────────────────────────
+// The three "no inline script" assertions above were `assert.doesNotMatch(h, /<script>/)`,
+// which recognizes only the tight, attribute-less start tag. Every spelling below is
+// executed by a browser and was invisible to that regex, so an inline script could have been
+// added to any of these templates without a single test going red.
+//
+// THIS TEST FAILS ON THE UNFIXED CODE: substitute `/<script>/` for INLINE_SCRIPT and the
+// first four cases assert "matched" against a pattern that cannot match them.
+test("REGRESSION: the inline-script guard recognizes every spelling a browser executes", () => {
+  for (const evil of [
+    "<p>x</p><script >alert(1)</script >", // whitespace before the closing angle
+    "<p>x</p><script\n>alert(1)</script\n>", // newline before it
+    '<p>x</p><script type="text/javascript">alert(1)</script>', // legacy executable type
+    '<p>x</p><script async>alert(1)</script>', // bare boolean attribute
+    "<p>x</p><script>alert(1)</script>", // the one spelling the old regex did catch
+  ]) {
+    assert.match(evil, INLINE_SCRIPT, `inline script not detected in: ${JSON.stringify(evil)}`);
+  }
+
+  // ...and it must stay quiet about the script elements these pages legitimately emit,
+  // or the assertions above would fail on real output and get weakened again.
+  for (const ok of [
+    '<script type="module" src="/assets/progress.js"></script>',
+    '<script src="/assets/packet.js"></script>',
+    '<script type="application/json" id="progress-cfg">{"a":1}</script>',
+    '<script type="application/ld+json">{"@type":"HowTo"}</script>',
+  ]) {
+    assert.doesNotMatch(ok, INLINE_SCRIPT, `false positive on: ${ok}`);
   }
 });

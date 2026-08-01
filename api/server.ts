@@ -5,7 +5,7 @@
 
 import { createServer } from "node:http";
 import type { IncomingMessage, ServerResponse } from "node:http";
-import { readFileSync, existsSync, statSync } from "node:fs";
+import { readFileSync, openSync, fstatSync, closeSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 import { join, normalize, extname, sep } from "node:path";
 import {
@@ -91,10 +91,30 @@ function tryStatic(pathname: string, res: ServerResponse): boolean {
   if (!isPublic && !isFixture) return false;
   const full = normalize(join(REPO_ROOT, isPublic ? join("public", pathname) : pathname));
   const allowedDir = pathname.startsWith("/vendor/") ? VENDOR_DIR : isPublic ? ASSETS_DIR : FIXTURES_DIR;
-  // /assets/app.css is not on disk (the router serves it from the typed palette), so a
-  // miss here falls through to routing rather than 404ing.
-  if (!full.startsWith(allowedDir + sep) || !existsSync(full) || !statSync(full).isFile()) return false;
-  send(res, 200, MIME[extname(full)] ?? "application/octet-stream", readFileSync(full));
+  if (!full.startsWith(allowedDir + sep)) return false;
+  // Resolve the path ONCE, then work only through the resulting descriptor: open → fstat →
+  // read. The previous form checked the path with existsSync + statSync and then re-resolved
+  // the same string inside readFileSync, so the type check and the read looked at the name
+  // twice and could land on two different inodes if anything replaced the entry in between
+  // (CodeQL js/file-system-race). On a request-serving path that window decides what bytes go
+  // out to a client, which is worth closing even though today's deploy ships a read-only
+  // image. fstat() reports the object actually opened, so a file that turns into a directory
+  // or symlink after the open cannot be served.
+  //
+  // /assets/app.css is not on disk (the router serves it from the typed palette), so a miss
+  // here still falls through to routing rather than 404ing — the open simply throws ENOENT.
+  let fd: number;
+  try {
+    fd = openSync(full, "r");
+  } catch {
+    return false;
+  }
+  try {
+    if (!fstatSync(fd).isFile()) return false;
+    send(res, 200, MIME[extname(full)] ?? "application/octet-stream", readFileSync(fd));
+  } finally {
+    closeSync(fd);
+  }
   return true;
 }
 

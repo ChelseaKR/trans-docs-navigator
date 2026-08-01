@@ -119,7 +119,9 @@ test("Texas now has Spanish parity for name-change (court-order + drivers-licens
 test("official-form page is localized and links to the real source (no auto-fill)", () => {
   const en = handleRoute("GET", u("/forms/us-ss-5")).body;
   assert.match(en, /complete it yourself/); // honest: we don't fill it
-  assert.match(en, /ssa\.gov\/forms\/ss-5\.pdf/); // links the official form
+  // Scheme- and host-anchored: an unanchored `ssa.gov/...` (CodeQL js/regex/missing-regexp-anchor)
+  // is equally satisfied by `evil.example/ssa.gov/forms/ss-5.pdf`, which is not the official form.
+  assert.match(en, /https:\/\/www\.ssa\.gov\/forms\/ss-5\.pdf/); // links the official form
   const es = handleRoute("GET", u("/forms/us-ss-5?language=es")).body;
   assert.match(es, /complételo usted mismo/); // localized honest copy
   assert.match(es, /Obtenga el formulario oficial/);

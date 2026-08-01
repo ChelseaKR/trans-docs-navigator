@@ -21,7 +21,11 @@ import { join } from "node:path";
 import { createHash } from "node:crypto";
 import { loadCorpus, REPO_ROOT } from "../api/corpus.ts";
 import type { JurisdictionId } from "../api/types.ts";
-import { summarize } from "./source-watch.ts";
+// normalize() is IMPORTED, not re-implemented. It used to be a byte-identical copy of
+// source-watch's, which meant the loose-end-tag bug fixed there (js/bad-tag-filter) had to
+// be found and fixed twice, and any future divergence would silently make "hashed the same
+// way source-watch does" — the claim this file's header makes — untrue.
+import { normalize, summarize } from "./source-watch.ts";
 import { pass, fail } from "./util.ts";
 
 interface PolicyTracker {
@@ -36,20 +40,12 @@ const TIMEOUT_MS = 20_000;
 const UA = "trans-docs-navigator-policy-watch/1.0 (+https://github.com/ChelseaKR/trans-docs-navigator)";
 const update = process.argv.includes("--update");
 
-function normalize(html: string): string {
-  return html
-    .replace(/<script[\s\S]*?<\/script>/gi, "")
-    .replace(/<style[\s\S]*?<\/style>/gi, "")
-    .replace(/<!--[\s\S]*?-->/g, "")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&[a-z#0-9]+;/gi, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .toLowerCase();
-}
-
 async function contentHash(url: string): Promise<string | null> {
   try {
+    // NOTE (CodeQL js/file-access-to-http): `url` is read from a file (corpus/policy-trackers.json)
+    // and fetched. That file is committed to this repository and changes only through a reviewed
+    // PR — it is configuration, not input. There is no request-time path by which a user, or any
+    // untrusted party, chooses this URL. Left as-is rather than suppressed; see the PR body.
     const res = await fetch(url, { redirect: "follow", signal: AbortSignal.timeout(TIMEOUT_MS), headers: { "user-agent": UA } });
     if (!res.ok) return null;
     const type = res.headers.get("content-type") ?? "";
@@ -109,6 +105,12 @@ const staleBaseline = !update && hasBaseline
 for (const u of unreachable) console.log(`  ⚠️  unreachable (skipped): ${u}`);
 
 if (update) {
+  // NOTE (CodeQL js/file-system-race): the existsSync(BASELINE_PATH) above and this write are
+  // a check-then-act pair. Nothing turns on it — this is a human-invoked CLI (`--update`,
+  // behind the review-gated `make policy-baseline`) writing a tracked file inside its own
+  // git checkout, and the safety property that matters is the reviewed DIFF, not exclusive
+  // access. There is no privileged path and no concurrent writer to race. Left as-is rather
+  // than suppressed; see the PR body.
   writeFileSync(BASELINE_PATH, JSON.stringify(next, null, 2) + "\n");
   pass("policy-watch", `baseline written for ${Object.keys(next).length} tracker(s) → corpus/policy-hashes.json`);
 } else if (trackers.length === 0) {

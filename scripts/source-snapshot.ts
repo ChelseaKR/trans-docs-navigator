@@ -165,6 +165,18 @@ async function main(): Promise<void> {
     else unchanged++;
 
     next.snapshots[url] = { file, fetched: priorText === text ? (previous.snapshots[url]?.fetched ?? today) : today, sha256: digest };
+    // NOTE, two CodeQL findings on this write:
+    //   js/file-system-race — the existsSync(path) above and this write are a check-then-act
+    //     pair, but this is a human-invoked CLI writing a tracked file inside its own git
+    //     checkout (`make source-snapshot`, then read the diff). The prior read only decides
+    //     which console line to print; correctness rests on the reviewed diff and on the
+    //     sha256 cross-check against corpus/source-hashes.json, not on exclusive access.
+    //   js/http-to-file-access — `text` did come from a remote fetch. It is normalized plain
+    //     text written to a `.txt` under corpus/snapshots/ and never executed, and `path` is
+    //     not attacker-influenced: snapshotFileName() reduces the URL to `[a-z0-9-]{,70}` plus
+    //     an 8-hex sha256 suffix and a fixed `.txt`, so no separator or `..` can survive into
+    //     the name, and the URL itself comes from the committed corpus rather than a request.
+    // Both left as-is rather than suppressed; see the PR body.
     if (write) writeFileSync(path, text);
   }
 
