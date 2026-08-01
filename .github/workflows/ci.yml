@@ -186,9 +186,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      # gitleaks-action tries to comment on the PR with any finding; without this the
-      # comment call 403s loudly. GITLEAKS_ENABLE_COMMENTS below turns that off instead
-      # so this job stays read-only (least privilege) rather than granting write.
+      # Required for the pull_request scan: gitleaks-action resolves the PR's commit
+      # range through `GET /repos/{owner}/{repo}/pulls/{n}/commits`, which 403s on a
+      # private repo without this scope. This is the only scope added, and it is read —
+      # gitleaks-action would also try to *comment* a finding on the PR, which needs
+      # write; GITLEAKS_ENABLE_COMMENTS below turns that off instead, so no write scope
+      # is granted anywhere in this job. The failing step is the signal, not a comment.
+      pull-requests: read
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         # `audit` logs outbound egress without blocking (P1-3): a first step over
@@ -201,12 +205,18 @@ jobs:
         with:
           fetch-depth: 0 # gitleaks needs full history to scan, not just the merge commit
           persist-credentials: false
+      # Runs on pull_request too, as of 2026-08-01. It used to carry
+      # `if: github.event_name != 'pull_request'` in order to hold the job's token at
+      # `contents: read` — but the effect was that a secret introduced in a PR was not
+      # caught until it had already merged to main, on the repo the standard calls the
+      # portfolio's highest-stakes privacy repo. The `secret-scan` check went green on
+      # every PR having scanned nothing. `pull-requests: read` above buys the PR scan
+      # back for one read-only scope.
       - name: gitleaks (BLOCKING secret scan)
-        if: github.event_name != 'pull_request'
         uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_ENABLE_COMMENTS: "false" # keep this job's token scope contents:read only
+          GITLEAKS_ENABLE_COMMENTS: "false" # no PR comments, so no write scope is needed
 
   workflow-sast:
     if: github.event_name != 'pull_request'
