@@ -7,6 +7,7 @@ import {
   validJurisdiction,
   sanitizeQuestion,
   asLanguage,
+  languageParam,
   LIMITS,
 } from "../api/router.ts";
 
@@ -33,6 +34,27 @@ test("asLanguage maps only 'es' to Spanish", () => {
   assert.equal(asLanguage("en"), "en");
   assert.equal(asLanguage("fr"), "en");
   assert.equal(asLanguage(null), "en");
+});
+
+// `?lang=` is a common convention elsewhere on the web; a typed or shared link built
+// from muscle memory should resolve, not silently fall back to English.
+test("languageParam: accepts ?lang= as an alias for ?language=, which takes precedence", () => {
+  assert.equal(languageParam(u("/checklist?lang=es")), "es");
+  assert.equal(languageParam(u("/checklist?language=es")), "es");
+  assert.equal(languageParam(u("/checklist?language=es&lang=en")), "es", "?language= wins when both are present");
+  assert.equal(languageParam(u("/checklist")), null);
+});
+
+test("GET /?lang=es renders the intake page in Spanish, same as ?language=es", () => {
+  const viaLang = handleRoute("GET", u("/?lang=es"));
+  const viaLanguage = handleRoute("GET", u("/?language=es"));
+  assert.equal(viaLang.status, 200);
+  assert.equal(viaLang.body, viaLanguage.body, "?lang=es and ?language=es must render identically");
+});
+
+test("parseIntake honors ?lang= when ?language= is absent", () => {
+  const intake = parseIntake(u("/checklist?jurisdiction=US-CA&lang=es"))!;
+  assert.equal(intake.language, "es");
 });
 
 test("parseIntake filters enums and caps array sizes", () => {

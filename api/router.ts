@@ -58,6 +58,20 @@ export interface RouteResponse {
 // Language parsing is registry-driven (src/i18n): a new locale needs no router change.
 export { asLanguage } from "../src/i18n/index.ts";
 
+/**
+ * Read the requested language, accepting `?lang=` as an alias for the canonical
+ * `?language=`. `lang` is the more common convention elsewhere on the web, so a typed
+ * or shared link built from muscle memory (`?lang=es`) would otherwise silently fall
+ * back to English instead of erroring or honoring the intent — the kind of quiet
+ * failure this project avoids elsewhere (see the coverage/freshness banners). Every
+ * generated link on the site still emits `?language=` (`intakeQuery` above); this only
+ * widens what's *accepted* on the way in, so it never affects cache keys or the URLs
+ * this app itself builds.
+ */
+export function languageParam(url: URL): string | null {
+  return url.searchParams.get("language") ?? url.searchParams.get("lang");
+}
+
 /** Well-formed jurisdiction id, or null when the param is malformed (→ 400). */
 export function validJurisdiction(v: string | null): string | null {
   if (v === null) return "US-CA"; // default when omitted
@@ -121,7 +135,7 @@ export function parseRelocationIntake(url: URL): RelocationIntake | null | "same
     destination,
     held,
     change_types: ct.length > 0 ? ct : ["name", "gender-marker"],
-    language: asLanguage(url.searchParams.get("language")),
+    language: asLanguage(languageParam(url)),
   };
 }
 
@@ -137,7 +151,7 @@ export function parseIntake(url: URL): Intake | null {
     jurisdiction,
     change_types: ct.length > 0 ? ct : ["name", "gender-marker"],
     documents: documents(url),
-    language: asLanguage(url.searchParams.get("language")),
+    language: asLanguage(languageParam(url)),
     ...(hasCourtOrder ? { has_court_order: true } : {}),
   };
 }
@@ -282,7 +296,7 @@ function notFound(lang: Language): RouteResponse {
  * `today` is injectable for deterministic tests.
  */
 export function handleRoute(method: string, url: URL, today?: string): RouteResponse {
-  const lang = asLanguage(url.searchParams.get("language"));
+  const lang = asLanguage(languageParam(url));
   if (method !== "GET" && method !== "HEAD") {
     const t = uiStrings(lang);
     return {
@@ -355,12 +369,12 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
   }
 
   if (p === "/") {
-    return { status: 200, contentType: HTML, body: renderIntakePage(asLanguage(url.searchParams.get("language"))) };
+    return { status: 200, contentType: HTML, body: renderIntakePage(asLanguage(languageParam(url))) };
   }
 
   // Static legal / policy / trust pages (linked from every footer).
   if (p === "/terms" || p === "/privacy" || p === "/accessibility" || p === "/methodology" || p === "/transparency") {
-    const lang = asLanguage(url.searchParams.get("language"));
+    const lang = asLanguage(languageParam(url));
     const render =
       p === "/terms" ? renderTermsPage :
       p === "/privacy" ? renderPrivacyPage :
