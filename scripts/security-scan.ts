@@ -2,6 +2,16 @@
 //   (a) dependency audit: fail on any high/critical advisory (npm audit).
 //   (b) secret scan: fail on committed credentials.
 // Production CI additionally runs semgrep/CodeQL SAST (see .github/workflows/ci.yml).
+//
+// FAIL-CLOSED CONTRACT (SEC-12). This gate's output is a claim about the world:
+// "zero high/critical advisories apply to this tree." An audit that could not run —
+// npm missing, no lockfile, no network, a registry error — establishes nothing, and
+// "I could not find out" is not that claim. So an audit that does not produce a
+// parseable report WITH a numeric metadata.vulnerabilities block is a gate FAILURE,
+// not a pass, and the 0C/0H figure is only printed when a real audit reported it.
+// A deliberately offline run must say so out loud: SECURITY_SCAN_ALLOW_NO_AUDIT=1
+// downgrades that failure to a loud SKIPPED notice that names itself in the verdict
+// line. There is no path where the advisory check is silently absent.
 
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
@@ -28,19 +38,83 @@ for (const [rel, expected] of VENDORED) {
 }
 
 // (a) Dependency audit.
-const audit = spawnSync("npm", ["audit", "--json"], { cwd: ROOT, encoding: "utf8" });
-let high = 0;
-let critical = 0;
-try {
-  const json = JSON.parse(audit.stdout || "{}");
-  const v = json?.metadata?.vulnerabilities ?? {};
-  high = v.high ?? 0;
-  critical = v.critical ?? 0;
-} catch {
-  // npm audit can fail offline; treat unpar, but don't silently pass.
-  if (!audit.stdout) console.log("  ℹ️  npm audit produced no JSON (offline?) — dependency advisory check skipped");
+//
+// Two outcomes only, and they are not interchangeable: RAN (we have counts, and can
+// assert something about them) or DID-NOT-RUN (we have nothing, and must say so).
+// The old code collapsed both into "counters are still 0" — `JSON.parse(stdout || "{}")`
+// never throws, so an absent audit produced a green "0C/0H". See the fail-closed
+// contract at the top of this file.
+type AuditOutcome =
+  | { ran: true; critical: number; high: number; total: number }
+  | { ran: false; reason: string };
+
+function runDependencyAudit(): AuditOutcome {
+  const audit = spawnSync("npm", ["audit", "--json"], { cwd: ROOT, encoding: "utf8" });
+  if (audit.error) {
+    return { ran: false, reason: `npm audit could not be spawned: ${audit.error.message}` };
+  }
+  const stdout = (audit.stdout ?? "").trim();
+  if (!stdout) {
+    const stderr = (audit.stderr ?? "").trim().split("\n").filter(Boolean).slice(-1)[0] ?? "no stderr";
+    return { ran: false, reason: `npm audit produced no output (exit ${audit.status}): ${stderr}` };
+  }
+
+  let json: unknown;
+  try {
+    json = JSON.parse(stdout);
+  } catch {
+    return { ran: false, reason: `npm audit output was not parseable JSON (exit ${audit.status})` };
+  }
+
+  // npm reports its own failures as {"error": {...}} on stdout — valid JSON, no counts.
+  const report = json as {
+    error?: { code?: string; summary?: string };
+    metadata?: { vulnerabilities?: Record<string, unknown> };
+  };
+  if (report?.error) {
+    const { code, summary } = report.error;
+    return { ran: false, reason: `npm audit reported an error: ${code ?? "unknown"} — ${summary ?? "no summary"}` };
+  }
+
+  const v = report?.metadata?.vulnerabilities;
+  if (!v || typeof v !== "object") {
+    return { ran: false, reason: "npm audit output carried no metadata.vulnerabilities block, so no advisory count was established" };
+  }
+  const count = (key: string): number | null => {
+    const n = v[key];
+    return typeof n === "number" && Number.isFinite(n) ? n : null;
+  };
+  const critical = count("critical");
+  const high = count("high");
+  const total = count("total") ?? -1;
+  if (critical === null || high === null) {
+    return { ran: false, reason: "npm audit reported no numeric high/critical counts" };
+  }
+  return { ran: true, critical, high, total };
 }
-if (high + critical > 0) fail("security", `dependency audit: ${critical} critical, ${high} high`);
+
+// Escape hatch for a knowingly-offline run. It is deliberately not a silent one: it
+// prints a warning and rewrites the verdict line so no reader can mistake the result
+// for an audit that actually happened.
+const ALLOW_NO_AUDIT = process.env.SECURITY_SCAN_ALLOW_NO_AUDIT === "1";
+
+const outcome = runDependencyAudit();
+let auditVerdict: string;
+if (outcome.ran) {
+  if (outcome.critical + outcome.high > 0) {
+    fail("security", `dependency audit: ${outcome.critical} critical, ${outcome.high} high`);
+  }
+  auditVerdict = `no high/critical dependency advisories (${outcome.critical}C/${outcome.high}H${outcome.total >= 0 ? `, ${outcome.total} total` : ""})`;
+} else if (ALLOW_NO_AUDIT) {
+  console.log(`  ⚠️  SECURITY_SCAN_ALLOW_NO_AUDIT=1 — dependency advisory check SKIPPED: ${outcome.reason}`);
+  auditVerdict = "dependency advisory check SKIPPED (SECURITY_SCAN_ALLOW_NO_AUDIT=1 — no advisory count established)";
+} else {
+  fail("security", `dependency audit did not run, so SEC-12 is unverified — ${outcome.reason}`, [
+    "This gate fails closed: an audit that cannot run is not evidence of zero advisories.",
+    "Fix the audit (install npm, restore the lockfile, restore network) — do not ignore this.",
+    "For a knowingly-offline run, set SECURITY_SCAN_ALLOW_NO_AUDIT=1; the verdict line will then say the check was skipped.",
+  ]);
+}
 
 // (b) Secret scan.
 const SECRET_PATTERNS: [string, RegExp][] = [
@@ -66,4 +140,4 @@ for (const file of walk(ROOT, scanFile)) {
 }
 if (findings.length > 0) fail("security", `${findings.length} possible secret(s) committed`, findings);
 
-pass("security", `no high/critical dependency advisories; no committed secrets (${critical}C/${high}H)`);
+pass("security", `${auditVerdict}; no committed secrets`);
