@@ -349,18 +349,52 @@ test("security gate fails closed when the dependency audit cannot run", () => {
 });
 
 // The offline escape hatch must be explicit and must name itself in the verdict, so a
-// skipped advisory check can never be mistaken for a clean one.
+// skipped advisory check can never be mistaken for a clean one. `CI`/`GITHUB_ACTIONS`
+// are blanked here because this suite itself runs inside `make verify`, which runs in
+// CI — and in CI the opt-out is refused (next test).
 test("security gate's offline opt-out is loud and does not claim an advisory count", () => {
   const r = runGate("security-scan", {
     env: {
       SECURITY_SCAN_ROOT: fixture("security-audit-poison"),
       SECURITY_SCAN_ALLOW_NO_AUDIT: "1",
+      CI: "",
+      GITHUB_ACTIONS: "",
     },
   });
-  assert.equal(r.code, 0, `the explicit opt-out should let the run proceed. Output:\n${r.output}`);
+  assert.equal(r.code, 0, `the explicit opt-out should let a local run proceed. Output:\n${r.output}`);
   assert.match(r.output, /SECURITY_SCAN_ALLOW_NO_AUDIT=1/);
   assert.match(r.output, /SKIPPED/);
   assert.doesNotMatch(r.output, /no high\/critical dependency advisories/);
+});
+
+// Harm: the escape hatch becomes the bypass. This repository is PUBLIC, and for a
+// `pull_request` event GitHub runs the workflow definition from the PR head — so a
+// contributor who reads scripts/security-scan.ts (anyone can) could add
+// `SECURITY_SCAN_ALLOW_NO_AUDIT: 1` to the verify job's env and turn the
+// dependency-advisory half of a merge-blocking gate green in the same commit that
+// introduces the advisory, relying on a reviewer to catch it in a YAML diff.
+test("security gate REFUSES the offline opt-out in CI", () => {
+  for (const ciVar of ["GITHUB_ACTIONS", "CI"]) {
+    const r = runGate("security-scan", {
+      env: {
+        SECURITY_SCAN_ROOT: fixture("security-audit-poison"),
+        SECURITY_SCAN_ALLOW_NO_AUDIT: "1",
+        [ciVar]: "true",
+      },
+    });
+    assert.notEqual(r.code, 0, `${ciVar}: the opt-out must not work in CI. Output:\n${r.output}`);
+    assert.match(r.output, /REFUSED in CI/);
+    assert.doesNotMatch(r.output, /0C\/0H/);
+  }
+});
+
+// A scan pointed somewhere other than this repository must never render as a plain
+// green line, so a redirected run is visible in the CI log and not only in the diff
+// that redirected it.
+test("security gate labels its verdict when SECURITY_SCAN_ROOT redirects the scan", () => {
+  const r = runGate("security-scan", { env: { SECURITY_SCAN_ROOT: fixture("security-clean") } });
+  assert.equal(r.code, 0, `a clean fixture tree should pass. Output:\n${r.output}`);
+  assert.match(r.output, /SECURITY_SCAN_ROOT override in effect — NOT a scan of this repository/);
 });
 
 // ── lint (scripts/lint.ts) ──────────────────────────────────────────────────────

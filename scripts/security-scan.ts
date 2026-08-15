@@ -9,9 +9,11 @@
 // "I could not find out" is not that claim. So an audit that does not produce a
 // parseable report WITH a numeric metadata.vulnerabilities block is a gate FAILURE,
 // not a pass, and the 0C/0H figure is only printed when a real audit reported it.
-// A deliberately offline run must say so out loud: SECURITY_SCAN_ALLOW_NO_AUDIT=1
+// A deliberately offline LOCAL run must say so out loud: SECURITY_SCAN_ALLOW_NO_AUDIT=1
 // downgrades that failure to a loud SKIPPED notice that names itself in the verdict
-// line. There is no path where the advisory check is silently absent.
+// line. It is REFUSED in CI (see below) — this repository is public, and an escape
+// hatch a pull request can set on itself is a bypass, not an escape hatch. There is no
+// path where the advisory check is silently absent.
 
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
@@ -93,10 +95,29 @@ function runDependencyAudit(): AuditOutcome {
   return { ran: true, critical, high, total };
 }
 
-// Escape hatch for a knowingly-offline run. It is deliberately not a silent one: it
-// prints a warning and rewrites the verdict line so no reader can mistake the result
-// for an audit that actually happened.
-const ALLOW_NO_AUDIT = process.env.SECURITY_SCAN_ALLOW_NO_AUDIT === "1";
+// Escape hatch for a knowingly-offline LOCAL run — e.g. `make verify` on a train. It is
+// deliberately not a silent one: it prints a warning and rewrites the verdict line so no
+// reader can mistake the result for an audit that actually happened.
+//
+// AND IT DOES NOT WORK IN CI. This repository is public, so this file — including the
+// name of this variable — is readable by anyone who might open a pull request against
+// it. For a `pull_request` event GitHub runs the workflow definition from the PR head,
+// so a contributor could otherwise add `SECURITY_SCAN_ALLOW_NO_AUDIT: 1` to the verify
+// job's env and turn the dependency-advisory half of a merge-blocking security gate
+// green in the same commit that introduces the advisory. An escape hatch that a
+// reviewer has to notice in a YAML diff is not an escape hatch, it is a bypass. CI is
+// never offline (it just ran `npm ci`), so refusing it there costs nothing real.
+const IN_CI = Boolean(process.env.GITHUB_ACTIONS || process.env.CI);
+const ALLOW_NO_AUDIT_REQUESTED = process.env.SECURITY_SCAN_ALLOW_NO_AUDIT === "1";
+const ALLOW_NO_AUDIT = ALLOW_NO_AUDIT_REQUESTED && !IN_CI;
+
+// A redirected scan must never render as a plain green line. SECURITY_SCAN_ROOT exists
+// for the negative controls in tests/gate-efficacy, which legitimately point this gate
+// at a poisoned fixture tree from inside CI. Nothing can stop a workflow-file edit from
+// setting it (the same edit could delete the gate outright), but the verdict can refuse
+// to look like a clean scan of the real tree, so tampering shows up in the log and not
+// only in the diff.
+const ROOT_OVERRIDDEN = process.env.SECURITY_SCAN_ROOT !== undefined;
 
 const outcome = runDependencyAudit();
 let auditVerdict: string;
@@ -109,11 +130,24 @@ if (outcome.ran) {
   console.log(`  ⚠️  SECURITY_SCAN_ALLOW_NO_AUDIT=1 — dependency advisory check SKIPPED: ${outcome.reason}`);
   auditVerdict = "dependency advisory check SKIPPED (SECURITY_SCAN_ALLOW_NO_AUDIT=1 — no advisory count established)";
 } else {
-  fail("security", `dependency audit did not run, so SEC-12 is unverified — ${outcome.reason}`, [
+  const details = [
     "This gate fails closed: an audit that cannot run is not evidence of zero advisories.",
     "Fix the audit (install npm, restore the lockfile, restore network) — do not ignore this.",
-    "For a knowingly-offline run, set SECURITY_SCAN_ALLOW_NO_AUDIT=1; the verdict line will then say the check was skipped.",
-  ]);
+  ];
+  if (ALLOW_NO_AUDIT_REQUESTED && IN_CI) {
+    details.push(
+      "SECURITY_SCAN_ALLOW_NO_AUDIT=1 was set but is REFUSED in CI: it is a local-offline affordance, never a way to make a merge-blocking gate green.",
+    );
+  } else {
+    details.push(
+      "For a knowingly-offline LOCAL run, set SECURITY_SCAN_ALLOW_NO_AUDIT=1; it is refused in CI and the verdict line will say the check was skipped.",
+    );
+  }
+  fail("security", `dependency audit did not run, so SEC-12 is unverified — ${outcome.reason}`, details);
+}
+
+if (ROOT_OVERRIDDEN) {
+  auditVerdict = `[SECURITY_SCAN_ROOT override in effect — NOT a scan of this repository] ${auditVerdict}`;
 }
 
 // (b) Secret scan.
