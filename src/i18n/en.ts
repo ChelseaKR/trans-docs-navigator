@@ -23,6 +23,7 @@ export const en: LocaleBundle = {
     notFilingNote: "This tool doesn't file anything for you and isn't legal advice. Download the official form, complete it, and submit it yourself.",
     sources: "Sources",
     lastChecked: "last checked",
+    sourceNotWatched: "We cannot check this source automatically for changes. Check it yourself before you file.",
     needsRecheck: "Needs reverification, so we don't show it as current.",
     discretionary: "Varies by court/clerk.",
     cost: "Cost",

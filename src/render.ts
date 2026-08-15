@@ -10,6 +10,7 @@ import { t as locale } from "./i18n/index.ts";
 import type { SeoMeta } from "./seo.ts";
 import { headTags, titleTag } from "./seo.ts";
 import { formById } from "../api/forms.ts";
+import { isDriftWatchable } from "../api/watchability.ts";
 
 /** Localized gap-reason sentence from the language bundle. */
 export function gapReason(lang: Language, reason: "no-records" | "all-degraded"): string {
@@ -177,17 +178,38 @@ ${headTags(fullTitle, opts.lang, seo)}
 </html>`;
 }
 
+/**
+ * One rendered source line: the official link, its last-verified date, and — when the
+ * source cannot be drift-watched — an explicit sentence saying so (issue #117).
+ *
+ * A "last checked <date>" on a WATCHED source means a machine re-reads that page and a
+ * gate goes red when it changes. On an unwatchable one it means only that a human once
+ * read it. Rendering both identically hands the reader a guarantee that does not exist,
+ * for a filing where being wrong costs money, time, and sometimes safety. The note is
+ * plain text inside the list item (not a title attribute, not a colour, not an icon), so
+ * a screen-reader user and a print reader get exactly the same warning as anyone else.
+ *
+ * Exported so src/relocation.ts renders its source list identically instead of keeping a
+ * second copy of this markup that would only be corrected here.
+ */
+export function sourceItem(source: { url: string; title: string; last_verified: string }, lang: Language): string {
+  const t = locale(lang).ui;
+  const unwatched = !isDriftWatchable(source.url);
+  const note = unwatched
+    ? ` <span class="flag">${escapeHtml(t.sourceNotWatched)}</span>`
+    : "";
+  return (
+    `<li><a href="${escapeHtml(source.url)}" rel="noopener noreferrer">${escapeHtml(source.title)}</a>` +
+    ` — <span class="meta">${escapeHtml(t.lastChecked)} ${escapeHtml(source.last_verified)}</span>${note}</li>`
+  );
+}
+
 // `level` keeps heading order correct: 3 inside a checklist step (under the step's h2),
 // 2 on the standalone answer page (directly under the page h1, so no level is skipped).
 function sourceList(records: CorpusRecord[], lang: Language, level: 2 | 3 = 3): string {
   if (records.length === 0) return "";
   const t = locale(lang).ui;
-  const items = records
-    .map(
-      (r) =>
-        `<li><a href="${escapeHtml(r.source.url)}" rel="noopener noreferrer">${escapeHtml(r.source.title)}</a> — <span class="meta">${escapeHtml(t.lastChecked)} ${escapeHtml(r.source.last_verified)}</span></li>`,
-    )
-    .join("");
+  const items = records.map((r) => sourceItem(r.source, lang)).join("");
   return `<h${level}>${escapeHtml(t.sources)}</h${level}><ul>${items}</ul>`;
 }
 

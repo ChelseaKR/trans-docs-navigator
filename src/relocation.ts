@@ -23,7 +23,7 @@ import type {
   RelocationPhase,
   RelocationStep,
 } from "../api/types.ts";
-import { page, uiStrings, escapeHtml } from "./render.ts";
+import { page, uiStrings, escapeHtml, sourceItem } from "./render.ts";
 import { t as locale } from "./i18n/index.ts";
 import { formById } from "../api/forms.ts";
 
@@ -159,12 +159,10 @@ function stepHazards(
 function sources(records: CorpusRecord[], lang: Language): string {
   if (records.length === 0) return "";
   const t = locale(lang).ui;
-  const items = records
-    .map(
-      (rec) =>
-        `<li><a href="${escapeHtml(rec.source.url)}" rel="noopener noreferrer">${escapeHtml(rec.source.title)}</a> — <span class="meta">${escapeHtml(t.lastChecked)} ${escapeHtml(rec.source.last_verified)}</span></li>`,
-    )
-    .join("");
+  // Shared with the checklist/answer source list (src/render.ts) so the
+  // "cannot be drift-watched" disclosure can never be present on one page and missing
+  // on another — a relocation plan cites the same records under more time pressure.
+  const items = records.map((rec) => sourceItem(rec.source, lang)).join("");
   return `<h4>${escapeHtml(t.sources)}</h4><ul>${items}</ul>`;
 }
 

@@ -23,6 +23,7 @@ export const es: LocaleBundle = {
     notFilingNote: "Esta herramienta no presenta nada por usted y no es asesoramiento legal. Descargue el formulario oficial, complételo y preséntelo usted mismo.",
     sources: "Fuentes",
     lastChecked: "verificado por última vez",
+    sourceNotWatched: "No podemos revisar esta fuente automáticamente para detectar cambios. Revísela usted antes de presentar su solicitud.",
     needsRecheck: "Necesita reverificación, así que no se muestra como actual.",
     discretionary: "Varía según el tribunal/secretario.",
     cost: "Costo",

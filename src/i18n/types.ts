@@ -22,6 +22,8 @@ export interface UiMessages {
   notFilingNote: string;
   sources: string;
   lastChecked: string;
+  /** Shown on a source that no automated drift watch can cover (api/watchability.ts). */
+  sourceNotWatched: string;
   needsRecheck: string;
   discretionary: string;
   cost: string;

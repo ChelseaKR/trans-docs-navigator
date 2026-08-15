@@ -131,3 +131,69 @@ test("report-an-error link renders with escaping, noopener, and destination disc
     delete process.env.REPORT_ERROR_LINKS;
   }
 });
+
+// ── Unwatchable-source disclosure (issue #117) ─────────────────────────────────
+// A "last checked <date>" on a source under drift watch means a machine re-reads that
+// page and a gate goes red when it changes. On a source that returns 403 to this
+// project's declared user-agent it means only that a human once read it. Rendering both
+// identically hands a reader a guarantee that does not exist, before a legal filing.
+test("a source that cannot be drift-watched renders an explicit note, in both languages", () => {
+  const unwatched: CorpusRecord = {
+    id: "ny.court-order.name",
+    jurisdiction: "US-NY",
+    document_type: "court-order",
+    change_type: ["name"],
+    topic: "t",
+    statement: "long enough statement here",
+    // The real 403 source, from corpus/snapshots/index.json.
+    source: {
+      url: "https://www.nycourts.gov/courthelp/Family/nameChange.shtml",
+      title: "NY Courts",
+      last_verified: "2026-07-13",
+      verifier: "A",
+    },
+    verification_status: "verified",
+    recheck_sla_days: 90,
+    language: "en",
+  };
+  const answer: GroundedAnswer = {
+    blocks: [{ kind: "claim", text: "You file in civil court.", citations: [unwatched.id] }],
+    cited_records: [unwatched],
+    refused: false,
+  };
+
+  const en = renderAnswer(answer, "en");
+  assert.match(en, /last checked 2026-07-13/);
+  assert.match(en, /We cannot check this source automatically for changes/);
+
+  const es = renderAnswer(answer, "es");
+  assert.match(es, /No podemos revisar esta fuente automáticamente/);
+});
+
+test("a watched source renders the date with no unwatchable note", () => {
+  const watched: CorpusRecord = {
+    id: "ca.court-order.name",
+    jurisdiction: "US-CA",
+    document_type: "court-order",
+    change_type: ["name"],
+    topic: "t",
+    statement: "long enough statement here",
+    source: {
+      url: "https://selfhelp.courts.ca.gov/name-change",
+      title: "CA Courts",
+      last_verified: "2026-07-13",
+      verifier: "A",
+    },
+    verification_status: "verified",
+    recheck_sla_days: 90,
+    language: "en",
+  };
+  const answer: GroundedAnswer = {
+    blocks: [{ kind: "claim", text: "You file a petition.", citations: [watched.id] }],
+    cited_records: [watched],
+    refused: false,
+  };
+  const en = renderAnswer(answer, "en");
+  assert.match(en, /last checked 2026-07-13/);
+  assert.doesNotMatch(en, /cannot check this source automatically/);
+});
