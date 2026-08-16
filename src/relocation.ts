@@ -23,7 +23,7 @@ import type {
   RelocationPhase,
   RelocationStep,
 } from "../api/types.ts";
-import { page, uiStrings, escapeHtml } from "./render.ts";
+import { page, uiStrings, escapeHtml, verificationCaption } from "./render.ts";
 import { t as locale } from "./i18n/index.ts";
 import { formById } from "../api/forms.ts";
 
@@ -162,7 +162,7 @@ function sources(records: CorpusRecord[], lang: Language): string {
   const items = records
     .map(
       (rec) =>
-        `<li><a href="${escapeHtml(rec.source.url)}" rel="noopener noreferrer">${escapeHtml(rec.source.title)}</a> — <span class="meta">${escapeHtml(t.lastChecked)} ${escapeHtml(rec.source.last_verified)}</span></li>`,
+        `<li><a href="${escapeHtml(rec.source.url)}" rel="noopener noreferrer">${escapeHtml(rec.source.title)}</a> — <span class="meta">${escapeHtml(verificationCaption(rec.source, t))}</span></li>`,
     )
     .join("");
   return `<h4>${escapeHtml(t.sources)}</h4><ul>${items}</ul>`;
