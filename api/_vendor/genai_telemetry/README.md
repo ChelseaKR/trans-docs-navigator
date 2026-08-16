@@ -89,6 +89,6 @@ Bind: `AI-EVALUATION-STANDARD.md` (online loop), `OBSERVABILITY-STANDARD.md`
   no attribute names changed under you.
 
 ## Scope
-Binds the AI-full repos (civic-rag-starter-kit, trans-docs-navigator,
-fare-assistant, sprout, govchat-eval) and the AI-partial repos for their
-token/cost surface. Deterministic repos declare N/A per `AI-EVALUATION-STANDARD.md`.
+Binds this repo and the portfolio's other AI-full repos, plus the AI-partial
+repos for their token/cost surface. Deterministic repos declare N/A per
+`AI-EVALUATION-STANDARD.md`.
