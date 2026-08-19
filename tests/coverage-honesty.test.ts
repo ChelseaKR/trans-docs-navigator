@@ -222,6 +222,38 @@ test("an unpriced step is never silently treated as $0 in the plan total", () =>
   assert.ok(html.includes(unpricedHtml(2)), "and the count of unpriced steps is stated");
 });
 
+test("REGRESSION: the live intake path that printed a bare total (birth certificate + SSA)", () => {
+  // Not hypothetical and not URL-surgery: "Birth certificate" and "Social Security card"
+  // are both checkboxes on the intake form (DOCUMENT_IDS in src/pages.ts). Twelve corpus
+  // records carry a numeric fee and all of them are birth-certificate or WA driver's
+  // licence records, so this selection is exactly where a stated amount meets an unpriced
+  // sibling. Measured on the parent commit, `/checklist?jurisdiction=US-CA&change=name&
+  // doc=birth-certificate&doc=ssa-card` rendered "2 steps · Estimated cost: $26" — the
+  // $26 birth-record fee presented as the price of the plan, while nothing in the corpus
+  // prices the SSA step at all. Texas printed "$15" the same way.
+  for (const [j, amount] of [
+    ["US-CA", 26],
+    ["US-TX", 15],
+  ] as const) {
+    const html = bodyOf(`/checklist?jurisdiction=${j}&change=name&doc=birth-certificate&doc=ssa-card`);
+    const summary = html.match(/<p class="plan-summary">[\s\S]*?<\/p>/)?.[0] ?? "";
+    assert.ok(
+      !new RegExp(`\\$${amount}(?!\\+)`).test(summary),
+      `${j}: a bare $${amount} claims the whole plan costs that`,
+    );
+    assert.match(summary, new RegExp(`\\$${amount}\\+`), `${j}: the stated fee survives, marked incomplete`);
+    assert.ok(html.includes(unpricedHtml(1)), `${j}: the unpriced step must be named`);
+  }
+});
+
+test("REGRESSION: a $0 fee beside an unpriced step no longer erases the cost line entirely", () => {
+  // Washington's driver's-licence record states $0. On the parent commit, pairing it with
+  // the unpriced SSA step gave known=0, anyVaries=false and unpriced skipped — so the
+  // summary rendered "2 steps" with NO cost line at all. Absence and $0 collapsed together.
+  const html = bodyOf("/checklist?jurisdiction=US-WA&change=name&change=gender-marker&doc=drivers-license&doc=ssa-card");
+  assert.ok(html.includes(unpricedHtml(1)), "the unpriced step must be disclosed, not silently dropped");
+});
+
 test("every real state's checklist states how many of its steps are unpriced", () => {
   // Not a hypothetical: no cited source in this corpus prices the SSA step for ANY state,
   // so today every single plan is a floor. Saying so is the honest default, and it matches
