@@ -21,7 +21,12 @@ export interface UiMessages {
   verifyNote: string;
   notFilingNote: string;
   sources: string;
-  lastChecked: string;
+  /** Caption for a source a REAL named roster human verified: "verified by {name}, {date}". */
+  verifiedBy: string;
+  /** Caption when the record's verifier is a placeholder: the honest not-yet state. */
+  notHumanVerified: string;
+  /** Label for the seed/recording date shown alongside the not-yet state. */
+  recordedOn: string;
   needsRecheck: string;
   discretionary: string;
   cost: string;

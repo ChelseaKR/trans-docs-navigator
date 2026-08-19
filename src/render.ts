@@ -10,6 +10,27 @@ import { t as locale } from "./i18n/index.ts";
 import type { SeoMeta } from "./seo.ts";
 import { headTags, titleTag } from "./seo.ts";
 import { formById } from "../api/forms.ts";
+import { isHumanVerified } from "../api/corpus.ts";
+import type { Source } from "../api/types.ts";
+
+/**
+ * The honest caption for a source line. A record whose verifier is a real,
+ * non-placeholder roster human reads "verified by {name}, {date}". Anything
+ * else — including the Pilot Seed Reviewer placeholder every seed record
+ * carries — reads "recorded {date} · not yet verified by a named reviewer".
+ * A placeholder name must never borrow verification language: for this
+ * audience, a source link plus a verification-flavored date IS the claim.
+ */
+export function verificationCaption(
+  source: Source,
+  t: UiMessages,
+  roster?: Parameters<typeof isHumanVerified>[1],
+): string {
+  if (isHumanVerified(source.verifier, roster)) {
+    return `${t.verifiedBy} ${source.verifier}, ${source.last_verified}`;
+  }
+  return `${t.recordedOn} ${source.last_verified} · ${t.notHumanVerified}`;
+}
 
 /** Localized gap-reason sentence from the language bundle. */
 export function gapReason(lang: Language, reason: "no-records" | "all-degraded"): string {
@@ -185,7 +206,7 @@ function sourceList(records: CorpusRecord[], lang: Language, level: 2 | 3 = 3): 
   const items = records
     .map(
       (r) =>
-        `<li><a href="${escapeHtml(r.source.url)}" rel="noopener noreferrer">${escapeHtml(r.source.title)}</a> — <span class="meta">${escapeHtml(t.lastChecked)} ${escapeHtml(r.source.last_verified)}</span></li>`,
+        `<li><a href="${escapeHtml(r.source.url)}" rel="noopener noreferrer">${escapeHtml(r.source.title)}</a> — <span class="meta">${escapeHtml(verificationCaption(r.source, t))}</span></li>`,
     )
     .join("");
   return `<h${level}>${escapeHtml(t.sources)}</h${level}><ul>${items}</ul>`;

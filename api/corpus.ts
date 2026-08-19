@@ -412,3 +412,26 @@ export function corpusIntegrityAllowsStartup(
   if (result.status !== "absent") return result.ok;
   return nodeEnv === "development" || nodeEnv === "test";
 }
+
+/**
+ * True only when a record's claim was verified by a REAL named human: the verifier
+ * must exist in the roster and must not be a placeholder entry. Seed/placeholder
+ * reviewers (roster `placeholder: true`) must never read as verification in any
+ * user-facing surface — a source link plus a date next to a placeholder name is
+ * exactly the false-assurance shape the methodology page warns about.
+ */
+export function isHumanVerified(
+  verifier: string,
+  roster: Map<string, VerifierEntry> = loadVerifierRoster(),
+): boolean {
+  const entry = roster.get(verifier);
+  return entry !== undefined && entry.placeholder !== true;
+}
+
+/** Count of records whose source.verifier is a real (non-placeholder) roster human. */
+export function humanVerifiedCount(
+  records: ReadonlyArray<{ source: { verifier: string } }>,
+  roster: Map<string, VerifierEntry> = loadVerifierRoster(),
+): number {
+  return records.reduce((n, r) => n + (isHumanVerified(r.source.verifier, roster) ? 1 : 0), 0);
+}
