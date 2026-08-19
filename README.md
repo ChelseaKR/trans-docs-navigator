@@ -54,7 +54,7 @@ The rules for changing your name and gender marker differ by state and by docume
 
 ## Live preview
 
-**▶ [Live demo](https://7cddozrk6sfpsq7foszis7tcza0boyka.lambda-url.us-west-2.on.aws/)** — runs the real app (every route works, not a static export) on AWS Lambda. It's a serverless, scale-to-zero deploy chosen as a cost guardrail: no always-on compute, a per-month budget alarm, no paid LLM calls by default. First request after idle takes a few seconds to wake. (AWS setup and cost-guardrail breakdown: [`docs/DEPLOY-AWS-PREVIEW.md`](./docs/DEPLOY-AWS-PREVIEW.md).)
+**▶ [Live demo](https://7cddozrk6sfpsq7foszis7tcza0boyka.lambda-url.us-west-2.on.aws/)** — runs the real app (every route works, not a static export) on AWS Lambda. It serves machine-compiled seed records, **none yet verified by a named human** — the interface says so beside every source, and the table below tracks the count. It's a serverless, scale-to-zero deploy chosen as a cost guardrail: no always-on compute, a per-month budget alarm, no paid LLM calls by default. First request after idle takes a few seconds to wake. (AWS setup and cost-guardrail breakdown: [`docs/DEPLOY-AWS-PREVIEW.md`](./docs/DEPLOY-AWS-PREVIEW.md).)
 
 Prefer your own host? One click deploys the same image to Render's free tier:
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/ChelseaKR/trans-docs-navigator) — see [`docs/DEPLOY-PREVIEW.md`](./docs/DEPLOY-PREVIEW.md).

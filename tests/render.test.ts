@@ -163,7 +163,9 @@ test("a source that cannot be drift-watched renders an explicit note, in both la
   };
 
   const en = renderAnswer(answer, "en");
-  assert.match(en, /last checked 2026-07-13/);
+  // Caption framing comes from verificationCaption (#118): a placeholder verifier
+  // reads "recorded <date> · not yet verified by a named reviewer", never "verified by".
+  assert.match(en, /recorded 2026-07-13/);
   assert.match(en, /We cannot check this source automatically for changes/);
 
   const es = renderAnswer(answer, "es");
@@ -194,6 +196,6 @@ test("a watched source renders the date with no unwatchable note", () => {
     refused: false,
   };
   const en = renderAnswer(answer, "en");
-  assert.match(en, /last checked 2026-07-13/);
+  assert.match(en, /recorded 2026-07-13/);
   assert.doesNotMatch(en, /cannot check this source automatically/);
 });

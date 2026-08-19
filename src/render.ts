@@ -11,6 +11,27 @@ import type { SeoMeta } from "./seo.ts";
 import { headTags, titleTag } from "./seo.ts";
 import { formById } from "../api/forms.ts";
 import { isDriftWatchable } from "../api/watchability.ts";
+import { isHumanVerified } from "../api/corpus.ts";
+import type { Source } from "../api/types.ts";
+
+/**
+ * The honest caption for a source line. A record whose verifier is a real,
+ * non-placeholder roster human reads "verified by {name}, {date}". Anything
+ * else — including the Pilot Seed Reviewer placeholder every seed record
+ * carries — reads "recorded {date} · not yet verified by a named reviewer".
+ * A placeholder name must never borrow verification language: for this
+ * audience, a source link plus a verification-flavored date IS the claim.
+ */
+export function verificationCaption(
+  source: Source,
+  t: UiMessages,
+  roster?: Parameters<typeof isHumanVerified>[1],
+): string {
+  if (isHumanVerified(source.verifier, roster)) {
+    return `${t.verifiedBy} ${source.verifier}, ${source.last_verified}`;
+  }
+  return `${t.recordedOn} ${source.last_verified} · ${t.notHumanVerified}`;
+}
 
 /** Localized gap-reason sentence from the language bundle. */
 export function gapReason(lang: Language, reason: "no-records" | "all-degraded"): string {
@@ -179,10 +200,12 @@ ${headTags(fullTitle, opts.lang, seo)}
 }
 
 /**
- * One rendered source line: the official link, its last-verified date, and — when the
- * source cannot be drift-watched — an explicit sentence saying so (issue #117).
+ * One rendered source line: the official link, its verification caption
+ * (`verificationCaption`, so a placeholder verifier never borrows verification
+ * language), and — when the source cannot be drift-watched — an explicit sentence
+ * saying so (issue #117).
  *
- * A "last checked <date>" on a WATCHED source means a machine re-reads that page and a
+ * A verification date on a WATCHED source means a machine re-reads that page and a
  * gate goes red when it changes. On an unwatchable one it means only that a human once
  * read it. Rendering both identically hands the reader a guarantee that does not exist,
  * for a filing where being wrong costs money, time, and sometimes safety. The note is
@@ -192,15 +215,14 @@ ${headTags(fullTitle, opts.lang, seo)}
  * Exported so src/relocation.ts renders its source list identically instead of keeping a
  * second copy of this markup that would only be corrected here.
  */
-export function sourceItem(source: { url: string; title: string; last_verified: string }, lang: Language): string {
+export function sourceItem(source: Source, lang: Language): string {
   const t = locale(lang).ui;
-  const unwatched = !isDriftWatchable(source.url);
-  const note = unwatched
-    ? ` <span class="flag">${escapeHtml(t.sourceNotWatched)}</span>`
-    : "";
+  const note = isDriftWatchable(source.url)
+    ? ""
+    : ` <span class="flag">${escapeHtml(t.sourceNotWatched)}</span>`;
   return (
     `<li><a href="${escapeHtml(source.url)}" rel="noopener noreferrer">${escapeHtml(source.title)}</a>` +
-    ` — <span class="meta">${escapeHtml(t.lastChecked)} ${escapeHtml(source.last_verified)}</span>${note}</li>`
+    ` — <span class="meta">${escapeHtml(verificationCaption(source, t))}</span>${note}</li>`
   );
 }
 

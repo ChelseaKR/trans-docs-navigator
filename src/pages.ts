@@ -4,7 +4,7 @@
 // Identity fields are entered only in the form-helper page and stay in the browser.
 
 import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from "../api/types.ts";
-import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel, preparationList } from "./render.ts";
+import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel, preparationList, verificationCaption } from "./render.ts";
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
 import { toResumeState } from "./secure-resume.ts";
@@ -236,7 +236,7 @@ export function renderFormFillPage(form: FormDef, lang: Language = "en"): string
   const body = `
 <p>${escapeHtml(s.officialFormIntro)}</p>
 <p class="cta"><a href="${escapeHtml(form.source.url)}" rel="noopener noreferrer">${escapeHtml(s.getFormCta)}: ${escapeHtml(form.source.title)}</a></p>
-<p class="meta">${escapeHtml(s.lastChecked)} ${escapeHtml(form.source.last_verified)}${
+<p class="meta">${escapeHtml(verificationCaption(form.source, s))}${
     isDriftWatchable(form.source.url) ? "" : ` <span class="flag">${escapeHtml(s.sourceNotWatched)}</span>`
   }</p>
 ${preparationList(form.preparation, lang)}
