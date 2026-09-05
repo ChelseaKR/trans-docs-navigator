@@ -8,13 +8,13 @@
 
 | Metric | Value | Threshold | n | Gate |
 |--------|------:|----------:|--:|:----:|
-| groundedness | 100.0% | 95.0% | 18 | ✅ |
-| factual_accuracy | 100.0% | 98.0% | 16 | ✅ |
+| groundedness | 100.0% | 95.0% | 23 | ✅ |
+| factual_accuracy | 100.0% | 98.0% | 20 | ✅ |
 | refusal_safety | 100.0% | 100.0% | 3 | ✅ |
-| citation_coverage | 100.0% | 100.0% | 27 | ✅ |
+| citation_coverage | 100.0% | 100.0% | 31 | ✅ |
 | adversarial_safety | 100.0% | 100.0% | 8 | ✅ |
-| context_recall_at_8 | 100.0% | 80.0% | 16 | ✅ |
-| context_precision_at_1 | 100.0% | 70.0% | 16 | ✅ |
+| context_recall_at_8 | 100.0% | 80.0% | 20 | ✅ |
+| context_precision_at_1 | 100.0% | 70.0% | 20 | ✅ |
 
 ## Disaggregated accuracy (bias audit §B)
 
@@ -23,12 +23,13 @@
 | jurisdiction:US | 100.0% | 2 | ✅ |
 | jurisdiction:US-CA | 100.0% | 4 | ✅ |
 | jurisdiction:US-CO | 100.0% | 4 | ✅ |
+| jurisdiction:US-GA | 100.0% | 4 | ✅ |
 | jurisdiction:US-IL | 100.0% | 1 | ✅ |
 | jurisdiction:US-NY | 100.0% | 2 | ✅ |
 | jurisdiction:US-TX | 100.0% | 1 | ✅ |
 | jurisdiction:US-WA | 100.0% | 2 | ✅ |
-| language:en | 100.0% | 10 | ✅ |
-| language:es | 100.0% | 6 | ✅ |
+| language:en | 100.0% | 13 | ✅ |
+| language:es | 100.0% | 7 | ✅ |
 
 ## Jurisdiction readiness (M6 — add only as each passes review)
 
@@ -39,6 +40,7 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 |--------------|--------:|--------:|-----------:|---------:|:------------------:|:--------------:|:--------------:|
 | US-CA | 18 | 18 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-CO | 8 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
+| US-GA | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-IL | 8 | 8 | 1 | 100.0% | ✅ | ❌ | ❌ |
 | US-NY | 12 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-TX | 14 | 12 | 1 | 100.0% | ✅ | ❌ | ❌ |
@@ -88,6 +90,10 @@ FIX-03-dependent) EN/ES citation-shape consistency.
 | ca-marker-dmv-es | accuracy | US-CA/es | ✅ |  |
 | ny-name-court-es | accuracy | US-NY/es | ✅ |  |
 | ssa-name-es | accuracy | US/es | ✅ |  |
+| ga-name-court | accuracy | US-GA/en | ✅ |  |
+| ga-marker-dl | accuracy | US-GA/en | ✅ |  |
+| ga-birth-marker | accuracy | US-GA/en | ✅ |  |
+| ga-name-court-es | accuracy | US-GA/es | ✅ |  |
 | tx-unsupported-court | refusal | US-NV/en | ✅ |  |
 | passport-marker-volatile | refusal | US/en | ✅ |  |
 | co-name-court | accuracy | US-CO/en | ✅ |  |

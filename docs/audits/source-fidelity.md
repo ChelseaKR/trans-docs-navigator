@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 78 |
-| Load-bearing assertions found | 215 |
-| — checked and **supported** by the cited source | 183 |
+| Records audited | 90 |
+| Load-bearing assertions found | 251 |
+| — checked and **supported** by the cited source | 211 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 32 |
-| of the checked: literal (fee / duration / form-id) matches | 115 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 68 |
+| — **UNCHECKABLE** (reported, never passed) | 40 |
+| of the checked: literal (fee / duration / form-id) matches | 135 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 76 |
 
 ## What this gate cannot vouch for
 
-- **277 of 358 prose sentences** in the corpus carry no extractable
+- **313 of 412 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **81 sentences state a negative** (`you do not need a court order`, `the page no
+- **92 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **68 assertions are necessary-condition only**: the source discusses the topic, which
+- **76 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **2 cited sources refuse automated fetching entirely**, so no
@@ -58,21 +58,32 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ny.birth-certificate.name · official form DOH5305 backs this step (form_ref: ny-doh-5305)`
 - `ny.birth-certificate.name · a court order is required`
 - `ny.birth-certificate.name · states $30`
-- `ny.court-order.name.es · a fee waiver is available (cost.fee_waiver: true)`
-- `ny.court-order.name.es · publication in a newspaper is required`
+- `ny.birth-certificate.gender-marker.affidavit.es · official form DOH5303 backs this step (form_ref: ny-doh-5303)`
+- `ny.birth-certificate.gender-marker.affidavit.es · a notarized signature is required`
+- `ny.birth-certificate.gender-marker.affidavit.es · states "17 year"`
+- `ny.birth-certificate.gender-marker.affidavit.es · names form DOH5305`
 - `ny.birth-certificate.gender-marker.es · official form DOH5305 backs this step (form_ref: ny-doh-5305)`
 - `ny.birth-certificate.gender-marker.es · states "17 year"`
 - `ny.birth-certificate.gender-marker.es · names form DOH5303`
 - `ny.birth-certificate.gender-marker.es · an X sex/gender marker is available`
 - `ny.birth-certificate.gender-marker.es · a notarized signature is required`
 - `ny.birth-certificate.gender-marker.es · states $30`
-- `ny.birth-certificate.gender-marker.affidavit.es · official form DOH5303 backs this step (form_ref: ny-doh-5303)`
-- `ny.birth-certificate.gender-marker.affidavit.es · a notarized signature is required`
-- `ny.birth-certificate.gender-marker.affidavit.es · states "17 year"`
-- `ny.birth-certificate.gender-marker.affidavit.es · names form DOH5305`
 - `ny.birth-certificate.name.es · official form DOH5305 backs this step (form_ref: ny-doh-5305)`
 - `ny.birth-certificate.name.es · a court order is required`
 - `ny.birth-certificate.name.es · states $30`
+- `ny.court-order.name.es · a fee waiver is available (cost.fee_waiver: true)`
+- `ny.court-order.name.es · publication in a newspaper is required`
+
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name.** — 8 assertion(s):
+
+- `ga.birth-certificate.name · costs $10`
+- `ga.birth-certificate.name · official form DPH3977 backs this step (form_ref: ga-dph-3977)`
+- `ga.birth-certificate.name · a court order is required`
+- `ga.birth-certificate.name · states $25`
+- `ga.birth-certificate.name.es · costs $10`
+- `ga.birth-certificate.name.es · official form DPH3977 backs this step (form_ref: ga-dph-3977)`
+- `ga.birth-certificate.name.es · a court order is required`
+- `ga.birth-certificate.name.es · states $25`
 
 **the official form has no identifier to match on** — 4 assertion(s):
 
@@ -111,6 +122,18 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `co.court-order.name.es` | es | 9 | 0 | 0 | 2/5 |
 | `co.drivers-license.gender-marker` | en | 3 | 0 | 0 | 4/6 |
 | `co.drivers-license.gender-marker.es` | es | 4 | 0 | 0 | 4/6 |
+| `ga.birth-certificate.fees` | en | 3 | 0 | 0 | 1/3 |
+| `ga.birth-certificate.fees.es` | es | 3 | 0 | 0 | 1/3 |
+| `ga.birth-certificate.gender-marker` | en | 2 | 0 | 0 | 3/4 |
+| `ga.birth-certificate.gender-marker.es` | es | 2 | 0 | 0 | 3/4 |
+| `ga.birth-certificate.name` | en | 0 | 0 | 4 | 3/5 |
+| `ga.birth-certificate.name.es` | es | 0 | 0 | 4 | 3/5 |
+| `ga.court-order.name` | en | 6 | 0 | 0 | 4/7 |
+| `ga.court-order.name.es` | es | 6 | 0 | 0 | 4/7 |
+| `ga.drivers-license.gender-marker` | en | 1 | 0 | 0 | 5/5 |
+| `ga.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 5/5 |
+| `ga.drivers-license.name` | en | 2 | 0 | 0 | 2/3 |
+| `ga.drivers-license.name.es` | es | 2 | 0 | 0 | 2/3 |
 | `il.birth-certificate.gender-marker` | en | 4 | 0 | 1 | 5/5 |
 | `il.birth-certificate.gender-marker.es` | es | 4 | 0 | 1 | 5/5 |
 | `il.birth-certificate.name` | en | 3 | 0 | 1 | 3/3 |

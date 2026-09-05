@@ -13,6 +13,7 @@ import { isDriftWatchable } from "../api/watchability.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-CA", label: "California" },
+  { id: "US-GA", label: "Georgia" },
   { id: "US-CO", label: "Colorado" },
   { id: "US-IL", label: "Illinois" },
   { id: "US-NY", label: "New York" },

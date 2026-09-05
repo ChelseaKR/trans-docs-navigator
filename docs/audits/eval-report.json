@@ -1,19 +1,19 @@
 {
   "today": "2026-07-13",
-  "total": 27,
+  "total": 31,
   "metrics": [
     {
       "name": "groundedness",
       "value": 1,
       "threshold": 0.95,
-      "n": 18,
+      "n": 23,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 16,
+      "n": 20,
       "pass": true
     },
     {
@@ -27,7 +27,7 @@
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 27,
+      "n": 31,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 16,
+      "n": 20,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
       "value": 1,
       "threshold": 0.7,
-      "n": 16,
+      "n": 20,
       "pass": true
     }
   ],
@@ -67,6 +67,12 @@
     },
     {
       "segment": "jurisdiction:US-CO",
+      "value": 1,
+      "n": 4,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-GA",
       "value": 1,
       "n": 4,
       "pass": true
@@ -98,13 +104,13 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 10,
+      "n": 13,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 6,
+      "n": 7,
       "pass": true
     }
   ],
@@ -123,6 +129,16 @@
       "jurisdiction": "US-CO",
       "records": 8,
       "current_records": 8,
+      "gold_items": 4,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-GA",
+      "records": 12,
+      "current_records": 12,
       "gold_items": 4,
       "accuracy": 1,
       "mechanically_ready": true,
@@ -304,6 +320,46 @@
       "suite": "accuracy",
       "segment": {
         "jurisdiction": "US",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ga-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-GA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ga-marker-dl",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-GA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ga-birth-marker",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-GA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ga-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-GA",
         "language": "es"
       },
       "passed": true,

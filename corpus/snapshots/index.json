@@ -157,6 +157,38 @@
         "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
       }
     },
+    "https://georgia.gov/apply-name-change": {
+      "file": "georgia-gov-apply-name-change-c3e94f10.txt",
+      "fetched": "2026-09-05",
+      "sha256": "4b2c1184cd7cb47c02498b7a7337d0237da8995091a7b4e0cc78a96f5d4e22c2"
+    },
+    "https://dds.georgia.gov/license-faqs": {
+      "file": "dds-georgia-gov-license-faqs-211136cc.txt",
+      "fetched": "2026-09-05",
+      "sha256": "1fefd760c8c6bfb596234c357e2ef88ec03dcf9bcf1ac7dd4f942ebd4db59dd5"
+    },
+    "https://rules.sos.ga.gov/gac/375-3-1": {
+      "file": "rules-sos-ga-gov-gac-375-3-1-7d2e3f0a.txt",
+      "fetched": "2026-09-05",
+      "sha256": "094a321334544e729666ab191268ac753441be1e3cb0bff5536542f98cd62b76"
+    },
+    "https://rules.sos.ga.gov/gac/511-1-3": {
+      "file": "rules-sos-ga-gov-gac-511-1-3-9496aa33.txt",
+      "fetched": "2026-09-05",
+      "sha256": "5e483c0e538edaeabcde2b79f8002b99b862c438eeac7173bcb9cd1a06996c54"
+    },
+    "https://dph.georgia.gov/ways-request-vital-record/fees": {
+      "file": "dph-georgia-gov-ways-request-vital-record-fees-dd70f5bb.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c0b4d206853e98cc7353eb61c2b233650421c507d7f93c38bdfce9d638143f59"
+    },
+    "https://dph.georgia.gov/document/document/affidavit-amendment-form-3977-revisedpdf/download": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name."
+      }
+    },
     "https://www.coloradojudicial.gov/self-help/adult": {
       "file": "coloradojudicial-gov-self-help-adult-c2c5b400.txt",
       "fetched": "2026-09-05",

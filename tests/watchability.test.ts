@@ -104,6 +104,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
   // silent change to either has to be deliberate.
   const urls = [...loadCorpus().map((r) => r.source.url), ...loadForms().map((f) => f.source.url)];
   assert.deepEqual(unwatchableAmong(urls), [
+    // Georgia's Affidavit for Amendment (Form 3977) is a PDF whose text this
+    // pipeline cannot extract, so no baseline can be taken — deliberate addition
+    // with the Georgia corpus, not a silent drift in the watch set.
+    "https://dph.georgia.gov/document/document/affidavit-amendment-form-3977-revisedpdf/download",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml",
     "https://www.ssa.gov/forms/ss-5.pdf",

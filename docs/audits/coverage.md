@@ -14,6 +14,7 @@ driver's-license rows are covered and the federal rows are current.
 | US | — | ✅ | — | ✅ | — | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | ✅ | — | — | — | ✅ | — |
+| US-GA | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
@@ -26,6 +27,7 @@ driver's-license rows are covered and the federal rows are current.
 | US | — | ⚠️ degraded | — | ⚠️ degraded | — | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | — | — | ✅ | — | ✅ | — |
+| US-GA | — | — | ✅ | — | ✅ | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
@@ -38,6 +40,7 @@ driver's-license rows are covered and the federal rows are current.
 | US | — | ✅ | — | ✅ | — | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | ✅ | — | — | — | ✅ | — |
+| US-GA | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
@@ -50,9 +53,10 @@ driver's-license rows are covered and the federal rows are current.
 | US | — | ⚠️ degraded | — | ⚠️ degraded | — | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | — | — | ✅ | — | ✅ | — |
+| US-GA | — | — | ✅ | — | ✅ | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 
-**Totals:** 58 current · 8 degraded · 102 uncovered cells.
+**Totals:** 68 current · 8 degraded · 116 uncovered cells.
