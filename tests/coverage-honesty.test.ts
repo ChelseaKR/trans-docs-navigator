@@ -31,8 +31,12 @@ import type { CorpusRecord, Intake, Language } from "../api/types.ts";
 
 const corpus = loadCorpus();
 
-/** A state that is deliberately NOT in the corpus. Shape-valid, so the router accepts it. */
-const UNCOVERED = "US-FL";
+/**
+ * A state that is deliberately NOT in the corpus. Shape-valid, so the router accepts it.
+ * Was "US-FL" (Florida) until the corpus gained real Florida records — pick any state
+ * genuinely absent from corpus/jurisdictions/ so this fixture keeps meaning what it says.
+ */
+const UNCOVERED = "US-OH";
 /** A state the corpus does cover. */
 const COVERED = "US-CA";
 
@@ -61,7 +65,7 @@ test("hasNoStateCoverage is true for a shape-valid state absent from the corpus"
 });
 
 test("hasNoStateCoverage is false for every state the intake form actually offers", () => {
-  for (const j of ["US-CA", "US-IL", "US-NY", "US-TX", "US-WA"]) {
+  for (const j of ["US-CA", "US-FL", "US-IL", "US-NY", "US-TX", "US-WA"]) {
     assert.equal(hasNoStateCoverage(j, corpus), false, `${j} is covered and must not be flagged`);
   }
 });
@@ -258,7 +262,7 @@ test("every real state's checklist states how many of its steps are unpriced", (
   // Not a hypothetical: no cited source in this corpus prices the SSA step for ANY state,
   // so today every single plan is a floor. Saying so is the honest default, and it matches
   // what the relocation planner already tells people (api/relocation.ts costModel).
-  for (const j of ["US-CA", "US-IL", "US-NY", "US-TX", "US-WA"]) {
+  for (const j of ["US-CA", "US-FL", "US-IL", "US-NY", "US-TX", "US-WA"]) {
     const cl = buildChecklist(intakeFor(j), undefined, corpus);
     const unpriced = cl.steps.filter((s) => !s.cost && !s.done).length;
     const html = renderChecklistPage(cl, corpus, "en", `jurisdiction=${j}`);

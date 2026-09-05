@@ -152,6 +152,29 @@ const AUTHORED_GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "us.ssa-card.name.es", mustContain: ["SS-5"] },
   },
   {
+    id: "fl-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-FL", language: "en" },
+    query: { jurisdiction: "US-FL", change_types: ["name"], documents: ["court-order"], question: "Florida name change fingerprints background check" },
+    expect: { refused: false, citesRecord: "fl.court-order.name", mustContain: ["chancery", "fingerprints"] },
+  },
+  {
+    id: "fl-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-FL", language: "es" },
+    query: { jurisdiction: "US-FL", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Florida" },
+    expect: { refused: false, citesRecord: "fl.court-order.name.es", mustContain: ["huellas dactilares", "chancery"] },
+  },
+  {
+    id: "fl-marker-birth-cert-restricted",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-FL", language: "en" },
+    query: { jurisdiction: "US-FL", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Florida birth certificate gender marker change" },
+    // Honest degradation, not a fabricated process: the cited FL DOH page lists no route to
+    // change the sex field to match gender identity, and the record says so plainly.
+    expect: { refused: false, citesRecord: "fl.birth-certificate.gender-marker", mustContain: ["does not list", "gender identity"] },
+  },
+  {
     id: "tx-unsupported-court",
     suite: "refusal",
     segment: { jurisdiction: "US-NV", language: "en" },

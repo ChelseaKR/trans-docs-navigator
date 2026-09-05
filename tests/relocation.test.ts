@@ -407,7 +407,7 @@ test("costModel skips held documents but prices everything else", () => {
 // ── Guardrail #1 on the new surface ────────────────────────────────────────────────
 
 test("every relocation plan passes the SAME citation gate as /answer", () => {
-  const states = ["US-CA", "US-IL", "US-NY", "US-TX", "US-WA"];
+  const states = ["US-CA", "US-FL", "US-IL", "US-NY", "US-TX", "US-WA"];
   let checked = 0;
   for (const origin of states) {
     for (const destination of states) {
@@ -428,7 +428,7 @@ test("every relocation plan passes the SAME citation gate as /answer", () => {
       }
     }
   }
-  assert.equal(checked, 40);
+  assert.equal(checked, 60);
 });
 
 test("every substantive sentence on a plan page comes from a corpus record", () => {

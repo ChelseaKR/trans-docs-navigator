@@ -1,15 +1,15 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 70,
-  "supported": 152,
+  "records": 80,
+  "supported": 162,
   "unsupported": 0,
   "uncheckable": 32,
   "unfetchable_sources": [
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 255,
-  "total_prose_sentences": 322,
+  "unchecked_prose_sentences": 293,
+  "total_prose_sentences": 366,
   "audits": [
     {
       "recordId": "ca.court-order.name",
@@ -424,6 +424,98 @@
       "uncheckedProse": 6,
       "negatedClaims": 1,
       "totalSentences": 6
+    },
+    {
+      "recordId": "fl.court-order.name",
+      "language": "en",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0068/Sections/0068.07.html",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "background-check",
+          "label": "fingerprints / a criminal-history check are required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "fl.drivers-license.name",
+      "language": "en",
+      "url": "https://www.flhsmv.gov/name-and-address-changes/",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "fl.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.flhsmv.gov/name-and-address-changes/",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 3,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "fl.birth-certificate.name",
+      "language": "en",
+      "url": "https://www.floridahealth.gov/certificates-records/amendments-and-corrections/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "costs $20",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        },
+        {
+          "kind": "form-id",
+          "key": "DH429",
+          "label": "official form DH429 backs this step (form_ref: fl-dh429)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DH429"
+        },
+        {
+          "kind": "duration",
+          "key": "30 day",
+          "label": "states \"30 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"30 day\""
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "fl.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.floridahealth.gov/certificates-records/amendments-and-corrections/",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 3,
+      "totalSentences": 4
     },
     {
       "recordId": "il.court-order.name",
@@ -1967,6 +2059,98 @@
       "uncheckedProse": 2,
       "negatedClaims": 1,
       "totalSentences": 5
+    },
+    {
+      "recordId": "fl.court-order.name.es",
+      "language": "es",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0068/Sections/0068.07.html",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "background-check",
+          "label": "fingerprints / a criminal-history check are required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "fl.drivers-license.name.es",
+      "language": "es",
+      "url": "https://www.flhsmv.gov/name-and-address-changes/",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "fl.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.flhsmv.gov/name-and-address-changes/",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 3,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "fl.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.floridahealth.gov/certificates-records/amendments-and-corrections/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "costs $20",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        },
+        {
+          "kind": "form-id",
+          "key": "DH429",
+          "label": "official form DH429 backs this step (form_ref: fl-dh429)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DH429"
+        },
+        {
+          "kind": "duration",
+          "key": "30 day",
+          "label": "states \"30 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"30 day\""
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "fl.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.floridahealth.gov/certificates-records/amendments-and-corrections/",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 3,
+      "totalSentences": 4
     },
     {
       "recordId": "tx.court-order.name",
