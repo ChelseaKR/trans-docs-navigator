@@ -374,6 +374,28 @@
       "file": "law-cornell-edu-regulations-colorado-5-ccr-1006-1-5-d2aa51f9.txt",
       "fetched": "2026-09-05",
       "sha256": "ec748c0f293c0c5b8d11f5a2fb185c0baef687d35c28610feec573b961f19be6"
+    },
+    "https://www.courts.state.md.us/legalhelp/family/namechange": {
+      "file": "courts-state-md-us-legalhelp-family-namechange-a2ece022.txt",
+      "fetched": "2026-09-05",
+      "sha256": "bb242551463e1cd109203453241f87cc3b8345bea675d646461665964a86dc91"
+    },
+    "https://health.maryland.gov/vsa/Pages/birthcorrect.aspx": {
+      "file": "health-maryland-gov-vsa-pages-birthcorrect-aspx-cf85915e.txt",
+      "fetched": "2026-09-05",
+      "sha256": "64b2c184ed25d92067813fac17a76e6fb7a121bbba7289c7a471b99dd9235723"
+    },
+    "https://mva.maryland.gov/about-mva/Pages/changing-gender.aspx": {
+      "file": "mva-maryland-gov-about-mva-pages-changing-gender-aspx-9297167f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "77b85b5bb406b6754d73e3043c5330aac949fbe3dbc15a5e934f66fe0d727e7b"
+    },
+    "https://health.maryland.gov/vsa/Documents/Corrections/Birth/Gender%20Reassignment/Gender%20Re-Assignment%20instructions%2009_01_2016.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
     }
   }
 }

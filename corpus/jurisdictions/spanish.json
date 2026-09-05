@@ -1070,6 +1070,141 @@
     "language": "es"
   },
   {
+    "id": "md.court-order.name.es",
+    "jurisdiction": "US-MD",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Maryland",
+    "statement": "Para cambiar legalmente su nombre en Maryland, presenta una Petición de Cambio de Nombre en el Tribunal de Circuito — no en el Tribunal de Distrito — del condado (o la ciudad de Baltimore) donde vive, tiene un negocio habitual, trabaja, ejerce habitualmente una vocación, o donde nació. Los tribunales de Maryland dicen que puede cambiar su nombre siempre que no sea con un propósito ilegal o fraudulento y no interfiera con los derechos de otras personas.",
+    "detail": "Use la Petición de Cambio de Nombre de un Adulto (CC-DR-60). Adjunte documentos que muestren su nombre legal actual — como un acta de nacimiento, una licencia de conducir o un pasaporte — y firme la petición con su nombre legal actual. Cualquier persona con una razón válida puede presentar una objeción por escrito dentro de los 30 días posteriores a la fecha en que presentó la petición; no objetar en ese plazo se considera consentimiento al cambio de nombre. Si el tribunal concede su petición y no le envía por correo una copia certificada de la orden, pida copias en la oficina del secretario — necesitará una para actualizar su licencia de conducir, su acta de nacimiento, su registro del Seguro Social y otras cuentas. Si también desea una orden judicial sobre su identidad de género, los tribunales de Maryland describen un proceso aparte de 'declaración judicial de identidad de género' en el que puede solicitar un cambio de nombre como parte del mismo caso.",
+    "cost": {
+      "amount_usd": 165,
+      "note": "Puede preguntarle al tribunal sobre una exención de la tarifa de presentación si no puede pagar los $165; los tribunales de Maryland publican más información sobre cómo calificar para una."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.courts.state.md.us/legalhelp/family/namechange",
+      "title": "Tribunales de Maryland — Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "md-cc-dr-60",
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "es"
+  },
+  {
+    "id": "md.drivers-license.name.es",
+    "jurisdiction": "US-MD",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Maryland",
+    "statement": "Para cambiar su nombre en una licencia de conducir o tarjeta de identificación de Maryland, primero actualice su nombre con la Administración del Seguro Social — la MVA dice que lo haga al menos 72 horas antes de su cita en la MVA. Luego, haga una cita en línea y visite en persona una oficina de la MVA; no puede completar un cambio de nombre en línea ni en un quiosco de autoservicio.",
+    "detail": "Lleve su licencia de conducir de Maryland actual y un documento original o certificado de su cambio de nombre legal — la MVA dice que no se aceptan fotocopias — como un certificado de matrimonio, un decreto de divorcio, una orden judicial o un pasaporte con su nombre nuevo. Si ya tiene un pasaporte estadounidense válido con su nombre nuevo, la MVA dice que no necesita presentar documentos adicionales de cambio de nombre. Hay una tarifa por una licencia o identificación corregida que muestre su nombre nuevo; consulte la página de tarifas y opciones de pago de la MVA para conocer el monto actual.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La MVA no da una cifra en dólares para un cambio de nombre en esta página — dice que se aplica una tarifa por una licencia o identificación corregida y que consulte su página de tarifas y opciones de pago para el monto actual."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://mva.maryland.gov/about-mva/Pages/changing-gender.aspx",
+      "title": "MVA de Maryland — Actualizar el nombre, la dirección u otra información en su licencia de conducir",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "md.drivers-license.gender-marker.es",
+    "jurisdiction": "US-MD",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de Maryland",
+    "statement": "Puede actualizar el marcador de género en su licencia de conducir o tarjeta de identificación de Maryland a M (masculino), F (femenino) o X (sin especificar u otro). La MVA dice que no se requiere documentación para cambiar su designación de género, pero debe hacerlo en persona en una oficina de la MVA — no en línea ni en un quiosco de autoservicio — con una cita.",
+    "detail": "En su cita le tomarán una foto nueva y pagará la tarifa de reemplazo de tarjeta que se aplica a una licencia o identificación corregida; consulte la página de tarifas y opciones de pago de la MVA para el monto actual. Una vez aprobado, su nueva licencia se le enviará por correo dentro de 7 a 10 días hábiles. Puede cambiar su designación de género tantas veces como necesite — se aplica una tarifa de licencia corregida cada vez — y la MVA dice que no necesita haber cambiado primero el género en su acta de nacimiento. Si es menor de 18 años y quiere elegir un género distinto al que aparece en su acta de nacimiento, su padre, madre o tutor debe firmar la solicitud para aprobar la elección, o no se emitirá la credencial.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La MVA no da una cifra en dólares en esta página — dice que se aplica una tarifa de reemplazo de tarjeta cada vez que cambia su designación de género. Consulte la página de tarifas y opciones de pago de la MVA para el monto actual."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://mva.maryland.gov/about-mva/Pages/changing-gender.aspx",
+      "title": "MVA de Maryland — Actualizar el nombre, la dirección u otra información en su licencia de conducir",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "md.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-MD",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Maryland",
+    "statement": "Si nació en Maryland, puede solicitar una nueva Acta de Nacimiento que refleje un cambio en la designación de sexo si su sexo ha cambiado o si se le ha diagnosticado una condición intersexual. La División de Registros Vitales de Maryland exige prueba satisfactoria de una de las siguientes opciones: una declaración firmada por un profesional de salud con licencia, bajo pena de perjurio, de que usted se sometió a un tratamiento quirúrgico, hormonal u otro tratamiento apropiado para usted, según los estándares médicos generalmente aceptados; una declaración de un profesional de salud con licencia de que usted tiene una condición intersexual y que, en su opinión profesional, su designación de sexo debería cambiarse; o una orden judicial que indique que su sexo debe cambiarse.",
+    "detail": "Un profesional de salud con licencia puede ser un médico, un psicólogo, una enfermera registrada certificada como enfermera practicante, psicoterapeuta de enfermería o especialista clínica de enfermería, o una trabajadora social clínica con licencia — incluida una persona con licencia para ejercer en otro estado que cumpla los requisitos de Maryland para ejercer aquí. Envíe su solicitud, la evidencia y las tarifas a la División de Registros Vitales. Si también solicita un cambio de nombre y tiene más de 12 meses de edad, también debe presentar la orden judicial original.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Preparar la nueva Acta de Nacimiento cuesta $10. Una copia certificada cuesta $10 por copia si desea una. Pague con cheque o giro postal."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.maryland.gov/vsa/Documents/Corrections/Birth/Gender%20Reassignment/Gender%20Re-Assignment%20instructions%2009_01_2016.pdf",
+      "title": "Departamento de Salud de Maryland, División de Registros Vitales — Solicitud de una Nueva Acta de Nacimiento Tras un Cambio de Sexo o Diagnóstico de una Condición Intersexual",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "md-vsa-gender-reassignment",
+    "language": "es"
+  },
+  {
+    "id": "md.birth-certificate.name.es",
+    "jurisdiction": "US-MD",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Maryland",
+    "statement": "Maryland permite enmendar un acta de nacimiento registrada por el Registrador Estatal, de conformidad con Md. Code Ann., Health-General § 4-214, incluso para cambiar el nombre. Los tipos de cambios que enumera la División de Registros Vitales incluyen una declaración jurada para cambiar un nombre dentro de los 12 meses posteriores al nacimiento, u obtener una orden judicial para otros cambios en el acta de nacimiento.",
+    "detail": "Para solicitar un cambio, puede enviar por correo electrónico el formulario de solicitud de enmienda y los documentos requeridos a la División de Registros Vitales, y un representante se comunicará con usted sobre el pago, o puede enviar la solicitud por correo postal junto con las tarifas. Después de que la División reciba su solicitud y la tarifa de enmienda, evaluará su solicitud y responderá por escrito si necesita más información.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "La tarifa de enmienda es de $10, más una tarifa de certificado de $10."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://health.maryland.gov/vsa/Pages/birthcorrect.aspx",
+      "title": "Departamento de Salud de Maryland — Correcciones de Actas de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "mi.birth-certificate.fees.es",
     "jurisdiction": "US-MI",
     "document_type": "birth-certificate",

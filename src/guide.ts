@@ -31,6 +31,7 @@ const STATES: StateDef[] = [
   { slug: "georgia", id: "US-GA", name: { en: "Georgia", es: "Georgia" } },
   { slug: "colorado", id: "US-CO", name: { en: "Colorado", es: "Colorado" } },
   { slug: "illinois", id: "US-IL", name: { en: "Illinois", es: "Illinois" } },
+  { slug: "maryland", id: "US-MD", name: { en: "Maryland", es: "Maryland" } },
   { slug: "massachusetts", id: "US-MA", name: { en: "Massachusetts", es: "Massachusetts" } },
   { slug: "michigan", id: "US-MI", name: { en: "Michigan", es: "Michigan" } },
   { slug: "new-york", id: "US-NY", name: { en: "New York", es: "Nueva York" } },
