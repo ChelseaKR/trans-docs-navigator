@@ -114,6 +114,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Arizona: both are PDFs whose text this pipeline cannot extract, so no
     // baseline can be taken — deliberate, with the Arizona corpus.
     "https://superiorcourt.maricopa.gov/media/emucljue/name-gender-change-eng-spa.pdf",
+    // North Carolina's Birth Certificate Modification Application (Form DHHS 1578) is
+    // a PDF whose text this pipeline cannot extract, so no baseline can be taken —
+    // deliberate addition with the North Carolina corpus.
+    "https://vitalrecords.nc.gov/documents/NCOVR-BirthModificationsApplicationFinal-07072022v6.pdf",
     "https://www.azdhs.gov/documents/vital-records/manuals/correction-affidavit-correct-amend-birth.pdf?v=20260409",
     // Tennessee's enacted "definition of sex" bill (SB 1440 / HB 239, 2023) is only
     // published as a PDF on the General Assembly's own site, so no baseline can be
@@ -131,6 +135,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change",
     "https://www.michigan.gov/sos/all-services/license-or-id-name-correction",
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction",
+    // North Carolina's DMV Sex Designation Form (DL-300) is a PDF whose text this
+    // pipeline cannot extract, so no baseline can be taken — deliberate addition
+    // with the North Carolina corpus.
+    "https://www.ncdot.gov/dmv/downloads/Documents/DL-300.pdf",
     // New Jersey: both are PDFs whose text this pipeline cannot extract, so no baseline
     // can be taken — deliberate addition with the New Jersey corpus. The REG-L2 form
     // backs nj.birth-certificate.gender-marker (which itself cites a checkable HTML

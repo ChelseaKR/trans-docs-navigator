@@ -37,6 +37,7 @@ export const RELOCATION_JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-IL", label: "Illinois" },
   { id: "US-MD", label: "Maryland" },
   { id: "US-MI", label: "Michigan" },
+  { id: "US-NC", label: "North Carolina" },
   { id: "US-NV", label: "Nevada" },
   { id: "US-NJ", label: "New Jersey" },
   { id: "US-NY", label: "New York" },

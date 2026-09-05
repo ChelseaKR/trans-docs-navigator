@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 216 |
-| Load-bearing assertions found | 597 |
-| — checked and **supported** by the cited source | 432 |
+| Records audited | 232 |
+| Load-bearing assertions found | 626 |
+| — checked and **supported** by the cited source | 451 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 165 |
-| of the checked: literal (fee / duration / form-id) matches | 283 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 149 |
+| — **UNCHECKABLE** (reported, never passed) | 175 |
+| of the checked: literal (fee / duration / form-id) matches | 296 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 155 |
 
 ## What this gate cannot vouch for
 
-- **857 of 1064 prose sentences** in the corpus carry no extractable
+- **938 of 1160 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **294 sentences state a negative** (`you do not need a court order`, `the page no
+- **319 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **149 assertions are necessary-condition only**: the source discusses the topic, which
+- **155 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **6 cited sources refuse automated fetching entirely**, so no
@@ -46,6 +46,73 @@
 None. Every load-bearing assertion the gate could check is locatable in its cited source.
 
 ## Uncheckable assertions (reported, never passed)
+
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 64 assertion(s):
+
+- `az.drivers-license.gender-marker · a court order is required`
+- `md.birth-certificate.gender-marker · costs $10`
+- `md.birth-certificate.gender-marker · form_ref "md-vsa-gender-reassignment" (Application for Change in Sex Designation on a Certificate of Live Birth) carries no form identifier to match on`
+- `md.birth-certificate.gender-marker · a court order is required`
+- `md.birth-certificate.gender-marker · states "12 month"`
+- `nv.birth-certificate.name · costs $45`
+- `nv.birth-certificate.name · form_ref "nv-dpbh-court-ordered-change" (Application for a Correction of a Record — Court Ordered Change Only) carries no form identifier to match on`
+- `nv.birth-certificate.name · a court order is required`
+- `nv.birth-certificate.name · states $25`
+- `nv.birth-certificate.name · states "4 week"`
+- `nv.birth-certificate.name · states "6 week"`
+- `nv.birth-certificate.gender-marker · form_ref "nv-dpbh-corrections-birth" (Application for a Correction of a Birth Record (Affidavit for Correction of a Record + Supplemental Affidavit)) carries no form identifier to match on`
+- `nv.birth-certificate.gender-marker · a notarized signature is required`
+- `nv.birth-certificate.gender-marker · a court order is required`
+- `nv.birth-certificate.gender-marker · states $40`
+- `nv.birth-certificate.gender-marker · states $45`
+- `nc.drivers-license.gender-marker · official form DL300 backs this step (form_ref: nc-dmv-dl-300)`
+- `nc.drivers-license.gender-marker · a court order is required`
+- `nc.birth-certificate.gender-marker · costs $39`
+- `nc.birth-certificate.gender-marker · official form DHHS1578 backs this step (form_ref: nc-dhhs-1578)`
+- `nc.birth-certificate.gender-marker · a notarized signature is required`
+- `pa.birth-certificate.gender-marker · costs $20`
+- `pa.birth-certificate.gender-marker · a fee waiver is available (cost.fee_waiver: true)`
+- `pa.birth-certificate.gender-marker · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
+- `pa.birth-certificate.gender-marker · a notarized signature is required`
+- `pa.birth-certificate.gender-marker · states "45 day"`
+- `pa.birth-certificate.name · costs $20`
+- `pa.birth-certificate.name · a fee waiver is available (cost.fee_waiver: true)`
+- `pa.birth-certificate.name · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
+- `pa.birth-certificate.name · a court order is required`
+- `pa.birth-certificate.name · a notarized signature is required`
+- `pa.birth-certificate.name · states "45 day"`
+- `az.drivers-license.gender-marker.es · a court order is required`
+- `md.birth-certificate.gender-marker.es · costs $10`
+- `md.birth-certificate.gender-marker.es · form_ref "md-vsa-gender-reassignment" (Application for Change in Sex Designation on a Certificate of Live Birth) carries no form identifier to match on`
+- `md.birth-certificate.gender-marker.es · a court order is required`
+- `md.birth-certificate.gender-marker.es · states "12 month"`
+- `nc.birth-certificate.gender-marker.es · costs $39`
+- `nc.birth-certificate.gender-marker.es · official form DHHS1578 backs this step (form_ref: nc-dhhs-1578)`
+- `nc.birth-certificate.gender-marker.es · a notarized signature is required`
+- `nc.drivers-license.gender-marker.es · official form DL300 backs this step (form_ref: nc-dmv-dl-300)`
+- `nc.drivers-license.gender-marker.es · a court order is required`
+- `nv.birth-certificate.gender-marker.es · form_ref "nv-dpbh-corrections-birth" (Application for a Correction of a Birth Record (Affidavit for Correction of a Record + Supplemental Affidavit)) carries no form identifier to match on`
+- `nv.birth-certificate.gender-marker.es · a notarized signature is required`
+- `nv.birth-certificate.gender-marker.es · a court order is required`
+- `nv.birth-certificate.gender-marker.es · states $40`
+- `nv.birth-certificate.gender-marker.es · states $45`
+- `nv.birth-certificate.name.es · costs $45`
+- `nv.birth-certificate.name.es · form_ref "nv-dpbh-court-ordered-change" (Application for a Correction of a Record — Court Ordered Change Only) carries no form identifier to match on`
+- `nv.birth-certificate.name.es · a court order is required`
+- `nv.birth-certificate.name.es · states $25`
+- `nv.birth-certificate.name.es · states "4 week"`
+- `nv.birth-certificate.name.es · states "6 week"`
+- `pa.birth-certificate.gender-marker.es · costs $20`
+- `pa.birth-certificate.gender-marker.es · a fee waiver is available (cost.fee_waiver: true)`
+- `pa.birth-certificate.gender-marker.es · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
+- `pa.birth-certificate.gender-marker.es · a notarized signature is required`
+- `pa.birth-certificate.gender-marker.es · states "45 day"`
+- `pa.birth-certificate.name.es · costs $20`
+- `pa.birth-certificate.name.es · a fee waiver is available (cost.fee_waiver: true)`
+- `pa.birth-certificate.name.es · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
+- `pa.birth-certificate.name.es · a court order is required`
+- `pa.birth-certificate.name.es · a notarized signature is required`
+- `pa.birth-certificate.name.es · states "45 day"`
 
 **the source refuses automated fetching (HTTP 403)** — 59 assertion(s):
 
@@ -108,63 +175,6 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ny.birth-certificate.name.es · states $30`
 - `ny.court-order.name.es · a fee waiver is available (cost.fee_waiver: true)`
 - `ny.court-order.name.es · publication in a newspaper is required`
-
-**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 54 assertion(s):
-
-- `az.drivers-license.gender-marker · a court order is required`
-- `md.birth-certificate.gender-marker · costs $10`
-- `md.birth-certificate.gender-marker · form_ref "md-vsa-gender-reassignment" (Application for Change in Sex Designation on a Certificate of Live Birth) carries no form identifier to match on`
-- `md.birth-certificate.gender-marker · a court order is required`
-- `md.birth-certificate.gender-marker · states "12 month"`
-- `nv.birth-certificate.name · costs $45`
-- `nv.birth-certificate.name · form_ref "nv-dpbh-court-ordered-change" (Application for a Correction of a Record — Court Ordered Change Only) carries no form identifier to match on`
-- `nv.birth-certificate.name · a court order is required`
-- `nv.birth-certificate.name · states $25`
-- `nv.birth-certificate.name · states "4 week"`
-- `nv.birth-certificate.name · states "6 week"`
-- `nv.birth-certificate.gender-marker · form_ref "nv-dpbh-corrections-birth" (Application for a Correction of a Birth Record (Affidavit for Correction of a Record + Supplemental Affidavit)) carries no form identifier to match on`
-- `nv.birth-certificate.gender-marker · a notarized signature is required`
-- `nv.birth-certificate.gender-marker · a court order is required`
-- `nv.birth-certificate.gender-marker · states $40`
-- `nv.birth-certificate.gender-marker · states $45`
-- `pa.birth-certificate.gender-marker · costs $20`
-- `pa.birth-certificate.gender-marker · a fee waiver is available (cost.fee_waiver: true)`
-- `pa.birth-certificate.gender-marker · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
-- `pa.birth-certificate.gender-marker · a notarized signature is required`
-- `pa.birth-certificate.gender-marker · states "45 day"`
-- `pa.birth-certificate.name · costs $20`
-- `pa.birth-certificate.name · a fee waiver is available (cost.fee_waiver: true)`
-- `pa.birth-certificate.name · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
-- `pa.birth-certificate.name · a court order is required`
-- `pa.birth-certificate.name · a notarized signature is required`
-- `pa.birth-certificate.name · states "45 day"`
-- `az.drivers-license.gender-marker.es · a court order is required`
-- `md.birth-certificate.gender-marker.es · costs $10`
-- `md.birth-certificate.gender-marker.es · form_ref "md-vsa-gender-reassignment" (Application for Change in Sex Designation on a Certificate of Live Birth) carries no form identifier to match on`
-- `md.birth-certificate.gender-marker.es · a court order is required`
-- `md.birth-certificate.gender-marker.es · states "12 month"`
-- `nv.birth-certificate.gender-marker.es · form_ref "nv-dpbh-corrections-birth" (Application for a Correction of a Birth Record (Affidavit for Correction of a Record + Supplemental Affidavit)) carries no form identifier to match on`
-- `nv.birth-certificate.gender-marker.es · a notarized signature is required`
-- `nv.birth-certificate.gender-marker.es · a court order is required`
-- `nv.birth-certificate.gender-marker.es · states $40`
-- `nv.birth-certificate.gender-marker.es · states $45`
-- `nv.birth-certificate.name.es · costs $45`
-- `nv.birth-certificate.name.es · form_ref "nv-dpbh-court-ordered-change" (Application for a Correction of a Record — Court Ordered Change Only) carries no form identifier to match on`
-- `nv.birth-certificate.name.es · a court order is required`
-- `nv.birth-certificate.name.es · states $25`
-- `nv.birth-certificate.name.es · states "4 week"`
-- `nv.birth-certificate.name.es · states "6 week"`
-- `pa.birth-certificate.gender-marker.es · costs $20`
-- `pa.birth-certificate.gender-marker.es · a fee waiver is available (cost.fee_waiver: true)`
-- `pa.birth-certificate.gender-marker.es · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
-- `pa.birth-certificate.gender-marker.es · a notarized signature is required`
-- `pa.birth-certificate.gender-marker.es · states "45 day"`
-- `pa.birth-certificate.name.es · costs $20`
-- `pa.birth-certificate.name.es · a fee waiver is available (cost.fee_waiver: true)`
-- `pa.birth-certificate.name.es · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
-- `pa.birth-certificate.name.es · a court order is required`
-- `pa.birth-certificate.name.es · a notarized signature is required`
-- `pa.birth-certificate.name.es · states "45 day"`
 
 **the official form has no identifier to match on** — 20 assertion(s):
 
@@ -343,6 +353,22 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `mi.drivers-license.gender-marker.es` | es | 0 | 0 | 3 | 7/7 |
 | `mi.drivers-license.name` | en | 0 | 0 | 3 | 7/7 |
 | `mi.drivers-license.name.es` | es | 0 | 0 | 3 | 7/7 |
+| `nc.birth-certificate.gender-marker` | en | 0 | 0 | 3 | 6/7 |
+| `nc.birth-certificate.gender-marker.es` | es | 0 | 0 | 3 | 6/7 |
+| `nc.birth-certificate.gender-marker.law` | en | 0 | 0 | 0 | 6/6 |
+| `nc.birth-certificate.gender-marker.law.es` | es | 0 | 0 | 0 | 6/6 |
+| `nc.birth-certificate.name` | en | 2 | 0 | 0 | 3/3 |
+| `nc.birth-certificate.name.es` | es | 2 | 0 | 0 | 3/3 |
+| `nc.court-order.name` | en | 0 | 0 | 0 | 7/7 |
+| `nc.court-order.name.es` | es | 0 | 0 | 0 | 7/7 |
+| `nc.court-order.name.requirements` | en | 4 | 0 | 0 | 5/8 |
+| `nc.court-order.name.requirements.es` | es | 5 | 0 | 0 | 4/8 |
+| `nc.drivers-license.gender-marker` | en | 0 | 0 | 2 | 5/6 |
+| `nc.drivers-license.gender-marker.es` | es | 0 | 0 | 2 | 5/6 |
+| `nc.drivers-license.gender-marker.law` | en | 0 | 0 | 0 | 6/6 |
+| `nc.drivers-license.gender-marker.law.es` | es | 0 | 0 | 0 | 6/6 |
+| `nc.drivers-license.name` | en | 3 | 0 | 0 | 2/4 |
+| `nc.drivers-license.name.es` | es | 3 | 0 | 0 | 4/6 |
 | `nj.birth-certificate.gender-marker` | en | 0 | 0 | 1 | 5/5 |
 | `nj.birth-certificate.gender-marker.es` | es | 0 | 0 | 1 | 5/5 |
 | `nj.birth-certificate.name` | en | 2 | 0 | 0 | 2/4 |

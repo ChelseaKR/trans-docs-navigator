@@ -488,5 +488,36 @@
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "nc-dmv-dl-300",
+    "jurisdiction": "US-NC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Form DL-300 — Sex Designation Form",
+    "source": {
+      "url": "https://www.ncdot.gov/dmv/downloads/Documents/DL-300.pdf",
+      "title": "North Carolina Division of Motor Vehicles Form DL-300 — Sex Designation Form",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "nc-dhhs-1578",
+    "jurisdiction": "US-NC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Form DHHS 1578 — Birth Certificate Modification Application",
+    "source": {
+      "url": "https://vitalrecords.nc.gov/documents/NCOVR-BirthModificationsApplicationFinal-07072022v6.pdf",
+      "title": "North Carolina Department of Health and Human Services Form DHHS 1578 — Birth Certificate Modification Application",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]

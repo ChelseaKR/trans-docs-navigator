@@ -1,33 +1,33 @@
 {
   "today": "2026-07-13",
-  "total": 69,
+  "total": 74,
   "metrics": [
     {
       "name": "groundedness",
-      "value": 0.9838709677419355,
+      "value": 0.9850746268656716,
       "threshold": 0.95,
-      "n": 62,
+      "n": 67,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 55,
+      "n": 58,
       "pass": true
     },
     {
       "name": "refusal_safety",
       "value": 1,
       "threshold": 1,
-      "n": 6,
+      "n": 8,
       "pass": true
     },
     {
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 69,
+      "n": 74,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 55,
+      "n": 58,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
       "value": 1,
       "threshold": 0.7,
-      "n": 55,
+      "n": 58,
       "pass": true
     }
   ],
@@ -114,6 +114,12 @@
       "pass": true
     },
     {
+      "segment": "jurisdiction:US-NC",
+      "value": 1,
+      "n": 3,
+      "pass": true
+    },
+    {
       "segment": "jurisdiction:US-NJ",
       "value": 1,
       "n": 4,
@@ -170,13 +176,13 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 39,
+      "n": 41,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 16,
+      "n": 17,
       "pass": true
     }
   ],
@@ -265,6 +271,16 @@
       "jurisdiction": "US-MI",
       "records": 12,
       "current_records": 12,
+      "gold_items": 3,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-NC",
+      "records": 16,
+      "current_records": 8,
       "gold_items": 3,
       "accuracy": 1,
       "mechanically_ready": true,
@@ -897,6 +913,56 @@
       "segment": {
         "jurisdiction": "US-CO",
         "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "nc-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-NC",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "nc-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-NC",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "nc-birth-cert-name",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-NC",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "nc-marker-dl-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-NC",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "nc-birth-marker-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-NC",
+        "language": "en"
       },
       "passed": true,
       "notes": []

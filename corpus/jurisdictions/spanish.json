@@ -1377,6 +1377,205 @@
     "language": "es"
   },
   {
+    "id": "nc.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-NC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Carolina del Norte",
+    "statement": "La Solicitud de Modificación del Acta de Nacimiento de Carolina del Norte (Formulario DHHS 1578) indica que, para corregir la designación de sexo en su acta de nacimiento, puede presentar cualquiera de estos: una licencia de conducir o identificación estatal válida de Carolina del Norte, o un pasaporte estadounidense válido, que ya muestre el sexo que solicita; una certificación firmada de identidad de género de un médico, psiquiatra, asistente médico, terapeuta con licencia, consejero, psicólogo, trabajador de casos o trabajador social; o una declaración firmada de la persona que atendió su nacimiento.",
+    "detail": "Existe una vía aparte si su solicitud se debe a una cirugía de reasignación de sexo: el Registrador Estatal crea una nueva acta de nacimiento, y la solicitud pide tanto una declaración notariada del cirujano (o de un médico que lo haya examinado y pueda certificar que la cirugía ocurrió) como su propia solicitud por escrito. Las instrucciones del formulario indican que el sexo que aparece en la identificación o el pasaporte que use para comprobar su identidad para esta solicitud no tiene que coincidir con el sexo que pide corregir en su acta de nacimiento. Si no puede presentar la evidencia documental que exige el formulario, Carolina del Norte exige en su lugar una orden judicial. Esta área política y legal se ha movido rápidamente en Carolina del Norte recientemente — lea usted mismo el formulario actual y la propia página de Registros Vitales de Carolina del Norte antes de confiar en esto.",
+    "cost": {
+      "amount_usd": 39,
+      "note": "La tarifa de $39 se paga con cheque certificado o giro postal a nombre de N.C. Vital Records; no se aceptan cheques personales ni efectivo."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://vitalrecords.nc.gov/documents/NCOVR-BirthModificationsApplicationFinal-07072022v6.pdf",
+      "title": "Registros Vitales de Carolina del Norte — Solicitud de Modificación del Acta de Nacimiento (Formulario DHHS 1578)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "nc-dhhs-1578",
+    "language": "es"
+  },
+  {
+    "id": "nc.birth-certificate.gender-marker.law.es",
+    "jurisdiction": "US-NC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Ley de Carolina del Norte que restringe los cambios de sexo en el acta de nacimiento",
+    "statement": "Una ley de Carolina del Norte que entró en vigor el 1 de diciembre de 2025 indica que, cada vez que se cambia el sexo en un acta de nacimiento — ya sea mediante el proceso general de modificación o mediante el proceso de cirugía de reasignación de sexo — el Registrador Estatal debe adjuntar la nueva acta a la que ya está en el expediente y conservar ambas como un solo documento de varias páginas. Después de eso, cualquier copia certificada del acta de nacimiento que se emita es una copia de todo ese documento de varias páginas.",
+    "detail": "El Registro de Escrituras del condado de nacimiento debe hacer lo mismo con su propia copia: adjuntar la nueva acta a la que tiene en el expediente y conservar ambas como un documento de varias páginas. En la práctica, esto significa que una copia certificada de un acta de nacimiento modificada de Carolina del Norte ahora puede mostrar el sexo registrado originalmente en el mismo documento que el acta corregida. Se instruye al Registrador Estatal a adoptar normas y políticas para llevar esto a cabo. Este es un cambio real en cómo se conserva el registro, no una descripción del proceso de solicitud en sí — lea el registro sobre la designación de sexo en este corpus para saber cómo solicitar, y confirme ambos contra la propia página actual de Registros Vitales de Carolina del Norte.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_130A/GS_130A-118.html",
+      "title": "Estatutos Generales de Carolina del Norte — G.S. 130A-118, Modificación de Actas de Nacimiento y Defunción",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "nc.birth-certificate.name.es",
+    "jurisdiction": "US-NC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Carolina del Norte",
+    "statement": "Para cambiar el nombre en un acta de nacimiento de Carolina del Norte después de un cambio de nombre legal, Registros Vitales de Carolina del Norte pide una copia certificada de la orden judicial de cambio de nombre junto con una Solicitud de Modificación del Acta de Nacimiento completada.",
+    "detail": "Puede iniciar esta solicitud a través del portal de autoservicio en línea de Registros Vitales, en la oficina del Registro de Escrituras del condado donde ocurrió el nacimiento, o por correo. Las solicitudes de modificación de nacimiento y defunción se procesan dentro de los treinta días calendario después de que la oficina recibe la solicitud completa, la evidencia requerida y el pago.",
+    "cost": {
+      "amount_usd": 39,
+      "note": "La tarifa es de $39 para realizar la búsqueda del registro y procesar la solicitud."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://vitalrecords.nc.gov/change.htm",
+      "title": "NCDHHS: DPH: Registros Vitales de Carolina del Norte — Cambiar un Registro",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nc.court-order.name.es",
+    "jurisdiction": "US-NC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Solicitud de cambio de nombre en Carolina del Norte",
+    "statement": "En Carolina del Norte usted presenta una solicitud de cambio de nombre ante el secretario del tribunal superior, por causa justificada, en el condado donde reside. Desde el 1 de diciembre de 2025, la ley ya no exige publicar un aviso de su solicitud en un periódico antes de que se decida.",
+    "detail": "El secretario decide su solicitud de forma administrativa; la ley no describe una audiencia ante un juez. Su solicitud y el expediente del tribunal se mantienen fuera del registro público si usted participa en el programa estatal de confidencialidad de direcciones, o si presenta evidencia de que es víctima de violencia doméstica, un delito sexual o acecho. Otra sección de esta misma ley, G.S. 101-5, indica qué debe presentar junto con la solicitud — lea también ese registro antes de presentar la suya.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta ley no indica una tarifa de presentación en dólares. Comuníquese con el secretario del tribunal superior de su condado para conocer el monto actual."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_101/GS_101-2.html",
+      "title": "Estatutos Generales de Carolina del Norte — G.S. 101-2, Procedimiento para Cambiar de Nombre; Solicitud; Aviso",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nc.court-order.name.requirements.es",
+    "jurisdiction": "US-NC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Requisitos de la solicitud de cambio de nombre en Carolina del Norte",
+    "statement": "Para que se apruebe una solicitud de cambio de nombre en Carolina del Norte, usted presenta su nombre verdadero, el condado y la fecha de nacimiento, los nombres de sus padres tal como aparecen en su acta de nacimiento, y el nombre que desea adoptar. También presenta los resultados de una verificación de antecedentes penales estatal y nacional, hecha dentro de los 90 días de la fecha de su solicitud — por la Oficina Estatal de Investigación, la Oficina Federal de Investigación (FBI), o un intermediario aprobado por el FBI — además de una declaración jurada sobre su residencia y cualquier obligación pendiente de impuestos o manutención infantil.",
+    "detail": "El secretario le explica cómo tomarse las huellas dactilares para la verificación de antecedentes penales. Luego el secretario revisa todo lo presentado para decidir si hay una razón buena y suficiente para conceder o negar su solicitud; esto es una decisión de criterio, no una simple lista de casillas. Si el secretario niega su solicitud, la orden indica los motivos, y usted puede pedirle al juez residente del tribunal superior que reconsidere dentro de los 30 días de esa orden. Si la reconsideración no tiene éxito, debe esperar 12 meses antes de volver a solicitar. Este requisito no aplica a una solicitud para cambiar el nombre de un menor de 16 años.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta ley no da un monto en dólares para la verificación de antecedentes penales ni para la presentación. Comuníquese con el secretario del tribunal superior de su condado, y espere pagar por la toma de huellas dactilares a través de la Oficina Estatal de Investigación o un servicio intermediario aprobado."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_101/GS_101-5.html",
+      "title": "Estatutos Generales de Carolina del Norte — G.S. 101-5, Requisitos de la Solicitud de Cambio de Nombre; Motivos para que el Secretario Ordene o Niegue el Cambio de Nombre; Certificado y Registro",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nc.drivers-license.gender-marker.es",
+    "jurisdiction": "US-NC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en la licencia o identificación de Carolina del Norte",
+    "statement": "Para cambiar la designación de sexo en una licencia de conducir o identificación de Carolina del Norte, el Formulario de Designación de Sexo del NCDMV (DL-300) y sus instrucciones indican que usted entrega su tarjeta actual y presenta uno de estos documentos: un Formulario de Designación de Sexo completado, un pasaporte estadounidense válido que muestre el sexo solicitado, un acta de nacimiento que muestre el sexo solicitado, o una orden judicial emitida por un tribunal de los Estados Unidos que otorgue un cambio de sexo o género.",
+    "detail": "El propio Formulario de Designación de Sexo tiene dos partes: usted marca una casilla para el sexo que desea que aparezca y certifica bajo pena de ley que la solicitud refleja su identidad de género y no tiene fines fraudulentos ni ilegales, y un médico, psiquiatra, asistente médico, terapeuta con licencia, consejero, psicólogo, trabajador de casos o trabajador social firma una segunda sección con su opinión profesional sobre su identidad de género. Usted paga la tarifa correspondiente por una tarjeta nueva o modificada y le toman una foto nueva. Los cambios de nombre en una licencia o identificación son un proceso aparte y pueden hacerse en cualquier momento sin importar su designación de sexo. El NCDOT no ha retirado este formulario de su sitio, pero no asuma que esta vía sigue abierta exactamente como se describe — una nueva ley estatal cambió cómo Carolina del Norte define el sexo para las agencias estatales. Lea usted mismo la página actual del NCDMV y confírmelo antes de confiar en esto.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El formulario y las instrucciones describen el pago de 'las tarifas correspondientes por una licencia o identificación nueva o modificada' sin indicar un monto. Consulte el listado de tarifas del NCDMV para conocer las tarifas actuales."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ncdot.gov/dmv/downloads/Documents/DL-300.pdf",
+      "title": "División de Vehículos Motorizados de Carolina del Norte — Formulario de Designación de Sexo (DL-300) y Procedimiento para Cambiar la Designación de Sexo",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "nc-dmv-dl-300",
+    "language": "es"
+  },
+  {
+    "id": "nc.drivers-license.gender-marker.law.es",
+    "jurisdiction": "US-NC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Ley de Carolina del Norte sobre el sexo para las agencias estatales",
+    "statement": "Una ley de Carolina del Norte que entró en vigor el 1 de enero de 2026 fija las definiciones que las agencias estatales deben usar en toda norma, reglamento o política pública. Define 'sexo biológico,' 'hombre' y 'mujer.' Esa misma ley dice que la identidad de género es la 'identidad autodeclarada' de una persona, que 'puede no coincidir con el sexo biológico.' Dice que la identidad de género 'no se tratará como legal o biológicamente equivalente al sexo.'",
+    "detail": "La ley define el sexo biológico por rasgos del cuerpo presentes al nacer, como los cromosomas sexuales y los órganos reproductivos. También define así a Niño, Niña, Hombre, Mujer, Padre y Madre. La ley no dice qué debe hacer el NCDMV con ningún formulario en particular. Lea el registro sobre la licencia de conducir en este corpus para eso. Luego confirme usted mismo en el sitio actual del NCDMV antes de confiar en cualquiera de los dos registros.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_12/GS_12-3.3.html",
+      "title": "Estatutos Generales de Carolina del Norte — G.S. 12-3.3, Reconocimiento Oficial de Dos Sexos en Todas las Normas Administrativas, Reglamentos o Políticas Públicas Adoptadas por el Estado de Carolina del Norte o sus Subdivisiones Políticas",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "nc.drivers-license.name.es",
+    "jurisdiction": "US-NC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia o identificación de Carolina del Norte",
+    "statement": "Si su nombre cambia, Carolina del Norte le da 60 días para notificar al NCDMV y obtener una licencia de conducir o identificación duplicada con su nombre nuevo.",
+    "detail": "Como el NCDMV verifica su nombre contra los registros de la Administración del Seguro Social, visite su oficina local del Seguro Social al menos 24 a 36 horas antes de ir al NCDMV. Lleve prueba documentada de los tribunales que demuestre que el cambio de nombre se realizó oficialmente — como una licencia o certificado de matrimonio certificado, un decreto de divorcio, o un documento de los tribunales o del Registro de Escrituras — y complete un DL-101 notariado, que se obtiene en una oficina del DMV. Toda la documentación debe provenir de la agencia gubernamental correspondiente de los Estados Unidos, Puerto Rico, un territorio de los EE. UU. o Canadá.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica un monto de tarifa para la tarjeta duplicada. Consulte el listado de tarifas del NCDMV para conocer las tarifas actuales de licencia e identificación."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.ncdot.gov/dmv/help/moving/Pages/name-changes.aspx",
+      "title": "NCDMV Oficial — Cambios de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "nj.birth-certificate.gender-marker.es",
     "jurisdiction": "US-NJ",
     "document_type": "birth-certificate",
@@ -2217,6 +2416,54 @@
     "language": "es"
   },
   {
+    "id": "tn.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-TN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Tennessee (Gore v. Lee)",
+    "statement": "Tennessee trata el sexo que figura en un acta de nacimiento como un hecho histórico que no puede cambiarse por la transición de una persona a una identidad de género diferente. Según Tenn. Code Ann. § 68-3-203(d), una \"cirugía de cambio de sexo\" no cuenta como un error de hecho que pueda corregirse en un acta de nacimiento — la única base que las normas de Tennessee permiten, por lo demás, para enmendar un registro.",
+    "detail": "Esta es la ley que la Corte de Apelaciones del Sexto Circuito examinó y confirmó en Gore v. Lee (No. 23-5669, decidido el 12 de julio de 2024): cuatro personas transgénero de Tennessee, todas nacidas en el estado, demandaron después de que se les negara un cambio en el sexo que figura en sus actas de nacimiento. La opinión del tribunal señala una excepción que NO cubre una designación de sexo: si obtiene una orden judicial que cambia su nombre, Tennessee permite enmendar su acta de nacimiento para reflejar el cambio de nombre (Tenn. Code Ann. § 68-3-203(c)).",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.opn.ca6.uscourts.gov/opinions.pdf/24a0151p-06.pdf",
+      "title": "Corte de Apelaciones de los Estados Unidos para el Sexto Circuito — Gore v. Lee, No. 23-5669 (12 de julio de 2024)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "tn.birth-certificate.name.es",
+    "jurisdiction": "US-TN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Tennessee",
+    "statement": "La Oficina de Registros Vitales de Tennessee usa un formulario general, la Solicitud para Enmendar un Acta de Nacimiento de Tennessee (PH-1186), para la mayoría de las correcciones de actas de nacimiento — pero las instrucciones del propio formulario incluyen \"cambios ordenados por un tribunal (cambios legales de nombre, adopciones, establecimiento de paternidad)\" entre los usos para los que dice que esta solicitud NO debe usarse, y no indica qué presentar en su lugar.",
+    "detail": "Para las correcciones que sí cubre, el PH-1186 requiere una declaración jurada — firmada ante un notario por el registrado (de 18 años o más), un padre que figure en el acta de nacimiento, o un tutor legal — más al menos un documento de respaldo, como un registro escolar, un certificado de matrimonio o el acta de nacimiento o defunción de un padre. Se presenta con una tarifa de enmienda de $15.00 a TN Vital Records en Nashville; una copia certificada en formato extenso del acta enmendada cuesta $15.00 más. Debido a que el formulario excluye un cambio legal de nombre ordenado por un tribunal de lo que cubre, quien lo prepare debe comunicarse directamente con la Oficina de Registros Vitales para confirmar el proceso y la tarifa vigentes para ese caso antes de confiar en este formulario.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El PH-1186 cobra $15.00 por enmendar un acta que cubre, más $15.00 adicionales por una copia certificada — pero el formulario dice que no debe usarse para un cambio legal de nombre ordenado por un tribunal, así que esta tarifa podría no aplicar a ese caso."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf",
+      "title": "Departamento de Salud de Tennessee, Oficina de Registros Vitales — Solicitud para Enmendar un Acta de Nacimiento de Tennessee (PH-1186)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "tn.court-order.name.es",
     "jurisdiction": "US-TN",
     "document_type": "court-order",
@@ -2235,33 +2482,6 @@
     "source": {
       "url": "https://www.shelbycountytn.gov/3826/Name-Changes",
       "title": "Condado de Shelby, Tennessee — Cambios de Nombre/Correcciones de Actas de Nacimiento (Tribunal de Sucesiones)",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "language": "es"
-  },
-  {
-    "id": "tn.drivers-license.name.es",
-    "jurisdiction": "US-TN",
-    "document_type": "drivers-license",
-    "change_type": [
-      "name"
-    ],
-    "topic": "Cambio de nombre en la licencia de conducir de Tennessee",
-    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Tennessee, debe visitar en persona un Centro de Servicios para Conductores. Lleve su licencia actual y una copia original o certificada de un documento que muestre el motivo del cambio, como un certificado de matrimonio, una sentencia de divorcio o una orden judicial.",
-    "detail": "Un documento judicial solo se acepta con la firma original del juez o un sello oficial del tribunal — no se acepta una copia de una firma o sello ya copiados, aunque sí se acepta una firma o sello original adherido a una copia. Un certificado de matrimonio debe ser una copia certificada emitida por el secretario del condado u otra agencia gubernamental autorizada después de registrado el matrimonio; no se acepta una licencia de matrimonio, una solicitud, ni una copia sin certificar. Nunca se aceptan faxes ni fotocopias de ninguno de estos documentos. La página recomienda actualizar primero su nombre con la Administración del Seguro Social.",
-    "cost": {
-      "amount_usd": null,
-      "note": "La tarifa de duplicado es de $8 a $16, según el tipo de licencia y cuántos duplicados ha tenido. Todos los duplicados de Certificado para Conducir, Licencia de Conducir Temporal e Identificación Temporal cuestan $28.00."
-    },
-    "prerequisites": [
-      "court-order"
-    ],
-    "source": {
-      "url": "https://www.tn.gov/safety/driver-services/helpful-information/dlnamechange.html",
-      "title": "Departamento de Seguridad y Seguridad Nacional de Tennessee — Servicios para Conductores: Cambio de Nombre",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
@@ -2312,46 +2532,25 @@
     "language": "es"
   },
   {
-    "id": "tn.birth-certificate.gender-marker.es",
+    "id": "tn.drivers-license.name.es",
     "jurisdiction": "US-TN",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "gender-marker"
-    ],
-    "topic": "Designación de sexo en el acta de nacimiento de Tennessee (Gore v. Lee)",
-    "statement": "Tennessee trata el sexo que figura en un acta de nacimiento como un hecho histórico que no puede cambiarse por la transición de una persona a una identidad de género diferente. Según Tenn. Code Ann. § 68-3-203(d), una \"cirugía de cambio de sexo\" no cuenta como un error de hecho que pueda corregirse en un acta de nacimiento — la única base que las normas de Tennessee permiten, por lo demás, para enmendar un registro.",
-    "detail": "Esta es la ley que la Corte de Apelaciones del Sexto Circuito examinó y confirmó en Gore v. Lee (No. 23-5669, decidido el 12 de julio de 2024): cuatro personas transgénero de Tennessee, todas nacidas en el estado, demandaron después de que se les negara un cambio en el sexo que figura en sus actas de nacimiento. La opinión del tribunal señala una excepción que NO cubre una designación de sexo: si obtiene una orden judicial que cambia su nombre, Tennessee permite enmendar su acta de nacimiento para reflejar el cambio de nombre (Tenn. Code Ann. § 68-3-203(c)).",
-    "prerequisites": [],
-    "source": {
-      "url": "https://www.opn.ca6.uscourts.gov/opinions.pdf/24a0151p-06.pdf",
-      "title": "Corte de Apelaciones de los Estados Unidos para el Sexto Circuito — Gore v. Lee, No. 23-5669 (12 de julio de 2024)",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 30,
-    "language": "es"
-  },
-  {
-    "id": "tn.birth-certificate.name.es",
-    "jurisdiction": "US-TN",
-    "document_type": "birth-certificate",
+    "document_type": "drivers-license",
     "change_type": [
       "name"
     ],
-    "topic": "Cambio de nombre en el acta de nacimiento de Tennessee",
-    "statement": "La Oficina de Registros Vitales de Tennessee usa un formulario general, la Solicitud para Enmendar un Acta de Nacimiento de Tennessee (PH-1186), para la mayoría de las correcciones de actas de nacimiento — pero las instrucciones del propio formulario incluyen \"cambios ordenados por un tribunal (cambios legales de nombre, adopciones, establecimiento de paternidad)\" entre los usos para los que dice que esta solicitud NO debe usarse, y no indica qué presentar en su lugar.",
-    "detail": "Para las correcciones que sí cubre, el PH-1186 requiere una declaración jurada — firmada ante un notario por el registrado (de 18 años o más), un padre que figure en el acta de nacimiento, o un tutor legal — más al menos un documento de respaldo, como un registro escolar, un certificado de matrimonio o el acta de nacimiento o defunción de un padre. Se presenta con una tarifa de enmienda de $15.00 a TN Vital Records en Nashville; una copia certificada en formato extenso del acta enmendada cuesta $15.00 más. Debido a que el formulario excluye un cambio legal de nombre ordenado por un tribunal de lo que cubre, quien lo prepare debe comunicarse directamente con la Oficina de Registros Vitales para confirmar el proceso y la tarifa vigentes para ese caso antes de confiar en este formulario.",
+    "topic": "Cambio de nombre en la licencia de conducir de Tennessee",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Tennessee, debe visitar en persona un Centro de Servicios para Conductores. Lleve su licencia actual y una copia original o certificada de un documento que muestre el motivo del cambio, como un certificado de matrimonio, una sentencia de divorcio o una orden judicial.",
+    "detail": "Un documento judicial solo se acepta con la firma original del juez o un sello oficial del tribunal — no se acepta una copia de una firma o sello ya copiados, aunque sí se acepta una firma o sello original adherido a una copia. Un certificado de matrimonio debe ser una copia certificada emitida por el secretario del condado u otra agencia gubernamental autorizada después de registrado el matrimonio; no se acepta una licencia de matrimonio, una solicitud, ni una copia sin certificar. Nunca se aceptan faxes ni fotocopias de ninguno de estos documentos. La página recomienda actualizar primero su nombre con la Administración del Seguro Social.",
     "cost": {
       "amount_usd": null,
-      "note": "El PH-1186 cobra $15.00 por enmendar un acta que cubre, más $15.00 adicionales por una copia certificada — pero el formulario dice que no debe usarse para un cambio legal de nombre ordenado por un tribunal, así que esta tarifa podría no aplicar a ese caso."
+      "note": "La tarifa de duplicado es de $8 a $16, según el tipo de licencia y cuántos duplicados ha tenido. Todos los duplicados de Certificado para Conducir, Licencia de Conducir Temporal e Identificación Temporal cuestan $28.00."
     },
     "prerequisites": [
       "court-order"
     ],
     "source": {
-      "url": "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf",
-      "title": "Departamento de Salud de Tennessee, Oficina de Registros Vitales — Solicitud para Enmendar un Acta de Nacimiento de Tennessee (PH-1186)",
+      "url": "https://www.tn.gov/safety/driver-services/helpful-information/dlnamechange.html",
+      "title": "Departamento de Seguridad y Seguridad Nacional de Tennessee — Servicios para Conductores: Cambio de Nombre",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
