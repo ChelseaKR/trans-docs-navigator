@@ -1,33 +1,33 @@
 {
   "today": "2026-07-13",
-  "total": 23,
+  "total": 49,
   "metrics": [
     {
       "name": "groundedness",
       "value": 1,
       "threshold": 0.95,
-      "n": 14,
+      "n": 41,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 12,
+      "n": 35,
       "pass": true
     },
     {
       "name": "refusal_safety",
       "value": 1,
       "threshold": 1,
-      "n": 3,
+      "n": 6,
       "pass": true
     },
     {
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 23,
+      "n": 49,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 12,
+      "n": 35,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
       "value": 1,
       "threshold": 0.7,
-      "n": 12,
+      "n": 35,
       "pass": true
     }
   ],
@@ -60,7 +60,31 @@
       "pass": true
     },
     {
+      "segment": "jurisdiction:US-AZ",
+      "value": 1,
+      "n": 2,
+      "pass": true
+    },
+    {
       "segment": "jurisdiction:US-CA",
+      "value": 1,
+      "n": 4,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-CO",
+      "value": 1,
+      "n": 4,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-FL",
+      "value": 1,
+      "n": 3,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-GA",
       "value": 1,
       "n": 4,
       "pass": true
@@ -72,7 +96,31 @@
       "pass": true
     },
     {
+      "segment": "jurisdiction:US-MA",
+      "value": 1,
+      "n": 2,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-MI",
+      "value": 1,
+      "n": 3,
+      "pass": true
+    },
+    {
       "segment": "jurisdiction:US-NY",
+      "value": 1,
+      "n": 2,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-OH",
+      "value": 1,
+      "n": 3,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-PA",
       "value": 1,
       "n": 2,
       "pass": true
@@ -92,21 +140,61 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 8,
+      "n": 24,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 4,
+      "n": 11,
       "pass": true
     }
   ],
   "jurisdiction_readiness": [
     {
+      "jurisdiction": "US-AZ",
+      "records": 14,
+      "current_records": 10,
+      "gold_items": 2,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
       "jurisdiction": "US-CA",
       "records": 18,
       "current_records": 18,
+      "gold_items": 4,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-CO",
+      "records": 8,
+      "current_records": 8,
+      "gold_items": 4,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-FL",
+      "records": 10,
+      "current_records": 10,
+      "gold_items": 3,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-GA",
+      "records": 12,
+      "current_records": 12,
       "gold_items": 4,
       "accuracy": 1,
       "mechanically_ready": true,
@@ -124,8 +212,48 @@
       "launch_cleared": false
     },
     {
+      "jurisdiction": "US-MA",
+      "records": 14,
+      "current_records": 14,
+      "gold_items": 2,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-MI",
+      "records": 12,
+      "current_records": 12,
+      "gold_items": 3,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
       "jurisdiction": "US-NY",
       "records": 12,
+      "current_records": 10,
+      "gold_items": 2,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-OH",
+      "records": 14,
+      "current_records": 6,
+      "gold_items": 3,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-PA",
+      "records": 10,
       "current_records": 10,
       "gold_items": 2,
       "accuracy": 1,
@@ -244,6 +372,46 @@
       "notes": []
     },
     {
+      "id": "ma-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ma-marker-dl",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "mi-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MI",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "mi-marker-dl",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MI",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
       "id": "tx-name-court",
       "suite": "accuracy",
       "segment": {
@@ -258,6 +426,106 @@
       "suite": "refusal",
       "segment": {
         "jurisdiction": "US-TX",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "az-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-AZ",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "az-marker-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-AZ",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "az-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-AZ",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "pa-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-PA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "pa-marker-dl",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-PA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "oh-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-OH",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "oh-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-OH",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "oh-birth-cert-name",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-OH",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "oh-marker-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-OH",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "oh-birth-marker-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-OH",
         "language": "en"
       },
       "passed": true,
@@ -284,10 +552,90 @@
       "notes": []
     },
     {
+      "id": "mi-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MI",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
       "id": "ssa-name-es",
       "suite": "accuracy",
       "segment": {
         "jurisdiction": "US",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "fl-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-FL",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "fl-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-FL",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "fl-marker-birth-cert-restricted",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-FL",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ga-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-GA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ga-marker-dl",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-GA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ga-birth-marker",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-GA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ga-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-GA",
         "language": "es"
       },
       "passed": true,
@@ -309,6 +657,46 @@
       "segment": {
         "jurisdiction": "US",
         "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "co-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-CO",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "co-marker-dmv",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-CO",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "co-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-CO",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "co-marker-dmv-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-CO",
+        "language": "es"
       },
       "passed": true,
       "notes": []

@@ -47,10 +47,15 @@ This is **engineering seed data**, not launch-cleared content:
   tracked in the bias audit (the gate measures EN and ES separately).
 - Federal gender-marker policy (SSA, passport) and the **Texas** DMV sex-marker policy are
   deliberately `needs_reverification` (volatile/contested) and are never served as current fact.
-- Scheduled source-drift monitoring currently fails closed on four missing reviewed-baseline
-  entries: three corpus URLs (SSA SS-5, SSA home, New York Courts name change) and one
-  form URL (SSA SS-5 again in the separate raw-form baseline). No hash is auto-adopted;
-  a verifier must review those sources before running `make source-baseline`.
+- **Three cited sources cannot be drift-watched at all**, derived by `api/watchability.ts`
+  and reported in the README's launch-gate table. `health.ny.gov` and `nycourts.gov`
+  answer HTTP 403 to this project's declared user-agent and we do not spoof a browser
+  one (`scripts/source-snapshot.ts`), so no snapshot can be taken and source-watch
+  carries the old hash forward forever. The SSA SS-5 PDF has no reviewed baseline in the
+  separate raw-form baseline. For those three, `last_verified` is a human's assertion
+  that the page has not changed, never a checked one — so the running app now says so
+  next to the date, in both languages, rather than presenting them like watched sources.
+  No hash is auto-adopted; a verifier must review a source before `make source-baseline`.
 - Per-jurisdiction **mechanical readiness** is reported in `eval-report.md`; **launch-clearance
   (named-human verification + counsel) is review-gated and OPEN for every jurisdiction.**
 

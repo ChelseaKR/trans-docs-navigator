@@ -1,0 +1,8 @@
+{
+  "name": "security-clean-fixture",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "comment": "Not a poison. A minimal clean tree: no dependencies, no secrets. Used to prove the gate still PASSES on a good input (so the poison assertions mean something) and that a SECURITY_SCAN_ROOT-redirected scan labels itself instead of rendering as a plain green line.",
+  "dependencies": {}
+}

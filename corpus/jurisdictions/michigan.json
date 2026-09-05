@@ -1,0 +1,174 @@
+[
+  {
+    "id": "mi.court-order.name",
+    "jurisdiction": "US-MI",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Michigan name change petition",
+    "statement": "In Michigan you file a Petition for Name Change with the family division of the circuit court in the county where you live, and a judge decides whether to grant it, with or without a hearing.",
+    "detail": "You must have lived in that county for at least one year before you file. It costs $175 to file the petition; if you cannot afford it, you can ask the judge to waive the fee. Unless a judge excuses you for good cause, such as a risk of danger or discrimination, you must publish notice of the hearing in a local newspaper, usually two to eight weeks before the hearing depending on the county. The petition asks you to disclose any criminal record, but having one does not stop a name change. Michigan's current name-change law and petition form do not ask for fingerprints. If the judge grants your petition, there is a $10 fee to enter the order, and a certified copy costs $11 more.",
+    "cost": {
+      "amount_usd": 175,
+      "note": "This is the fee to file your petition. If it is approved, there is a separate $10 fee to enter the order, and a certified copy costs $11 more. If you cannot afford the filing fee, you can ask the judge to waive it.",
+      "fee_waiver": true
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://michiganlegalhelp.org/resources/ids-and-name-change/i-want-change-my-name",
+      "title": "Michigan Legal Help — I Want to Change My Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "en"
+  },
+  {
+    "id": "mi.drivers-license.name",
+    "jurisdiction": "US-MI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Michigan driver's license/state ID name change",
+    "statement": "To correct your name on a Michigan driver's license or state ID, you visit a Secretary of State office and show proof of your name change, along with proof that the Social Security Administration has already updated your name.",
+    "detail": "You must update your name with the Social Security Administration first. If the name on your application doesn't match Social Security's records, the Secretary of State's office denies the application. At the office, you provide your current license or ID and at least one proof of your name change, such as a certified court order, a marriage certificate, or a certified divorce decree. Michigan offers no online, mail, or self-service option for this change; office visits typically take about 20 minutes. Staff take a new photo and issue a temporary paper credential, and your permanent card is printed off-site and mailed to you.",
+    "cost": {
+      "amount_usd": 9,
+      "note": "The correction costs $9 for a driver's license and $10 for a state ID."
+    },
+    "prerequisites": [
+      "ssa-card",
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.michigan.gov/sos/all-services/license-or-id-name-correction",
+      "title": "Michigan Department of State — License or ID Name Correction",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "mi.drivers-license.gender-marker",
+    "jurisdiction": "US-MI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Michigan driver's license/state ID sex designation",
+    "statement": "Michigan lets you choose a nonbinary (X), female (F), or male (M) sex designation on your driver's license or state ID. You correct it in person at a Secretary of State office by completing a Sex Designation Form.",
+    "detail": "Online, mail, and self-service options are not available for this change; you must visit an office, which usually takes about 20 minutes. Bring your current license or ID, and complete the Sex Designation Form before your visit or at the office. A Sex Designation Form only corrects your sex designation — it cannot also change your name. Staff take a new photo and issue a temporary paper credential, and your permanent card is mailed to you.",
+    "cost": {
+      "amount_usd": 9,
+      "note": "The correction costs $9 for a driver's license and $10 for a state ID."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction",
+      "title": "Michigan Department of State — License or ID Sex Designation Correction",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "mi-mdos-sex-designation-form",
+    "language": "en"
+  },
+  {
+    "id": "mi.birth-certificate.name",
+    "jurisdiction": "US-MI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Michigan birth certificate name change",
+    "statement": "Michigan changes the name on a birth certificate for a legal name change only if you send a certified copy of the court order. A court-ordered legal name change does not update your birth certificate by itself.",
+    "detail": "Complete the matching application to correct or change a Michigan birth record, sign it with an original signature, and include a copy of your photo identification, the certified court order, and the required payment. Mail the completed application and documents to the address on the application; the original court order will not be returned to you. Michigan Vital Records says normal processing currently takes 8 to 10 weeks, and 6 to 8 weeks if you pay for expedited service; processing time is not guaranteed.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page does not list the application fee. See this state's dedicated fee record, sourced from Michigan law."
+    },
+    "timeline": {
+      "typical": "8 to 10 weeks",
+      "note": "6 to 8 weeks if you pay for expedited processing; not guaranteed."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change",
+      "title": "Michigan Department of Health and Human Services — Correct/Change a Vital Record or Legal Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "mi-vital-records-correction-application",
+    "language": "en"
+  },
+  {
+    "id": "mi.birth-certificate.gender-marker",
+    "jurisdiction": "US-MI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Michigan birth certificate sex designation",
+    "statement": "Michigan lets you ask to change the sex designation on your Michigan birth certificate to reflect your identity, using a Sex Designation Authorization. This is different from asking Vital Records to correct a filing error.",
+    "detail": "Complete the matching application to correct or change a Michigan birth record, sign it with an original signature, and include a copy of your photo identification and the required payment. Mail the completed application and documents to the address on the application. Michigan Vital Records says normal processing currently takes 8 to 10 weeks, and 6 to 8 weeks if you pay for expedited service; processing time is not guaranteed.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page does not list the application fee. See this state's dedicated fee record, sourced from Michigan law."
+    },
+    "timeline": {
+      "typical": "8 to 10 weeks",
+      "note": "6 to 8 weeks if you pay for expedited processing; not guaranteed."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change",
+      "title": "Michigan Department of Health and Human Services — Correct/Change a Vital Record or Legal Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "mi-mdhhs-sex-designation-form",
+    "language": "en"
+  },
+  {
+    "id": "mi.birth-certificate.fees",
+    "jurisdiction": "US-MI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Michigan birth-record correction fees",
+    "statement": "Michigan law sets a $50 fee for an application to amend a birth record for a documented legal name change, and a $25 fee to expedite it. It sets the same $50 base fee, and $25 expedited fee, for an application to create a new birth certificate after what the fee statute calls a \"sex change.\"",
+    "detail": "These fees come from the Michigan Compiled Laws, not from the agency's own instructions page. Processing time is not guaranteed regardless of which fee you pay.",
+    "cost": {
+      "amount_usd": 50,
+      "note": "Expediting the request costs $25 more. This $50 base fee applies both to a legal name-change amendment and to creating a new certificate after a sex-designation change."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-333-2891",
+      "title": "Michigan Legislature — MCL Section 333.2891 (Vital Records Fees)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]
