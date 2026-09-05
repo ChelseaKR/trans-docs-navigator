@@ -8,23 +8,23 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
-- **Nevada** (M6 — expand jurisdictions): 5 EN + 5 ES corpus records (court-order name
+- **Maryland** (M6 — expand jurisdictions): 5 EN + 5 ES corpus records (court-order name
   change, driver's-license name and gender-marker, birth-certificate name and
-  gender-marker), 2 referrals, and 2 forms-registry entries. Nevada's name-change statute
-  (NRS 41.270–.290) and the state courts' own self-help page state a genuine,
-  gender-identity-specific accommodation: publication of the name-change notice in a
-  newspaper is required in general, but the court "shall not require" it when the petition
-  states the change conforms to the petitioner's gender identity — recorded as a real
-  statutory exception, not asserted generically. The DMV's own FAQ page states a driver's
-  license/ID gender designation of M, F, or X with "no medical certification... required,"
-  matching Nevada Administrative Code 483.070's self-declaration rule. The birth-certificate
-  gender-marker record is deliberately degraded (`verification_status: needs_reverification`,
-  `cost.amount_usd: null`): Nevada's own published guide to the process states a $40
-  amendment fee, but the department's current (2025) corrections-packet form states $45 for
-  the same service, and rather than pick one, the record says so and asserts no figure.
-  Both birth-certificate records cite PDF sources (the department publishes no HTML
-  page describing either process), so — like Georgia's Form 3977 — they cannot be
-  automatically fidelity-checked and are reported UNCHECKABLE rather than silently passed.
+  gender-marker), 2 referrals, and 2 forms-registry entries, each sourced from an official
+  Maryland Judiciary, MVA, or Department of Health page and fetched into
+  `corpus/snapshots/`. Maryland is comparatively permissive on a couple of fronts, recorded
+  exactly as its own sources state them rather than generalized: the MVA's own page says
+  **no documentation** is required to change the gender marker on a driver's license or ID
+  (M/F/X), only an in-person appointment; and Maryland's birth-certificate sex-designation
+  change accepts **either** a licensed health care practitioner's signed statement (surgical,
+  hormonal, "or other treatment appropriate for the individual") **or** a court order — no
+  surgery requirement, unlike some other states already in this corpus. The name-change
+  court petition (Circuit Court, CC-DR-60, $165 filing fee) describes a 30-day objection
+  window for adults, not a newspaper-publication requirement. Both PDF sources cited (the
+  CC-DR-60 form and the Division of Vital Records' sex-designation fact sheet) were
+  fetchable and are under drift watch, unlike Georgia's Form 3977 below — but their own text
+  still cannot be fidelity-checked (PDF, not HTML), so assertions sourced to them are
+  reported UNCHECKABLE rather than silently passed.
 
 - **Georgia** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (court-order name
   change, driver's-license name and gender-marker, birth-certificate name and

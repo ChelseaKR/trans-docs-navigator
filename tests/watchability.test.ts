@@ -127,6 +127,13 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change",
     "https://www.michigan.gov/sos/all-services/license-or-id-name-correction",
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction",
+    // New Jersey: both are PDFs whose text this pipeline cannot extract, so no baseline
+    // can be taken — deliberate addition with the New Jersey corpus. The REG-L2 form
+    // backs nj.birth-certificate.gender-marker (which itself cites a checkable HTML
+    // page); the name-change packet is both the court-order.name record's own source
+    // and its form_ref.
+    "https://www.nj.gov/health/forms/reg-l2_1.pdf",
+    "https://www.njcourts.gov/sites/default/files/forms/10551_namechg_adult.pdf",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml",
     "https://www.ssa.gov/forms/ss-5.pdf",
   ]);

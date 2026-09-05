@@ -327,6 +327,84 @@ const AUTHORED_GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "ga.court-order.name.es", mustContain: ["Tribunal Superior", "30 días"] },
   },
   {
+    id: "nj-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NJ", language: "en" },
+    query: { jurisdiction: "US-NJ", change_types: ["name"], documents: ["court-order"], question: "New Jersey name change Superior Court filing fee" },
+    expect: { refused: false, citesRecord: "nj.court-order.name", mustContain: ["Law Division", "$250"] },
+  },
+  {
+    id: "nj-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NJ", language: "en" },
+    query: { jurisdiction: "US-NJ", change_types: ["gender-marker"], documents: ["drivers-license"], question: "New Jersey driver's license gender marker change" },
+    // M6: unlike Georgia's restricted route, New Jersey's MVC form takes M/F/X by
+    // self-declaration — no medical documentation or doctor's signature, per its own form.
+    expect: {
+      refused: false,
+      citesRecord: "nj.drivers-license.gender-marker",
+      mustContain: ["male, female, or X", "do not need medical documentation"],
+    },
+  },
+  {
+    id: "nj-birth-marker",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NJ", language: "en" },
+    query: { jurisdiction: "US-NJ", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "New Jersey birth certificate gender marker self-attestation" },
+    // The Babs Siperstein Law: self-attestation, no surgery documentation required.
+    expect: {
+      refused: false,
+      citesRecord: "nj.birth-certificate.gender-marker",
+      mustContain: ["Babs Siperstein", "self-attestation"],
+    },
+  },
+  {
+    id: "nj-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NJ", language: "es" },
+    query: { jurisdiction: "US-NJ", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Nueva Jersey" },
+    expect: { refused: false, citesRecord: "nj.court-order.name.es", mustContain: ["Tribunal Superior", "$250"] },
+  },
+  {
+    id: "md-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MD", language: "en" },
+    query: { jurisdiction: "US-MD", change_types: ["name"], documents: ["court-order"], question: "Maryland name change Circuit Court petition" },
+    expect: { refused: false, citesRecord: "md.court-order.name", mustContain: ["Circuit Court", "30 days"] },
+  },
+  {
+    id: "md-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MD", language: "en" },
+    query: { jurisdiction: "US-MD", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Maryland driver's license gender marker no documentation" },
+    // M6: Maryland is comparatively permissive here — the MVA's own page says no
+    // documentation is required, only an in-person appointment. The expectation pins
+    // that self-attestation in the source's own words, not a fabricated requirement.
+    expect: {
+      refused: false,
+      citesRecord: "md.drivers-license.gender-marker",
+      mustContain: ["no documentation", "M (male)"],
+    },
+  },
+  {
+    id: "md-birth-marker",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MD", language: "en" },
+    query: { jurisdiction: "US-MD", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Maryland birth certificate sex designation change" },
+    expect: {
+      refused: false,
+      citesRecord: "md.birth-certificate.gender-marker",
+      mustContain: ["intersex condition", "court order"],
+    },
+  },
+  {
+    id: "md-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MD", language: "es" },
+    query: { jurisdiction: "US-MD", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Maryland" },
+    expect: { refused: false, citesRecord: "md.court-order.name.es", mustContain: ["Tribunal de Circuito", "30 días"] },
+  },
+  {
     id: "tx-unsupported-court",
     suite: "refusal",
     segment: { jurisdiction: "US-AL", language: "en" },
@@ -483,6 +561,42 @@ const AUTHORED_GOLD: GoldItem[] = [
     },
     // Must never render the wrong form id (DL 329 is a different jurisdiction's DMV form).
     expect: { refused: false, citesRecord: "ca.court-order.name", mustNotContain: ["DL 329"] },
+  },
+  {
+    id: "or-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-OR", language: "en" },
+    query: { jurisdiction: "US-OR", change_types: ["name"], documents: ["court-order"], question: "Oregon circuit court name change packet" },
+    expect: { refused: false, citesRecord: "or.court-order.name-and-sex", mustContain: ["circuit court", "Name and Sex Change Packet"] },
+  },
+  {
+    id: "or-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-OR", language: "es" },
+    query: { jurisdiction: "US-OR", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Oregon" },
+    expect: { refused: false, citesRecord: "or.court-order.name-and-sex.es", mustContain: ["tribunal de circuito"] },
+  },
+  {
+    id: "or-marker-dmv",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-OR", language: "en" },
+    query: { jurisdiction: "US-OR", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Oregon driver's license X gender marker self-attestation" },
+    expect: { refused: false, citesRecord: "or.drivers-license.gender-marker", mustContain: ["self-attestation", "not specified"] },
+  },
+  {
+    id: "or-marker-birth-cert",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-OR", language: "en" },
+    query: { jurisdiction: "US-OR", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Oregon birth certificate sex designation HB 2673 notarized" },
+    // Oregon's administrative route is comparatively permissive: a notarized application, no court order.
+    expect: { refused: false, citesRecord: "or.birth-certificate.gender-marker", mustContain: ["OHA 2673", "notarized"] },
+  },
+  {
+    id: "or-name-birth-cert",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-OR", language: "en" },
+    query: { jurisdiction: "US-OR", change_types: ["name"], documents: ["birth-certificate"], question: "Oregon birth certificate name change court order" },
+    expect: { refused: false, citesRecord: "or.birth-certificate.name", mustContain: ["court-ordered name change"] },
   },
 ];
 
