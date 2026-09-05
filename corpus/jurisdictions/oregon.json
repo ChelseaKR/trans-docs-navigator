@@ -1,0 +1,139 @@
+[
+  {
+    "id": "or.court-order.name-and-sex",
+    "jurisdiction": "US-OR",
+    "document_type": "court-order",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Oregon name and/or sex change petition",
+    "statement": "Oregon lets you ask a circuit court to change your legal name and/or your sex on record through the same petition process. You complete a statewide Name and Sex Change Packet plus a Name Change – Supplemental form, then file them with the court in person or by US mail.",
+    "detail": "After you file, the court opens a case, reviews your documents, and contacts you about your next step — which may include a hearing before a judge. Minor applicants use a separate, additional packet with its own requirements.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page does not list a filing fee. Contact the circuit court where you file for the current amount."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.courts.oregon.gov/courts/lane/help/pages/namesexchange.aspx",
+      "title": "Oregon Judicial Department, Lane County Circuit Court — Name Change and/or Sex Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "or-courts-name-sex-packet",
+    "language": "en"
+  },
+  {
+    "id": "or.drivers-license.name",
+    "jurisdiction": "US-OR",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Oregon driver's license name change",
+    "statement": "To change the name on your Oregon driver's license, permit, or ID card, make an appointment or visit a DMV office for standby service, present proof of your legal name change, and present proof of your identity and address, then pay the applicable fee.",
+    "detail": "DMV verifies your Social Security number with the Social Security Administration, so if you want a REAL ID-compliant credential the name on it must match what SSA has on file — you need to update your name with SSA first. For a standard, non-REAL-ID credential, the name on your card can differ from SSA's records if you provide proof of that name. You can also change your gender marker as part of the same visit.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page says to pay the applicable fee but does not state the amount; see DMV's fee schedule for current pricing."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.oregon.gov/odot/dmv/pages/dv/chgname.aspx",
+      "title": "Oregon Department of Transportation — Changing Your Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "or.drivers-license.gender-marker",
+    "jurisdiction": "US-OR",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Oregon driver's license gender marker",
+    "statement": "Oregon offers three gender markers on a driver's license, permit, or ID card — M (male), F (female) or X (not specified) — by self-attestation. You do not need to bring any documents indicating your gender or sex; just bring your current ID and select the marker you want.",
+    "detail": "You cannot change your gender marker online — you have to make an appointment or visit a DMV office in person. DMV does not require your gender marker to match Social Security Administration records or anything else, and it keeps a history of your prior names and gender markers on file for fraud prevention.",
+    "cost": {
+      "amount_usd": null,
+      "note": "You pay the renewal or replacement fee for a new card; the page does not state the amount."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.oregon.gov/odot/dmv/pages/driverid/chg_gender_designation.aspx",
+      "title": "Oregon Department of Transportation — Changing Your Gender Marker on Your Driver's License or ID Card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "or.birth-certificate.gender-marker",
+    "jurisdiction": "US-OR",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Oregon birth certificate sex designation",
+    "statement": "People born in Oregon can change the sex on their birth record to M, F, or X (non-binary) to support their gender identity, either by signing a notarized Application to Change the Name and/or Sex on a Record of Live Birth to Support Gender Identity (form OHA 2673) or by getting a court order. The notarized application route, from House Bill 2673, does not require a court order.",
+    "detail": "Name and sex do not have to be changed at the same time on this form, but each can only be changed once through this administrative process — any further change needs a court order. You must be 18 or older (or an emancipated minor) to apply for yourself; a parent or legal guardian applies for a registrant under 18.",
+    "cost": {
+      "amount_usd": 35,
+      "note": "The $35 amendment fee does not include a birth certificate copy: a certificate costs $25 (computer-issued) or $30 (full image) each, and an optional $30 fee expedites the amendment itself."
+    },
+    "timeline": {
+      "typical": "Standard processing time isn't fixed here — the page points to a separate, weekly-updated list of current processing times. Once your amendment is processed, your new certificate is mailed to you, which takes 7 to 10 business days for delivery unless you arrange your own faster shipping."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.oregon.gov/oha/ph/birthdeathcertificates/changevitalrecords/pages/changingbirthrecordtosupportgenderidentity.aspx",
+      "title": "Oregon Health Authority — Changing a Birth Record to Support Gender Identity",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "or-oha-2673",
+    "language": "en"
+  },
+  {
+    "id": "or.birth-certificate.name",
+    "jurisdiction": "US-OR",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Oregon birth certificate name change",
+    "statement": "To substantially change the name on an Oregon birth certificate — removing part of it or changing it to a new name, not just fixing a typo — Oregon Health Authority requires a court-ordered name change. Oregon vital records will not automatically update your birth certificate just because a court granted a name change; you have to request the amendment yourself.",
+    "detail": "You submit an original certified copy of the court order (showing the court clerk's original seal and signature), a completed Request to Change Birth Certificate Based on Court Order of Name Change form, a completed Amend a Birth Record Order form, and a copy of your valid photo ID.",
+    "cost": {
+      "amount_usd": 35,
+      "note": "The amendment fee is $35. Getting a certified copy of the court order itself has its own fee, set by the court, not stated on this page."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.oregon.gov/oha/ph/birthdeathcertificates/pages/changebirthrecord.aspx",
+      "title": "Oregon Health Authority — Change a Birth Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "or-oha-court-order-name-form",
+    "language": "en"
+  }
+]

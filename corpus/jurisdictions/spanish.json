@@ -2070,5 +2070,142 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "language": "es"
+  },
+  {
+    "id": "or.court-order.name-and-sex.es",
+    "jurisdiction": "US-OR",
+    "document_type": "court-order",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Petición de cambio de nombre y/o sexo en Oregon",
+    "statement": "Oregon le permite pedirle a un tribunal de circuito que cambie su nombre legal y/o su sexo registrado mediante el mismo trámite de petición. Usted completa un Paquete de Cambio de Nombre y Sexo estatal más un formulario Complementario de Cambio de Nombre, y luego los presenta ante el tribunal en persona o por correo postal de EE. UU.",
+    "detail": "Después de presentar los documentos, el tribunal abre un caso, los revisa y se pondrá en contacto con usted sobre el siguiente paso, que puede incluir una audiencia ante un juez. Los solicitantes menores de edad usan un paquete adicional y separado con sus propios requisitos.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica una tarifa de presentación. Comuníquese con el tribunal de circuito donde presente su caso para conocer el monto actual."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.courts.oregon.gov/courts/lane/help/pages/namesexchange.aspx",
+      "title": "Departamento Judicial de Oregon, Tribunal de Circuito del Condado de Lane — Cambio de Nombre y/o Cambio de Sexo",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "or-courts-name-sex-packet",
+    "language": "es"
+  },
+  {
+    "id": "or.drivers-license.name.es",
+    "jurisdiction": "US-OR",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Oregon",
+    "statement": "Para cambiar el nombre en su licencia de conducir, permiso o tarjeta de identificación de Oregon, haga una cita o visite una oficina del DMV para el servicio sin cita previa, presente prueba de su cambio legal de nombre y presente prueba de su identidad y domicilio, y luego pague la tarifa correspondiente.",
+    "detail": "El DMV verifica su número de Seguro Social con la Administración del Seguro Social, así que si desea una credencial que cumpla con REAL ID, el nombre en ella debe coincidir con lo que el Seguro Social tiene registrado — primero debe actualizar su nombre con el Seguro Social. Para una credencial estándar, sin REAL ID, el nombre en su tarjeta puede ser diferente del registro del Seguro Social si usted presenta prueba de ese nombre. También puede cambiar su marcador de género como parte de la misma visita.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página indica que debe pagar la tarifa correspondiente, pero no indica el monto; consulte el listado de tarifas del DMV para conocer los precios actuales."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.oregon.gov/odot/dmv/pages/dv/chgname.aspx",
+      "title": "Departamento de Transporte de Oregon — Cómo Cambiar su Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "or.drivers-license.gender-marker.es",
+    "jurisdiction": "US-OR",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Marcador de género en la licencia de conducir de Oregon",
+    "statement": "Oregon ofrece tres marcadores de género en una licencia de conducir, permiso o tarjeta de identificación: M (masculino), F (femenino) o X (no especificado), por autodeclaración. No necesita traer ningún documento que indique su género o sexo — solo traiga su identificación actual y elija el marcador que desee.",
+    "detail": "No puede cambiar su marcador de género en línea — tiene que hacer una cita o visitar una oficina del DMV en persona. El DMV no exige que su marcador de género coincida con los registros de la Administración del Seguro Social ni con ningún otro documento, y mantiene un historial de sus nombres y marcadores de género anteriores para prevenir fraudes.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Usted paga la tarifa de renovación o reemplazo para obtener una nueva tarjeta; la página no indica el monto."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.oregon.gov/odot/dmv/pages/driverid/chg_gender_designation.aspx",
+      "title": "Departamento de Transporte de Oregon — Cómo Cambiar su Marcador de Género en su Licencia de Conducir o Tarjeta de Identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "or.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-OR",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Oregon",
+    "statement": "Las personas nacidas en Oregon pueden cambiar el sexo en su registro de nacimiento a M, F o X (no binario) para reflejar su identidad de género, ya sea firmando una Solicitud notariada para Cambiar el Nombre y/o el Sexo en un Registro de Nacimiento Vivo para Apoyar la Identidad de Género (formulario OHA 2673), o mediante una orden judicial. La vía administrativa de la solicitud notariada, que proviene de House Bill 2673, no requiere una orden judicial.",
+    "detail": "El nombre y el sexo no tienen que cambiarse al mismo tiempo en este formulario, pero cada uno solo puede cambiarse una vez mediante este proceso administrativo — cualquier cambio posterior necesita una orden judicial. Debe tener 18 años o más (o ser un menor emancipado) para solicitarlo usted mismo; un padre, madre o tutor legal presenta la solicitud si la persona registrada es menor de 18 años.",
+    "cost": {
+      "amount_usd": 35,
+      "note": "La tarifa de enmienda de $35 no incluye una copia del acta de nacimiento: cada certificado cuesta $25 (emitido por computadora) o $30 (imagen completa), y una tarifa opcional de $30 acelera la enmienda misma."
+    },
+    "timeline": {
+      "typical": "El tiempo de procesamiento estándar no está fijado aquí — la página remite a una lista aparte, actualizada semanalmente, de los tiempos de procesamiento actuales. Una vez procesada su enmienda, su nuevo certificado se le envía por correo, lo cual toma de 7 a 10 días hábiles para la entrega, a menos que usted organice su propio envío más rápido."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.oregon.gov/oha/ph/birthdeathcertificates/changevitalrecords/pages/changingbirthrecordtosupportgenderidentity.aspx",
+      "title": "Autoridad de Salud de Oregon — Cambiar un Registro de Nacimiento para Apoyar la Identidad de Género",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "or-oha-2673",
+    "language": "es"
+  },
+  {
+    "id": "or.birth-certificate.name.es",
+    "jurisdiction": "US-OR",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Oregon",
+    "statement": "Para cambiar sustancialmente el nombre en un acta de nacimiento de Oregon — quitar parte de él o cambiarlo a un nombre nuevo, no solo corregir un error tipográfico — la Autoridad de Salud de Oregon exige un cambio de nombre por orden judicial. Los registros vitales de Oregon no actualizan automáticamente su acta de nacimiento solo porque un tribunal haya concedido un cambio de nombre; usted tiene que solicitar la enmienda por su cuenta.",
+    "detail": "Usted presenta una copia certificada original de la orden judicial (con el sello y la firma originales del secretario del tribunal), un formulario completado de Solicitud para Cambiar el Acta de Nacimiento Basada en una Orden Judicial de Cambio de Nombre, un formulario completado de Solicitud de Enmienda de un Registro de Nacimiento, y una copia de su identificación con fotografía vigente.",
+    "cost": {
+      "amount_usd": 35,
+      "note": "La tarifa de enmienda es de $35. Obtener una copia certificada de la orden judicial en sí tiene su propia tarifa, fijada por el tribunal, que no se indica en esta página."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.oregon.gov/oha/ph/birthdeathcertificates/pages/changebirthrecord.aspx",
+      "title": "Autoridad de Salud de Oregon — Cambiar un Registro de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "or-oha-court-order-name-form",
+    "language": "es"
   }
 ]

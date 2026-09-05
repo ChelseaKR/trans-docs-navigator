@@ -1,9 +1,9 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 164,
-  "supported": 353,
+  "records": 174,
+  "supported": 373,
   "unsupported": 0,
-  "uncheckable": 106,
+  "uncheckable": 110,
   "unfetchable_sources": [
     "https://www.michigan.gov/sos/all-services/license-or-id-name-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
@@ -12,8 +12,8 @@
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → HTTP 404: the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 607,
-  "total_prose_sentences": 764,
+  "unchecked_prose_sentences": 647,
+  "total_prose_sentences": 808,
   "audits": [
     {
       "recordId": "az.court-order.name",
@@ -2274,6 +2274,171 @@
       "uncheckedProse": 1,
       "negatedClaims": 0,
       "totalSentences": 2
+    },
+    {
+      "recordId": "or.court-order.name-and-sex",
+      "language": "en",
+      "url": "https://www.courts.oregon.gov/courts/lane/help/pages/namesexchange.aspx",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:or-courts-name-sex-packet",
+          "label": "form_ref \"or-courts-name-sex-packet\" (Name and Sex Change Packet (Adult)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "or.drivers-license.name",
+      "language": "en",
+      "url": "https://www.oregon.gov/odot/dmv/pages/dv/chgname.aspx",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "or.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.oregon.gov/odot/dmv/pages/driverid/chg_gender_designation.aspx",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 4,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "or.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.oregon.gov/oha/ph/birthdeathcertificates/changevitalrecords/pages/changingbirthrecordtosupportgenderidentity.aspx",
+      "results": [
+        {
+          "kind": "money",
+          "key": "35",
+          "label": "costs $35",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $35"
+        },
+        {
+          "kind": "form-id",
+          "key": "OHA2673",
+          "label": "official form OHA2673 backs this step (form_ref: or-oha-2673)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names OHA2673"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "states $25",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $25"
+        },
+        {
+          "kind": "money",
+          "key": "30",
+          "label": "states $30",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $30"
+        },
+        {
+          "kind": "duration",
+          "key": "7 business-day",
+          "label": "states \"7 business-day\"",
+          "field": "timeline.typical",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"7 business-day\""
+        },
+        {
+          "kind": "duration",
+          "key": "10 business-day",
+          "label": "states \"10 business-day\"",
+          "field": "timeline.typical",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"10 business-day\""
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "or.birth-certificate.name",
+      "language": "en",
+      "url": "https://www.oregon.gov/oha/ph/birthdeathcertificates/pages/changebirthrecord.aspx",
+      "results": [
+        {
+          "kind": "money",
+          "key": "35",
+          "label": "costs $35",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $35"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:or-oha-court-order-name-form",
+          "label": "form_ref \"or-oha-court-order-name-form\" (Request to Change Birth Certificate Based on Court Order of Name Change) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
     },
     {
       "recordId": "pa.court-order.name",
@@ -5372,6 +5537,153 @@
       ],
       "uncheckedProse": 4,
       "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "or.court-order.name-and-sex.es",
+      "language": "es",
+      "url": "https://www.courts.oregon.gov/courts/lane/help/pages/namesexchange.aspx",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:or-courts-name-sex-packet",
+          "label": "form_ref \"or-courts-name-sex-packet\" (Name and Sex Change Packet (Adult)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 0,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "or.drivers-license.name.es",
+      "language": "es",
+      "url": "https://www.oregon.gov/odot/dmv/pages/dv/chgname.aspx",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "or.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.oregon.gov/odot/dmv/pages/driverid/chg_gender_designation.aspx",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 4,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "or.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.oregon.gov/oha/ph/birthdeathcertificates/changevitalrecords/pages/changingbirthrecordtosupportgenderidentity.aspx",
+      "results": [
+        {
+          "kind": "money",
+          "key": "35",
+          "label": "costs $35",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $35"
+        },
+        {
+          "kind": "form-id",
+          "key": "OHA2673",
+          "label": "official form OHA2673 backs this step (form_ref: or-oha-2673)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names OHA2673"
+        },
+        {
+          "kind": "duration",
+          "key": "18 year",
+          "label": "states \"18 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"18 year\""
+        },
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "states $25",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $25"
+        },
+        {
+          "kind": "money",
+          "key": "30",
+          "label": "states $30",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $30"
+        },
+        {
+          "kind": "duration",
+          "key": "7 business-day",
+          "label": "states \"7 business-day\"",
+          "field": "timeline.typical",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"7 business-day\""
+        },
+        {
+          "kind": "duration",
+          "key": "10 business-day",
+          "label": "states \"10 business-day\"",
+          "field": "timeline.typical",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"10 business-day\""
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 3,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "or.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.oregon.gov/oha/ph/birthdeathcertificates/pages/changebirthrecord.aspx",
+      "results": [
+        {
+          "kind": "money",
+          "key": "35",
+          "label": "costs $35",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $35"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:or-oha-court-order-name-form",
+          "label": "form_ref \"or-oha-court-order-name-form\" (Request to Change Birth Certificate Based on Court Order of Name Change) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
       "totalSentences": 4
     },
     {
