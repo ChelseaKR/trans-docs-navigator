@@ -8,6 +8,23 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Georgia** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (court-order name
+  change, driver's-license name and gender-marker, birth-certificate name and
+  gender-marker, and a birth-certificate fee record), 2 referrals, and 1 forms-registry
+  entry, each sourced from an official Georgia state page or administrative rule and
+  fetched into `corpus/snapshots/`. Georgia's driver's-license gender-marker rule
+  (Ga. Comp. R. & Regs. 375-3-1-.17) is recorded as **restricted, not open**: it requires
+  a gender-reassignment operation plus a court order or physician's letter, and even then
+  leaves the decision to the Department's discretion. Georgia's vital-records rules fold a
+  birth-certificate sex-designation change into the generic "All Other Amendments" rule
+  (511-1-3-.25), with no separate gender-identity or court-order path described. A
+  name-change amendment to a Georgia birth certificate also carries an unusual,
+  directly-sourced requirement — a physician's letterhead statement of an
+  "intersex/transgender diagnosis" — read from the official Affidavit for Amendment
+  (Form 3977); as a PDF, that source cannot be automatically fidelity-checked and is
+  reported UNCHECKABLE rather than silently passed, the same honest degradation already
+  applied to the New York sources this project cannot fetch.
+
 - **ADR directory completed** (`docs/adr/`): the five build ADRs migrated out of
   `docs/ROADMAP.md` §6 into individual Nygard-format files (0001–0005, decision content
   unchanged), plus a new ADR-0006 recording the deliberate no-ESLint/no-Prettier/no-bundler

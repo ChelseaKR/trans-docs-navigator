@@ -4,17 +4,25 @@
 // Identity fields are entered only in the form-helper page and stay in the browser.
 
 import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from "../api/types.ts";
-import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel, preparationList } from "./render.ts";
+import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel, preparationList, verificationCaption } from "./render.ts";
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
 import { toResumeState } from "./secure-resume.ts";
 import { staleAfterDays } from "./offline.ts";
+import { isDriftWatchable } from "../api/watchability.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
+  { id: "US-AZ", label: "Arizona" },
   { id: "US-CA", label: "California" },
+  { id: "US-FL", label: "Florida" },
+  { id: "US-GA", label: "Georgia" },
   { id: "US-CO", label: "Colorado" },
   { id: "US-IL", label: "Illinois" },
+  { id: "US-MA", label: "Massachusetts" },
+  { id: "US-MI", label: "Michigan" },
   { id: "US-NY", label: "New York" },
+  { id: "US-PA", label: "Pennsylvania" },
+  { id: "US-OH", label: "Ohio" },
   { id: "US-TX", label: "Texas" },
   { id: "US-WA", label: "Washington" },
 ];
@@ -260,6 +268,9 @@ export function renderFormFillPage(form: FormDef, lang: Language = "en"): string
   const body = `
 <p>${escapeHtml(s.officialFormIntro)}</p>
 <p class="cta"><a href="${escapeHtml(form.source.url)}" rel="noopener noreferrer">${escapeHtml(s.getFormCta)}: ${escapeHtml(form.source.title)}</a></p>
+<p class="meta">${escapeHtml(verificationCaption(form.source, s))}${
+    isDriftWatchable(form.source.url) ? "" : ` <span class="flag">${escapeHtml(s.sourceNotWatched)}</span>`
+  }</p>
 ${preparationList(form.preparation, lang)}
 <section class="copy-helper no-print" aria-labelledby="copy-h">
   <h2 id="copy-h">${escapeHtml(s.copyTitle)}</h2>

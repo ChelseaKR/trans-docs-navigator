@@ -290,7 +290,7 @@ export function sourceHasFormId(id: string, sourceText: string, sourceIds: Set<s
 export function formIdCandidates(form: FormDef): string[] {
   const fromTitle = extractRecordFormIds(form.title);
   if (fromTitle.length > 0) return fromTitle;
-  const idPart = form.id.replace(/^(?:us|ca|ny|il|tx|wa)-/, "");
+  const idPart = form.id.replace(/^(?:us|ca|ny|il|tx|wa|ma)-/, "");
   return extractRecordFormIds(idPart.toUpperCase());
 }
 
