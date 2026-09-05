@@ -7,6 +7,7 @@ import type {
   Checklist,
   ChecklistStep,
   DocumentType,
+  JurisdictionId,
   CorpusRecord,
   Cost,
   Timeline,
@@ -75,6 +76,30 @@ export function hasThinnerLanguageCoverage(intake: Intake, today?: string, corpu
         isCurrent(r, today),
     );
   return wanted.some((doc) => hasCurrent(doc, "en") && !hasCurrent(doc, intake.language));
+}
+
+/**
+ * True when the corpus holds NO record specific to this jurisdiction — every step we can
+ * build for it comes from federal ("US") records instead.
+ *
+ * This exists because a well-formed but uncovered state (`/checklist?jurisdiction=US-FL`)
+ * is accepted by the router, not rejected: `validJurisdiction` only checks the SHAPE of
+ * the id. Federal records match every state, so such a request still renders a plausible,
+ * confident-looking two-step plan (SSA → passport). Without this flag, "we have nothing
+ * for your state" is indistinguishable from "your state requires nothing" — the reader is
+ * shown an absence as though it were an answer. Callers use it to say so out loud.
+ *
+ * Deliberately NOT filtered by language or freshness: a Spanish-only or an expired record
+ * still means the state IS in the corpus, and those two axes already have their own honest
+ * signals (the thinner-language note and the per-step "needs reverification" flag).
+ * Narrowing this predicate would make it fire on states we do cover, which would be its own
+ * false alarm.
+ */
+export function hasNoStateCoverage(jurisdiction: JurisdictionId, corpus = loadCorpus()): boolean {
+  // "US" is the federal jurisdiction itself, and it is covered — the federal records ARE
+  // its records. Only a state/territory id can be uncovered in the sense meant here.
+  if (jurisdiction === "US") return false;
+  return !corpus.some((r) => r.jurisdiction === jurisdiction);
 }
 
 export function buildChecklist(intake: Intake, today?: string, corpus = loadCorpus()): Checklist {
