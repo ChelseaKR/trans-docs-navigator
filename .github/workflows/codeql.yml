@@ -43,6 +43,17 @@ jobs:
       # `security-events: write` was dropped along with the upload: nothing is sent to the
       # code-scanning API any more, so the job is read-only. `actions: read` is still
       # required on private repos — codeql-action reads its own workflow-run metadata.
+      #
+      # Investigated 2026-09: every analyze job's log shows codeql-action's init step
+      # stalling ~30s on "This run of the CodeQL Action does not have permission to access
+      # the CodeQL Action API endpoints ... please ensure the workflow has at least the
+      # 'security-events: read' permission" before falling back to defaults. That message is
+      # misleading here — added `security-events: read` on this branch and re-ran both
+      # matrix jobs; the identical warning fired at the identical point, with no change in
+      # job duration. The warning's own "Details" line names the real cause: "Code scanning
+      # is not enabled for this repository" — a private-repo GHAS entitlement gate, not a
+      # token-permission gate, so no permissions change here can affect it. Not adding the
+      # scope: it would be a real permission grant for zero measured benefit.
       actions: read
     strategy:
       fail-fast: false
