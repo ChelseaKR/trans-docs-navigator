@@ -157,6 +157,39 @@
         "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
       }
     },
+    "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record": {
+      "file": null,
+      "fetched": "2026-09-04",
+      "unfetchable": {
+        "status": "HTTP 404",
+        "note": "the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://www.ohiolegalhelp.org/topic/name-change": {
+      "file": "ohiolegalhelp-org-topic-name-change-91c1ef43.txt",
+      "fetched": "2026-09-04",
+      "sha256": "41697d89c5b30ce8b9f16885e73d747ae475381d9c031b88c28147cc865e66a6"
+    },
+    "https://www.bmv.ohio.gov/dl-identity-documents.aspx": {
+      "file": "bmv-ohio-gov-dl-identity-documents-aspx-ddc12258.txt",
+      "fetched": "2026-09-04",
+      "sha256": "be759cc8b442d0bd7dc1827905e529002b43ed0f073c6e577e95d2641ec5d1fe"
+    },
+    "https://www.bmv.ohio.gov/doc-forms.aspx": {
+      "file": "bmv-ohio-gov-doc-forms-aspx-9778086e.txt",
+      "fetched": "2026-09-04",
+      "sha256": "633794f0c1d1077f518849ac035009e7aa444ed7f012ea1aa689ba400e038f9f"
+    },
+    "https://codes.ohio.gov/ohio-revised-code/section-9.05": {
+      "file": "codes-ohio-gov-ohio-revised-code-section-9-05-70e0c74c.txt",
+      "fetched": "2026-09-04",
+      "sha256": "8e64e7c0f328f8ff7ec537ad6b7f8ae9c061ce393541643e4ba599c65d7de9bd"
+    },
+    "https://www.courtnewsohio.gov/cases/2024/SCO/1119/220934.asp": {
+      "file": "courtnewsohio-gov-cases-2024-sco-1119-220934-asp-973ce3f3.txt",
+      "fetched": "2026-09-04",
+      "sha256": "8343647fb430687194735d92f0104a514a9b0d41f1c03bf64a1b83a523aad366"
+    },
     "https://georgia.gov/apply-name-change": {
       "file": "georgia-gov-apply-name-change-c3e94f10.txt",
       "fetched": "2026-09-05",

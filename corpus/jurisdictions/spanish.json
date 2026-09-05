@@ -756,6 +756,165 @@
     "language": "es"
   },
   {
+    "id": "oh.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-OH",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Ohio",
+    "statement": "El Departamento de Salud de Ohio dice que cambiará el marcador de sexo en un acta de nacimiento con una orden de un tribunal de sucesiones, para cumplir con la decisión de la corte federal en Ray v. McCloud. Pero los tribunales de Ohio actualmente están divididos sobre si la ley estatal permite que un tribunal de sucesiones conceda esa orden, y una solicitud todavía puede ser denegada.",
+    "detail": "Usted presenta la solicitud ante el tribunal de sucesiones del condado vinculado a su nacimiento, como donde nació o donde vivía su madre cuando usted nació, según el artículo 3705.15 del Código Revisado de Ohio. Algunos condados de Ohio han concedido estas solicitudes y otros no. Lea la guía oficial actual y hable con un abogado local antes de presentar su solicitud. No dé por hecho que hay una vía abierta en su condado.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record",
+      "title": "Departamento de Salud de Ohio — Cambiar o Corregir un Acta de Nacimiento",
+      "last_verified": "2026-09-04",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "oh.birth-certificate.gender-marker.law.es",
+    "jurisdiction": "US-OH",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Caso judicial de Ohio sobre correcciones del marcador de sexo en el acta de nacimiento",
+    "statement": "En noviembre de 2024 la Corte Suprema de Ohio dejó en pie la decisión de un tribunal de sucesiones que negó la solicitud de una mujer transgénero de cambiar el marcador de sexo en su acta de nacimiento. Los jueces no pudieron llegar a una mayoría sobre si la ley de Ohio permite que un tribunal de sucesiones conceda ese tipo de cambio.",
+    "detail": "En una opinión separada, la jueza Brunner escribió que algunos condados de Ohio permiten este tipo de cambio y otros no. Otros jueces que llegaron al fondo del caso coincidieron en que el artículo 3705.15 del Código Revisado de Ohio permite que un tribunal de sucesiones corrija un acta de nacimiento solo cuando el sexo se registró incorrectamente al momento del nacimiento, no después según la identidad de género.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.courtnewsohio.gov/cases/2024/SCO/1119/220934.asp",
+      "title": "Court News Ohio (Corte Suprema de Ohio) — Court Unable to Rule on Transgender Woman's Request to Change Birth Certificate",
+      "last_verified": "2026-09-04",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "oh.birth-certificate.name.es",
+    "jurisdiction": "US-OH",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Ohio",
+    "statement": "Si usted nació en Ohio y un tribunal de sucesiones concede su cambio de nombre legal, el tribunal puede enviar una copia certificada de la orden a la Oficina de Estadísticas Vitales de Ohio, que emite una nueva Acta de Nacimiento con su nuevo nombre dentro de 90 días de recibirla.",
+    "detail": "Dependiendo de su condado, el tribunal de sucesiones puede enviar la orden automáticamente, o es posible que usted deba enviarla.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.ohiolegalhelp.org/topic/name-change",
+      "title": "Ohio Legal Help — Cómo Cambiar Legalmente su Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "oh.court-order.name.es",
+    "jurisdiction": "US-OH",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Ohio",
+    "statement": "En Ohio, usted presenta su petición de cambio de nombre en el tribunal de sucesiones (probate court) del condado donde vive, si ha vivido allí por lo menos 60 días.",
+    "detail": "El Asistente de Formularios de Cambio de Nombre de Adultos de Ohio Legal Help le ayuda a encontrar los formularios para el tribunal de sucesiones de su condado. Usted presenta copias de una identificación válida con foto, como una licencia de conducir, identificación estatal o pasaporte, junto con prueba de la razón de su cambio. Algunos condados también exigen que solicite y pague una verificación de antecedentes (BCI). El formulario completado debe firmarse ante un notario. Un juez o magistrado puede programar una audiencia si necesita más información sobre su caso; si se programa una audiencia, el tribunal puede exigirle publicar un aviso en un periódico local al menos 30 días antes de la audiencia, y usted paga el costo de la publicación. Si un cambio de nombre público pondría en peligro su seguridad, puede pedir al tribunal una solicitud de confidencialidad en su lugar. El juez puede aprobar o denegar la solicitud.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Las tarifas de presentación típicas son de $100 a $150; cada tribunal de sucesiones de Ohio fija su propia tarifa. Algunos condados también cobran por una verificación de antecedentes (BCI)."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ohiolegalhelp.org/topic/name-change",
+      "title": "Ohio Legal Help — Cómo Cambiar Legalmente su Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "es"
+  },
+  {
+    "id": "oh.drivers-license.gender-marker.es",
+    "jurisdiction": "US-OH",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo/género en la licencia e identificación de Ohio",
+    "statement": "La lista pública de formularios oficiales del Departamento de Vehículos Motorizados de Ohio (BMV) no incluye ningún formulario para cambiar la designación de sexo o género en una licencia de conducir o identificación estatal.",
+    "detail": "El Código Revisado de Ohio, artículo 9.05, establece que es política del estado de Ohio reconocer dos sexos, masculino y femenino, descritos como no cambiables. Lea usted mismo la lista actual de formularios y las páginas de documentos aceptables del BMV antes de presentar algo. No dé por hecho que hay una vía abierta aquí.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.bmv.ohio.gov/doc-forms.aspx",
+      "title": "BMV de Ohio — Leyes de Vehículos Motorizados, Formularios, Tarifas",
+      "last_verified": "2026-09-04",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "oh.drivers-license.gender-marker.law.es",
+    "jurisdiction": "US-OH",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "La ley de Ohio sobre el sexo en los registros del estado",
+    "statement": "El Código Revisado de Ohio, artículo 9.05, establece que es política del estado de Ohio reconocer dos sexos, masculino y femenino, y que estos sexos no son cambiables.",
+    "detail": "La ley define el sexo como la indicación biológica de masculino y femenino, incluidos los cromosomas sexuales, las hormonas sexuales que ocurren naturalmente, las gónadas, y los genitales internos y externos no ambiguos presentes al nacer, sin importar la experiencia psicológica, elegida o subjetiva del género de una persona. Entró en vigor el 30 de septiembre de 2025, promulgada por la Ley 96 de la Cámara.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://codes.ohio.gov/ohio-revised-code/section-9.05",
+      "title": "Código Revisado de Ohio — Artículo 9.05, Política de Reconocimiento de Sexo",
+      "last_verified": "2026-09-04",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "oh.drivers-license.name.es",
+    "jurisdiction": "US-OH",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir e identificación de Ohio",
+    "statement": "Para actualizar el nombre en su licencia de conducir o identificación de Ohio, el BMV de Ohio le pide conectar su nombre de nacimiento con su nombre legal actual mediante una copia original o certificada de un certificado de matrimonio, un decreto de divorcio, o un cambio de nombre por orden judicial.",
+    "detail": "Si ha tenido más de un matrimonio, es posible que necesite documentos de cada matrimonio y divorcio para conectar su acta de nacimiento, pasaporte o documentos del Departamento de Seguridad Nacional de EE. UU. con su nombre legal actual. Lleve estos documentos a una oficina de registro adjunta para obtener una tarjeta actualizada.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.bmv.ohio.gov/dl-identity-documents.aspx",
+      "title": "BMV de Ohio — Documentos Aceptables (Licencia de Conducir e Identificación)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "tx.birth-certificate.fees.es",
     "jurisdiction": "US-TX",
     "document_type": "birth-certificate",

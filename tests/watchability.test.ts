@@ -108,6 +108,9 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // pipeline cannot extract, so no baseline can be taken — deliberate addition
     // with the Georgia corpus, not a silent drift in the watch set.
     "https://dph.georgia.gov/document/document/affidavit-amendment-form-3977-revisedpdf/download",
+    // Ohio's vital-records page refuses this project's declared user-agent
+    // domain-wide, so no baseline can be taken — deliberate, with the Ohio corpus.
+    "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml",
     "https://www.ssa.gov/forms/ss-5.pdf",
