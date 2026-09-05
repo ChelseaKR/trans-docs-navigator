@@ -74,11 +74,14 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: "22"
-          # Unlike `package`/`dataset` below, this job only runs `make verify` (lint, test,
-          # build checks) — it publishes nothing, so the SLSA build-isolation /
-          # cache-poisoning concern that keeps caching off in a publishing job doesn't apply.
-          # `cache: npm` restores ~/.npm so `npm ci` skips the network on a cache hit.
-          cache: npm
+          # This job publishes nothing itself, but it is the gate that AUTHORISES
+          # publishing: `package`/`dataset` run only if this `make verify` is green
+          # ("a tag can never publish an image that didn't earn a green make verify",
+          # below). Restoring an untrusted package-manager cache here would let a
+          # poisoned dependency produce that green verdict, so the cache-poisoning
+          # concern applies to this job as much as to the privileged ones.
+          # Flagged High by zizmor's cache-poisoning audit (workflow-sast, blocking).
+          package-manager-cache: false
       - run: npm ci
       # make verify's last step (G9 pseudolocale overflow) drives a real browser.
       - name: Install Playwright Chromium (G9 pseudolocale overflow gate)
