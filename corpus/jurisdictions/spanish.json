@@ -599,6 +599,185 @@
     "language": "es"
   },
   {
+    "id": "ma.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-MA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Massachusetts",
+    "statement": "Las personas nacidas en Massachusetts pueden enmendar la designación de sexo en su acta de nacimiento a femenino, masculino o X presentando una declaración jurada ante el Registro de Estadísticas Vitales (RVRS).",
+    "detail": "Un padre, madre o tutor presenta la declaración jurada cuando el cambio es para un menor de edad. Si envía su declaración jurada por correo, debe estar notariada; el RVRS también le permite hacer una cita en persona en su lugar, donde debe llevar una identificación con foto válida.",
+    "cost": {
+      "amount_usd": 50,
+      "note": "La cuota de enmienda es de $50 por única vez. Una copia certificada del acta enmendada cuesta $32 por correo o $20 en persona."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.mass.gov/how-to/amend-a-birth-certificate-for-sex-of-the-subject",
+      "title": "Mass.gov — Enmendar un acta de nacimiento por el sexo del sujeto",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ma-rvrs-sex-affidavit",
+    "language": "es"
+  },
+  {
+    "id": "ma.birth-certificate.gender-marker.law.es",
+    "jurisdiction": "US-MA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Ley de Massachusetts sobre la designación de sexo en el acta de nacimiento",
+    "statement": "El Capítulo 46, Sección 13(e), de las Leyes Generales de Massachusetts dice que una persona de 18 años o más, un menor emancipado, o el padre, madre o tutor de un menor puede pedir un cambio en la designación de sexo en un acta de nacimiento a femenino, masculino, X, u otro género o uno no designado, sin ninguna documentación médica o de salud, orden judicial, ni comprobante de cambio de nombre.",
+    "detail": "La misma ley le permite a la persona agregar un cambio de nombre a esa misma solicitud, o dentro de los 3 años siguientes, también sin documentación médica o de salud — un cambio de nombre siempre necesita una copia certificada del decreto legal de cambio de nombre. Una persona cuya designación de sexo cambió cuando era menor de edad tiene 3 años a partir de su decimoctavo cumpleaños en su lugar, y el departamento puede eximir ese límite de 3 años por causa justificada.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.mass.gov/info-details/mass-general-laws-c46-ss-13",
+      "title": "Mass.gov — Ley General de Massachusetts c.46 § 13",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ma.birth-certificate.name.es",
+    "jurisdiction": "US-MA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Massachusetts",
+    "statement": "Los registros vitales de Massachusetts dicen que usted no puede enmendar su acta de nacimiento basándose solamente en un cambio de nombre legal. La única vía que toca su nombre en un acta de nacimiento de Massachusetts está unida a una solicitud para cambiar la designación de sexo en esa misma acta.",
+    "detail": "Si ya le pidió a Massachusetts cambiar la designación de sexo en su acta de nacimiento, puede agregarle un cambio de nombre enviando al Registro de Estadísticas Vitales una copia certificada de su decreto legal de cambio de nombre. El Capítulo 46, Sección 13(e), de las Leyes Generales de Massachusetts establece el plazo para agregar un cambio de nombre después.",
+    "cost": {
+      "amount_usd": 50,
+      "note": "La cuota de enmienda es de $50 por única vez. Una copia certificada del acta enmendada cuesta $32 por correo o $20 en persona."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.mass.gov/how-to/amend-or-correct-a-birth-death-or-marriage-record",
+      "title": "Mass.gov — Enmendar o corregir un acta de nacimiento, defunción o matrimonio",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ma-rvrs-sex-affidavit",
+    "language": "es"
+  },
+  {
+    "id": "ma.court-order.name.es",
+    "jurisdiction": "US-MA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Massachusetts",
+    "statement": "En Massachusetts usted presenta una Petición de Cambio de Nombre de Adulto (CJP 27) en el Tribunal de Sucesiones y Familia del condado donde vive. El tribunal puede concederla sin audiencia, o puede exigirle que dé aviso público antes de decidir.",
+    "detail": "Usted firma la petición ante un notario público y muestra una identificación con foto. Si su identificación con foto no muestra su nombre legal actual, puede presentar una Moción (CJD 400) para pedirle al tribunal que exima el requisito de identificación del notario. Si el tribunal emite una Orden de Aviso, es posible que tenga que publicar una citación en un periódico, notificar por correo a personas interesadas, o ambas cosas; si tiene una razón para no publicar, puede presentar una Moción (CJD 400) para pedir que el tribunal exima la publicación. Si el tribunal no exige nada de esto, puede conceder su petición de forma administrativa y enviarle por correo un Decreto de Cambio de Nombre certificado.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La cuota de presentación en el tribunal es de $150 más una cuota de recargo de $15, para un total de $165. Si el tribunal emite una Orden de Aviso, hay una cuota adicional de $15 por la citación. Presentar la solicitud en línea (eFiling) agrega una cuota aparte de $22 para el caso inicial. Si no puede pagar la cuota, puede pedirle al tribunal que la exima mediante el proceso de Indigencia (exención de cuotas judiciales), presentando una Declaración Jurada de Indigencia.",
+      "fee_waiver": true
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.mass.gov/info-details/how-do-i-file-a-change-of-name-for-an-adult",
+      "title": "Mass.gov — ¿Cómo presento un cambio de nombre para un adulto?",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "form_ref": "ma-cjp-27",
+    "language": "es"
+  },
+  {
+    "id": "ma.drivers-license.gender-marker.es",
+    "jurisdiction": "US-MA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia e identificación de Massachusetts",
+    "statement": "Massachusetts le permite elegir una designación de género de M, F o X en su licencia de conducir o tarjeta de identificación. Para cambiarla, complete una solicitud de licencia o tarjeta de identificación y haga una cita en un Centro de Servicio del RMV.",
+    "detail": "Su género aparece en el campo 'Sex' (sexo) de su licencia o identificación.",
+    "cost": {
+      "amount_usd": 25,
+      "note": "Massachusetts indica una Cuota de Enmienda de Licencia de Conducir/Identificación de $25 por una tarjeta actualizada."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.mass.gov/how-to/change-information-on-your-drivers-license-or-id-card",
+      "title": "Mass.gov — Cambie la información en su licencia de conducir o tarjeta de identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ma-rmv-license-id-application",
+    "language": "es"
+  },
+  {
+    "id": "ma.drivers-license.gender-marker.law.es",
+    "jurisdiction": "US-MA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Ley de Massachusetts sobre la designación de género en la licencia de conducir",
+    "statement": "La ley de Massachusetts (Capítulo 90, Sección 8N) le permite elegir X, M o F para el género en su licencia, permiso de aprendizaje o tarjeta de identificación. No necesita mostrar ningún documento para hacer esta elección.",
+    "detail": "La regla también cubre la identificación para comprar licor. Cada año el Registro de Vehículos Motorizados debe informar cuántas personas eligen X, según raza y origen étnico. El informe no puede mostrar quiénes son esas personas.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.mass.gov/info-details/mass-general-laws-c90-ss-8n",
+      "title": "Mass.gov — Ley General de Massachusetts c.90 § 8N",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ma.drivers-license.name.es",
+    "jurisdiction": "US-MA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Massachusetts",
+    "statement": "Para cambiar el nombre en su licencia de conducir o tarjeta de identificación de Massachusetts, haga una cita en un Centro de Servicio del RMV y lleve una solicitud completada. Si solicita una REAL ID y su nombre actual no coincide con sus documentos de presencia legal, debe comprobar el cambio de nombre legal con un certificado de matrimonio, un decreto de divorcio o un documento judicial.",
+    "detail": "Si solicita una licencia o identificación Estándar (que no sea REAL ID), Massachusetts dice que puede cambiar su nombre sin ninguna documentación, siempre que no haya intento de fraude. De cualquier manera, le toman una foto nueva y capturan su firma otra vez en la cita.",
+    "cost": {
+      "amount_usd": 25,
+      "note": "Massachusetts indica una Cuota de Enmienda de Licencia de Conducir/Identificación de $25."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.mass.gov/how-to/change-information-on-your-drivers-license-or-id-card",
+      "title": "Mass.gov — Cambie la información en su licencia de conducir o tarjeta de identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ma-rmv-license-id-application",
+    "language": "es"
+  },
+  {
     "id": "mi.birth-certificate.fees.es",
     "jurisdiction": "US-MI",
     "document_type": "birth-certificate",

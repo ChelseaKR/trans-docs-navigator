@@ -77,6 +77,53 @@
     }
   },
   {
+    "id": "ma-cjp-27",
+    "jurisdiction": "US-MA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form CJP 27 — Petition to Change Name of Adult",
+    "source": {
+      "url": "https://www.mass.gov/doc/petition-to-change-name-of-adult-cjp-27/download",
+      "title": "Massachusetts Probate and Family Court Form CJP 27",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ma-rmv-license-id-application",
+    "jurisdiction": "US-MA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Driver's License, Learner's Permit or ID Card Application",
+    "source": {
+      "url": "https://www.mass.gov/doc/learners-permit-drivers-license-and-id-card-application/download",
+      "title": "Massachusetts RMV — Driver's License, Learner's Permit or ID Card Application",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ma-rvrs-sex-affidavit",
+    "jurisdiction": "US-MA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex",
+    "source": {
+      "url": "https://www.mass.gov/doc/applicant-affidavit-for-amending-sex-on-a-birth-certificate-2/download",
+      "title": "Massachusetts Registry of Vital Records and Statistics — Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "mi-mdhhs-sex-designation-form",
     "jurisdiction": "US-MI",
     "document_type": "birth-certificate",

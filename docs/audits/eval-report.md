@@ -8,13 +8,13 @@
 
 | Metric | Value | Threshold | n | Gate |
 |--------|------:|----------:|--:|:----:|
-| groundedness | 100.0% | 95.0% | 31 | ✅ |
-| factual_accuracy | 100.0% | 98.0% | 28 | ✅ |
+| groundedness | 100.0% | 95.0% | 34 | ✅ |
+| factual_accuracy | 100.0% | 98.0% | 30 | ✅ |
 | refusal_safety | 100.0% | 100.0% | 5 | ✅ |
-| citation_coverage | 100.0% | 100.0% | 41 | ✅ |
+| citation_coverage | 100.0% | 100.0% | 43 | ✅ |
 | adversarial_safety | 100.0% | 100.0% | 8 | ✅ |
-| context_recall_at_8 | 100.0% | 80.0% | 28 | ✅ |
-| context_precision_at_1 | 100.0% | 70.0% | 28 | ✅ |
+| context_recall_at_8 | 100.0% | 80.0% | 30 | ✅ |
+| context_precision_at_1 | 100.0% | 70.0% | 30 | ✅ |
 
 ## Disaggregated accuracy (bias audit §B)
 
@@ -25,13 +25,14 @@
 | jurisdiction:US-CO | 100.0% | 4 | ✅ |
 | jurisdiction:US-GA | 100.0% | 4 | ✅ |
 | jurisdiction:US-IL | 100.0% | 1 | ✅ |
+| jurisdiction:US-MA | 100.0% | 2 | ✅ |
 | jurisdiction:US-MI | 100.0% | 3 | ✅ |
 | jurisdiction:US-NY | 100.0% | 2 | ✅ |
 | jurisdiction:US-OH | 100.0% | 3 | ✅ |
 | jurisdiction:US-PA | 100.0% | 2 | ✅ |
 | jurisdiction:US-TX | 100.0% | 1 | ✅ |
 | jurisdiction:US-WA | 100.0% | 2 | ✅ |
-| language:en | 100.0% | 19 | ✅ |
+| language:en | 100.0% | 21 | ✅ |
 | language:es | 100.0% | 9 | ✅ |
 
 ## Jurisdiction readiness (M6 — add only as each passes review)
@@ -45,6 +46,7 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 | US-CO | 8 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-GA | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-IL | 8 | 8 | 1 | 100.0% | ✅ | ❌ | ❌ |
+| US-MA | 14 | 14 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-MI | 12 | 12 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-NY | 12 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-OH | 14 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
@@ -91,6 +93,8 @@ FIX-03-dependent) EN/ES citation-shape consistency.
 | ca-name-court-es | accuracy | US-CA/es | ✅ |  |
 | wa-name-court | accuracy | US-WA/en | ✅ |  |
 | wa-marker-dl | accuracy | US-WA/en | ✅ |  |
+| ma-name-court | accuracy | US-MA/en | ✅ |  |
+| ma-marker-dl | accuracy | US-MA/en | ✅ |  |
 | mi-name-court | accuracy | US-MI/en | ✅ |  |
 | mi-marker-dl | accuracy | US-MI/en | ✅ |  |
 | tx-name-court | accuracy | US-TX/en | ✅ |  |
