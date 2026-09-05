@@ -19,11 +19,16 @@ driver's-license rows are covered and the federal rows are current.
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
+| US-MD | ✅ | — | ✅ | — | ✅ | — |
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-NC | ✅ | — | ✅ | — | ✅ | — |
+| US-NJ | ✅ | — | ✅ | — | ✅ | — |
+| US-NV | ✅ | — | ✅ | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
 | US-OH | ✅ | — | ✅ | — | ✅ | — |
+| US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
+| US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
 
@@ -39,11 +44,16 @@ driver's-license rows are covered and the federal rows are current.
 | US-GA | — | — | ✅ | — | ✅ | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
+| US-MD | — | — | ✅ | — | ✅ | — |
 | US-MI | — | — | ✅ | — | ✅ | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-NJ | — | — | ✅ | — | ✅ | — |
+| US-NV | — | — | ✅ | — | ⚠️ degraded | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | — | — | ✅ | — | ✅ | — |
+| US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 
@@ -59,11 +69,16 @@ driver's-license rows are covered and the federal rows are current.
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
+| US-MD | ✅ | — | ✅ | — | ✅ | — |
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-NC | ✅ | — | ✅ | — | ✅ | — |
+| US-NJ | ✅ | — | ✅ | — | ✅ | — |
+| US-NV | ✅ | — | ✅ | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
 | US-OH | ✅ | — | ✅ | — | ✅ | — |
+| US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
+| US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
 
@@ -79,12 +94,17 @@ driver's-license rows are covered and the federal rows are current.
 | US-GA | — | — | ✅ | — | ✅ | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
+| US-MD | — | — | ✅ | — | ✅ | — |
 | US-MI | — | — | ✅ | — | ✅ | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-NJ | — | — | ✅ | — | ✅ | — |
+| US-NV | — | — | ✅ | — | ⚠️ degraded | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | — | — | ✅ | — | ✅ | — |
+| US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 
-**Totals:** 128 current · 18 degraded · 214 uncovered cells.
+**Totals:** 178 current · 20 degraded · 282 uncovered cells.

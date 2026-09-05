@@ -1,0 +1,38 @@
+[
+  {
+    "id": "or.referral.basic-rights-oregon",
+    "jurisdiction": "US-OR",
+    "name": "Basic Rights Oregon",
+    "url": "https://www.basicrights.org",
+    "note": {
+      "en": "Statewide LGBTQ2SIA+ advocacy organization that publishes practical guidance on changing your name and gender marker on Oregon identity documents.",
+      "es": "Organización estatal de defensa LGBTQ2SIA+ que publica orientación práctica sobre cómo cambiar su nombre y marcador de género en los documentos de identidad de Oregon."
+    },
+    "source": {
+      "url": "https://www.basicrights.org",
+      "title": "Basic Rights Oregon",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "or.referral.oregon-law-help",
+    "jurisdiction": "US-OR",
+    "name": "Oregon Law Help",
+    "url": "https://oregonlawhelp.org",
+    "note": {
+      "en": "Free legal-information site published by the Oregon State Bar, including a self-help guide to updating your name or gender on identity documents and referrals to free legal clinics.",
+      "es": "Sitio gratuito de información legal publicado por el Colegio de Abogados de Oregon, que incluye una guía de autoayuda para actualizar su nombre o género en los documentos de identidad y referencias a clínicas legales gratuitas."
+    },
+    "source": {
+      "url": "https://oregonlawhelp.org",
+      "title": "Oregon Law Help",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

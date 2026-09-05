@@ -1070,6 +1070,141 @@
     "language": "es"
   },
   {
+    "id": "md.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-MD",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Maryland",
+    "statement": "Si nació en Maryland, puede solicitar una nueva Acta de Nacimiento que refleje un cambio en la designación de sexo si su sexo ha cambiado o si se le ha diagnosticado una condición intersexual. La División de Registros Vitales de Maryland exige prueba satisfactoria de una de las siguientes opciones: una declaración firmada por un profesional de salud con licencia, bajo pena de perjurio, de que usted se sometió a un tratamiento quirúrgico, hormonal u otro tratamiento apropiado para usted, según los estándares médicos generalmente aceptados; una declaración de un profesional de salud con licencia de que usted tiene una condición intersexual y que, en su opinión profesional, su designación de sexo debería cambiarse; o una orden judicial que indique que su sexo debe cambiarse.",
+    "detail": "Un profesional de salud con licencia puede ser un médico, un psicólogo, una enfermera registrada certificada como enfermera practicante, psicoterapeuta de enfermería o especialista clínica de enfermería, o una trabajadora social clínica con licencia — incluida una persona con licencia para ejercer en otro estado que cumpla los requisitos de Maryland para ejercer aquí. Envíe su solicitud, la evidencia y las tarifas a la División de Registros Vitales. Si también solicita un cambio de nombre y tiene más de 12 meses de edad, también debe presentar la orden judicial original.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Preparar la nueva Acta de Nacimiento cuesta $10. Una copia certificada cuesta $10 por copia si desea una. Pague con cheque o giro postal."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.maryland.gov/vsa/Documents/Corrections/Birth/Gender%20Reassignment/Gender%20Re-Assignment%20instructions%2009_01_2016.pdf",
+      "title": "Departamento de Salud de Maryland, División de Registros Vitales — Solicitud de una Nueva Acta de Nacimiento Tras un Cambio de Sexo o Diagnóstico de una Condición Intersexual",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "md-vsa-gender-reassignment",
+    "language": "es"
+  },
+  {
+    "id": "md.birth-certificate.name.es",
+    "jurisdiction": "US-MD",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Maryland",
+    "statement": "Maryland permite enmendar un acta de nacimiento registrada por el Registrador Estatal, de conformidad con Md. Code Ann., Health-General § 4-214, incluso para cambiar el nombre. Los tipos de cambios que enumera la División de Registros Vitales incluyen una declaración jurada para cambiar un nombre dentro de los 12 meses posteriores al nacimiento, u obtener una orden judicial para otros cambios en el acta de nacimiento.",
+    "detail": "Para solicitar un cambio, puede enviar por correo electrónico el formulario de solicitud de enmienda y los documentos requeridos a la División de Registros Vitales, y un representante se comunicará con usted sobre el pago, o puede enviar la solicitud por correo postal junto con las tarifas. Después de que la División reciba su solicitud y la tarifa de enmienda, evaluará su solicitud y responderá por escrito si necesita más información.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "La tarifa de enmienda es de $10, más una tarifa de certificado de $10."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://health.maryland.gov/vsa/Pages/birthcorrect.aspx",
+      "title": "Departamento de Salud de Maryland — Correcciones de Actas de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "md.court-order.name.es",
+    "jurisdiction": "US-MD",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Maryland",
+    "statement": "Para cambiar legalmente su nombre en Maryland, presenta una Petición de Cambio de Nombre en el Tribunal de Circuito — no en el Tribunal de Distrito — del condado (o la ciudad de Baltimore) donde vive, tiene un negocio habitual, trabaja, ejerce habitualmente una vocación, o donde nació. Los tribunales de Maryland dicen que puede cambiar su nombre siempre que no sea con un propósito ilegal o fraudulento y no interfiera con los derechos de otras personas.",
+    "detail": "Use la Petición de Cambio de Nombre de un Adulto (CC-DR-60). Adjunte documentos que muestren su nombre legal actual — como un acta de nacimiento, una licencia de conducir o un pasaporte — y firme la petición con su nombre legal actual. Cualquier persona con una razón válida puede presentar una objeción por escrito dentro de los 30 días posteriores a la fecha en que presentó la petición; no objetar en ese plazo se considera consentimiento al cambio de nombre. Si el tribunal concede su petición y no le envía por correo una copia certificada de la orden, pida copias en la oficina del secretario — necesitará una para actualizar su licencia de conducir, su acta de nacimiento, su registro del Seguro Social y otras cuentas. Si también desea una orden judicial sobre su identidad de género, los tribunales de Maryland describen un proceso aparte de 'declaración judicial de identidad de género' en el que puede solicitar un cambio de nombre como parte del mismo caso.",
+    "cost": {
+      "amount_usd": 165,
+      "note": "Puede preguntarle al tribunal sobre una exención de la tarifa de presentación si no puede pagar los $165; los tribunales de Maryland publican más información sobre cómo calificar para una."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.courts.state.md.us/legalhelp/family/namechange",
+      "title": "Tribunales de Maryland — Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "md-cc-dr-60",
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "es"
+  },
+  {
+    "id": "md.drivers-license.gender-marker.es",
+    "jurisdiction": "US-MD",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de Maryland",
+    "statement": "Puede actualizar el marcador de género en su licencia de conducir o tarjeta de identificación de Maryland a M (masculino), F (femenino) o X (sin especificar u otro). La MVA dice que no se requiere documentación para cambiar su designación de género, pero debe hacerlo en persona en una oficina de la MVA — no en línea ni en un quiosco de autoservicio — con una cita.",
+    "detail": "En su cita le tomarán una foto nueva y pagará la tarifa de reemplazo de tarjeta que se aplica a una licencia o identificación corregida; consulte la página de tarifas y opciones de pago de la MVA para el monto actual. Una vez aprobado, su nueva licencia se le enviará por correo dentro de 7 a 10 días hábiles. Puede cambiar su designación de género tantas veces como necesite — se aplica una tarifa de licencia corregida cada vez — y la MVA dice que no necesita haber cambiado primero el género en su acta de nacimiento. Si es menor de 18 años y quiere elegir un género distinto al que aparece en su acta de nacimiento, su padre, madre o tutor debe firmar la solicitud para aprobar la elección, o no se emitirá la credencial.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La MVA no da una cifra en dólares en esta página — dice que se aplica una tarifa de reemplazo de tarjeta cada vez que cambia su designación de género. Consulte la página de tarifas y opciones de pago de la MVA para el monto actual."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://mva.maryland.gov/about-mva/Pages/changing-gender.aspx",
+      "title": "MVA de Maryland — Actualizar el nombre, la dirección u otra información en su licencia de conducir",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "md.drivers-license.name.es",
+    "jurisdiction": "US-MD",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Maryland",
+    "statement": "Para cambiar su nombre en una licencia de conducir o tarjeta de identificación de Maryland, primero actualice su nombre con la Administración del Seguro Social — la MVA dice que lo haga al menos 72 horas antes de su cita en la MVA. Luego, haga una cita en línea y visite en persona una oficina de la MVA; no puede completar un cambio de nombre en línea ni en un quiosco de autoservicio.",
+    "detail": "Lleve su licencia de conducir de Maryland actual y un documento original o certificado de su cambio de nombre legal — la MVA dice que no se aceptan fotocopias — como un certificado de matrimonio, un decreto de divorcio, una orden judicial o un pasaporte con su nombre nuevo. Si ya tiene un pasaporte estadounidense válido con su nombre nuevo, la MVA dice que no necesita presentar documentos adicionales de cambio de nombre. Hay una tarifa por una licencia o identificación corregida que muestre su nombre nuevo; consulte la página de tarifas y opciones de pago de la MVA para conocer el monto actual.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La MVA no da una cifra en dólares para un cambio de nombre en esta página — dice que se aplica una tarifa por una licencia o identificación corregida y que consulte su página de tarifas y opciones de pago para el monto actual."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://mva.maryland.gov/about-mva/Pages/changing-gender.aspx",
+      "title": "MVA de Maryland — Actualizar el nombre, la dirección u otra información en su licencia de conducir",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "mi.birth-certificate.fees.es",
     "jurisdiction": "US-MI",
     "document_type": "birth-certificate",
@@ -1242,131 +1377,6 @@
     "language": "es"
   },
   {
-    "id": "nc.court-order.name.es",
-    "jurisdiction": "US-NC",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "topic": "Solicitud de cambio de nombre en Carolina del Norte",
-    "statement": "En Carolina del Norte usted presenta una solicitud de cambio de nombre ante el secretario del tribunal superior, por causa justificada, en el condado donde reside. Desde el 1 de diciembre de 2025, la ley ya no exige publicar un aviso de su solicitud en un periódico antes de que se decida.",
-    "detail": "El secretario decide su solicitud de forma administrativa; la ley no describe una audiencia ante un juez. Su solicitud y el expediente del tribunal se mantienen fuera del registro público si usted participa en el programa estatal de confidencialidad de direcciones, o si presenta evidencia de que es víctima de violencia doméstica, un delito sexual o acecho. Otra sección de esta misma ley, G.S. 101-5, indica qué debe presentar junto con la solicitud — lea también ese registro antes de presentar la suya.",
-    "cost": {
-      "amount_usd": null,
-      "note": "Esta ley no indica una tarifa de presentación en dólares. Comuníquese con el secretario del tribunal superior de su condado para conocer el monto actual."
-    },
-    "prerequisites": [],
-    "source": {
-      "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_101/GS_101-2.html",
-      "title": "Estatutos Generales de Carolina del Norte — G.S. 101-2, Procedimiento para Cambiar de Nombre; Solicitud; Aviso",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "language": "es"
-  },
-  {
-    "id": "nc.court-order.name.requirements.es",
-    "jurisdiction": "US-NC",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "topic": "Requisitos de la solicitud de cambio de nombre en Carolina del Norte",
-    "statement": "Para que se apruebe una solicitud de cambio de nombre en Carolina del Norte, usted presenta su nombre verdadero, el condado y la fecha de nacimiento, los nombres de sus padres tal como aparecen en su acta de nacimiento, y el nombre que desea adoptar. También presenta los resultados de una verificación de antecedentes penales estatal y nacional, hecha dentro de los 90 días de la fecha de su solicitud — por la Oficina Estatal de Investigación, la Oficina Federal de Investigación (FBI), o un intermediario aprobado por el FBI — además de una declaración jurada sobre su residencia y cualquier obligación pendiente de impuestos o manutención infantil.",
-    "detail": "El secretario le explica cómo tomarse las huellas dactilares para la verificación de antecedentes penales. Luego el secretario revisa todo lo presentado para decidir si hay una razón buena y suficiente para conceder o negar su solicitud; esto es una decisión de criterio, no una simple lista de casillas. Si el secretario niega su solicitud, la orden indica los motivos, y usted puede pedirle al juez residente del tribunal superior que reconsidere dentro de los 30 días de esa orden. Si la reconsideración no tiene éxito, debe esperar 12 meses antes de volver a solicitar. Este requisito no aplica a una solicitud para cambiar el nombre de un menor de 16 años.",
-    "cost": {
-      "amount_usd": null,
-      "note": "Esta ley no da un monto en dólares para la verificación de antecedentes penales ni para la presentación. Comuníquese con el secretario del tribunal superior de su condado, y espere pagar por la toma de huellas dactilares a través de la Oficina Estatal de Investigación o un servicio intermediario aprobado."
-    },
-    "discretionary": true,
-    "prerequisites": [],
-    "source": {
-      "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_101/GS_101-5.html",
-      "title": "Estatutos Generales de Carolina del Norte — G.S. 101-5, Requisitos de la Solicitud de Cambio de Nombre; Motivos para que el Secretario Ordene o Niegue el Cambio de Nombre; Certificado y Registro",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "language": "es"
-  },
-  {
-    "id": "nc.drivers-license.name.es",
-    "jurisdiction": "US-NC",
-    "document_type": "drivers-license",
-    "change_type": [
-      "name"
-    ],
-    "topic": "Cambio de nombre en la licencia o identificación de Carolina del Norte",
-    "statement": "Si su nombre cambia, Carolina del Norte le da 60 días para notificar al NCDMV y obtener una licencia de conducir o identificación duplicada con su nombre nuevo.",
-    "detail": "Como el NCDMV verifica su nombre contra los registros de la Administración del Seguro Social, visite su oficina local del Seguro Social al menos 24 a 36 horas antes de ir al NCDMV. Lleve prueba documentada de los tribunales que demuestre que el cambio de nombre se realizó oficialmente — como una licencia o certificado de matrimonio certificado, un decreto de divorcio, o un documento de los tribunales o del Registro de Escrituras — y complete un DL-101 notariado, que se obtiene en una oficina del DMV. Toda la documentación debe provenir de la agencia gubernamental correspondiente de los Estados Unidos, Puerto Rico, un territorio de los EE. UU. o Canadá.",
-    "cost": {
-      "amount_usd": null,
-      "note": "Esta página no indica un monto de tarifa para la tarjeta duplicada. Consulte el listado de tarifas del NCDMV para conocer las tarifas actuales de licencia e identificación."
-    },
-    "prerequisites": [
-      "court-order"
-    ],
-    "source": {
-      "url": "https://www.ncdot.gov/dmv/help/moving/Pages/name-changes.aspx",
-      "title": "NCDMV Oficial — Cambios de Nombre",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "language": "es"
-  },
-  {
-    "id": "nc.drivers-license.gender-marker.es",
-    "jurisdiction": "US-NC",
-    "document_type": "drivers-license",
-    "change_type": [
-      "gender-marker"
-    ],
-    "topic": "Designación de sexo en la licencia o identificación de Carolina del Norte",
-    "statement": "Para cambiar la designación de sexo en una licencia de conducir o identificación de Carolina del Norte, el Formulario de Designación de Sexo del NCDMV (DL-300) y sus instrucciones indican que usted entrega su tarjeta actual y presenta uno de estos documentos: un Formulario de Designación de Sexo completado, un pasaporte estadounidense válido que muestre el sexo solicitado, un acta de nacimiento que muestre el sexo solicitado, o una orden judicial emitida por un tribunal de los Estados Unidos que otorgue un cambio de sexo o género.",
-    "detail": "El propio Formulario de Designación de Sexo tiene dos partes: usted marca una casilla para el sexo que desea que aparezca y certifica bajo pena de ley que la solicitud refleja su identidad de género y no tiene fines fraudulentos ni ilegales, y un médico, psiquiatra, asistente médico, terapeuta con licencia, consejero, psicólogo, trabajador de casos o trabajador social firma una segunda sección con su opinión profesional sobre su identidad de género. Usted paga la tarifa correspondiente por una tarjeta nueva o modificada y le toman una foto nueva. Los cambios de nombre en una licencia o identificación son un proceso aparte y pueden hacerse en cualquier momento sin importar su designación de sexo. El NCDOT no ha retirado este formulario de su sitio, pero no asuma que esta vía sigue abierta exactamente como se describe — una nueva ley estatal cambió cómo Carolina del Norte define el sexo para las agencias estatales. Lea usted mismo la página actual del NCDMV y confírmelo antes de confiar en esto.",
-    "cost": {
-      "amount_usd": null,
-      "note": "El formulario y las instrucciones describen el pago de 'las tarifas correspondientes por una licencia o identificación nueva o modificada' sin indicar un monto. Consulte el listado de tarifas del NCDMV para conocer las tarifas actuales."
-    },
-    "prerequisites": [],
-    "source": {
-      "url": "https://www.ncdot.gov/dmv/downloads/Documents/DL-300.pdf",
-      "title": "División de Vehículos Motorizados de Carolina del Norte — Formulario de Designación de Sexo (DL-300) y Procedimiento para Cambiar la Designación de Sexo",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "needs_reverification",
-    "recheck_sla_days": 30,
-    "form_ref": "nc-dmv-dl-300",
-    "language": "es"
-  },
-  {
-    "id": "nc.drivers-license.gender-marker.law.es",
-    "jurisdiction": "US-NC",
-    "document_type": "drivers-license",
-    "change_type": [
-      "gender-marker"
-    ],
-    "topic": "Ley de Carolina del Norte sobre el sexo para las agencias estatales",
-    "statement": "Una ley de Carolina del Norte que entró en vigor el 1 de enero de 2026 fija las definiciones que las agencias estatales deben usar en toda norma, reglamento o política pública. Define 'sexo biológico,' 'hombre' y 'mujer.' Esa misma ley dice que la identidad de género es la 'identidad autodeclarada' de una persona, que 'puede no coincidir con el sexo biológico.' Dice que la identidad de género 'no se tratará como legal o biológicamente equivalente al sexo.'",
-    "detail": "La ley define el sexo biológico por rasgos del cuerpo presentes al nacer, como los cromosomas sexuales y los órganos reproductivos. También define así a Niño, Niña, Hombre, Mujer, Padre y Madre. La ley no dice qué debe hacer el NCDMV con ningún formulario en particular. Lea el registro sobre la licencia de conducir en este corpus para eso. Luego confirme usted mismo en el sitio actual del NCDMV antes de confiar en cualquiera de los dos registros.",
-    "prerequisites": [],
-    "source": {
-      "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_12/GS_12-3.3.html",
-      "title": "Estatutos Generales de Carolina del Norte — G.S. 12-3.3, Reconocimiento Oficial de Dos Sexos en Todas las Normas Administrativas, Reglamentos o Políticas Públicas Adoptadas por el Estado de Carolina del Norte o sus Subdivisiones Políticas",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "needs_reverification",
-    "recheck_sla_days": 30,
-    "language": "es"
-  },
-  {
     "id": "nc.birth-certificate.gender-marker.es",
     "jurisdiction": "US-NC",
     "document_type": "birth-certificate",
@@ -1433,6 +1443,390 @@
     "source": {
       "url": "https://vitalrecords.nc.gov/change.htm",
       "title": "NCDHHS: DPH: Registros Vitales de Carolina del Norte — Cambiar un Registro",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nc.court-order.name.es",
+    "jurisdiction": "US-NC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Solicitud de cambio de nombre en Carolina del Norte",
+    "statement": "En Carolina del Norte usted presenta una solicitud de cambio de nombre ante el secretario del tribunal superior, por causa justificada, en el condado donde reside. Desde el 1 de diciembre de 2025, la ley ya no exige publicar un aviso de su solicitud en un periódico antes de que se decida.",
+    "detail": "El secretario decide su solicitud de forma administrativa; la ley no describe una audiencia ante un juez. Su solicitud y el expediente del tribunal se mantienen fuera del registro público si usted participa en el programa estatal de confidencialidad de direcciones, o si presenta evidencia de que es víctima de violencia doméstica, un delito sexual o acecho. Otra sección de esta misma ley, G.S. 101-5, indica qué debe presentar junto con la solicitud — lea también ese registro antes de presentar la suya.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta ley no indica una tarifa de presentación en dólares. Comuníquese con el secretario del tribunal superior de su condado para conocer el monto actual."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_101/GS_101-2.html",
+      "title": "Estatutos Generales de Carolina del Norte — G.S. 101-2, Procedimiento para Cambiar de Nombre; Solicitud; Aviso",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nc.court-order.name.requirements.es",
+    "jurisdiction": "US-NC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Requisitos de la solicitud de cambio de nombre en Carolina del Norte",
+    "statement": "Para que se apruebe una solicitud de cambio de nombre en Carolina del Norte, usted presenta su nombre verdadero, el condado y la fecha de nacimiento, los nombres de sus padres tal como aparecen en su acta de nacimiento, y el nombre que desea adoptar. También presenta los resultados de una verificación de antecedentes penales estatal y nacional, hecha dentro de los 90 días de la fecha de su solicitud — por la Oficina Estatal de Investigación, la Oficina Federal de Investigación (FBI), o un intermediario aprobado por el FBI — además de una declaración jurada sobre su residencia y cualquier obligación pendiente de impuestos o manutención infantil.",
+    "detail": "El secretario le explica cómo tomarse las huellas dactilares para la verificación de antecedentes penales. Luego el secretario revisa todo lo presentado para decidir si hay una razón buena y suficiente para conceder o negar su solicitud; esto es una decisión de criterio, no una simple lista de casillas. Si el secretario niega su solicitud, la orden indica los motivos, y usted puede pedirle al juez residente del tribunal superior que reconsidere dentro de los 30 días de esa orden. Si la reconsideración no tiene éxito, debe esperar 12 meses antes de volver a solicitar. Este requisito no aplica a una solicitud para cambiar el nombre de un menor de 16 años.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta ley no da un monto en dólares para la verificación de antecedentes penales ni para la presentación. Comuníquese con el secretario del tribunal superior de su condado, y espere pagar por la toma de huellas dactilares a través de la Oficina Estatal de Investigación o un servicio intermediario aprobado."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_101/GS_101-5.html",
+      "title": "Estatutos Generales de Carolina del Norte — G.S. 101-5, Requisitos de la Solicitud de Cambio de Nombre; Motivos para que el Secretario Ordene o Niegue el Cambio de Nombre; Certificado y Registro",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nc.drivers-license.gender-marker.es",
+    "jurisdiction": "US-NC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en la licencia o identificación de Carolina del Norte",
+    "statement": "Para cambiar la designación de sexo en una licencia de conducir o identificación de Carolina del Norte, el Formulario de Designación de Sexo del NCDMV (DL-300) y sus instrucciones indican que usted entrega su tarjeta actual y presenta uno de estos documentos: un Formulario de Designación de Sexo completado, un pasaporte estadounidense válido que muestre el sexo solicitado, un acta de nacimiento que muestre el sexo solicitado, o una orden judicial emitida por un tribunal de los Estados Unidos que otorgue un cambio de sexo o género.",
+    "detail": "El propio Formulario de Designación de Sexo tiene dos partes: usted marca una casilla para el sexo que desea que aparezca y certifica bajo pena de ley que la solicitud refleja su identidad de género y no tiene fines fraudulentos ni ilegales, y un médico, psiquiatra, asistente médico, terapeuta con licencia, consejero, psicólogo, trabajador de casos o trabajador social firma una segunda sección con su opinión profesional sobre su identidad de género. Usted paga la tarifa correspondiente por una tarjeta nueva o modificada y le toman una foto nueva. Los cambios de nombre en una licencia o identificación son un proceso aparte y pueden hacerse en cualquier momento sin importar su designación de sexo. El NCDOT no ha retirado este formulario de su sitio, pero no asuma que esta vía sigue abierta exactamente como se describe — una nueva ley estatal cambió cómo Carolina del Norte define el sexo para las agencias estatales. Lea usted mismo la página actual del NCDMV y confírmelo antes de confiar en esto.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El formulario y las instrucciones describen el pago de 'las tarifas correspondientes por una licencia o identificación nueva o modificada' sin indicar un monto. Consulte el listado de tarifas del NCDMV para conocer las tarifas actuales."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ncdot.gov/dmv/downloads/Documents/DL-300.pdf",
+      "title": "División de Vehículos Motorizados de Carolina del Norte — Formulario de Designación de Sexo (DL-300) y Procedimiento para Cambiar la Designación de Sexo",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "nc-dmv-dl-300",
+    "language": "es"
+  },
+  {
+    "id": "nc.drivers-license.gender-marker.law.es",
+    "jurisdiction": "US-NC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Ley de Carolina del Norte sobre el sexo para las agencias estatales",
+    "statement": "Una ley de Carolina del Norte que entró en vigor el 1 de enero de 2026 fija las definiciones que las agencias estatales deben usar en toda norma, reglamento o política pública. Define 'sexo biológico,' 'hombre' y 'mujer.' Esa misma ley dice que la identidad de género es la 'identidad autodeclarada' de una persona, que 'puede no coincidir con el sexo biológico.' Dice que la identidad de género 'no se tratará como legal o biológicamente equivalente al sexo.'",
+    "detail": "La ley define el sexo biológico por rasgos del cuerpo presentes al nacer, como los cromosomas sexuales y los órganos reproductivos. También define así a Niño, Niña, Hombre, Mujer, Padre y Madre. La ley no dice qué debe hacer el NCDMV con ningún formulario en particular. Lea el registro sobre la licencia de conducir en este corpus para eso. Luego confirme usted mismo en el sitio actual del NCDMV antes de confiar en cualquiera de los dos registros.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_12/GS_12-3.3.html",
+      "title": "Estatutos Generales de Carolina del Norte — G.S. 12-3.3, Reconocimiento Oficial de Dos Sexos en Todas las Normas Administrativas, Reglamentos o Políticas Públicas Adoptadas por el Estado de Carolina del Norte o sus Subdivisiones Políticas",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "nc.drivers-license.name.es",
+    "jurisdiction": "US-NC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia o identificación de Carolina del Norte",
+    "statement": "Si su nombre cambia, Carolina del Norte le da 60 días para notificar al NCDMV y obtener una licencia de conducir o identificación duplicada con su nombre nuevo.",
+    "detail": "Como el NCDMV verifica su nombre contra los registros de la Administración del Seguro Social, visite su oficina local del Seguro Social al menos 24 a 36 horas antes de ir al NCDMV. Lleve prueba documentada de los tribunales que demuestre que el cambio de nombre se realizó oficialmente — como una licencia o certificado de matrimonio certificado, un decreto de divorcio, o un documento de los tribunales o del Registro de Escrituras — y complete un DL-101 notariado, que se obtiene en una oficina del DMV. Toda la documentación debe provenir de la agencia gubernamental correspondiente de los Estados Unidos, Puerto Rico, un territorio de los EE. UU. o Canadá.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica un monto de tarifa para la tarjeta duplicada. Consulte el listado de tarifas del NCDMV para conocer las tarifas actuales de licencia e identificación."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.ncdot.gov/dmv/help/moving/Pages/name-changes.aspx",
+      "title": "NCDMV Oficial — Cambios de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nj.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-NJ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Nueva Jersey",
+    "statement": "Según la Ley Babs Siperstein, las personas cuyo nacimiento fue registrado en Nueva Jersey pueden enmendar la designación de sexo en su acta de nacimiento para reflejar su identidad de género. La ley de 2018 eliminó el requisito anterior de presentar documentación de cirugía de reasignación de género, y en su lugar permite documentar la identidad de género mediante autoatestación — usted mismo, o un padre/tutor en el caso de un menor.",
+    "detail": "El cambio entró en vigor el 1 de febrero de 2019, después de que el gobernador Phil Murphy firmara la legislación en julio de 2018. Un adulto usa el Formulario REG-L2 (Formulario de Solicitud y Atestación para Enmendar la Designación de Sexo para Reflejar la Identidad de Género en un Acta de Nacimiento); un padre o tutor usa el Formulario REG-L3 para un menor.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.nj.gov/health/vital/correcting-vital/sexdesignation/",
+      "title": "Departamento de Salud de Nueva Jersey — Enmendar la Designación de Sexo para Reflejar la Identidad de Género en un Acta de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "nj-doh-reg-l2",
+    "language": "es"
+  },
+  {
+    "id": "nj.birth-certificate.name.es",
+    "jurisdiction": "US-NJ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Nueva Jersey",
+    "statement": "Para enmendar el nombre en un acta de nacimiento de Nueva Jersey después de un cambio legal de nombre, envía por correo una carta que identifique el registro, una copia de la sentencia original de cambio de nombre, y una tarifa de $2 a la Oficina de Estadísticas Vitales y Registro.",
+    "detail": "Su carta debe identificar el nombre actualmente registrado, la fecha y el lugar exactos donde ocurrió el evento, y — en el caso de un acta de nacimiento — el nombre de soltera completo de la madre y el nombre completo del padre si está indicado. Una copia certificada del acta corregida cuesta $25 por la primera copia y $2 por cada copia adicional de la misma acta pedida al mismo tiempo, pagadera con cheque o giro postal al Tesorero del Estado de Nueva Jersey. La Oficina de Estadísticas Vitales y Registro no reemplazará copias emitidas previamente una vez completada una enmienda.",
+    "cost": {
+      "amount_usd": 2,
+      "note": "Esta es la tarifa para procesar el cambio legal de nombre en sí. Una copia certificada del acta corregida cuesta $25 por la primera copia y $2 por cada copia adicional pedida al mismo tiempo."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.nj.gov/health/vital/correcting-vital/",
+      "title": "Departamento de Salud de Nueva Jersey — Corrección de un Registro Vital",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nj.court-order.name.es",
+    "jurisdiction": "US-NJ",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Nueva Jersey",
+    "statement": "Para cambiar legalmente su nombre en Nueva Jersey como adulto, presenta una Demanda Verificada y una Certificación de Información Confidencial para Cambio de Nombre en la División de Derecho (Law Division) del Tribunal Superior, junto con una Declaración de Información del Caso Civil y una tarifa de presentación de $250. El tribunal fija una fecha de audiencia, y usted debe notificar a la División de Justicia Criminal sobre su solicitud por correo certificado al menos 20 días antes de esa audiencia.",
+    "detail": "El paquete del tribunal contiene cinco formularios: la Demanda Verificada (Formulario A), la Certificación de Información Confidencial para Cambio de Nombre (Formulario A1), la Orden que Fija la Fecha de Audiencia (Formulario B), la Sentencia Final (Formulario C) y el Anexo de la Sentencia Final (Formulario C1). Una sola tarifa de $250 cubre el cambio de nombre de varios familiares adultos presentado en conjunto, pero cualquier persona menor de 18 años debe usar en su lugar el paquete separado de cambio de nombre de la 'División de Equidad (Chancery Division), Parte de Familia'. Si tiene cargos penales o de delincuencia pendientes en Nueva Jersey, también debe notificar al fiscal del condado (o, si los cargos fueron presentados por el Fiscal General, a la División de Justicia Criminal) al menos 20 días antes de la audiencia. Después de la audiencia, presenta una copia certificada con sello en relieve de la Sentencia Final y su Anexo — $25.00 por copia certificada — a la Comisión de Vehículos Motorizados, si tiene licencia, registro de vehículo o tarjeta de identificación de no conductor, dentro de las dos semanas posteriores a la fecha de vigencia de la sentencia, y al Departamento de Tesorería dentro de 45 días junto con una tarifa de $50.",
+    "cost": {
+      "amount_usd": 250,
+      "note": "Esta es la tarifa de presentación del Tribunal Superior, pagada con cheque o giro postal al Tesorero del Estado de Nueva Jersey; cubre el cambio de nombre de varios familiares adultos presentado en conjunto. Una copia certificada de la Sentencia Final con sello en relieve cuesta $25.00 cada una, y enviar una al Departamento de Tesorería requiere una tarifa adicional de $50.00 dentro de 45 días."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.njcourts.gov/sites/default/files/forms/10551_namechg_adult.pdf",
+      "title": "Tribunales de Nueva Jersey — Cómo Pedirle al Tribunal que Cambie su Nombre (Solo para Adultos)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "nj-courts-namechg-adult",
+    "language": "es"
+  },
+  {
+    "id": "nj.drivers-license.gender-marker.es",
+    "jurisdiction": "US-NJ",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de conducir de Nueva Jersey",
+    "statement": "Para actualizar el marcador de género en su licencia de conducir o tarjeta de identificación de no conductor de Nueva Jersey, complete el formulario de designación de género de la MVC y llévelo a cualquier Centro de Licencias de la MVC sin cita previa — no necesita cita. En el formulario puede indicar masculino, femenino o X para quienes se identifican como no binarios o prefieren no especificar su género, y no necesita documentación médica ni la firma de un médico.",
+    "detail": "Este trámite debe hacerse en persona: se verifican sus documentos y debe entregar su licencia o identificación actual. También paga una tarifa estándar de $11 para recibir la nueva tarjeta. La MVC cambió esta política después de una ley de Nueva Jersey de 2018 que eliminó el requisito anterior de presentar prueba de cirugía de reasignación de género para actualizar el marcador de género en los registros oficiales.",
+    "cost": {
+      "amount_usd": 11,
+      "note": "Tarifa estándar de tarjeta duplicada, pagada para recibir su nueva licencia o identificación después de actualizar el marcador de género."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.nj.gov/transgender/name-changes/drivers-license-gender-change.shtml",
+      "title": "Centro de Información para Personas Transgénero de Nueva Jersey — ¿Cómo actualizo mi marcador de género en mi licencia de conducir de NJ?",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "nj.drivers-license.name.es",
+    "jurisdiction": "US-NJ",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Nueva Jersey",
+    "statement": "Para actualizar su nombre en su licencia de conducir o tarjeta de identificación de Nueva Jersey, primero debe cambiar legalmente su nombre. Luego vaya a cualquier Centro de Licencias de la MVC sin cita previa — no necesita cita — y lleve una copia certificada de la orden judicial que otorga su cambio legal de nombre y sus documentos de '6 puntos de identificación' para probar su identidad y fecha de nacimiento.",
+    "detail": "Todos los documentos deben ser originales o copias certificadas. No hay problema si su nombre de nacimiento aparece en sus otros documentos de identificación — igual serán aceptados. Puede pedir una copia certificada de su acta de nacimiento de Nueva Jersey usando el sistema en línea de la Oficina Estatal de Estadísticas Vitales de NJ. Mientras esté en el Centro de Licencias de la MVC, también puede actualizar el marcador de género en su licencia.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.nj.gov/transgender/name-changes/drivers-license-name-change.shtml",
+      "title": "Centro de Información para Personas Transgénero de Nueva Jersey — ¿Cómo cambio mi nombre en mi licencia de conducir de NJ?",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nv.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-NV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Cambio del marcador de género en el acta de nacimiento de Nevada",
+    "statement": "Nevada cambia el marcador de género en un acta de nacimiento emitida en Nevada mediante un proceso de autodeclaración — no necesita una orden judicial ni una carta médica, a menos que elija presentar una de todos modos. Complete usted mismo una Declaración Jurada de Corrección de un Registro, notariada, más una Declaración Jurada Suplementaria de otra persona que pueda dar fe de que usted se identifica y pretende mantener el género que está solicitando.",
+    "detail": "Quien firme la Declaración Jurada Suplementaria no puede ser usted ni quien firmó la declaración principal. En lugar de las dos declaraciones juradas, puede presentar otra evidencia verificable, como una carta de un profesional de salud con licencia o una orden judicial que reconozca su género. Envíe sus documentos en persona o por correo a la Oficina de Registros Vitales y Estadísticas en Carson City; llame al 775-684-4242 y pregunte por un empleado de enmiendas si tiene dudas.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La guía de Nevada sobre este proceso indica una cuota de enmienda de $40.00, pero el formulario actual del paquete de correcciones de actas de nacimiento del departamento indica $45.00 por el mismo servicio — los dos documentos del departamento no coinciden, así que aquí no se afirma ninguna cifra. Confirme la cuota vigente con la Oficina de Registros Vitales (775-684-4242) antes de pagar."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf",
+      "title": "Nevada Division of Public and Behavioral Health — Changing Your Gender in Nevada: A Guide to Name and Gender Marker Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "nv-dpbh-corrections-birth",
+    "language": "es"
+  },
+  {
+    "id": "nv.birth-certificate.name.es",
+    "jurisdiction": "US-NV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Nevada",
+    "statement": "Si usted nació en Nevada, puede actualizar el nombre en su acta de nacimiento después de un cambio legal de nombre enviando por correo a la Oficina de Registros Vitales una solicitud de corrección completa junto con una copia CERTIFICADA de su orden judicial. La oficina no acepta una fotocopia ni una copia sin certificar.",
+    "detail": "La cuota es de $45.00 por persona del registro, e incluye la corrección y una copia certificada; cada copia certificada adicional cuesta $25.00. Pague con cheque, giro postal o cheque de caja a nombre de la Oficina de Registros Vitales — la oficina no acepta efectivo. Envíe sus documentos por correo a la Oficina de Registros Vitales y Estadísticas, 4150 Technology Way, Suite 104, Carson City, NV 89706. Cualquier corrector líquido, tachadura o borrón en la orden judicial presentada hará que rechacen su solicitud, y tendrá que volver a presentar una copia debidamente certificada.",
+    "cost": {
+      "amount_usd": 45,
+      "note": "$25.00 por cada copia certificada adicional después de la primera."
+    },
+    "timeline": {
+      "typical": "4 a 6 semanas"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf",
+      "title": "Nevada Office of Vital Records — Application for a Correction of a Record (Court Ordered Change Only)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "nv-dpbh-court-ordered-change",
+    "language": "es"
+  },
+  {
+    "id": "nv.court-order.name.es",
+    "jurisdiction": "US-NV",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Nevada",
+    "statement": "En Nevada, usted presenta una petición jurada de cambio de nombre ante el tribunal de distrito del condado donde vive. Debe publicar un aviso sobre su petición una vez en un periódico de ese condado, a menos que esté cambiando su nombre para adecuarlo a su identidad de género, en cuyo caso no tiene que publicar nada ni llenar el formulario de aviso.",
+    "detail": "Junto con la petición, presenta una Hoja de Carátula Familiar y, cuando su caso esté listo, una Orden de Cambio de Nombre de Adulto para que el juez la firme; algunos condados también piden una Solicitud de Resolución Sumaria y Declaración de Apoyo. Debe declarar cualquier condena por delito grave, y si tiene antecedentes penales deberá presentar sus huellas dactilares. Cuando se requiere publicación, el periódico le entrega una Declaración Jurada de Publicación para presentar ante el tribunal, y el juez no puede otorgar su cambio de nombre hasta 10 días después de que se publique el aviso. La cuota de presentación la fija cada condado — pregunte en su tribunal de distrito local cuánto cobra, y pregunte sobre una exención de cuota si no puede pagarla.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La cuota de presentación varía según el condado; pregunte en su tribunal de distrito local cuánto cobra. Hay una exención de cuota disponible si no puede pagarla."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://selfhelp.nvcourts.gov/self-help/name-changes/name-changes-for-adults",
+      "title": "Nevada State Self-Help Center — Name Changes for Adults",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nv.drivers-license.gender-marker.es",
+    "jurisdiction": "US-NV",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de conducir de Nevada",
+    "statement": "Las licencias de conducir y tarjetas de identificación de Nevada ofrecen tres designaciones de género — M, F o X. Para cambiar la suya, visite una oficina del DMV en persona; no se requiere certificación médica, y usted simplemente selecciona el género que desea en su solicitud.",
+    "detail": "Haga una cita antes de visitar el DMV. Las actualizaciones no se pueden hacer en línea ni por correo. Se aplican las cuotas estándar de reemplazo — consulte la página de Cambios de Nombre y Dirección del DMV para ver la tabla de cuotas; la página de preguntas frecuentes no indica una cuota separada específica para el cambio de género.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página de preguntas frecuentes del DMV solo indica que 'se aplican las cuotas estándar de reemplazo', sin dar una cifra exacta para una actualización únicamente de género."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.nv.gov/faqs.htm",
+      "title": "Nevada DMV — Frequently Asked Questions",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "nv.drivers-license.name.es",
+    "jurisdiction": "US-NV",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Nevada",
+    "statement": "Para cambiar el nombre en su licencia de conducir o tarjeta de identificación de Nevada, primero actualice su nombre con la Administración del Seguro Social — el DMV no puede procesar su cambio de nombre hasta que los registros del Seguro Social estén actualizados. Luego haga una cita y visite en persona una oficina del DMV de Nevada con su licencia o identificación actual y un documento legal original o certificado que autorice el cambio, como un certificado de matrimonio, un decreto de divorcio o una orden judicial.",
+    "detail": "También debe completar la Solicitud de Privilegios de Conducir o Tarjeta de Identificación (DMV 002). Una tarjeta actualizada del Seguro Social por sí sola no es suficiente prueba del cambio de nombre. Se aplican las cuotas estándar: $8.50 por una licencia de conducir no comercial, $7.50 por una tarjeta de identificación y $12.50 por una licencia de conducir comercial.",
+    "cost": {
+      "amount_usd": null,
+      "note": "$8.50 por una licencia de conducir no comercial, $7.50 por una tarjeta de identificación, $12.50 por una licencia de conducir comercial."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dmv.nv.gov/addchange.htm",
+      "title": "Nevada DMV — Name and Address Changes",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
@@ -1757,6 +2151,143 @@
     "language": "es"
   },
   {
+    "id": "or.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-OR",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Oregon",
+    "statement": "Las personas nacidas en Oregon pueden cambiar el sexo en su registro de nacimiento a M, F o X (no binario) para reflejar su identidad de género, ya sea firmando una Solicitud notariada para Cambiar el Nombre y/o el Sexo en un Registro de Nacimiento Vivo para Apoyar la Identidad de Género (formulario OHA 2673), o mediante una orden judicial. La vía administrativa de la solicitud notariada, que proviene de House Bill 2673, no requiere una orden judicial.",
+    "detail": "El nombre y el sexo no tienen que cambiarse al mismo tiempo en este formulario, pero cada uno solo puede cambiarse una vez mediante este proceso administrativo — cualquier cambio posterior necesita una orden judicial. Debe tener 18 años o más (o ser un menor emancipado) para solicitarlo usted mismo; un padre, madre o tutor legal presenta la solicitud si la persona registrada es menor de 18 años.",
+    "cost": {
+      "amount_usd": 35,
+      "note": "La tarifa de enmienda de $35 no incluye una copia del acta de nacimiento: cada certificado cuesta $25 (emitido por computadora) o $30 (imagen completa), y una tarifa opcional de $30 acelera la enmienda misma."
+    },
+    "timeline": {
+      "typical": "El tiempo de procesamiento estándar no está fijado aquí — la página remite a una lista aparte, actualizada semanalmente, de los tiempos de procesamiento actuales. Una vez procesada su enmienda, su nuevo certificado se le envía por correo, lo cual toma de 7 a 10 días hábiles para la entrega, a menos que usted organice su propio envío más rápido."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.oregon.gov/oha/ph/birthdeathcertificates/changevitalrecords/pages/changingbirthrecordtosupportgenderidentity.aspx",
+      "title": "Autoridad de Salud de Oregon — Cambiar un Registro de Nacimiento para Apoyar la Identidad de Género",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "or-oha-2673",
+    "language": "es"
+  },
+  {
+    "id": "or.birth-certificate.name.es",
+    "jurisdiction": "US-OR",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Oregon",
+    "statement": "Para cambiar sustancialmente el nombre en un acta de nacimiento de Oregon — quitar parte de él o cambiarlo a un nombre nuevo, no solo corregir un error tipográfico — la Autoridad de Salud de Oregon exige un cambio de nombre por orden judicial. Los registros vitales de Oregon no actualizan automáticamente su acta de nacimiento solo porque un tribunal haya concedido un cambio de nombre; usted tiene que solicitar la enmienda por su cuenta.",
+    "detail": "Usted presenta una copia certificada original de la orden judicial (con el sello y la firma originales del secretario del tribunal), un formulario completado de Solicitud para Cambiar el Acta de Nacimiento Basada en una Orden Judicial de Cambio de Nombre, un formulario completado de Solicitud de Enmienda de un Registro de Nacimiento, y una copia de su identificación con fotografía vigente.",
+    "cost": {
+      "amount_usd": 35,
+      "note": "La tarifa de enmienda es de $35. Obtener una copia certificada de la orden judicial en sí tiene su propia tarifa, fijada por el tribunal, que no se indica en esta página."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.oregon.gov/oha/ph/birthdeathcertificates/pages/changebirthrecord.aspx",
+      "title": "Autoridad de Salud de Oregon — Cambiar un Registro de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "or-oha-court-order-name-form",
+    "language": "es"
+  },
+  {
+    "id": "or.court-order.name-and-sex.es",
+    "jurisdiction": "US-OR",
+    "document_type": "court-order",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Petición de cambio de nombre y/o sexo en Oregon",
+    "statement": "Oregon le permite pedirle a un tribunal de circuito que cambie su nombre legal y/o su sexo registrado mediante el mismo trámite de petición. Usted completa un Paquete de Cambio de Nombre y Sexo estatal más un formulario Complementario de Cambio de Nombre, y luego los presenta ante el tribunal en persona o por correo postal de EE. UU.",
+    "detail": "Después de presentar los documentos, el tribunal abre un caso, los revisa y se pondrá en contacto con usted sobre el siguiente paso, que puede incluir una audiencia ante un juez. Los solicitantes menores de edad usan un paquete adicional y separado con sus propios requisitos.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica una tarifa de presentación. Comuníquese con el tribunal de circuito donde presente su caso para conocer el monto actual."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.courts.oregon.gov/courts/lane/help/pages/namesexchange.aspx",
+      "title": "Departamento Judicial de Oregon, Tribunal de Circuito del Condado de Lane — Cambio de Nombre y/o Cambio de Sexo",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "or-courts-name-sex-packet",
+    "language": "es"
+  },
+  {
+    "id": "or.drivers-license.gender-marker.es",
+    "jurisdiction": "US-OR",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Marcador de género en la licencia de conducir de Oregon",
+    "statement": "Oregon ofrece tres marcadores de género en una licencia de conducir, permiso o tarjeta de identificación: M (masculino), F (femenino) o X (no especificado), por autodeclaración. No necesita traer ningún documento que indique su género o sexo — solo traiga su identificación actual y elija el marcador que desee.",
+    "detail": "No puede cambiar su marcador de género en línea — tiene que hacer una cita o visitar una oficina del DMV en persona. El DMV no exige que su marcador de género coincida con los registros de la Administración del Seguro Social ni con ningún otro documento, y mantiene un historial de sus nombres y marcadores de género anteriores para prevenir fraudes.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Usted paga la tarifa de renovación o reemplazo para obtener una nueva tarjeta; la página no indica el monto."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.oregon.gov/odot/dmv/pages/driverid/chg_gender_designation.aspx",
+      "title": "Departamento de Transporte de Oregon — Cómo Cambiar su Marcador de Género en su Licencia de Conducir o Tarjeta de Identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "or.drivers-license.name.es",
+    "jurisdiction": "US-OR",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Oregon",
+    "statement": "Para cambiar el nombre en su licencia de conducir, permiso o tarjeta de identificación de Oregon, haga una cita o visite una oficina del DMV para el servicio sin cita previa, presente prueba de su cambio legal de nombre y presente prueba de su identidad y domicilio, y luego pague la tarifa correspondiente.",
+    "detail": "El DMV verifica su número de Seguro Social con la Administración del Seguro Social, así que si desea una credencial que cumpla con REAL ID, el nombre en ella debe coincidir con lo que el Seguro Social tiene registrado — primero debe actualizar su nombre con el Seguro Social. Para una credencial estándar, sin REAL ID, el nombre en su tarjeta puede ser diferente del registro del Seguro Social si usted presenta prueba de ese nombre. También puede cambiar su marcador de género como parte de la misma visita.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página indica que debe pagar la tarifa correspondiente, pero no indica el monto; consulte el listado de tarifas del DMV para conocer los precios actuales."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.oregon.gov/odot/dmv/pages/dv/chgname.aspx",
+      "title": "Departamento de Transporte de Oregon — Cómo Cambiar su Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "pa.birth-certificate.gender-marker.es",
     "jurisdiction": "US-PA",
     "document_type": "birth-certificate",
@@ -1882,6 +2413,149 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "form_ref": "pa-dl-80",
+    "language": "es"
+  },
+  {
+    "id": "tn.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-TN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Tennessee (Gore v. Lee)",
+    "statement": "Tennessee trata el sexo que figura en un acta de nacimiento como un hecho histórico que no puede cambiarse por la transición de una persona a una identidad de género diferente. Según Tenn. Code Ann. § 68-3-203(d), una \"cirugía de cambio de sexo\" no cuenta como un error de hecho que pueda corregirse en un acta de nacimiento — la única base que las normas de Tennessee permiten, por lo demás, para enmendar un registro.",
+    "detail": "Esta es la ley que la Corte de Apelaciones del Sexto Circuito examinó y confirmó en Gore v. Lee (No. 23-5669, decidido el 12 de julio de 2024): cuatro personas transgénero de Tennessee, todas nacidas en el estado, demandaron después de que se les negara un cambio en el sexo que figura en sus actas de nacimiento. La opinión del tribunal señala una excepción que NO cubre una designación de sexo: si obtiene una orden judicial que cambia su nombre, Tennessee permite enmendar su acta de nacimiento para reflejar el cambio de nombre (Tenn. Code Ann. § 68-3-203(c)).",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.opn.ca6.uscourts.gov/opinions.pdf/24a0151p-06.pdf",
+      "title": "Corte de Apelaciones de los Estados Unidos para el Sexto Circuito — Gore v. Lee, No. 23-5669 (12 de julio de 2024)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "tn.birth-certificate.name.es",
+    "jurisdiction": "US-TN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Tennessee",
+    "statement": "La Oficina de Registros Vitales de Tennessee usa un formulario general, la Solicitud para Enmendar un Acta de Nacimiento de Tennessee (PH-1186), para la mayoría de las correcciones de actas de nacimiento — pero las instrucciones del propio formulario incluyen \"cambios ordenados por un tribunal (cambios legales de nombre, adopciones, establecimiento de paternidad)\" entre los usos para los que dice que esta solicitud NO debe usarse, y no indica qué presentar en su lugar.",
+    "detail": "Para las correcciones que sí cubre, el PH-1186 requiere una declaración jurada — firmada ante un notario por el registrado (de 18 años o más), un padre que figure en el acta de nacimiento, o un tutor legal — más al menos un documento de respaldo, como un registro escolar, un certificado de matrimonio o el acta de nacimiento o defunción de un padre. Se presenta con una tarifa de enmienda de $15.00 a TN Vital Records en Nashville; una copia certificada en formato extenso del acta enmendada cuesta $15.00 más. Debido a que el formulario excluye un cambio legal de nombre ordenado por un tribunal de lo que cubre, quien lo prepare debe comunicarse directamente con la Oficina de Registros Vitales para confirmar el proceso y la tarifa vigentes para ese caso antes de confiar en este formulario.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El PH-1186 cobra $15.00 por enmendar un acta que cubre, más $15.00 adicionales por una copia certificada — pero el formulario dice que no debe usarse para un cambio legal de nombre ordenado por un tribunal, así que esta tarifa podría no aplicar a ese caso."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf",
+      "title": "Departamento de Salud de Tennessee, Oficina de Registros Vitales — Solicitud para Enmendar un Acta de Nacimiento de Tennessee (PH-1186)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "tn.court-order.name.es",
+    "jurisdiction": "US-TN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Tennessee",
+    "statement": "Para cambiar legalmente su nombre en Tennessee, presenta una petición ante el tribunal del condado donde vive. Los tribunales de Tennessee fijan sus propios formularios de petición y tarifas por condado — en el condado de Shelby (Memphis), por ejemplo, las peticiones de cambio de nombre para adultos se presentan en la Oficina del Secretario del Tribunal de Sucesiones (Probate Court).",
+    "detail": "Debe tener 18 años o más para cambiar su nombre sin consentimiento de los padres, y llevar un acta de nacimiento, prueba de identidad (como un pasaporte, licencia de conducir, o una identificación estatal, escolar o laboral) y prueba de residencia (como una factura de servicios, un talón de pago o una factura de impuestos). En el condado de Shelby, las peticiones se presentan en persona de lunes a viernes, de 9 a.m. a 3 p.m., y luego se fija una audiencia para el jueves siguiente por la tarde, en persona o por Zoom; la orden firmada que concede el cambio se entrega después de una audiencia en persona o se envía por correo después de una audiencia virtual. Comuníquese con el secretario del tribunal del condado donde vive para conocer los formularios y el calendario de ese condado.",
+    "cost": {
+      "amount_usd": null,
+      "note": "En el condado de Shelby, presentar en persona un cambio de nombre cuesta $166.50 (en efectivo o con tarjeta de crédito); presentar por Zoom cuesta $170.00, que incluye una tarifa de envío de la orden de $3.50. Otros condados fijan sus propios costos judiciales."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.shelbycountytn.gov/3826/Name-Changes",
+      "title": "Condado de Shelby, Tennessee — Cambios de Nombre/Correcciones de Actas de Nacimiento (Tribunal de Sucesiones)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "tn.drivers-license.gender-marker.es",
+    "jurisdiction": "US-TN",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo/género en la licencia de Tennessee",
+    "statement": "La página de 'Información Útil' de Servicios para Conductores de Tennessee incluye un tema de Cambio de Nombre y uno de Cambio de Dirección. No incluye ningún tema, formulario o página para cambiar la designación de sexo o género en una licencia de conducir o identificación.",
+    "detail": "Otros temas incluidos son Tarifas de Licencia de Conducir, Renovación de su Licencia, Reemplazo de una Licencia Perdida y Tipos de Licencias Emitidas. Ninguno de los temas de la página trata sobre una designación de sexo o género.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.tn.gov/safety/driver-services/helpful-information.html",
+      "title": "Departamento de Seguridad y Seguridad Nacional de Tennessee — Servicios para Conductores: Información Útil",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "tn.drivers-license.gender-marker.law.es",
+    "jurisdiction": "US-TN",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Definición legal de sexo en Tennessee",
+    "statement": "Una ley de Tennessee vigente desde el 1 de julio de 2023 define \"sexo\", para todo el código estatal, como \"el sexo biológico inmutable de una persona según lo determinan la anatomía y la genética existentes al momento de nacer\". Además, dice que la evidencia del sexo biológico de una persona \"incluye, entre otros, un documento de identificación emitido por el gobierno que refleje con exactitud el sexo de la persona que figura en su acta de nacimiento original\".",
+    "detail": "El proyecto de ley (Senate Bill 1440 / House Bill 239, 2023) agregó esto como el nuevo inciso (c) a la Sección 1-3-105 del Código Anotado de Tennessee, la sección de definiciones generales del código, y modificó la Sección 49-2-802(4), una ley de educación pública, para usar la misma definición. El texto del proyecto de ley solo modifica el Título 1 y el Título 49; no explica por sí mismo cómo el Departamento de Seguridad y Seguridad Nacional aplica esta definición a una licencia de conducir o identificación.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.capitol.tn.gov/Bills/113/Bill/SB1440.pdf",
+      "title": "Asamblea General de Tennessee — Senate Bill 1440 / House Bill 239 (2023), promulgada",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "tn.drivers-license.name.es",
+    "jurisdiction": "US-TN",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Tennessee",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Tennessee, debe visitar en persona un Centro de Servicios para Conductores. Lleve su licencia actual y una copia original o certificada de un documento que muestre el motivo del cambio, como un certificado de matrimonio, una sentencia de divorcio o una orden judicial.",
+    "detail": "Un documento judicial solo se acepta con la firma original del juez o un sello oficial del tribunal — no se acepta una copia de una firma o sello ya copiados, aunque sí se acepta una firma o sello original adherido a una copia. Un certificado de matrimonio debe ser una copia certificada emitida por el secretario del condado u otra agencia gubernamental autorizada después de registrado el matrimonio; no se acepta una licencia de matrimonio, una solicitud, ni una copia sin certificar. Nunca se aceptan faxes ni fotocopias de ninguno de estos documentos. La página recomienda actualizar primero su nombre con la Administración del Seguro Social.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La tarifa de duplicado es de $8 a $16, según el tipo de licencia y cuántos duplicados ha tenido. Todos los duplicados de Certificado para Conducir, Licencia de Conducir Temporal e Identificación Temporal cuestan $28.00."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.tn.gov/safety/driver-services/helpful-information/dlnamechange.html",
+      "title": "Departamento de Seguridad y Seguridad Nacional de Tennessee — Servicios para Conductores: Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
     "language": "es"
   },
   {

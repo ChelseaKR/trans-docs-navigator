@@ -8,26 +8,22 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
-- **North Carolina** (M6 — expand jurisdictions): 8 EN + 8 ES corpus records (court-order
-  name change split across the filing statute and its application-requirements statute,
-  driver's-license name and gender-marker, birth-certificate name and gender-marker), 2
-  referrals, and 2 forms-registry entries, each sourced from an official North Carolina
-  statute or state agency page and fetched into `corpus/snapshots/`. North Carolina's name
-  change now requires a state/national criminal history record check (G.S. 101-5) but, as
-  of a December 1, 2025 repeal (Session Laws 2025-54), no longer requires newspaper
-  publication — recorded from the statute's own current text, not from an assumption. Two
-  gender-marker paths are recorded honestly as **restricted, not open**: NCDMV's Sex
-  Designation Form (DL-300) is still published, but a new statewide law (G.S. 12-3.3,
-  effective January 1, 2026) recognizes only two, unchangeable "biological sex" categories
-  for every state administrative rule and policy; and a birth-certificate sex change
-  (G.S. 130A-118, effective December 1, 2025) now requires the State Registrar to preserve
-  the original and the amended certificate together as one multi-page document, so a
-  certified copy discloses the original sex marker rather than replacing it. Both statutory
-  restrictions are split into their own `.law` records, sourced directly to the statute, and
-  every record touching them carries `verification_status: "needs_reverification"` with a
-  30-day recheck SLA rather than describing a settled process. The DMV Sex Designation Form
-  (DL-300) and the birth-certificate modification form (DHHS 1578) are both PDFs; as with
-  Georgia's and Arizona's PDF sources, they cannot be automatically fidelity-checked and are
+- **Maryland** (M6 — expand jurisdictions): 5 EN + 5 ES corpus records (court-order name
+  change, driver's-license name and gender-marker, birth-certificate name and
+  gender-marker), 2 referrals, and 2 forms-registry entries, each sourced from an official
+  Maryland Judiciary, MVA, or Department of Health page and fetched into
+  `corpus/snapshots/`. Maryland is comparatively permissive on a couple of fronts, recorded
+  exactly as its own sources state them rather than generalized: the MVA's own page says
+  **no documentation** is required to change the gender marker on a driver's license or ID
+  (M/F/X), only an in-person appointment; and Maryland's birth-certificate sex-designation
+  change accepts **either** a licensed health care practitioner's signed statement (surgical,
+  hormonal, "or other treatment appropriate for the individual") **or** a court order — no
+  surgery requirement, unlike some other states already in this corpus. The name-change
+  court petition (Circuit Court, CC-DR-60, $165 filing fee) describes a 30-day objection
+  window for adults, not a newspaper-publication requirement. Both PDF sources cited (the
+  CC-DR-60 form and the Division of Vital Records' sex-designation fact sheet) were
+  fetchable and are under drift watch, unlike Georgia's Form 3977 below — but their own text
+  still cannot be fidelity-checked (PDF, not HTML), so assertions sourced to them are
   reported UNCHECKABLE rather than silently passed.
 
 - **Georgia** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (court-order name
