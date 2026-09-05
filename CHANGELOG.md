@@ -8,6 +8,73 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Delaware, New Hampshire, and Maine** (M6 — expand jurisdictions): 20 EN + 20 ES corpus
+  records (court-order name change, driver's-license name and gender-marker, and
+  birth-certificate name and gender-marker for all three states), 6 referrals, and 5
+  forms-registry entries, each sourced from an official state statute, court, DMV/BMV, or
+  vital-records page and fetched into `corpus/snapshots/`.
+  - **Delaware**: name changes go to the Court of Common Pleas (not Chancery), $85 filing
+    fee, publication repealed in 2022 (Del. Code tit. 10, ch. 59). The DMV's gender-marker
+    change needs a medical or social-service provider's certification (Form MV2020) —
+    self-attestation, but not self-*certification*. Birth-certificate sex-designation
+    changes need notarized Requester's and Healthcare Provider's affidavits; no court order
+    unless the name is also changing. A pending bill (HB 375) would remove the
+    provider-certification requirement and add an "X" marker but had not passed as of
+    research — recorded as pending, not as current law.
+  - **New Hampshire**: the probate court cannot require consent or public notice for an
+    adult's own name change (RSA 547:3-i, RSA 550:4); filing costs $170 (Family Division:
+    $140), per the court's own fee schedule. The DMV's gender-marker change is genuinely
+    self-attested — the current page lists only a form, current ID, and a $10 fee, no court
+    order or medical letter. A birth-certificate sex-designation change requires a court
+    order and results in a **new** record rather than an annotated one (RSA 5-C:87 ¶V) —
+    a meaningful difference from the name-change process that the record calls out.
+    `courts.nh.gov` and `dmv.nh.gov` refuse this project's declared user-agent (confirmed
+    403 from both `fetch` and `curl`); the court-order and birth-certificate records
+    instead cite `gencourt.state.nh.us` (the statute site), which is not blocked.
+  - **Maine**: 18-C M.R.S. §1-701 bars the court from requiring public notice for *any*
+    adult name change (not only gender-identity-related ones, contrary to this task's
+    original premise — see "what I could not verify" below); filing costs $75. Maine's BMV
+    gender-marker change is self-attested on a form that offers male, female, or
+    non-binary, under penalty of perjury, no court order or physician's letter. Maine's
+    birth-certificate process is the most permissive of the three: an adult can change
+    their own gender marker AND, in the same filing, a first/middle name, with no court
+    order at all (form VS-7, notarized, $60) — the only route in this corpus that lets a
+    name change proceed without a court order tied to a gender-marker change on the same
+    document.
+
+  **What I could not fully verify by machine:** the task brief cited "LD 1626" as Maine's
+  vehicle for repealing the public-notice requirement; the current Maine Legislature bill
+  tracker shows LD 1626 (130th Legislature) is an unrelated, unenacted bill about the
+  Maine Indian Claims Settlement. The statute's own section-history line names several
+  amending Public Laws (2017–2023) but none of the chapter-law PDFs needed to isolate which
+  one first added the no-public-notice sentence could be fetched. The record states only
+  what the *current, in-force* statutory text says, not which bill produced it. Separately,
+  the exact BMV fee for a name-change license reissue in Maine, and the exact DE DMV fee
+  for the same transaction, could not be confirmed from any fetchable page — both records
+  carry `cost.amount_usd: null` with a note to call the agency, rather than a guessed
+  number. New Hampshire's DMV gender-marker fee is stated as $10.00 on the DMV's own page,
+  but a secondary advocacy source states $3.00; the corpus uses the primary source's figure
+  and this discrepancy is worth a human re-check before launch.
+
+  All 40 new records (20 EN + 20 ES) carry `"verifier": "Pilot Seed Reviewer"` and
+  `verification_status: "verified"`; none are launch-cleared. Gender-marker records use
+  `recheck_sla_days: 30`, matching this repo's existing convention for politically volatile
+  topics.
+
+  `make verify`: 24/24 gates pass (470/470 tests, Playwright 16/16). `make fidelity`: 0
+  unsupported assertions across the new records (220 uncheckable corpus-wide, up from
+  179 — all from Delaware's and Maine's PDF-only forms and New Hampshire's blocked
+  courts.nh.gov/dmv.nh.gov pages, none newly introduced beyond what each state's own
+  sources make unavoidable).
+
+  Snapshot discipline: `make source-snapshot` also refreshed 23 pre-existing snapshots
+  with live drift from this simulated environment's source pages, unrelated to this
+  change, plus 3 orphaned passport snapshots that `travel.state.gov` now 403s on fetch.
+  Those refreshes were reverted (`git checkout -- corpus/snapshots/`) rather than adopted
+  blind, per `docs/OPERATIONS.md`'s re-baseline discipline — only the 11 new snapshots for
+  Delaware/New Hampshire/Maine's checkable HTML sources and their
+  `corpus/source-hashes.json` baselines were added.
+
 - **Virginia** (M6 — expand jurisdictions): 7 EN + 7 ES corpus records (court-order name
   change, driver's-license name and gender-marker, a driver's-license replacement-fee
   record, birth-certificate name and gender-marker, and a birth-certificate fee record),

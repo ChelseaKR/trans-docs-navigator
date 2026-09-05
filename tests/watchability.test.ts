@@ -104,6 +104,16 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
   // silent change to either has to be deliberate.
   const urls = [...loadCorpus().map((r) => r.source.url), ...loadForms().map((f) => f.source.url)];
   assert.deepEqual(unwatchableAmong(urls), [
+    // Delaware: the Court of Common Pleas name-change petition packet, the DMV's gender-
+    // designation procedure and its Form MV2020, and the Division of Public Health's
+    // Gender Reassignment instructions and Requester's Affidavit are all PDFs whose text
+    // this pipeline cannot extract, so no baseline can be taken — deliberate, with the
+    // Delaware corpus.
+    "https://courts.delaware.gov/forms/download.aspx?id=16858",
+    "https://dhss.delaware.gov/wp-content/uploads/sites/12/dph/pdf/GenderReassignment.pdf",
+    "https://dhss.delaware.gov/wp-content/uploads/sites/12/dph/pdf/RequesterAffidavitSexChange.pdf",
+    "https://dmv.de.gov/DriverServices/drivers_license/pdfs/gender_designation_change_procedure.pdf",
+    "https://dmv.de.gov/forms/driver_serv_forms/pdfs/gender_change_request_form.pdf",
     // Georgia's Affidavit for Amendment (Form 3977) is a PDF whose text this
     // pipeline cannot extract, so no baseline can be taken — deliberate addition
     // with the Georgia corpus, not a silent drift in the watch set.
@@ -123,12 +133,26 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // published as a PDF on the General Assembly's own site, so no baseline can be
     // taken — deliberate, with the Tennessee corpus.
     "https://www.capitol.tn.gov/Bills/113/Bill/SB1440.pdf",
+    // New Hampshire: courts.nh.gov and dmv.nh.gov both refuse this project's declared
+    // user-agent (confirmed 403 from both Node's fetch and curl sending the same UA), so
+    // no baseline can be taken — deliberate, with the New Hampshire corpus. The court-order
+    // and birth-certificate records instead cite gencourt.state.nh.us (the statute site),
+    // which is not blocked and is checkable.
+    "https://www.courts.nh.gov/sites/g/files/ehbemt471/files/documents/2021-06/filing_fees.pdf",
+    "https://www.dmv.nh.gov/drivers-licensenon-driver-ids/update-personal-information",
     // Nevada: all three are PDFs whose text this pipeline cannot extract, so no
     // baseline can be taken — deliberate, with the Nevada corpus.
     "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf",
     "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf",
     "https://www.dpbh.nv.gov/uploadedFiles/dpbh.nv.gov/content/Programs/BirthDeath/dta/Forms/Corrections%20-%20Birth.pdf",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
+    // Maine: the VS-7 vital-records amendment form, the BMV's Gender Designation Form
+    // (MVL-20), and the Secretary of State's gender-designation guidance memo are all
+    // PDFs whose text this pipeline cannot extract, so no baseline can be taken —
+    // deliberate, with the Maine corpus.
+    "https://www.maine.gov/dhhs/mecdc/sites/maine.gov.dhhs.mecdc/files/Application%20to%20Correct%20a%20Vital%20Record%20in%20Maine%20%28VS-7%29.pdf",
+    "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/GENDER%20DESIGNATION%20FORM2019.pdf",
+    "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/Guidance%20about%20Gender%20Designations%20on%20Maine%20Drivers%20Licenses_1.pdf",
     // Michigan's SOS and MDHHS pages refuse this project's declared user-agent.
     // Verified 403 from both Node's fetch and curl sending the same UA, so this is
     // the host refusing us, not a client artifact — deliberate, with the MI corpus.

@@ -1,0 +1,146 @@
+[
+  {
+    "id": "me.court-order.name",
+    "jurisdiction": "US-ME",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Maine name change petition",
+    "statement": "To legally change your name as an adult in Maine, you petition the Probate Court in the county where you live. Filing costs $75, and the court may not require public notice before approving the name change.",
+    "detail": "You'll need to complete a criminal history record check as part of your petition, and the court may require you to pay for it. The court can't grant a name change if it has reason to believe you're seeking it to defraud someone or for another purpose contrary to the public interest.",
+    "cost": {
+      "amount_usd": 75
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://legislature.maine.gov/statutes/18-C/title18-Csec1-701.html",
+      "title": "Maine Revised Statutes, Title 18-C § 1-701 — Process to Change Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "me.drivers-license.name",
+    "jurisdiction": "US-ME",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Maine driver's license name change",
+    "statement": "If your name has legally changed, Maine's Bureau of Motor Vehicles requires you to show documentation of the change — court documents, a divorce decree, or a marriage certificate — when you update your license or ID.",
+    "detail": "Maine doesn't have a separate \"name change\" process apart from its regular licensing transactions; you show this documentation whenever you renew, replace, or apply for a license or ID.",
+    "cost": {
+      "amount_usd": null,
+      "note": "We couldn't find an official page stating the exact fee for a name-change reissue specifically. Call the Maine BMV to confirm the fee for your situation."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.maine.gov/sos/bmv/driver-licenses-and-ids/car-license/how-to-obtain-a-license",
+      "title": "Maine Bureau of Motor Vehicles — How to Obtain a License",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "me.drivers-license.gender-marker",
+    "jurisdiction": "US-ME",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Maine driver's license gender designation",
+    "statement": "Maine lets you self-attest to the gender designation on your driver's license or ID: male, female, or non-binary. You sign the Gender Designation Form under penalty of perjury and surrender your existing card — no court order or physician's letter is asked for.",
+    "detail": "The Bureau of Motor Vehicles can only accept an original, signed form; photocopies and faxes aren't accepted.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/GENDER%20DESIGNATION%20FORM2019.pdf",
+      "title": "Maine Bureau of Motor Vehicles — Gender Designation Form (MVL-20)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "me-bmv-mvl20",
+    "language": "en"
+  },
+  {
+    "id": "me.drivers-license.gender-marker.law",
+    "jurisdiction": "US-ME",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Maine's legal authority for driver's license gender-marker changes",
+    "statement": "Maine's Secretary of State says the Maine BMV does not require your gender identity to match your sex assigned at birth, and that under Maine's civil rights law, current policy allows a gender-marker change on a Maine license or ID.",
+    "detail": "This guidance notes that Maine-issued licenses and IDs are governed by state law, not a federal executive order on passport sex markers — the federal order doesn't override Maine's law. It also says REAL ID compliance is unaffected, though it's unclear whether federal agencies will accept a REAL ID with an X marker.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/Guidance%20about%20Gender%20Designations%20on%20Maine%20Drivers%20Licenses_1.pdf",
+      "title": "Maine Secretary of State — Guidance about Gender Designations on Maine Driver's Licenses",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "me.birth-certificate.name",
+    "jurisdiction": "US-ME",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Maine birth certificate name change",
+    "statement": "If you were born in Maine, you can have your birth certificate's name changed by sending an original, certified Legal Name Change court order, or a completed Request to Amend a Vital Record Application (VS-14), to Maine's Division of Data, Research and Vital Statistics. This costs $60.",
+    "detail": "You'll need to show a government-issued photo ID. If a parent's legal name change should also apply to a child's birth record, the parents must also complete an Application to Correct a Vital Record in Maine (VS-7). You can submit your request in person by appointment, by mail, or online.",
+    "cost": {
+      "amount_usd": 60
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.maine.gov/dhhs/mecdc/vital-records/amend-correct-or-complete-vital-records/court-records",
+      "title": "Maine Center for Disease Control & Prevention — Court Orders (Legal Name Changes on Vital Records)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "me.birth-certificate.gender-marker",
+    "jurisdiction": "US-ME",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Maine birth certificate gender marker change",
+    "statement": "If you were born in Maine and are 18 or older, you can change the gender marker on your birth certificate yourself — no court order and no doctor's letter needed. Complete the Application to Correct a Vital Record in Maine (VS-7), sign it in front of a notary, and send it with a $60 fee to Maine's Division of Data, Research and Vital Statistics.",
+    "detail": "You can change your first and middle name on the same VS-7 application at the same time as your gender-marker change, without a court order — this is the only time Maine allows a name change without one; a separate application for that costs another $60. A replacement birth certificate is issued with your new name and sex, and the original is sealed from public inspection. Once you make this kind of change to a field, any later change to that same field needs a court order. A minor needs a parent or guardian to apply, plus a Gender Marker Change Health Care Professional Declaration from a health care provider.",
+    "cost": {
+      "amount_usd": 60,
+      "note": "Changing your name in a separate application instead of on the same VS-7 costs another $60."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.maine.gov/dhhs/mecdc/vital-records/amend-correct-or-complete-vital-records/change-the-gender-marker-on-your-birth-record",
+      "title": "Maine Center for Disease Control & Prevention — Change the Gender Marker on Your Birth Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "me-drvs-vs7",
+    "language": "en"
+  }
+]

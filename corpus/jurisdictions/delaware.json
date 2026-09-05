@@ -1,0 +1,155 @@
+[
+  {
+    "id": "de.court-order.name",
+    "jurisdiction": "US-DE",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Delaware name change petition",
+    "statement": "To legally change your name as an adult in Delaware, you file a Petition for Change of Name in the Court of Common Pleas for the county where you live. Filing costs $85, and you must also file a notarized Affidavit of Petitioner.",
+    "detail": "Bring your birth certificate and a photo ID, plus — if a previous name change or a divorce led to this one — the related court paperwork. After you file, the court sets a hearing date; you must check in with the bailiff 30 minutes before your scheduled time, and proper dress is required in the courtroom. You receive the signed order plus eight certified copies; additional certified copies cost $10 each.",
+    "cost": {
+      "amount_usd": 85,
+      "note": "Additional certified copies of the signed order cost $10 each."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://courts.delaware.gov/forms/download.aspx?id=16858",
+      "title": "Delaware Court of Common Pleas — Change of Name Petition Packet",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "de-ccp-name-change-packet",
+    "language": "en"
+  },
+  {
+    "id": "de.court-order.jurisdiction",
+    "jurisdiction": "US-DE",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Which Delaware court handles a name change",
+    "statement": "An adult name-change petition in Delaware goes to the Court of Common Pleas sitting in the county where you reside. Family Court only has jurisdiction over a name change that's part of a divorce case, part of a parentage case, or a name change for a minor.",
+    "detail": "Delaware no longer requires you to publish notice of your name-change petition in a newspaper — the statute's publication section was repealed.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://delcode.delaware.gov/title10/c059/index.html",
+      "title": "Delaware Code, Title 10, Chapter 59 — Change of Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "de.drivers-license.name",
+    "jurisdiction": "US-DE",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Delaware driver's license name change",
+    "statement": "Within 30 days after legally changing your name, you must personally go to a Delaware Division of Motor Vehicles office to update your driver's license or ID. Update your name with the Social Security Administration first and allow 72 hours before going to the DMV.",
+    "detail": "Bring your old license and your name-change documents — such as court documents, a divorce decree, or a marriage certificate. This is an in-person transaction only; it can't be done online or by mail.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The DMV's published fee schedule did not state a clear dollar amount we could confirm for this transaction. Contact the DMV for the current fee."
+    },
+    "prerequisites": [
+      "ssa-card",
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dmv.de.gov/DriverServices/other/index.shtml?dc=dr_oth_change",
+      "title": "Delaware Division of Motor Vehicles — General Information: Change Your Name or Address",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "de.drivers-license.gender-marker",
+    "jurisdiction": "US-DE",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Delaware driver's license gender designation",
+    "statement": "Delaware lets you change the gender designation on your driver's license or ID card without having had gender reassignment surgery. Instead, a medical or social service provider licensed in the United States must certify your gender as male or female on Form MV2020.",
+    "detail": "You take the completed form to any DMV location in person — it will not be processed by mail or online. The current form only offers male or female; we found no non-binary or \"X\" option in any current official Delaware DMV document.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.de.gov/DriverServices/drivers_license/pdfs/gender_designation_change_procedure.pdf",
+      "title": "Delaware DMV — Gender Designation Changes on Driver Licenses and Identification Cards",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "de-dmv-mv2020",
+    "language": "en"
+  },
+  {
+    "id": "de.birth-certificate.name",
+    "jurisdiction": "US-DE",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Delaware birth certificate name change",
+    "statement": "Delaware will amend a birth certificate to show a new name once the State Registrar receives a certified copy of a court order changing the name of a person born in Delaware. The person themselves, or their parent, guardian, or legal representative, can make the request.",
+    "detail": "Once an item on a Delaware birth record has been amended, it can only be amended again with another court order.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This regulation doesn't set a fee for the amendment itself. Contact Delaware's Office of Vital Statistics for the current fee for a certified copy of the corrected certificate."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.law.cornell.edu/regulations/delaware/16-Del-Admin-Code-SS-4205-10.0",
+      "title": "16 Del. Admin. Code § 4205-10.0 — Amendment of Vital Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "de.birth-certificate.gender-marker",
+    "jurisdiction": "US-DE",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Delaware birth certificate sex designation",
+    "statement": "To change the sex on a Delaware birth certificate, you and a licensed healthcare provider each complete and notarize a separate affidavit — your own Requester's Affidavit and the provider's Healthcare Provider's Affidavit. You do not need a court order unless you are also changing your name.",
+    "detail": "A physician, a doctoral-level psychologist, a social worker, a physician assistant, a nurse practitioner, a mental health counselor, or a midwife can complete the provider's affidavit, certifying either gender-transition treatment or an intersex condition. You must surrender your original birth certificate. Delaware's Division of Public Health says this takes about two weeks to process.",
+    "cost": {
+      "amount_usd": 25,
+      "note": "This $25 fee applies only if you don't already have a copy of your original birth certificate to surrender."
+    },
+    "timeline": {
+      "typical": "about 2 weeks"
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dhss.delaware.gov/wp-content/uploads/sites/12/dph/pdf/GenderReassignment.pdf",
+      "title": "Delaware Division of Public Health — Gender Reassignment: Authorization Instructions",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "de-dph-sexchange-requester",
+    "language": "en"
+  }
+]
