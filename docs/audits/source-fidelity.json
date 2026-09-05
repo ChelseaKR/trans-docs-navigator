@@ -1,7 +1,7 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 258,
-  "supported": 497,
+  "records": 290,
+  "supported": 546,
   "unsupported": 0,
   "uncheckable": 179,
   "unfetchable_sources": [
@@ -12,8 +12,8 @@
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → HTTP 404: the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 1023,
-  "total_prose_sentences": 1270,
+  "unchecked_prose_sentences": 1155,
+  "total_prose_sentences": 1424,
   "audits": [
     {
       "recordId": "az.court-order.name",
@@ -1263,6 +1263,118 @@
       "totalSentences": 3
     },
     {
+      "recordId": "ks.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.kdhe.ks.gov/FAQ.aspx?QID=265",
+      "results": [
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "states $20",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        }
+      ],
+      "uncheckedProse": 8,
+      "negatedClaims": 5,
+      "totalSentences": 8
+    },
+    {
+      "recordId": "ks.birth-certificate.gender-marker.law",
+      "language": "en",
+      "url": "https://ksrevisor.gov/statutes/chapters/ch77/077_002_0007.html",
+      "results": [],
+      "uncheckedProse": 6,
+      "negatedClaims": 0,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "ks.birth-certificate.name",
+      "language": "en",
+      "url": "https://www.kdhe.ks.gov/FAQ.aspx?QID=265",
+      "results": [
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "costs $20",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ks.court-order.name",
+      "language": "en",
+      "url": "https://ksrevisor.gov/statutes/chapters/ch60/060_014_0002.html",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "60 day",
+          "label": "states \"60 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"60 day\""
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ks.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.ksrevenue.gov/dovgender.html",
+      "results": [],
+      "uncheckedProse": 7,
+      "negatedClaims": 5,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "ks.drivers-license.name",
+      "language": "en",
+      "url": "https://www.ksrevenue.gov/dovdlfaq.html",
+      "results": [
+        {
+          "kind": "money",
+          "key": "16",
+          "label": "states $16",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $16"
+        },
+        {
+          "kind": "money",
+          "key": "12",
+          "label": "states $12",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $12"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
       "recordId": "md.court-order.name",
       "language": "en",
       "url": "https://www.courts.state.md.us/legalhelp/family/namechange",
@@ -2209,6 +2321,145 @@
       "uncheckedProse": 2,
       "negatedClaims": 2,
       "totalSentences": 3
+    },
+    {
+      "recordId": "ne.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://nebraskalegislature.gov/laws/statutes.php?statute=71-604.01",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ne.birth-certificate.name",
+      "language": "en",
+      "url": "https://nebraskalegislature.gov/laws/statutes.php?statute=71-630",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 0,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ne.court-order.name",
+      "language": "en",
+      "url": "https://nebraskajudicial.gov/self-help/name-change/adult-name-change",
+      "results": [
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "duration",
+          "key": "6 week",
+          "label": "states \"6 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"6 week\""
+        },
+        {
+          "kind": "form-id",
+          "key": "DC6",
+          "label": "names form DC6",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DC6"
+        },
+        {
+          "kind": "duration",
+          "key": "2 week",
+          "label": "states \"2 week\"",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"2 week\""
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "ne.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://dmv.nebraska.gov/dl/certification-sex-reassignment",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "ne.drivers-license.name",
+      "language": "en",
+      "url": "https://dmv.nebraska.gov/dl/name-change",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "60 day",
+          "label": "states \"60 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"60 day\""
+        },
+        {
+          "kind": "duration",
+          "key": "14 business-day",
+          "label": "states \"14 business-day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"14 business-day\""
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 5
     },
     {
       "recordId": "nv.court-order.name",
@@ -3584,6 +3835,134 @@
       "totalSentences": 4
     },
     {
+      "recordId": "sd.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://doh.sd.gov/licensing-and-records/vital-records/amendments-court-orders/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "sd.birth-certificate.name",
+      "language": "en",
+      "url": "https://doh.sd.gov/licensing-and-records/vital-records/amendments-court-orders/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "8",
+          "label": "costs $8",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $8"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "sd.court-order.name",
+      "language": "en",
+      "url": "https://ujs.sd.gov/self-help/civil-law-help/name-change/",
+      "results": [
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "duration",
+          "key": "6 month",
+          "label": "states \"6 month\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"6 month\""
+        },
+        {
+          "kind": "form-id",
+          "key": "UJS024",
+          "label": "names form UJS024",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names UJS024"
+        },
+        {
+          "kind": "form-id",
+          "key": "UJS025",
+          "label": "names form UJS025",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names UJS025"
+        },
+        {
+          "kind": "form-id",
+          "key": "UJS026",
+          "label": "names form UJS026",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names UJS026"
+        },
+        {
+          "kind": "form-id",
+          "key": "UJS027",
+          "label": "names form UJS027",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names UJS027"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "sd.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.sd.gov/dps?id=cs_kb_article_view&sysparm_article=KB0043549",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "sd.drivers-license.name",
+      "language": "en",
+      "url": "https://www.sd.gov/dps?id=cs_kb_article_view&sysparm_article=KB0043549",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
       "recordId": "az.birth-certificate.fees.es",
       "language": "es",
       "url": "https://www.azdhs.gov/includes/content/director/vital-records.php?cont=fee-schedule",
@@ -4709,6 +5088,118 @@
       "uncheckedProse": 4,
       "negatedClaims": 1,
       "totalSentences": 4
+    },
+    {
+      "recordId": "ks.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.kdhe.ks.gov/FAQ.aspx?QID=265",
+      "results": [
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "states $20",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        }
+      ],
+      "uncheckedProse": 8,
+      "negatedClaims": 5,
+      "totalSentences": 8
+    },
+    {
+      "recordId": "ks.birth-certificate.gender-marker.law.es",
+      "language": "es",
+      "url": "https://ksrevisor.gov/statutes/chapters/ch77/077_002_0007.html",
+      "results": [],
+      "uncheckedProse": 6,
+      "negatedClaims": 1,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "ks.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.kdhe.ks.gov/FAQ.aspx?QID=265",
+      "results": [
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "costs $20",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ks.court-order.name.es",
+      "language": "es",
+      "url": "https://ksrevisor.gov/statutes/chapters/ch60/060_014_0002.html",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "60 day",
+          "label": "states \"60 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"60 day\""
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ks.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.ksrevenue.gov/dovgender.html",
+      "results": [],
+      "uncheckedProse": 7,
+      "negatedClaims": 5,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "ks.drivers-license.name.es",
+      "language": "es",
+      "url": "https://www.ksrevenue.gov/dovdlfaq.html",
+      "results": [
+        {
+          "kind": "money",
+          "key": "16",
+          "label": "states $16",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $16"
+        },
+        {
+          "kind": "money",
+          "key": "12",
+          "label": "states $12",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $12"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 5
     },
     {
       "recordId": "ma.birth-certificate.gender-marker.es",
@@ -5880,6 +6371,136 @@
       "totalSentences": 6
     },
     {
+      "recordId": "ne.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://nebraskalegislature.gov/laws/statutes.php?statute=71-604.01",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ne.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://nebraskalegislature.gov/laws/statutes.php?statute=71-630",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 0,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ne.court-order.name.es",
+      "language": "es",
+      "url": "https://nebraskajudicial.gov/self-help/name-change/adult-name-change",
+      "results": [
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "duration",
+          "key": "6 week",
+          "label": "states \"6 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"6 week\""
+        },
+        {
+          "kind": "form-id",
+          "key": "DC6",
+          "label": "names form DC6",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DC6"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "ne.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://dmv.nebraska.gov/dl/certification-sex-reassignment",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "ne.drivers-license.name.es",
+      "language": "es",
+      "url": "https://dmv.nebraska.gov/dl/name-change",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "60 day",
+          "label": "states \"60 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"60 day\""
+        },
+        {
+          "kind": "duration",
+          "key": "14 business-day",
+          "label": "states \"14 business-day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"14 business-day\""
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
       "recordId": "nj.birth-certificate.gender-marker.es",
       "language": "es",
       "url": "https://www.nj.gov/health/vital/correcting-vital/sexdesignation/",
@@ -7029,6 +7650,134 @@
       "uncheckedProse": 4,
       "negatedClaims": 1,
       "totalSentences": 5
+    },
+    {
+      "recordId": "sd.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://doh.sd.gov/licensing-and-records/vital-records/amendments-court-orders/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "sd.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://doh.sd.gov/licensing-and-records/vital-records/amendments-court-orders/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "8",
+          "label": "costs $8",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $8"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "sd.court-order.name.es",
+      "language": "es",
+      "url": "https://ujs.sd.gov/self-help/civil-law-help/name-change/",
+      "results": [
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "duration",
+          "key": "6 month",
+          "label": "states \"6 month\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"6 month\""
+        },
+        {
+          "kind": "form-id",
+          "key": "UJS024",
+          "label": "names form UJS024",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names UJS024"
+        },
+        {
+          "kind": "form-id",
+          "key": "UJS025",
+          "label": "names form UJS025",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names UJS025"
+        },
+        {
+          "kind": "form-id",
+          "key": "UJS026",
+          "label": "names form UJS026",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names UJS026"
+        },
+        {
+          "kind": "form-id",
+          "key": "UJS027",
+          "label": "names form UJS027",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names UJS027"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "sd.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.sd.gov/dps?id=cs_kb_article_view&sysparm_article=KB0043549",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "sd.drivers-license.name.es",
+      "language": "es",
+      "url": "https://www.sd.gov/dps?id=cs_kb_article_view&sysparm_article=KB0043549",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
     },
     {
       "recordId": "tn.birth-certificate.gender-marker.es",

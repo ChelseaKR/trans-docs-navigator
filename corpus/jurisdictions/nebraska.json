@@ -1,0 +1,135 @@
+[
+  {
+    "id": "ne.birth-certificate.gender-marker",
+    "jurisdiction": "US-NE",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Nebraska birth certificate sex reassignment",
+    "statement": "Nebraska Revised Statute 71-604.01 lets the state prepare a new birth certificate in a new name and sex, but only upon receiving a notarized affidavit from the physician who performed sex reassignment surgery on the person, together with a certified copy of an order from a court changing that person's name.",
+    "detail": "The evidence used to prepare the new certificate, and the original certificate itself, may only be inspected by order of a court. The statute names no other path, such as one based on gender identity alone without surgery.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This statute does not state a fee; contact Nebraska Vital Records for the current fee to request this new certificate."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://nebraskalegislature.gov/laws/statutes.php?statute=71-604.01",
+      "title": "Nebraska Revised Statute 71-604.01 — Birth Certificate; Sex Reassignment; New Certificate; Procedure",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ne.birth-certificate.name",
+    "jurisdiction": "US-NE",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Nebraska birth certificate name change",
+    "statement": "Nebraska Revised Statute 71-630 says that upon receiving a certified copy of a court order changing the name of a person born in Nebraska, and a request from that person or their parent, guardian, or legal representative, the department shall amend the birth certificate to reflect the change in name.",
+    "detail": "A birth or death certificate may be amended only as this statute and Nebraska Revised Statutes 71-635 through 71-644 provide. An amended certificate carries a dated note on its face stating that it was amended.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This statute does not state a fee for this amendment; contact Nebraska Vital Records for the current fee."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://nebraskalegislature.gov/laws/statutes.php?statute=71-630",
+      "title": "Nebraska Revised Statute 71-630 — Birth or Death Certificate; Erroneous or Incomplete; Correction; Department; Duties",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ne.court-order.name",
+    "jurisdiction": "US-NE",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Nebraska name change petition",
+    "statement": "In Nebraska you file a name-change petition in the district court of the county where you reside, but only after living in that county for at least one year. Nebraska law requires a Legal Notice of your petition to be published once a week for two consecutive weeks in a newspaper, unless the court waives that requirement because publication would endanger you.",
+    "detail": "You must be at least 19, an emancipated minor, or married to file for yourself; otherwise a parent or guardian files for you. File a Petition for Name Change (DC 6:9.1) and a Confidential Party Information form (DC 6:9.4) with the clerk of the district court, along with the filing fee. A hearing is normally scheduled about six weeks after filing, to allow time for publication. The endangerment waiver is under Nebraska Revised Statute Section 25-21,271(2)(b).",
+    "cost": {
+      "amount_usd": null,
+      "note": "There is a cost to file the petition, plus the newspaper's charge for publishing the Legal Notice for two weeks; call your local newspaper for its rate before filing."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://nebraskajudicial.gov/self-help/name-change/adult-name-change",
+      "title": "Nebraska Judicial Branch — Adult Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "en"
+  },
+  {
+    "id": "ne.drivers-license.gender-marker",
+    "jurisdiction": "US-NE",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Nebraska driver's license and ID sex/gender designation",
+    "statement": "To update the sex/gender designation on a Nebraska driver's license, permit, or state ID card, you apply in person at a Driver Licensing Office with a completed Certification of Sex Reassignment Form. The form must be completed by a Doctor of Medicine, Doctor of Osteopathy, Physician Assistant, Advanced Practice Nurse, or Doctor of Chiropractic.",
+    "detail": "This cannot be done online. You also need acceptable proof of identification, two forms of proof of address if it has not previously been verified, and you must meet DMV vision and medical requirements if applicable. After payment of the applicable license fee, you receive a 30-day paper receipt while your permanent card is mailed.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page names 'the appropriate License Fees' without a dollar figure; see Nebraska's driver licensing and permit fee schedule for the current amount."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.nebraska.gov/dl/certification-sex-reassignment",
+      "title": "Nebraska Department of Motor Vehicles — Certification of Sex Reassignment",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ne.drivers-license.name",
+    "jurisdiction": "US-NE",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Nebraska driver's license and ID name change",
+    "statement": "Nebraska law requires you to update the name on your driver's license, permit, or ID card within 60 days of your name change. This cannot be done online — you must apply in person at a Driver Licensing Office.",
+    "detail": "Bring proof of identification and evidence connecting your old and new names, such as a certified marriage license, divorce decree, or a court order, plus two forms of proof of your address if it has not previously been verified. You also complete a data form and may need to meet DMV vision and medical requirements and have a new photo taken. Your new card is normally mailed within 14 business days.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page names 'the appropriate License Fees' without a dollar figure for this transaction; see Nebraska's driver licensing and permit fee schedule for the current amount."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.nebraska.gov/dl/name-change",
+      "title": "Nebraska Department of Motor Vehicles — Name Change (Driver's License, Motorcycle License, State ID Cards)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

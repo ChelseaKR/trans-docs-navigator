@@ -891,6 +891,155 @@
     "language": "es"
   },
   {
+    "id": "ks.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-KS",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Kansas",
+    "statement": "Kansas no le permite enmendar un acta de nacimiento para alinearla con su identidad de género. El Departamento de Salud y Medio Ambiente de Kansas dice que, conforme a la nueva ley, ya no puede procesar enmiendas de identidad de género en las actas de nacimiento de Kansas; las enmiendas por otras razones, como un error de captura, siguen permitidas. Aquí no se describe ninguna excepción para una orden judicial, una carta de un médico, u otra vía basada en la identidad de género.",
+    "detail": "Si KDHE cambió previamente un acta de nacimiento para alinearla con la identidad de género de alguien, la Ley del Senado 244 ordena al departamento invalidar ese cambio y enmendar el acta para reflejar el sexo de la persona al nacer, según lo define K.S.A. 77-207. KDHE dice que no puede notificar proactivamente a las personas afectadas, porque los registros de nacimiento no tienen información de contacto actualizada. KDHE también dice que no reembolsará las tarifas ya pagadas por una enmienda de identidad de género que desde entonces ha sido invalidada.",
+    "cost": {
+      "amount_usd": null,
+      "note": "KDHE no cobra por invalidar un acta por su propia iniciativa. Si solicita que le envíen una nueva acta, la tarifa es de $20 por acta."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.kdhe.ks.gov/FAQ.aspx?QID=265",
+      "title": "Departamento de Salud y Medio Ambiente de Kansas — Preguntas Frecuentes de Estadísticas Vitales: Cómo Enmendar Actas de Nacimiento para Adultos",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ks.birth-certificate.gender-marker.law.es",
+    "jurisdiction": "US-KS",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Ley de Kansas que define el sexo para los registros estatales",
+    "statement": "El Estatuto de Kansas Anotado 77-207 define el 'sexo' de una persona, para fines de la ley de Kansas, como el sexo biológico de la persona, masculino o femenino, al nacer, y establece que esto aplica sin importar cualquier otra disposición de la ley estatal.",
+    "detail": "El estatuto define a una 'mujer' como una persona cuyo sistema reproductivo biológico está desarrollado para producir óvulos, y a un 'hombre' como una persona cuyo sistema reproductivo biológico está desarrollado para fecundar los óvulos de una mujer. Establece que las leyes que distinguen entre los sexos están sujetas a un escrutinio constitucional intermedio, y que una persona con un diagnóstico médicamente verificable de una diferencia en el desarrollo sexual tiene derecho a las protecciones de la Ley de Estadounidenses con Discapacidades y los estatutos de Kansas aplicables. Fue promulgado en L. 2023, cap. 84, vigente a partir del 1 de julio.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://ksrevisor.gov/statutes/chapters/ch77/077_002_0007.html",
+      "title": "Oficina del Revisor de Estatutos de Kansas — K.S.A. 77-207, Sexo Biológico; Aplicación a Cualquier Ley Estatal",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ks.birth-certificate.name.es",
+    "jurisdiction": "US-KS",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Kansas",
+    "statement": "Para cambiar el nombre en un acta de nacimiento de Kansas después de un cambio legal de nombre ordenado por un tribunal, envíe por correo una copia certificada de la orden a Estadísticas Vitales de Kansas junto con una carta de presentación que indique su nombre al nacer, fecha de nacimiento y lo que desea que se haga. La tarifa para enmendar el acta es de $20, la cual no incluye el costo de una copia certificada.",
+    "detail": "Esto es diferente de corregir un nombre mal escrito, lo cual requiere un documento de identificación antiguo en lugar de una orden judicial. Envíe su orden judicial certificada y carta de presentación a la Unidad de Enmiendas, Oficina de Estadísticas Vitales, 1000 SW Jackson, Suite 120, Topeka, KS 66612-2221.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "Esto no incluye el costo de una copia certificada del acta corregida."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.kdhe.ks.gov/FAQ.aspx?QID=265",
+      "title": "Departamento de Salud y Medio Ambiente de Kansas — Preguntas Frecuentes de Estadísticas Vitales: Cómo Enmendar Actas de Nacimiento para Adultos",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ks.court-order.name.es",
+    "jurisdiction": "US-KS",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Kansas",
+    "statement": "En Kansas, usted presenta una petición de cambio de nombre en el tribunal de distrito del condado donde reside, después de haber vivido en Kansas durante al menos 60 días. Un juez concede el cambio si está convencido de que existe una causa razonable para hacerlo.",
+    "detail": "El Estatuto de Kansas Anotado 60-1402 permite que el tribunal dé aviso de la audiencia por correo o por publicación, a discreción del tribunal — no exige que todos los casos se publiquen en un periódico. Comuníquese con la oficina del secretario del tribunal de distrito del condado donde reside para conocer los formularios de petición de ese condado, la tarifa de presentación actual y el proceso de audiencia.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El estatuto no indica una tarifa de presentación; comuníquese con el secretario del tribunal de distrito del condado donde reside para conocer el monto actual."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://ksrevisor.gov/statutes/chapters/ch60/060_014_0002.html",
+      "title": "Oficina del Revisor de Estatutos de Kansas — K.S.A. 60-1402, Cambio de Nombre de una Persona; Aviso; Orden",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ks.drivers-license.gender-marker.es",
+    "jurisdiction": "US-KS",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo/género en la licencia de conducir de Kansas",
+    "statement": "Kansas no ofrece una forma de cambiar de nuevo el sexo o marcador de género en una licencia de conducir o identificación de aquí en adelante. La guía actual de la División de Vehículos de Kansas conforme a la Ley del Senado 244 aborda únicamente la reversión de cambios anteriores: si la indicación de sexo/género en su credencial no coincide con su sexo asignado al nacer, debe entregarla, y se emitirá un reemplazo que refleje su sexo asignado al nacer.",
+    "detail": "La División dice que no se requiere documentación adicional para cumplir — lleve y entregue su credencial actual, y se emite una licencia temporal mientras se envía por correo el reemplazo permanente. Los habitantes de Kansas afectados reciben una carta de la División de Vehículos. La fecha límite de cumplimiento indicada en esta página fue el cierre de operaciones del 25 de marzo de 2026, después de la cual la División dijo que no anticipaba más períodos de gracia. Puede apelar bajo K.S.A. 8-259, pero presentar una apelación no preserva la validez de su credencial actual mientras la apelación está pendiente.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página aborda únicamente la entrega obligatoria descrita arriba y no indica una tarifa aparte para ello."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ksrevenue.gov/dovgender.html",
+      "title": "Departamento de Ingresos de Kansas, División de Vehículos — Preguntas Frecuentes sobre Reclasificación de Género",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ks.drivers-license.name.es",
+    "jurisdiction": "US-KS",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir e identificación de Kansas",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Kansas, lleve su credencial actual de Kansas, prueba de su cambio legal de nombre y prueba de su dirección residencial actual a una oficina de licencias de conducir. Debe actualizar su nombre con la Administración del Seguro Social al menos 24 horas antes de actualizar su credencial de Kansas.",
+    "detail": "Las licencias de matrimonio duplicadas de Kansas no pueden aceptarse como prueba de un cambio legal de nombre. Se recomienda programar una cita, ya que reciben prioridad; puede hacerlo en el sitio de citas de la División de Vehículos.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La tarifa es de $16 para una licencia y $12 para una identificación."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ksrevenue.gov/dovdlfaq.html",
+      "title": "Departamento de Ingresos de Kansas, División de Vehículos — Preguntas Frecuentes sobre Licencia de Conducir e Identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "ma.birth-certificate.gender-marker.es",
     "jurisdiction": "US-MA",
     "document_type": "birth-certificate",
@@ -1713,6 +1862,139 @@
     "source": {
       "url": "https://www.ncdot.gov/dmv/help/moving/Pages/name-changes.aspx",
       "title": "NCDMV Oficial — Cambios de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ne.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-NE",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Reasignación de sexo en el acta de nacimiento de Nebraska",
+    "statement": "El Estatuto Revisado de Nebraska 71-604.01 permite que el estado prepare una nueva acta de nacimiento con un nuevo nombre y sexo, pero solo al recibir una declaración jurada notariada del médico que realizó la cirugía de reasignación de sexo en la persona, junto con una copia certificada de una orden de un tribunal que cambia el nombre de esa persona.",
+    "detail": "La evidencia utilizada para preparar la nueva acta, y el acta original misma, solo pueden ser inspeccionadas por orden de un tribunal. El estatuto no menciona otra vía, como una basada únicamente en la identidad de género sin cirugía.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Este estatuto no indica una tarifa; comuníquese con Estadísticas Vitales de Nebraska para conocer la tarifa actual para solicitar esta nueva acta."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://nebraskalegislature.gov/laws/statutes.php?statute=71-604.01",
+      "title": "Estatuto Revisado de Nebraska 71-604.01 — Acta de Nacimiento; Reasignación de Sexo; Nueva Acta; Procedimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ne.birth-certificate.name.es",
+    "jurisdiction": "US-NE",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Nebraska",
+    "statement": "El Estatuto Revisado de Nebraska 71-630 establece que, al recibir una copia certificada de una orden judicial que cambia el nombre de una persona nacida en Nebraska, y una solicitud de esa persona o de su padre, madre, tutor o representante legal, el departamento debe enmendar el acta de nacimiento para reflejar el cambio de nombre.",
+    "detail": "Un acta de nacimiento o defunción solo puede enmendarse según lo dispuesto por este estatuto y los Estatutos Revisados de Nebraska 71-635 a 71-644. Un acta enmendada lleva una nota fechada en su cara indicando que fue enmendada.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Este estatuto no indica una tarifa para esta enmienda; comuníquese con Estadísticas Vitales de Nebraska para conocer la tarifa actual."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://nebraskalegislature.gov/laws/statutes.php?statute=71-630",
+      "title": "Estatuto Revisado de Nebraska 71-630 — Acta de Nacimiento o Defunción; Errónea o Incompleta; Corrección; Deberes del Departamento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ne.court-order.name.es",
+    "jurisdiction": "US-NE",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Nebraska",
+    "statement": "En Nebraska, usted presenta una petición de cambio de nombre en el tribunal de distrito del condado donde reside, pero solo después de haber vivido en ese condado durante al menos un año. La ley de Nebraska exige que un Aviso Legal de su petición se publique en un periódico una vez por semana, dos veces consecutivas, a menos que el tribunal exima ese requisito porque la publicación lo pondría en peligro.",
+    "detail": "Debe haber alcanzado la edad de 19, ser un menor emancipado, o estar casado para presentar la petición usted mismo; de lo contrario, un padre, madre o tutor debe presentarla por usted. Presente una Petición de Cambio de Nombre (DC 6:9.1) y un formulario de Información Confidencial de la Parte (DC 6:9.4) ante el secretario del tribunal de distrito, junto con la tarifa de presentación. Por lo general, la audiencia se programa unas seis semanas después de la presentación, para dar tiempo a la publicación. La exención por peligro está bajo la Sección 25-21,271(2)(b) del Estatuto Revisado de Nebraska.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Hay un costo por presentar la petición, además del cargo del periódico por publicar el Aviso Legal; llame a su periódico local para conocer su tarifa antes de presentar la petición."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://nebraskajudicial.gov/self-help/name-change/adult-name-change",
+      "title": "Rama Judicial de Nebraska — Cambio de Nombre de Adulto",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "es"
+  },
+  {
+    "id": "ne.drivers-license.gender-marker.es",
+    "jurisdiction": "US-NE",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo/género en la licencia de conducir e identificación de Nebraska",
+    "statement": "Para actualizar la designación de sexo/género en una licencia de conducir, permiso o identificación estatal de Nebraska, usted se presenta en persona en una Oficina de Licencias de Conducir con un Formulario de Certificación de Reasignación de Sexo completado. El formulario debe ser completado por un Doctor en Medicina, Doctor en Osteopatía, Asistente Médico, Enfermero de Práctica Avanzada, o Doctor en Quiropráctica.",
+    "detail": "Esto no se puede hacer en línea. También necesita prueba de identificación aceptable, dos formas de prueba de dirección si no ha sido verificada anteriormente, y debe cumplir con los requisitos de visión y médicos del DMV si corresponde. Después de pagar la tarifa de licencia correspondiente, recibe un recibo de papel de 30-días mientras se envía su tarjeta permanente.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página menciona 'las tarifas de licencia correspondientes' sin dar una cifra en dólares; consulte el programa de tarifas de licencias y permisos de conducir de Nebraska para conocer el monto actual."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.nebraska.gov/dl/certification-sex-reassignment",
+      "title": "Departamento de Vehículos Motorizados de Nebraska — Certificación de Reasignación de Sexo",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ne.drivers-license.name.es",
+    "jurisdiction": "US-NE",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir e identificación de Nebraska",
+    "statement": "La ley de Nebraska exige que usted actualice el nombre en su licencia de conducir, permiso o identificación dentro de los 60 días posteriores a su cambio de nombre. Esto no se puede hacer en línea — debe presentarse en persona en una Oficina de Licencias de Conducir.",
+    "detail": "Lleve prueba de identificación y evidencia que conecte su nombre anterior con el nuevo, como una licencia de matrimonio certificada, un decreto de divorcio, o una orden judicial, además de dos formas de prueba de su dirección si no ha sido verificada anteriormente. También completa un formulario de datos y es posible que deba cumplir con los requisitos de visión y médicos del DMV y tomarse una nueva foto. Su nueva tarjeta normalmente se envía por correo dentro de 14 días hábiles.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página menciona 'las tarifas de licencia correspondientes' sin dar una cifra en dólares para este trámite; consulte el programa de tarifas de licencias y permisos de conducir de Nebraska para conocer el monto actual."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.nebraska.gov/dl/name-change",
+      "title": "Departamento de Vehículos Motorizados de Nebraska — Cambio de Nombre (Licencia de Conducir, Licencia de Motocicleta, Tarjetas de Identificación Estatal)",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
@@ -2558,6 +2840,125 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "form_ref": "pa-dl-80",
+    "language": "es"
+  },
+  {
+    "id": "sd.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-SD",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de South Dakota",
+    "statement": "La página oficial de South Dakota sobre enmiendas a actas de nacimiento describe cambios de nombre, fecha de nacimiento y otros datos registrados, pero no describe ninguna forma de cambiar el sexo indicado en un acta de nacimiento.",
+    "detail": "Este proyecto no pudo encontrar una página del gobierno de South Dakota que describa un proceso de cambio de designación de sexo para un acta de nacimiento. Esta ha sido una cuestión legal disputada: no asuma que hay una vía abierta con base en lo que es posible en otro estado, y confirme directamente con Registros Vitales de South Dakota o con un abogado antes de confiar en cualquier proceso específico.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://doh.sd.gov/licensing-and-records/vital-records/amendments-court-orders/",
+      "title": "Departamento de Salud de South Dakota — Enmiendas y Órdenes Judiciales",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "sd.birth-certificate.name.es",
+    "jurisdiction": "US-SD",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de South Dakota",
+    "statement": "Para cambiar el nombre en un acta de nacimiento o matrimonio de South Dakota con base en un cambio de nombre ordenado por un tribunal, usted proporciona a Registros Vitales de South Dakota una copia certificada de la orden judicial. La orden debe identificar el acta, indicar los datos incorrectos tal como aparecen actualmente, e indicar los datos correctos.",
+    "detail": "La tarifa para presentar esta enmienda en un acta que tiene un año o más es de $8; no hay tarifa si el acta tiene menos de un año. Para instrucciones sobre cómo obtener el cambio de nombre ordenado por un tribunal en sí, comuníquese con un abogado o con el Sistema Judicial Unificado de South Dakota.",
+    "cost": {
+      "amount_usd": 8,
+      "note": "No hay tarifa si el acta tiene menos de un año."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://doh.sd.gov/licensing-and-records/vital-records/amendments-court-orders/",
+      "title": "Departamento de Salud de South Dakota — Enmiendas y Órdenes Judiciales",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "sd.court-order.name.es",
+    "jurisdiction": "US-SD",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en South Dakota",
+    "statement": "En South Dakota, usted presenta una petición verificada de cambio de nombre ante la oficina del secretario del tribunal del condado donde reside, pero solo después de haber residido allí por más de seis meses. La ley de South Dakota le permite representarse a sí mismo en un caso de cambio de nombre sin un abogado.",
+    "detail": "Una vez que presenta la petición, a su caso se le asigna un número de caso que debe aparecer en todos los documentos que presente ante el tribunal. Este proceso se rige por el capítulo 21-37 de la Ley Codificada de South Dakota, la Ley Codificada de South Dakota 34-25-51, y la Regla Administrativa 44:09:05:02 de South Dakota. El paquete de Cambio de Nombre de Adulto del Sistema Judicial Unificado — UJS-024 (instrucciones), UJS-025 (petición verificada), UJS-026 (aviso de audiencia), y UJS-027 (orden) — está disponible en su centro de autoayuda.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Puede haber costos asociados con cualquier publicación requerida del aviso de su cambio de nombre; la página no da una cifra en dólares."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://ujs.sd.gov/self-help/civil-law-help/name-change/",
+      "title": "Sistema Judicial Unificado de South Dakota — Cambio de Nombre (Autoayuda)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "es"
+  },
+  {
+    "id": "sd.drivers-license.gender-marker.es",
+    "jurisdiction": "US-SD",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo/género en la licencia de conducir e identificación de South Dakota",
+    "statement": "Este proyecto no encontró ninguna página del Departamento de Seguridad Pública de South Dakota que describa una forma de cambiar la designación de sexo o género en una licencia de conducir o identificación estatal, y la página web actual del departamento no devolvió texto legible para confirmar si existe alguna.",
+    "detail": "La propia guía de registros vitales de South Dakota tampoco describe una forma de cambiar el sexo indicado en un acta de nacimiento (vea el registro de acta de nacimiento de South Dakota sobre este tema de este proyecto), así que no asuma que hay una vía abierta en una licencia o identificación tampoco. Confirme directamente con el DPS de South Dakota, y no confíe en el proceso de otro estado.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.sd.gov/dps?id=cs_kb_article_view&sysparm_article=KB0043549",
+      "title": "Departamento de Seguridad Pública de South Dakota — Reemplazo, Duplicado o Cambio de Dirección de Licencia de Conducir/Identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "sd.drivers-license.name.es",
+    "jurisdiction": "US-SD",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir e identificación de South Dakota",
+    "statement": "South Dakota actualiza el nombre en una licencia de conducir o identificación en persona en una estación de examen de licencias de conducir; esto no se puede hacer en línea ni por correo. Este proyecto no pudo extraer texto legible de la página web actual del Departamento de Seguridad Pública para confirmar los documentos exactos, la tarifa o el plazo que actualmente requiere.",
+    "detail": "Comuníquese directamente con el DPS de South Dakota, o visite una estación de examen en persona, para confirmar qué prueba de su cambio de nombre se acepta actualmente y cuál es la tarifa actual antes de ir.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.sd.gov/dps?id=cs_kb_article_view&sysparm_article=KB0043549",
+      "title": "Departamento de Seguridad Pública de South Dakota — Reemplazo, Duplicado o Cambio de Dirección de Licencia de Conducir/Identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
     "language": "es"
   },
   {

@@ -1,0 +1,121 @@
+[
+  {
+    "id": "sd.birth-certificate.gender-marker",
+    "jurisdiction": "US-SD",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "South Dakota birth certificate sex designation",
+    "statement": "South Dakota's official page on birth-certificate amendments describes changes to a name, a date of birth, and other recorded facts, but it does not describe any way to change the sex shown on a birth certificate.",
+    "detail": "This project could not find a South Dakota government page describing a sex-designation change process for a birth certificate. This has been a contested legal question: do not assume a route is open based on what is possible in another state, and confirm directly with South Dakota Vital Records or an attorney before relying on any specific process.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://doh.sd.gov/licensing-and-records/vital-records/amendments-court-orders/",
+      "title": "South Dakota Department of Health — Amendments & Court Orders",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "sd.birth-certificate.name",
+    "jurisdiction": "US-SD",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "South Dakota birth certificate name change",
+    "statement": "To change the name on a South Dakota birth or marriage record based on a court-ordered name change, you provide South Dakota Vital Records with a certified copy of the court order. The order must identify the certificate, state the incorrect data as it currently appears, and state the correct data.",
+    "detail": "The fee to file this amendment on a record that is a year old or more is $8; there is no fee if the record is under one year old. For instructions on getting a court-ordered name change itself, contact an attorney or the South Dakota Unified Judicial System.",
+    "cost": {
+      "amount_usd": 8,
+      "note": "There is no fee if the record is under one year old."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://doh.sd.gov/licensing-and-records/vital-records/amendments-court-orders/",
+      "title": "South Dakota Department of Health — Amendments & Court Orders",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "sd.court-order.name",
+    "jurisdiction": "US-SD",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "South Dakota name change petition",
+    "statement": "In South Dakota you file a verified petition for a name change with the clerk of court's office in the county where you reside, but only after residing there for more than six months. South Dakota law allows you to represent yourself in a name-change case without a lawyer.",
+    "detail": "Once you file, your case is assigned a case number that must appear on every document you file with the court. This process is governed by South Dakota Codified Law chapter 21-37, South Dakota Codified Law 34-25-51, and South Dakota's Administrative Rule 44:09:05:02. The Unified Judicial System's Adult Name Change packet — UJS-024 (instructions), UJS-025 (verified petition), UJS-026 (notice of hearing), and UJS-027 (order) — is available from its self-help center.",
+    "cost": {
+      "amount_usd": null,
+      "note": "There may be costs associated with any required publication of the notice of your name change; the page does not give a dollar figure."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://ujs.sd.gov/self-help/civil-law-help/name-change/",
+      "title": "South Dakota Unified Judicial System — Name Change (Self Help)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "en"
+  },
+  {
+    "id": "sd.drivers-license.gender-marker",
+    "jurisdiction": "US-SD",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "South Dakota driver's license and ID sex/gender designation",
+    "statement": "This project found no South Dakota Department of Public Safety page describing a way to change the sex or gender designation on a driver's license or state ID, and the department's current web page did not return readable text to confirm whether one exists.",
+    "detail": "South Dakota's own vital-records guidance also describes no way to change the sex shown on a birth certificate (see this project's South Dakota birth-certificate record on this topic), so do not assume a route is open on a license or ID either. Confirm directly with South Dakota DPS, and do not rely on another state's process.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.sd.gov/dps?id=cs_kb_article_view&sysparm_article=KB0043549",
+      "title": "South Dakota Department of Public Safety — Driver License/ID Card Replacement, Duplicate, or Change of Address",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "sd.drivers-license.name",
+    "jurisdiction": "US-SD",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "South Dakota driver's license and ID name change",
+    "statement": "South Dakota updates the name on a driver's license or ID card in person at a driver license exam station; this cannot be done online or by mail. This project could not extract readable text from the Department of Public Safety's current web page to confirm the exact documents, fee, or timeline it currently requires.",
+    "detail": "Contact South Dakota DPS directly, or visit an exam station in person, to confirm what proof of your name change is currently accepted and what the current fee is before you go.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.sd.gov/dps?id=cs_kb_article_view&sysparm_article=KB0043549",
+      "title": "South Dakota Department of Public Safety — Driver License/ID Card Replacement, Duplicate, or Change of Address",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]

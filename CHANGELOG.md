@@ -8,6 +8,40 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Kansas, Nebraska, and South Dakota** (M6 — expand jurisdictions): 16 EN + 16 ES corpus
+  records (court-order name change, driver's-license name and gender-marker, and
+  birth-certificate name and gender-marker for each state), 6 referrals, each sourced from
+  an official state legislature, courts, DMV/DPS, or health-department page and fetched
+  into `corpus/snapshots/`. All three states restrict or foreclose the gender-marker route
+  rather than offering an open one, and each restriction is recorded exactly as its own
+  source states it, not generalized:
+  - **Kansas**: `ksrevenue.gov`'s own Gender Reclassification FAQ describes only a mandatory
+    *reversal* — Senate Bill 244 directs anyone whose driver's-license gender marker does not
+    match their sex assigned at birth to surrender the credential — with no forward path to a
+    new gender-marker change described anywhere on the page. KDHE's Vital Statistics FAQ
+    states in its own words that it "can no longer process gender identity amendments to
+    Kansas birth certificates," citing K.S.A. 77-207 (enacted by 2023's Senate Bill 180). Both
+    records are marked `needs_reverification`, plus a companion record citing the statute
+    text directly, given the ongoing litigation over the driver's-license reversal specifically.
+  - **Nebraska**: a genuine but narrow statutory path exists — Nebraska Revised Statute
+    71-604.01 conditions a new birth certificate on a notarized affidavit from the physician
+    who performed sex reassignment *surgery*, plus a court order changing the name; the DMV's
+    parallel path (a Certification of Sex Reassignment Form signed by one of several named
+    provider types) is comparatively less restrictive and recorded separately, exactly as the
+    two official pages state it.
+  - **South Dakota**: the state's own vital-records amendments page is **silent** on any
+    sex-designation change route for a birth certificate — it addresses only names, dates of
+    birth, and other facts — recorded as silence, not as a closed door we cannot source. South
+    Dakota's Department of Public Safety driver's-license page (a JavaScript single-page
+    application) returns no text this pipeline's fetcher can extract; rather than describe a
+    process this project could not verify, both driver's-license records say plainly that no
+    process could be confirmed and point the reader to DPS directly.
+
+  Snapshot discipline: `make source-snapshot` also refreshed pre-existing snapshots with live
+  drift from this environment's source pages (issue #150), unrelated to this change; those
+  refreshes were reverted rather than adopted blind, and only the 13 new snapshots and their
+  `corpus/source-hashes.json` baselines were added.
+
 - **Virginia** (M6 — expand jurisdictions): 7 EN + 7 ES corpus records (court-order name
   change, driver's-license name and gender-marker, a driver's-license replacement-fee
   record, birth-certificate name and gender-marker, and a birth-certificate fee record),
