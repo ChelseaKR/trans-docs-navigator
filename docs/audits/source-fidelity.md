@@ -12,26 +12,26 @@
 
 | | Count |
 |---|---|
-| Records audited | 82 |
-| Load-bearing assertions found | 237 |
-| — checked and **supported** by the cited source | 174 |
+| Records audited | 116 |
+| Load-bearing assertions found | 325 |
+| — checked and **supported** by the cited source | 253 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 63 |
-| of the checked: literal (fee / duration / form-id) matches | 117 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 57 |
+| — **UNCHECKABLE** (reported, never passed) | 72 |
+| of the checked: literal (fee / duration / form-id) matches | 161 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 92 |
 
 ## What this gate cannot vouch for
 
-- **315 of 398 prose sentences** in the corpus carry no extractable
+- **431 of 552 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **100 sentences state a negative** (`you do not need a court order`, `the page no
+- **140 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **57 assertions are necessary-condition only**: the source discusses the topic, which
+- **92 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
-- **5 cited sources refuse automated fetching entirely**, so no
+- **6 cited sources refuse automated fetching entirely**, so no
   snapshot exists and every assertion in every record citing them is unverifiable by any
   gate. We will not spoof a browser user-agent to get around a site that has said no.
   - https://www.michigan.gov/sos/all-services/license-or-id-name-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
@@ -39,6 +39,7 @@
   - https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
   - https://www.nycourts.gov/courthelp/Family/nameChange.shtml → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
   - https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
+  - https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → HTTP 404: the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
 
 ## Unsupported assertions (these fail the build)
 
@@ -77,36 +78,47 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ny.birth-certificate.name · official form DOH5305 backs this step (form_ref: ny-doh-5305)`
 - `ny.birth-certificate.name · a court order is required`
 - `ny.birth-certificate.name · states $30`
-- `ny.court-order.name.es · a fee waiver is available (cost.fee_waiver: true)`
-- `ny.court-order.name.es · publication in a newspaper is required`
+- `mi.birth-certificate.gender-marker.es · form_ref "mi-mdhhs-sex-designation-form" (State of Michigan Sex Designation Form) carries no form identifier to match on`
+- `mi.birth-certificate.gender-marker.es · states "8 week"`
+- `mi.birth-certificate.gender-marker.es · states "10 week"`
+- `mi.birth-certificate.gender-marker.es · states "6 week"`
+- `mi.birth-certificate.name.es · form_ref "mi-vital-records-correction-application" (Application to Correct or Change a Michigan Birth Record) carries no form identifier to match on`
+- `mi.birth-certificate.name.es · a court order is required`
+- `mi.birth-certificate.name.es · states "8 week"`
+- `mi.birth-certificate.name.es · states "10 week"`
+- `mi.birth-certificate.name.es · states "6 week"`
+- `mi.drivers-license.gender-marker.es · costs $9`
+- `mi.drivers-license.gender-marker.es · form_ref "mi-mdos-sex-designation-form" (Michigan Department of State — Sex Designation Form) carries no form identifier to match on`
+- `mi.drivers-license.gender-marker.es · states $10`
+- `mi.drivers-license.name.es · costs $9`
+- `mi.drivers-license.name.es · a court order is required`
+- `mi.drivers-license.name.es · states $10`
+- `ny.birth-certificate.gender-marker.affidavit.es · official form DOH5303 backs this step (form_ref: ny-doh-5303)`
+- `ny.birth-certificate.gender-marker.affidavit.es · a notarized signature is required`
+- `ny.birth-certificate.gender-marker.affidavit.es · states "17 year"`
+- `ny.birth-certificate.gender-marker.affidavit.es · names form DOH5305`
 - `ny.birth-certificate.gender-marker.es · official form DOH5305 backs this step (form_ref: ny-doh-5305)`
 - `ny.birth-certificate.gender-marker.es · states "17 year"`
 - `ny.birth-certificate.gender-marker.es · names form DOH5303`
 - `ny.birth-certificate.gender-marker.es · an X sex/gender marker is available`
 - `ny.birth-certificate.gender-marker.es · a notarized signature is required`
 - `ny.birth-certificate.gender-marker.es · states $30`
-- `ny.birth-certificate.gender-marker.affidavit.es · official form DOH5303 backs this step (form_ref: ny-doh-5303)`
-- `ny.birth-certificate.gender-marker.affidavit.es · a notarized signature is required`
-- `ny.birth-certificate.gender-marker.affidavit.es · states "17 year"`
-- `ny.birth-certificate.gender-marker.affidavit.es · names form DOH5305`
 - `ny.birth-certificate.name.es · official form DOH5305 backs this step (form_ref: ny-doh-5305)`
 - `ny.birth-certificate.name.es · a court order is required`
 - `ny.birth-certificate.name.es · states $30`
-- `mi.drivers-license.name.es · costs $9`
-- `mi.drivers-license.name.es · a court order is required`
-- `mi.drivers-license.name.es · states $10`
-- `mi.drivers-license.gender-marker.es · costs $9`
-- `mi.drivers-license.gender-marker.es · form_ref "mi-mdos-sex-designation-form" (Michigan Department of State — Sex Designation Form) carries no form identifier to match on`
-- `mi.drivers-license.gender-marker.es · states $10`
-- `mi.birth-certificate.name.es · form_ref "mi-vital-records-correction-application" (Application to Correct or Change a Michigan Birth Record) carries no form identifier to match on`
-- `mi.birth-certificate.name.es · a court order is required`
-- `mi.birth-certificate.name.es · states "8 week"`
-- `mi.birth-certificate.name.es · states "10 week"`
-- `mi.birth-certificate.name.es · states "6 week"`
-- `mi.birth-certificate.gender-marker.es · form_ref "mi-mdhhs-sex-designation-form" (State of Michigan Sex Designation Form) carries no form identifier to match on`
-- `mi.birth-certificate.gender-marker.es · states "8 week"`
-- `mi.birth-certificate.gender-marker.es · states "10 week"`
-- `mi.birth-certificate.gender-marker.es · states "6 week"`
+- `ny.court-order.name.es · a fee waiver is available (cost.fee_waiver: true)`
+- `ny.court-order.name.es · publication in a newspaper is required`
+
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name.** — 8 assertion(s):
+
+- `ga.birth-certificate.name · costs $10`
+- `ga.birth-certificate.name · official form DPH3977 backs this step (form_ref: ga-dph-3977)`
+- `ga.birth-certificate.name · a court order is required`
+- `ga.birth-certificate.name · states $25`
+- `ga.birth-certificate.name.es · costs $10`
+- `ga.birth-certificate.name.es · official form DPH3977 backs this step (form_ref: ga-dph-3977)`
+- `ga.birth-certificate.name.es · a court order is required`
+- `ga.birth-certificate.name.es · states $25`
 
 **the official form has no identifier to match on** — 4 assertion(s):
 
@@ -114,6 +126,10 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `il.birth-certificate.name · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 - `il.birth-certificate.gender-marker.es · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 - `il.birth-certificate.name.es · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
+
+**the source refuses automated fetching (HTTP 404)** — 1 assertion(s):
+
+- `oh.birth-certificate.gender-marker · a court order is required`
 
 ## Per-record coverage
 
@@ -137,6 +153,26 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `ca.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 6/6 |
 | `ca.drivers-license.name` | en | 0 | 0 | 0 | 7/7 |
 | `ca.drivers-license.name.es` | es | 0 | 0 | 0 | 7/7 |
+| `co.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 5/5 |
+| `co.birth-certificate.gender-marker.es` | es | 2 | 0 | 0 | 3/5 |
+| `co.birth-certificate.name` | en | 1 | 0 | 0 | 1/2 |
+| `co.birth-certificate.name.es` | es | 2 | 0 | 0 | 1/2 |
+| `co.court-order.name` | en | 9 | 0 | 0 | 2/5 |
+| `co.court-order.name.es` | es | 9 | 0 | 0 | 2/5 |
+| `co.drivers-license.gender-marker` | en | 3 | 0 | 0 | 4/6 |
+| `co.drivers-license.gender-marker.es` | es | 4 | 0 | 0 | 4/6 |
+| `ga.birth-certificate.fees` | en | 3 | 0 | 0 | 1/3 |
+| `ga.birth-certificate.fees.es` | es | 3 | 0 | 0 | 1/3 |
+| `ga.birth-certificate.gender-marker` | en | 2 | 0 | 0 | 3/4 |
+| `ga.birth-certificate.gender-marker.es` | es | 2 | 0 | 0 | 3/4 |
+| `ga.birth-certificate.name` | en | 0 | 0 | 4 | 3/5 |
+| `ga.birth-certificate.name.es` | es | 0 | 0 | 4 | 3/5 |
+| `ga.court-order.name` | en | 6 | 0 | 0 | 4/7 |
+| `ga.court-order.name.es` | es | 6 | 0 | 0 | 4/7 |
+| `ga.drivers-license.gender-marker` | en | 1 | 0 | 0 | 5/5 |
+| `ga.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 5/5 |
+| `ga.drivers-license.name` | en | 2 | 0 | 0 | 2/3 |
+| `ga.drivers-license.name.es` | es | 2 | 0 | 0 | 2/3 |
 | `il.birth-certificate.gender-marker` | en | 4 | 0 | 1 | 5/5 |
 | `il.birth-certificate.gender-marker.es` | es | 4 | 0 | 1 | 5/5 |
 | `il.birth-certificate.name` | en | 3 | 0 | 1 | 3/3 |
@@ -169,6 +205,20 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `ny.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 3/5 |
 | `ny.drivers-license.name` | en | 6 | 0 | 0 | 2/5 |
 | `ny.drivers-license.name.es` | es | 5 | 0 | 0 | 2/5 |
+| `oh.birth-certificate.gender-marker` | en | 0 | 0 | 1 | 7/7 |
+| `oh.birth-certificate.gender-marker.es` | es | 0 | 0 | 0 | 6/6 |
+| `oh.birth-certificate.gender-marker.law` | en | 0 | 0 | 0 | 4/4 |
+| `oh.birth-certificate.gender-marker.law.es` | es | 0 | 0 | 0 | 3/3 |
+| `oh.birth-certificate.name` | en | 1 | 0 | 0 | 1/2 |
+| `oh.birth-certificate.name.es` | es | 1 | 0 | 0 | 1/2 |
+| `oh.court-order.name` | en | 8 | 0 | 0 | 7/9 |
+| `oh.court-order.name.es` | es | 8 | 0 | 0 | 7/9 |
+| `oh.drivers-license.gender-marker` | en | 0 | 0 | 0 | 4/4 |
+| `oh.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 4/4 |
+| `oh.drivers-license.gender-marker.law` | en | 0 | 0 | 0 | 3/3 |
+| `oh.drivers-license.gender-marker.law.es` | es | 0 | 0 | 0 | 3/3 |
+| `oh.drivers-license.name` | en | 1 | 0 | 0 | 3/3 |
+| `oh.drivers-license.name.es` | es | 1 | 0 | 0 | 5/5 |
 | `tx.birth-certificate.fees` | en | 3 | 0 | 0 | 1/3 |
 | `tx.birth-certificate.fees.es` | es | 3 | 0 | 0 | 1/3 |
 | `tx.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 6/6 |
