@@ -58,7 +58,19 @@ export function runGate(
   gate: string,
   opts: { env?: Record<string, string>; cwd?: string } = {},
 ): GateResult {
-  const scriptPath = join(REPO_ROOT, "scripts", `${gate}.ts`);
+  return runScript(join("scripts", `${gate}.ts`), opts);
+}
+
+/**
+ * Same contract as `runGate`, for the merge gates that are NOT `scripts/<name>.ts` —
+ * currently just `eval/run.ts`, which `make verify` invokes directly as stage 20.
+ * `relPath` is repo-relative.
+ */
+export function runScript(
+  relPath: string,
+  opts: { env?: Record<string, string>; cwd?: string } = {},
+): GateResult {
+  const scriptPath = join(REPO_ROOT, relPath);
   const env = isolatedChildEnv(opts.env);
   const res = spawnSync(
     process.execPath,
