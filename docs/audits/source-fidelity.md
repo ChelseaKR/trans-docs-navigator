@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 174 |
-| Load-bearing assertions found | 482 |
-| — checked and **supported** by the cited source | 359 |
+| Records audited | 184 |
+| Load-bearing assertions found | 512 |
+| — checked and **supported** by the cited source | 381 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 123 |
-| of the checked: literal (fee / duration / form-id) matches | 230 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 129 |
+| — **UNCHECKABLE** (reported, never passed) | 131 |
+| of the checked: literal (fee / duration / form-id) matches | 245 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 136 |
 
 ## What this gate cannot vouch for
 
-- **643 of 816 prose sentences** in the corpus carry no extractable
+- **700 of 884 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **208 sentences state a negative** (`you do not need a court order`, `the page no
+- **228 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **129 assertions are necessary-condition only**: the source discusses the topic, which
+- **136 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **6 cited sources refuse automated fetching entirely**, so no
@@ -109,9 +109,13 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ny.court-order.name.es · a fee waiver is available (cost.fee_waiver: true)`
 - `ny.court-order.name.es · publication in a newspaper is required`
 
-**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 24 assertion(s):
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 32 assertion(s):
 
 - `az.drivers-license.gender-marker · a court order is required`
+- `md.birth-certificate.gender-marker · costs $10`
+- `md.birth-certificate.gender-marker · form_ref "md-vsa-gender-reassignment" (Application for Change in Sex Designation on a Certificate of Live Birth) carries no form identifier to match on`
+- `md.birth-certificate.gender-marker · a court order is required`
+- `md.birth-certificate.gender-marker · states "12 month"`
 - `pa.birth-certificate.gender-marker · costs $20`
 - `pa.birth-certificate.gender-marker · a fee waiver is available (cost.fee_waiver: true)`
 - `pa.birth-certificate.gender-marker · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
@@ -124,6 +128,10 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `pa.birth-certificate.name · a notarized signature is required`
 - `pa.birth-certificate.name · states "45 day"`
 - `az.drivers-license.gender-marker.es · a court order is required`
+- `md.birth-certificate.gender-marker.es · costs $10`
+- `md.birth-certificate.gender-marker.es · form_ref "md-vsa-gender-reassignment" (Application for Change in Sex Designation on a Certificate of Live Birth) carries no form identifier to match on`
+- `md.birth-certificate.gender-marker.es · a court order is required`
+- `md.birth-certificate.gender-marker.es · states "12 month"`
 - `pa.birth-certificate.gender-marker.es · costs $20`
 - `pa.birth-certificate.gender-marker.es · a fee waiver is available (cost.fee_waiver: true)`
 - `pa.birth-certificate.gender-marker.es · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
@@ -276,6 +284,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `ma.drivers-license.gender-marker.law.es` | es | 1 | 0 | 0 | 5/5 |
 | `ma.drivers-license.name` | en | 1 | 0 | 1 | 4/4 |
 | `ma.drivers-license.name.es` | es | 1 | 0 | 1 | 4/4 |
+| `md.birth-certificate.gender-marker` | en | 0 | 0 | 4 | 6/7 |
+| `md.birth-certificate.gender-marker.es` | es | 0 | 0 | 4 | 6/7 |
+| `md.birth-certificate.name` | en | 3 | 0 | 0 | 4/5 |
+| `md.birth-certificate.name.es` | es | 3 | 0 | 0 | 4/5 |
+| `md.court-order.name` | en | 5 | 0 | 0 | 6/8 |
+| `md.court-order.name.es` | es | 5 | 0 | 0 | 6/8 |
+| `md.drivers-license.gender-marker` | en | 3 | 0 | 0 | 6/7 |
+| `md.drivers-license.gender-marker.es` | es | 3 | 0 | 0 | 5/7 |
+| `md.drivers-license.name` | en | 0 | 0 | 0 | 7/7 |
+| `md.drivers-license.name.es` | es | 0 | 0 | 0 | 7/7 |
 | `mi.birth-certificate.fees` | en | 2 | 0 | 0 | 1/3 |
 | `mi.birth-certificate.fees.es` | es | 2 | 0 | 0 | 1/3 |
 | `mi.birth-certificate.gender-marker` | en | 0 | 0 | 4 | 5/6 |

@@ -1,0 +1,137 @@
+[
+  {
+    "id": "md.court-order.name",
+    "jurisdiction": "US-MD",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Maryland name change petition",
+    "statement": "To legally change your name in Maryland, you file a Petition for Change of Name in the Circuit Court — not the District Court — for the county (or Baltimore City) where you live, carry on a regular business, work, habitually engage in a vocation, or where you were born. Maryland's courts say you can change your name as long as it is not for an illegal or fraudulent purpose and does not interfere with the rights of others.",
+    "detail": "Use the Petition for Change of Name of an Adult (CC-DR-60). Attach documents that show your current legal name — such as a birth certificate, driver's license, or passport — and sign the petition with your current legal name. Anyone with a valid reason can file a written objection within 30 days of the date you filed the petition; failing to object in that time is treated as consent to the name change. If the court grants your petition and doesn't mail you a certified copy of the order, ask the clerk's office for copies — you'll need one to update your driver's license, birth certificate, Social Security record, and other accounts. If you also want a court order about your gender identity, Maryland courts describe a separate 'judicial declaration of gender identity' process where you can ask for a name change as part of the same case.",
+    "cost": {
+      "amount_usd": 165,
+      "note": "You can ask the court about a filing-fee waiver if you can't afford the $165 fee; Maryland's courts publish more about qualifying for one."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.courts.state.md.us/legalhelp/family/namechange",
+      "title": "Maryland Courts — Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "md-cc-dr-60",
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "en"
+  },
+  {
+    "id": "md.drivers-license.name",
+    "jurisdiction": "US-MD",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Maryland driver's license name change",
+    "statement": "To change your name on a Maryland driver's license or ID card, first update your name with the Social Security Administration — the MVA says to do this at least 72 hours before your MVA appointment. Then make an appointment online and visit an MVA branch office in person; you cannot complete a name change online or at a self-service kiosk.",
+    "detail": "Bring your current Maryland driver's license and an original or certified document of your legal name change — the MVA says photocopies are not accepted — such as a marriage certificate, divorce decree, court order, or a passport with your new name. If you already have a valid U.S. passport with your new name, the MVA says you do not need to present additional name-change documents. There is a fee for a corrected license or ID that shows your new name; see the MVA's fees and payment options page for the current amount.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The MVA doesn't give a dollar figure for a name change on this page — it says a fee applies for a corrected license or ID and to check its fees and payment options page for the current amount."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://mva.maryland.gov/about-mva/Pages/changing-gender.aspx",
+      "title": "Maryland MVA — Update Name, Address or Other Info on Your Driver's License",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "md.drivers-license.gender-marker",
+    "jurisdiction": "US-MD",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Maryland driver's license gender designation",
+    "statement": "You can update the gender marker on your Maryland driver's license or ID card to M (male), F (female), or X (unspecified or other). The MVA says no documentation is required to change your gender designation, but you have to do it in person at an MVA branch office — not online or at a self-service kiosk — with an appointment.",
+    "detail": "At your appointment you'll have a new photo taken and pay the card-replacement fee that applies to a corrected license or ID; see the MVA's fees and payment options page for the current amount. Once approved, your new license will be mailed to you within 7 to 10 business days. You can change your gender designation as many times as you need — a corrected driver's license fee applies each time — and the MVA says you do not need to have the gender on your birth certificate changed first. If you're under 18 and want to select a gender other than the one shown on your birth certificate, your parent or guardian must sign the application to approve the choice, or the credential will not be issued.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The MVA doesn't give a dollar figure on this page — it says a card-replacement fee applies each time you change your gender designation. Check the MVA's fees and payment options page for the current amount."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://mva.maryland.gov/about-mva/Pages/changing-gender.aspx",
+      "title": "Maryland MVA — Update Name, Address or Other Info on Your Driver's License",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "md.birth-certificate.gender-marker",
+    "jurisdiction": "US-MD",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Maryland birth certificate sex designation",
+    "statement": "If you were born in Maryland, you can apply for a new Certificate of Live Birth that reflects a change in sex designation if your sex has been changed or you have been diagnosed with an intersex condition. Maryland's Division of Vital Records requires satisfactory proof of one of: a licensed health care practitioner's signed statement, under penalty of perjury, that you underwent surgical, hormonal, or other treatment appropriate for you, based on generally accepted medical standards; a licensed health care practitioner's statement that you have an intersex condition and, in their professional opinion, your sex designation should be changed; or a court order indicating that your sex should be changed.",
+    "detail": "A licensed health care practitioner can be a physician, a psychologist, a registered nurse certified as a nurse practitioner, nurse psychotherapist, or clinical nurse specialist, or a licensed certified social worker-clinical — including one licensed in another state who meets Maryland's requirements to practice here. Submit your application, evidence, and fees to the Division of Vital Records. If you're also requesting a name change and you're over 12 months old, you also have to provide the original court order.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Preparing the new Certificate of Live Birth costs $10. A certified copy costs $10 per copy if you want one. Pay by check or money order."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.maryland.gov/vsa/Documents/Corrections/Birth/Gender%20Reassignment/Gender%20Re-Assignment%20instructions%2009_01_2016.pdf",
+      "title": "Maryland Department of Health, Division of Vital Records — Applying for a New Certificate of Birth Following Sex Change or Diagnosis of an Intersex Condition",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "md-vsa-gender-reassignment",
+    "language": "en"
+  },
+  {
+    "id": "md.birth-certificate.name",
+    "jurisdiction": "US-MD",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Maryland birth certificate name change",
+    "statement": "Maryland lets you amend a birth certificate registered by the State Registrar, in accordance with Md. Code Ann., Health-General § 4-214, including to change the name. The types of changes the Division of Vital Records lists include an affidavit to change a name within 12 months of birth, or obtaining a court order for other birth-certificate changes.",
+    "detail": "To request a change, you can email the amendment request form and required paperwork to the Division of Vital Records and a representative will contact you about payment, or you can mail the request with the fees to the Division. After the Division receives your request and the amendment fee, it evaluates your request and responds in writing if it needs more information.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "The amendment fee is $10, plus a $10 certificate fee."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://health.maryland.gov/vsa/Pages/birthcorrect.aspx",
+      "title": "Maryland Department of Health — Birth Certificate Corrections",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

@@ -1,19 +1,19 @@
 {
   "today": "2026-07-13",
-  "total": 53,
+  "total": 57,
   "metrics": [
     {
       "name": "groundedness",
       "value": 1,
       "threshold": 0.95,
-      "n": 45,
+      "n": 49,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 39,
+      "n": 43,
       "pass": true
     },
     {
@@ -27,7 +27,7 @@
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 53,
+      "n": 57,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 39,
+      "n": 43,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
       "value": 1,
       "threshold": 0.7,
-      "n": 39,
+      "n": 43,
       "pass": true
     }
   ],
@@ -102,6 +102,12 @@
       "pass": true
     },
     {
+      "segment": "jurisdiction:US-MD",
+      "value": 1,
+      "n": 4,
+      "pass": true
+    },
+    {
       "segment": "jurisdiction:US-MI",
       "value": 1,
       "n": 3,
@@ -146,13 +152,13 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 27,
+      "n": 30,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 12,
+      "n": 13,
       "pass": true
     }
   ],
@@ -222,6 +228,16 @@
       "records": 14,
       "current_records": 14,
       "gold_items": 2,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-MD",
+      "records": 10,
+      "current_records": 10,
+      "gold_items": 4,
       "accuracy": 1,
       "mechanically_ready": true,
       "verification_complete": false,
@@ -692,6 +708,46 @@
       "suite": "accuracy",
       "segment": {
         "jurisdiction": "US-NJ",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "md-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MD",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "md-marker-dl",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MD",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "md-birth-marker",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MD",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "md-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MD",
         "language": "es"
       },
       "passed": true,

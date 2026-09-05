@@ -366,6 +366,45 @@ const AUTHORED_GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "nj.court-order.name.es", mustContain: ["Tribunal Superior", "$250"] },
   },
   {
+    id: "md-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MD", language: "en" },
+    query: { jurisdiction: "US-MD", change_types: ["name"], documents: ["court-order"], question: "Maryland name change Circuit Court petition" },
+    expect: { refused: false, citesRecord: "md.court-order.name", mustContain: ["Circuit Court", "30 days"] },
+  },
+  {
+    id: "md-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MD", language: "en" },
+    query: { jurisdiction: "US-MD", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Maryland driver's license gender marker no documentation" },
+    // M6: Maryland is comparatively permissive here — the MVA's own page says no
+    // documentation is required, only an in-person appointment. The expectation pins
+    // that self-attestation in the source's own words, not a fabricated requirement.
+    expect: {
+      refused: false,
+      citesRecord: "md.drivers-license.gender-marker",
+      mustContain: ["no documentation", "M (male)"],
+    },
+  },
+  {
+    id: "md-birth-marker",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MD", language: "en" },
+    query: { jurisdiction: "US-MD", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Maryland birth certificate sex designation change" },
+    expect: {
+      refused: false,
+      citesRecord: "md.birth-certificate.gender-marker",
+      mustContain: ["intersex condition", "court order"],
+    },
+  },
+  {
+    id: "md-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MD", language: "es" },
+    query: { jurisdiction: "US-MD", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Maryland" },
+    expect: { refused: false, citesRecord: "md.court-order.name.es", mustContain: ["Tribunal de Circuito", "30 días"] },
+  },
+  {
     id: "tx-unsupported-court",
     suite: "refusal",
     segment: { jurisdiction: "US-NV", language: "en" },
