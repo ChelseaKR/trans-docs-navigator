@@ -155,6 +155,36 @@
     }
   },
   {
+    "id": "md-cc-dr-60",
+    "jurisdiction": "US-MD",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Petition for Change of Name of an Adult (CC-DR-60)",
+    "source": {
+      "url": "https://www.courts.state.md.us/sites/default/files/court-forms/ccdr060.pdf",
+      "title": "Maryland Judiciary — Petition for Change of Name of an Adult (CC-DR-60)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "md-vsa-gender-reassignment",
+    "jurisdiction": "US-MD",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Application for Change in Sex Designation on a Certificate of Live Birth",
+    "source": {
+      "url": "https://health.maryland.gov/vsa/Documents/Corrections/Birth/Gender%20Reassignment/Gender%20Re-Assignment%20instructions%2009_01_2016.pdf",
+      "title": "Maryland Department of Health, Division of Vital Records — Applying for a New Certificate of Birth Following Sex Change or Diagnosis of an Intersex Condition",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "mi-mdhhs-sex-designation-form",
     "jurisdiction": "US-MI",
     "document_type": "birth-certificate",
@@ -201,6 +231,36 @@
     }
   },
   {
+    "id": "nj-courts-namechg-adult",
+    "jurisdiction": "US-NJ",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "How to Ask the Court to Change Your Name — Adults Only (CN 10551)",
+    "source": {
+      "url": "https://www.njcourts.gov/sites/default/files/forms/10551_namechg_adult.pdf",
+      "title": "New Jersey Courts — Name Change, Adult (CN 10551)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "nj-doh-reg-l2",
+    "jurisdiction": "US-NJ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Form REG-L2 — Request Form and Attestation to Amend Sex Designation to Reflect Gender Identity on a Birth Certificate (Adult)",
+    "source": {
+      "url": "https://www.nj.gov/health/forms/reg-l2_1.pdf",
+      "title": "New Jersey Department of Health Form REG-L2",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "ny-doh-5303",
     "jurisdiction": "US-NY",
     "document_type": "birth-certificate",
@@ -227,6 +287,53 @@
     "source": {
       "url": "https://www.health.ny.gov/forms/doh-5305.pdf",
       "title": "New York State Department of Health Form DOH-5305",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "or-courts-name-sex-packet",
+    "jurisdiction": "US-OR",
+    "document_type": "court-order",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Name and Sex Change Packet (Adult)",
+    "source": {
+      "url": "https://www.courts.oregon.gov/forms/Documents/Name%20and%20Sex%20Change%20Packet%20(Adult).pdf",
+      "title": "Oregon Judicial Department — Name and Sex Change Packet (Adult)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "or-oha-2673",
+    "jurisdiction": "US-OR",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Form OHA 2673 — Application to Change the Name and/or Sex on a Record of Live Birth to Support Gender Identity",
+    "source": {
+      "url": "https://www.oregon.gov/oha/PH/BIRTHDEATHCERTIFICATES/Document%20Forms/OHA2673FormEnglish.pdf",
+      "title": "Oregon Health Authority Form OHA 2673",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "or-oha-court-order-name-form",
+    "jurisdiction": "US-OR",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "title": "Request to Change Birth Certificate Based on Court Order of Name Change",
+    "source": {
+      "url": "https://www.oregon.gov/oha/PH/BIRTHDEATHCERTIFICATES/Document%20Forms/CourtOrderNameChangeForm.pdf",
+      "title": "Oregon Health Authority — Request to Change Birth Certificate Based on Court Order of Name Change",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -348,53 +455,6 @@
     "source": {
       "url": "https://doh.wa.gov/sites/default/files/legacy/Documents/Pubs/422-143-SexDesignationChangeAdult.pdf",
       "title": "Washington State Department of Health Form DOH 422-143",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "or-courts-name-sex-packet",
-    "jurisdiction": "US-OR",
-    "document_type": "court-order",
-    "change_type": [
-      "name",
-      "gender-marker"
-    ],
-    "title": "Name and Sex Change Packet (Adult)",
-    "source": {
-      "url": "https://www.courts.oregon.gov/forms/Documents/Name%20and%20Sex%20Change%20Packet%20(Adult).pdf",
-      "title": "Oregon Judicial Department — Name and Sex Change Packet (Adult)",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "or-oha-2673",
-    "jurisdiction": "US-OR",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "name",
-      "gender-marker"
-    ],
-    "title": "Form OHA 2673 — Application to Change the Name and/or Sex on a Record of Live Birth to Support Gender Identity",
-    "source": {
-      "url": "https://www.oregon.gov/oha/PH/BIRTHDEATHCERTIFICATES/Document%20Forms/OHA2673FormEnglish.pdf",
-      "title": "Oregon Health Authority Form OHA 2673",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "or-oha-court-order-name-form",
-    "jurisdiction": "US-OR",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "name"
-    ],
-    "title": "Request to Change Birth Certificate Based on Court Order of Name Change",
-    "source": {
-      "url": "https://www.oregon.gov/oha/PH/BIRTHDEATHCERTIFICATES/Document%20Forms/CourtOrderNameChangeForm.pdf",
-      "title": "Oregon Health Authority — Request to Change Birth Certificate Based on Court Order of Name Change",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }

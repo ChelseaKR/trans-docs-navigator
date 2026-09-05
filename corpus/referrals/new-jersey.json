@@ -1,0 +1,38 @@
+[
+  {
+    "id": "nj.referral.garden-state-equality",
+    "jurisdiction": "US-NJ",
+    "name": "Garden State Equality",
+    "url": "https://www.gardenstateequality.org",
+    "note": {
+      "en": "Statewide LGBTQ+ advocacy organization; its Name Change Project partners with legal organizations to help transgender New Jersey residents with name-change petitions, driver's license updates, and birth certificate changes.",
+      "es": "Organización estatal de defensa LGBTQ+; su Proyecto de Cambio de Nombre colabora con organizaciones legales para ayudar a residentes transgénero de Nueva Jersey con peticiones de cambio de nombre, actualizaciones de licencia de conducir y cambios en el acta de nacimiento."
+    },
+    "source": {
+      "url": "https://www.gardenstateequality.org",
+      "title": "Garden State Equality",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "nj.referral.lsnjlaw",
+    "jurisdiction": "US-NJ",
+    "name": "LSNJLAW (Legal Services of New Jersey)",
+    "url": "https://www.lsnjlaw.org",
+    "note": {
+      "en": "Free civil legal information and assistance for low-income New Jersey residents, including a statewide legal hotline and self-help guidance on name changes.",
+      "es": "Información y ayuda legal civil gratuita para residentes de bajos ingresos de Nueva Jersey, incluida una línea legal estatal y orientación de autoayuda sobre cambios de nombre."
+    },
+    "source": {
+      "url": "https://www.lsnjlaw.org",
+      "title": "LSNJLAW — Legal Services of New Jersey",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

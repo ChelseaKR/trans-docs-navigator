@@ -327,6 +327,84 @@ const AUTHORED_GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "ga.court-order.name.es", mustContain: ["Tribunal Superior", "30 días"] },
   },
   {
+    id: "nj-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NJ", language: "en" },
+    query: { jurisdiction: "US-NJ", change_types: ["name"], documents: ["court-order"], question: "New Jersey name change Superior Court filing fee" },
+    expect: { refused: false, citesRecord: "nj.court-order.name", mustContain: ["Law Division", "$250"] },
+  },
+  {
+    id: "nj-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NJ", language: "en" },
+    query: { jurisdiction: "US-NJ", change_types: ["gender-marker"], documents: ["drivers-license"], question: "New Jersey driver's license gender marker change" },
+    // M6: unlike Georgia's restricted route, New Jersey's MVC form takes M/F/X by
+    // self-declaration — no medical documentation or doctor's signature, per its own form.
+    expect: {
+      refused: false,
+      citesRecord: "nj.drivers-license.gender-marker",
+      mustContain: ["male, female, or X", "do not need medical documentation"],
+    },
+  },
+  {
+    id: "nj-birth-marker",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NJ", language: "en" },
+    query: { jurisdiction: "US-NJ", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "New Jersey birth certificate gender marker self-attestation" },
+    // The Babs Siperstein Law: self-attestation, no surgery documentation required.
+    expect: {
+      refused: false,
+      citesRecord: "nj.birth-certificate.gender-marker",
+      mustContain: ["Babs Siperstein", "self-attestation"],
+    },
+  },
+  {
+    id: "nj-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NJ", language: "es" },
+    query: { jurisdiction: "US-NJ", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Nueva Jersey" },
+    expect: { refused: false, citesRecord: "nj.court-order.name.es", mustContain: ["Tribunal Superior", "$250"] },
+  },
+  {
+    id: "md-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MD", language: "en" },
+    query: { jurisdiction: "US-MD", change_types: ["name"], documents: ["court-order"], question: "Maryland name change Circuit Court petition" },
+    expect: { refused: false, citesRecord: "md.court-order.name", mustContain: ["Circuit Court", "30 days"] },
+  },
+  {
+    id: "md-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MD", language: "en" },
+    query: { jurisdiction: "US-MD", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Maryland driver's license gender marker no documentation" },
+    // M6: Maryland is comparatively permissive here — the MVA's own page says no
+    // documentation is required, only an in-person appointment. The expectation pins
+    // that self-attestation in the source's own words, not a fabricated requirement.
+    expect: {
+      refused: false,
+      citesRecord: "md.drivers-license.gender-marker",
+      mustContain: ["no documentation", "M (male)"],
+    },
+  },
+  {
+    id: "md-birth-marker",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MD", language: "en" },
+    query: { jurisdiction: "US-MD", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Maryland birth certificate sex designation change" },
+    expect: {
+      refused: false,
+      citesRecord: "md.birth-certificate.gender-marker",
+      mustContain: ["intersex condition", "court order"],
+    },
+  },
+  {
+    id: "md-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MD", language: "es" },
+    query: { jurisdiction: "US-MD", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Maryland" },
+    expect: { refused: false, citesRecord: "md.court-order.name.es", mustContain: ["Tribunal de Circuito", "30 días"] },
+  },
+  {
     id: "tx-unsupported-court",
     suite: "refusal",
     segment: { jurisdiction: "US-NV", language: "en" },
