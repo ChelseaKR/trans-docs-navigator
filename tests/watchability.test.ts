@@ -104,6 +104,16 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
   // silent change to either has to be deliberate.
   const urls = [...loadCorpus().map((r) => r.source.url), ...loadForms().map((f) => f.source.url)];
   assert.deepEqual(unwatchableAmong(urls), [
+    // Delaware: the Court of Common Pleas name-change petition packet, the DMV's gender-
+    // designation procedure and its Form MV2020, and the Division of Public Health's
+    // Gender Reassignment instructions and Requester's Affidavit are all PDFs whose text
+    // this pipeline cannot extract, so no baseline can be taken — deliberate, with the
+    // Delaware corpus.
+    "https://courts.delaware.gov/forms/download.aspx?id=16858",
+    "https://dhss.delaware.gov/wp-content/uploads/sites/12/dph/pdf/GenderReassignment.pdf",
+    "https://dhss.delaware.gov/wp-content/uploads/sites/12/dph/pdf/RequesterAffidavitSexChange.pdf",
+    "https://dmv.de.gov/DriverServices/drivers_license/pdfs/gender_designation_change_procedure.pdf",
+    "https://dmv.de.gov/forms/driver_serv_forms/pdfs/gender_change_request_form.pdf",
     // Georgia's Affidavit for Amendment (Form 3977) is a PDF whose text this
     // pipeline cannot extract, so no baseline can be taken — deliberate addition
     // with the Georgia corpus, not a silent drift in the watch set.
@@ -117,6 +127,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // form the Gender Designation Form is filed alongside — is also a PDF whose
     // text this pipeline cannot extract, so no baseline can be taken.
     "https://dphhs.mt.gov/assets/Statistics/VitalStats/affidavitcorr.pdf",
+    // Wyoming's Form to Correct a Wyoming Vital Record — registered in forms/registry.json
+    // (form_ref for wy.birth-certificate.name) but never fetched via `make source-baseline`,
+    // so it has no drift baseline — deliberate, with the Wyoming corpus.
+    "https://health.wyo.gov/wp-content/uploads/2026/07/WDH-VRS-Correction-Form-2026.pdf",
     // North Dakota's Century Code chapter 23-02.1 (the statute restricting
     // gender-identity-based sex-designation amendments, 23-02.1-25.1) is only
     // published as a PDF of the whole chapter, so no baseline can be taken —
@@ -125,6 +139,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Ohio's vital-records page refuses this project's declared user-agent
     // domain-wide, so no baseline can be taken — deliberate, with the Ohio corpus.
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record",
+    // Idaho's Instructions to Request a Court Ordered Name Change on an Idaho Birth
+    // Certificate is a PDF whose text this pipeline cannot extract, so no baseline can
+    // be taken — deliberate addition with the Idaho corpus.
+    "https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=1294&dbid=0&repo=PUBLIC-DOCUMENTS",
     // Arizona: both are PDFs whose text this pipeline cannot extract, so no
     // baseline can be taken — deliberate, with the Arizona corpus.
     "https://superiorcourt.maricopa.gov/media/emucljue/name-gender-change-eng-spa.pdf",
@@ -132,11 +150,26 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // a PDF whose text this pipeline cannot extract, so no baseline can be taken —
     // deliberate addition with the North Carolina corpus.
     "https://vitalrecords.nc.gov/documents/NCOVR-BirthModificationsApplicationFinal-07072022v6.pdf",
+    // Utah's Form UDOH-OVRS-902 (Amendment of a Record by Court Order) — registered in
+    // forms/registry.json (form_ref for ut.birth-certificate.name) but never fetched via
+    // `make source-baseline`, so it has no drift baseline — deliberate, with the Utah corpus.
+    "https://vitalrecords.utah.gov/wp-content/uploads/902-Affidavit-to-Amend-by-Court-Order.pdf",
     "https://www.azdhs.gov/documents/vital-records/manuals/correction-affidavit-correct-amend-birth.pdf?v=20260409",
     // Tennessee's enacted "definition of sex" bill (SB 1440 / HB 239, 2023) is only
     // published as a PDF on the General Assembly's own site, so no baseline can be
     // taken — deliberate, with the Tennessee corpus.
     "https://www.capitol.tn.gov/Bills/113/Bill/SB1440.pdf",
+    // New Hampshire: courts.nh.gov and dmv.nh.gov both refuse this project's declared
+    // user-agent (confirmed 403 from both Node's fetch and curl sending the same UA), so
+    // no baseline can be taken — deliberate, with the New Hampshire corpus. The court-order
+    // and birth-certificate records instead cite gencourt.state.nh.us (the statute site),
+    // which is not blocked and is checkable.
+    "https://www.courts.nh.gov/sites/g/files/ehbemt471/files/documents/2021-06/filing_fees.pdf",
+    // Arkansas: both are PDFs whose text this pipeline cannot extract, so no
+    // baseline can be taken — deliberate, with the Arkansas corpus.
+    "https://www.dfa.arkansas.gov/wp-content/uploads/Affidavit_of_Legal_Name_Change_2019.pdf",
+    "https://www.dfa.arkansas.gov/wp-content/uploads/DS_GenderApplication.pdf",
+    "https://www.dmv.nh.gov/drivers-licensenon-driver-ids/update-personal-information",
     // Nevada: all three are PDFs whose text this pipeline cannot extract, so no
     // baseline can be taken — deliberate, with the Nevada corpus.
     "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf",
@@ -147,6 +180,13 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // whose text this pipeline cannot extract, so no baseline can be taken —
     // deliberate addition with the North Dakota corpus.
     "https://www.hhs.nd.gov/sites/www/files/documents/DOH%20Legacy/Vital/SFN%2060183%20-%20Birth%20Amendment%20Changes.pdf",
+    // Maine: the VS-7 vital-records amendment form, the BMV's Gender Designation Form
+    // (MVL-20), and the Secretary of State's gender-designation guidance memo are all
+    // PDFs whose text this pipeline cannot extract, so no baseline can be taken —
+    // deliberate, with the Maine corpus.
+    "https://www.maine.gov/dhhs/mecdc/sites/maine.gov.dhhs.mecdc/files/Application%20to%20Correct%20a%20Vital%20Record%20in%20Maine%20%28VS-7%29.pdf",
+    "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/GENDER%20DESIGNATION%20FORM2019.pdf",
+    "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/Guidance%20about%20Gender%20Designations%20on%20Maine%20Drivers%20Licenses_1.pdf",
     // Michigan's SOS and MDHHS pages refuse this project's declared user-agent.
     // Verified 403 from both Node's fetch and curl sending the same UA, so this is
     // the host refusing us, not a client artifact — deliberate, with the MI corpus.

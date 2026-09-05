@@ -1,0 +1,193 @@
+[
+  {
+    "id": "ut.court-order.name",
+    "jurisdiction": "US-UT",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Utah name change petition",
+    "statement": "In Utah, you file the forms for a name change with the district court in the county where you live. You must have lived in that county for at least one year before you file.",
+    "detail": "Utah's MyPaperwork website can help you prepare your forms and send them to the court online to start your case. When you file, you are charged a filing fee; if you cannot afford it, you can ask for a fee waiver. You cannot use this process to avoid creditors, fines, or a criminal sentence, to commit fraud, or to choose a name that is bizarre, unduly lengthy, ridiculous, or offensive to common decency, and it is not available if you are currently in the custody of the Department of Corrections or on probation or parole.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page does not list a specific filing-fee amount; it links to the courts' fee schedule. Ask for a fee waiver if you cannot afford the fee."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html",
+      "title": "Utah Courts Self-Help — Petition for Name or Sex Designation Change (Adult)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "en"
+  },
+  {
+    "id": "ut.court-order.gender-marker",
+    "jurisdiction": "US-UT",
+    "document_type": "court-order",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Utah legal sex (gender marker) court petition",
+    "statement": "Utah also lets you ask the district court to change your legal sex — sometimes called a gender marker — on its own or together with a name change. Utah Code 26B-8-111 sets out what the court must find before granting this.",
+    "detail": "When you file paperwork asking to change your legal sex, the court marks the case as private: the paperwork filed in the case cannot be seen by the public, though the case history and any public hearings stay available. You cannot ask for this change to avoid creditors, to interfere with someone else's rights, or for other improper purposes named in the law, and it is not available if you are currently in the custody of the Department of Corrections or on probation or parole. This is a politically contested area of Utah law; confirm the current status with the court or an attorney before relying on it.",
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html",
+      "title": "Utah Courts Self-Help — Petition for Name or Sex Designation Change (Adult)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ut.drivers-license.name",
+    "jurisdiction": "US-UT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Utah driver's license and ID name change",
+    "statement": "To change the name on your Utah driver's license or ID card, you appear in person at the Driver License Division. If your current name doesn't match your ID documents, you bring legal documentation explaining the difference, such as a certified marriage certificate, a divorce decree, an updated passport, a new birth certificate, adoption papers, a citizenship or naturalization certificate, or court papers showing the name change, sealed by the court.",
+    "detail": "Foreign-language documents must be translated into English by a certified translator.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dld.utah.gov/name-change-regular-license/",
+      "title": "Utah Driver License Division — Name Change (Regular License)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ut.drivers-license.gender-marker",
+    "jurisdiction": "US-UT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Utah driver's license and ID sex/gender designation",
+    "statement": "Utah's Driver License Division pages for a name change and for required documents do not mention a sex or gender designation on a license or ID card, or any process for changing one.",
+    "detail": "This project checked the Division's name-change, required-documents, and legislation pages and found no official page that addresses a sex or gender marker at all. Read the Division's current pages yourself before assuming a route exists.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dld.utah.gov/required-documents/",
+      "title": "Utah Driver License Division — Required Documents",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ut.birth-certificate.name",
+    "jurisdiction": "US-UT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Utah birth certificate name change",
+    "statement": "After a Utah court grants your name change, you send Vital Records and Statistics a certified copy of the signed order along with the Amendment of a Record by Court Order form.",
+    "detail": "Vital Records charges a fee for the amendment, and an additional fee if your court case was sealed. You mail your request to Vital Records and Statistics, PO Box 141012, Salt Lake City, UT 84114-1012. It can take several weeks to process.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page does not give a specific dollar amount for the amendment fee. See Utah's vital records fee schedule for current amounts."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html",
+      "title": "Utah Courts Self-Help — Petition for Name or Sex Designation Change (Adult)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ut.birth-certificate.gender-marker",
+    "jurisdiction": "US-UT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Utah birth certificate sex designation",
+    "statement": "Utah's vital records office says an individual may obtain a court order to change the sex designation on a birth certificate. The court order must state the individual's full name, the sex currently on the birth record, and the sex it will be corrected to.",
+    "detail": "You submit the certified court order with a Court Order Amendment Form, a Birth Certificate Application, a copy of the requester's ID, and a check or money order for the correct fees. Separately, the record of an intersex individual may be amended by affidavit, with a genetic test and a health care professional's affidavit, without a court order. This is a politically contested area of Utah law; confirm the current status with Vital Records or an attorney before relying on it.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://vitalrecords.utah.gov/amend-a-vital-record",
+      "title": "Utah Department of Health and Human Services, Office of Vital Records and Statistics — Amend a Vital Record",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ut.birth-certificate.gender-marker.law",
+    "jurisdiction": "US-UT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Utah's statutory criteria for a sex-designation change",
+    "statement": "Utah Code 26B-8-111 says a court may grant a sex-designation change only if it finds by clear and convincing evidence that the individual is not involved in a lawsuit, is not an offender under the state's sex, kidnap, and child abuse offender registry law, and is not seeking the change for fraud, to interfere with others' rights, or to avoid creditors or a criminal sentence.",
+    "detail": "The court must also find the individual \"has transitioned from the sex designation of the biological sex at birth to the sex sought in the petition,\" has \"outwardly expressed as the sex sought in the petition in a consistent and uniform manner for at least six months,\" and \"suffers from clinically significant distress or impairment due to the current sex designation.\" For a child at least 15 years and six months old, the court must appoint a guardian ad litem, and any order granting the change is not effective until the child turns 16. A court may not grant a petition for a child younger than 15 years and six months old, or without a parent's or guardian's permission.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://le.utah.gov/xcode/Title26B/Chapter8/C26B-8-S111_2025050720250507.html",
+      "title": "Utah Code — Section 26B-8-111, Birth Certificate Name or Sex Designation Change",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ut.birth-certificate.fees",
+    "jurisdiction": "US-UT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Utah birth certificate amendment fees",
+    "statement": "Utah's vital records fee schedule lists $25.00 for an initial certified copy of a birth certificate, and $25.00 more for an amendment — such as one made by affidavit, court order, or voluntary declaration of paternity — in addition to the certificate fee.",
+    "detail": "If your court case was sealed, Utah charges an extra $40.00 sealed-record fee. Expedited processing costs $25.00 more, and expedited shipping costs $30.00 more.",
+    "cost": {
+      "amount_usd": 25,
+      "note": "This is the amendment fee, charged in addition to the $25.00 certificate fee. A $40.00 sealed-record fee applies if your case was sealed."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://vitalrecords.utah.gov/fee-schedule",
+      "title": "Utah Department of Health and Human Services, Office of Vital Records and Statistics — Fee Schedule",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

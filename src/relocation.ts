@@ -29,11 +29,16 @@ import { formById } from "../api/forms.ts";
 
 /** The states the planner offers, mirroring the checklist intake's list. */
 export const RELOCATION_JURISDICTIONS: { id: string; label: string }[] = [
+  { id: "US-AR", label: "Arkansas" },
   { id: "US-AZ", label: "Arizona" },
   { id: "US-CA", label: "California" },
+  { id: "US-DE", label: "Delaware" },
+  { id: "US-ME", label: "Maine" },
+  { id: "US-NH", label: "New Hampshire" },
   { id: "US-FL", label: "Florida" },
   { id: "US-GA", label: "Georgia" },
   { id: "US-CO", label: "Colorado" },
+  { id: "US-ID", label: "Idaho" },
   { id: "US-IL", label: "Illinois" },
   { id: "US-MD", label: "Maryland" },
   { id: "US-MI", label: "Michigan" },
@@ -43,14 +48,21 @@ export const RELOCATION_JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-NJ", label: "New Jersey" },
   { id: "US-NY", label: "New York" },
   { id: "US-PA", label: "Pennsylvania" },
+  { id: "US-OK", label: "Oklahoma" },
   { id: "US-TN", label: "Tennessee" },
   { id: "US-OR", label: "Oregon" },
+  { id: "US-SC", label: "South Carolina" },
   { id: "US-TX", label: "Texas" },
+  { id: "US-UT", label: "Utah" },
   { id: "US-VA", label: "Virginia" },
   { id: "US-WA", label: "Washington" },
   { id: "US-WI", label: "Wisconsin" },
   { id: "US-ND", label: "North Dakota" },
   { id: "US-MT", label: "Montana" },
+  { id: "US-KS", label: "Kansas" },
+  { id: "US-NE", label: "Nebraska" },
+  { id: "US-SD", label: "South Dakota" },
+  { id: "US-WY", label: "Wyoming" },
 ];
 
 const HOLDABLE: DocumentType[] = ["court-order", "ssa-card", "drivers-license", "passport", "birth-certificate"];

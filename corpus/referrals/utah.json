@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ut.referral.utahlegalservices",
+    "jurisdiction": "US-UT",
+    "name": "Utah Legal Services",
+    "url": "https://www.utahlegalservices.org",
+    "note": {
+      "en": "Utah's statewide, LSC-funded civil legal aid provider for low-income residents.",
+      "es": "Proveedor estatal de ayuda legal civil de Utah, financiado por LSC, para residentes de bajos ingresos."
+    },
+    "source": {
+      "url": "https://www.utahlegalservices.org",
+      "title": "Utah Legal Services",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ut.referral.aclu-utah",
+    "jurisdiction": "US-UT",
+    "name": "ACLU of Utah",
+    "url": "https://www.acluutah.org",
+    "note": {
+      "en": "ACLU of Utah's Request Help intake page connects Utah residents to its legal and advocacy work, including on transgender rights.",
+      "es": "La página de solicitud de ayuda de la ACLU de Utah conecta a los residentes de Utah con su trabajo legal y de defensa, incluido el relacionado con los derechos de las personas transgénero."
+    },
+    "source": {
+      "url": "https://www.acluutah.org",
+      "title": "ACLU of Utah",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]
