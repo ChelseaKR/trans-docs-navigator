@@ -1,0 +1,38 @@
+[
+  {
+    "id": "me.referral.equalitymaine",
+    "jurisdiction": "US-ME",
+    "name": "EqualityMaine",
+    "url": "https://www.equalitymaine.org",
+    "note": {
+      "en": "Maine's statewide LGBTQ+ advocacy organization, building community and publishing resources relevant to transgender residents.",
+      "es": "La organización estatal de defensa LGBTQ+ de Maine, que construye comunidad y publica recursos relevantes para residentes transgénero."
+    },
+    "source": {
+      "url": "https://www.equalitymaine.org",
+      "title": "EqualityMaine",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "me.referral.maine-equal-justice",
+    "jurisdiction": "US-ME",
+    "name": "Maine Equal Justice",
+    "url": "https://www.mejp.org",
+    "note": {
+      "en": "A Maine legal-aid and anti-poverty advocacy organization that can help low-income Mainers with legal filings such as a name-change petition.",
+      "es": "Una organización de ayuda legal y defensa contra la pobreza en Maine que puede ayudar a residentes de bajos ingresos con trámites legales como una petición de cambio de nombre."
+    },
+    "source": {
+      "url": "https://www.mejp.org",
+      "title": "Maine Equal Justice",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

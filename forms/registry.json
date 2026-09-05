@@ -550,5 +550,70 @@
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "de-ccp-name-change-packet",
+    "jurisdiction": "US-DE",
+    "document_type": "court-order",
+    "change_type": ["name"],
+    "title": "Change of Name Petition Packet — Court of Common Pleas for the State of Delaware",
+    "source": {
+      "url": "https://courts.delaware.gov/forms/download.aspx?id=16858",
+      "title": "Delaware Court of Common Pleas — Change of Name Petition Packet",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "de-dmv-mv2020",
+    "jurisdiction": "US-DE",
+    "document_type": "drivers-license",
+    "change_type": ["gender-marker"],
+    "title": "Form MV2020 — Request for Gender Change on Driver License/Identification Card",
+    "source": {
+      "url": "https://dmv.de.gov/forms/driver_serv_forms/pdfs/gender_change_request_form.pdf",
+      "title": "Delaware DMV Form MV2020",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "de-dph-sexchange-requester",
+    "jurisdiction": "US-DE",
+    "document_type": "birth-certificate",
+    "change_type": ["gender-marker"],
+    "title": "Requester's Affidavit for Sex Change on Birth Certificate",
+    "source": {
+      "url": "https://dhss.delaware.gov/wp-content/uploads/sites/12/dph/pdf/RequesterAffidavitSexChange.pdf",
+      "title": "Delaware Division of Public Health — Requester's Affidavit for Sex Change on Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "me-bmv-mvl20",
+    "jurisdiction": "US-ME",
+    "document_type": "drivers-license",
+    "change_type": ["gender-marker"],
+    "title": "Form MVL-20 — Gender Designation Form",
+    "source": {
+      "url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/GENDER%20DESIGNATION%20FORM2019.pdf",
+      "title": "Maine Bureau of Motor Vehicles Form MVL-20",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "me-drvs-vs7",
+    "jurisdiction": "US-ME",
+    "document_type": "birth-certificate",
+    "change_type": ["name", "gender-marker"],
+    "title": "Form VS-7 — Application to Correct a Vital Record in Maine",
+    "source": {
+      "url": "https://www.maine.gov/dhhs/mecdc/sites/maine.gov.dhhs.mecdc/files/Application%20to%20Correct%20a%20Vital%20Record%20in%20Maine%20%28VS-7%29.pdf",
+      "title": "Maine Division of Data, Research and Vital Statistics Form VS-7",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]

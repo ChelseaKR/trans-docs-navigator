@@ -612,6 +612,112 @@
       "file": "oregon-gov-oha-ph-birthdeathcertificates-pages-changebirthrecord-aspx-0cbba9d8.txt",
       "fetched": "2026-09-05",
       "sha256": "c14029e5198902f53235eb7a24d39706fcbf3a733d4e606e8f0384eb659b6bc3"
+    },
+    "https://delcode.delaware.gov/title10/c059/index.html": {
+      "file": "delcode-delaware-gov-title10-c059-index-html-0f43e855.txt",
+      "fetched": "2026-07-13",
+      "sha256": "08f7214b0304698e5946562540d18d722fc8f136e03f5bfd95f2ab26f917abc1"
+    },
+    "https://dmv.de.gov/DriverServices/other/index.shtml?dc=dr_oth_change": {
+      "file": "dmv-de-gov-driverservices-other-index-shtml-33c09291.txt",
+      "fetched": "2026-07-13",
+      "sha256": "49eb31cba2f90bbf8e8c5fbe6ac377a1391f617ad9ad8f1123ec93971fc90545"
+    },
+    "https://legislature.maine.gov/statutes/18-C/title18-Csec1-701.html": {
+      "file": "legislature-maine-gov-statutes-18-c-title18-csec1-701-html-a5ef3fcc.txt",
+      "fetched": "2026-07-13",
+      "sha256": "2bd82e895ebf03261a1e343d2badbe5dc5762465427c45c878ac6e066d94718c"
+    },
+    "https://www.gencourt.state.nh.us/rsa/html/I/5-C/5-C-10.htm": {
+      "file": "gencourt-state-nh-us-rsa-html-i-5-c-5-c-10-htm-737eceac.txt",
+      "fetched": "2026-07-13",
+      "sha256": "5505e44a550f08efadca3de5998ffdfd295b78a4b3aac947600fd2fc0828f42f"
+    },
+    "https://www.gencourt.state.nh.us/rsa/html/I/5-C/5-C-87.htm": {
+      "file": "gencourt-state-nh-us-rsa-html-i-5-c-5-c-87-htm-129e21b9.txt",
+      "fetched": "2026-07-13",
+      "sha256": "c878deace570520817eaf71e67a101a0ea335133036827db89cabe8532a30df7"
+    },
+    "https://www.gencourt.state.nh.us/rsa/html/LVI/547/547-3-i.htm": {
+      "file": "gencourt-state-nh-us-rsa-html-lvi-547-547-3-i-htm-ae72305c.txt",
+      "fetched": "2026-07-13",
+      "sha256": "56bb0b8725dedb2482f4aa3b3525896631d577f80ef5c3c4d7fe160ea476d880"
+    },
+    "https://www.gencourt.state.nh.us/rsa/html/LVI/550/550-4.htm": {
+      "file": "gencourt-state-nh-us-rsa-html-lvi-550-550-4-htm-1c21182d.txt",
+      "fetched": "2026-07-13",
+      "sha256": "25f7c96e310c081bf52fcec053f25dce0e41979df6e14617d1d9300ca07bb78f"
+    },
+    "https://www.law.cornell.edu/regulations/delaware/16-Del-Admin-Code-SS-4205-10.0": {
+      "file": "law-cornell-edu-regulations-delaware-16-del-admin-code-ss-4205-10-0-982ee98b.txt",
+      "fetched": "2026-07-13",
+      "sha256": "5236e0689ba25933f0d7f78774048bddccded02137b3a4c2610bca3777efba77"
+    },
+    "https://www.maine.gov/dhhs/mecdc/vital-records/amend-correct-or-complete-vital-records/change-the-gender-marker-on-your-birth-record": {
+      "file": "maine-gov-dhhs-mecdc-vital-records-amend-correct-or-complete-vital-rec-2358b1ca.txt",
+      "fetched": "2026-07-13",
+      "sha256": "eb3b1f944859a6b8e53fb819c99fc3ced47f89c25bb8d876899481bad390975b"
+    },
+    "https://www.maine.gov/dhhs/mecdc/vital-records/amend-correct-or-complete-vital-records/court-records": {
+      "file": "maine-gov-dhhs-mecdc-vital-records-amend-correct-or-complete-vital-rec-cdd20a18.txt",
+      "fetched": "2026-07-13",
+      "sha256": "cd609a7bd39d612ef7ee61a80a292a9ec98c14a0715b83ece21b090e1fcf895c"
+    },
+    "https://www.maine.gov/sos/bmv/driver-licenses-and-ids/car-license/how-to-obtain-a-license": {
+      "file": "maine-gov-sos-bmv-driver-licenses-and-ids-car-license-how-to-obtain-a--fd0511ce.txt",
+      "fetched": "2026-07-13",
+      "sha256": "1340e128b31a646c1fc2d597aa784a008c3f783a2fb334e40d6afe8d3cdd8ede"
+    },
+    "https://courts.delaware.gov/forms/download.aspx?id=16858": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://dmv.de.gov/DriverServices/drivers_license/pdfs/gender_designation_change_procedure.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://dhss.delaware.gov/wp-content/uploads/sites/12/dph/pdf/GenderReassignment.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/GENDER%20DESIGNATION%20FORM2019.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/Guidance%20about%20Gender%20Designations%20on%20Maine%20Drivers%20Licenses_1.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.courts.nh.gov/sites/g/files/ehbemt471/files/documents/2021-06/filing_fees.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://www.dmv.nh.gov/drivers-licensenon-driver-ids/update-personal-information": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
     }
   }
 }

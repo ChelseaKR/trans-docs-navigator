@@ -1,19 +1,21 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 258,
-  "supported": 497,
+  "records": 298,
+  "supported": 530,
   "unsupported": 0,
-  "uncheckable": 179,
+  "uncheckable": 220,
   "unfetchable_sources": [
     "https://www.michigan.gov/sos/all-services/license-or-id-name-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
+    "https://www.courts.nh.gov/sites/g/files/ehbemt471/files/documents/2021-06/filing_fees.pdf → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
+    "https://www.dmv.nh.gov/drivers-licensenon-driver-ids/update-personal-information → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → HTTP 404: the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 1023,
-  "total_prose_sentences": 1270,
+  "unchecked_prose_sentences": 1141,
+  "total_prose_sentences": 1432,
   "audits": [
     {
       "recordId": "az.court-order.name",
@@ -691,6 +693,164 @@
       "totalSentences": 2
     },
     {
+      "recordId": "de.court-order.name",
+      "language": "en",
+      "url": "https://courts.delaware.gov/forms/download.aspx?id=16858",
+      "results": [
+        {
+          "kind": "money",
+          "key": "85",
+          "label": "costs $85",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:de-ccp-name-change-packet",
+          "label": "form_ref \"de-ccp-name-change-packet\" (Change of Name Petition Packet — Court of Common Pleas for the State of Delaware) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "states $10",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 0,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "de.court-order.jurisdiction",
+      "language": "en",
+      "url": "https://delcode.delaware.gov/title10/c059/index.html",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "de.drivers-license.name",
+      "language": "en",
+      "url": "https://dmv.de.gov/DriverServices/other/index.shtml?dc=dr_oth_change",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "30 day",
+          "label": "states \"30 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"30 day\""
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "de.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://dmv.de.gov/DriverServices/drivers_license/pdfs/gender_designation_change_procedure.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "MV2020",
+          "label": "official form MV2020 backs this step (form_ref: de-dmv-mv2020)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 3,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "de.birth-certificate.name",
+      "language": "en",
+      "url": "https://www.law.cornell.edu/regulations/delaware/16-Del-Admin-Code-SS-4205-10.0",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 0,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "de.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://dhss.delaware.gov/wp-content/uploads/sites/12/dph/pdf/GenderReassignment.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "costs $25",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:de-dph-sexchange-requester",
+          "label": "form_ref \"de-dph-sexchange-requester\" (Requester's Affidavit for Sex Change on Birth Certificate) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "2 week",
+          "label": "states \"2 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
       "recordId": "us.ssa-card.name",
       "language": "en",
       "url": "https://secure.ssa.gov/poms.nsf/lnx/0110212001",
@@ -1261,6 +1421,182 @@
       "uncheckedProse": 3,
       "negatedClaims": 0,
       "totalSentences": 3
+    },
+    {
+      "recordId": "me.court-order.name",
+      "language": "en",
+      "url": "https://legislature.maine.gov/statutes/18-C/title18-Csec1-701.html",
+      "results": [
+        {
+          "kind": "money",
+          "key": "75",
+          "label": "costs $75",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $75"
+        },
+        {
+          "kind": "requirement",
+          "key": "background-check",
+          "label": "fingerprints / a criminal-history check are required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "me.drivers-license.name",
+      "language": "en",
+      "url": "https://www.maine.gov/sos/bmv/driver-licenses-and-ids/car-license/how-to-obtain-a-license",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "me.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/GENDER%20DESIGNATION%20FORM2019.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "MVL20",
+          "label": "official form MVL20 backs this step (form_ref: me-bmv-mvl20)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "me.drivers-license.gender-marker.law",
+      "language": "en",
+      "url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/Guidance%20about%20Gender%20Designations%20on%20Maine%20Drivers%20Licenses_1.pdf",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "me.birth-certificate.name",
+      "language": "en",
+      "url": "https://www.maine.gov/dhhs/mecdc/vital-records/amend-correct-or-complete-vital-records/court-records",
+      "results": [
+        {
+          "kind": "money",
+          "key": "60",
+          "label": "costs $60",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $60"
+        },
+        {
+          "kind": "form-id",
+          "key": "VS14",
+          "label": "names form VS14",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names VS14"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "form-id",
+          "key": "VS7",
+          "label": "names form VS7",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names VS7"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 0,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "me.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.maine.gov/dhhs/mecdc/vital-records/amend-correct-or-complete-vital-records/change-the-gender-marker-on-your-birth-record",
+      "results": [
+        {
+          "kind": "money",
+          "key": "60",
+          "label": "costs $60",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $60"
+        },
+        {
+          "kind": "form-id",
+          "key": "VS7",
+          "label": "official form VS7 backs this step (form_ref: me-drvs-vs7)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names VS7"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 7
     },
     {
       "recordId": "md.court-order.name",
@@ -2430,6 +2766,201 @@
       "uncheckedProse": 6,
       "negatedClaims": 2,
       "totalSentences": 6
+    },
+    {
+      "recordId": "nh.court-order.name",
+      "language": "en",
+      "url": "https://www.gencourt.state.nh.us/rsa/html/LVI/547/547-3-i.htm",
+      "results": [],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "nh.court-order.no-notice",
+      "language": "en",
+      "url": "https://www.gencourt.state.nh.us/rsa/html/LVI/550/550-4.htm",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "nh.court-order.fee",
+      "language": "en",
+      "url": "https://www.courts.nh.gov/sites/g/files/ehbemt471/files/documents/2021-06/filing_fees.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "170",
+          "label": "costs $170",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "money",
+          "key": "140",
+          "label": "states $140",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "states $10",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "nh.drivers-license.name",
+      "language": "en",
+      "url": "https://www.dmv.nh.gov/drivers-licensenon-driver-ids/update-personal-information",
+      "results": [
+        {
+          "kind": "money",
+          "key": "0",
+          "label": "this step is free (amount_usd: 0)",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "30 day",
+          "label": "states \"30 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "form-id",
+          "key": "DSMV30",
+          "label": "names form DSMV30",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "nh.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.dmv.nh.gov/drivers-licensenon-driver-ids/update-personal-information",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "form-id",
+          "key": "DSMV450",
+          "label": "names form DSMV450",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "nh.birth-certificate.name",
+      "language": "en",
+      "url": "https://www.gencourt.state.nh.us/rsa/html/I/5-C/5-C-87.htm",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "nh.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.gencourt.state.nh.us/rsa/html/I/5-C/5-C-87.htm",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "nh.birth-certificate.fees",
+      "language": "en",
+      "url": "https://www.gencourt.state.nh.us/rsa/html/I/5-C/5-C-10.htm",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $15"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 0,
+      "totalSentences": 4
     },
     {
       "recordId": "nj.court-order.name",
@@ -7886,6 +8417,534 @@
         }
       ],
       "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "de.court-order.name.es",
+      "language": "es",
+      "url": "https://courts.delaware.gov/forms/download.aspx?id=16858",
+      "results": [
+        {
+          "kind": "money",
+          "key": "85",
+          "label": "costs $85",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:de-ccp-name-change-packet",
+          "label": "form_ref \"de-ccp-name-change-packet\" (Change of Name Petition Packet — Court of Common Pleas for the State of Delaware) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "states $10",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 0,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "de.court-order.jurisdiction.es",
+      "language": "es",
+      "url": "https://delcode.delaware.gov/title10/c059/index.html",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "de.drivers-license.name.es",
+      "language": "es",
+      "url": "https://dmv.de.gov/DriverServices/other/index.shtml?dc=dr_oth_change",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "30 day",
+          "label": "states \"30 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"30 day\""
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "de.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://dmv.de.gov/DriverServices/drivers_license/pdfs/gender_designation_change_procedure.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "MV2020",
+          "label": "official form MV2020 backs this step (form_ref: de-dmv-mv2020)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 3,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "de.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.law.cornell.edu/regulations/delaware/16-Del-Admin-Code-SS-4205-10.0",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 0,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "de.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://dhss.delaware.gov/wp-content/uploads/sites/12/dph/pdf/GenderReassignment.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "costs $25",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:de-dph-sexchange-requester",
+          "label": "form_ref \"de-dph-sexchange-requester\" (Requester's Affidavit for Sex Change on Birth Certificate) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "2 week",
+          "label": "states \"2 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "me.court-order.name.es",
+      "language": "es",
+      "url": "https://legislature.maine.gov/statutes/18-C/title18-Csec1-701.html",
+      "results": [
+        {
+          "kind": "money",
+          "key": "75",
+          "label": "costs $75",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $75"
+        },
+        {
+          "kind": "requirement",
+          "key": "background-check",
+          "label": "fingerprints / a criminal-history check are required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "me.drivers-license.name.es",
+      "language": "es",
+      "url": "https://www.maine.gov/sos/bmv/driver-licenses-and-ids/car-license/how-to-obtain-a-license",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "me.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/GENDER%20DESIGNATION%20FORM2019.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "MVL20",
+          "label": "official form MVL20 backs this step (form_ref: me-bmv-mvl20)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 3,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "me.drivers-license.gender-marker.law.es",
+      "language": "es",
+      "url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/Guidance%20about%20Gender%20Designations%20on%20Maine%20Drivers%20Licenses_1.pdf",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "me.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.maine.gov/dhhs/mecdc/vital-records/amend-correct-or-complete-vital-records/court-records",
+      "results": [
+        {
+          "kind": "money",
+          "key": "60",
+          "label": "costs $60",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $60"
+        },
+        {
+          "kind": "form-id",
+          "key": "VS14",
+          "label": "names form VS14",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names VS14"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "form-id",
+          "key": "VS7",
+          "label": "names form VS7",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names VS7"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 0,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "me.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.maine.gov/dhhs/mecdc/vital-records/amend-correct-or-complete-vital-records/change-the-gender-marker-on-your-birth-record",
+      "results": [
+        {
+          "kind": "money",
+          "key": "60",
+          "label": "costs $60",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $60"
+        },
+        {
+          "kind": "form-id",
+          "key": "VS7",
+          "label": "official form VS7 backs this step (form_ref: me-drvs-vs7)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names VS7"
+        },
+        {
+          "kind": "duration",
+          "key": "18 year",
+          "label": "states \"18 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"18 year\""
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "nh.court-order.name.es",
+      "language": "es",
+      "url": "https://www.gencourt.state.nh.us/rsa/html/LVI/547/547-3-i.htm",
+      "results": [],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "nh.court-order.no-notice.es",
+      "language": "es",
+      "url": "https://www.gencourt.state.nh.us/rsa/html/LVI/550/550-4.htm",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "nh.court-order.fee.es",
+      "language": "es",
+      "url": "https://www.courts.nh.gov/sites/g/files/ehbemt471/files/documents/2021-06/filing_fees.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "170",
+          "label": "costs $170",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "money",
+          "key": "140",
+          "label": "states $140",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "states $10",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "nh.drivers-license.name.es",
+      "language": "es",
+      "url": "https://www.dmv.nh.gov/drivers-licensenon-driver-ids/update-personal-information",
+      "results": [
+        {
+          "kind": "money",
+          "key": "0",
+          "label": "this step is free (amount_usd: 0)",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "30 day",
+          "label": "states \"30 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "form-id",
+          "key": "DSMV30",
+          "label": "names form DSMV30",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "60 day",
+          "label": "states \"60 day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "nh.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.dmv.nh.gov/drivers-licensenon-driver-ids/update-personal-information",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "form-id",
+          "key": "DSMV450",
+          "label": "names form DSMV450",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "nh.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.gencourt.state.nh.us/rsa/html/I/5-C/5-C-87.htm",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "nh.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.gencourt.state.nh.us/rsa/html/I/5-C/5-C-87.htm",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "nh.birth-certificate.fees.es",
+      "language": "es",
+      "url": "https://www.gencourt.state.nh.us/rsa/html/I/5-C/5-C-10.htm",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $15"
+        }
+      ],
+      "uncheckedProse": 1,
       "negatedClaims": 0,
       "totalSentences": 4
     },

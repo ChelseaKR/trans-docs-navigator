@@ -8,13 +8,13 @@
 
 | Metric | Value | Threshold | n | Gate |
 |--------|------:|----------:|--:|:----:|
-| groundedness | 98.7% | 95.0% | 75 | ✅ |
-| factual_accuracy | 100.0% | 98.0% | 64 | ✅ |
+| groundedness | 98.9% | 95.0% | 95 | ✅ |
+| factual_accuracy | 100.0% | 98.0% | 76 | ✅ |
 | refusal_safety | 100.0% | 100.0% | 10 | ✅ |
-| citation_coverage | 100.0% | 100.0% | 82 | ✅ |
+| citation_coverage | 100.0% | 100.0% | 94 | ✅ |
 | adversarial_safety | 100.0% | 100.0% | 8 | ✅ |
-| context_recall_at_8 | 100.0% | 80.0% | 64 | ✅ |
-| context_precision_at_1 | 96.9% | 70.0% | 64 | ✅ |
+| context_recall_at_8 | 100.0% | 80.0% | 76 | ✅ |
+| context_precision_at_1 | 93.4% | 70.0% | 76 | ✅ |
 
 ## Disaggregated accuracy (bias audit §B)
 
@@ -24,14 +24,17 @@
 | jurisdiction:US-AZ | 100.0% | 2 | ✅ |
 | jurisdiction:US-CA | 100.0% | 4 | ✅ |
 | jurisdiction:US-CO | 100.0% | 4 | ✅ |
+| jurisdiction:US-DE | 100.0% | 4 | ✅ |
 | jurisdiction:US-FL | 100.0% | 3 | ✅ |
 | jurisdiction:US-GA | 100.0% | 4 | ✅ |
 | jurisdiction:US-IL | 100.0% | 1 | ✅ |
 | jurisdiction:US-MA | 100.0% | 2 | ✅ |
 | jurisdiction:US-MD | 100.0% | 4 | ✅ |
+| jurisdiction:US-ME | 100.0% | 4 | ✅ |
 | jurisdiction:US-MI | 100.0% | 3 | ✅ |
 | jurisdiction:US-MN | 100.0% | 4 | ✅ |
 | jurisdiction:US-NC | 100.0% | 3 | ✅ |
+| jurisdiction:US-NH | 100.0% | 4 | ✅ |
 | jurisdiction:US-NJ | 100.0% | 4 | ✅ |
 | jurisdiction:US-NV | 100.0% | 3 | ✅ |
 | jurisdiction:US-NY | 100.0% | 2 | ✅ |
@@ -42,8 +45,8 @@
 | jurisdiction:US-TX | 100.0% | 1 | ✅ |
 | jurisdiction:US-VA | 100.0% | 2 | ✅ |
 | jurisdiction:US-WA | 100.0% | 2 | ✅ |
-| language:en | 100.0% | 44 | ✅ |
-| language:es | 100.0% | 20 | ✅ |
+| language:en | 100.0% | 53 | ✅ |
+| language:es | 100.0% | 23 | ✅ |
 
 ## Jurisdiction readiness (M6 — add only as each passes review)
 
@@ -55,14 +58,17 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 | US-AZ | 14 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-CA | 18 | 18 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-CO | 8 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
+| US-DE | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-FL | 10 | 10 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-GA | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-IL | 8 | 8 | 1 | 100.0% | ✅ | ❌ | ❌ |
 | US-MA | 14 | 14 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-MD | 10 | 10 | 4 | 100.0% | ✅ | ❌ | ❌ |
+| US-ME | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-MI | 12 | 12 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-MN | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-NC | 16 | 8 | 3 | 100.0% | ✅ | ❌ | ❌ |
+| US-NH | 16 | 16 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-NJ | 10 | 10 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-NV | 10 | 8 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-NY | 12 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
@@ -187,6 +193,18 @@ FIX-03-dependent) EN/ES citation-shape consistency.
 | or-marker-dmv | accuracy | US-OR/en | ✅ |  |
 | or-marker-birth-cert | accuracy | US-OR/en | ✅ |  |
 | or-name-birth-cert | accuracy | US-OR/en | ✅ |  |
+| de-name-court | accuracy | US-DE/en | ✅ |  |
+| de-marker-dl | accuracy | US-DE/en | ✅ |  |
+| de-birth-marker | accuracy | US-DE/en | ✅ |  |
+| de-name-court-es | accuracy | US-DE/es | ✅ |  |
+| nh-name-court | accuracy | US-NH/en | ✅ |  |
+| nh-marker-dl | accuracy | US-NH/en | ✅ |  |
+| nh-birth-marker | accuracy | US-NH/en | ✅ |  |
+| nh-name-court-es | accuracy | US-NH/es | ✅ |  |
+| me-name-court | accuracy | US-ME/en | ✅ |  |
+| me-marker-dl | accuracy | US-ME/en | ✅ |  |
+| me-birth-marker | accuracy | US-ME/en | ✅ |  |
+| me-name-court-es | accuracy | US-ME/es | ✅ |  |
 
 ## Gold-set provenance (eval validity)
 

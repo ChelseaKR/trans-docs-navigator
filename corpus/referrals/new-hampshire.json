@@ -1,0 +1,38 @@
+[
+  {
+    "id": "nh.referral.glad-law",
+    "jurisdiction": "US-NH",
+    "name": "GLAD Law (GLBTQ Legal Advocates & Defenders)",
+    "url": "https://www.gladlaw.org",
+    "note": {
+      "en": "A New England regional LGBTQ+ legal organization that runs a free legal information line and publishes guidance on name changes and gender-marker corrections for people living in New Hampshire.",
+      "es": "Una organización legal LGBTQ+ regional de Nueva Inglaterra que opera una línea gratuita de información legal y publica orientación sobre cambios de nombre y correcciones de marcador de género para personas que viven en New Hampshire."
+    },
+    "source": {
+      "url": "https://www.gladlaw.org",
+      "title": "GLAD Law",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "nh.referral.603-legal-aid",
+    "jurisdiction": "US-NH",
+    "name": "603 Legal Aid",
+    "url": "https://www.603legalaid.org",
+    "note": {
+      "en": "New Hampshire's statewide legal-aid organization, offering free legal advice and help navigating the name-change process and updating identity documents.",
+      "es": "La organización estatal de ayuda legal de New Hampshire, que ofrece asesoría legal gratuita y ayuda para navegar el proceso de cambio de nombre y actualizar documentos de identidad."
+    },
+    "source": {
+      "url": "https://www.603legalaid.org",
+      "title": "603 Legal Aid",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]
