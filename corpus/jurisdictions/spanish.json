@@ -1377,6 +1377,151 @@
     "language": "es"
   },
   {
+    "id": "mn.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-MN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Minnesota",
+    "statement": "Para cambiar el sexo indicado en un acta de nacimiento de Minnesota, usted presenta una solicitud de enmienda que indica \"sexo\" como el dato a enmendar, junto con una carta de un médico que certifique que usted está recibiendo tratamiento para la transición de género, o una orden judicial que indique el cambio, y paga una tarifa de $40.",
+    "detail": "Si una orden judicial también indica al Departamento de Salud que reemplace su acta de nacimiento en lugar de enmendarla, el acta original queda sellada y la nueva acta no mostrará que algo cambió. Sin una orden judicial, una enmienda igual actualiza el acta, pero el acta incluirá una nota que indica que se cambió cierta información, sin nombrar qué se cambió.",
+    "cost": {
+      "amount_usd": 40,
+      "note": "Una copia certificada del acta de nacimiento con la información enmendada cuesta $26 adicionales."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.health.state.mn.us/people/vitalrecords/change.html",
+      "title": "Departamento de Salud de Minnesota — Cambiar un Acta de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "mn-mdh-birth-record-amendment",
+    "language": "es"
+  },
+  {
+    "id": "mn.birth-certificate.name.es",
+    "jurisdiction": "US-MN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Minnesota",
+    "statement": "Para cambiar el nombre en un acta de nacimiento de Minnesota, usted presenta una solicitud de enmienda completa junto con una orden judicial certificada u otra documentación aceptable, firma la solicitud ante un notario público, y paga una tarifa de $40.",
+    "detail": "Si usted tiene 18 años o más, usted mismo — no un padre o madre — debe ser quien solicite la enmienda de cambio de nombre. También puede pedir una copia certificada del acta de nacimiento con su nuevo nombre por $26 adicionales.",
+    "cost": {
+      "amount_usd": 40,
+      "note": "Una copia certificada del acta de nacimiento con el nombre enmendado cuesta $26 adicionales."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.health.state.mn.us/people/vitalrecords/change.html",
+      "title": "Departamento de Salud de Minnesota — Cambiar un Acta de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "mn-mdh-birth-record-amendment",
+    "language": "es"
+  },
+  {
+    "id": "mn.court-order.grant-standard.es",
+    "jurisdiction": "US-MN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cuándo un tribunal de Minnesota debe conceder un cambio de nombre",
+    "statement": "Según la ley de Minnesota, una vez que usted cumple los requisitos para el cambio de nombre, el tribunal debe conceder su petición a menos que exista una intención de defraudar o engañar, que el cambio esté prohibido por otra razón legal específica, o — en el caso del nombre de un menor — que el tribunal decida que el cambio no favorece los mejores intereses del menor.",
+    "detail": "El tribunal archiva la orden firmada y, si el cambio afecta algún registro de bienes raíces, se inscribe una copia certificada ante el registrador del condado.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.revisor.mn.gov/statutes/cite/259.11",
+      "title": "Estatutos de Minnesota § 259.11 — Orden; Presentación de Copias",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "mn.court-order.name.es",
+    "jurisdiction": "US-MN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Minnesota",
+    "statement": "Para cambiar legalmente su nombre en Minnesota, debe haber vivido en el estado durante al menos seis meses y luego presentar la solicitud ante el tribunal de distrito del condado donde reside. Debe comparecer en persona ante el tribunal y probar su identidad con al menos dos testigos.",
+    "detail": "La ley de cambio de nombre de Minnesota no exige que usted publique un aviso de su petición en un periódico, a diferencia del proceso en muchos otros estados. Cualquier persona que dé información falsa intencionalmente en la solicitud comete un delito menor.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La ley de cambio de nombre de Minnesota no establece una tarifa de presentación — el tribunal de distrito fija y cobra su propia tarifa. Comuníquese con el tribunal de distrito del condado donde presentará la solicitud para conocer el monto actual."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.revisor.mn.gov/statutes/cite/259.10",
+      "title": "Estatutos de Minnesota § 259.10 — Requisitos Generales (Cambio de Nombre)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "mn.drivers-license.gender-marker.es",
+    "jurisdiction": "US-MN",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en la licencia de conducir de Minnesota",
+    "statement": "La norma de Minnesota para las solicitudes de licencia de conducir, permiso e identificación incluye el sexo como uno de los datos que usted mismo indica en el formulario de solicitud, de la misma manera que indica su estatura, peso y color de ojos.",
+    "detail": "La División de Servicios para Conductores y Vehículos de Minnesota indica en su propio sitio web que este dato es autodesignado, que no necesita presentar ningún documento para cambiarlo, y que puede elegir una opción distinta de femenino o masculino — pero esa declaración no pudo ser verificada por ninguna herramienta automática de este proyecto, porque esa página entrega su texto de una manera que las herramientas de este proyecto no pueden leer. Una persona debe leer esa página directamente antes de confiar en ella: https://dps.mn.gov/divisions/dvs/license-and-id/dl-and-id-card-information/dl-and-id-card-features-and-options",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.revisor.mn.gov/rules/7410.0400/",
+      "title": "Normas de Minnesota 7410.0400 — Documentación de Prueba de Nombre, Fecha de Nacimiento e Identidad",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "mn.drivers-license.name.es",
+    "jurisdiction": "US-MN",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Minnesota",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Minnesota, visite cualquier oficina que ofrezca renovaciones de licencia de conducir o identificación y lleve su licencia o identificación actual más un certificado de matrimonio certificado, una sentencia de divorcio certificada, o una orden judicial certificada que especifique el cambio de nombre.",
+    "detail": "Primero debe actualizar su nombre con la Administración del Seguro Social — su nombre legal completo debe coincidir exactamente con el de su tarjeta de Seguro Social antes de que Minnesota actualice su licencia de conducir o identificación. Este es un trámite solo en persona; no puede completarlo en línea ni por correo.",
+    "prerequisites": [
+      "ssa-card",
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dps.mn.gov/divisions/dvs/license-and-id/common-transactions-all-dl-and-id-card-types/change-your-name-your-dl-id-card",
+      "title": "Departamento de Seguridad Pública de Minnesota — Cambie su Nombre en su Licencia de Conducir o Identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "nc.birth-certificate.gender-marker.es",
     "jurisdiction": "US-NC",
     "document_type": "birth-certificate",

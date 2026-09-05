@@ -157,6 +157,22 @@ test("Colorado has full Spanish parity (court-order, drivers-license, birth-cert
   assert.match(co.body, /femenino, masculino o X/); // co.drivers-license.gender-marker.es
 });
 
+test("Minnesota has full Spanish parity (court-order, drivers-license, birth-certificate) — no thinner-coverage note", () => {
+  // Minnesota's six EN records each ship with an ES twin from the start, so a Spanish
+  // user must never see the honest "not ready yet" gap note for any Minnesota
+  // document/change-type combination this corpus covers.
+  const mn = handleRoute(
+    "GET",
+    u(
+      "/checklist?jurisdiction=US-MN&change=name&change=gender-marker&doc=court-order&doc=drivers-license&doc=birth-certificate&language=es",
+    ),
+    today,
+  );
+  assert.doesNotMatch(mn.body, /aún no están listos/);
+  assert.match(mn.body, /seis meses/); // mn.court-order.name.es
+  assert.match(mn.body, /estatura, peso y color de ojos/); // mn.drivers-license.gender-marker.es
+});
+
 test("official-form page is localized and links to the real source (no auto-fill)", () => {
   const en = handleRoute("GET", u("/forms/us-ss-5")).body;
   assert.match(en, /complete it yourself/); // honest: we don't fill it

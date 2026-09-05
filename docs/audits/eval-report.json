@@ -1,19 +1,19 @@
 {
   "today": "2026-07-13",
-  "total": 78,
+  "total": 82,
   "metrics": [
     {
       "name": "groundedness",
-      "value": 0.9855072463768116,
+      "value": 0.9866666666666667,
       "threshold": 0.95,
-      "n": 69,
+      "n": 75,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 60,
+      "n": 64,
       "pass": true
     },
     {
@@ -27,7 +27,7 @@
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 78,
+      "n": 82,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 60,
+      "n": 64,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
-      "value": 1,
+      "value": 0.96875,
       "threshold": 0.7,
-      "n": 60,
+      "n": 64,
       "pass": true
     }
   ],
@@ -111,6 +111,12 @@
       "segment": "jurisdiction:US-MI",
       "value": 1,
       "n": 3,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-MN",
+      "value": 1,
+      "n": 4,
       "pass": true
     },
     {
@@ -182,13 +188,13 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 42,
+      "n": 44,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 18,
+      "n": 20,
       "pass": true
     }
   ],
@@ -278,6 +284,16 @@
       "records": 12,
       "current_records": 12,
       "gold_items": 3,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-MN",
+      "records": 12,
+      "current_records": 12,
+      "gold_items": 4,
       "accuracy": 1,
       "mechanically_ready": true,
       "verification_complete": false,
@@ -928,6 +944,46 @@
       "suite": "accuracy",
       "segment": {
         "jurisdiction": "US-CO",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "mn-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MN",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "mn-marker-dl",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MN",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "mn-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MN",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "mn-marker-dl-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MN",
         "language": "es"
       },
       "passed": true,
