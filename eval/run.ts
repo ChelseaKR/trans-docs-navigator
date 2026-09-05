@@ -2,7 +2,7 @@
 // (docs/audits/eval-report.{md,json}), and returns a CI exit code.
 
 import { writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { join, relative } from "node:path";
 import { REPO_ROOT } from "../api/corpus.ts";
 import { runEval } from "./harness.ts";
 import { pass, fail } from "../scripts/util.ts";
@@ -84,8 +84,12 @@ ${report.gold_provenance.independent_author
 _Scope note: ${report.gold_provenance.note ?? "see docs/audits/data-card.md"}_
 `;
 
-writeFileSync(join(REPO_ROOT, "docs", "audits", "eval-report.md"), md);
-writeFileSync(join(REPO_ROOT, "docs", "audits", "eval-report.json"), JSON.stringify(report, null, 2) + "\n");
+// Test-only override (tests/gate-efficacy): a poisoned run must not overwrite the
+// committed audit artifacts with a deliberately-failing report. Unset in production.
+const REPORT_DIR = process.env.EVAL_REPORT_DIR ?? join(REPO_ROOT, "docs", "audits");
+
+writeFileSync(join(REPORT_DIR, "eval-report.md"), md);
+writeFileSync(join(REPORT_DIR, "eval-report.json"), JSON.stringify(report, null, 2) + "\n");
 
 for (const m of report.metrics) {
   console.log(`     ${mark(m.pass)} ${m.name}: ${pct(m.value)} (≥ ${pct(m.threshold)}, n=${m.n})`);
@@ -97,5 +101,7 @@ for (const m of report.metamorphic) {
   if (!m.passed) console.log(`     ❌ metamorphic ${m.name} [${m.retrieverName}]: ${m.detail}`);
 }
 
-if (!report.passed) fail("eval", "one or more eval gates below threshold (see docs/audits/eval-report.md)");
-pass("eval", "groundedness/accuracy/refusal/coverage gates met; report written to docs/audits/");
+const reportLabel = relative(REPO_ROOT, REPORT_DIR) || REPORT_DIR;
+
+if (!report.passed) fail("eval", `one or more eval gates below threshold (see ${reportLabel}/eval-report.md)`);
+pass("eval", `groundedness/accuracy/refusal/coverage gates met; report written to ${reportLabel}/`);

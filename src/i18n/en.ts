@@ -25,6 +25,7 @@ export const en: LocaleBundle = {
     verifiedBy: "verified by",
     notHumanVerified: "not yet verified by a named reviewer",
     recordedOn: "recorded",
+    sourceNotWatched: "We cannot check this source automatically for changes. Check it yourself before you file.",
     needsRecheck: "Needs reverification, so we don't show it as current.",
     discretionary: "Varies by court/clerk.",
     cost: "Cost",
@@ -96,6 +97,10 @@ export const en: LocaleBundle = {
     stepsLabel: "steps",
     estimatedCost: "Estimated cost",
     varies: "varies",
+    noStateCoverage:
+      "We don't have verified information for this state yet, so the steps below cover federal documents only. This is not a complete plan for where you live, and it is not a sign that your state asks nothing of you — we simply have not checked it. Start with your state's official website, its courts' self-help pages, or a trans legal-aid organization.",
+    costIncomplete: (n: number) =>
+      `${n} step(s) have no fee listed in our sources, so this is a floor, not a complete cost. We don't estimate what a source doesn't state.`,
     moreHeading: "Go deeper",
     seeDetailedAnswer: "See what the sources say in detail",
     officialFormIntro: "This is an official government form. Download it from the source below and complete it yourself — we don't fill it in for you, so you always work from the authoritative version.",

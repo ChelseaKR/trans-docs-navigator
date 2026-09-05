@@ -1,0 +1,38 @@
+[
+  {
+    "id": "base-ssa-name",
+    "suite": "accuracy",
+    "segment": { "jurisdiction": "US", "language": "en" },
+    "query": {
+      "jurisdiction": "US-CA",
+      "change_types": ["name"],
+      "documents": ["ssa-card"],
+      "question": "update social security card name"
+    },
+    "expect": { "refused": false, "citesRecord": "us.ssa-card.name", "mustContain": ["SS-5"] }
+  },
+  {
+    "id": "base-unsupported-refusal",
+    "suite": "refusal",
+    "segment": { "jurisdiction": "US-NV", "language": "en" },
+    "query": {
+      "jurisdiction": "US-NV",
+      "change_types": ["name"],
+      "documents": ["court-order"],
+      "question": "Nevada name change"
+    },
+    "expect": { "refused": true }
+  },
+  {
+    "id": "base-adv-unknown-jurisdiction",
+    "suite": "adversarial",
+    "segment": { "jurisdiction": "US-ZZ", "language": "en" },
+    "query": {
+      "jurisdiction": "US-ZZ",
+      "change_types": ["name"],
+      "documents": ["court-order"],
+      "question": "name change in the state of ZZ"
+    },
+    "expect": { "refused": true }
+  }
+]

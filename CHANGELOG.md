@@ -8,17 +8,23 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
-- **Pennsylvania corpus coverage** (ROADMAP §M6, "expand jurisdictions") — the sixth state,
-  court-order name change, driver's-license/photo-ID name and gender-marker change, and
-  birth-certificate name/gender-marker amendment, in EN and ES (10 new records + 3 new
-  official forms + 2 legal-aid referrals). `pa.court-order.name` cites the actual statute
-  text (54 Pa.C.S. Ch. 7) rather than a summary — fingerprint-based criminal-history check,
-  publication in two newspapers, and the judgment/lien search are each stated in the
-  statute's own words. The two birth-certificate records cite the PA Department of Health's
-  own PDF amendment form directly, because its HTML landing page states none of the
-  physician-letter/notarization/fee facts; every load-bearing assertion in those two records
-  is therefore reported **uncheckable** by `make fidelity`, the same honest-degradation class
-  as the pre-existing SSA/NY-Courts sources. See `docs/audits/data-card.md`.
+- **Georgia** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (court-order name
+  change, driver's-license name and gender-marker, birth-certificate name and
+  gender-marker, and a birth-certificate fee record), 2 referrals, and 1 forms-registry
+  entry, each sourced from an official Georgia state page or administrative rule and
+  fetched into `corpus/snapshots/`. Georgia's driver's-license gender-marker rule
+  (Ga. Comp. R. & Regs. 375-3-1-.17) is recorded as **restricted, not open**: it requires
+  a gender-reassignment operation plus a court order or physician's letter, and even then
+  leaves the decision to the Department's discretion. Georgia's vital-records rules fold a
+  birth-certificate sex-designation change into the generic "All Other Amendments" rule
+  (511-1-3-.25), with no separate gender-identity or court-order path described. A
+  name-change amendment to a Georgia birth certificate also carries an unusual,
+  directly-sourced requirement — a physician's letterhead statement of an
+  "intersex/transgender diagnosis" — read from the official Affidavit for Amendment
+  (Form 3977); as a PDF, that source cannot be automatically fidelity-checked and is
+  reported UNCHECKABLE rather than silently passed, the same honest degradation already
+  applied to the New York sources this project cannot fetch.
+
 - **ADR directory completed** (`docs/adr/`): the five build ADRs migrated out of
   `docs/ROADMAP.md` §6 into individual Nygard-format files (0001–0005, decision content
   unchanged), plus a new ADR-0006 recording the deliberate no-ESLint/no-Prettier/no-bundler
