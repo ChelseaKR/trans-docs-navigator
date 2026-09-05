@@ -188,6 +188,21 @@
       "unextractable": {
         "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name."
       }
+    },
+    "https://www.coloradojudicial.gov/self-help/adult": {
+      "file": "coloradojudicial-gov-self-help-adult-c2c5b400.txt",
+      "fetched": "2026-09-05",
+      "sha256": "6ab27c5a242b2cd3494752fbb6ba601cd7395aeeaaaf11ecf3833eff6d428cea"
+    },
+    "https://www.law.cornell.edu/regulations/colorado/1-CCR-204-32-1": {
+      "file": "law-cornell-edu-regulations-colorado-1-ccr-204-32-1-b0439ce1.txt",
+      "fetched": "2026-09-05",
+      "sha256": "7e5001c59c6902b718282200a04fe4e6bc3d16257f5174d7354c9d4a6c039fd9"
+    },
+    "https://www.law.cornell.edu/regulations/colorado/5-CCR-1006-1-5": {
+      "file": "law-cornell-edu-regulations-colorado-5-ccr-1006-1-5-d2aa51f9.txt",
+      "fetched": "2026-09-05",
+      "sha256": "ec748c0f293c0c5b8d11f5a2fb185c0baef687d35c28610feec573b961f19be6"
     }
   }
 }

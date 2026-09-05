@@ -6,6 +6,7 @@
 // it is authored alongside the seed corpus to exercise the harness mechanism; the
 // data-card records this limitation.
 
+import { readFileSync } from "node:fs";
 import type { ChangeType, DocumentType, JurisdictionId, Language } from "../api/types.ts";
 
 export interface GoldItem {
@@ -33,7 +34,7 @@ export interface GoldItem {
   };
 }
 
-export const GOLD: GoldItem[] = [
+const AUTHORED_GOLD: GoldItem[] = [
   {
     id: "ca-name-court",
     suite: "accuracy",
@@ -206,6 +207,34 @@ export const GOLD: GoldItem[] = [
     query: { jurisdiction: "US", change_types: ["gender-marker"], documents: ["passport"], question: "passport gender marker" },
     expect: { refused: true, hasFreshnessNote: true },
   },
+  {
+    id: "co-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CO", language: "en" },
+    query: { jurisdiction: "US-CO", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in Colorado" },
+    expect: { refused: false, citesRecord: "co.court-order.name", mustContain: ["JDF 433", "fingerprint"] },
+  },
+  {
+    id: "co-marker-dmv",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CO", language: "en" },
+    query: { jurisdiction: "US-CO", change_types: ["gender-marker"], documents: ["drivers-license"], question: "nonbinary gender on Colorado license" },
+    expect: { refused: false, citesRecord: "co.drivers-license.gender-marker", mustContain: ["DR 2083", "female, male, or X"] },
+  },
+  {
+    id: "co-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CO", language: "es" },
+    query: { jurisdiction: "US-CO", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Colorado" },
+    expect: { refused: false, citesRecord: "co.court-order.name.es", mustContain: ["JDF 433", "huellas"] },
+  },
+  {
+    id: "co-marker-dmv-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CO", language: "es" },
+    query: { jurisdiction: "US-CO", change_types: ["gender-marker"], documents: ["drivers-license"], language: "es", question: "género no binario licencia Colorado" },
+    expect: { refused: false, citesRecord: "co.drivers-license.gender-marker.es", mustContain: ["DR 2083", "femenino, masculino o X"] },
+  },
 
   // ── Adversarial / robustness suite ──────────────────────────────────────────
   // Stress the system the way real and hostile inputs do. These never relax the
@@ -302,3 +331,15 @@ export const GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "ca.court-order.name", mustNotContain: ["DL 329"] },
   },
 ];
+
+// Test-only override (tests/gate-efficacy), the same shape as scripts/security-scan.ts's
+// SECURITY_SCAN_ROOT and content-validate.ts's CORPUS_DIR: point the harness at a
+// poisoned gold set so the ACCURACY ORACLE'S OWN ability to fail can be proven. This is
+// the only gate that can tell a well-formed answer from a correct one, and nothing else
+// in the repo goes red if its scoring or thresholding is short-circuited. Unset in
+// production and in CI, so behaviour is identical.
+const POISON_PATH = process.env.EVAL_GOLD_POISON;
+
+export const GOLD: GoldItem[] = POISON_PATH
+  ? (JSON.parse(readFileSync(POISON_PATH, "utf8")) as GoldItem[])
+  : AUTHORED_GOLD;

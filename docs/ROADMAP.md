@@ -2,10 +2,19 @@
 
 > The buildable spec. Reads top-to-bottom as product → research → design → architecture → quality → build plan → community → legal → ops. Generic enforcement lives in `/STANDARDS`; this document carries the decisions and the project-specific values.
 >
-> **Last verified: 2026-07-12 · Recheck cadence: quarterly for legal content; per-API for integrations.** Legal requirements change; treat every jurisdiction fact as needing reverification before launch.
+> **Legal content last verified: 2026-07-12 · Recheck cadence: quarterly for legal content; per-API for integrations.** Legal requirements change; treat every jurisdiction fact as needing reverification before launch.
+>
+> **Architecture last verified: 2026-08-15.** Statements in §§1, 5, 6 and 8 were re-checked
+> against the code on 2026-08-15 and corrected where they had drifted (issue #115). That pass
+> read code, not law: it did not revisit §9 (community and partner review) or §10 (legal and
+> compliance), so it does not advance the legal-content clock above. Where this document
+> describes something not yet built, it says **Planned**; where a scoped feature was
+> withdrawn, it says **Withdrawn** and gives the reason.
 
 ## 1. Snapshot
-A privacy-first, fully-cited PWA that generates a personalized, ordered checklist and pre-filled forms for legal name and gender-marker changes, jurisdiction by jurisdiction. Correctness is a safety property; the system is built on the civic RAG starter kit and gated by the civic AI eval harness.
+A privacy-first, fully-cited progressive web app that generates a personalized, ordered checklist and links to the official forms for legal name and gender-marker changes, jurisdiction by jurisdiction. Correctness is a safety property.
+
+**Relationship to the rest of the portfolio.** This repo shares a set of *patterns* with `civic-rag-starter-kit` and `civic-ai-eval-harness` — retrieval-mandatory generation, post-generation citation enforcement, committed audit artifacts, and a fail-closed eval harness — but it is not built on either of them. There is no dependency, submodule, vendored copy, or fork lineage: the starter kit is a Python package (`civic_rag`), this is TypeScript run under Node's native type-stripping with zero production package dependencies, and `eval/harness.ts` is the eval-harness mechanism *inlined* and re-implemented locally (its own first line says so). The two genuinely shared artifacts are `ChelseaKR/portfolio-standards`, fetched read-only and pinned at CI time by `.github/workflows/standards.yml` and never committed here, and the vendored `api/_vendor/genai_telemetry/` shim.
 
 ## 2. Problem & users
 - **Problem.** Rules differ by state and document, change frequently, and live in scattered PDFs and clerk lore. Existing help is incomplete, paywalled, or risky. Mistakes cost money, months, and sometimes safety.
@@ -16,7 +25,7 @@ A privacy-first, fully-cited PWA that generates a personalized, ordered checklis
 ## 3. Product definition
 - **Vision.** The trustworthy front door to legal gender/name change in the US: current, cited, accessible, and safe to use.
 - **Scope (MoSCoW).**
-  - *Must:* intake; jurisdiction + document selection; ordered checklist with prerequisites, costs, timelines; cited plain-language explanations; client-side form pre-fill (PDF); ephemeral/no-account mode; freshness/verification surfacing.
+  - *Must:* intake; jurisdiction + document selection; ordered checklist with prerequisites, costs, timelines; cited plain-language explanations; ~~client-side form pre-fill (PDF)~~ **Withdrawn** — replaced by "link the exact official form at its government source" (see §6, Forms); ephemeral/no-account mode; freshness/verification surfacing.
   - *Should:* save/resume via local-only encrypted state; multi-document orchestration (court → SSA → DMV → passport); printable packet; Spanish.
   - *Could:* jurisdiction-change handling (moved states mid-process); legal-aid referral directory; reminders.
   - *Won't (v1):* submitting filings on the user's behalf; storing identity documents server-side; any feature that requires an account by default.
@@ -31,15 +40,15 @@ A privacy-first, fully-cited PWA that generates a personalized, ordered checklis
 ## 5. Experience & design
 - **Flow.** Welcome + privacy posture → respectful intake (minimal, skippable fields, inclusive language) → generated checklist (collapsible steps, each with cost/time/citation) → per-step detail + form pre-fill → printable/downloadable packet.
 - **Tone & content.** Plain language (target ~8th-grade readability), affirming and non-clinical, never assuming a single "right" path. Content style guide committed in repo.
-- **Design system.** Inherit the starter kit's tokens; calm, high-contrast, low-stimulation default; dark mode; no dark patterns; no urgency manipulation.
+- **Design system.** Design tokens are original to this repo (`src/`), following the same calm-civic conventions as the rest of the portfolio rather than importing anything: calm, high-contrast, low-stimulation default; dark mode; no dark patterns; no urgency manipulation.
 - **Accessibility.** WCAG 2.2 AA as floor (see §7 and audits). Forms with explicit labels, programmatic error messaging, and keyboard-complete flows. Readability and screen-reader walkthrough are release gates.
 
 ## 6. Architecture
-- **Shape.** Next.js PWA (offline-capable shell) + a thin retrieval/guidance API built on the starter kit. Claude on AWS Bedrock (Haiku for cost, Sonnet for harder synthesis) for grounded explanation; **retrieval is mandatory** — the model only speaks from retrieved, cited corpus chunks.
-- **RAG.** Vector store (pgvector or OpenSearch) over the curated corpus; retrieval returns source-tagged chunks; the generation prompt forbids unsupported claims and requires citation tags; a post-generation check rejects any answer with an uncited claim.
-- **Form pre-fill.** Client-side PDF form filling (e.g. `pdf-lib`) so identity data never leaves the device by default. A field-mapping config per official form.
-- **Data model.** `Jurisdiction`, `DocumentType`, `Requirement(source, last_verified, verifier)`, `Form(field_map, fillable?)`, `ChecklistTemplate`, and an ephemeral client-side `Session` (never persisted server-side in default mode).
-- **Deployment.** Containerized; can run in a constrained VPC (parity with the gov-grade posture of the starter kit). IaC via Terraform.
+- **Shape.** Server-rendered progressive web app with an explicit-save offline shell (`src/offline.ts`), plus a retrieval/guidance API (`api/retrieval.ts`, `api/guidance.ts`, `api/citation.ts`) — all original to this repo. TypeScript run via Node's native type-stripping over plain `node:http`, **not Next.js** and no build step, per ADR-5 below. Claude on AWS Bedrock (Haiku for cost, Sonnet for harder synthesis) is a pluggable generator seam (ADR-1), not the default: the default composer is deterministic. Either way **retrieval is mandatory** — the generator only speaks from retrieved, cited corpus records.
+- **RAG.** Retrieval returns source-tagged records; the generation prompt forbids unsupported claims and requires citation tags; a post-generation check rejects any answer with an uncited claim. *Built:* a deterministic lexical filter is the default retriever (ADR-2), with a dependency-free local embedding retriever behind the identical `Retriever` interface. *Planned:* swapping `embed()` for a real sentence-embedding model backed by a pgvector/OpenSearch ANN index, behind that same interface. The recall@8 / precision@1 gates in §7 exist so that swap cannot regress silently.
+- **Forms.** **Withdrawn: client-side PDF pre-fill (`pdf-lib`).** The official forms in scope are XFA/LiveCycle PDFs that browser tooling cannot fill, and a mis-filled legal form is a real harm — so the app links the exact official form at its government source instead, and `scripts/forms-check.ts` is a merge-blocking gate that fails if a registry entry ever declares an auto-fill surface again. The withdrawal is stated in the README and recorded in `scripts/security-scan.ts` (pdf-lib was removed with the feature).
+- **Data model.** `Jurisdiction`, `DocumentType`, `Requirement(source, last_verified, verifier)`, `Form(id, jurisdiction, document_type, change_type, title, source)` — no field map, following the withdrawal above — `ChecklistTemplate`, and an ephemeral client-side `Session` (never persisted server-side in default mode).
+- **Deployment.** Containerized; can run in a constrained VPC, the same gov-grade posture the portfolio's other civic repos target. IaC via Terraform.
 - **Key decisions (ADRs).** Retrieval-mandatory generation (rejected: free-form LLM — unsafe for legal facts). Client-side form-fill (rejected: server-side — unacceptable PII exposure). Per-record human verification (rejected: fully-automated scraping — accuracy/safety risk).
 
 ### ADRs recorded during the M0–M4 build
@@ -58,9 +67,9 @@ Targets specialize `/STANDARDS/QUALITY-AND-METRICS-STANDARD.md`.
 
 | Metric | Target | Measured by | Gate |
 |--------|--------|-------------|------|
-| Citation coverage | 100% of substantive claims cited | post-gen checker + eval harness | merge-blocking |
-| Groundedness / faithfulness | ≥ 0.95 on gold set | civic-ai-eval-harness | merge-blocking |
-| Factual accuracy vs ground truth | ≥ 0.98 on live jurisdictions | eval harness | merge-blocking |
+| Citation coverage | 100% of substantive claims cited | `api/citation.ts` post-gen checker + `eval/harness.ts` (`make citation`, `make eval`) | merge-blocking |
+| Groundedness / faithfulness | ≥ 0.95 on gold set | `eval/harness.ts` + `eval/faithfulness.ts` (`make eval`) | merge-blocking |
+| Factual accuracy vs ground truth | ≥ 0.98 on live jurisdictions | `eval/harness.ts` (`make eval`) | merge-blocking |
 | Corpus freshness | 0 jurisdictions past recheck SLA served as "current" | freshness job | merge-blocking + runtime alarm |
 | axe violations | 0 | pa11y-ci | merge-blocking |
 | Direct identity-form fields handled by runtime API | 0 | static privacy gate | merge-blocking |
@@ -79,16 +88,16 @@ Repo layout:
 src/  (app: intake, checklist, step-detail, form-fill)
 api/  (retrieval + grounded generation, citation enforcement)
 corpus/ (structured jurisdiction records + sources, version-controlled)
-forms/  (current: official-form registry; planned M4: reviewed field maps for safely fillable forms)
+forms/  (official-form registry — links only; field maps withdrawn, see §6 Forms)
 eval/   (gold sets + harness config)
 infra/  (terraform)
 docs/   (this + audits + generated reports)
 ```
-- **M0 — Scaffold & gates.** Fork starter kit; wire CI (all `/STANDARDS` gates), citation-coverage check, eval harness, axe, secret scan. *Done when `make verify` runs green on an empty app.*
+- **M0 — Scaffold & gates.** Stand the repo up from scratch (no fork, no scaffold inherited — see §1); wire CI (all `/STANDARDS` gates), citation-coverage check, eval harness, axe, secret scan. *Done when `make verify` runs green on an empty app.*
 - **M1 — Corpus & data model.** Structured records for ~3 pilot jurisdictions with sources + verifiers; ingest validation; freshness job. *Done when every record validates and freshness alarms work.*
 - **M2 — Retrieval-mandatory guidance.** RAG pipeline; generation that only speaks from retrieved chunks; post-gen uncited-claim rejection. *Done when groundedness ≥ target on the gold set.*
 - **M3 — Checklist engine.** Personalized, ordered checklist with prerequisites/costs/timelines from corpus. *Done when checklist matches expert expectations on gold set.*
-- **M4 — Client-side form pre-fill.** Field-mapped fill for fillable forms; graceful "download + steps" fallback for flat PDFs. *Done when fill works for pilot forms and direct identity-form fields remain on-device.*
+- **M4 — ~~Client-side form pre-fill~~ → official-form registry.** **Withdrawn as specified** (§6, Forms): the in-scope PDFs are XFA/LiveCycle and cannot be filled by browser tooling, and a mis-filled legal form is a real harm. Delivered instead as a reviewed registry that links each step's exact official form at its government source, with `make forms` failing any entry that declares an auto-fill surface. *Done when every checklist step resolves to an official, link-checked form and no fill surface exists.*
 - **M5 — Experience & a11y hardening.** Full flow, ephemeral mode, printable packet, Spanish; screen-reader + keyboard sign-off. *Done when all §7 gates pass and audits sign off.*
 - **M6 — Expand jurisdictions.** Add jurisdictions only as each passes accuracy + freshness review.
 - **Claude Code approach.** Work corpus-first per jurisdiction; never widen coverage ahead of verification; keep the citation gate and eval gate on from M0.

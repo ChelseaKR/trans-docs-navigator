@@ -27,6 +27,7 @@ interface StateDef {
 const STATES: StateDef[] = [
   { slug: "california", id: "US-CA", name: { en: "California", es: "California" } },
   { slug: "georgia", id: "US-GA", name: { en: "Georgia", es: "Georgia" } },
+  { slug: "colorado", id: "US-CO", name: { en: "Colorado", es: "Colorado" } },
   { slug: "illinois", id: "US-IL", name: { en: "Illinois", es: "Illinois" } },
   { slug: "new-york", id: "US-NY", name: { en: "New York", es: "Nueva York" } },
   { slug: "texas", id: "US-TX", name: { en: "Texas", es: "Texas" } },
