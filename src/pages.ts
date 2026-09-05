@@ -21,6 +21,7 @@ const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-MD", label: "Maryland" },
   { id: "US-MA", label: "Massachusetts" },
   { id: "US-MI", label: "Michigan" },
+  { id: "US-NV", label: "Nevada" },
   { id: "US-NJ", label: "New Jersey" },
   { id: "US-NY", label: "New York" },
   { id: "US-PA", label: "Pennsylvania" },

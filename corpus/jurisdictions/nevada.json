@@ -1,0 +1,137 @@
+[
+  {
+    "id": "nv.court-order.name",
+    "jurisdiction": "US-NV",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Nevada name change petition",
+    "statement": "In Nevada you file a verified petition for a name change with the district court in the county where you live. You must publish a notice about your petition one time in a newspaper in that county — unless you're changing your name to conform to your gender identity, in which case you don't have to publish anything or fill out the notice form at all.",
+    "detail": "Along with the petition, you file a Family Cover Sheet and, once your case is ready, an Order for Change of Adult Name for the judge to sign; some counties also want a Request for Summary Disposition & Declaration in Support. You must disclose any felony convictions, and if you have a criminal record you will need to submit fingerprints. When publication is required, the newspaper gives you an Affidavit of Publication to file with the court, and the judge cannot grant your name change until 10 days after the notice is published. The filing fee is set by each county — ask your local district court what it charges, and ask about a fee waiver if you cannot afford it.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The filing fee is different in every county; ask your local district court what it charges. A fee waiver is available if you cannot afford it."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://selfhelp.nvcourts.gov/self-help/name-changes/name-changes-for-adults",
+      "title": "Nevada State Self-Help Center — Name Changes for Adults",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nv.drivers-license.name",
+    "jurisdiction": "US-NV",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Nevada driver's license name change",
+    "statement": "To change the name on your Nevada driver's license or ID card, first update your name with the Social Security Administration — the DMV cannot process your name change until SSA's records are updated. Then make an appointment and visit a Nevada DMV office in person with your current license or ID and an original or certified legal document that authorizes the change, such as a marriage certificate, divorce decree, or court order.",
+    "detail": "You also complete the Application for Driving Privileges or ID Card (DMV 002). An updated Social Security card by itself is not enough proof of the name change. Standard fees apply: $8.50 for a non-commercial driver's license, $7.50 for an ID card, and $12.50 for a commercial driver's license.",
+    "cost": {
+      "amount_usd": null,
+      "note": "$8.50 for a non-commercial driver's license, $7.50 for an ID card, $12.50 for a commercial driver's license."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dmv.nv.gov/addchange.htm",
+      "title": "Nevada DMV — Name and Address Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nv.drivers-license.gender-marker",
+    "jurisdiction": "US-NV",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Nevada driver's license gender designation",
+    "statement": "Nevada driver's licenses and ID cards offer three gender designations — M, F, or X. To change yours, visit a DMV office in person; no medical certification is required, and you simply select the gender you want on your application.",
+    "detail": "Make an appointment before visiting the DMV. Updates cannot be done online or by mail. Standard replacement fees apply — see the DMV's Name and Address Changes page for the fee schedule; the FAQ page does not list a separate, gender-specific fee.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The DMV's FAQ page states only that 'standard replacement fees apply' without giving a dollar figure for a gender-only update."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.nv.gov/faqs.htm",
+      "title": "Nevada DMV — Frequently Asked Questions",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "nv.birth-certificate.name",
+    "jurisdiction": "US-NV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Nevada birth certificate name change",
+    "statement": "If you were born in Nevada, you can update the name on your birth certificate after a legal name change by mailing the Office of Vital Records a completed correction application along with a CERTIFIED copy of your court order. The office will not accept a photocopy or an uncertified copy.",
+    "detail": "The fee is $45.00 per person of record, which includes the correction and one certified copy; each additional certified copy costs $25.00. Pay by check, money order, or cashier's check made payable to the Office of Vital Records — the office does not accept cash. Mail your documents to the Office of Vital Records and Statistics, 4150 Technology Way, Suite 104, Carson City, NV 89706. Any white-out, cross-outs, or erasures on the submitted court order will get your request rejected, and you will need to resubmit a properly certified copy.",
+    "cost": {
+      "amount_usd": 45,
+      "note": "$25.00 for each additional certified copy beyond the first."
+    },
+    "timeline": {
+      "typical": "4 to 6 weeks"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf",
+      "title": "Nevada Office of Vital Records — Application for a Correction of a Record (Court Ordered Change Only)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "nv-dpbh-court-ordered-change",
+    "language": "en"
+  },
+  {
+    "id": "nv.birth-certificate.gender-marker",
+    "jurisdiction": "US-NV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Nevada birth certificate gender marker change",
+    "statement": "Nevada changes the gender marker on a Nevada-born birth certificate through a self-declaration process — you do not need a court order or a doctor's letter unless you choose to submit one instead. Complete a notarized Affidavit for Corrections of a Record yourself, plus a Supplemental Affidavit from someone else who can attest that you identify with and intend to maintain the gender you are requesting.",
+    "detail": "Whoever signs the Supplemental Affidavit cannot be you or whoever signed the main affidavit. Instead of the two affidavits, you may submit other verifiable evidence, such as a letter from a licensed healthcare professional or a court order recognizing your gender. Submit your documents in person or by mail to the Office of Vital Records and Statistics in Carson City; call 775-684-4242 and ask for an amendment clerk with questions.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Nevada's guide to this process states a $40.00 amendment fee, but the department's current birth-certificate corrections-packet form states $45.00 for the same service — the two department documents disagree, so no dollar figure is asserted here. Confirm the current fee with the Office of Vital Records (775-684-4242) before paying."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf",
+      "title": "Nevada Division of Public and Behavioral Health — Changing Your Gender in Nevada: A Guide to Name and Gender Marker Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "nv-dpbh-corrections-birth",
+    "language": "en"
+  }
+]

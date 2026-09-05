@@ -1,0 +1,38 @@
+[
+  {
+    "id": "nv.referral.lacsn",
+    "jurisdiction": "US-NV",
+    "name": "Legal Aid Center of Southern Nevada — Family Justice Project",
+    "url": "https://www.lacsn.org/practice-areas/family-justice-project/name-change-gender-marker/correcting-your-name-gender-marker",
+    "note": {
+      "en": "Southern Nevada's civil legal-aid provider publishes free self-help guidance specifically on correcting your name and gender marker in Nevada, and can help low-income residents with filings.",
+      "es": "El proveedor de ayuda legal civil del sur de Nevada publica orientación gratuita de autoayuda específicamente sobre cómo corregir su nombre y marcador de género en Nevada, y puede ayudar a residentes de bajos ingresos con sus solicitudes."
+    },
+    "source": {
+      "url": "https://www.lacsn.org/practice-areas/family-justice-project/name-change-gender-marker/correcting-your-name-gender-marker",
+      "title": "Legal Aid Center of Southern Nevada — Correcting Your Name & Gender Marker",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "nv.referral.aclunv",
+    "jurisdiction": "US-NV",
+    "name": "ACLU of Nevada — Know Your Rights",
+    "url": "https://www.aclunv.org/know-your-rights/name-changes-gender-markers-and-birth-certificates/",
+    "note": {
+      "en": "The ACLU of Nevada publishes a plain-language know-your-rights page on name changes, gender markers, and birth certificates in Nevada.",
+      "es": "La ACLU de Nevada publica una página de lenguaje sencillo sobre sus derechos en cambios de nombre, marcadores de género y actas de nacimiento en Nevada."
+    },
+    "source": {
+      "url": "https://www.aclunv.org/know-your-rights/name-changes-gender-markers-and-birth-certificates/",
+      "title": "ACLU of Nevada — Name Changes, Gender Markers, and Birth Certificates",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

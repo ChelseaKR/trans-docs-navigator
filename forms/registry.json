@@ -261,6 +261,36 @@
     }
   },
   {
+    "id": "nv-dpbh-corrections-birth",
+    "jurisdiction": "US-NV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Application for a Correction of a Birth Record (Affidavit for Correction of a Record + Supplemental Affidavit)",
+    "source": {
+      "url": "https://www.dpbh.nv.gov/uploadedFiles/dpbh.nv.gov/content/Programs/BirthDeath/dta/Forms/Corrections%20-%20Birth.pdf",
+      "title": "Nevada Office of Vital Records — Application for a Correction of a Birth Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "nv-dpbh-court-ordered-change",
+    "jurisdiction": "US-NV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "title": "Application for a Correction of a Record — Court Ordered Change Only",
+    "source": {
+      "url": "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf",
+      "title": "Nevada Office of Vital Records — Application for a Correction of a Record (Court Ordered Change Only)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "ny-doh-5303",
     "jurisdiction": "US-NY",
     "document_type": "birth-certificate",

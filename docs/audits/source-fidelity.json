@@ -1,9 +1,9 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 194,
-  "supported": 401,
+  "records": 204,
+  "supported": 417,
   "unsupported": 0,
-  "uncheckable": 135,
+  "uncheckable": 157,
   "unfetchable_sources": [
     "https://www.michigan.gov/sos/all-services/license-or-id-name-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
@@ -12,8 +12,8 @@
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → HTTP 404: the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 740,
-  "total_prose_sentences": 928,
+  "unchecked_prose_sentences": 794,
+  "total_prose_sentences": 992,
   "audits": [
     {
       "recordId": "az.court-order.name",
@@ -2052,6 +2052,227 @@
       "uncheckedProse": 1,
       "negatedClaims": 2,
       "totalSentences": 3
+    },
+    {
+      "recordId": "nv.court-order.name",
+      "language": "en",
+      "url": "https://selfhelp.nvcourts.gov/self-help/name-changes/name-changes-for-adults",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "10 day",
+          "label": "states \"10 day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"10 day\""
+        },
+        {
+          "kind": "requirement",
+          "key": "background-check",
+          "label": "fingerprints / a criminal-history check are required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 3,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "nv.drivers-license.name",
+      "language": "en",
+      "url": "https://dmv.nv.gov/addchange.htm",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "money",
+          "key": "8.5",
+          "label": "states $8.5",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $8.5"
+        },
+        {
+          "kind": "money",
+          "key": "7.5",
+          "label": "states $7.5",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $7.5"
+        },
+        {
+          "kind": "money",
+          "key": "12.5",
+          "label": "states $12.5",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $12.5"
+        },
+        {
+          "kind": "form-id",
+          "key": "DMV002",
+          "label": "names form DMV002",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DMV002"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "nv.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://dmv.nv.gov/faqs.htm",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 7,
+      "negatedClaims": 3,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "nv.birth-certificate.name",
+      "language": "en",
+      "url": "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "45",
+          "label": "costs $45",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:nv-dpbh-court-ordered-change",
+          "label": "form_ref \"nv-dpbh-court-ordered-change\" (Application for a Correction of a Record — Court Ordered Change Only) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "states $25",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "4 week",
+          "label": "states \"4 week\"",
+          "field": "timeline.typical",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "6 week",
+          "label": "states \"6 week\"",
+          "field": "timeline.typical",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "nv.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:nv-dpbh-corrections-birth",
+          "label": "form_ref \"nv-dpbh-corrections-birth\" (Application for a Correction of a Birth Record (Affidavit for Correction of a Record + Supplemental Affidavit)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "40",
+          "label": "states $40",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "45",
+          "label": "states $45",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 2,
+      "totalSentences": 6
     },
     {
       "recordId": "nj.court-order.name",
@@ -5076,6 +5297,227 @@
       "uncheckedProse": 6,
       "negatedClaims": 2,
       "totalSentences": 6
+    },
+    {
+      "recordId": "nv.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:nv-dpbh-corrections-birth",
+          "label": "form_ref \"nv-dpbh-corrections-birth\" (Application for a Correction of a Birth Record (Affidavit for Correction of a Record + Supplemental Affidavit)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "40",
+          "label": "states $40",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "45",
+          "label": "states $45",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 2,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "nv.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "45",
+          "label": "costs $45",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:nv-dpbh-court-ordered-change",
+          "label": "form_ref \"nv-dpbh-court-ordered-change\" (Application for a Correction of a Record — Court Ordered Change Only) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "states $25",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "4 week",
+          "label": "states \"4 week\"",
+          "field": "timeline.typical",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "6 week",
+          "label": "states \"6 week\"",
+          "field": "timeline.typical",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "nv.court-order.name.es",
+      "language": "es",
+      "url": "https://selfhelp.nvcourts.gov/self-help/name-changes/name-changes-for-adults",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "10 day",
+          "label": "states \"10 day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"10 day\""
+        },
+        {
+          "kind": "requirement",
+          "key": "background-check",
+          "label": "fingerprints / a criminal-history check are required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 3,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "nv.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://dmv.nv.gov/faqs.htm",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 7,
+      "negatedClaims": 3,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "nv.drivers-license.name.es",
+      "language": "es",
+      "url": "https://dmv.nv.gov/addchange.htm",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "money",
+          "key": "8.5",
+          "label": "states $8.5",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $8.5"
+        },
+        {
+          "kind": "money",
+          "key": "7.5",
+          "label": "states $7.5",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $7.5"
+        },
+        {
+          "kind": "money",
+          "key": "12.5",
+          "label": "states $12.5",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $12.5"
+        },
+        {
+          "kind": "form-id",
+          "key": "DMV002",
+          "label": "names form DMV002",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DMV002"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 5
     },
     {
       "recordId": "ny.birth-certificate.gender-marker.affidavit.es",
