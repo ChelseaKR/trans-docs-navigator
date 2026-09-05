@@ -1,0 +1,38 @@
+[
+  {
+    "id": "pa.referral.palegalaid",
+    "jurisdiction": "US-PA",
+    "name": "Pennsylvania Legal Aid Network",
+    "url": "https://www.palegalaid.net",
+    "note": {
+      "en": "Pennsylvania's statewide network of nonprofit legal aid programs, which can help connect low-income residents to free legal help for a name-change petition.",
+      "es": "Red estatal de programas de ayuda legal sin fines de lucro de Pensilvania, que puede ayudar a conectar a residentes de bajos ingresos con ayuda legal gratuita para una petición de cambio de nombre."
+    },
+    "source": {
+      "url": "https://www.palegalaid.net",
+      "title": "Pennsylvania Legal Aid Network",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "pa.referral.mazzoni",
+    "jurisdiction": "US-PA",
+    "name": "Mazzoni Center",
+    "url": "https://www.mazzonicenter.org",
+    "note": {
+      "en": "Philadelphia-based LGBTQ health and legal services organization that has run legal clinics helping Pennsylvanians with name and gender-marker changes.",
+      "es": "Organización de servicios de salud y legales LGBTQ con sede en Filadelfia que ha realizado clínicas legales para ayudar a personas de Pensilvania con cambios de nombre y de marcador de género."
+    },
+    "source": {
+      "url": "https://www.mazzonicenter.org",
+      "title": "Mazzoni Center",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

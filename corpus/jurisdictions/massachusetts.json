@@ -1,0 +1,181 @@
+[
+  {
+    "id": "ma.court-order.name",
+    "jurisdiction": "US-MA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Massachusetts name change petition",
+    "statement": "In Massachusetts you file a Petition to Change Name of Adult (CJP 27) in the Probate and Family Court for the county where you live. The court can grant it without a hearing, or it can require you to give public notice before it decides.",
+    "detail": "You sign the petition in front of a notary public and show a photo ID. If your photo ID does not show your current legal name, you can file a Motion (CJD 400) asking the court to waive the notary's ID requirement. If the court issues an Order of Notice, you may have to publish a citation in a newspaper, mail notice to interested people, or both; if you have a reason not to publish, you can file a Motion (CJD 400) asking the court to waive publication instead. If the court does not require any of this, it can grant your petition administratively and mail you a certified Decree of Change of Name.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The court filing fee is $150 plus a $15 surcharge fee, for a $165 total filing fee. If the court issues an Order of Notice, there is an additional $15 citation fee. Filing online (eFiling) adds a separate flat fee of $22 for the initial case. If you cannot afford the fee, you can ask the court to waive it through the Indigency (waiver of court fees) process by filing an Affidavit of Indigency.",
+      "fee_waiver": true
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.mass.gov/info-details/how-do-i-file-a-change-of-name-for-an-adult",
+      "title": "Mass.gov — How do I file a change of name for an adult?",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "form_ref": "ma-cjp-27",
+    "language": "en"
+  },
+  {
+    "id": "ma.drivers-license.name",
+    "jurisdiction": "US-MA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Massachusetts driver's license name change",
+    "statement": "To change the name on your Massachusetts driver's license or ID card, schedule an appointment at an RMV Service Center and bring a completed application. If you are applying for a REAL ID and your current name does not match your lawful-presence documents, you must prove the legal name change with a marriage certificate, divorce decree, or court document.",
+    "detail": "If you are applying for a Standard (non-REAL ID) driver's license or ID card, Massachusetts says you may change your name with no documentation as long as there is no attempt to defraud. Either way, your photo is taken and your signature is captured again at the appointment.",
+    "cost": {
+      "amount_usd": 25,
+      "note": "Massachusetts lists a $25 Driver's License/ID Amendment Fee."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.mass.gov/how-to/change-information-on-your-drivers-license-or-id-card",
+      "title": "Mass.gov — Change information on your driver's license or ID card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ma-rmv-license-id-application",
+    "language": "en"
+  },
+  {
+    "id": "ma.drivers-license.gender-marker",
+    "jurisdiction": "US-MA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Massachusetts driver's license and ID gender designation",
+    "statement": "Massachusetts lets you choose a gender designation of M, F, or X on your driver's license or ID card. To change it, fill out a license or ID card application and schedule an appointment at an RMV Service Center.",
+    "detail": "Your gender appears in the 'Sex' field of your license or ID card.",
+    "cost": {
+      "amount_usd": 25,
+      "note": "Massachusetts lists a $25 Driver's License/ID Amendment Fee for an updated card."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.mass.gov/how-to/change-information-on-your-drivers-license-or-id-card",
+      "title": "Mass.gov — Change information on your driver's license or ID card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ma-rmv-license-id-application",
+    "language": "en"
+  },
+  {
+    "id": "ma.drivers-license.gender-marker.law",
+    "jurisdiction": "US-MA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Massachusetts law on driver's license gender designation",
+    "statement": "Massachusetts law (Chapter 90, Section 8N) lets you pick X, M, or F for gender on a license, learner's permit, or ID card. You do not need to show any documents to make this choice.",
+    "detail": "The rule also covers the ID card you need to buy alcohol. Each year the Registry of Motor Vehicles must report how many people pick X, sorted by race and ethnicity. The report cannot show who those people are.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.mass.gov/info-details/mass-general-laws-c90-ss-8n",
+      "title": "Mass.gov — Mass. General Laws c.90 § 8N",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ma.birth-certificate.gender-marker",
+    "jurisdiction": "US-MA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Massachusetts birth certificate sex designation",
+    "statement": "People born in Massachusetts can amend the sex designation on their birth certificate to female, male, or X by filing an affidavit with the Registry of Vital Records and Statistics (RVRS).",
+    "detail": "A parent or guardian files the affidavit when the change is for a minor. If you mail your affidavit, it must be notarized; RVRS also lets you make an in-person appointment instead, where you bring a valid photo ID.",
+    "cost": {
+      "amount_usd": 50,
+      "note": "The amendment fee is $50 one time. A certified copy of the amended record costs $32 by mail or $20 in person."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.mass.gov/how-to/amend-a-birth-certificate-for-sex-of-the-subject",
+      "title": "Mass.gov — Amend a birth certificate for sex of the subject",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ma-rvrs-sex-affidavit",
+    "language": "en"
+  },
+  {
+    "id": "ma.birth-certificate.gender-marker.law",
+    "jurisdiction": "US-MA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Massachusetts law on birth certificate sex designation",
+    "statement": "Massachusetts General Laws Chapter 46, Section 13(e), says a person 18 or older, an emancipated minor, or the parent or guardian of a minor may ask to change the sex designation on a birth record to female, male, X, or another or undesignated gender, without any medical or healthcare documentation, court order, or proof of a name change.",
+    "detail": "The same law lets a person add a name change to that same request, or within 3 years afterward, also without medical or healthcare documentation — a name change still needs a certified copy of the legal name-change decree. A person whose sex designation changed while a minor gets 3 years from their eighteenth birthday instead, and the department can waive that 3-year limit for good cause.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.mass.gov/info-details/mass-general-laws-c46-ss-13",
+      "title": "Mass.gov — Mass. General Laws c.46 § 13",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ma.birth-certificate.name",
+    "jurisdiction": "US-MA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Massachusetts birth certificate name change",
+    "statement": "Massachusetts vital records says you cannot amend your birth certificate based only on a legal name change. The only route that touches your name on a Massachusetts birth certificate is bundled with a request to change the sex designation on that same birth record.",
+    "detail": "If you already asked Massachusetts to change the sex designation on your birth record, you can add a name change to it by sending the Registry of Vital Records and Statistics a certified copy of your legal name-change decree. Massachusetts General Laws Chapter 46, Section 13(e), sets the time limit for adding a name change afterward.",
+    "cost": {
+      "amount_usd": 50,
+      "note": "The amendment fee is $50 one time. A certified copy of the amended record costs $32 by mail or $20 in person."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.mass.gov/how-to/amend-or-correct-a-birth-death-or-marriage-record",
+      "title": "Mass.gov — Amend or correct a birth, death, or marriage record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ma-rvrs-sex-affidavit",
+    "language": "en"
+  }
+]

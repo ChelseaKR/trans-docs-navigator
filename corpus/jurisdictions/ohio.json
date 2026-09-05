@@ -1,0 +1,161 @@
+[
+  {
+    "id": "oh.court-order.name",
+    "jurisdiction": "US-OH",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Ohio name change petition",
+    "statement": "In Ohio you file your name change petition in the probate court of the county where you live, if you have lived there for at least 60 days.",
+    "detail": "Ohio Legal Help's Adult Name Change Form Assistant helps you find the forms for your county's probate court. You submit copies of a valid photo ID, such as a driver's license, state ID, or passport, along with proof of your reason for the change. Some counties also require you to request and pay for a BCI background check. The completed paperwork must be signed in front of a notary. A judge or magistrate may schedule a hearing if they need more information about your case; if a hearing is scheduled, the court may require you to publish notice in a local newspaper at least 30 days before the hearing, and you pay the publication cost. If a public name change would put you in danger, you can ask the court for a confidentiality request instead. The judge may approve or deny the request.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Typical filing fees are about $100 to $150; each Ohio probate court sets its own fee. Some counties also charge for a BCI background check."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ohiolegalhelp.org/topic/name-change",
+      "title": "Ohio Legal Help — How to Legally Change Your Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "en"
+  },
+  {
+    "id": "oh.drivers-license.name",
+    "jurisdiction": "US-OH",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Ohio driver's license and ID name change",
+    "statement": "To update the name on your Ohio driver's license or ID card, the Ohio BMV asks you to connect your birth name to your current legal name with an original or certified copy of a marriage certificate, a divorce decree, or a court-ordered name change.",
+    "detail": "If you have had more than one marriage, you may need documents from each marriage and divorce to connect your birth certificate, passport, or U.S. Department of Homeland Security documents to your current legal name. Bring these documents to a deputy registrar license agency to get an updated card.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.bmv.ohio.gov/dl-identity-documents.aspx",
+      "title": "Ohio BMV — Acceptable Documents (Driver License and ID Cards)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "oh.drivers-license.gender-marker",
+    "jurisdiction": "US-OH",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Ohio driver's license and ID sex/gender designation",
+    "statement": "The Ohio Bureau of Motor Vehicles' public list of official forms does not include any form for changing the sex or gender designation on a driver's license or state ID card.",
+    "detail": "Ohio Revised Code 9.05 states it is the policy of the state of Ohio to recognize two sexes, male and female, described as not changeable. Read the BMV's current forms list and acceptable-documents pages yourself before you file anything. Do not assume a route is open here.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.bmv.ohio.gov/doc-forms.aspx",
+      "title": "Ohio BMV — Motor Vehicle Laws, Forms, Fees",
+      "last_verified": "2026-09-04",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "oh.drivers-license.gender-marker.law",
+    "jurisdiction": "US-OH",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Ohio law on sex on state records",
+    "statement": "Ohio Revised Code 9.05 states that it is the policy of the state of Ohio to recognize two sexes, male and female, and that these sexes are not changeable.",
+    "detail": "The law defines sex as the biological indication of male and female, including sex chromosomes, naturally occurring sex hormones, gonads, and nonambiguous internal and external genitalia present at birth, without regard to a person's psychological, chosen, or subjective experience of gender. It took effect September 30, 2025, enacted by House Bill 96.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://codes.ohio.gov/ohio-revised-code/section-9.05",
+      "title": "Ohio Revised Code — Section 9.05, Sex Recognition Policy",
+      "last_verified": "2026-09-04",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "oh.birth-certificate.gender-marker",
+    "jurisdiction": "US-OH",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Ohio birth certificate sex designation",
+    "statement": "The Ohio Department of Health says it will change the sex marker on a birth certificate with a probate court order, to comply with the federal court decision in Ray v. McCloud. But Ohio courts are currently split on whether state law lets a probate court grant that kind of order, and a request can still be denied.",
+    "detail": "You apply to the probate court in the county tied to your birth, such as where you were born or where your mother lived when you were born, under Ohio Revised Code 3705.15. Some Ohio counties have granted these requests and others have not. Read current official guidance and talk with a local attorney before you file. Do not assume a route is open in your county.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record",
+      "title": "Ohio Department of Health — Changing or Correcting a Birth Record",
+      "last_verified": "2026-09-04",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "oh.birth-certificate.gender-marker.law",
+    "jurisdiction": "US-OH",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Ohio court case on birth certificate sex marker corrections",
+    "statement": "In November 2024 the Ohio Supreme Court left standing a probate court's decision denying a transgender woman's request to change the sex marker on her birth certificate. The justices could not reach a majority on whether Ohio law lets a probate court grant that kind of change at all.",
+    "detail": "In a separate opinion, Justice Brunner wrote that some Ohio counties permit this kind of change and others do not. Other justices who reached the merits of the case agreed that Ohio Revised Code 3705.15 lets a probate court correct a birth record only when the sex was incorrectly recorded at the time of birth, not later based on gender identity.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.courtnewsohio.gov/cases/2024/SCO/1119/220934.asp",
+      "title": "Court News Ohio (Supreme Court of Ohio) — Court Unable to Rule on Transgender Woman's Request to Change Birth Certificate",
+      "last_verified": "2026-09-04",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "oh.birth-certificate.name",
+    "jurisdiction": "US-OH",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Ohio birth certificate name change",
+    "statement": "If you were born in Ohio and a probate court grants your legal name change, the court can send a certified copy of the order to the Ohio Bureau of Vital Statistics, which issues a new Certificate of Birth in your new name within 90 days of receiving it.",
+    "detail": "Depending on your county, the probate court may forward the order automatically, or you may need to send it yourself.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.ohiolegalhelp.org/topic/name-change",
+      "title": "Ohio Legal Help — How to Legally Change Your Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

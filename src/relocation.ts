@@ -23,15 +23,21 @@ import type {
   RelocationPhase,
   RelocationStep,
 } from "../api/types.ts";
-import { page, uiStrings, escapeHtml, verificationCaption } from "./render.ts";
+import { page, uiStrings, escapeHtml, sourceItem } from "./render.ts";
 import { t as locale } from "./i18n/index.ts";
 import { formById } from "../api/forms.ts";
 
 /** The states the planner offers, mirroring the checklist intake's list. */
 export const RELOCATION_JURISDICTIONS: { id: string; label: string }[] = [
+  { id: "US-AZ", label: "Arizona" },
   { id: "US-CA", label: "California" },
+  { id: "US-FL", label: "Florida" },
+  { id: "US-GA", label: "Georgia" },
+  { id: "US-CO", label: "Colorado" },
   { id: "US-IL", label: "Illinois" },
+  { id: "US-MI", label: "Michigan" },
   { id: "US-NY", label: "New York" },
+  { id: "US-PA", label: "Pennsylvania" },
   { id: "US-TX", label: "Texas" },
   { id: "US-WA", label: "Washington" },
 ];
@@ -159,12 +165,10 @@ function stepHazards(
 function sources(records: CorpusRecord[], lang: Language): string {
   if (records.length === 0) return "";
   const t = locale(lang).ui;
-  const items = records
-    .map(
-      (rec) =>
-        `<li><a href="${escapeHtml(rec.source.url)}" rel="noopener noreferrer">${escapeHtml(rec.source.title)}</a> — <span class="meta">${escapeHtml(verificationCaption(rec.source, t))}</span></li>`,
-    )
-    .join("");
+  // Shared with the checklist/answer source list (src/render.ts) so the
+  // "cannot be drift-watched" disclosure can never be present on one page and missing
+  // on another — a relocation plan cites the same records under more time pressure.
+  const items = records.map((rec) => sourceItem(rec.source, lang)).join("");
   return `<h4>${escapeHtml(t.sources)}</h4><ul>${items}</ul>`;
 }
 
