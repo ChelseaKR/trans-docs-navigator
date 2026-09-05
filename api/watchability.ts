@@ -1,0 +1,131 @@
+// Which cited sources can be watched for drift, and which cannot (issue #117).
+//
+// "Stale law is broken law" (api/freshness.ts) is built entirely on `last_verified`.
+// For most sources that date is BACKED: `make fidelity` compares a committed snapshot
+// against a hash baseline, and source-watch re-fetches the page weekly, so a change
+// upstream becomes a red gate. For a few sources it is NOT backed, and the difference
+// is invisible to the reader:
+//
+//   1. `refuses-our-user-agent` — the host answers 403 to this project's declared
+//      user-agent. `scripts/source-snapshot.ts` deliberately does NOT spoof a browser
+//      UA, and that decision stands; the consequence is that no snapshot can be taken,
+//      source-watch reports "unreachable (skipped)" and carries the old hash forward
+//      forever, and drift there is undetectable by construction.
+//   2. `no-baseline` — no baseline hash was ever recorded for the URL, so there is
+//      nothing to compare a future fetch against.
+//
+// Either way `last_verified` on such a record is a HUMAN's assertion that nothing has
+// changed on that page, never a checked one. A user reading a step cited to the SSA's
+// SS-5 or to New York's gender-designation-correction page is making a time-sensitive
+// legal filing on that assertion, so the page has to say so rather than presenting the
+// same "last checked <date>" as a source that IS under watch.
+//
+// SINGLE DERIVATION. `scripts/launch-gates.ts` derives the README's "Every cited source
+// actually under drift watch" row from this same function, so the machine-derived
+// launch-gate row and the sentence a user actually reads cannot disagree. It is derived
+// from the artifacts (baselines + snapshot index), never hand-declared on a record: a
+// hand-maintained "unwatchable: true" field would be one more claim nothing checks.
+
+import { readFileSync, existsSync } from "node:fs";
+import { join } from "node:path";
+import { REPO_ROOT } from "./corpus.ts";
+
+export type UnwatchableReason = "refuses-our-user-agent" | "no-baseline";
+
+export interface WatchabilityPaths {
+  corpusBaseline: string;
+  formsBaseline: string;
+  snapshotIndex: string;
+}
+
+export function defaultPaths(repoRoot: string = REPO_ROOT): WatchabilityPaths {
+  return {
+    corpusBaseline: join(repoRoot, "corpus", "source-hashes.json"),
+    formsBaseline: join(repoRoot, "forms", "form-hashes.json"),
+    snapshotIndex: join(repoRoot, "corpus", "snapshots", "index.json"),
+  };
+}
+
+interface SnapshotEntry {
+  unfetchable?: { status?: string; note?: string };
+}
+
+function readJson<T>(path: string, fallback: T): T {
+  if (!existsSync(path)) return fallback;
+  try {
+    return JSON.parse(readFileSync(path, "utf8")) as T;
+  } catch {
+    return fallback;
+  }
+}
+
+/**
+ * Every source URL that is KNOWN to be unwatchable, with the reason.
+ *
+ * A URL absent from this map is not automatically watched — it is simply not known to be
+ * unwatchable. `isDriftWatchable` below is the question the UI actually asks, and it is
+ * answered against the baselines, so a URL with no baseline is reported as unwatchable
+ * whether or not anyone has tried to fetch it.
+ */
+export function unwatchableSources(paths: WatchabilityPaths = defaultPaths()): Map<string, UnwatchableReason> {
+  const out = new Map<string, UnwatchableReason>();
+  const index = readJson<{ snapshots?: Record<string, SnapshotEntry> }>(paths.snapshotIndex, {});
+  for (const [url, entry] of Object.entries(index.snapshots ?? {})) {
+    if (entry?.unfetchable !== undefined) out.set(url, "refuses-our-user-agent");
+  }
+  return out;
+}
+
+// Cached by path VALUE, not object identity: `defaultPaths()` returns a fresh object on
+// every call, so an identity check would silently re-read three JSON files on every
+// rendered page.
+interface Watchability {
+  baselines: Set<string>;
+  unwatchable: Map<string, UnwatchableReason>;
+}
+const cache = new Map<string, Watchability>();
+
+function state(paths: WatchabilityPaths): Watchability {
+  const key = `${paths.corpusBaseline}\x00${paths.formsBaseline}\x00${paths.snapshotIndex}`;
+  const hit = cache.get(key);
+  if (hit) return hit;
+  const corpusBaseline = readJson<Record<string, string>>(paths.corpusBaseline, {});
+  const formsBaseline = readJson<Record<string, string>>(paths.formsBaseline, {});
+  const value: Watchability = {
+    baselines: new Set([...Object.keys(corpusBaseline), ...Object.keys(formsBaseline)]),
+    unwatchable: unwatchableSources(paths),
+  };
+  cache.set(key, value);
+  return value;
+}
+
+/** Reset the module cache. Tests only — the serving path loads once per process. */
+export function resetWatchabilityCache(): void {
+  cache.clear();
+}
+
+/**
+ * Why this URL cannot be drift-watched, or `null` when it can be.
+ *
+ * Fails toward disclosure: an unknown URL has no baseline, so it reports `no-baseline`
+ * rather than being quietly presented as watched. Being told "we cannot check this
+ * automatically" about a source that is in fact watched costs a reader one extra manual
+ * check; the reverse costs them a filing.
+ */
+export function unwatchableReason(url: string, paths: WatchabilityPaths = defaultPaths()): UnwatchableReason | null {
+  const s = state(paths);
+  const declared = s.unwatchable.get(url);
+  if (declared) return declared;
+  return s.baselines.has(url) ? null : "no-baseline";
+}
+
+export function isDriftWatchable(url: string, paths: WatchabilityPaths = defaultPaths()): boolean {
+  return unwatchableReason(url, paths) === null;
+}
+
+/** Every distinct unwatchable URL among the ones given, sorted for stable reporting. */
+export function unwatchableAmong(urls: Iterable<string>, paths: WatchabilityPaths = defaultPaths()): string[] {
+  const out = new Set<string>();
+  for (const url of urls) if (!isDriftWatchable(url, paths)) out.add(url);
+  return [...out].sort();
+}
