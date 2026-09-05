@@ -381,5 +381,35 @@
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "nj-courts-namechg-adult",
+    "jurisdiction": "US-NJ",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "How to Ask the Court to Change Your Name — Adults Only (CN 10551)",
+    "source": {
+      "url": "https://www.njcourts.gov/sites/default/files/forms/10551_namechg_adult.pdf",
+      "title": "New Jersey Courts — Name Change, Adult (CN 10551)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "nj-doh-reg-l2",
+    "jurisdiction": "US-NJ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Form REG-L2 — Request Form and Attestation to Amend Sex Designation to Reflect Gender Identity on a Birth Certificate (Adult)",
+    "source": {
+      "url": "https://www.nj.gov/health/forms/reg-l2_1.pdf",
+      "title": "New Jersey Department of Health Form REG-L2",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]

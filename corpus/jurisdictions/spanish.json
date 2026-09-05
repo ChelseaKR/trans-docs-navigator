@@ -2205,5 +2205,129 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "language": "es"
+  },
+  {
+    "id": "nj.court-order.name.es",
+    "jurisdiction": "US-NJ",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Nueva Jersey",
+    "statement": "Para cambiar legalmente su nombre en Nueva Jersey como adulto, presenta una Demanda Verificada y una Certificación de Información Confidencial para Cambio de Nombre en la División de Derecho (Law Division) del Tribunal Superior, junto con una Declaración de Información del Caso Civil y una tarifa de presentación de $250. El tribunal fija una fecha de audiencia, y usted debe notificar a la División de Justicia Criminal sobre su solicitud por correo certificado al menos 20 días antes de esa audiencia.",
+    "detail": "El paquete del tribunal contiene cinco formularios: la Demanda Verificada (Formulario A), la Certificación de Información Confidencial para Cambio de Nombre (Formulario A1), la Orden que Fija la Fecha de Audiencia (Formulario B), la Sentencia Final (Formulario C) y el Anexo de la Sentencia Final (Formulario C1). Una sola tarifa de $250 cubre el cambio de nombre de varios familiares adultos presentado en conjunto, pero cualquier persona menor de 18 años debe usar en su lugar el paquete separado de cambio de nombre de la 'División de Equidad (Chancery Division), Parte de Familia'. Si tiene cargos penales o de delincuencia pendientes en Nueva Jersey, también debe notificar al fiscal del condado (o, si los cargos fueron presentados por el Fiscal General, a la División de Justicia Criminal) al menos 20 días antes de la audiencia. Después de la audiencia, presenta una copia certificada con sello en relieve de la Sentencia Final y su Anexo — $25.00 por copia certificada — a la Comisión de Vehículos Motorizados, si tiene licencia, registro de vehículo o tarjeta de identificación de no conductor, dentro de las dos semanas posteriores a la fecha de vigencia de la sentencia, y al Departamento de Tesorería dentro de 45 días junto con una tarifa de $50.",
+    "cost": {
+      "amount_usd": 250,
+      "note": "Esta es la tarifa de presentación del Tribunal Superior, pagada con cheque o giro postal al Tesorero del Estado de Nueva Jersey; cubre el cambio de nombre de varios familiares adultos presentado en conjunto. Una copia certificada de la Sentencia Final con sello en relieve cuesta $25.00 cada una, y enviar una al Departamento de Tesorería requiere una tarifa adicional de $50.00 dentro de 45 días."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.njcourts.gov/sites/default/files/forms/10551_namechg_adult.pdf",
+      "title": "Tribunales de Nueva Jersey — Cómo Pedirle al Tribunal que Cambie su Nombre (Solo para Adultos)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "nj-courts-namechg-adult",
+    "language": "es"
+  },
+  {
+    "id": "nj.drivers-license.name.es",
+    "jurisdiction": "US-NJ",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Nueva Jersey",
+    "statement": "Para actualizar su nombre en su licencia de conducir o tarjeta de identificación de Nueva Jersey, primero debe cambiar legalmente su nombre. Luego vaya a cualquier Centro de Licencias de la MVC sin cita previa — no necesita cita — y lleve una copia certificada de la orden judicial que otorga su cambio legal de nombre y sus documentos de '6 puntos de identificación' para probar su identidad y fecha de nacimiento.",
+    "detail": "Todos los documentos deben ser originales o copias certificadas. No hay problema si su nombre de nacimiento aparece en sus otros documentos de identificación — igual serán aceptados. Puede pedir una copia certificada de su acta de nacimiento de Nueva Jersey usando el sistema en línea de la Oficina Estatal de Estadísticas Vitales de NJ. Mientras esté en el Centro de Licencias de la MVC, también puede actualizar el marcador de género en su licencia.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.nj.gov/transgender/name-changes/drivers-license-name-change.shtml",
+      "title": "Centro de Información para Personas Transgénero de Nueva Jersey — ¿Cómo cambio mi nombre en mi licencia de conducir de NJ?",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nj.drivers-license.gender-marker.es",
+    "jurisdiction": "US-NJ",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de conducir de Nueva Jersey",
+    "statement": "Para actualizar el marcador de género en su licencia de conducir o tarjeta de identificación de no conductor de Nueva Jersey, complete el formulario de designación de género de la MVC y llévelo a cualquier Centro de Licencias de la MVC sin cita previa — no necesita cita. En el formulario puede indicar masculino, femenino o X para quienes se identifican como no binarios o prefieren no especificar su género, y no necesita documentación médica ni la firma de un médico.",
+    "detail": "Este trámite debe hacerse en persona: se verifican sus documentos y debe entregar su licencia o identificación actual. También paga una tarifa estándar de $11 para recibir la nueva tarjeta. La MVC cambió esta política después de una ley de Nueva Jersey de 2018 que eliminó el requisito anterior de presentar prueba de cirugía de reasignación de género para actualizar el marcador de género en los registros oficiales.",
+    "cost": {
+      "amount_usd": 11,
+      "note": "Tarifa estándar de tarjeta duplicada, pagada para recibir su nueva licencia o identificación después de actualizar el marcador de género."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.nj.gov/transgender/name-changes/drivers-license-gender-change.shtml",
+      "title": "Centro de Información para Personas Transgénero de Nueva Jersey — ¿Cómo actualizo mi marcador de género en mi licencia de conducir de NJ?",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "nj.birth-certificate.name.es",
+    "jurisdiction": "US-NJ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Nueva Jersey",
+    "statement": "Para enmendar el nombre en un acta de nacimiento de Nueva Jersey después de un cambio legal de nombre, envía por correo una carta que identifique el registro, una copia de la sentencia original de cambio de nombre, y una tarifa de $2 a la Oficina de Estadísticas Vitales y Registro.",
+    "detail": "Su carta debe identificar el nombre actualmente registrado, la fecha y el lugar exactos donde ocurrió el evento, y — en el caso de un acta de nacimiento — el nombre de soltera completo de la madre y el nombre completo del padre si está indicado. Una copia certificada del acta corregida cuesta $25 por la primera copia y $2 por cada copia adicional de la misma acta pedida al mismo tiempo, pagadera con cheque o giro postal al Tesorero del Estado de Nueva Jersey. La Oficina de Estadísticas Vitales y Registro no reemplazará copias emitidas previamente una vez completada una enmienda.",
+    "cost": {
+      "amount_usd": 2,
+      "note": "Esta es la tarifa para procesar el cambio legal de nombre en sí. Una copia certificada del acta corregida cuesta $25 por la primera copia y $2 por cada copia adicional pedida al mismo tiempo."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.nj.gov/health/vital/correcting-vital/",
+      "title": "Departamento de Salud de Nueva Jersey — Corrección de un Registro Vital",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nj.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-NJ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Nueva Jersey",
+    "statement": "Según la Ley Babs Siperstein, las personas cuyo nacimiento fue registrado en Nueva Jersey pueden enmendar la designación de sexo en su acta de nacimiento para reflejar su identidad de género. La ley de 2018 eliminó el requisito anterior de presentar documentación de cirugía de reasignación de género, y en su lugar permite documentar la identidad de género mediante autoatestación — usted mismo, o un padre/tutor en el caso de un menor.",
+    "detail": "El cambio entró en vigor el 1 de febrero de 2019, después de que el gobernador Phil Murphy firmara la legislación en julio de 2018. Un adulto usa el Formulario REG-L2 (Formulario de Solicitud y Atestación para Enmendar la Designación de Sexo para Reflejar la Identidad de Género en un Acta de Nacimiento); un padre o tutor usa el Formulario REG-L3 para un menor.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.nj.gov/health/vital/correcting-vital/sexdesignation/",
+      "title": "Departamento de Salud de Nueva Jersey — Enmendar la Designación de Sexo para Reflejar la Identidad de Género en un Acta de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "nj-doh-reg-l2",
+    "language": "es"
   }
 ]
