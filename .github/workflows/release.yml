@@ -39,6 +39,7 @@ jobs:
   version-check:
     name: tag matches package.json version (REL-03)
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
@@ -61,6 +62,7 @@ jobs:
     name: re-verify at the tagged commit (REL-14/15)
     needs: [version-check]
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
@@ -89,6 +91,7 @@ jobs:
     name: build · SBOM · sign · attest · publish (GHCR, by digest — never :latest)
     needs: [verify]
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     # No caching in this job (SECURITY-AND-SUPPLY-CHAIN-STANDARD §6.4): caching in a
     # job that builds/signs/publishes/attests provenance violates SLSA build isolation.
     permissions:
@@ -175,6 +178,7 @@ jobs:
     name: verify-published — pull by digest, cosign verify, boot, /livez (REL-16)
     needs: [package]
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: read
       packages: read
@@ -231,6 +235,7 @@ jobs:
   dataset:
     needs: [verify]
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     permissions:
       contents: write # create/update the tagged GitHub Release assets
       id-token: write

@@ -35,6 +35,7 @@ jobs:
   analyze:
     name: analyze (${{ matrix.language }})
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     # Scopes declared at job level, not workflow level (OpenSSF Scorecard
     # Token-Permissions prefers this even for a single-job workflow — it's the
     # pattern that stays minimal if a second job is ever added here).

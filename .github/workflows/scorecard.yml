@@ -22,6 +22,7 @@ concurrency:
 jobs:
   analysis:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: read
       security-events: write # to upload SARIF (no-op via the guard below if repo is private)
