@@ -14,6 +14,7 @@ const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-CA", label: "California" },
   { id: "US-IL", label: "Illinois" },
   { id: "US-NY", label: "New York" },
+  { id: "US-OH", label: "Ohio" },
   { id: "US-TX", label: "Texas" },
   { id: "US-WA", label: "Washington" },
 ];

@@ -8,6 +8,20 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Ohio corpus coverage** (ROADMAP M6): 7 EN + 7 ES records (14 total) covering
+  court-ordered name change, driver's-license/ID name change, and birth-certificate name
+  change from Ohio's own official sources (Ohio Legal Help, the Ohio BMV, and — for the
+  birth record — the Ohio Department of Health, read directly since `odh.ohio.gov` refuses
+  this project's declared user-agent on every path, same class as `health.ny.gov`). Ohio's
+  driver's-license/ID **and** birth-certificate sex/gender-marker paths are modeled as
+  contested/unavailable, never as working processes: the Ohio BMV's own public forms list
+  no longer includes a gender-marker form (Ohio Revised Code 9.05, effective 2025-09-30,
+  states the sexes are "not changeable"), and a divided Ohio Supreme Court in November 2024
+  (*In re Application for Correction of Birth Record of Adelaide*) left standing a probate
+  court's denial of a birth-certificate sex-marker change without resolving whether state
+  law allows one at all — both are cited, both are `needs_reverification`. Adds
+  `corpus/referrals/ohio.json` (Ohio Legal Help, Equitas Health's gender-affirming legal
+  clinics), `US-OH` to the intake/guide jurisdiction lists, and 6 new gold-set items.
 - **ADR directory completed** (`docs/adr/`): the five build ADRs migrated out of
   `docs/ROADMAP.md` §6 into individual Nygard-format files (0001–0005, decision content
   unchanged), plus a new ADR-0006 recording the deliberate no-ESLint/no-Prettier/no-bundler

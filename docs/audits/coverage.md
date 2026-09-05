@@ -15,6 +15,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
+| US-OH | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
 
@@ -26,6 +27,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
+| US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 
@@ -37,8 +39,9 @@ driver's-license rows are covered and the federal rows are current.
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
+| US-OH | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
-| US-WA | — | — | — | — | ✅ | — |
+| US-WA | ✅ | — | ✅ | — | ✅ | — |
 
 ## Spanish · Gender-marker change
 
@@ -48,7 +51,8 @@ driver's-license rows are covered and the federal rows are current.
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
+| US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
-| US-WA | — | — | — | — | ✅ | — |
+| US-WA | — | — | ✅ | — | ✅ | — |
 
-**Totals:** 47 current · 8 degraded · 89 uncovered cells.
+**Totals:** 56 current · 12 degraded · 100 uncovered cells.

@@ -12,30 +12,31 @@
 
 | | Count |
 |---|---|
-| Records audited | 70 |
-| Load-bearing assertions found | 184 |
-| — checked and **supported** by the cited source | 152 |
+| Records audited | 84 |
+| Load-bearing assertions found | 205 |
+| — checked and **supported** by the cited source | 172 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 32 |
-| of the checked: literal (fee / duration / form-id) matches | 101 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 51 |
+| — **UNCHECKABLE** (reported, never passed) | 33 |
+| of the checked: literal (fee / duration / form-id) matches | 111 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 61 |
 
 ## What this gate cannot vouch for
 
-- **255 of 322 prose sentences** in the corpus carry no extractable
+- **313 of 386 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **71 sentences state a negative** (`you do not need a court order`, `the page no
+- **90 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **51 assertions are necessary-condition only**: the source discusses the topic, which
+- **61 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
-- **2 cited sources refuse automated fetching entirely**, so no
+- **3 cited sources refuse automated fetching entirely**, so no
   snapshot exists and every assertion in every record citing them is unverifiable by any
   gate. We will not spoof a browser user-agent to get around a site that has said no.
   - https://www.nycourts.gov/courthelp/Family/nameChange.shtml → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
   - https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
+  - https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → HTTP 404: the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
 
 ## Unsupported assertions (these fail the build)
 
@@ -81,6 +82,10 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `il.birth-certificate.gender-marker.es · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 - `il.birth-certificate.name.es · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 
+**the source refuses automated fetching (HTTP 404)** — 1 assertion(s):
+
+- `oh.birth-certificate.gender-marker · a court order is required`
+
 ## Per-record coverage
 
 | Record | Lang | Supported | Unsupported | Uncheckable | Unchecked prose |
@@ -123,6 +128,20 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `ny.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 3/5 |
 | `ny.drivers-license.name` | en | 6 | 0 | 0 | 2/5 |
 | `ny.drivers-license.name.es` | es | 5 | 0 | 0 | 2/5 |
+| `oh.birth-certificate.gender-marker` | en | 0 | 0 | 1 | 7/7 |
+| `oh.birth-certificate.gender-marker.es` | es | 0 | 0 | 0 | 6/6 |
+| `oh.birth-certificate.gender-marker.law` | en | 0 | 0 | 0 | 4/4 |
+| `oh.birth-certificate.gender-marker.law.es` | es | 0 | 0 | 0 | 3/3 |
+| `oh.birth-certificate.name` | en | 1 | 0 | 0 | 1/2 |
+| `oh.birth-certificate.name.es` | es | 1 | 0 | 0 | 1/2 |
+| `oh.court-order.name` | en | 8 | 0 | 0 | 7/9 |
+| `oh.court-order.name.es` | es | 8 | 0 | 0 | 7/9 |
+| `oh.drivers-license.gender-marker` | en | 0 | 0 | 0 | 4/4 |
+| `oh.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 4/4 |
+| `oh.drivers-license.gender-marker.law` | en | 0 | 0 | 0 | 3/3 |
+| `oh.drivers-license.gender-marker.law.es` | es | 0 | 0 | 0 | 3/3 |
+| `oh.drivers-license.name` | en | 1 | 0 | 0 | 3/3 |
+| `oh.drivers-license.name.es` | es | 1 | 0 | 0 | 5/5 |
 | `tx.birth-certificate.fees` | en | 3 | 0 | 0 | 1/3 |
 | `tx.birth-certificate.fees.es` | es | 3 | 0 | 0 | 1/3 |
 | `tx.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 6/6 |

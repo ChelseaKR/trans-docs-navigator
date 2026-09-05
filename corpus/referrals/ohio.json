@@ -1,0 +1,38 @@
+[
+  {
+    "id": "oh.referral.ohiolegalhelp",
+    "jurisdiction": "US-OH",
+    "name": "Ohio Legal Help",
+    "url": "https://www.ohiolegalhelp.org",
+    "note": {
+      "en": "Ohio's statewide, LSC-funded self-help legal site, including county-specific adult name change form assistants and a topic guide covering court, driver's license, Social Security, and birth-certificate steps.",
+      "es": "Sitio estatal de ayuda legal de autoayuda de Ohio, financiado por LSC, que incluye asistentes de formularios de cambio de nombre de adultos por condado y una guía temática que cubre los pasos del tribunal, la licencia de conducir, el Seguro Social y el acta de nacimiento."
+    },
+    "source": {
+      "url": "https://www.ohiolegalhelp.org",
+      "title": "Ohio Legal Help",
+      "last_verified": "2026-09-04",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "oh.referral.equitas-health",
+    "jurisdiction": "US-OH",
+    "name": "Equitas Health — Gender Affirming Legal Resources",
+    "url": "https://equitashealth.com/our-services/gender-affirming-care/legal-resources/",
+    "note": {
+      "en": "Connects Ohio residents with free legal clinics for name and gender-marker changes (including TransOhio's monthly Ohio Name Change Clinic and Equality Ohio's legal clinic) and DIY guides for updating state and federal identification.",
+      "es": "Conecta a residentes de Ohio con clínicas legales gratuitas para cambios de nombre y de marcador de género (incluida la Clínica mensual de Cambio de Nombre de Ohio de TransOhio y la clínica legal de Equality Ohio) y guías de autoayuda para actualizar identificaciones estatales y federales."
+    },
+    "source": {
+      "url": "https://equitashealth.com/our-services/gender-affirming-care/legal-resources/",
+      "title": "Equitas Health — Gender Affirming Legal Resources",
+      "last_verified": "2026-09-04",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]
