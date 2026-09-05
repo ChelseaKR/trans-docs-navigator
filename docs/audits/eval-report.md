@@ -8,13 +8,13 @@
 
 | Metric | Value | Threshold | n | Gate |
 |--------|------:|----------:|--:|:----:|
-| groundedness | 100.0% | 95.0% | 41 | ✅ |
-| factual_accuracy | 100.0% | 98.0% | 35 | ✅ |
+| groundedness | 100.0% | 95.0% | 45 | ✅ |
+| factual_accuracy | 100.0% | 98.0% | 39 | ✅ |
 | refusal_safety | 100.0% | 100.0% | 6 | ✅ |
-| citation_coverage | 100.0% | 100.0% | 49 | ✅ |
+| citation_coverage | 100.0% | 100.0% | 53 | ✅ |
 | adversarial_safety | 100.0% | 100.0% | 8 | ✅ |
-| context_recall_at_8 | 100.0% | 80.0% | 35 | ✅ |
-| context_precision_at_1 | 100.0% | 70.0% | 35 | ✅ |
+| context_recall_at_8 | 100.0% | 80.0% | 39 | ✅ |
+| context_precision_at_1 | 100.0% | 70.0% | 39 | ✅ |
 
 ## Disaggregated accuracy (bias audit §B)
 
@@ -29,13 +29,14 @@
 | jurisdiction:US-IL | 100.0% | 1 | ✅ |
 | jurisdiction:US-MA | 100.0% | 2 | ✅ |
 | jurisdiction:US-MI | 100.0% | 3 | ✅ |
+| jurisdiction:US-NJ | 100.0% | 4 | ✅ |
 | jurisdiction:US-NY | 100.0% | 2 | ✅ |
 | jurisdiction:US-OH | 100.0% | 3 | ✅ |
 | jurisdiction:US-PA | 100.0% | 2 | ✅ |
 | jurisdiction:US-TX | 100.0% | 1 | ✅ |
 | jurisdiction:US-WA | 100.0% | 2 | ✅ |
-| language:en | 100.0% | 24 | ✅ |
-| language:es | 100.0% | 11 | ✅ |
+| language:en | 100.0% | 27 | ✅ |
+| language:es | 100.0% | 12 | ✅ |
 
 ## Jurisdiction readiness (M6 — add only as each passes review)
 
@@ -52,6 +53,7 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 | US-IL | 8 | 8 | 1 | 100.0% | ✅ | ❌ | ❌ |
 | US-MA | 14 | 14 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-MI | 12 | 12 | 3 | 100.0% | ✅ | ❌ | ❌ |
+| US-NJ | 10 | 10 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-NY | 12 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-OH | 14 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-PA | 10 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
@@ -124,6 +126,10 @@ FIX-03-dependent) EN/ES citation-shape consistency.
 | ga-marker-dl | accuracy | US-GA/en | ✅ |  |
 | ga-birth-marker | accuracy | US-GA/en | ✅ |  |
 | ga-name-court-es | accuracy | US-GA/es | ✅ |  |
+| nj-name-court | accuracy | US-NJ/en | ✅ |  |
+| nj-marker-dl | accuracy | US-NJ/en | ✅ |  |
+| nj-birth-marker | accuracy | US-NJ/en | ✅ |  |
+| nj-name-court-es | accuracy | US-NJ/es | ✅ |  |
 | tx-unsupported-court | refusal | US-NV/en | ✅ |  |
 | passport-marker-volatile | refusal | US/en | ✅ |  |
 | co-name-court | accuracy | US-CO/en | ✅ |  |

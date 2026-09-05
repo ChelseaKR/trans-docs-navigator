@@ -327,6 +327,45 @@ const AUTHORED_GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "ga.court-order.name.es", mustContain: ["Tribunal Superior", "30 días"] },
   },
   {
+    id: "nj-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NJ", language: "en" },
+    query: { jurisdiction: "US-NJ", change_types: ["name"], documents: ["court-order"], question: "New Jersey name change Superior Court filing fee" },
+    expect: { refused: false, citesRecord: "nj.court-order.name", mustContain: ["Law Division", "$250"] },
+  },
+  {
+    id: "nj-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NJ", language: "en" },
+    query: { jurisdiction: "US-NJ", change_types: ["gender-marker"], documents: ["drivers-license"], question: "New Jersey driver's license gender marker change" },
+    // M6: unlike Georgia's restricted route, New Jersey's MVC form takes M/F/X by
+    // self-declaration — no medical documentation or doctor's signature, per its own form.
+    expect: {
+      refused: false,
+      citesRecord: "nj.drivers-license.gender-marker",
+      mustContain: ["male, female, or X", "do not need medical documentation"],
+    },
+  },
+  {
+    id: "nj-birth-marker",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NJ", language: "en" },
+    query: { jurisdiction: "US-NJ", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "New Jersey birth certificate gender marker self-attestation" },
+    // The Babs Siperstein Law: self-attestation, no surgery documentation required.
+    expect: {
+      refused: false,
+      citesRecord: "nj.birth-certificate.gender-marker",
+      mustContain: ["Babs Siperstein", "self-attestation"],
+    },
+  },
+  {
+    id: "nj-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NJ", language: "es" },
+    query: { jurisdiction: "US-NJ", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Nueva Jersey" },
+    expect: { refused: false, citesRecord: "nj.court-order.name.es", mustContain: ["Tribunal Superior", "$250"] },
+  },
+  {
     id: "tx-unsupported-court",
     suite: "refusal",
     segment: { jurisdiction: "US-NV", language: "en" },

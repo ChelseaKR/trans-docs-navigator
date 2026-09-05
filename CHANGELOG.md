@@ -8,6 +8,26 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **New Jersey** (M6 — expand jurisdictions): 5 EN + 5 ES corpus records (court-order name
+  change, driver's-license name and gender-marker, birth-certificate name and
+  gender-marker), 2 referrals, and 2 forms-registry entries, each sourced from an official
+  New Jersey court or state page and fetched into `corpus/snapshots/`. New Jersey's
+  birth-certificate and driver's-license gender-marker paths are recorded as genuinely
+  self-attestation: the 2018 Babs Siperstein Law removed the state's prior
+  gender-reassignment-surgery documentation requirement, and both the Department of
+  Health's own page and the MVC's gender-designation form say plainly that no medical
+  documentation or doctor's signature is required. The Superior Court name-change packet
+  (Law Division, Civil Part) is the one PDF source in this batch: it states a precise $250
+  filing fee, a 20-day notice-to-the-Division-of-Criminal-Justice requirement, and
+  post-judgment deadlines for the Motor Vehicle Commission ($25 per certified copy, two
+  weeks) and the Department of Treasury ($50, 45 days) that no HTML page njcourts.gov
+  actually serves this project's declared user-agent could confirm — its self-help pages
+  either 403 or return a JavaScript-only shell with no page content in the raw HTML. That
+  source and the REG-L2 birth-certificate gender-marker form (also a PDF) are reported
+  UNCHECKABLE by the automated fidelity gate rather than silently passed, the same honest
+  degradation already applied to the Georgia and New York sources this project cannot
+  fetch.
+
 - **Georgia** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (court-order name
   change, driver's-license name and gender-marker, birth-certificate name and
   gender-marker, and a birth-certificate fee record), 2 referrals, and 1 forms-registry
