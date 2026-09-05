@@ -879,5 +879,159 @@
     "recheck_sla_days": 90,
     "form_ref": "wa-doh-422-126",
     "language": "es"
+  },
+  {
+    "id": "ga.court-order.name.es",
+    "jurisdiction": "US-GA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Georgia",
+    "statement": "Para cambiar legalmente su nombre en Georgia, presenta una petición en la Oficina del Secretario del Tribunal Superior del condado donde reside. Cuando solicita un cambio de nombre, por lo general debe publicar un aviso de su petición y esperar al menos 30 días antes de una audiencia; los tribunales pueden eximir el requisito de publicación en algunos casos, como para víctimas de violencia doméstica.",
+    "detail": "El aviso debe aparecer en un periódico designado por el tribunal al menos una vez por semana durante cuatro semanas. Necesitará prueba de identidad y los formularios requeridos para su petición —como una Petición de Cambio de Nombre, un formulario de Verificación y un Aviso de Petición— que pueden variar según el condado y los proporciona la Oficina del Secretario del Tribunal Superior. En la audiencia, un juez revisa su caso y decide si lo concede. Todo el proceso generalmente toma entre cinco y siete semanas desde la presentación hasta la orden final, según el calendario del tribunal.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página no da un monto en dólares — solo dice que usted paga tarifas por presentar la petición y por publicar el aviso. Comuníquese con la Oficina del Secretario del Tribunal Superior de su condado para conocer los montos actuales."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://georgia.gov/apply-name-change",
+      "title": "Georgia.gov — Solicitar un Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "es"
+  },
+  {
+    "id": "ga.drivers-license.name.es",
+    "jurisdiction": "US-GA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Georgia",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Georgia, presenta una orden judicial certificada al Departamento de Servicios para Conductores que muestre el cambio de nombre. Sus preguntas frecuentes indican que se aceptan certificados de matrimonio, sentencias de divorcio, órdenes de adopción, órdenes de cambio de género y órdenes de cambio de nombre, y que el cambio de nombre en la licencia debe hacerse dentro de los 60 días posteriores a la fecha en que cambió su nombre.",
+    "detail": "Si se casó en Georgia después de 1982 y quiere usar un apellido con guion, en su lugar presenta una copia certificada de la solicitud de licencia de matrimonio que muestre el apellido con guion.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dds.georgia.gov/license-faqs",
+      "title": "Departamento de Servicios para Conductores de Georgia — Preguntas Frecuentes sobre la Licencia",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ga.drivers-license.gender-marker.es",
+    "jurisdiction": "US-GA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de Georgia",
+    "statement": "La norma de licencias de conducir de Georgia solo permite que el Departamento de Servicios para Conductores cambie la designación de género en una licencia después de una operación de reasignación de género. Usted presenta una orden judicial o una carta de un médico que indique su nombre, fecha de nacimiento y la fecha de esa operación. Aun así, la norma dice que la decisión de hacer el cambio queda a discreción del Departamento — cumplir los requisitos no garantiza la aprobación.",
+    "detail": "La norma no describe ninguna vía basada solo en la identidad de género, ni ninguna vía para quien no se haya sometido a una operación de reasignación de género. Debe entregar todas las licencias e identificaciones que tenga, y debe pagar la tarifa que corresponda — la tarifa de renovación o la tarifa de duplicado — sin reembolso por una licencia entregada.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La norma exige pagar la tarifa de renovación de la licencia o la tarifa de duplicado, la que corresponda, sin reembolso por una licencia entregada. No da una cifra en dólares; consulte el listado de tarifas del Departamento de Servicios para Conductores para los montos actuales."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://rules.sos.ga.gov/gac/375-3-1",
+      "title": "Secretario de Estado de Georgia — Normas del Departamento de Servicios para Conductores, Regla 375-3-1-.17 (Cambio de Género en la Licencia)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ga.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-GA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Georgia",
+    "statement": "Las normas de registros vitales de Georgia ponen un cambio en el sexo indicado en un acta de nacimiento bajo la misma regla general que cualquier otra corrección hecha después del primer año de vida de la persona registrada: 'Todas las Demás Enmiendas.' El cambio debe estar respaldado por una declaración jurada y por evidencia documental creada al menos cinco años antes de solicitarlo, o dentro de los siete años posteriores al nacimiento. Las normas no describen una vía separada basada en una orden judicial o en la identidad de género para este dato.",
+    "detail": "El Registrador Estatal decide si permite el cambio después de revisar la evidencia que usted presenta. Las normas de Georgia dicen que, si el Registrador rechaza su evidencia, deben informarle los motivos por escrito, y que usted tiene derecho a apelar.",
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://rules.sos.ga.gov/gac/511-1-3",
+      "title": "Secretario de Estado de Georgia — Normas del Departamento de Salud Pública, Registros Vitales, Regla 511-1-3-.25 (Todas las Demás Enmiendas)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ga.birth-certificate.name.es",
+    "jurisdiction": "US-GA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Georgia",
+    "statement": "Para cambiar el nombre en un acta de nacimiento de Georgia después de un cambio de nombre por orden judicial, la Declaración Jurada para Enmienda de Georgia (Formulario 3977) pide una orden judicial certificada que muestre el cambio de su nombre original a su nombre nuevo. El formulario también pide una declaración con membrete de un médico que indique un diagnóstico de intersexualidad/transgénero, con la firma original y el título del médico, para conservarla junto con la orden judicial.",
+    "detail": "Lea usted mismo las instrucciones del formulario antes de confiar en esto — no explica por qué un simple cambio de nombre por orden judicial pide una declaración médica, y ninguna herramienta automática pudo verificar este registro porque el formulario solo se publica en PDF. Enmendar el registro cuesta $10; una copia certificada del acta corregida cuesta $25 más.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Una copia certificada del acta de nacimiento corregida cuesta $25 más."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dph.georgia.gov/document/document/affidavit-amendment-form-3977-revisedpdf/download",
+      "title": "Departamento de Salud Pública de Georgia — Declaración Jurada para Enmienda (Formulario 3977)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ga-dph-3977",
+    "language": "es"
+  },
+  {
+    "id": "ga.birth-certificate.fees.es",
+    "jurisdiction": "US-GA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Tarifas para enmendar un acta de nacimiento en Georgia",
+    "statement": "El listado de tarifas de registros vitales de Georgia indica $10.00 para enmendar un acta de nacimiento, más el costo del acta misma. Una copia certificada de un acta de nacimiento cuesta $25.00, más $5.00 por cada copia adicional pedida al mismo tiempo.",
+    "detail": "La ley de Georgia exige el pago antes de que la Oficina Estatal de Registros Vitales entregue un registro o un servicio, y las tarifas no se reembolsan una vez prestado el servicio.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Una copia certificada del acta de nacimiento cuesta $25.00 más, más $5.00 por cada copia adicional pedida al mismo tiempo."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dph.georgia.gov/ways-request-vital-record/fees",
+      "title": "Departamento de Salud Pública de Georgia — Tarifas de Registros Vitales",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
   }
 ]

@@ -12,6 +12,7 @@ import { staleAfterDays } from "./offline.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-CA", label: "California" },
+  { id: "US-GA", label: "Georgia" },
   { id: "US-IL", label: "Illinois" },
   { id: "US-NY", label: "New York" },
   { id: "US-TX", label: "Texas" },

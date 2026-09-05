@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 70 |
-| Load-bearing assertions found | 184 |
-| — checked and **supported** by the cited source | 152 |
+| Records audited | 82 |
+| Load-bearing assertions found | 220 |
+| — checked and **supported** by the cited source | 180 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 32 |
-| of the checked: literal (fee / duration / form-id) matches | 101 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 51 |
+| — **UNCHECKABLE** (reported, never passed) | 40 |
+| of the checked: literal (fee / duration / form-id) matches | 121 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 59 |
 
 ## What this gate cannot vouch for
 
-- **255 of 322 prose sentences** in the corpus carry no extractable
+- **291 of 376 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **71 sentences state a negative** (`you do not need a court order`, `the page no
+- **82 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **51 assertions are necessary-condition only**: the source discusses the topic, which
+- **59 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **2 cited sources refuse automated fetching entirely**, so no
@@ -74,6 +74,17 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ny.birth-certificate.name.es · a court order is required`
 - `ny.birth-certificate.name.es · states $30`
 
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name.** — 8 assertion(s):
+
+- `ga.birth-certificate.name · costs $10`
+- `ga.birth-certificate.name · official form DPH3977 backs this step (form_ref: ga-dph-3977)`
+- `ga.birth-certificate.name · a court order is required`
+- `ga.birth-certificate.name · states $25`
+- `ga.birth-certificate.name.es · costs $10`
+- `ga.birth-certificate.name.es · official form DPH3977 backs this step (form_ref: ga-dph-3977)`
+- `ga.birth-certificate.name.es · a court order is required`
+- `ga.birth-certificate.name.es · states $25`
+
 **the official form has no identifier to match on** — 4 assertion(s):
 
 - `il.birth-certificate.gender-marker · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
@@ -103,6 +114,18 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `ca.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 6/6 |
 | `ca.drivers-license.name` | en | 0 | 0 | 0 | 7/7 |
 | `ca.drivers-license.name.es` | es | 0 | 0 | 0 | 7/7 |
+| `ga.birth-certificate.fees` | en | 3 | 0 | 0 | 1/3 |
+| `ga.birth-certificate.fees.es` | es | 3 | 0 | 0 | 1/3 |
+| `ga.birth-certificate.gender-marker` | en | 2 | 0 | 0 | 3/4 |
+| `ga.birth-certificate.gender-marker.es` | es | 2 | 0 | 0 | 3/4 |
+| `ga.birth-certificate.name` | en | 0 | 0 | 4 | 3/5 |
+| `ga.birth-certificate.name.es` | es | 0 | 0 | 4 | 3/5 |
+| `ga.court-order.name` | en | 6 | 0 | 0 | 4/7 |
+| `ga.court-order.name.es` | es | 6 | 0 | 0 | 4/7 |
+| `ga.drivers-license.gender-marker` | en | 1 | 0 | 0 | 5/5 |
+| `ga.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 5/5 |
+| `ga.drivers-license.name` | en | 2 | 0 | 0 | 2/3 |
+| `ga.drivers-license.name.es` | es | 2 | 0 | 0 | 2/3 |
 | `il.birth-certificate.gender-marker` | en | 4 | 0 | 1 | 5/5 |
 | `il.birth-certificate.gender-marker.es` | es | 4 | 0 | 1 | 5/5 |
 | `il.birth-certificate.name` | en | 3 | 0 | 1 | 3/3 |

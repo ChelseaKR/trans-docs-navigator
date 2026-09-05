@@ -141,5 +141,18 @@
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "ga-dph-3977",
+    "jurisdiction": "US-GA",
+    "document_type": "birth-certificate",
+    "change_type": ["name", "gender-marker"],
+    "title": "Form 3977 — Affidavit for Amendment",
+    "source": {
+      "url": "https://dph.georgia.gov/document/document/affidavit-amendment-form-3977-revisedpdf/download",
+      "title": "Georgia Department of Public Health Form 3977 — Affidavit for Amendment",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]

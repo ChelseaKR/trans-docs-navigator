@@ -151,6 +151,48 @@ export const GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "us.ssa-card.name.es", mustContain: ["SS-5"] },
   },
   {
+    id: "ga-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-GA", language: "en" },
+    query: { jurisdiction: "US-GA", change_types: ["name"], documents: ["court-order"], question: "Georgia name change Superior Court publication" },
+    expect: { refused: false, citesRecord: "ga.court-order.name", mustContain: ["Superior Court", "30 days"] },
+  },
+  {
+    id: "ga-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-GA", language: "en" },
+    query: { jurisdiction: "US-GA", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Georgia driver's license gender marker change" },
+    // M6: Georgia restricts this route rather than closing it outright — a gender reassignment
+    // operation plus a court order or physician's letter, and even then the rule leaves the
+    // decision to the Department's discretion. The expectation pins that restriction in the
+    // rule's own words rather than describing a process anyone can simply complete.
+    expect: {
+      refused: false,
+      citesRecord: "ga.drivers-license.gender-marker",
+      mustContain: ["gender reassignment operation", "discretion"],
+    },
+  },
+  {
+    id: "ga-birth-marker",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-GA", language: "en" },
+    query: { jurisdiction: "US-GA", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Georgia birth certificate sex change" },
+    // Georgia's vital-records rules fold a sex-designation change into the generic "All Other
+    // Amendments" rule — no gender-identity or court-order path is described for this field.
+    expect: {
+      refused: false,
+      citesRecord: "ga.birth-certificate.gender-marker",
+      mustContain: ["All Other Amendments", "five years"],
+    },
+  },
+  {
+    id: "ga-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-GA", language: "es" },
+    query: { jurisdiction: "US-GA", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Georgia" },
+    expect: { refused: false, citesRecord: "ga.court-order.name.es", mustContain: ["Tribunal Superior", "30 días"] },
+  },
+  {
     id: "tx-unsupported-court",
     suite: "refusal",
     segment: { jurisdiction: "US-NV", language: "en" },
