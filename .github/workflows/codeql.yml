@@ -35,6 +35,7 @@ jobs:
   analyze:
     name: analyze (${{ matrix.language }})
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     # Scopes declared at job level, not workflow level (OpenSSF Scorecard
     # Token-Permissions prefers this even for a single-job workflow — it's the
     # pattern that stays minimal if a second job is ever added here).
@@ -43,6 +44,17 @@ jobs:
       # `security-events: write` was dropped along with the upload: nothing is sent to the
       # code-scanning API any more, so the job is read-only. `actions: read` is still
       # required on private repos — codeql-action reads its own workflow-run metadata.
+      #
+      # Investigated 2026-09: every analyze job's log shows codeql-action's init step
+      # stalling ~30s on "This run of the CodeQL Action does not have permission to access
+      # the CodeQL Action API endpoints ... please ensure the workflow has at least the
+      # 'security-events: read' permission" before falling back to defaults. That message is
+      # misleading here — added `security-events: read` on this branch and re-ran both
+      # matrix jobs; the identical warning fired at the identical point, with no change in
+      # job duration. The warning's own "Details" line names the real cause: "Code scanning
+      # is not enabled for this repository" — a private-repo GHAS entitlement gate, not a
+      # token-permission gate, so no permissions change here can affect it. Not adding the
+      # scope: it would be a real permission grant for zero measured benefit.
       actions: read
     strategy:
       fail-fast: false
@@ -53,13 +65,13 @@ jobs:
         language: [javascript-typescript, actions]
     steps:
       - name: Harden Runner (egress audit — SEC-04)
-        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: github/codeql-action/init@f205ea1c3313d32999d8d6a48b4f6530d4437b38 # v4.37.4
+      - uses: github/codeql-action/init@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9
         with:
           languages: ${{ matrix.language }}
           queries: security-and-quality
@@ -67,7 +79,7 @@ jobs:
       # SARIF-upload API is unavailable and `analyze` fails outright with "Code scanning is not
       # enabled for this repository". Write the SARIF locally and gate on it ourselves instead —
       # there is no code-scanning dashboard to review, so the gate step below IS the enforcement.
-      - uses: github/codeql-action/analyze@f205ea1c3313d32999d8d6a48b4f6530d4437b38 # v4.37.4
+      - uses: github/codeql-action/analyze@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9
         with:
           category: "/language:${{ matrix.language }}"
           upload: never

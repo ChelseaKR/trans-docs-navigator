@@ -20,12 +20,13 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         # `audit` logs outbound egress without blocking (P1-3): a first step over
         # every job here so the actual domain set can be observed before this ever
         # flips to `block` with an explicit allowlist.
-        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -62,12 +63,13 @@ jobs:
     # resume modules against the production server and asserts that those interactions
     # issue no network requests.
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         # `audit` logs outbound egress without blocking (P1-3): a first step over
         # every job here so the actual domain set can be observed before this ever
         # flips to `block` with an explicit allowlist.
-        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -91,12 +93,13 @@ jobs:
     # (The G9 pseudolocale overflow gate — INTERNATIONALIZATION-STANDARD §4 — is the
     # sibling real-browser i18n check; it runs in the `verify` job above via `make verify`.)
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         # `audit` logs outbound egress without blocking (P1-3): a first step over
         # every job here so the actual domain set can be observed before this ever
         # flips to `block` with an explicit allowlist.
-        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -131,10 +134,39 @@ jobs:
     # honest, deterministic signal for this specific app shape — same philosophy as the
     # in-process `scripts/latency-bench.ts` guard preferring determinism over
     # network/host variability. Real regressions (shipping heavy JS) still show up here.
+    #
+    # Sharded one-URL-per-job (2026-09, measured before 33949872350: this job alone was
+    # 7.4 of the workflow's 7.5 total wall-clock minutes, 403s of which was the single
+    # "Lighthouse CI" step running 6 URLs × numberOfRuns 3 = 18 page loads back to back).
+    # Each matrix leg below overrides ONLY `--collect.url` on the CLI; `.lighthouserc.json`
+    # is untouched — same 6 URLs, same numberOfRuns: 3, same assertion thresholds. Verified
+    # against this repo's pinned @lhci/cli@0.15.1 that a CLI-provided `--collect.url`
+    # replaces (not appends to) the rc file's `collect.url` array, since yargs' `.config()`
+    # treats the rc file as defaults that an explicit flag overrides — so each leg still
+    # runs the full 3-run median for its one URL against the unweakened gate, just
+    # concurrently with the other 5 instead of serially after them.
+    name: lighthouse (${{ matrix.target.slug }})
+    strategy:
+      fail-fast: false # surface every failing URL in one run, not just the alphabetically-first
+      matrix:
+        target:
+          - slug: home
+            path: "/"
+          - slug: home-es
+            path: "/?language=es"
+          - slug: checklist
+            path: "/checklist?jurisdiction=US-CA&change=name&change=gender-marker"
+          - slug: packet
+            path: "/packet?jurisdiction=US-CA&change=name"
+          - slug: terms
+            path: "/terms"
+          - slug: guide-ca-name-change
+            path: "/guide/california/name-change"
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
-        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -143,28 +175,63 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: "22"
+          cache: npm # restore ~/.npm so `npm ci` skips the network on cache hit
       - run: npm ci
       - name: Start server
         run: |
           NODE_ENV=test PORT=8080 node --experimental-strip-types api/server.ts &
           npx --yes wait-on http://localhost:8080/healthz
       - name: Lighthouse CI (BLOCKING — see .lighthouserc.json)
-        run: npx --yes @lhci/cli@0.15.1 autorun
+        env:
+          LH_TARGET_URL: "http://localhost:8080${{ matrix.target.path }}"
+        run: npx --yes @lhci/cli@0.15.1 autorun --collect.url="$LH_TARGET_URL"
       - name: Upload Lighthouse reports
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: lighthouse-reports
+          name: lighthouse-reports-${{ matrix.target.slug }}
           path: lighthouseci-reports/
+
+  lighthouse-summary:
+    # Single stable check name for the sharded stage above. A matrix reports each leg
+    # as its own check ("lighthouse (home)", "lighthouse (checklist)", ...) instead of
+    # one "lighthouse" — this job exists so that name still exists too, as one check
+    # whose result is the AND of all 6 legs. `lighthouse` is not in branch protection's
+    # required_status_checks today (verify, smoke-journey, a11y-browser, security-sast,
+    # container-and-infra are), so nothing there needs to change for this PR — but if
+    # `lighthouse` is ever made required, point the rule at this job, not at one leg.
+    # `if: always()` + an explicit result check so a cancelled/skipped matrix reads as
+    # a failure here rather than a silently-green summary: a gate that didn't run must
+    # not read as a gate that passed (PR #118).
+    name: lighthouse
+    needs: lighthouse
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+      - name: Require every lighthouse URL shard to have passed
+        env:
+          LH_MATRIX_RESULT: ${{ needs.lighthouse.result }}
+        run: |
+          if [ "$LH_MATRIX_RESULT" != "success" ]; then
+            echo "::error::lighthouse matrix result was '$LH_MATRIX_RESULT' (expected 'success') — at least one URL shard failed, was skipped, or was cancelled."
+            exit 1
+          fi
+          echo "All 6 lighthouse URL shards passed."
 
   security-sast:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         # `audit` logs outbound egress without blocking (P1-3): a first step over
         # every job here so the actual domain set can be observed before this ever
         # flips to `block` with an explicit allowlist.
-        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -184,6 +251,7 @@ jobs:
     # control for the portfolio's highest-stakes privacy repo (SEC-17/18). Gate 3
     # (scheduled TruffleHog full-history, verified-creds mode) is `secret-scan-scheduled.yml`.
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: read
       # Required for the pull_request scan: gitleaks-action resolves the PR's commit
@@ -198,7 +266,7 @@ jobs:
         # `audit` logs outbound egress without blocking (P1-3): a first step over
         # every job here so the actual domain set can be observed before this ever
         # flips to `block` with an explicit allowlist.
-        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -228,12 +296,13 @@ jobs:
     # (contents: read) instead of needing `security-events: write` + GitHub Advanced
     # Security (which, per codeql.yml, is unavailable on a private personal repo).
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         # `audit` logs outbound egress without blocking (P1-3): a first step over
         # every job here so the actual domain set can be observed before this ever
         # flips to `block` with an explicit allowlist.
-        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -246,12 +315,13 @@ jobs:
 
   container-and-infra:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         # `audit` logs outbound egress without blocking (P1-3): a first step over
         # every job here so the actual domain set can be observed before this ever
         # flips to `block` with an explicit allowlist.
-        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

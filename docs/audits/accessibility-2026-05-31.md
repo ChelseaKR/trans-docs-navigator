@@ -16,6 +16,17 @@
 > screen-reader/keyboard pass has been fabricated or implied here — this note only
 > identifies what widened the walkthrough's scope; it does not perform it.
 
+> ⚠️ **INSTRUMENT ADDED (2026-09-05, still not a walkthrough):** the checklist below
+> is a to-do list, not an executable script. `docs/a11y-walkthrough.md` is the
+> executable version — concrete keyboard paths, VoiceOver/NVDA key commands, exact
+> test URLs (including the relocation planner, the guide pages, and the
+> uncovered-jurisdiction / `needs_reverification` / stale-content states this
+> project's honesty gates produce), and a pass/fail table mapped to WCAG 2.2 AA
+> success criteria. It supersedes this file's checklist as the thing a human
+> actually runs. **It still has not been run**: writing the instrument is not
+> performing the walkthrough, and the gate below is exactly as PENDING as it was
+> before this note.
+
 ## Automated (auto-gated, merge-blocking) — PASS
 `make a11y` renders every page template and asserts the mechanical WCAG checks
 (~30–40% per the standard): `<html lang>`, non-empty `<title>`, viewport meta, exactly

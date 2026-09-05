@@ -12,9 +12,17 @@ driver's-license rows are covered and the federal rows are current.
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ✅ | — | ✅ | — | — |
+| US-AZ | ✅ | — | ✅ | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
+| US-CO | ✅ | — | — | — | ✅ | — |
+| US-FL | ✅ | — | ✅ | — | ✅ | — |
+| US-GA | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
+| US-MA | ✅ | — | ✅ | — | ✅ | — |
+| US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
+| US-OH | ✅ | — | ✅ | — | ✅ | — |
+| US-PA | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
 
@@ -23,9 +31,17 @@ driver's-license rows are covered and the federal rows are current.
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ⚠️ degraded | — | ⚠️ degraded | — | — |
+| US-AZ | — | — | ⚠️ degraded | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
+| US-CO | — | — | ✅ | — | ✅ | — |
+| US-FL | — | — | ✅ | — | ✅ | — |
+| US-GA | — | — | ✅ | — | ✅ | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
+| US-MA | — | — | ✅ | — | ✅ | — |
+| US-MI | — | — | ✅ | — | ✅ | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
+| US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-PA | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 
@@ -34,21 +50,37 @@ driver's-license rows are covered and the federal rows are current.
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ✅ | — | ✅ | — | — |
+| US-AZ | ✅ | — | ✅ | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
+| US-CO | ✅ | — | — | — | ✅ | — |
+| US-FL | ✅ | — | ✅ | — | ✅ | — |
+| US-GA | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
+| US-MA | ✅ | — | ✅ | — | ✅ | — |
+| US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
+| US-OH | ✅ | — | ✅ | — | ✅ | — |
+| US-PA | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
-| US-WA | — | — | — | — | ✅ | — |
+| US-WA | ✅ | — | ✅ | — | ✅ | — |
 
 ## Spanish · Gender-marker change
 
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ⚠️ degraded | — | ⚠️ degraded | — | — |
+| US-AZ | — | — | ⚠️ degraded | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
+| US-CO | — | — | ✅ | — | ✅ | — |
+| US-FL | — | — | ✅ | — | ✅ | — |
+| US-GA | — | — | ✅ | — | ✅ | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
+| US-MA | — | — | ✅ | — | ✅ | — |
+| US-MI | — | — | ✅ | — | ✅ | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
+| US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-PA | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
-| US-WA | — | — | — | — | ✅ | — |
+| US-WA | — | — | ✅ | — | ✅ | — |
 
-**Totals:** 47 current · 8 degraded · 89 uncovered cells.
+**Totals:** 122 current · 14 degraded · 200 uncovered cells.

@@ -1,0 +1,121 @@
+[
+  {
+    "id": "fl.court-order.name",
+    "jurisdiction": "US-FL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Florida name change petition",
+    "statement": "Florida law gives chancery courts jurisdiction over name changes, and you file your petition in the county where you live.",
+    "detail": "Before your hearing, you must have your fingerprints taken for a state and national criminal history records check, unless you are only restoring a former name. You pay for that fingerprinting and background check yourself (a parent or guardian pays it for a minor). A judge reviews the petition and enters a final judgment granting the name change.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This law does not set the petition filing fee. Ask the clerk of court in the county where you file for the exact amount. You pay separately for the fingerprint-based background check the law requires."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0068/Sections/0068.07.html",
+      "title": "The Florida Statutes — 68.07 Change of name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "fl.drivers-license.name",
+    "jurisdiction": "US-FL",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Florida driver license or ID card name change",
+    "statement": "To update the name on your Florida driver license or ID card, you first change your name with the Social Security Administration. Then you visit a Florida driver license office in person to update your license or ID.",
+    "detail": "Florida says all name changes must be completed in person at a local office — this cannot be done by mail or online. Allow 24 to 48 hours after your Social Security name change is complete before you go to the office, so the two records match. The exact documents you need depend on your residency status.",
+    "prerequisites": [
+      "ssa-card"
+    ],
+    "source": {
+      "url": "https://www.flhsmv.gov/name-and-address-changes/",
+      "title": "Florida Department of Highway Safety and Motor Vehicles — Name and Address Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "fl.drivers-license.gender-marker",
+    "jurisdiction": "US-FL",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Florida driver license and ID card sex or gender designation",
+    "statement": "Florida's official page for updating your driver license or ID card covers name and address changes only. It does not describe any way to update the sex or gender marker on a Florida driver license or ID card.",
+    "detail": "The Florida Department of Highway Safety and Motor Vehicles publishes this page for people changing their name or address. It gives no application, form, or process for changing the sex shown on a license or ID. Read the official page yourself, and do not assume a route is open here — this is an actively contested and changing area of Florida policy.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.flhsmv.gov/name-and-address-changes/",
+      "title": "Florida Department of Highway Safety and Motor Vehicles — Name and Address Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "fl.birth-certificate.name",
+    "jurisdiction": "US-FL",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Florida birth certificate name change",
+    "statement": "Florida only amends birth certificates for people who were born in Florida. If a Florida court granted your legal name change, the clerk of court reports it to Florida's Bureau of Vital Statistics — usually within 30 days — and your birth record is amended automatically, with no separate application from you.",
+    "detail": "If a court in another state granted your name change, you apply yourself: submit the Application for Amendment to Florida Birth Record (form DH429) with a certified copy of that court order and valid photo identification. Either way, Florida charges a $20 non-refundable fee that includes one certified copy of the amended record.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "The $20 non-refundable fee includes one certified copy of the amended record."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.floridahealth.gov/certificates-records/amendments-and-corrections/",
+      "title": "Florida Department of Health — Amendments and Corrections",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "fl-dh429",
+    "language": "en"
+  },
+  {
+    "id": "fl.birth-certificate.gender-marker",
+    "jurisdiction": "US-FL",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Florida birth certificate sex designation",
+    "statement": "Florida's official page listing how to amend a Florida birth record covers legal name changes, paternity acknowledgment, and adoption corrections. It does not list any way to change the sex shown on a birth certificate to match someone's gender identity.",
+    "detail": "The same office corrects certain birth-record errors when documentary evidence supports the correction, but changing sex to match gender identity is not one of the listed reasons. Read the official page yourself, and do not assume a route is open here — this is an actively contested and changing area of Florida policy.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.floridahealth.gov/certificates-records/amendments-and-corrections/",
+      "title": "Florida Department of Health — Amendments and Corrections",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]

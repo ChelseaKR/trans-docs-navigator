@@ -28,6 +28,7 @@ concurrency:
 jobs:
   content-watch:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -35,6 +36,9 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: "22"
+          # package.json declares no packageManager field, so this version's "automatic"
+          # caching default never triggers on its own; opt in explicitly like ci.yml does.
+          cache: npm
       - run: npm ci
       - name: Link-rot check
         id: links
