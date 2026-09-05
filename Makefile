@@ -5,6 +5,42 @@
 NODE := node --experimental-strip-types --no-warnings
 SHELL := /bin/bash
 
+# ---------------------------------------------------------------------------
+# `make verify` parallelism. Every one of the 24 gates is an independent,
+# read-only check (none consumes another gate's output — the sole exception,
+# i18n-css-extract → stylelint, is two commands inside i18n-logical-css's own
+# recipe below, never a cross-target dependency). `gate-count` is the one
+# real ordering requirement (see its own target: it must fail fast before the
+# rest run), and it is wired as an explicit prerequisite of every other gate
+# below so that dependency holds even under -j. With that edge in place, the
+# remaining 23 gates have no ordering constraints between them, so building
+# them as parallel `make` prerequisites is safe: same corpus reads, disjoint
+# writes (only `fidelity`, `eval`, and `i18n-logical-css` write files, and
+# each writes to a path nothing else in `verify` reads).
+#
+# This sets -j on every invocation, not just `verify` — harmless for a lone
+# `make lint` (no sibling prerequisites to overlap) and exactly what we want
+# for `verify`, run sequentially today at ~24 gates deep on every git push via
+# the local pre-push hook, not just in CI.
+# Deliberately capped, not raw core count: this suite's critical path is one
+# long-pole gate (Playwright, or the coverage-gated test suite) plus ~20 short
+# ones, so parallelism past a handful buys nothing further — and oversubscribing
+# (tsc + a real browser + node --test's own internal worker fan-out, all
+# competing for the same cores at once) measurably made a run SLOWER than serial
+# on a busy box in testing. 4 was chosen empirically against this repo's gate mix.
+NPROC_DETECTED := $(shell (command -v nproc >/dev/null 2>&1 && nproc) || (command -v sysctl >/dev/null 2>&1 && sysctl -n hw.ncpu) || echo 4)
+NPROC := $(shell n=$(NPROC_DETECTED); [ "$$n" -gt 4 ] 2>/dev/null && echo 4 || echo "$$n")
+MAKEFLAGS += -j$(NPROC)
+# --output-sync groups each gate's own output together instead of letting
+# concurrent gates' lines interleave — only GNU Make ≥ 4 has it (macOS ships
+# 3.81), so add it only when supported. Its absence doesn't lose correctness:
+# every gate line is already self-labeled (scripts/util.ts prefixes every
+# ✅/❌ with the gate name), so a run without it stays legible, just less tidy.
+MAKE_MAJOR := $(firstword $(subst ., ,$(MAKE_VERSION)))
+ifeq ($(shell [ "$(MAKE_MAJOR)" -ge 4 ] 2>/dev/null && echo yes),yes)
+MAKEFLAGS += --output-sync=target
+endif
+
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
         gate-count lint typecheck test security content forms citation fidelity privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-overflow seo launch-gates launch-gates-write deploy-plan clean \
         smoke e2e-journey coverage link-check source-watch source-baseline source-snapshot policy-watch policy-baseline new-record slo corpus-manifest build dataset
@@ -40,31 +76,32 @@ gate-count:
 	@echo "── [1/24] gate-count (self-description drift check) ──────"
 	@$(NODE) scripts/gate-count.ts
 
-lint:
+lint: gate-count
 	@echo "── [2/24] lint ───────────────────────────────────────────"
 	@$(NODE) scripts/lint.ts
 
-typecheck:
+typecheck: gate-count
 	@echo "── [3/24] type-check (tsc --strict) ──────────────────────"
-	@npx --no-install tsc --noEmit
+	@mkdir -p tmp
+	@npx --no-install tsc --noEmit --incremental --tsBuildInfoFile tmp/tsconfig.tsbuildinfo
 
-test:
+test: gate-count
 	@echo "── [4/24] unit + integration tests (coverage-gated) ──────"
 	@$(NODE) scripts/run-tests.ts
 
-security:
+security: gate-count
 	@echo "── [5/24] security: dependency audit + secret scan ───────"
 	@$(NODE) scripts/security-scan.ts
 
-content:
+content: gate-count
 	@echo "── [6/24] corpus content validation (source+verifier+date)"
 	@$(NODE) scripts/content-validate.ts
 
-forms:
+forms: gate-count
 	@echo "── [7/24] forms: official links, no fake auto-fill ───────"
 	@$(NODE) scripts/forms-check.ts
 
-citation:
+citation: gate-count
 	@echo "── [8/24] citation coverage (100% required) ──────────────"
 	@$(NODE) scripts/citation-coverage.ts
 
@@ -73,23 +110,23 @@ citation:
 # before, which is how the corpus came to assert a form and a $0 fee the DMV page never
 # mentioned — with an unchanged source hash, so source-watch saw nothing either. Runs
 # offline against the committed snapshots in corpus/snapshots/ (refresh: make source-snapshot).
-fidelity:
+fidelity: gate-count
 	@echo "── [9/24] source fidelity (does each record match its cited source?) ─"
 	@$(NODE) scripts/source-fidelity.ts --report
 
-privacy:
+privacy: gate-count
 	@echo "── [10/24] privacy lint (no runtime identity fields / log references)"
 	@$(NODE) scripts/privacy-lint.ts
 
-freshness:
+freshness: gate-count
 	@echo "── [11/24] corpus freshness SLA ───────────────────────────"
 	@$(NODE) scripts/freshness.ts
 
-disclosure:
+disclosure: gate-count
 	@echo "── [12/24] disclosure strings (info-not-advice / AI label) ─"
 	@$(NODE) scripts/disclosure-check.ts
 
-readability:
+readability: gate-count
 	@echo "── [13/24] readability (plain-language ~8th-grade target) ─"
 	@$(NODE) scripts/readability.ts
 
@@ -99,35 +136,35 @@ readability:
 # (browser, below). G2 (no-hardcoded-string extraction) and the MF1→MF2 audit (§9) are
 # deferred; G12 (CLDR/tzdata pin) is N/A-until-used — the frontend does no Intl
 # number/date formatting yet. ar/he RTL mirror smoke is deferred. See docs/I18N.md.
-i18n-utf8:
+i18n-utf8: gate-count
 	@echo "── [14/24] i18n: UTF-8 encoding (all tracked text files) ──"
 	@$(NODE) scripts/i18n-utf8.ts
 
-i18n-bcp47:
+i18n-bcp47: gate-count
 	@echo "── [15/24] i18n: BCP 47 language-tag validity ────────────"
 	@$(NODE) scripts/i18n-bcp47.ts
 
-i18n:
+i18n: gate-count
 	@echo "── [16/24] locale key-parity (EN/ES, no empty translations) ─"
 	@$(NODE) scripts/i18n-parity.ts
 
 # G10 (static) — logical-CSS for RTL readiness. Extracts the typed STYLE from
 # src/render.ts to a git-ignored artifact and lints the inline (writing-direction)
 # axis with stylelint-use-logical (stylelint.config.js). Fix findings in render.ts.
-i18n-logical-css:
+i18n-logical-css: gate-count
 	@echo "── [17/24] i18n: logical-CSS (G10 static, stylelint use-logical) ─"
 	@$(NODE) scripts/i18n-css-extract.ts
 	@npx --no-install stylelint tmp/app.generated.css
 
-a11y:
+a11y: gate-count
 	@echo "── [18/24] accessibility gate ────────────────────────────"
 	@$(NODE) scripts/a11y-lint.ts
 
-seo:
+seo: gate-count
 	@echo "── [19/24] SEO (indexing contract, metadata, sitemap) ────"
 	@$(NODE) scripts/seo-lint.ts
 
-eval:
+eval: gate-count
 	@echo "── [20/24] eval harness (groundedness/accuracy/refusal) ──"
 	@$(NODE) eval/run.ts
 
@@ -135,7 +172,7 @@ eval:
 # pseudolocale (~40% expansion, ⟦…⟧) on desktop + mobile and asserts no clipping,
 # truncation, or horizontal scroll. Playwright starts the test server itself
 # (TDN_I18N_TEST_HOOKS=1); production never registers en-XA. See docs/I18N.md.
-i18n-overflow:
+i18n-overflow: gate-count
 	@echo "── [21/24] i18n: pseudolocale overflow (G9, Playwright desktop+mobile) ─"
 	@npx --no-install playwright test
 
@@ -145,11 +182,11 @@ i18n-overflow:
 # The network-level p95-first-token target remains a *separate*, opt-in check:
 # `BASE=http://localhost:8080 k6 run loadtest/p95.k6.js` against a live instance
 # (needs k6 + a running server, so it is not part of this merge-blocking target).
-loadtest:
+loadtest: gate-count
 	@echo "── [22/24] request-path latency benchmark (in-process p95 guard) ─"
 	@$(NODE) scripts/latency-bench.ts
 
-slo:
+slo: gate-count
 	@echo "── [23/24] SLO definitions + multi-window burn alerts ────────────"
 	@$(NODE) scripts/slo-check.ts
 
@@ -158,7 +195,7 @@ slo:
 # source-fidelity audit, drift baselines, gold provenance, docs/signoffs/) and fails if
 # README.md or docs/STATUS.md claim anything else. A launch gate cannot be cleared by
 # editing a sentence — only by producing the evidence.
-launch-gates:
+launch-gates: gate-count
 	@echo "── [24/24] launch-gate status (machine-derived, anti-drift) ──────"
 	@$(NODE) scripts/launch-gates.ts
 
