@@ -1,0 +1,38 @@
+[
+  {
+    "id": "nd.referral.legal-services-of-north-dakota",
+    "jurisdiction": "US-ND",
+    "name": "Legal Services of North Dakota",
+    "url": "https://www.lsnd.org",
+    "note": {
+      "en": "Statewide nonprofit that provides free civil legal help to income-eligible North Dakotans, including help with court filings such as a name-change petition.",
+      "es": "Organización sin fines de lucro estatal que brinda ayuda legal civil gratuita a residentes de Dakota del Norte que califican por ingresos, incluida ayuda con trámites judiciales como una petición de cambio de nombre."
+    },
+    "source": {
+      "url": "https://www.lsnd.org",
+      "title": "Legal Services of North Dakota",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "nd.referral.fargo-moorhead-pride",
+    "jurisdiction": "US-ND",
+    "name": "Fargo-Moorhead Pride",
+    "url": "https://www.fmpride.org",
+    "note": {
+      "en": "Volunteer-run LGBTQ+ community and events organization serving the Fargo-Moorhead area, with links to national resources such as Lambda Legal and the Trevor Project. It is not a legal-name-change service on its own.",
+      "es": "Organización comunitaria y de eventos LGBTQ+ dirigida por voluntarios que atiende el área de Fargo-Moorhead, con enlaces a recursos nacionales como Lambda Legal y The Trevor Project. No es, por sí sola, un servicio de cambio legal de nombre."
+    },
+    "source": {
+      "url": "https://www.fmpride.org",
+      "title": "Fargo-Moorhead Pride",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

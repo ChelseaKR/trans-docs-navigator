@@ -1,0 +1,20 @@
+[
+  {
+    "id": "sc.referral.sclegal",
+    "jurisdiction": "US-SC",
+    "name": "South Carolina Legal Services",
+    "url": "https://sclegal.org",
+    "note": {
+      "en": "South Carolina's statewide legal aid organization; publishes a plain-language brochure on the state's Family Court name-change process alongside broader civil legal help.",
+      "es": "Organización estatal de ayuda legal de Carolina del Sur; publica un folleto en lenguaje sencillo sobre el proceso de cambio de nombre ante el Tribunal de Familia, además de otra ayuda legal civil."
+    },
+    "source": {
+      "url": "https://sclegal.org",
+      "title": "South Carolina Legal Services",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

@@ -1,0 +1,130 @@
+[
+  {
+    "id": "wi.court-order.name",
+    "jurisdiction": "US-WI",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Wisconsin name change petition",
+    "statement": "In Wisconsin you ask the circuit court to change your name by filing a Petition for Change of Name with the clerk of circuit court in the county where you live. Before a judge can grant it, Wisconsin law requires you to publish notice of the petition and the hearing in a local newspaper once a week for three weeks.",
+    "detail": "The court may grant the petition \"if no sufficient cause is shown to the contrary.\" Under Wisconsin Statute 786.37(4), a judge can waive the newspaper-publication step if you file for a confidential name change and the judge decides publication could endanger you. People in professions the state licenses face some restrictions on changing their name (Wis. Stat. 786.36(3)), and people required to register as sex offenders cannot change their name at all (Wis. Stat. 301.47(2)). After a judge signs the order, you buy certified copies from the clerk of circuit court to use at other agencies.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Every filing carries a court filing fee, and the newspaper charges its own fee for the three weeks of publication. Both vary; contact the clerk of circuit court in your county for the current amounts."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.wicourts.gov/services/public/selfhelp/namechange.htm",
+      "title": "Wisconsin Court System — Self-Help Law Center: Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "wi.drivers-license.name",
+    "jurisdiction": "US-WI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Wisconsin driver's license name change",
+    "statement": "To put your new legal name on a Wisconsin driver license or ID card, visit a DMV customer service center and show proof of your name change: a certified marriage certificate, a certified record of divorce, a certified court order, or a valid unexpired U.S. passport in your current name.",
+    "detail": "Wisconsin's DMV recommends changing your name with the Social Security Administration first and waiting 48 hours before your DMV visit. If you have a valid, unexpired U.S. passport in your current name, you don't need to bring documents for any past name changes; otherwise you need documents covering each name change from birth to today.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page does not list a fee. See the DMV's fee schedule or ask at a service center."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://wisconsindot.gov/Pages/dmv/license-drvs/rnew-and-chge/proof-name-change.aspx",
+      "title": "Wisconsin DMV — Acceptable Documents for Proof of Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "wi.drivers-license.gender-marker",
+    "jurisdiction": "US-WI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Wisconsin driver's license sex/gender designation",
+    "statement": "Wisconsin DMV's published self-help page explains how to change your name on a driver license or ID card (form MV3001 for a driver license, MV3004 for an ID card), but it does not describe a separate process, form, or document list for changing the sex or gender designation on a Wisconsin driver license or ID card.",
+    "detail": "The driver license application (form MV3001) has a field labeled \"Sex,\" but Wisconsin DMV's pages never explain how to update that field or what proof, if any, is accepted — unlike the name-change instructions, which name specific accepted documents. This project could not find an X or nonbinary marker mentioned anywhere on Wisconsin DMV's published pages. Confirm the current process directly with a Wisconsin DMV service center before relying on this.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://wisconsindot.gov/Pages/dmv/license-drvs/rnew-and-chge/name-change.aspx",
+      "title": "Wisconsin DMV — Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "wi.birth-certificate.name",
+    "jurisdiction": "US-WI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Wisconsin birth certificate name change",
+    "statement": "To update the name on a Wisconsin birth record after a legal name change or a confidential legal name change, mail a certified copy of the court order to the Wisconsin Vital Records Office. The fee to file the court order is $10, and Wisconsin law requires the amended birth certificate to carry an annotation showing the date of the change, the authority for it, which items were changed, and the old information.",
+    "detail": "Wisconsin accepts a legal name change court order from any court in the United States or Canada; the certified order is returned to you once the office finishes the amendment. This $10 fee does not include a certified copy of the amended birth certificate: the first certified copy costs $20, and each additional copy is $3. Once a confidential legal name change is processed, a court order is required for any future copies of that record to be issued.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "This is the fee to file the name-change court order. A certified copy of the amended birth certificate costs $20 for the first copy and $3 for each additional copy."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dhs.wisconsin.gov/vitalrecords/amendments.htm",
+      "title": "Wisconsin Department of Health Services — Vital Records: Amending a Vital Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "wi.birth-certificate.gender-marker",
+    "jurisdiction": "US-WI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Wisconsin birth certificate sex designation",
+    "statement": "To change the sex listed on a Wisconsin birth record, mail the Wisconsin Vital Records Office a certified copy of a court order from the United States or Canada that orders the sex designation on the birth record to be changed, along with a $20 fee to file the court order.",
+    "detail": "This $20 fee does not include a certified copy of the new birth certificate: the first certified copy costs $20, and each additional copy is $3. Wisconsin's page does not describe any option besides a court order — such as a physician's letter or a self-attestation form — for this specific change, and it doesn't mention a nonbinary or X sex designation.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "This fee does not include a certified copy of the new birth certificate, which costs $20 for the first copy and $3 for each additional copy."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dhs.wisconsin.gov/vitalrecords/amendments.htm",
+      "title": "Wisconsin Department of Health Services — Vital Records: Amending a Vital Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]

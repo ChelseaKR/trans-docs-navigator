@@ -1,0 +1,38 @@
+[
+  {
+    "id": "sd.referral.sdlawhelp",
+    "jurisdiction": "US-SD",
+    "name": "SD Law Help",
+    "url": "https://www.sdlawhelp.org",
+    "note": {
+      "en": "A joint self-help site run by South Dakota's civil legal aid organizations, connecting South Dakotans and Tribal Nation members with free legal help and plain-language information about their rights.",
+      "es": "Un sitio conjunto de autoayuda dirigido por las organizaciones de ayuda legal civil de South Dakota, que conecta a los residentes de South Dakota y miembros de naciones tribales con ayuda legal gratuita e información en lenguaje sencillo sobre sus derechos."
+    },
+    "source": {
+      "url": "https://www.sdlawhelp.org",
+      "title": "SD Law Help",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "sd.referral.aclusd",
+    "jurisdiction": "US-SD",
+    "name": "ACLU of South Dakota",
+    "url": "https://www.aclusd.org",
+    "note": {
+      "en": "Statewide civil-rights organization that can be contacted about discrimination and legal-process questions, including for transgender South Dakotans.",
+      "es": "Organización estatal de derechos civiles a la que se puede contactar sobre preguntas de discriminación y trámites legales, incluso para personas transgénero de South Dakota."
+    },
+    "source": {
+      "url": "https://www.aclusd.org",
+      "title": "ACLU of South Dakota",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

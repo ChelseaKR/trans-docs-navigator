@@ -1,0 +1,20 @@
+[
+  {
+    "id": "ar.referral.arlawhelp",
+    "jurisdiction": "US-AR",
+    "name": "Arkansas Law Help",
+    "url": "https://www.arlawhelp.org",
+    "note": {
+      "en": "Arkansas's statewide civil legal aid self-help site; its guide walks adults through the circuit-court name-change petition step by step.",
+      "es": "Sitio estatal de autoayuda legal civil de Arkansas; su guía explica paso a paso la petición de cambio de nombre ante el tribunal de circuito para adultos."
+    },
+    "source": {
+      "url": "https://www.arlawhelp.org",
+      "title": "Arkansas Law Help",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]
