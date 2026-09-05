@@ -157,7 +157,7 @@ test("a source that cannot be drift-watched renders an explicit note, in both la
     language: "en",
   };
   const answer: GroundedAnswer = {
-    blocks: [{ kind: "claim", text: "You file in civil court.", citations: [unwatched.id] }],
+    blocks: [{ kind: "claim", text: "Do the thing.", citations: [unwatched.id] }],
     cited_records: [unwatched],
     refused: false,
   };
@@ -191,7 +191,7 @@ test("a watched source renders the date with no unwatchable note", () => {
     language: "en",
   };
   const answer: GroundedAnswer = {
-    blocks: [{ kind: "claim", text: "You file a petition.", citations: [watched.id] }],
+    blocks: [{ kind: "claim", text: "Do the other thing.", citations: [watched.id] }],
     cited_records: [watched],
     refused: false,
   };
