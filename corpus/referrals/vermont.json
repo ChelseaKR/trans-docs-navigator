@@ -1,0 +1,38 @@
+[
+  {
+    "id": "vt.referral.pridecentervt",
+    "jurisdiction": "US-VT",
+    "name": "Pride Center of Vermont",
+    "url": "https://www.pridecentervt.org",
+    "note": {
+      "en": "Vermont's statewide LGBTQ+ community center; publishes guidance on changing your gender marker and legal name in Vermont.",
+      "es": "Centro comunitario LGBTQ+ estatal de Vermont; publica orientación sobre cómo cambiar su marcador de género y nombre legal en Vermont."
+    },
+    "source": {
+      "url": "https://www.pridecentervt.org",
+      "title": "Pride Center of Vermont",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "vt.referral.vtlegalaid",
+    "jurisdiction": "US-VT",
+    "name": "Vermont Legal Aid",
+    "url": "https://vtlegalaid.org",
+    "note": {
+      "en": "Free civil legal aid for low-income Vermonters, including help with legal filings such as a name-change petition.",
+      "es": "Ayuda legal civil gratuita para residentes de Vermont de bajos ingresos, incluida ayuda con trámites legales como una petición de cambio de nombre."
+    },
+    "source": {
+      "url": "https://vtlegalaid.org",
+      "title": "Vermont Legal Aid",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

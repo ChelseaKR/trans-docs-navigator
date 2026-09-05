@@ -16,6 +16,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-AZ | ✅ | — | ✅ | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | ✅ | — | — | — | ✅ | — |
+| US-CT | ✅ | — | ✅ | — | ✅ | — |
 | US-DE | ✅ | — | ✅ | — | ✅ | — |
 | US-FL | ✅ | — | ✅ | — | ✅ | — |
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
@@ -39,12 +40,14 @@ driver's-license rows are covered and the federal rows are current.
 | US-OK | ✅ | — | ✅ | — | ✅ | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
+| US-RI | ✅ | — | ✅ | — | ✅ | — |
 | US-SC | ✅ | — | ✅ | — | ✅ | — |
 | US-SD | ✅ | — | ⚠️ degraded | — | ✅ | — |
 | US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
 | US-UT | ✅ | — | ✅ | — | ✅ | — |
 | US-VA | ✅ | — | ✅ | — | ✅ | — |
+| US-VT | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
 | US-WI | ✅ | — | ✅ | — | ✅ | — |
 | US-WY | ✅ | — | ✅ | — | ✅ | — |
@@ -58,6 +61,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-AZ | — | — | ⚠️ degraded | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | — | — | ✅ | — | ✅ | — |
+| US-CT | — | — | ✅ | — | ✅ | — |
 | US-DE | — | — | ✅ | — | ✅ | — |
 | US-FL | — | — | ✅ | — | ✅ | — |
 | US-GA | — | — | ✅ | — | ✅ | — |
@@ -81,12 +85,14 @@ driver's-license rows are covered and the federal rows are current.
 | US-OK | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | — | — | ✅ | — | ✅ | — |
+| US-RI | — | — | ✅ | — | ✅ | — |
 | US-SC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-SD | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
 | US-UT | ⚠️ degraded | — | ✅ | — | ⚠️ degraded | — |
 | US-VA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-VT | — | — | ✅ | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 | US-WI | — | — | ✅ | — | ✅ | — |
 | US-WY | — | — | ✅ | — | ⚠️ degraded | — |
@@ -100,6 +106,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-AZ | ✅ | — | ✅ | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | ✅ | — | — | — | ✅ | — |
+| US-CT | ✅ | — | ✅ | — | ✅ | — |
 | US-DE | ✅ | — | ✅ | — | ✅ | — |
 | US-FL | ✅ | — | ✅ | — | ✅ | — |
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
@@ -123,12 +130,14 @@ driver's-license rows are covered and the federal rows are current.
 | US-OK | ✅ | — | ✅ | — | ✅ | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
+| US-RI | ✅ | — | ✅ | — | ✅ | — |
 | US-SC | ✅ | — | ✅ | — | ✅ | — |
 | US-SD | ✅ | — | ⚠️ degraded | — | ✅ | — |
 | US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
 | US-UT | ✅ | — | ✅ | — | ✅ | — |
 | US-VA | ✅ | — | ✅ | — | ✅ | — |
+| US-VT | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
 | US-WI | ✅ | — | ✅ | — | ✅ | — |
 | US-WY | ✅ | — | ✅ | — | ✅ | — |
@@ -142,6 +151,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-AZ | — | — | ⚠️ degraded | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | — | — | ✅ | — | ✅ | — |
+| US-CT | — | — | ✅ | — | ✅ | — |
 | US-DE | — | — | ✅ | — | ✅ | — |
 | US-FL | — | — | ✅ | — | ✅ | — |
 | US-GA | — | — | ✅ | — | ✅ | — |
@@ -165,14 +175,16 @@ driver's-license rows are covered and the federal rows are current.
 | US-OK | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | — | — | ✅ | — | ✅ | — |
+| US-RI | — | — | ✅ | — | ✅ | — |
 | US-SC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-SD | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
 | US-UT | ⚠️ degraded | — | ✅ | — | ⚠️ degraded | — |
 | US-VA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-VT | — | — | ✅ | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 | US-WI | — | — | ✅ | — | ✅ | — |
 | US-WY | — | — | ✅ | — | ⚠️ degraded | — |
 
-**Totals:** 316 current · 54 degraded · 518 uncovered cells.
+**Totals:** 346 current · 54 degraded · 560 uncovered cells.

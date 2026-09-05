@@ -139,6 +139,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Ohio's vital-records page refuses this project's declared user-agent
     // domain-wide, so no baseline can be taken — deliberate, with the Ohio corpus.
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record",
+    // Connecticut's Gender Designation form (B-385) is a PDF whose text this pipeline
+    // cannot extract, so no baseline can be taken — deliberate addition with the
+    // Connecticut corpus.
+    "https://portal.ct.gov/-/media/DMV/20/29/B-385.pdf",
     // Idaho's Instructions to Request a Court Ordered Name Change on an Idaho Birth
     // Certificate is a PDF whose text this pipeline cannot extract, so no baseline can
     // be taken — deliberate addition with the Idaho corpus.
@@ -176,6 +180,11 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf",
     "https://www.dpbh.nv.gov/uploadedFiles/dpbh.nv.gov/content/Programs/BirthDeath/dta/Forms/Corrections%20-%20Birth.pdf",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
+    // Vermont: both the Affidavit of Gender Identity and the Application to Correct or
+    // Amend a Vermont Birth Certificate are PDFs whose text this pipeline cannot
+    // extract, so no baseline can be taken — deliberate, with the Vermont corpus.
+    "https://www.healthvermont.gov/sites/default/files/document/hsi-vr-gender-affidavit.pdf",
+    "https://www.healthvermont.gov/sites/default/files/documents/pdf/HS_VR_BC_Correct_Amend.pdf",
     // North Dakota's Birth Record Amendment Application (Form SFN 60183) is a PDF
     // whose text this pipeline cannot extract, so no baseline can be taken —
     // deliberate addition with the North Dakota corpus.

@@ -99,6 +99,37 @@ lives under `[Unreleased]`.
   Delaware/New Hampshire/Maine's checkable HTML sources and their
   `corpus/source-hashes.json` baselines were added.
 
+- **Connecticut, Rhode Island, and Vermont** (M6 — expand jurisdictions): 17 EN + 17 ES
+  corpus records (court-order name change, driver's-license name and gender-marker,
+  birth-certificate name and gender-marker, plus a birth-certificate fees record for RI
+  and VT), 6 referrals, and 3 forms-registry entries, each sourced from an official state
+  probate/judiciary, DMV, or health-department page and fetched into `corpus/snapshots/`.
+  - **Connecticut**: the Probate Court's own name-change page (`ctprobate.gov`), the DMV's
+    driver's-license update page and its Gender Designation form B-385 (F/M/Non-Binary,
+    no medical documentation required), and DPH's Gender Change and Corrections and
+    Amendments pages — a court-order-supported gender-marker change on a birth certificate
+    still requires a licensed provider's affidavit of surgical, hormonal, or other
+    gender-transition treatment.
+  - **Rhode Island**: the name-change statute (R.I. Gen. Laws § 33-22-28 — no publication
+    required, fee waiver for indigent petitioners), the DMV's combined name/gender-designation
+    page, and the state's own e-Regulations portal (`rules.sos.ri.gov`) for vital-records
+    amendments — used instead of `health.ri.gov`, whose HTML pages return 403 to this
+    project's declared user-agent (its PDF documents remain fetchable and are cited directly
+    where the HTML page could not be).
+  - **Vermont**: the Judiciary's probate name-change page ($150 fee, waivable), the DMV's
+    Identity Documents page (gender is a self-designated descriptor alongside height,
+    weight, and eye color — no documentation required by state or federal law), and the
+    Department of Health's birth-certificate forms. Both Vermont birth-certificate records
+    cite a PDF form directly (the Affidavit of Gender Identity, and the Application to
+    Correct or Amend a Vermont Birth Certificate) because no HTML page states the same
+    operative facts; `make source-snapshot` marks both `unextractable`, and every assertion
+    sourced to them is reported UNCHECKABLE rather than silently passed.
+
+  All 34 new records carry `"verifier": "Pilot Seed Reviewer"` and
+  `verification_status: "verified"`; none are launch-cleared. Gender-marker records use
+  `recheck_sla_days: 30`, matching this repo's existing convention for politically
+  volatile topics.
+
 - **Virginia** (M6 — expand jurisdictions): 7 EN + 7 ES corpus records (court-order name
   change, driver's-license name and gender-marker, a driver's-license replacement-fee
   record, birth-certificate name and gender-marker, and a birth-certificate fee record),

@@ -1,0 +1,145 @@
+[
+  {
+    "id": "vt.court-order.name",
+    "jurisdiction": "US-VT",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Vermont name change petition",
+    "statement": "To legally change your name in Vermont, you fill out a Petition of Adult to Change Name (form 700-00122) and file it with the probate division of the Superior Court in the county where you live — in person, by mail, or by email. There is a $150 fee to file the petition; if you can't afford it, you can ask the court to consider waiving it.",
+    "detail": "You may also be required to file a certified copy of your birth certificate and a copy of a photo ID — check with the court where you're filing for its exact requirements. The court will schedule a hearing with a judge and notify you of the date by mail.",
+    "cost": {
+      "amount_usd": 150,
+      "note": "You can ask the court to consider waiving the fee if you can't afford it.",
+      "fee_waiver": true
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.vtcourts.gov/probate/name-changes",
+      "title": "Vermont Judiciary — Name Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "vt.drivers-license.name",
+    "jurisdiction": "US-VT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Vermont driver's license name change",
+    "statement": "Vermont law requires you to notify the DMV within 30 days of any change to your name. To change the name on your license or non-driver ID, you must apply in person and provide an original or certified copy of the document establishing your new name — a marriage license or certificate, a civil union certificate, or a court order clearly stating your new name — along with a completed Name/Address Change Form (form VL-021).",
+    "detail": "If your license or ID is Real ID compliant, the DMV must verify your name and date of birth through Social Security Online Verification, so your records with the Social Security Administration must be updated before the DMV can issue a license or ID in your new name.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dmv.vermont.gov/licenses/name-change",
+      "title": "Vermont DMV — Driver's License, Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "vt.drivers-license.gender-marker",
+    "jurisdiction": "US-VT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Vermont driver's license gender designation",
+    "statement": "Vermont's DMV treats gender the same way it treats your height, weight, and eye color: it's one of the \"Self-Designated Descriptors\" you provide for your credential, alongside those other entries. Vermont says applicants are not required under state or federal law to present documentation confirming any of these self-designated entries.",
+    "detail": "You can request the change online at mydmv.vermont.gov, in person at a Vermont DMV office, or by mail, the same ways you'd update any other self-designated descriptor on your credential.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.vermont.gov/licenses/identity-documents",
+      "title": "Vermont DMV — Identity Documents",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "vt.birth-certificate.gender-marker",
+    "jurisdiction": "US-VT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Vermont birth certificate sex designation",
+    "statement": "Vermont's Affidavit of Gender Identity lets you request a change to the sex shown on your Vermont birth certificate — Male, Female, or X (Non-binary) — by signing the affidavit in front of a notary public and mailing or delivering it to the Vital Records Office. The form states the request is for the purpose of affirming your gender identity, which differs from the sex shown on your current birth certificate, and does not ask for a court order or a medical or physician's statement.",
+    "detail": "If the registrant is under 16, a parent or legal guardian completes the form instead. Getting a certified copy of the amended birth certificate afterward requires a separate application and its own fee. Because this form is only published as a PDF, this project's tools could not automatically check this record's wording against it; a human should re-read the form directly before relying on it.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.healthvermont.gov/sites/default/files/document/hsi-vr-gender-affidavit.pdf",
+      "title": "Vermont Department of Health — Affidavit of Gender Identity",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "vt-vdh-gender-affidavit",
+    "language": "en"
+  },
+  {
+    "id": "vt.birth-certificate.name",
+    "jurisdiction": "US-VT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Vermont birth certificate name change",
+    "statement": "To change the name on a Vermont birth certificate more than 6 months after the date of birth — which covers essentially every adult, court-ordered name change — Vermont's Application to Correct or Amend a Vermont Birth Certificate requires a certified copy of a court order as the supporting evidence, mailed with the application to the Vital Records Office.",
+    "detail": "The application itself cites this as the amendment path under 18 V.S.A. § 5075(a), and asks you to select whether you're correcting a certificate within 6 months of birth or amending one after 6 months, then list the evidence you're providing. Because this form is only published as a PDF, this project's tools could not automatically check this record's wording against it; a human should re-read the form directly before relying on it.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.healthvermont.gov/sites/default/files/documents/pdf/HS_VR_BC_Correct_Amend.pdf",
+      "title": "Vermont Department of Health — Application to Correct or Amend a Vermont Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "vt-vdh-bc-correct-amend",
+    "language": "en"
+  },
+  {
+    "id": "vt.birth-certificate.fees",
+    "jurisdiction": "US-VT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Vermont birth certificate copy fees",
+    "statement": "A certified copy of a Vermont birth certificate, printed on State engraved security paper with a raised seal, costs $10 per certificate, plus a $2 processing fee if you order it online.",
+    "detail": "Noncertified copies, printed on plain paper with a \"noncertified copy\" watermark, are available at no charge. Vital records can also be ordered from your Vermont Town or City Clerk, which the Department of Health calls the fastest and cheapest option.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Add a $2 processing fee if you order online. Noncertified copies are free."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.healthvermont.gov/stats/vital-records/order-vital-records",
+      "title": "Vermont Department of Health — Order Vital Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]
