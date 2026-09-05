@@ -141,5 +141,44 @@
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "pa-dl-80",
+    "jurisdiction": "US-PA",
+    "document_type": "drivers-license",
+    "change_type": ["name"],
+    "title": "Form DL-80 — Non-Commercial Driver's License Application for Change/Correction/Replacement",
+    "source": {
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/penndot/documents/public/dvspubsforms/bdl/bdl-form/dl-80.pdf",
+      "title": "PennDOT Form DL-80",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "pa-dl-32",
+    "jurisdiction": "US-PA",
+    "document_type": "drivers-license",
+    "change_type": ["gender-marker"],
+    "title": "Form DL-32 — Request for Gender Change on Driver's License/Identification Card",
+    "source": {
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/penndot/documents/public/dvspubsforms/bdl/bdl-form/dl-32.pdf",
+      "title": "PennDOT Form DL-32",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "pa-doh-hd002292",
+    "jurisdiction": "US-PA",
+    "document_type": "birth-certificate",
+    "change_type": ["name", "gender-marker"],
+    "title": "Form HD002292 — Request to Modify an Adult's Birth Record",
+    "source": {
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/health/documents/topics/documents/certificates-and-records/Request%20to%20Modify%20an%20Adult's%20Birth%20Record.pdf",
+      "title": "Pennsylvania Department of Health Form HD002292",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]

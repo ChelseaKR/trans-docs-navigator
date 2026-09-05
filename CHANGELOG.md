@@ -8,6 +8,17 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Pennsylvania corpus coverage** (ROADMAP §M6, "expand jurisdictions") — the sixth state,
+  court-order name change, driver's-license/photo-ID name and gender-marker change, and
+  birth-certificate name/gender-marker amendment, in EN and ES (10 new records + 3 new
+  official forms + 2 legal-aid referrals). `pa.court-order.name` cites the actual statute
+  text (54 Pa.C.S. Ch. 7) rather than a summary — fingerprint-based criminal-history check,
+  publication in two newspapers, and the judgment/lien search are each stated in the
+  statute's own words. The two birth-certificate records cite the PA Department of Health's
+  own PDF amendment form directly, because its HTML landing page states none of the
+  physician-letter/notarization/fee facts; every load-bearing assertion in those two records
+  is therefore reported **uncheckable** by `make fidelity`, the same honest-degradation class
+  as the pre-existing SSA/NY-Courts sources. See `docs/audits/data-card.md`.
 - **ADR directory completed** (`docs/adr/`): the five build ADRs migrated out of
   `docs/ROADMAP.md` §6 into individual Nygard-format files (0001–0005, decision content
   unchanged), plus a new ADR-0006 recording the deliberate no-ESLint/no-Prettier/no-bundler

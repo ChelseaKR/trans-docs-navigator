@@ -879,5 +879,133 @@
     "recheck_sla_days": 90,
     "form_ref": "wa-doh-422-126",
     "language": "es"
+  },
+  {
+    "id": "pa.court-order.name.es",
+    "jurisdiction": "US-PA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Pensilvania",
+    "statement": "En Pensilvania, usted presenta una petición de cambio de nombre en el tribunal de causas comunes (court of common pleas) del condado donde vive. El tribunal fija una audiencia entre uno y tres meses después de presentar la petición, y a menos que la exima por su seguridad, usted debe publicar un aviso de la petición en dos periódicos de circulación general antes de la audiencia.",
+    "detail": "El tribunal envía sus huellas dactilares a la Policía Estatal de Pensilvania para una verificación de antecedentes penales. En la audiencia usted presenta prueba de que publicó el aviso, además de una búsqueda oficial — de cada condado donde ha vivido durante los últimos cinco años — que muestre que no hay sentencias, decretos registrados ni asuntos similares en su contra. Si publicar el aviso pondría en peligro a usted o a un menor, el tribunal puede eximir el requisito y sellar el expediente. Las personas condenadas por ciertos delitos violentos o sexuales no pueden obtener un cambio de nombre de esta manera, y las personas condenadas por otros delitos graves deben esperar un periodo de tiempo después de completar su sentencia antes de calificar.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La ley estatal no fija una tarifa de presentación; las tarifas de presentación, de huellas dactilares y de publicación en el periódico se fijan localmente, así que pregunte en el tribunal de causas comunes de su condado los montos exactos."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legis.state.pa.us/WU01/LI/LI/CT/HTM/54/00.007..HTM",
+      "title": "Estatutos Consolidados de Pensilvania, Título 54 (Nombres) — Capítulo 7, Cambio Judicial de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "pa.drivers-license.name.es",
+    "jurisdiction": "US-PA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Pensilvania",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación con foto de Pensilvania, complete el Formulario DL-80 y llévelo en persona a un Centro de Licencias de Conducir. Si su nombre cambió por orden judicial, lleve una Copia Certificada de la Orden Judicial; para usar el apellido de su cónyuge, lleve su certificado de matrimonio.",
+    "detail": "Todos los documentos deben ser originales — PennDOT no acepta fotocopias. Si usa un nombre por otra razón, lleve su tarjeta de Seguro Social junto con otros dos documentos emitidos con ese nombre, como registros de impuestos, un pasaporte o el registro de votante.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.pa.gov/services/dmv/change-a-driver-license-name-or-address",
+      "title": "DMV de Pensilvania — Cambiar el Nombre o la Dirección de una Licencia de Conducir",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "pa-dl-80",
+    "language": "es"
+  },
+  {
+    "id": "pa.drivers-license.gender-marker.es",
+    "jurisdiction": "US-PA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de Pensilvania",
+    "statement": "Las licencias de conducir e identificaciones con foto de Pensilvania ofrecen tres designaciones de género: \"M\" (masculino), \"F\" (femenino) y \"X\" (no binario). Para cambiar la suya, complete el Formulario DL-32 y llévelo a cualquier Centro de Licencias de Conducir de PennDOT.",
+    "detail": "Ningún médico ni trabajador social necesita autorizar la solicitud, y PennDOT dice que no hay tarifas asociadas con el cambio.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.pa.gov/services/dmv/change-the-gender-designation-on-drivers-license-or-photo-identification-card",
+      "title": "DMV de Pensilvania — Cambiar la Designación de Género en la Licencia de Conducir o Identificación con Foto",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "pa-dl-32",
+    "language": "es"
+  },
+  {
+    "id": "pa.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-PA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en el acta de nacimiento de Pensilvania",
+    "statement": "Para un adulto nacido en Pensilvania, el Departamento de Salud mostrará en el acta de nacimiento una designación de género distinta del sexo registrado si usted presenta una carta del médico que le brinda tratamiento clínico para la transición de género.",
+    "detail": "Use el formulario Request to Modify an Adult's Birth Record (Solicitud para Modificar el Acta de Nacimiento de un Adulto) y fírmelo ante notario. Envíelo por correo al PA Department of Health, Bureau of Health Statistics and Registries, ATTN: Birth Registry, 555 Walnut Street, 6th Floor, Harrisburg, PA 17101-1934.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "Este es el costo de una copia certificada del acta de nacimiento actualizada. Hay una exención de tarifa disponible si usted devuelve un acta incorrecta que recibió en los últimos 45 días, o si usted o su cónyuge legal actual es miembro en servicio activo o dado de baja con honores de las fuerzas armadas de EE. UU.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/health/documents/topics/documents/certificates-and-records/Request%20to%20Modify%20an%20Adult's%20Birth%20Record.pdf",
+      "title": "Departamento de Salud de Pensilvania — Solicitud para Modificar el Acta de Nacimiento de un Adulto",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "pa-doh-hd002292",
+    "language": "es"
+  },
+  {
+    "id": "pa.birth-certificate.name.es",
+    "jurisdiction": "US-PA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Pensilvania",
+    "statement": "Para un adulto nacido en Pensilvania, el Departamento de Salud corrige el nombre en el acta de nacimiento cuando un tribunal autorizó el cambio. Presente el formulario Request to Modify an Adult's Birth Record junto con una copia certificada de la orden judicial — Pensilvania indica que la orden debe cumplir o superar su propio proceso judicial de cambio de nombre.",
+    "detail": "Firme el formulario ante notario y envíelo por correo, junto con una identificación aceptable y el pago, al PA Department of Health, Bureau of Health Statistics and Registries, ATTN: Birth Registry, 555 Walnut Street, 6th Floor, Harrisburg, PA 17101-1934. Una orden judicial emitida fuera de Pensilvania puede necesitar revisión adicional.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "Este es el costo de una copia certificada del acta de nacimiento actualizada. Hay una exención de tarifa disponible si usted devuelve un acta incorrecta que recibió en los últimos 45 días, o si usted o su cónyuge legal actual es miembro en servicio activo o dado de baja con honores de las fuerzas armadas de EE. UU.",
+      "fee_waiver": true
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/health/documents/topics/documents/certificates-and-records/Request%20to%20Modify%20an%20Adult's%20Birth%20Record.pdf",
+      "title": "Departamento de Salud de Pensilvania — Solicitud para Modificar el Acta de Nacimiento de un Adulto",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "pa-doh-hd002292",
+    "language": "es"
   }
 ]

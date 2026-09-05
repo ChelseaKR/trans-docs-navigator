@@ -28,6 +28,7 @@ const STATES: StateDef[] = [
   { slug: "california", id: "US-CA", name: { en: "California", es: "California" } },
   { slug: "illinois", id: "US-IL", name: { en: "Illinois", es: "Illinois" } },
   { slug: "new-york", id: "US-NY", name: { en: "New York", es: "Nueva York" } },
+  { slug: "pennsylvania", id: "US-PA", name: { en: "Pennsylvania", es: "Pensilvania" } },
   { slug: "texas", id: "US-TX", name: { en: "Texas", es: "Texas" } },
   { slug: "washington", id: "US-WA", name: { en: "Washington", es: "Washington" } },
 ];

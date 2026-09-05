@@ -116,6 +116,19 @@ test("Texas now has Spanish parity for name-change (court-order + drivers-licens
   assert.doesNotMatch(tx.body, /aún no están listos/);
 });
 
+test("Pennsylvania has full Spanish parity (court-order + drivers-license + birth-certificate)", () => {
+  const pa = handleRoute(
+    "GET",
+    u(
+      "/checklist?jurisdiction=US-PA&change=name&change=gender-marker&doc=court-order&doc=drivers-license&doc=birth-certificate&language=es",
+    ),
+    today,
+  );
+  assert.doesNotMatch(pa.body, /aún no están listos/);
+  assert.match(pa.body, /causas comunes/); // pa.court-order.name.es
+  assert.match(pa.body, /no binario/); // pa.drivers-license.gender-marker.es
+});
+
 test("official-form page is localized and links to the real source (no auto-fill)", () => {
   const en = handleRoute("GET", u("/forms/us-ss-5")).body;
   assert.match(en, /complete it yourself/); // honest: we don't fill it
