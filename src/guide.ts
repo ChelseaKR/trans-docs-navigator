@@ -26,6 +26,7 @@ interface StateDef {
 // guide by the checklist builder, so they need no separate page.
 const STATES: StateDef[] = [
   { slug: "california", id: "US-CA", name: { en: "California", es: "California" } },
+  { slug: "colorado", id: "US-CO", name: { en: "Colorado", es: "Colorado" } },
   { slug: "illinois", id: "US-IL", name: { en: "Illinois", es: "Illinois" } },
   { slug: "new-york", id: "US-NY", name: { en: "New York", es: "Nueva York" } },
   { slug: "texas", id: "US-TX", name: { en: "Texas", es: "Texas" } },

@@ -17,7 +17,19 @@ test("a wrong passphrase fails to decrypt (does not leak plaintext)", async () =
 
 test("tampered ciphertext is rejected (AES-GCM integrity)", async () => {
   const blob = await encryptState("jurisdiction=US-WA", "pw");
-  const tampered = blob.slice(0, -4) + (blob.endsWith("A") ? "B" : "A") + blob.slice(-3);
+  // Flip one base64 character of the ciphertext/tag region. The character that is
+  // inspected and the character that is replaced must be the same one: this used to
+  // test blob.endsWith("A") — the LAST character — while substituting at index
+  // length-4. Whenever the character at length-4 was already "A" and the blob did
+  // not end in "A", the substitute was "A" too, so the "tampered" blob was
+  // identical to the original, decryption correctly succeeded, and the test failed
+  // with "Missing expected rejection". Base64 is 64 symbols, so that landed on
+  // roughly 1 run in 64 and turned an integrity assertion into a coin flip.
+  const i = blob.length - 4;
+  const tampered = blob.slice(0, i) + (blob[i] === "A" ? "B" : "A") + blob.slice(i + 1);
+  // Guards the above: if the mutation is ever a no-op again, this fails loudly and
+  // deterministically instead of intermittently.
+  assert.notEqual(tampered, blob, "the test must actually alter the blob");
   await assert.rejects(() => decryptState(tampered, "pw"));
 });
 
