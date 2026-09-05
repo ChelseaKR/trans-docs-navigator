@@ -413,3 +413,63 @@ While the budget is down, `make verify` locally is a real substitute for the
 **Noted in passing, out of scope:** `origin` carries roughly thirty stale
 feature branches with no open pull request. They are not part of this queue, but
 they are why the branch list is hard to read.
+
+---
+
+## Outcome (added 2026-09-05, one week after the triage)
+
+This section was appended when the queue was drained, so the document reads as
+a dated snapshot plus what actually happened, rather than as current state.
+
+**Section 3's central claim is no longer true.** It said CI physically could not
+run. It could not, at the time: the GitHub Actions spending limit was exhausted,
+which is why jobs failed in ~2 seconds having executed no steps. That budget has
+since been restored. The reason every check stayed red afterwards was different
+and had nothing to do with the runners:
+
+> `make verify` failed on clean `main` at gate 5/24 — a high-severity `fast-uri`
+> advisory (4 CVEs, transitive via `stylelint → table → ajv`). `verify` is a
+> required check, so one dev-only transitive package held the entire queue
+> closed, including a docs-only PR touching a single markdown file.
+
+Fixed in #135. Everything else followed from that.
+
+### The two findings in section 1
+
+Both were real and both were acted on:
+
+- **1a — #121's fixture prose.** The two invented legal sentences bound to real
+  record ids and real court URLs were replaced with the synthetic idiom the same
+  file already used a few lines above (`"Do the thing."`). No gate reads test
+  fixtures, so this was hygiene rather than a live defect — but it was hygiene in
+  the highest-stakes place the repo has, exactly as argued here.
+- **1b — #122's freshness stamp.** The banner is now two stamps. Legal content
+  stays at 2026-07-12; architecture records 2026-08-15 and states plainly that it
+  read code rather than law, so it does not advance the legal-content clock. This
+  is the "split it into two dated stamps" option recommended above.
+
+### Disposition of the eleven
+
+All four human-authored PRs landed: #119, #120, #121, #122. The seven Dependabot
+PRs were superseded by newer bumps as the queue sat.
+
+Section 2's judgement — *"live, and mid-remediation, do not mass-close"* — was
+correct. Nothing here was stale; it was blocked.
+
+### Found while draining, and not visible from a read-only triage
+
+- **22 cited sources have drifted from their baselines** across every
+  jurisdiction, and the weekly `content-watch` watchdog had been failing since
+  2026-08-17. Filed as #150. This is the most consequential finding of the drain
+  and it is about content, not plumbing.
+- The secret scan reported *untracked* files as "committed" secrets (#139).
+- An AES-GCM integrity test was a ~1.6%-per-run coin flip, failing PRs whose
+  diffs could not reach it (#149).
+- Hardcoded English `aria-label`s render on Spanish pages (#151).
+- `docs/STATUS.md` understated the a11y gate's template coverage (#152).
+- The `loadtest` p95 gate cannot tell a regression from machine contention, and
+  blocks pushes when it cannot (#153).
+
+This document is left as written, dated, with this section appended. Its
+recommendations were followed; its one stale claim is corrected above rather
+than edited away.
