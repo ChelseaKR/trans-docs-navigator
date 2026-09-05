@@ -9,6 +9,26 @@ import { retrieve } from "./retrieval.ts";
 import { defaultGenerator } from "./generator.ts";
 import { enforce } from "./citation.ts";
 import { loadCorpus } from "./corpus.ts";
+import { hasNoStateCoverage } from "./checklist.ts";
+import { t as locale } from "../src/i18n/index.ts";
+
+/**
+ * Federal records match inside every state (api/retrieval.ts `jurisdictionMatches`), so a
+ * question asked about a state we have NO records for still retrieves the SSA and passport
+ * records and composes a fluent, cited answer out of them. Nothing in that answer says the
+ * state layer is missing — the reader cannot tell "we haven't checked your state" apart
+ * from "your state adds nothing", and the second reading is the dangerous one.
+ *
+ * The disclosure is an `uncertainty` block: the category the composer already reserves for
+ * what we do not know. It carries no citations because it asserts no rule — it is a fact
+ * about this corpus, not about any jurisdiction — which is exactly why citation.enforce()
+ * lets it through while it would reject the same sentence phrased as a claim.
+ */
+function withCoverageDisclosure(answer: GroundedAnswer, query: RetrievalQuery, corpus = loadCorpus()): GroundedAnswer {
+  if (!hasNoStateCoverage(query.jurisdiction, corpus)) return answer;
+  const text = locale(query.language ?? "en").ui.noStateCoverage;
+  return { ...answer, blocks: [{ kind: "uncertainty", citations: [], text }, ...answer.blocks] };
+}
 
 export interface AnswerOptions {
   generator?: Generator;
@@ -37,7 +57,7 @@ export function answer(query: RetrievalQuery, opts: AnswerOptions = {}): Grounde
   const generator = opts.generator ?? defaultGenerator;
   const draft = generator.generate(buildInput(query, opts.retriever ?? retrieve, opts.maxRecords));
   // Post-generation enforcement. A refusal carries no claims, so it passes trivially.
-  return enforce(draft, loadCorpus(), query.today);
+  return enforce(withCoverageDisclosure(draft, query), loadCorpus(), query.today);
 }
 
 /**
@@ -51,5 +71,5 @@ export async function answerAsync(query: RetrievalQuery, opts: AsyncAnswerOption
   // Untrusted (model) generator: citations must resolve within the RETRIEVED set and each
   // claim's text must be faithful to its cited record — not merely carry a valid id.
   const grounding = input.retrieved.map((r) => r.record);
-  return enforce(draft, loadCorpus(), query.today, { grounding, requireFaithful: true });
+  return enforce(withCoverageDisclosure(draft, query), loadCorpus(), query.today, { grounding, requireFaithful: true });
 }
