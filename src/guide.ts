@@ -46,6 +46,9 @@ const STATES: StateDef[] = [
   { slug: "texas", id: "US-TX", name: { en: "Texas", es: "Texas" } },
   { slug: "virginia", id: "US-VA", name: { en: "Virginia", es: "Virginia" } },
   { slug: "washington", id: "US-WA", name: { en: "Washington", es: "Washington" } },
+  { slug: "wisconsin", id: "US-WI", name: { en: "Wisconsin", es: "Wisconsin" } },
+  { slug: "north-dakota", id: "US-ND", name: { en: "North Dakota", es: "Dakota del Norte" } },
+  { slug: "montana", id: "US-MT", name: { en: "Montana", es: "Montana" } },
 ];
 
 const TOPICS: { slug: string; change: ChangeType }[] = [

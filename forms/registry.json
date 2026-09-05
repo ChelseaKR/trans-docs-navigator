@@ -550,5 +550,51 @@
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "nd-dhhs-sfn-60183",
+    "jurisdiction": "US-ND",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form SFN 60183 — Birth Record Amendment Application",
+    "source": {
+      "url": "https://www.hhs.nd.gov/sites/www/files/documents/DOH%20Legacy/Vital/SFN%2060183%20-%20Birth%20Amendment%20Changes.pdf",
+      "title": "North Dakota Health and Human Services Form SFN 60183 — Birth Record Amendment Application",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "mt-dphhs-gender-designation-form",
+    "jurisdiction": "US-MT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Gender Designation Form",
+    "source": {
+      "url": "https://dphhs.mt.gov/assets/Statistics/VitalStats/MTGenderDesignationForm.pdf",
+      "title": "Montana Department of Public Health and Human Services — Gender Designation Form",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "mt-dphhs-affidavit-correction",
+    "jurisdiction": "US-MT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Affidavit for Correction of a Vital Record",
+    "source": {
+      "url": "https://dphhs.mt.gov/assets/Statistics/VitalStats/affidavitcorr.pdf",
+      "title": "Montana Department of Public Health and Human Services — Affidavit for Correction of a Vital Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]

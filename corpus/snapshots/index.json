@@ -612,6 +612,70 @@
       "file": "oregon-gov-oha-ph-birthdeathcertificates-pages-changebirthrecord-aspx-0cbba9d8.txt",
       "fetched": "2026-09-05",
       "sha256": "c14029e5198902f53235eb7a24d39706fcbf3a733d4e606e8f0384eb659b6bc3"
+    },
+    "https://courts.mt.gov/Forms/namechange": {
+      "file": "courts-mt-gov-forms-namechange-ead35491.txt",
+      "fetched": "2026-07-13",
+      "sha256": "2c9f786229e0262bf8d46601cb57cb3983cea2c08ca08e62a8459cb4aa5032e8"
+    },
+    "https://dphhs.mt.gov/vitalrecords/Fees": {
+      "file": "dphhs-mt-gov-vitalrecords-fees-2eac2fc0.txt",
+      "fetched": "2026-07-13",
+      "sha256": "36070f124f8fd339e37409fd5deb32271bee0dd6b587cbbf060bb2b56e3494f2"
+    },
+    "https://wisconsindot.gov/Pages/dmv/license-drvs/rnew-and-chge/name-change.aspx": {
+      "file": "wisconsindot-gov-pages-dmv-license-drvs-rnew-and-chge-name-change-aspx-9fa15f8f.txt",
+      "fetched": "2026-07-13",
+      "sha256": "1ed9408861726bcaf297af549cb1a1453990622077e2bd18d62dac03e84af05a"
+    },
+    "https://wisconsindot.gov/Pages/dmv/license-drvs/rnew-and-chge/proof-name-change.aspx": {
+      "file": "wisconsindot-gov-pages-dmv-license-drvs-rnew-and-chge-proof-name-chang-7fc6ce05.txt",
+      "fetched": "2026-07-13",
+      "sha256": "c5192c2d5d5874aed9f1526d9c3c0683bf9cfc135c4f190880f44414bfe4f3cf"
+    },
+    "https://www.dhs.wisconsin.gov/vitalrecords/amendments.htm": {
+      "file": "dhs-wisconsin-gov-vitalrecords-amendments-htm-f64be9ca.txt",
+      "fetched": "2026-07-13",
+      "sha256": "5e9d2eef9f0b823f29a0e18b9ccc1f33f01e4c5de201d1d1ea063dcdfc66542d"
+    },
+    "https://www.dot.nd.gov/driver/driver-license": {
+      "file": "dot-nd-gov-driver-driver-license-187115b7.txt",
+      "fetched": "2026-07-13",
+      "sha256": "f686d0aaf6e4ab827ebfa2caf3e38b5f55ea11bf904c08edf3bdce1067d51e2f"
+    },
+    "https://www.hhs.nd.gov/vital/changing-birth-record": {
+      "file": "hhs-nd-gov-vital-changing-birth-record-17740a64.txt",
+      "fetched": "2026-07-13",
+      "sha256": "a8ee3d04296133398dae30b765c9a9ae4822f322659783c22fff4db6a43f9179"
+    },
+    "https://www.hhs.nd.gov/vital/court-order-name-change": {
+      "file": "hhs-nd-gov-vital-court-order-name-change-48bcd9d9.txt",
+      "fetched": "2026-07-13",
+      "sha256": "d1a92716d678b1fc4ad13debb3ad9a51bc5deaf0daed232dce4c425a9fc983c1"
+    },
+    "https://www.ndcourts.gov/legal-self-help/name-change-adult": {
+      "file": "ndcourts-gov-legal-self-help-name-change-adult-fad3cf2d.txt",
+      "fetched": "2026-07-13",
+      "sha256": "45c5143a0211c36049cbcd5ac18edafa64470d29f78940a7fe1eab8af1e14b5b"
+    },
+    "https://www.wicourts.gov/services/public/selfhelp/namechange.htm": {
+      "file": "wicourts-gov-services-public-selfhelp-namechange-htm-269e362c.txt",
+      "fetched": "2026-07-13",
+      "sha256": "0fdf426c810cf1c5636c87b149ea341d837bc1d4f1f53dfd9f8e4a7d90bbce28"
+    },
+    "https://dphhs.mt.gov/assets/Statistics/VitalStats/MTGenderDesignationForm.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://ndlegis.gov/cencode/t23c02-1.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
     }
   }
 }

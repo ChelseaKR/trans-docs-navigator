@@ -3261,5 +3261,399 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "language": "es"
+  },
+  {
+    "id": "wi.court-order.name.es",
+    "jurisdiction": "US-WI",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Wisconsin",
+    "statement": "En Wisconsin usted le pide al tribunal de circuito que cambie su nombre presentando una Petición de Cambio de Nombre ante el secretario del tribunal de circuito del condado donde vive. Antes de que un juez pueda concederla, la ley de Wisconsin exige que publique un aviso de la petición y la audiencia en un periódico local una vez por semana durante tres semanas.",
+    "detail": "El tribunal puede conceder la petición \"si no se muestra causa suficiente en contrario.\" Según el Estatuto de Wisconsin 786.37(4), un juez puede eximir el paso de publicación en el periódico si usted presenta una petición de cambio de nombre confidencial y el juez decide que la publicación podría ponerlo en peligro. Las personas en profesiones que el estado licencia enfrentan algunas restricciones para cambiar su nombre (Est. de Wis. 786.36(3)), y las personas que deben registrarse como delincuentes sexuales no pueden cambiar su nombre en absoluto (Est. de Wis. 301.47(2)). Después de que el juez firma la orden, usted compra copias certificadas en el secretario del tribunal de circuito para usarlas ante otras agencias.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Toda presentación conlleva una tarifa judicial de presentación, y el periódico cobra su propia tarifa por las tres semanas de publicación. Ambas varían; comuníquese con el secretario del tribunal de circuito de su condado para conocer los montos actuales."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.wicourts.gov/services/public/selfhelp/namechange.htm",
+      "title": "Sistema Judicial de Wisconsin — Centro de Autoayuda: Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "wi.drivers-license.name.es",
+    "jurisdiction": "US-WI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Wisconsin",
+    "statement": "Para poner su nuevo nombre legal en una licencia de conducir o identificación de Wisconsin, visite un centro de servicio del DMV y muestre prueba de su cambio de nombre: un certificado de matrimonio certificado, un registro de divorcio certificado, una orden judicial certificada, o un pasaporte estadounidense vigente a su nombre actual.",
+    "detail": "El DMV de Wisconsin recomienda cambiar primero su nombre con la Administración del Seguro Social y esperar 48 horas antes de su visita al DMV. Si tiene un pasaporte estadounidense válido y vigente a su nombre actual, no necesita llevar documentos de cambios de nombre anteriores; de lo contrario, necesita documentos que cubran cada cambio de nombre desde su nacimiento hasta hoy.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica una tarifa. Consulte el listado de tarifas del DMV o pregunte en un centro de servicio."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://wisconsindot.gov/Pages/dmv/license-drvs/rnew-and-chge/proof-name-change.aspx",
+      "title": "DMV de Wisconsin — Documentos Aceptables como Prueba de Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "wi.drivers-license.gender-marker.es",
+    "jurisdiction": "US-WI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo/género en la licencia de Wisconsin",
+    "statement": "La página de autoayuda publicada por el DMV de Wisconsin explica cómo cambiar su nombre en una licencia de conducir o identificación (formulario MV3001 para una licencia de conducir, MV3004 para una identificación), pero no describe un proceso, formulario o lista de documentos separado para cambiar la designación de sexo o género en una licencia o identificación de Wisconsin.",
+    "detail": "La solicitud de licencia de conducir (formulario MV3001) tiene un campo llamado \"Sexo\", pero las páginas del DMV de Wisconsin nunca explican cómo actualizar ese campo ni qué prueba, si acaso alguna, se acepta — a diferencia de las instrucciones de cambio de nombre, que nombran documentos específicos aceptados. Este proyecto no pudo encontrar mención alguna de un marcador X o no binario en las páginas publicadas por el DMV de Wisconsin. Confirme el proceso actual directamente con un centro de servicio del DMV de Wisconsin antes de confiar en esto.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://wisconsindot.gov/Pages/dmv/license-drvs/rnew-and-chge/name-change.aspx",
+      "title": "DMV de Wisconsin — Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "wi.birth-certificate.name.es",
+    "jurisdiction": "US-WI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Wisconsin",
+    "statement": "Para actualizar el nombre en un acta de nacimiento de Wisconsin después de un cambio de nombre legal o un cambio de nombre legal confidencial, envíe por correo una copia certificada de la orden judicial a la Oficina de Registros Vitales de Wisconsin. La tarifa para presentar la orden judicial es de $10, y la ley de Wisconsin exige que el acta de nacimiento enmendada lleve una anotación que muestre la fecha del cambio, la autoridad que lo autorizó, qué datos se cambiaron y la información anterior.",
+    "detail": "Wisconsin acepta una orden judicial de cambio de nombre legal de cualquier tribunal de Estados Unidos o Canadá; la orden certificada se le devuelve una vez que la oficina termina la enmienda. Esta tarifa de $10 no incluye una copia certificada del acta de nacimiento enmendada: la primera copia certificada cuesta $20, y cada copia adicional cuesta $3. Una vez procesado un cambio de nombre legal confidencial, se requiere una orden judicial para que se emita cualquier copia futura de ese registro.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Esta es la tarifa para presentar la orden judicial de cambio de nombre. Una copia certificada del acta de nacimiento enmendada cuesta $20 por la primera copia y $3 por cada copia adicional."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dhs.wisconsin.gov/vitalrecords/amendments.htm",
+      "title": "Departamento de Servicios de Salud de Wisconsin — Registros Vitales: Enmendar un Registro Vital",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "wi.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-WI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Wisconsin",
+    "statement": "Para cambiar el sexo indicado en un registro de nacimiento de Wisconsin, envíe por correo a la Oficina de Registros Vitales de Wisconsin una copia certificada de una orden judicial de Estados Unidos o Canadá que ordene cambiar la designación de sexo en el registro de nacimiento, junto con una tarifa de $20 para presentar la orden judicial.",
+    "detail": "Esta tarifa de $20 no incluye una copia certificada del nuevo acta de nacimiento: la primera copia certificada cuesta $20, y cada copia adicional cuesta $3. La página de Wisconsin no describe ninguna opción además de una orden judicial — como una carta de un médico o un formulario de autodeclaración — para este cambio específico, y no menciona una designación de sexo no binaria o X.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "Esta tarifa no incluye una copia certificada del nuevo acta de nacimiento, que cuesta $20 por la primera copia y $3 por cada copia adicional."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dhs.wisconsin.gov/vitalrecords/amendments.htm",
+      "title": "Departamento de Servicios de Salud de Wisconsin — Registros Vitales: Enmendar un Registro Vital",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "nd.court-order.name.es",
+    "jurisdiction": "US-ND",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Dakota del Norte",
+    "statement": "Un adulto puede pedirle a un tribunal de distrito estatal de Dakota del Norte que cambie legalmente su nombre presentando una petición por escrito, pero solo si ha vivido en su condado actual de Dakota del Norte durante al menos los últimos 6 meses, es ciudadano estadounidense o residente permanente estadounidense, y la solicitud no se hace para defraudar o engañar a nadie, lesionar a nadie, o poner en riesgo la seguridad pública.",
+    "detail": "Antes de que un juez pueda considerar la petición, debe publicar un aviso de ella en un periódico del condado de Dakota del Norte donde vive; el juez puede considerar la petición 30 días después de que se publique ese aviso. Un juez puede eximir el aviso en el periódico si el cambio solicitado es solo para su primer nombre o segundo nombre, o si usted demuestra que es víctima de violencia doméstica. No se requiere una audiencia en persona a menos que el juez decida que es necesaria.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica una tarifa de presentación ni el costo de publicación en el periódico. Comuníquese con el secretario del tribunal de distrito de su condado para conocer los montos actuales."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ndcourts.gov/legal-self-help/name-change-adult",
+      "title": "Sistema Judicial de Dakota del Norte — Cambio de Nombre de Adulto",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nd.drivers-license.name.es",
+    "jurisdiction": "US-ND",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Dakota del Norte",
+    "statement": "Para cambiar el nombre en su licencia de conducir de Dakota del Norte, lleve documentación certificada del cambio de nombre en persona a cualquier sede de licencias de conducir de Dakota del Norte: un certificado de matrimonio, una sentencia de divorcio, o una orden judicial certificada con sello. Si no está también renovando su licencia, pagará una tarifa de $3.00 y le tomarán una foto nueva.",
+    "detail": "Debe visitar una sede de licencias de conducir de Dakota del Norte para comprar una licencia corregida dentro de los 10 días de su cambio de nombre. Las copias certificadas de registros de matrimonio o divorcio de Dakota del Norte provienen del condado donde se emitieron o decretaron; comuníquese con la oficina de registros vitales si no está seguro de cuál condado es.",
+    "cost": {
+      "amount_usd": 3,
+      "note": "Esta tarifa aplica si no está también renovando su licencia en la misma visita."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dot.nd.gov/driver/driver-license",
+      "title": "Departamento de Transporte de Dakota del Norte — Licencia de Conducir: Cambios de Domicilio y Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nd.drivers-license.gender-marker.es",
+    "jurisdiction": "US-ND",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de Dakota del Norte",
+    "statement": "La página del DMV de Dakota del Norte dice que si ha tenido un cambio de género, deberá presentar documentación en su próxima visita para fines de REAL ID — lo mismo que dice para un cambio de nombre o de domicilio. Pero a diferencia de sus instrucciones detalladas para un cambio de nombre, la página nunca dice cuál es esa documentación, no nombra ningún formulario específico, y no indica ninguna tarifa para una actualización del marcador de género.",
+    "detail": "Esta página no dice si las licencias de conducir o identificaciones de Dakota del Norte ofrecen una opción no binaria o X. Confirme los requisitos actuales directamente con una sede de licencias de conducir de Dakota del Norte antes de confiar en esto.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dot.nd.gov/driver/driver-license",
+      "title": "Departamento de Transporte de Dakota del Norte — Licencia de Conducir: Cambios de Domicilio y Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "nd.birth-certificate.name.es",
+    "jurisdiction": "US-ND",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Dakota del Norte",
+    "statement": "Para actualizar el nombre en un registro de nacimiento de Dakota del Norte después de un cambio de nombre por orden judicial, envíe por correo una copia certificada de la orden judicial (que muestre el nombre actual, el nombre nuevo y la fecha de nacimiento), una Solicitud de Enmienda de Registro de Nacimiento (SFN 60183) completa y notariada, y una tarifa de enmienda de $15 a Registros Vitales de Dakota del Norte.",
+    "detail": "Si la orden judicial no incluye el nombre actual, el nombre nuevo y la fecha de nacimiento, también necesita una copia certificada del formulario de información confidencial del tribunal. La tarifa de enmienda de $15 no incluye una copia certificada del registro de nacimiento actualizado — eso es $15 adicionales por copia. Un cambio de nombre por matrimonio no requiere actualizar el registro de nacimiento en absoluto.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "Esta es la tarifa de enmienda. Una copia certificada actualizada del registro de nacimiento cuesta $15 adicionales cada una."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.hhs.nd.gov/vital/court-order-name-change",
+      "title": "Salud y Servicios Humanos de Dakota del Norte — Registros Vitales: Cambio de Nombre por Orden Judicial",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "nd-dhhs-sfn-60183",
+    "language": "es"
+  },
+  {
+    "id": "nd.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-ND",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Dakota del Norte",
+    "statement": "La oficina de registros vitales de Dakota del Norte incluye el sexo entre los datos que se pueden corregir o enmendar en un registro de nacimiento, pero para un cambio de más de un año después del nacimiento exige una copia certificada del registro de nacimiento (una tarifa de $15) más documentación adicional, y dice que los requisitos legales para cambiar su sexo en un registro de nacimiento están establecidos en el Código del Siglo de Dakota del Norte 23-02.1-25.1.",
+    "detail": "La oficina dice que una enmienda tarda aproximadamente 3 a 5 días hábiles en procesarse una vez aprobada, y advierte que el acta de nacimiento enmendada se verá diferente después: lleva una nota cerca de la parte inferior que explica qué se cambió y qué documento respaldó el cambio. Si usted es tutor legal o representante legal que solicita la enmienda, debe incluir una copia certificada de una orden judicial de Estados Unidos que lo nombre como tutor o representante. Esta página llama a las enmiendas de designación de sexo \"únicas para cada persona\" y recomienda enviar un correo electrónico a la oficina directamente para obtener la información más precisa — lea el registro complementario sobre el Código del Siglo de Dakota del Norte 23-02.1-25.1 antes de suponer que existe un cambio basado en la identidad de género.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "Esta es la tarifa de la copia certificada necesaria para iniciar una solicitud de enmienda; la oficina puede exigir más según el caso."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.hhs.nd.gov/vital/changing-birth-record",
+      "title": "Salud y Servicios Humanos de Dakota del Norte — Registros Vitales: Corregir un Registro de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "nd.birth-certificate.gender-marker.law.es",
+    "jurisdiction": "US-ND",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Restricción legal de Dakota del Norte sobre las enmiendas de designación de sexo",
+    "statement": "La ley de Dakota del Norte dice que la designación de sexo en el registro de nacimiento de alguien nacido en el estado no puede ser enmendada debido a un cambio de identidad de género. Permite un cambio solo en tres situaciones limitadas: el registro original tenía un error de transcripción o de captura de datos; el sexo fue identificado incorrectamente al nacer y la solicitud viene con resultados de pruebas cromosómicas, moleculares, cariotípicas, de ADN o genéticas más una declaración jurada de la instalación que hizo la prueba; o el sexo de la persona \"fue cambiado con genitales anatómicamente correctos para el sexo identificado, según lo certifique un proveedor médico.\"",
+    "detail": "Este estatuto, Código del Siglo de Dakota del Norte 23-02.1-25.1, define \"sexo\" para este propósito como \"el estado biológico de ser hombre o mujer, según los órganos sexuales no ambiguos, los cromosomas o los perfiles hormonales endógenos de la persona al nacer.\" El estado lo publica únicamente como un PDF de todo el capítulo de registros vitales, así que las herramientas automáticas de este proyecto no pueden comprobar una instantánea en vivo de él frente a esta afirmación. Lea usted mismo el estatuto actual antes de confiar en esto — esta es exactamente la clase de norma que puede cambiar o ser impugnada en los tribunales.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://ndlegis.gov/cencode/t23c02-1.pdf",
+      "title": "Rama Legislativa de Dakota del Norte — Código del Siglo de Dakota del Norte, Capítulo 23-02.1 (Sección 23-02.1-25.1, Registros de Nacimiento: Enmiendas y Correcciones — Cambio de Sexo)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "mt.court-order.name.es",
+    "jurisdiction": "US-MT",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Montana",
+    "statement": "La ley de Montana permite que una persona presente una petición ante un tribunal de distrito de Montana para un cambio de nombre por cualquier número de razones, incluidos el divorcio, motivos de seguridad, un cambio de género, o simplemente querer un nombre nuevo. El proceso formal está establecido en el Título 27, Capítulo 31 del Código Anotado de Montana.",
+    "detail": "Si su seguridad está en riesgo, los tribunales de Montana ofrecen una opción de cambio de nombre con expediente sellado en lugar del proceso público estándar. Las personas encarceladas o bajo la supervisión del Departamento de Correcciones no pueden usar estos formularios de autoayuda (Cód. Anot. de Mont. 27-31-201(4)). La página del sistema judicial no indica una tarifa de presentación; pregunte al secretario del tribunal de distrito donde planea presentar.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica una tarifa de presentación. Comuníquese con el secretario del tribunal de distrito donde planea presentar."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://courts.mt.gov/Forms/namechange",
+      "title": "Rama Judicial de Montana — Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "mt.drivers-license.name-and-gender-marker.es",
+    "jurisdiction": "US-MT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Cambio de nombre y marcador de género en la licencia de Montana",
+    "statement": "La página de autoayuda de cambio de nombre de los tribunales de Montana enlaza a la División de Vehículos Motorizados del Departamento de Justicia para actualizar una licencia de conducir o identificación después de un cambio de nombre o de género.",
+    "detail": "Este proyecto no pudo confirmar de forma independiente qué exige actualmente la propia página de la División de Vehículos Motorizados: devuelve un desafío automático de verificación de robots (una comprobación de Cloudflare) que el rastreador de este proyecto no puede superar, así que no se pudo tomar ninguna instantánea de ella y aquí no se afirma ningún formulario, tarifa o requisito de documento específico. Revísela usted mismo en https://dojmt.gov/driving/driver-licensing/ (Departamento de Justicia de Montana, División de Vehículos Motorizados), o comuníquese directamente con una oficina de licencias de conducir de Montana.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://courts.mt.gov/Forms/namechange",
+      "title": "Rama Judicial de Montana — Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "mt.birth-certificate.name.es",
+    "jurisdiction": "US-MT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Montana",
+    "statement": "La Oficina de Registros Vitales de Montana acepta una copia certificada de una orden judicial de cambio de nombre, presentada junto con una Declaración Jurada notariada para Corrección de un Registro Vital, para actualizar el nombre en un acta de nacimiento de Montana.",
+    "detail": "Esto se indica solo como una referencia cruzada en el Formulario de Designación de Género del departamento (\"puede presentarse con una orden judicial de cambio de nombre si el solicitante también desea cambiar el nombre en el acta de nacimiento\"), no en una página dedicada al cambio de nombre, así que confirme los requisitos completos con la Oficina de Registros Vitales antes de confiar en esto. Vea el registro complementario de tarifas para saber cuánto cuesta actualmente una corrección.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dphhs.mt.gov/assets/Statistics/VitalStats/MTGenderDesignationForm.pdf",
+      "title": "Departamento de Salud Pública y Servicios Humanos de Montana — Formulario de Designación de Género",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "mt-dphhs-affidavit-correction",
+    "language": "es"
+  },
+  {
+    "id": "mt.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-MT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Montana",
+    "statement": "Según el propio Formulario de Designación de Género publicado por Montana, una persona que ha pasado por una transición de género o que tiene una condición intersexual puede corregir la designación de sexo en su acta de nacimiento de Montana presentando este formulario junto con una Declaración Jurada notariada para Corrección de un Registro Vital — el formulario no exige una orden judicial para el cambio de designación de género por sí solo. Solo se necesita una orden judicial además de esto si el solicitante también quiere cambiar su nombre.",
+    "detail": "La norma de Montana sobre esto ha cambiado más de una vez en años recientes en medio de litigios en curso, así que trate esto como una instantánea de lo que dice actualmente el propio formulario del departamento, no como una norma establecida — confirme directamente con la Oficina de Registros Vitales antes de confiar en ella. El formulario le pide a quien lo firma certificar que la solicitud no tiene fines fraudulentos ni ilícitos, y puede ser firmado por la persona registrada, un padre o madre, un tutor, o un representante legal.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dphhs.mt.gov/assets/Statistics/VitalStats/MTGenderDesignationForm.pdf",
+      "title": "Departamento de Salud Pública y Servicios Humanos de Montana — Formulario de Designación de Género",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "mt-dphhs-gender-designation-form",
+    "language": "es"
+  },
+  {
+    "id": "mt.birth-certificate.fees.es",
+    "jurisdiction": "US-MT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Tarifas para enmendar un acta de nacimiento en Montana",
+    "statement": "El listado de tarifas de registros vitales de Montana indica $41 para procesar una \"adopción (o rescisión) y cambio de nombre\" en un acta de nacimiento ($25 para procesar más $16 por el acta de nacimiento certificada); una corrección de un error es gratuita si se solicita dentro de 1 año de cuando se presentó el registro, y $41 si se solicita después de eso.",
+    "detail": "Cada acta de nacimiento certificada adicional cuesta $16. El listado de tarifas no incluye una partida separada específicamente para un cambio de designación de género — la categoría más cercana es \"procesar corrección de un error\", ya que el Formulario de Designación de Género de Montana se presenta junto con la misma Declaración Jurada para Corrección de un Registro Vital que se usa para otras correcciones.",
+    "cost": {
+      "amount_usd": 41,
+      "note": "Esta es la tarifa para una corrección solicitada más de un año después de que se presentó el registro, o para una enmienda de cambio de nombre/relacionada con adopción ($25 para procesar más $16 por una copia certificada). Es gratuita si se solicita dentro de 1 año. Cada copia certificada adicional cuesta $16."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dphhs.mt.gov/vitalrecords/Fees",
+      "title": "Departamento de Salud Pública y Servicios Humanos de Montana — Tarifas de Registros Vitales",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
   }
 ]

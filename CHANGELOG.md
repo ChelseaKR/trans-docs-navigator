@@ -8,6 +8,49 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Wisconsin, North Dakota, and Montana** (M6 — expand jurisdictions): 16 EN + 16 ES
+  corpus records (court-order name change, driver's-license name and gender-marker, and
+  birth-certificate name and gender-marker for each state, plus a North Dakota statutory
+  record and a Montana fee record), 6 referrals, and 3 forms-registry entries, each sourced
+  from an official state page, statute, or department form and fetched into
+  `corpus/snapshots/`.
+  - **Wisconsin** requires newspaper publication of a name-change petition (once a week
+    for three weeks, Wis. Stat. 786.37), waivable only for a confidential filing when a
+    judge finds publication would endanger the petitioner. Its DMV publishes a name-change
+    process but no separate page, form, or document list for a sex/gender-designation
+    change — recorded as a plain absence (PR #119's standard), not a guessed process.
+  - **North Dakota** requires 6 months of county residency and newspaper publication
+    (waivable for a first/middle-name-only change or a domestic-violence victim) before a
+    name-change petition can be heard. Its birth-record statute, North Dakota Century Code
+    § 23-02.1-25.1, is published only as a PDF and is recorded in its own companion
+    record: the sex designation on a North Dakota birth record **may not be amended
+    because of a gender identity change**, full stop — only three narrow, non-transition
+    exceptions apply (a scrivener's/data-entry error, corrected chromosomal/genetic
+    misidentification, or post-surgical certification). Its DMV FAQ names "gender change"
+    as one of three reasons a REAL ID re-visit needs fresh documentation but never says
+    what that documentation is.
+  - **Montana**'s birth-certificate sex-designation rule has been through repeated
+    litigation and injunctions. Rather than assert what any court has ordered, this corpus
+    reports what the department's own currently-published Gender Designation Form says
+    today — self-attestation, no court order required for the marker alone — and marks
+    that record **`needs_reverification`** (the same honest-degradation mechanism
+    documented in `corpus/README.md`'s freshness demonstration), so the runtime never
+    serves it as a settled fact. Montana's Motor Vehicle Division page returns a
+    Cloudflare bot-verification challenge to every automated fetch attempted for this PR
+    (confirmed via `fetch`, `curl`, and an isolated web-fetch tool, all blocked); rather
+    than guess at its requirements, the driver's-license record states plainly what
+    Montana's courts page says and that its DOJ/MVD page could not be independently
+    verified, with the real URL given for a human to check directly.
+
+  Snapshot discipline: `make source-snapshot` also refreshed pre-existing snapshots with
+  live drift from this simulated environment's source pages, unrelated to this change
+  (tracked separately as issue #150). Those refreshes were reverted (`git checkout --
+  corpus/snapshots/`) rather than adopted blind; only the 10 new HTML snapshots for this
+  PR's jurisdictions, plus `unextractable` index entries for its two new PDF sources, were
+  added to `corpus/snapshots/` and `corpus/source-hashes.json`.
+
+  `make verify`: 24/24 gates pass.
+
 - **Virginia** (M6 — expand jurisdictions): 7 EN + 7 ES corpus records (court-order name
   change, driver's-license name and gender-marker, a driver's-license replacement-fee
   record, birth-certificate name and gender-marker, and a birth-certificate fee record),
