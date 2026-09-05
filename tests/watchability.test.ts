@@ -115,6 +115,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // baseline can be taken — deliberate, with the Arizona corpus.
     "https://superiorcourt.maricopa.gov/media/emucljue/name-gender-change-eng-spa.pdf",
     "https://www.azdhs.gov/documents/vital-records/manuals/correction-affidavit-correct-amend-birth.pdf?v=20260409",
+    // Tennessee's enacted "definition of sex" bill (SB 1440 / HB 239, 2023) is only
+    // published as a PDF on the General Assembly's own site, so no baseline can be
+    // taken — deliberate, with the Tennessee corpus.
+    "https://www.capitol.tn.gov/Bills/113/Bill/SB1440.pdf",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
     // Michigan's SOS and MDHHS pages refuse this project's declared user-agent.
     // Verified 403 from both Node's fetch and curl sending the same UA, so this is
@@ -123,7 +127,14 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     "https://www.michigan.gov/sos/all-services/license-or-id-name-correction",
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml",
+    // The Sixth Circuit's Gore v. Lee opinion (the source for Tennessee's birth-certificate
+    // gender-marker bar) is only published as a PDF on the court's own site, so no baseline
+    // can be taken — deliberate, with the Tennessee corpus.
+    "https://www.opn.ca6.uscourts.gov/opinions.pdf/24a0151p-06.pdf",
     "https://www.ssa.gov/forms/ss-5.pdf",
+    // Tennessee's general vital-records amendment form (PH-1186) is only published as a
+    // PDF, so no baseline can be taken — deliberate, with the Tennessee corpus.
+    "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf",
   ]);
   // ...and the two reasons are genuinely different failures, which is why the launch-gate
   // evidence names them separately instead of calling all three a 403.

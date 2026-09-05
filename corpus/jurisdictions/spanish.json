@@ -1686,6 +1686,149 @@
     "language": "es"
   },
   {
+    "id": "tn.court-order.name.es",
+    "jurisdiction": "US-TN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Tennessee",
+    "statement": "Para cambiar legalmente su nombre en Tennessee, presenta una petición ante el tribunal del condado donde vive. Los tribunales de Tennessee fijan sus propios formularios de petición y tarifas por condado — en el condado de Shelby (Memphis), por ejemplo, las peticiones de cambio de nombre para adultos se presentan en la Oficina del Secretario del Tribunal de Sucesiones (Probate Court).",
+    "detail": "Debe tener 18 años o más para cambiar su nombre sin consentimiento de los padres, y llevar un acta de nacimiento, prueba de identidad (como un pasaporte, licencia de conducir, o una identificación estatal, escolar o laboral) y prueba de residencia (como una factura de servicios, un talón de pago o una factura de impuestos). En el condado de Shelby, las peticiones se presentan en persona de lunes a viernes, de 9 a.m. a 3 p.m., y luego se fija una audiencia para el jueves siguiente por la tarde, en persona o por Zoom; la orden firmada que concede el cambio se entrega después de una audiencia en persona o se envía por correo después de una audiencia virtual. Comuníquese con el secretario del tribunal del condado donde vive para conocer los formularios y el calendario de ese condado.",
+    "cost": {
+      "amount_usd": null,
+      "note": "En el condado de Shelby, presentar en persona un cambio de nombre cuesta $166.50 (en efectivo o con tarjeta de crédito); presentar por Zoom cuesta $170.00, que incluye una tarifa de envío de la orden de $3.50. Otros condados fijan sus propios costos judiciales."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.shelbycountytn.gov/3826/Name-Changes",
+      "title": "Condado de Shelby, Tennessee — Cambios de Nombre/Correcciones de Actas de Nacimiento (Tribunal de Sucesiones)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "tn.drivers-license.name.es",
+    "jurisdiction": "US-TN",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Tennessee",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Tennessee, debe visitar en persona un Centro de Servicios para Conductores. Lleve su licencia actual y una copia original o certificada de un documento que muestre el motivo del cambio, como un certificado de matrimonio, una sentencia de divorcio o una orden judicial.",
+    "detail": "Un documento judicial solo se acepta con la firma original del juez o un sello oficial del tribunal — no se acepta una copia de una firma o sello ya copiados, aunque sí se acepta una firma o sello original adherido a una copia. Un certificado de matrimonio debe ser una copia certificada emitida por el secretario del condado u otra agencia gubernamental autorizada después de registrado el matrimonio; no se acepta una licencia de matrimonio, una solicitud, ni una copia sin certificar. Nunca se aceptan faxes ni fotocopias de ninguno de estos documentos. La página recomienda actualizar primero su nombre con la Administración del Seguro Social.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La tarifa de duplicado es de $8 a $16, según el tipo de licencia y cuántos duplicados ha tenido. Todos los duplicados de Certificado para Conducir, Licencia de Conducir Temporal e Identificación Temporal cuestan $28.00."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.tn.gov/safety/driver-services/helpful-information/dlnamechange.html",
+      "title": "Departamento de Seguridad y Seguridad Nacional de Tennessee — Servicios para Conductores: Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "tn.drivers-license.gender-marker.es",
+    "jurisdiction": "US-TN",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo/género en la licencia de Tennessee",
+    "statement": "La página de 'Información Útil' de Servicios para Conductores de Tennessee incluye un tema de Cambio de Nombre y uno de Cambio de Dirección. No incluye ningún tema, formulario o página para cambiar la designación de sexo o género en una licencia de conducir o identificación.",
+    "detail": "Otros temas incluidos son Tarifas de Licencia de Conducir, Renovación de su Licencia, Reemplazo de una Licencia Perdida y Tipos de Licencias Emitidas. Ninguno de los temas de la página trata sobre una designación de sexo o género.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.tn.gov/safety/driver-services/helpful-information.html",
+      "title": "Departamento de Seguridad y Seguridad Nacional de Tennessee — Servicios para Conductores: Información Útil",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "tn.drivers-license.gender-marker.law.es",
+    "jurisdiction": "US-TN",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Definición legal de sexo en Tennessee",
+    "statement": "Una ley de Tennessee vigente desde el 1 de julio de 2023 define \"sexo\", para todo el código estatal, como \"el sexo biológico inmutable de una persona según lo determinan la anatomía y la genética existentes al momento de nacer\". Además, dice que la evidencia del sexo biológico de una persona \"incluye, entre otros, un documento de identificación emitido por el gobierno que refleje con exactitud el sexo de la persona que figura en su acta de nacimiento original\".",
+    "detail": "El proyecto de ley (Senate Bill 1440 / House Bill 239, 2023) agregó esto como el nuevo inciso (c) a la Sección 1-3-105 del Código Anotado de Tennessee, la sección de definiciones generales del código, y modificó la Sección 49-2-802(4), una ley de educación pública, para usar la misma definición. El texto del proyecto de ley solo modifica el Título 1 y el Título 49; no explica por sí mismo cómo el Departamento de Seguridad y Seguridad Nacional aplica esta definición a una licencia de conducir o identificación.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.capitol.tn.gov/Bills/113/Bill/SB1440.pdf",
+      "title": "Asamblea General de Tennessee — Senate Bill 1440 / House Bill 239 (2023), promulgada",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "tn.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-TN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Tennessee (Gore v. Lee)",
+    "statement": "Tennessee trata el sexo que figura en un acta de nacimiento como un hecho histórico que no puede cambiarse por la transición de una persona a una identidad de género diferente. Según Tenn. Code Ann. § 68-3-203(d), una \"cirugía de cambio de sexo\" no cuenta como un error de hecho que pueda corregirse en un acta de nacimiento — la única base que las normas de Tennessee permiten, por lo demás, para enmendar un registro.",
+    "detail": "Esta es la ley que la Corte de Apelaciones del Sexto Circuito examinó y confirmó en Gore v. Lee (No. 23-5669, decidido el 12 de julio de 2024): cuatro personas transgénero de Tennessee, todas nacidas en el estado, demandaron después de que se les negara un cambio en el sexo que figura en sus actas de nacimiento. La opinión del tribunal señala una excepción que NO cubre una designación de sexo: si obtiene una orden judicial que cambia su nombre, Tennessee permite enmendar su acta de nacimiento para reflejar el cambio de nombre (Tenn. Code Ann. § 68-3-203(c)).",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.opn.ca6.uscourts.gov/opinions.pdf/24a0151p-06.pdf",
+      "title": "Corte de Apelaciones de los Estados Unidos para el Sexto Circuito — Gore v. Lee, No. 23-5669 (12 de julio de 2024)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "tn.birth-certificate.name.es",
+    "jurisdiction": "US-TN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Tennessee",
+    "statement": "La Oficina de Registros Vitales de Tennessee usa un formulario general, la Solicitud para Enmendar un Acta de Nacimiento de Tennessee (PH-1186), para la mayoría de las correcciones de actas de nacimiento — pero las instrucciones del propio formulario incluyen \"cambios ordenados por un tribunal (cambios legales de nombre, adopciones, establecimiento de paternidad)\" entre los usos para los que dice que esta solicitud NO debe usarse, y no indica qué presentar en su lugar.",
+    "detail": "Para las correcciones que sí cubre, el PH-1186 requiere una declaración jurada — firmada ante un notario por el registrado (de 18 años o más), un padre que figure en el acta de nacimiento, o un tutor legal — más al menos un documento de respaldo, como un registro escolar, un certificado de matrimonio o el acta de nacimiento o defunción de un padre. Se presenta con una tarifa de enmienda de $15.00 a TN Vital Records en Nashville; una copia certificada en formato extenso del acta enmendada cuesta $15.00 más. Debido a que el formulario excluye un cambio legal de nombre ordenado por un tribunal de lo que cubre, quien lo prepare debe comunicarse directamente con la Oficina de Registros Vitales para confirmar el proceso y la tarifa vigentes para ese caso antes de confiar en este formulario.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El PH-1186 cobra $15.00 por enmendar un acta que cubre, más $15.00 adicionales por una copia certificada — pero el formulario dice que no debe usarse para un cambio legal de nombre ordenado por un tribunal, así que esta tarifa podría no aplicar a ese caso."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf",
+      "title": "Departamento de Salud de Tennessee, Oficina de Registros Vitales — Solicitud para Enmendar un Acta de Nacimiento de Tennessee (PH-1186)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "tx.birth-certificate.fees.es",
     "jurisdiction": "US-TX",
     "document_type": "birth-certificate",

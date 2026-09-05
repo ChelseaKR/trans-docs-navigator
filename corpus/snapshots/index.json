@@ -374,6 +374,42 @@
       "file": "law-cornell-edu-regulations-colorado-5-ccr-1006-1-5-d2aa51f9.txt",
       "fetched": "2026-09-05",
       "sha256": "ec748c0f293c0c5b8d11f5a2fb185c0baef687d35c28610feec573b961f19be6"
+    },
+    "https://www.shelbycountytn.gov/3826/Name-Changes": {
+      "file": "shelbycountytn-gov-3826-name-changes-ce61ec8c.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d9f8b2fca734655f9c511644db789e097b9fcff1139762815135b3897d7c2cc0"
+    },
+    "https://www.tn.gov/safety/driver-services/helpful-information.html": {
+      "file": "tn-gov-safety-driver-services-helpful-information-html-0de9cb43.txt",
+      "fetched": "2026-09-05",
+      "sha256": "adb5e0b6984680388db5fe3c3a00d1f9827d59b77856717f43a43a0819b10f95"
+    },
+    "https://www.tn.gov/safety/driver-services/helpful-information/dlnamechange.html": {
+      "file": "tn-gov-safety-driver-services-helpful-information-dlnamechange-html-b5062694.txt",
+      "fetched": "2026-09-05",
+      "sha256": "7504cb18ce3ea6b8f1d39cb8adbba4b49981b05c7ebc19729a89965985b9b1ce"
+    },
+    "https://www.capitol.tn.gov/Bills/113/Bill/SB1440.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.drivers-license.gender-marker.law."
+      }
+    },
+    "https://www.opn.ca6.uscourts.gov/opinions.pdf/24a0151p-06.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.gender-marker."
+      }
+    },
+    "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+      }
     }
   }
 }

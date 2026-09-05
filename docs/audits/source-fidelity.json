@@ -1,9 +1,9 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 164,
-  "supported": 353,
+  "records": 176,
+  "supported": 368,
   "unsupported": 0,
-  "uncheckable": 106,
+  "uncheckable": 114,
   "unfetchable_sources": [
     "https://www.michigan.gov/sos/all-services/license-or-id-name-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
@@ -12,8 +12,8 @@
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → HTTP 404: the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 607,
-  "total_prose_sentences": 764,
+  "unchecked_prose_sentences": 670,
+  "total_prose_sentences": 836,
   "audits": [
     {
       "recordId": "az.court-order.name",
@@ -4866,6 +4866,171 @@
       "totalSentences": 5
     },
     {
+      "recordId": "tn.court-order.name.es",
+      "language": "es",
+      "url": "https://www.shelbycountytn.gov/3826/Name-Changes",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "18 year",
+          "label": "states \"18 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"18 year\""
+        },
+        {
+          "kind": "money",
+          "key": "166.5",
+          "label": "states $166.5",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $166.5"
+        },
+        {
+          "kind": "money",
+          "key": "170",
+          "label": "states $170",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $170"
+        },
+        {
+          "kind": "money",
+          "key": "3.5",
+          "label": "states $3.5",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $3.5"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 1,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "tn.drivers-license.name.es",
+      "language": "es",
+      "url": "https://www.tn.gov/safety/driver-services/helpful-information/dlnamechange.html",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "money",
+          "key": "8",
+          "label": "states $8",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $8"
+        },
+        {
+          "kind": "money",
+          "key": "16",
+          "label": "states $16",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $16"
+        },
+        {
+          "kind": "money",
+          "key": "28",
+          "label": "states $28",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $28"
+        }
+      ],
+      "uncheckedProse": 7,
+      "negatedClaims": 2,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "tn.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.tn.gov/safety/driver-services/helpful-information.html",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "tn.drivers-license.gender-marker.law.es",
+      "language": "es",
+      "url": "https://www.capitol.tn.gov/Bills/113/Bill/SB1440.pdf",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "tn.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.opn.ca6.uscourts.gov/opinions.pdf/24a0151p-06.pdf",
+      "results": [],
+      "uncheckedProse": 9,
+      "negatedClaims": 4,
+      "totalSentences": 9
+    },
+    {
+      "recordId": "tn.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "PH1186",
+          "label": "names form PH1186",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+        },
+        {
+          "kind": "duration",
+          "key": "18 year",
+          "label": "states \"18 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
       "recordId": "tx.birth-certificate.fees.es",
       "language": "es",
       "url": "https://www.dshs.texas.gov/vital-statistics/costs-fees",
@@ -5373,6 +5538,162 @@
       "uncheckedProse": 4,
       "negatedClaims": 0,
       "totalSentences": 4
+    },
+    {
+      "recordId": "tn.court-order.name",
+      "language": "en",
+      "url": "https://www.shelbycountytn.gov/3826/Name-Changes",
+      "results": [
+        {
+          "kind": "money",
+          "key": "166.5",
+          "label": "states $166.5",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $166.5"
+        },
+        {
+          "kind": "money",
+          "key": "170",
+          "label": "states $170",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $170"
+        },
+        {
+          "kind": "money",
+          "key": "3.5",
+          "label": "states $3.5",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $3.5"
+        }
+      ],
+      "uncheckedProse": 7,
+      "negatedClaims": 1,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "tn.drivers-license.name",
+      "language": "en",
+      "url": "https://www.tn.gov/safety/driver-services/helpful-information/dlnamechange.html",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "money",
+          "key": "8",
+          "label": "states $8",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $8"
+        },
+        {
+          "kind": "money",
+          "key": "16",
+          "label": "states $16",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $16"
+        },
+        {
+          "kind": "money",
+          "key": "28",
+          "label": "states $28",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $28"
+        }
+      ],
+      "uncheckedProse": 7,
+      "negatedClaims": 3,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "tn.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.tn.gov/safety/driver-services/helpful-information.html",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "tn.drivers-license.gender-marker.law",
+      "language": "en",
+      "url": "https://www.capitol.tn.gov/Bills/113/Bill/SB1440.pdf",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "tn.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.opn.ca6.uscourts.gov/opinions.pdf/24a0151p-06.pdf",
+      "results": [],
+      "uncheckedProse": 9,
+      "negatedClaims": 4,
+      "totalSentences": 9
+    },
+    {
+      "recordId": "tn.birth-certificate.name",
+      "language": "en",
+      "url": "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "PH1186",
+          "label": "names form PH1186",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 1,
+      "totalSentences": 5
     },
     {
       "recordId": "tx.court-order.name",

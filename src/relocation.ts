@@ -38,6 +38,7 @@ export const RELOCATION_JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-MI", label: "Michigan" },
   { id: "US-NY", label: "New York" },
   { id: "US-PA", label: "Pennsylvania" },
+  { id: "US-TN", label: "Tennessee" },
   { id: "US-TX", label: "Texas" },
   { id: "US-WA", label: "Washington" },
 ];

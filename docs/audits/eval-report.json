@@ -1,19 +1,19 @@
 {
   "today": "2026-07-13",
-  "total": 49,
+  "total": 53,
   "metrics": [
     {
       "name": "groundedness",
       "value": 1,
       "threshold": 0.95,
-      "n": 41,
+      "n": 46,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 35,
+      "n": 39,
       "pass": true
     },
     {
@@ -27,7 +27,7 @@
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 49,
+      "n": 53,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 35,
+      "n": 39,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
       "value": 1,
       "threshold": 0.7,
-      "n": 35,
+      "n": 39,
       "pass": true
     }
   ],
@@ -126,6 +126,12 @@
       "pass": true
     },
     {
+      "segment": "jurisdiction:US-TN",
+      "value": 1,
+      "n": 4,
+      "pass": true
+    },
+    {
       "segment": "jurisdiction:US-TX",
       "value": 1,
       "n": 1,
@@ -140,13 +146,13 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 24,
+      "n": 27,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 11,
+      "n": 12,
       "pass": true
     }
   ],
@@ -256,6 +262,16 @@
       "records": 10,
       "current_records": 10,
       "gold_items": 2,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-TN",
+      "records": 12,
+      "current_records": 12,
+      "gold_items": 4,
       "accuracy": 1,
       "mechanically_ready": true,
       "verification_complete": false,
@@ -636,6 +652,46 @@
       "suite": "accuracy",
       "segment": {
         "jurisdiction": "US-GA",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "tn-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-TN",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "tn-marker-dl-restricted",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-TN",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "tn-marker-birth-restricted",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-TN",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "tn-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-TN",
         "language": "es"
       },
       "passed": true,
