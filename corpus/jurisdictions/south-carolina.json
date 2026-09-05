@@ -1,0 +1,125 @@
+[
+  {
+    "id": "sc.court-order.name",
+    "jurisdiction": "US-SC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "South Carolina name change petition",
+    "statement": "In South Carolina you petition a family court judge for a name change, and you must have been a resident of South Carolina for at least six months.",
+    "detail": "You must attach to your petition a SLED fingerprint and criminal background check, a Department of Social Services screening statement covering the Central Registry of Child Abuse and Neglect, a SLED sex-offender-registry screening statement, and a signed affidavit about any child-support or alimony order. The court may waive the six-month residency requirement for a petitioner who is a victim of domestic violence, stalking, or similar abuse and who is currently in reasonable fear for their safety.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The filing fee is set by a separate statute and isn't a dollar amount stated here; the SLED background check carries its own separate fee too. Contact the family court clerk for current amounts."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.scstatehouse.gov/code/t15c049.php",
+      "title": "South Carolina Code of Laws — Title 15, Chapter 49, Change of Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "sc.drivers-license.name",
+    "jurisdiction": "US-SC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "South Carolina driver's license and ID name change",
+    "statement": "To change the name on your South Carolina driver's license or ID card, you complete an Application for Name and/or Address Change (Form 4057) and an Application for a Beginner's Permit, Driver's License, or Identification Card (Form 447-NC), then present documentation such as a marriage license, divorce decree, or a court order issued by your county's family court.",
+    "detail": "You must update your name with the Social Security Administration at least 48 hours before visiting the SCDMV. A new license reflecting your updated name costs $10, or $25 if you're getting your first REAL ID at the same time. You only have one opportunity to change your name when you marry — changing to a different variation of your married name later takes a court order.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "This is the standard fee for a new license reflecting a name change. Your first REAL ID is $25 instead, since it's treated as a license renewal."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.sc.gov/driver-services/drivers-license/address-or-name-change",
+      "title": "South Carolina DMV — Change My Address or Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "sc.drivers-license.gender-marker",
+    "jurisdiction": "US-SC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "South Carolina driver's license and ID sex/gender designation",
+    "statement": "The SCDMV's own instructions for updating your name or address make no mention of changing a sex or gender designation on a license or ID card.",
+    "detail": "The page describes exactly what to bring for a name change — a marriage license, divorce decree, family-court order, or preferred-name documents — and says nothing about a sex-designation change process. Confirm directly with the SCDMV before assuming a route exists.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.sc.gov/driver-services/drivers-license/address-or-name-change",
+      "title": "South Carolina DMV — Change My Address or Name",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "sc.birth-certificate.name",
+    "jurisdiction": "US-SC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "South Carolina birth certificate name change",
+    "statement": "South Carolina can only change the name on your birth certificate with a certified court order — the Department of Public Health says name changes and adoptions can only be applied to the record that way.",
+    "detail": "A certified court order carries a raised or inky seal; a photocopy isn't accepted, and the department keeps one certified copy permanently, so get more than one certified copy from the court. Most in-person amendment requests are completed within 1-2 business days, but court-ordered amendments may take up to 2 weeks. There's an additional $15 amendment fee, and a copy issued within the past year can be replaced for $3.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "This is the additional amendment fee once the court order is processed. A record issued within the past year can be replaced for $3."
+    },
+    "timeline": {
+      "typical": "1 to 2 business days, or up to 2 weeks for court-ordered amendments"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dph.sc.gov/public/vital-records/birth-certificates",
+      "title": "South Carolina Department of Public Health — Birth Certificates",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "sc.birth-certificate.gender-marker",
+    "jurisdiction": "US-SC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "South Carolina birth certificate sex designation",
+    "statement": "South Carolina's Department of Public Health describes how to correct errors and process court-ordered name changes on a birth certificate, but its public guidance does not describe any process for changing the sex marker based on gender identity.",
+    "detail": "The page lists what can be fixed with a notarized affidavit (like a misspelled name or wrong date of birth) and what needs a certified court order (name changes and adoptions). Changing the recorded sex isn't mentioned in either category. Confirm current requirements directly with Vital Records before assuming a route exists.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dph.sc.gov/public/vital-records/birth-certificates",
+      "title": "South Carolina Department of Public Health — Birth Certificates",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]

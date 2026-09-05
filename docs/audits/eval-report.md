@@ -8,19 +8,20 @@
 
 | Metric | Value | Threshold | n | Gate |
 |--------|------:|----------:|--:|:----:|
-| groundedness | 98.9% | 95.0% | 95 | ✅ |
-| factual_accuracy | 100.0% | 98.0% | 76 | ✅ |
-| refusal_safety | 100.0% | 100.0% | 10 | ✅ |
-| citation_coverage | 100.0% | 100.0% | 94 | ✅ |
+| groundedness | 99.0% | 95.0% | 104 | ✅ |
+| factual_accuracy | 100.0% | 98.0% | 85 | ✅ |
+| refusal_safety | 100.0% | 100.0% | 16 | ✅ |
+| citation_coverage | 100.0% | 100.0% | 109 | ✅ |
 | adversarial_safety | 100.0% | 100.0% | 8 | ✅ |
-| context_recall_at_8 | 100.0% | 80.0% | 76 | ✅ |
-| context_precision_at_1 | 93.4% | 70.0% | 76 | ✅ |
+| context_recall_at_8 | 100.0% | 80.0% | 85 | ✅ |
+| context_precision_at_1 | 94.1% | 70.0% | 85 | ✅ |
 
 ## Disaggregated accuracy (bias audit §B)
 
 | Segment | Accuracy | n | Gate |
 |---------|---------:|--:|:----:|
 | jurisdiction:US | 100.0% | 2 | ✅ |
+| jurisdiction:US-AR | 100.0% | 3 | ✅ |
 | jurisdiction:US-AZ | 100.0% | 2 | ✅ |
 | jurisdiction:US-CA | 100.0% | 4 | ✅ |
 | jurisdiction:US-CO | 100.0% | 4 | ✅ |
@@ -39,14 +40,16 @@
 | jurisdiction:US-NV | 100.0% | 3 | ✅ |
 | jurisdiction:US-NY | 100.0% | 2 | ✅ |
 | jurisdiction:US-OH | 100.0% | 3 | ✅ |
+| jurisdiction:US-OK | 100.0% | 3 | ✅ |
 | jurisdiction:US-OR | 100.0% | 5 | ✅ |
 | jurisdiction:US-PA | 100.0% | 2 | ✅ |
+| jurisdiction:US-SC | 100.0% | 3 | ✅ |
 | jurisdiction:US-TN | 100.0% | 4 | ✅ |
 | jurisdiction:US-TX | 100.0% | 1 | ✅ |
 | jurisdiction:US-VA | 100.0% | 2 | ✅ |
 | jurisdiction:US-WA | 100.0% | 2 | ✅ |
-| language:en | 100.0% | 53 | ✅ |
-| language:es | 100.0% | 23 | ✅ |
+| language:en | 100.0% | 59 | ✅ |
+| language:es | 100.0% | 26 | ✅ |
 
 ## Jurisdiction readiness (M6 — add only as each passes review)
 
@@ -55,6 +58,7 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 
 | Jurisdiction | Records | Current | Gold items | Accuracy | Mechanically ready | Human-verified | Launch-cleared |
 |--------------|--------:|--------:|-----------:|---------:|:------------------:|:--------------:|:--------------:|
+| US-AR | 10 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-AZ | 14 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-CA | 18 | 18 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-CO | 8 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
@@ -73,8 +77,10 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 | US-NV | 10 | 8 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-NY | 12 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-OH | 14 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
+| US-OK | 10 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-OR | 10 | 10 | 5 | 100.0% | ✅ | ❌ | ❌ |
 | US-PA | 10 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
+| US-SC | 10 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-TN | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-TX | 14 | 12 | 1 | 100.0% | ✅ | ❌ | ❌ |
 | US-VA | 14 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
@@ -193,6 +199,21 @@ FIX-03-dependent) EN/ES citation-shape consistency.
 | or-marker-dmv | accuracy | US-OR/en | ✅ |  |
 | or-marker-birth-cert | accuracy | US-OR/en | ✅ |  |
 | or-name-birth-cert | accuracy | US-OR/en | ✅ |  |
+| ar-name-court | accuracy | US-AR/en | ✅ |  |
+| ar-name-court-es | accuracy | US-AR/es | ✅ |  |
+| ar-birth-cert-name | accuracy | US-AR/en | ✅ |  |
+| ar-marker-volatile | refusal | US-AR/en | ✅ |  |
+| ar-birth-marker-volatile | refusal | US-AR/en | ✅ |  |
+| ok-name-court | accuracy | US-OK/en | ✅ |  |
+| ok-name-court-es | accuracy | US-OK/es | ✅ |  |
+| ok-birth-cert-name | accuracy | US-OK/en | ✅ |  |
+| ok-marker-volatile | refusal | US-OK/en | ✅ |  |
+| ok-birth-marker-volatile | refusal | US-OK/en | ✅ |  |
+| sc-name-court | accuracy | US-SC/en | ✅ |  |
+| sc-name-court-es | accuracy | US-SC/es | ✅ |  |
+| sc-birth-cert-name | accuracy | US-SC/en | ✅ |  |
+| sc-marker-volatile | refusal | US-SC/en | ✅ |  |
+| sc-birth-marker-volatile | refusal | US-SC/en | ✅ |  |
 | de-name-court | accuracy | US-DE/en | ✅ |  |
 | de-marker-dl | accuracy | US-DE/en | ✅ |  |
 | de-birth-marker | accuracy | US-DE/en | ✅ |  |

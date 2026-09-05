@@ -1,0 +1,130 @@
+[
+  {
+    "id": "ar.court-order.name",
+    "jurisdiction": "US-AR",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Arkansas name change petition",
+    "statement": "In Arkansas you ask a circuit court judge in the county where you live to change your legal name by filing a Petition for Name Change.",
+    "detail": "You prepare a civil cover sheet and a notarized Petition for Name Change stating your current legal name, date of birth, county, the new name you want, and your reason for the change. File the original and two copies with the Circuit Clerk's Office. You then appear before a judge, who may ask you questions under oath — such as your current name, date of birth, and reason for the change — before deciding whether to grant the change.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The Circuit Clerk requires a filing fee of around $165, though the exact amount depends on the county. If you cannot afford it, you can file an In Forma Pauperis petition asking a judge to waive the fee.",
+      "fee_waiver": true
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://a.arlawhelp.org/name-change/adults",
+      "title": "Arkansas Law Help — Name Change for Adults",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "en"
+  },
+  {
+    "id": "ar.drivers-license.name",
+    "jurisdiction": "US-AR",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Arkansas driver's license and ID name change",
+    "statement": "To update the name on your Arkansas driver's license or ID card, the Office of Driver Services uses an Affidavit of Legal Name Change.",
+    "detail": "This form is posted on the Office of Driver Services' public forms list. That list does not spell out which supporting documents to bring for a name change specifically — contact Driver Services for current requirements before you go.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dfa.arkansas.gov/office/driver-services/driver-services-forms/",
+      "title": "Arkansas DFA — Driver Services Forms",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ar-ds-affidavit-name-change",
+    "language": "en"
+  },
+  {
+    "id": "ar.drivers-license.gender-marker",
+    "jurisdiction": "US-AR",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Arkansas driver's license and ID gender information",
+    "statement": "Arkansas will only change the gender on your driver's license or ID to match your amended birth certificate. It must say MALE (M) or FEMALE (F). It cannot say \"X\" or be left blank.",
+    "detail": "You fill out an Application to Amend Gender Information. You send it with a copy of a birth certificate that already shows the new gender. Arkansas's own process to change the sex on a birth certificate needs a court order tied to surgery (see the birth-certificate record for this jurisdiction). So there is no easier way to change it here first.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dfa.arkansas.gov/wp-content/uploads/DS_GenderApplication.pdf",
+      "title": "Arkansas DFA Office of Driver Services — Application to Amend Gender Information Contained on Driver's License or Identification Card",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "ar-ds-gender-application",
+    "language": "en"
+  },
+  {
+    "id": "ar.birth-certificate.name",
+    "jurisdiction": "US-AR",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Arkansas birth certificate name change",
+    "statement": "Arkansas treats a change of surname on a birth certificate as one of the actions that requires a court order before the Department of Health will change the certificate.",
+    "detail": "Send the Arkansas Department of Health a certified copy of the court order along with the $15.00 legal fee for amending the certificate, plus the fee for any new certified copies you want ($12.00 for the first copy, $10.00 for each additional copy ordered at the same time). Normally an attorney is needed for the court step.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "This is the legal fee to amend the certificate. A certified copy of the new certificate costs $12 for the first copy and $10 for each additional copy ordered at the same time."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://healthy.arkansas.gov/programs-services/certificates-records/change-or-amend-a-birth-or-death-certificate/",
+      "title": "Arkansas Department of Health — Change or Amend a Birth or Death Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ar.birth-certificate.gender-marker",
+    "jurisdiction": "US-AR",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Arkansas birth certificate sex designation",
+    "statement": "Arkansas will only change the sex on a birth certificate together with a court order, and that order must say the sex is being changed because of a surgical procedure.",
+    "detail": "An attorney is normally needed for this court process. Once you have the court order, send a certified copy to the Arkansas Department of Health — it must specifically ask to change the person's name and state that the sex is to be changed due to a surgical procedure. No additional forms are required beyond the order and payment.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page doesn't restate a fee; Arkansas's standard amendment and certified-copy fees apply (see the birth-certificate name-change record for those amounts)."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://healthy.arkansas.gov/programs-services/certificates-records/change-or-amend-a-birth-or-death-certificate/change-sex-and-name-on-a-birth-record/",
+      "title": "Arkansas Department of Health — Change Sex and Name on a Birth Record",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]

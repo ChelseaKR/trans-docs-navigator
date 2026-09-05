@@ -139,6 +139,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // and birth-certificate records instead cite gencourt.state.nh.us (the statute site),
     // which is not blocked and is checkable.
     "https://www.courts.nh.gov/sites/g/files/ehbemt471/files/documents/2021-06/filing_fees.pdf",
+    // Arkansas: both are PDFs whose text this pipeline cannot extract, so no
+    // baseline can be taken — deliberate, with the Arkansas corpus.
+    "https://www.dfa.arkansas.gov/wp-content/uploads/Affidavit_of_Legal_Name_Change_2019.pdf",
+    "https://www.dfa.arkansas.gov/wp-content/uploads/DS_GenderApplication.pdf",
     "https://www.dmv.nh.gov/drivers-licensenon-driver-ids/update-personal-information",
     // Nevada: all three are PDFs whose text this pipeline cannot extract, so no
     // baseline can be taken — deliberate, with the Nevada corpus.

@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 298 |
-| Load-bearing assertions found | 750 |
-| — checked and **supported** by the cited source | 530 |
+| Records audited | 328 |
+| Load-bearing assertions found | 811 |
+| — checked and **supported** by the cited source | 585 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 220 |
-| of the checked: literal (fee / duration / form-id) matches | 346 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 184 |
+| — **UNCHECKABLE** (reported, never passed) | 226 |
+| of the checked: literal (fee / duration / form-id) matches | 380 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 205 |
 
 ## What this gate cannot vouch for
 
-- **1141 of 1432 prose sentences** in the corpus carry no extractable
+- **1238 of 1548 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **400 sentences state a negative** (`you do not need a court order`, `the page no
+- **432 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **184 assertions are necessary-condition only**: the source discusses the topic, which
+- **205 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **8 cited sources refuse automated fetching entirely**, so no
@@ -49,9 +49,11 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 
 ## Uncheckable assertions (reported, never passed)
 
-**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 86 assertion(s):
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 90 assertion(s):
 
 - `az.drivers-license.gender-marker · a court order is required`
+- `ar.drivers-license.gender-marker · form_ref "ar-ds-gender-application" (Application to Amend Gender Information Contained on Driver's License or Identification Card) carries no form identifier to match on`
+- `ar.drivers-license.gender-marker · a court order is required`
 - `de.court-order.name · costs $85`
 - `de.court-order.name · form_ref "de-ccp-name-change-packet" (Change of Name Petition Packet — Court of Common Pleas for the State of Delaware) carries no form identifier to match on`
 - `de.court-order.name · a notarized signature is required`
@@ -95,11 +97,23 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `pa.birth-certificate.name · a court order is required`
 - `pa.birth-certificate.name · a notarized signature is required`
 - `pa.birth-certificate.name · states "45 day"`
+- `ar.drivers-license.gender-marker.es · form_ref "ar-ds-gender-application" (Application to Amend Gender Information Contained on Driver's License or Identification Card) carries no form identifier to match on`
+- `ar.drivers-license.gender-marker.es · a court order is required`
 - `az.drivers-license.gender-marker.es · a court order is required`
+- `de.birth-certificate.gender-marker.es · costs $25`
+- `de.birth-certificate.gender-marker.es · form_ref "de-dph-sexchange-requester" (Requester's Affidavit for Sex Change on Birth Certificate) carries no form identifier to match on`
+- `de.birth-certificate.gender-marker.es · a notarized signature is required`
+- `de.birth-certificate.gender-marker.es · states "2 week"`
+- `de.court-order.name.es · costs $85`
+- `de.court-order.name.es · form_ref "de-ccp-name-change-packet" (Change of Name Petition Packet — Court of Common Pleas for the State of Delaware) carries no form identifier to match on`
+- `de.court-order.name.es · a notarized signature is required`
+- `de.court-order.name.es · states $10`
+- `de.drivers-license.gender-marker.es · official form MV2020 backs this step (form_ref: de-dmv-mv2020)`
 - `md.birth-certificate.gender-marker.es · costs $10`
 - `md.birth-certificate.gender-marker.es · form_ref "md-vsa-gender-reassignment" (Application for Change in Sex Designation on a Certificate of Live Birth) carries no form identifier to match on`
 - `md.birth-certificate.gender-marker.es · a court order is required`
 - `md.birth-certificate.gender-marker.es · states "12 month"`
+- `me.drivers-license.gender-marker.es · official form MVL20 backs this step (form_ref: me-bmv-mvl20)`
 - `nc.birth-certificate.gender-marker.es · costs $39`
 - `nc.birth-certificate.gender-marker.es · official form DHHS1578 backs this step (form_ref: nc-dhhs-1578)`
 - `nc.birth-certificate.gender-marker.es · a notarized signature is required`
@@ -127,16 +141,6 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `pa.birth-certificate.name.es · a court order is required`
 - `pa.birth-certificate.name.es · a notarized signature is required`
 - `pa.birth-certificate.name.es · states "45 day"`
-- `de.court-order.name.es · costs $85`
-- `de.court-order.name.es · form_ref "de-ccp-name-change-packet" (Change of Name Petition Packet — Court of Common Pleas for the State of Delaware) carries no form identifier to match on`
-- `de.court-order.name.es · a notarized signature is required`
-- `de.court-order.name.es · states $10`
-- `de.drivers-license.gender-marker.es · official form MV2020 backs this step (form_ref: de-dmv-mv2020)`
-- `de.birth-certificate.gender-marker.es · costs $25`
-- `de.birth-certificate.gender-marker.es · form_ref "de-dph-sexchange-requester" (Requester's Affidavit for Sex Change on Birth Certificate) carries no form identifier to match on`
-- `de.birth-certificate.gender-marker.es · a notarized signature is required`
-- `de.birth-certificate.gender-marker.es · states "2 week"`
-- `me.drivers-license.gender-marker.es · official form MVL20 backs this step (form_ref: me-bmv-mvl20)`
 
 **the source refuses automated fetching (HTTP 403)** — 78 assertion(s):
 
@@ -193,6 +197,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `mi.drivers-license.name.es · costs $9`
 - `mi.drivers-license.name.es · a court order is required`
 - `mi.drivers-license.name.es · states $10`
+- `nh.court-order.fee.es · costs $170`
+- `nh.court-order.fee.es · states $140`
+- `nh.court-order.fee.es · states $10`
+- `nh.drivers-license.gender-marker.es · costs $10`
+- `nh.drivers-license.gender-marker.es · names form DSMV450`
+- `nh.drivers-license.name.es · this step is free (amount_usd: 0)`
+- `nh.drivers-license.name.es · states "30 day"`
+- `nh.drivers-license.name.es · names form DSMV30`
+- `nh.drivers-license.name.es · a court order is required`
+- `nh.drivers-license.name.es · states "60 day"`
 - `ny.birth-certificate.gender-marker.affidavit.es · official form DOH5303 backs this step (form_ref: ny-doh-5303)`
 - `ny.birth-certificate.gender-marker.affidavit.es · a notarized signature is required`
 - `ny.birth-certificate.gender-marker.affidavit.es · states "17 year"`
@@ -208,20 +222,11 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ny.birth-certificate.name.es · states $30`
 - `ny.court-order.name.es · a fee waiver is available (cost.fee_waiver: true)`
 - `ny.court-order.name.es · publication in a newspaper is required`
-- `nh.court-order.fee.es · costs $170`
-- `nh.court-order.fee.es · states $140`
-- `nh.court-order.fee.es · states $10`
-- `nh.drivers-license.name.es · this step is free (amount_usd: 0)`
-- `nh.drivers-license.name.es · states "30 day"`
-- `nh.drivers-license.name.es · names form DSMV30`
-- `nh.drivers-license.name.es · a court order is required`
-- `nh.drivers-license.name.es · states "60 day"`
-- `nh.drivers-license.gender-marker.es · costs $10`
-- `nh.drivers-license.gender-marker.es · names form DSMV450`
 
-**the official form has no identifier to match on** — 24 assertion(s):
+**the official form has no identifier to match on** — 26 assertion(s):
 
 - `az.birth-certificate.name · form_ref "az-affidavit-correct-amend-birth" (Affidavit to Correct or Amend a Birth Certificate) carries no form identifier to match on`
+- `ar.drivers-license.name · form_ref "ar-ds-affidavit-name-change" (Affidavit of Legal Name Change) carries no form identifier to match on`
 - `il.birth-certificate.gender-marker · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 - `il.birth-certificate.name · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 - `ma.drivers-license.name · form_ref "ma-rmv-license-id-application" (Driver's License, Learner's Permit or ID Card Application) carries no form identifier to match on`
@@ -233,6 +238,7 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `nj.birth-certificate.gender-marker · form_ref "nj-doh-reg-l2" (Form REG-L2 — Request Form and Attestation to Amend Sex Designation to Reflect Gender Identity on a Birth Certificate (Adult)) carries no form identifier to match on`
 - `or.court-order.name-and-sex · form_ref "or-courts-name-sex-packet" (Name and Sex Change Packet (Adult)) carries no form identifier to match on`
 - `or.birth-certificate.name · form_ref "or-oha-court-order-name-form" (Request to Change Birth Certificate Based on Court Order of Name Change) carries no form identifier to match on`
+- `ar.drivers-license.name.es · form_ref "ar-ds-affidavit-name-change" (Affidavit of Legal Name Change) carries no form identifier to match on`
 - `az.birth-certificate.name.es · form_ref "az-affidavit-correct-amend-birth" (Affidavit to Correct or Amend a Birth Certificate) carries no form identifier to match on`
 - `il.birth-certificate.gender-marker.es · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 - `il.birth-certificate.name.es · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
@@ -294,6 +300,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 
 | Record | Lang | Supported | Unsupported | Uncheckable | Unchecked prose |
 |---|---|---|---|---|---|
+| `ar.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 4/4 |
+| `ar.birth-certificate.gender-marker.es` | es | 1 | 0 | 0 | 4/4 |
+| `ar.birth-certificate.name` | en | 4 | 0 | 0 | 2/3 |
+| `ar.birth-certificate.name.es` | es | 4 | 0 | 0 | 2/3 |
+| `ar.court-order.name` | en | 4 | 0 | 0 | 4/4 |
+| `ar.court-order.name.es` | es | 4 | 0 | 0 | 4/4 |
+| `ar.drivers-license.gender-marker` | en | 0 | 0 | 2 | 7/7 |
+| `ar.drivers-license.gender-marker.es` | es | 0 | 0 | 2 | 7/7 |
+| `ar.drivers-license.name` | en | 0 | 0 | 1 | 3/3 |
+| `ar.drivers-license.name.es` | es | 0 | 0 | 1 | 3/3 |
 | `az.birth-certificate.fees` | en | 2 | 0 | 0 | 2/3 |
 | `az.birth-certificate.fees.es` | es | 2 | 0 | 0 | 2/3 |
 | `az.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 5/5 |
@@ -514,6 +530,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `oh.drivers-license.gender-marker.law.es` | es | 0 | 0 | 0 | 3/3 |
 | `oh.drivers-license.name` | en | 1 | 0 | 0 | 3/3 |
 | `oh.drivers-license.name.es` | es | 1 | 0 | 0 | 5/5 |
+| `ok.birth-certificate.gender-marker` | en | 0 | 0 | 0 | 5/5 |
+| `ok.birth-certificate.gender-marker.es` | es | 0 | 0 | 0 | 5/5 |
+| `ok.birth-certificate.name` | en | 4 | 0 | 0 | 1/3 |
+| `ok.birth-certificate.name.es` | es | 3 | 0 | 0 | 1/3 |
+| `ok.court-order.name` | en | 1 | 0 | 0 | 2/3 |
+| `ok.court-order.name.es` | es | 1 | 0 | 0 | 2/3 |
+| `ok.drivers-license.gender-marker` | en | 0 | 0 | 0 | 3/3 |
+| `ok.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 3/3 |
+| `ok.drivers-license.name` | en | 1 | 0 | 0 | 3/4 |
+| `ok.drivers-license.name.es` | es | 1 | 0 | 0 | 3/4 |
 | `or.birth-certificate.gender-marker` | en | 9 | 0 | 0 | 4/5 |
 | `or.birth-certificate.gender-marker.es` | es | 7 | 0 | 0 | 2/5 |
 | `or.birth-certificate.name` | en | 2 | 0 | 1 | 4/4 |
@@ -534,6 +560,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `pa.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 2/3 |
 | `pa.drivers-license.name` | en | 2 | 0 | 0 | 4/5 |
 | `pa.drivers-license.name.es` | es | 2 | 0 | 0 | 4/5 |
+| `sc.birth-certificate.gender-marker` | en | 2 | 0 | 0 | 4/4 |
+| `sc.birth-certificate.gender-marker.es` | es | 2 | 0 | 0 | 4/4 |
+| `sc.birth-certificate.name` | en | 6 | 0 | 0 | 3/5 |
+| `sc.birth-certificate.name.es` | es | 6 | 0 | 0 | 3/5 |
+| `sc.court-order.name` | en | 2 | 0 | 0 | 2/3 |
+| `sc.court-order.name.es` | es | 2 | 0 | 0 | 1/3 |
+| `sc.drivers-license.gender-marker` | en | 0 | 0 | 0 | 3/3 |
+| `sc.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 3/3 |
+| `sc.drivers-license.name` | en | 3 | 0 | 0 | 3/4 |
+| `sc.drivers-license.name.es` | es | 3 | 0 | 0 | 3/4 |
 | `tn.birth-certificate.gender-marker` | en | 0 | 0 | 0 | 9/9 |
 | `tn.birth-certificate.gender-marker.es` | es | 0 | 0 | 0 | 9/9 |
 | `tn.birth-certificate.name` | en | 0 | 0 | 4 | 1/5 |
