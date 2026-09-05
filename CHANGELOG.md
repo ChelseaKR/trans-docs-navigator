@@ -8,6 +8,56 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Indiana, Iowa, and Missouri** (M6 — expand jurisdictions): 7 + 6 + 7 EN corpus records
+  (20 EN + 20 ES, 40 total), 6 referrals, and 2 forms-registry entries, each sourced from an
+  official state page, a state statute, or a state administrative rule and fetched into
+  `corpus/snapshots/`.
+  - **Indiana** requires publishing a Notice of Petition for Change of Name in a newspaper
+    once a week for three weeks, at least 30 days before the hearing (Ind. Code
+    § 34-28-2-3(a)) — but Indiana's own statewide court-approved forms packet (Coalition
+    for Court Access) lets a petitioner ask a judge to waive publication and seal the case
+    instead, citing Indiana Court of Appeals decisions recognizing the risk transgender
+    petitioners face if their case is public: *In re Name Change of A.L.*, 81 N.E.3d 283
+    (Ind. Ct. App. 2017); *In Re M.E.B.*, 126 N.E.3d 932 (Ind. Ct. App. 2019); *In Re K.H.*,
+    127 N.E.3d 257 (Ind. Ct. App. 2019). Separately, effective February 12, 2026, Indiana's
+    BMV states it will no longer let a customer change the gender on a license or ID by a
+    court-ordered gender change or physician statement (Amended Rule 140, 140 IAC 7-1.1-3) —
+    recorded as a closed path, not a process that no longer works, and marked
+    `needs_reverification`. Indiana's health department states a court order is needed to
+    change the sex on a birth record, but this project could not find an official form or
+    page describing how to get one, and a legal-aid guide (Indiana Legal Services'
+    LGBTQ+ Project) says an Indiana birth certificate's gender marker cannot be changed at
+    all — a conflict this project cannot resolve from official sources alone, so that record
+    is also `needs_reverification`.
+  - **Iowa** requires no newspaper publication for a name change (Iowa Code ch. 674) but
+    does require a 30-day wait after filing, a $195 filing fee, and a certified copy of the
+    petitioner's birth certificate. A 2025 Iowa law (Senate File 418, effective July 1,
+    2025) removed the only path Iowa Code ever had for changing the sex shown on an Iowa
+    birth certificate — a notarized physician's affidavit under the since-repealed
+    § 144.23(3) — and added Iowa Code § 4.1A, which defines "sex" for state purposes as the
+    sex observed or verified at birth. Iowa's DOT publishes no page describing any way to
+    change the sex/gender marker on a license or ID. Both gender-marker records are
+    recorded as closed/undocumented paths, not invented processes, and marked
+    `needs_reverification`.
+  - **Missouri** requires newspaper publication once a week for three consecutive weeks,
+    unless the petitioner is a documented victim of domestic violence, child abuse, or
+    family/household-member abuse (per Missouri's official Judgment for Change of Name
+    form). Missouri's Department of Revenue acknowledges a driver's-license "gender" field
+    exists and may require additional documents to change, but its own pages name no
+    document, form, or process for doing so — recorded as an honest gap, not an invented
+    one, and marked `needs_reverification`. Missouri's vital-records rule (19 CSR
+    10-10.110) requires a court order to change a birth record's sex only when the change
+    was by surgical procedure, or when paired with a name change to one typically used for
+    the opposite sex — and the state's own public correction-affidavit form omits the
+    "surgical procedure" trigger that the full regulation states, a discrepancy this record
+    surfaces rather than resolves. Missouri's courts website (`courts.mo.gov`) refuses this
+    project's declared user-agent domain-wide, so its self-help page on newspaper
+    publication is recorded as `refuses-our-user-agent`, the same honest degradation
+    already applied to NY Courts and the SSA.
+  - Both Iowa and Missouri's gender-marker findings, and Indiana's newspaper-publication
+    safety exception, directly demonstrate this repo's `needs_reverification` /
+    honest-gap discipline on contested and recently-changed law rather than describing a
+    process that does not work (PR #119's standard).
 - **Idaho, Utah, and Wyoming** (M6 — expand jurisdictions): 19 EN + 19 ES corpus records
   (court-order name change, driver's-license name and gender-marker, and birth-certificate
   name and gender-marker) across all three states, 7 referrals, and 3 forms-registry

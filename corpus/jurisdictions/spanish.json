@@ -1441,6 +1441,146 @@
     "language": "es"
   },
   {
+    "id": "ia.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-IA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Iowa",
+    "statement": "A partir de una ley de Iowa de 2025, el Código de Iowa ya no ofrece una forma de cambiar el sexo que aparece en un acta de nacimiento de Iowa: la disposición que permitía que una declaración jurada notariada de un médico cambiara la designación de sexo en un acta de nacimiento después de una cirugía u otro tratamiento fue eliminada del Código de Iowa § 144.23.",
+    "detail": "Antes de esta ley, el Código de Iowa § 144.23(3) (edición de 2025) decía: \"A notarized affidavit by a licensed physician and surgeon or osteopathic physician and surgeon stating that by reason of surgery or other treatment by the licensee, the sex designation of the person has been changed\" (una declaración jurada notariada de un médico y cirujano con licencia, indicando que por razón de cirugía u otro tratamiento, la designación de sexo de la persona ha cambiado). Esa subsección ya no existe en el Código de Iowa actual. Una nueva sección, el Código de Iowa § 4.1A, ahora define \"sexo\" para fines estatales como \"el estado de ser hombre o mujer según se observa o se verifica clínicamente al nacer\", y dice que \"género\" es sinónimo de sexo y no de identidad de género. Ambos cambios provienen de la Ley del Senado 418 (Senate File 418), firmada por el gobernador y vigente desde el 1 de julio de 2025.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legis.iowa.gov/docs/code/2026/144.23.pdf",
+      "title": "Iowa Code § 144.23 — State Registrar to Establish New Certificate of Birth (2026)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ia.birth-certificate.name.es",
+    "jurisdiction": "US-IA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Iowa",
+    "statement": "La agencia de salud de Iowa cobra una tarifa administrativa de $15 — la misma desde el 1 de julio de 2019 — para enmendar un registro de nacimiento por un cambio legal de nombre, entre otras acciones que pueden requerir una orden judicial.",
+    "detail": "Una vez que un tribunal de distrito otorga un cambio de nombre conforme al capítulo 674 del Código de Iowa, el registrador estatal de Iowa enmienda el acta de nacimiento de una persona nacida en Iowa para mostrar el nuevo nombre.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "Esta tarifa administrativa se aplica a una enmienda por cambio de nombre y a otras acciones de registros vitales."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://hhs.iowa.gov/family-community/vital-records",
+      "title": "Iowa Health and Human Services — Vital Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ia.court-order.name.es",
+    "jurisdiction": "US-IA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Iowa",
+    "statement": "Para cambiar legalmente su nombre en Iowa, presenta una Petición de Cambio de Nombre en el tribunal de distrito conforme al capítulo 674 del Código de Iowa, y paga una tarifa de presentación de $195. Debe presentarla electrónicamente a menos que el tribunal lo exima de la presentación electrónica.",
+    "detail": "Debe adjuntar a la petición una copia certificada de su acta de nacimiento; si no está disponible, explique por qué y presente otra forma de identificación. Si está casado o casada, la petición también debe notificarse a su cónyuge, lo cual puede tener un costo adicional. La ley de cambio de nombre de Iowa no exige publicar un aviso en un periódico.",
+    "cost": {
+      "amount_usd": 195,
+      "note": "Puede haber un costo adicional por notificar la petición a un cónyuge."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.iowacourts.gov/for-the-public/representing-yourself/name-change/",
+      "title": "Iowa Judicial Branch — Representing Yourself: Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ia.court-order.waiting-period.es",
+    "jurisdiction": "US-IA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Período de espera para el cambio de nombre en Iowa",
+    "statement": "Según la ley de Iowa, un tribunal no puede otorgar un decreto que cambie su nombre hasta que hayan pasado al menos treinta días desde que presentó su petición.",
+    "detail": "La propia página de autoayuda de Iowa sobre cambios de nombre no menciona este período de espera — solo lo indica la ley misma (Código de Iowa § 674.4). Una vez que el tribunal otorga el decreto, el secretario del tribunal envía una copia al registrador estatal de estadísticas vitales para que una persona nacida en Iowa pueda actualizar su acta de nacimiento.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legis.iowa.gov/docs/code/2026/674.pdf",
+      "title": "Iowa Code Chapter 674 — Changing Names (2026)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ia.drivers-license.gender-marker.es",
+    "jurisdiction": "US-IA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Marcador de género en la licencia de conducir de Iowa",
+    "statement": "El Departamento de Transporte de Iowa no publica una página que describa una forma de cambiar el sexo o el marcador de género en una licencia de conducir o identificación de Iowa. Su propia lista de designaciones opcionales solo nombra una designación de veterano, una designación de donante de órganos/tejidos, un indicador de sordera o dificultad auditiva, un indicador de directiva médica anticipada, un indicador de alerta médica y un indicador de trastorno del espectro autista — ninguna opción de sexo o marcador de género.",
+    "detail": "Una ley de Iowa de 2025 (Código de Iowa § 4.1A) define \"sexo\" para fines estatales como el sexo observado o verificado clínicamente al nacer, pero este proyecto no pudo encontrar una página o regla del DOT de Iowa que aplique esa ley directamente a las licencias de conducir o identificaciones — solo a actas de nacimiento y otros registros vitales. Cómo trata actualmente el DOT de Iowa una licencia cuyo marcador de sexo se cambió antes de esta ley, o cualquier solicitud de cambio ahora, no está claro a partir de las fuentes oficiales de este proyecto.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://iowadot.gov/drivers-licenses-ids/get-or-renew-drivers-licenses-ids-permits/designations",
+      "title": "Iowa Department of Transportation — Driver's License Designations",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ia.drivers-license.name.es",
+    "jurisdiction": "US-IA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir o identificación de Iowa",
+    "statement": "Para cambiar el nombre en una licencia de conducir o identificación de Iowa, debe ir en persona a cualquier oficina del DMV con una cita; hay un cargo de $10 y debe presentar prueba del cambio de nombre. No se aceptan fotocopias ni faxes.",
+    "detail": "El DOT de Iowa pide un documento certificado — uno con el sello y certificado original del tribunal o del registrador, no solo un sello de presentación o de fecha.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Este es el cargo indicado en esta página para un cambio de nombre."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://iowadot.gov/drivers-licenses-ids/other-services/change-information",
+      "title": "Iowa Department of Transportation — Change or Update Driver's License or ID",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "id.birth-certificate.gender-marker.es",
     "jurisdiction": "US-ID",
     "document_type": "birth-certificate",
@@ -1682,6 +1822,181 @@
     "source": {
       "url": "https://www.illinoislegalaid.org/legal-information/updating-sex-and-gender-markers-identification",
       "title": "Illinois Legal Aid Online — Actualizar Marcadores de Sexo y Género en su Identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "in.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-IN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Indiana",
+    "statement": "El departamento de salud de Indiana indica que se necesita una orden judicial para cambiar el sexo que aparece en un acta de nacimiento de Indiana.",
+    "detail": "Esta página de preguntas frecuentes no explica cómo obtener esa orden judicial, y este proyecto no pudo encontrar un formulario o página oficial de Indiana que describa ese proceso: el propio paquete estatal de petición de cambio de nombre solo ofrece actualizar el nombre en un acta de nacimiento, no la designación de sexo. Una guía aparte de ayuda legal del Proyecto LGBTQ+ de Indiana Legal Services enumera el acta de nacimiento de Indiana como un documento cuyo marcador de género no se puede cambiar en absoluto, lo cual contradice lo que indica el propio departamento de salud aquí — este proyecto no puede resolver esa contradicción usando solo fuentes oficiales.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página de preguntas frecuentes no indica una tarifa por la corrección de la designación de sexo; se aplica una tarifa aparte por una copia certificada del acta actualizada."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.in.gov/health/vital-records/frequently-asked-questions/amendments-corrections-faqs",
+      "title": "Indiana Department of Health — Amendments & Corrections FAQs",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "in.birth-certificate.name.es",
+    "jurisdiction": "US-IN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Indiana",
+    "statement": "El departamento de salud de Indiana indica que se necesita una orden judicial para cambiar el primer nombre, el segundo nombre o el apellido en un acta de nacimiento de Indiana.",
+    "detail": "Llame a la división de Registros Vitales del Departamento de Salud de Indiana al (317) 233-2700 para corregir o enmendar un acta de nacimiento; los requisitos varían según el cambio solicitado.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página de preguntas frecuentes no indica una tarifa por la corrección del nombre; se aplica una tarifa aparte por una copia certificada del acta actualizada."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.in.gov/health/vital-records/frequently-asked-questions/amendments-corrections-faqs",
+      "title": "Indiana Department of Health — Amendments & Corrections FAQs",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "in.court-order.filing-fee.es",
+    "jurisdiction": "US-IN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Tarifa de presentación en un tribunal civil de Indiana",
+    "statement": "Indiana Legal Help remite a quienes presentan una petición de cambio de nombre a su guía sobre tarifas de presentación en tribunales civiles, que indica que presentar un caso nuevo en un tribunal civil cuesta $157, o $185 si además quiere que el alguacil entregue los documentos a las otras partes.",
+    "detail": "Bajo la ley de Indiana, no tiene que pagar una tarifa de presentación si no puede pagarla — puede pedirle al tribunal una exención de la tarifa. La tarifa de presentación solo se cobra cuando se inicia un caso, no por cada documento que se presente después.",
+    "cost": {
+      "amount_usd": 157,
+      "note": "Agregar la entrega por el alguacil a las otras partes eleva el costo a $185. Existe una exención de la tarifa si no puede pagarla.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://indianalegalhelp.org/filing-fee-frequently-asked-questions/",
+      "title": "Indiana Legal Help — Filing Fee Frequently Asked Questions",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "in.court-order.name.es",
+    "jurisdiction": "US-IN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Requisitos para cambiar de nombre en Indiana",
+    "statement": "Un adulto puede pedirle a un tribunal de Indiana que cambie legalmente su nombre si no está en la cárcel ni en prisión, tiene diecisiete años o más, no está obligado a registrarse como delincuente sexual o violento, y no está tratando de evadir a sus acreedores.",
+    "detail": "Indiana Legal Help, un proyecto de ayuda legal que colabora con los tribunales del estado, publica el paquete estatal de formularios de Cambio de Nombre para Adultos que se usa para presentar esta petición ante el secretario del tribunal; existe un paquete aparte para cambiar el nombre de un menor de edad.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica la tarifa de presentación del tribunal; consulte el registro pareado sobre tarifas de Indiana para conocer el monto."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://indianalegalhelp.org/legal-topic/name-change/",
+      "title": "Indiana Legal Help (Coalition for Court Access) — Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "in.court-order.publication.es",
+    "jurisdiction": "US-IN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Publicación en el periódico y excepción de seguridad en Indiana",
+    "statement": "Después de presentar una petición de cambio de nombre en Indiana, debe publicar un Aviso de Petición de Cambio de Nombre en un periódico local una vez por semana durante tres semanas, y la última publicación debe ser al menos treinta días antes de su audiencia.",
+    "detail": "Si publicar su petición la pondría en riesgo — el propio paquete estatal de Cambio de Nombre para Adultos pone el ser transgénero como ejemplo — las reglas judiciales de Indiana le permiten pedirle al juez que exima la publicación y selle todo el expediente del caso. El paquete incluye una Solicitud Verificada para Prohibir el Acceso Público y un memorando legal de apoyo del Proyecto de Derecho LGBT de Indiana Legal Services, que cita decisiones de la Corte de Apelaciones de Indiana que reconocen el riesgo de daño que enfrentan las personas transgénero si su caso se hace público: In re Name Change of A.L., 81 N.E.3d 283 (Ind. Ct. App. 2017); In Re M.E.B., 126 N.E.3d 932 (Ind. Ct. App. 2019); y In Re K.H., 127 N.E.3d 257 (Ind. Ct. App. 2019). Sellar el caso requiere su propia audiencia pública sobre la solicitud de sellado, que se realiza antes de la audiencia de cambio de nombre.",
+    "prerequisites": [],
+    "form_ref": "in-cca-namechange-adult",
+    "source": {
+      "url": "https://indianalegalhelp.org/wp-content/uploads/2024/09/Adult-Name-Change-Packet-INSTRUCTIONS-202409-Update.pdf",
+      "title": "Indiana Legal Help / Coalition for Court Access — Adult Name Change Instructions and Forms",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "in.drivers-license.gender-marker.es",
+    "jurisdiction": "US-IN",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de conducir de Indiana",
+    "statement": "A partir del 12 de febrero de 2026, el BMV de Indiana indica que ya no permitirá que un cliente cambie el género en su licencia de conducir o identificación de Indiana mediante un cambio de género ordenado por un tribunal o una declaración médica, según la Regla Enmendada 140 del Código Administrativo de Indiana, sección 7-1.1-3.",
+    "detail": "Esta es la propia página del BMV sobre cómo enmendar una licencia o identificación, y su lista de lo que se puede enmendar no menciona ninguna otra forma de cambiar la designación de género en una credencial de Indiana. Antes de esta regla, el BMV permitía el cambio usando su propio formulario de Declaración Médica de Cambio de Género, solo para M o F; una guía de ayuda legal del Proyecto LGBTQ+ de Indiana Legal Services (revisada en agosto de 2025) todavía describía esa vía como disponible y urgía a actuar rápido antes de que la regla entrara en vigor, lo que muestra qué tan reciente es este cierre.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.in.gov/bmv/licenses-permits-ids/learners-permits-and-drivers-licenses-overview/drivers-license/amending-your-drivers-license-or-identification-card",
+      "title": "Indiana BMV — Amending Your Driver's License or Identification Card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "in.drivers-license.name.es",
+    "jurisdiction": "US-IN",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir o identificación de Indiana",
+    "statement": "Para actualizar el nombre en su licencia de conducir o identificación de Indiana, visite una oficina del BMV dentro de los 30 días posteriores a su cambio de nombre; esto no se puede hacer en línea. Primero debe actualizar su nombre con la Administración del Seguro Social, y no vaya al BMV hasta el día hábil siguiente.",
+    "detail": "Los documentos aceptables incluyen una licencia de matrimonio, un decreto de divorcio que muestre su nombre anterior y el nuevo, una orden judicial que apruebe un cambio de nombre legal, o una copia original o certificada de un acta de nacimiento enmendada que muestre el nuevo nombre. Cualquier cambio a lo impreso en su tarjeta requiere tomar una foto nueva.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica una tarifa para actualizar el nombre; consulte con el BMV la tarifa vigente."
+    },
+    "prerequisites": [
+      "ssa-card"
+    ],
+    "source": {
+      "url": "https://www.in.gov/bmv/licenses-permits-ids/learners-permits-and-drivers-licenses-overview/drivers-license/amending-your-drivers-license-or-identification-card",
+      "title": "Indiana BMV — Amending Your Driver's License or Identification Card",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
@@ -2606,6 +2921,175 @@
     "source": {
       "url": "https://dps.mn.gov/divisions/dvs/license-and-id/common-transactions-all-dl-and-id-card-types/change-your-name-your-dl-id-card",
       "title": "Departamento de Seguridad Pública de Minnesota — Cambie su Nombre en su Licencia de Conducir o Identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "mo.birth-certificate.fees.es",
+    "jurisdiction": "US-MO",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Tarifas de corrección de actas de nacimiento de Missouri",
+    "statement": "El formulario de declaración jurada de corrección de actas de nacimiento de Missouri indica que no hay tarifa por presentar solo la declaración jurada de corrección, pero procesar una corrección por orden judicial cuesta $15, y una nueva copia certificada del acta de nacimiento corregida cuesta $15 más.",
+    "detail": "Este formulario (MO 580-0645, formulario VS-460) es la Declaración Jurada de Corrección de un Acta de Nacimiento, Defunción o Muerte Fetal; debe firmarse ante un notario.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "No hay tarifa por presentar solo la declaración jurada de corrección; una nueva copia certificada del acta de nacimiento cuesta $15 más."
+    },
+    "prerequisites": [],
+    "form_ref": "mo-dhss-580-0645",
+    "source": {
+      "url": "https://health.mo.gov/sites/health/files/media/pdf/2026/04/Aff_for_Correction.pdf",
+      "title": "Missouri Department of Health and Senior Services — Affidavit for Correction of a Birth, Death, or Fetal Death Record (MO 580-0645)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "mo.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-MO",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Missouri",
+    "statement": "La regla de registros vitales de Missouri exige una orden judicial para cambiar el sexo que aparece en un acta de nacimiento de Missouri cuando el sexo se cambió mediante un procedimiento quirúrgico, o cuando se cambian tanto el sexo como el nombre de la persona registrada y el nuevo nombre es de los que se usan típicamente para el sexo opuesto.",
+    "detail": "El propio formulario de declaración jurada de corrección de Missouri repite el segundo motivo — cambiar tanto el sexo como un nombre de género distinto — como razón por la que se requiere una orden judicial, pero sus instrucciones públicas impresas omiten el motivo de \"procedimiento quirúrgico\" que aparece en la regulación completa. Este proyecto no pudo encontrar una página oficial de Missouri que describa qué sucede con un cambio de designación de sexo que no esté acompañado de este tipo de cambio de nombre y que no involucre cirugía — la página general de corrección de registros vitales de Missouri no menciona el sexo ni el género en absoluto.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.sos.mo.gov/cmsimages/adrules/csr/current/19csr/19c10-10.pdf",
+      "title": "Missouri Code of State Regulations, 19 CSR 10-10.110 — Amending or Correcting Vital Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "mo.birth-certificate.name.es",
+    "jurisdiction": "US-MO",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Missouri",
+    "statement": "El departamento de salud de Missouri indica que algunas correcciones de actas de nacimiento pueden hacerse con una declaración jurada de corrección, pero un cambio legal de nombre requiere una orden judicial.",
+    "detail": "Cuando envía una orden judicial de cambio legal de nombre, la Oficina de Registros Vitales solicita una copia certificada de la orden judicial, la tarifa de procesamiento requerida por ley, y una carta de presentación firmada solicitando que la orden se aplique al registro.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página indica que se aplica una tarifa establecida por ley para procesar una orden judicial, pero no indica el monto aquí; el formulario de declaración jurada de corrección de Missouri indica por separado las tarifas vigentes para una corrección por orden judicial y para una nueva copia certificada."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://health.mo.gov/vital-records-registries/vital-records/correctamend-vital-record",
+      "title": "Missouri Department of Health and Senior Services — Correct/Amend a Vital Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "mo.court-order.name.es",
+    "jurisdiction": "US-MO",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Missouri",
+    "statement": "Para cambiar legalmente su nombre en Missouri, presenta una petición verificada por declaración jurada ante el tribunal de circuito del condado donde vive, indicando su nombre completo, el nuevo nombre que desea y una razón concisa para el cambio. El juez debe ordenar el cambio si queda satisfecho de que sería apropiado y no perjudicial para los intereses de ninguna otra persona.",
+    "detail": "La ley de Missouri no permite que una persona obligada a registrarse bajo la ley de registro de delincuentes sexuales de Missouri (secciones 589.400 a 589.425) cambie su nombre mientras deba permanecer registrada.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La ley no indica una tarifa de presentación; consulte al secretario del tribunal de circuito del condado donde presentará el caso para conocer el monto vigente."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://revisor.mo.gov/main/OneSection.aspx?section=527.270",
+      "title": "Missouri Revisor of Statutes — RSMo § 527.270 (Petition, Where Presented — Contents — Proceedings — Name Change Prohibited, When)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "mo.court-order.publication.es",
+    "jurisdiction": "US-MO",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Publicación en el periódico y exención de tarifa en Missouri",
+    "statement": "Después de que un tribunal de Missouri otorgue su petición de cambio de nombre, debe dar aviso público del cambio al menos una vez por semana durante tres semanas consecutivas en un periódico de circulación general del condado donde vive, y presentar prueba de ese aviso ante el secretario del tribunal dentro de los 10 días posteriores a la última publicación.",
+    "detail": "El formulario oficial de Sentencia de Cambio de Nombre de Missouri indica que este paso de publicación se omite cuando la persona peticionaria es víctima de violencia doméstica, abuso infantil o abuso por parte de un familiar o miembro del hogar, según se definen esos términos en la ley de Missouri. Los tribunales de Missouri indican que se aplica una tarifa de presentación y que el tribunal puede eximirla — a veces llamado presentar \"in forma pauperis\" — para quien no pueda pagarla. Este proyecto no pudo verificar automáticamente el texto exacto y actual de esta página: el sitio de los tribunales de Missouri bloquea la recolección automática, así que una persona la leyó directamente.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.courts.mo.gov/page.jsp?id=3834",
+      "title": "Missouri Courts — Name Change (Represent Yourself)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "mo.drivers-license.gender-marker.es",
+    "jurisdiction": "US-MO",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de conducir de Missouri",
+    "statement": "El Departamento de Ingresos de Missouri dice que pueden requerirse documentos adicionales \"para solicitar un cambio de género o fecha de nacimiento\" en una licencia de conducir o identificación, pero sus propias páginas no dicen cuáles son esos documentos, no nombran ningún formulario ni describen un proceso.",
+    "detail": "Este proyecto buscó en el sitio del Departamento de Ingresos de Missouri y en el Código de Regulaciones Estatales de Missouri una regla o formulario específico sobre el cambio del campo de sexo o género en una licencia, y no encontró ninguno — las regulaciones estatales sobre licencias de conducir solo enumeran el sexo como un campo de datos codificado en la tarjeta, sin ningún procedimiento asociado. Qué pide actualmente una oficina de licencias de Missouri para cambiar este campo no está claro a partir de las fuentes oficiales de este proyecto.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dor.mo.gov/driver-license/issuance/id-requirements.html",
+      "title": "Missouri Department of Revenue — Driver License, Nondriver ID, and Instruction Permit Requirements",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "mo.drivers-license.name.es",
+    "jurisdiction": "US-MO",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir o identificación de Missouri",
+    "statement": "Para cambiar su nombre en una licencia de conducir o identificación de Missouri, lleva documentos que verifiquen su identidad, número de Seguro Social, residencia en Missouri y su cambio legal de nombre a una oficina de licencias de Missouri, y luego solicita y paga un duplicado de la licencia o identificación con su nuevo nombre.",
+    "detail": "Los documentos aceptables para el cambio de nombre incluyen una licencia de matrimonio certificada, un decreto de divorcio certificado, una orden judicial certificada o documentos de adopción certificados — cada uno debe mostrar su nombre legal anterior, su nombre legal ordenado por el tribunal y su fecha de nacimiento, y llevar el sello oficial del tribunal (un sello de fecha o de presentación no es suficiente) — o un acta de nacimiento enmendada certificada original. No se aceptan fotocopias ni faxes, y puede requerirse más de un documento si ha tenido más de un cambio de nombre.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica una tarifa por el duplicado de licencia con cambio de nombre; consulte con el Departamento de Ingresos la tarifa vigente."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dor.mo.gov/driver-license/issuance/id-requirements.html",
+      "title": "Missouri Department of Revenue — Driver License, Nondriver ID, and Instruction Permit Requirements",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

@@ -1458,6 +1458,78 @@ const AUTHORED_GOLD: GoldItem[] = [
     // degraded needs_reverification rather than asserted open or closed either way.
     expect: { refused: true, hasFreshnessNote: true },
   },
+  {
+    id: "in-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-IN", language: "en" },
+    query: { jurisdiction: "US-IN", change_types: ["name"], documents: ["court-order"], question: "Indiana name change petition eligibility" },
+    expect: { refused: false, citesRecord: "in.court-order.name", mustContain: ["sex or violent offender"] },
+  },
+  {
+    id: "in-marker-dl",
+    suite: "refusal",
+    segment: { jurisdiction: "US-IN", language: "en" },
+    query: { jurisdiction: "US-IN", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Indiana driver's license gender marker change" },
+    // M6: Indiana's BMV closed this path outright (Amended Rule 140, effective Feb. 12, 2026),
+    // and the record is marked needs_reverification — the same honest-degradation shape as
+    // tx-marker-volatile/az-marker-volatile above, not a rendered process that no longer works
+    // (PR #119's standard).
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "in-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-IN", language: "es" },
+    query: { jurisdiction: "US-IN", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Indiana" },
+    expect: { refused: false, citesRecord: "in.court-order.name.es", mustContain: ["delincuente sexual o violento"] },
+  },
+  {
+    id: "ia-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-IA", language: "en" },
+    query: { jurisdiction: "US-IA", change_types: ["name"], documents: ["court-order"], question: "Iowa name change petition district court fee" },
+    expect: { refused: false, citesRecord: "ia.court-order.name", mustContain: ["chapter 674", "$195"] },
+  },
+  {
+    id: "ia-marker-birth-cert",
+    suite: "refusal",
+    segment: { jurisdiction: "US-IA", language: "en" },
+    query: { jurisdiction: "US-IA", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Iowa birth certificate sex designation change 2025 law" },
+    // Iowa's 2025 law (SF 418) removed the physician-affidavit path from Iowa Code § 144.23, and
+    // the record is marked needs_reverification given how recently the law changed.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "ia-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-IA", language: "es" },
+    query: { jurisdiction: "US-IA", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Iowa" },
+    expect: { refused: false, citesRecord: "ia.court-order.name.es", mustContain: ["capítulo 674", "$195"] },
+  },
+  {
+    id: "mo-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MO", language: "en" },
+    query: { jurisdiction: "US-MO", change_types: ["name"], documents: ["court-order"], question: "Missouri name change petition circuit court" },
+    expect: { refused: false, citesRecord: "mo.court-order.name", mustContain: ["circuit court"] },
+  },
+  {
+    id: "mo-marker-dl",
+    suite: "refusal",
+    segment: { jurisdiction: "US-MO", language: "en" },
+    query: { jurisdiction: "US-MO", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Missouri driver's license gender marker change process" },
+    // Missouri's DOR acknowledges a "gender" field can change but names no documents, form, or
+    // process for it, and the record is marked needs_reverification — the honest gap, not an
+    // invented procedure.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "mo-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MO", language: "es" },
+    query: { jurisdiction: "US-MO", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Missouri" },
+    expect: { refused: false, citesRecord: "mo.court-order.name.es", mustContain: ["tribunal de circuito"] },
+  },
 ];
 
 // Test-only override (tests/gate-efficacy), the same shape as scripts/security-scan.ts's
