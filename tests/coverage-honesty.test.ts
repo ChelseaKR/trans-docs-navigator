@@ -31,8 +31,34 @@ import type { CorpusRecord, Intake, Language } from "../api/types.ts";
 
 const corpus = loadCorpus();
 
-/** A state that is deliberately NOT in the corpus. Shape-valid, so the router accepts it. */
-const UNCOVERED = "US-FL";
+/**
+ * A state that is deliberately NOT in the corpus. Shape-valid, so the router accepts it.
+ *
+ * Derived, not hardcoded. This was "US-FL" until Florida was added, then "US-OH" until
+ * Ohio was added — each time silently pointing at a state the corpus had since gained,
+ * which turns every assertion below into a test of covered behaviour while still passing
+ * under a name that claims the opposite. That is the exact failure this file exists to
+ * prevent, so the fixture now reads the corpus and fails loudly if it cannot find a
+ * genuinely uncovered state.
+ */
+const ALL_STATES = [
+  "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA",
+  "ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK",
+  "OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",
+].map((s) => `US-${s}`);
+const COVERED_SET = new Set(corpus.map((r) => r.jurisdiction));
+const UNCOVERED = (() => {
+  const free = ALL_STATES.find((j) => !COVERED_SET.has(j));
+  if (!free) {
+    throw new Error(
+      "coverage-honesty: every US state is now in the corpus, so there is no uncovered " +
+        "jurisdiction left to test the no-coverage path with. This fixture must be " +
+        "rewritten (e.g. against a territory) rather than deleted — the honesty guarantee " +
+        "it pins is what stops an uncovered state rendering as a finished plan.",
+    );
+  }
+  return free;
+})();
 /** A state the corpus does cover. */
 const COVERED = "US-CA";
 
@@ -61,7 +87,7 @@ test("hasNoStateCoverage is true for a shape-valid state absent from the corpus"
 });
 
 test("hasNoStateCoverage is false for every state the intake form actually offers", () => {
-  for (const j of ["US-CA", "US-IL", "US-NY", "US-TX", "US-WA"]) {
+  for (const j of ["US-CA", "US-FL", "US-IL", "US-NY", "US-TX", "US-WA"]) {
     assert.equal(hasNoStateCoverage(j, corpus), false, `${j} is covered and must not be flagged`);
   }
 });
@@ -258,7 +284,7 @@ test("every real state's checklist states how many of its steps are unpriced", (
   // Not a hypothetical: no cited source in this corpus prices the SSA step for ANY state,
   // so today every single plan is a floor. Saying so is the honest default, and it matches
   // what the relocation planner already tells people (api/relocation.ts costModel).
-  for (const j of ["US-CA", "US-IL", "US-NY", "US-TX", "US-WA"]) {
+  for (const j of ["US-CA", "US-FL", "US-IL", "US-NY", "US-TX", "US-WA"]) {
     const cl = buildChecklist(intakeFor(j), undefined, corpus);
     const unpriced = cl.steps.filter((s) => !s.cost && !s.done).length;
     const html = renderChecklistPage(cl, corpus, "en", `jurisdiction=${j}`);

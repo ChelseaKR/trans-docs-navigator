@@ -27,6 +27,8 @@ export interface UiMessages {
   notHumanVerified: string;
   /** Label for the seed/recording date shown alongside the not-yet state. */
   recordedOn: string;
+  /** Shown on a source that no automated drift watch can cover (api/watchability.ts). */
+  sourceNotWatched: string;
   needsRecheck: string;
   discretionary: string;
   cost: string;

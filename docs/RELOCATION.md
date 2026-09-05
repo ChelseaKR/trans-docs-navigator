@@ -81,11 +81,12 @@ its own prerequisite, and renders each edge as a hazard **citing the record that
 A cycle in the corpus degrades gracefully rather than hanging the planner (tested).
 
 The birth-certificate records add the edge that matters most: **court order → birth certificate**,
-in all five states. Each state's vital-records page says it in its own words (Washington: "send a
+in all six states. Each state's vital-records page says it in its own words (Washington: "send a
 certified copy of the court-order name change"; New York: "a name change cannot be authorized
 without a court order"; Illinois: "a certified copy of the Court Order of Legal Name Change also
-must be submitted"). Note the direction: in the five states we cover, **no** source makes an
-amended birth certificate a prerequisite for a driver's-licence marker change — all four states
+must be submitted"; Pennsylvania: the amendment form asks for "a certified court order that
+authorized the change"). Note the direction: in the six states we cover, **no** source makes an
+amended birth certificate a prerequisite for a driver's-licence marker change — all five states
 that still allow one let you self-attest. We did not encode an edge no source states.
 
 **2. The closing door — steps that are only available while you still live in the origin
@@ -152,7 +153,7 @@ Deliberate silences, each one a thing a plausible-sounding planner would get wro
   transfer rule.
 - **Any residency requirement a source doesn't state** (see New York and Washington above).
 - **Which state's birth-certificate rules apply to *you*.** The corpus now covers birth
-  certificates in all five states, in EN and ES — but the app does not ask where you were born,
+  certificates in all six states, in EN and ES — but the app does not ask where you were born,
   so it shows both states in the plan and says the state of birth is what governs. It will not
   infer a birth state from an origin state.
 - **That a court order from one state will be accepted by another state's vital-records office.**
