@@ -387,6 +387,33 @@
         "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
       }
     },
+    "https://www.nj.gov/health/vital/correcting-vital/": {
+      "file": "nj-gov-health-vital-correcting-vital-190dd4b7.txt",
+      "fetched": "2026-09-05",
+      "sha256": "8a8ea6a426ffc2cbde8ed1c20d61691429396eea88d00a67ad16bf13d1fc2aa0"
+    },
+    "https://www.nj.gov/health/vital/correcting-vital/sexdesignation/": {
+      "file": "nj-gov-health-vital-correcting-vital-sexdesignation-b816769f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "42be9b2dc6bcc7ee64b512c91f5d96f411fa7ffbfd4254b7d17799a68b8bf1f9"
+    },
+    "https://www.nj.gov/transgender/name-changes/drivers-license-gender-change.shtml": {
+      "file": "nj-gov-transgender-name-changes-drivers-license-gender-change-shtml-ed9b0be3.txt",
+      "fetched": "2026-09-05",
+      "sha256": "f363be43784732641ef981fb152cdb0ab323ee6065aad8a6e65efdf4db0808a6"
+    },
+    "https://www.nj.gov/transgender/name-changes/drivers-license-name-change.shtml": {
+      "file": "nj-gov-transgender-name-changes-drivers-license-name-change-shtml-8c89d70f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c12d9f350a6b5bdad2f95c2be28884ae9c579a1727189e24668bce13b20f516a"
+    },
+    "https://www.njcourts.gov/sites/default/files/forms/10551_namechg_adult.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+      }
+    },
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml": {
       "file": null,
       "fetched": "2026-07-14",

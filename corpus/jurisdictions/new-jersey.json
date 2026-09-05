@@ -1,0 +1,126 @@
+[
+  {
+    "id": "nj.court-order.name",
+    "jurisdiction": "US-NJ",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "New Jersey name change petition",
+    "statement": "To legally change your name in New Jersey as an adult, you file a Verified Complaint and a Certification of Confidential Information for Name Change in the Law Division of the Superior Court, along with a Civil Case Information Statement and a $250 filing fee. The court sets a hearing date, and you must notify the Division of Criminal Justice of your application by certified mail at least 20 days before that hearing.",
+    "detail": "The court's packet contains five forms: the Verified Complaint (Form A), the Certification of Confidential Information for Name Change (Form A1), the Order Fixing Date of Hearing (Form B), the Final Judgment (Form C), and the Final Judgment Addendum (Form C1). One $250 fee covers a name change for multiple adult family members filed together, but anyone under 18 must instead use the separate 'Chancery Division, Family Part' name-change packet. If you have pending criminal or delinquent charges in New Jersey, you must also notify the county prosecutor (or, if the Attorney General brought the charges, the Division of Criminal Justice) at least 20 days before the hearing. After the hearing, you present a certified copy with a raised seal of the Final Judgment and Final Judgment Addendum — $25.00 per certified copy — to the Motor Vehicle Commission, if you hold a license, vehicle registration, or non-driver ID card, within two weeks of the judgment's effective date, and to the Department of Treasury within 45 days along with a $50 fee.",
+    "cost": {
+      "amount_usd": 250,
+      "note": "This is the Superior Court filing fee, paid by check or money order to the Treasurer, State of New Jersey; it covers a name change for multiple adult family members filed together. A certified copy of the Final Judgment with a raised seal costs $25.00 each, and sending one to the Department of Treasury requires an additional $50.00 fee within 45 days."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.njcourts.gov/sites/default/files/forms/10551_namechg_adult.pdf",
+      "title": "New Jersey Courts — How to Ask the Court to Change Your Name (Adults Only)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "nj-courts-namechg-adult",
+    "language": "en"
+  },
+  {
+    "id": "nj.drivers-license.name",
+    "jurisdiction": "US-NJ",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "New Jersey driver's license name change",
+    "statement": "To update your name on your New Jersey driver's license or ID card, you must first get your name legally changed. Then go to any MVC Licensing Center as a walk-in — no appointment is needed — and bring a certified copy of the court order granting your legal name change and your '6 points of ID' documents to prove your identity and date of birth.",
+    "detail": "All documents must be original or certified copies. It's okay if your birth name is on your other ID documents — they will still be accepted. You can order a certified copy of your New Jersey birth certificate using the NJ State Office of Vital Statistics' online system. While you are at the MVC Licensing Center, you can also update your gender marker on your license.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.nj.gov/transgender/name-changes/drivers-license-name-change.shtml",
+      "title": "New Jersey Transgender Information Hub — How do I change my name on my NJ driver's license?",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nj.drivers-license.gender-marker",
+    "jurisdiction": "US-NJ",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "New Jersey driver's license gender designation",
+    "statement": "To update your gender marker on your New Jersey driver's license or non-driver ID card, fill out the MVC's gender designation form and bring it to any MVC Licensing Center as a walk-in — no appointment is needed. On the form you may indicate male, female, or X for those who identify as non-binary or prefer not to have their gender specified, and you do not need medical documentation or a doctor's signature.",
+    "detail": "This process must be done in person: your documents are verified and you must turn in your current license or ID card. You also pay a standard $11 fee to receive the new card. The MVC changed this policy following a 2018 New Jersey law that ended the previous requirement of submitting proof of gender reassignment surgery to update the gender marker on official records.",
+    "cost": {
+      "amount_usd": 11,
+      "note": "Standard duplicate-card fee, paid to receive your new license or ID after the gender marker is updated."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.nj.gov/transgender/name-changes/drivers-license-gender-change.shtml",
+      "title": "New Jersey Transgender Information Hub — How do I update my gender marker on my NJ driver's license?",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "nj.birth-certificate.name",
+    "jurisdiction": "US-NJ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "New Jersey birth certificate name change",
+    "statement": "To amend the name on a New Jersey birth record after a legal name change, you mail a letter identifying the record, a copy of the original judgment of name change, and a $2 fee to the Office of Vital Statistics and Registry.",
+    "detail": "Your letter must identify the name currently reported on the record, the exact date and place where the event occurred, and — for a birth record — the mother's full maiden name and the father's full name if listed. A certified copy of the corrected certificate costs $25 for the first copy and $2 for each additional copy of the same certificate ordered at the same time, paid by check or money order to the Treasurer, State of New Jersey. The Office of Vital Statistics and Registry will not replace previously issued copies once an amendment is complete.",
+    "cost": {
+      "amount_usd": 2,
+      "note": "This is the fee to process the legal name change itself. A certified copy of the corrected certificate costs $25 for the first copy and $2 for each additional copy ordered at the same time."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.nj.gov/health/vital/correcting-vital/",
+      "title": "New Jersey Department of Health — Correcting a Vital Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nj.birth-certificate.gender-marker",
+    "jurisdiction": "US-NJ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "New Jersey birth certificate sex designation",
+    "statement": "Under the Babs Siperstein Law, people whose births were registered in New Jersey can amend the sex designation on their birth certificates to reflect their gender identity. The 2018 law removed the previous requirement that a person submit documentation of gender reassignment surgery, and instead lets you — or a parent/guardian, for a minor — document gender identity through self-attestation.",
+    "detail": "The change took effect February 1, 2019, after Governor Phil Murphy signed the legislation in July 2018. An adult uses Form REG-L2 (Request Form and Attestation to Amend Sex Designation to Reflect Gender Identity on a Birth Certificate); a parent or guardian uses Form REG-L3 for a minor.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.nj.gov/health/vital/correcting-vital/sexdesignation/",
+      "title": "New Jersey Department of Health — Amend Sex Designation to Reflect Gender Identity on a Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "nj-doh-reg-l2",
+    "language": "en"
+  }
+]
