@@ -116,6 +116,23 @@ test("Texas now has Spanish parity for name-change (court-order + drivers-licens
   assert.doesNotMatch(tx.body, /aún no están listos/);
 });
 
+test("Colorado has full Spanish parity (court-order, drivers-license, birth-certificate) — no thinner-coverage note", () => {
+  // Colorado's four EN records (co.court-order.name, co.drivers-license.gender-marker,
+  // co.birth-certificate.name, co.birth-certificate.gender-marker) each ship with an ES
+  // twin from the start, so a Spanish user must never see the honest "not ready yet" gap
+  // note for any Colorado document/change-type combination this corpus covers.
+  const co = handleRoute(
+    "GET",
+    u(
+      "/checklist?jurisdiction=US-CO&change=name&change=gender-marker&doc=court-order&doc=drivers-license&doc=birth-certificate&language=es",
+    ),
+    today,
+  );
+  assert.doesNotMatch(co.body, /aún no están listos/);
+  assert.match(co.body, /JDF 433/); // co.court-order.name.es
+  assert.match(co.body, /femenino, masculino o X/); // co.drivers-license.gender-marker.es
+});
+
 test("official-form page is localized and links to the real source (no auto-fill)", () => {
   const en = handleRoute("GET", u("/forms/us-ss-5")).body;
   assert.match(en, /complete it yourself/); // honest: we don't fill it

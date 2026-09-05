@@ -286,6 +286,56 @@ test("security gate fails on a hardcoded secret", () => {
   assert.match(r.output, /possible hardcoded bearer\/secret/);
 });
 
+// Harm: the gate enumerated files by walking the filesystem, skipping only
+// node_modules and .git. So it descended into ignored, untracked trees — build
+// output, a scratch clone, a nested git worktree — and reported what it found
+// there as "possible secret(s) committed". Two things were wrong at once: the
+// finding is a false positive, and its wording is false, because the path named
+// was never in a commit and the developer cannot fix it by editing anything the
+// repository tracks. The prefix-anchored fixture exclusion below also missed a
+// nested copy of this repo, so the gate re-detected its OWN negative control and
+// blocked every push. A gate that cries wolf on untracked scratch files teaches
+// people to pass --no-verify, which switches off the real scan too.
+//
+// The claim this gate makes is "committed", so the set it scans is what git tracks.
+test("security gate scans what git tracks, not the whole filesystem", () => {
+  const dir = mkdtempSync(join(tmpdir(), "secret-scan-tracked-"));
+  try {
+    // A clean, auditable tree so the dependency half passes and the scan is reached.
+    cpSync(fixture("security-clean"), dir, { recursive: true });
+    execFileSync("git", ["init", "-q"], { cwd: dir });
+    execFileSync("git", ["config", "user.email", "gate@example.test"], { cwd: dir });
+    execFileSync("git", ["config", "user.name", "gate"], { cwd: dir });
+    writeFileSync(join(dir, ".gitignore"), "scratch.ts\n");
+    execFileSync("git", ["add", "-A"], { cwd: dir });
+    execFileSync("git", ["commit", "-qm", "init"], { cwd: dir });
+
+    // Ignored and never committed — exactly the shape that produced the false alarm.
+    // Assembled at runtime: this test file is itself tracked and scanned, so it
+    // must not carry a credential-shaped literal of its own.
+    const credentialShaped = `const ${"api" + "Key"} = "${"abcdef0123456789ABCDEF"}";\n`;
+    writeFileSync(join(dir, "scratch.ts"), credentialShaped);
+
+    const ignored = runGate("security-scan", { env: { SECURITY_SCAN_ROOT: dir } });
+    assert.doesNotMatch(
+      ignored.output,
+      /scratch\.ts/,
+      `an untracked, ignored file must never be reported as committed. Output:\n${ignored.output}`,
+    );
+
+    // Same bytes, now tracked: the gate must still catch it, or the assertion above
+    // would be passing for the trivial reason that the scan found nothing at all.
+    execFileSync("git", ["add", "-f", "scratch.ts"], { cwd: dir });
+    execFileSync("git", ["commit", "-qm", "track the secret"], { cwd: dir });
+
+    const tracked = runGate("security-scan", { env: { SECURITY_SCAN_ROOT: dir } });
+    assert.notEqual(tracked.code, 0, `a tracked secret must fail the gate. Output:\n${tracked.output}`);
+    assert.match(tracked.output, /scratch\.ts — possible hardcoded bearer\/secret/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 // Harm: a dependency carrying a high/critical advisory ships (SEC-12). The poisoned
 // tree is written to a temp dir rather than committed as a fixture on purpose: a
 // checked-in lockfile pinning a known-vulnerable package would be picked up by the

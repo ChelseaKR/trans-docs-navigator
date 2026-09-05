@@ -160,7 +160,28 @@ const findings: string[] = [];
 const scanFile = (path: string) =>
   /\.(ts|tsx|js|mjs|json|env|ya?ml|sh|tf)$/.test(path) && !path.includes("public/vendor");
 
-for (const file of walk(ROOT, scanFile)) {
+// This gate reports *committed* secrets, so the set it scans must be the set git
+// tracks. Walking the filesystem instead also descends into ignored, untracked
+// trees — build output, scratch clones, nested worktrees — and reports their
+// contents as committed. That is both a false positive and a false statement:
+// the path named in the failure was never in a commit. It also defeats the
+// fixture exclusion below, which is prefix-anchored and so misses a nested copy
+// (".../worktrees/x/tests/gate-efficacy/fixtures/...") of this repo's own
+// deliberately-poisoned negative control.
+//
+// Falls back to walking when ROOT is not a git work tree, so a
+// SECURITY_SCAN_ROOT override pointed at a temp fixture dir still scans.
+function filesToScan(root: string): string[] {
+  const tracked = spawnSync("git", ["-C", root, "ls-files", "-z"], { encoding: "utf8" });
+  if (tracked.status !== 0 || !tracked.stdout) return walk(root, scanFile);
+  return tracked.stdout
+    .split("\0")
+    .filter(Boolean)
+    .map((rel) => join(root, rel))
+    .filter((full) => scanFile(full) && existsSync(full));
+}
+
+for (const file of filesToScan(ROOT)) {
   if (file.includes("/node_modules/") || file.endsWith("package-lock.json")) continue;
   const rel = relative(ROOT, file);
   if (rel.startsWith("scripts/security-scan.ts")) continue; // the patterns themselves
