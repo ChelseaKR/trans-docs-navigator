@@ -879,5 +879,177 @@
     "recheck_sla_days": 90,
     "form_ref": "wa-doh-422-126",
     "language": "es"
+  },
+  {
+    "id": "mi.court-order.name.es",
+    "jurisdiction": "US-MI",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Michigan",
+    "statement": "En Michigan usted presenta una Petición de Cambio de Nombre ante la división familiar del tribunal de circuito del condado donde vive, y un juez decide si la concede, con o sin audiencia.",
+    "detail": "Debe haber vivido en ese condado por lo menos un año antes de presentar la petición. Cuesta $175 presentar la petición; si no puede pagarlo, puede pedirle al juez que exonere la tarifa. A menos que el juez lo excuse por una causa justificada, como riesgo de peligro o discriminación, debe publicar el aviso de la audiencia en un periódico local, por lo general entre dos y ocho semanas antes de la audiencia según el condado. La petición le pide que declare cualquier antecedente penal, pero tener uno no impide el cambio de nombre. La ley y el formulario de petición actuales de Michigan no piden huellas dactilares. Si el juez concede la petición, hay una tarifa de $10 para inscribir la orden, y una copia certificada cuesta $11 más.",
+    "cost": {
+      "amount_usd": 175,
+      "note": "Esta es la tarifa para presentar la petición. Si se aprueba, hay una tarifa aparte de $10 para inscribir la orden, y una copia certificada cuesta $11 más. Si no puede pagar la tarifa de presentación, puede pedirle al juez que la exonere.",
+      "fee_waiver": true
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://michiganlegalhelp.org/resources/ids-and-name-change/i-want-change-my-name",
+      "title": "Michigan Legal Help — I Want to Change My Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "es"
+  },
+  {
+    "id": "mi.drivers-license.name.es",
+    "jurisdiction": "US-MI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia o identificación de Michigan",
+    "statement": "Para corregir su nombre en su licencia de conducir o identificación estatal de Michigan, visite una oficina del Secretario de Estado y muestre prueba de su cambio de nombre, junto con prueba de que la Administración del Seguro Social ya actualizó su nombre.",
+    "detail": "Primero debe actualizar su nombre con la Administración del Seguro Social. Si el nombre de su solicitud no coincide con los registros del Seguro Social, la oficina del Secretario de Estado niega la solicitud. En la oficina, presente su licencia o identificación actual y por lo menos una prueba de su cambio de nombre, como una orden judicial certificada, un certificado de matrimonio o un decreto de divorcio certificado. Michigan no ofrece opción en línea, por correo ni de autoservicio para este cambio; las visitas a la oficina suelen tardar unos 20 minutos. El personal le toma una foto nueva y le entrega una credencial temporal de papel, y su tarjeta permanente se imprime fuera del sitio y se le envía por correo.",
+    "cost": {
+      "amount_usd": 9,
+      "note": "La corrección cuesta $9 para una licencia de conducir y $10 para una identificación estatal."
+    },
+    "prerequisites": [
+      "ssa-card",
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.michigan.gov/sos/all-services/license-or-id-name-correction",
+      "title": "Michigan Department of State — License or ID Name Correction",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "mi.drivers-license.gender-marker.es",
+    "jurisdiction": "US-MI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en la licencia o identificación de Michigan",
+    "statement": "Michigan le permite elegir una designación de sexo no binaria (X), femenina (F) o masculina (M) en su licencia de conducir o identificación estatal. La corrige en persona en una oficina del Secretario de Estado completando un Formulario de Designación de Sexo.",
+    "detail": "No hay opciones en línea, por correo ni de autoservicio para este cambio; debe visitar una oficina, lo cual suele tardar unos 20 minutos. Lleve su licencia o identificación actual, y complete el Formulario de Designación de Sexo antes de su visita o en la oficina. Un Formulario de Designación de Sexo solo corrige su designación de sexo — no puede usarse también para cambiar su nombre. El personal le toma una foto nueva y le entrega una credencial temporal de papel, y su tarjeta permanente se le envía por correo.",
+    "cost": {
+      "amount_usd": 9,
+      "note": "La corrección cuesta $9 para una licencia de conducir y $10 para una identificación estatal."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction",
+      "title": "Michigan Department of State — License or ID Sex Designation Correction",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "mi-mdos-sex-designation-form",
+    "language": "es"
+  },
+  {
+    "id": "mi.birth-certificate.name.es",
+    "jurisdiction": "US-MI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Michigan",
+    "statement": "Michigan cambia el nombre en un acta de nacimiento por un cambio legal de nombre solo si usted envía una copia certificada de la orden judicial. Una orden judicial de cambio de nombre no actualiza su acta de nacimiento por sí sola.",
+    "detail": "Complete la solicitud correspondiente para corregir o cambiar un acta de nacimiento de Michigan, fírmela con firma original, e incluya una copia de su identificación con foto, la orden judicial certificada y el pago requerido. Envíe por correo la solicitud completa y los documentos a la dirección indicada en la solicitud; la orden judicial original no se le devuelve. Vital Records de Michigan dice que el trámite normal actualmente tarda de 8 a 10 semanas, y de 6 a 8 semanas si paga por el servicio acelerado; el tiempo de trámite no está garantizado.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica la tarifa de la solicitud. Vea el registro de tarifas dedicado de este estado, basado en la ley de Michigan."
+    },
+    "timeline": {
+      "typical": "8 a 10 semanas",
+      "note": "6 a 8 semanas si paga por el trámite acelerado; no está garantizado."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change",
+      "title": "Michigan Department of Health and Human Services — Correct/Change a Vital Record or Legal Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "mi-vital-records-correction-application",
+    "language": "es"
+  },
+  {
+    "id": "mi.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-MI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Michigan",
+    "statement": "Michigan le permite pedir un cambio de la designación de sexo en su acta de nacimiento de Michigan para que refleje su identidad, mediante una Autorización de Designación de Sexo. Esto es distinto de pedirle a Vital Records que corrija un error de registro.",
+    "detail": "Complete la solicitud correspondiente para corregir o cambiar un acta de nacimiento de Michigan, fírmela con firma original, e incluya una copia de su identificación con foto y el pago requerido. Envíe por correo la solicitud completa y los documentos a la dirección indicada en la solicitud. Vital Records de Michigan dice que el trámite normal actualmente tarda de 8 a 10 semanas, y de 6 a 8 semanas si paga por el servicio acelerado; el tiempo de trámite no está garantizado.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica la tarifa de la solicitud. Vea el registro de tarifas dedicado de este estado, basado en la ley de Michigan."
+    },
+    "timeline": {
+      "typical": "8 a 10 semanas",
+      "note": "6 a 8 semanas si paga por el trámite acelerado; no está garantizado."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change",
+      "title": "Michigan Department of Health and Human Services — Correct/Change a Vital Record or Legal Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "mi-mdhhs-sex-designation-form",
+    "language": "es"
+  },
+  {
+    "id": "mi.birth-certificate.fees.es",
+    "jurisdiction": "US-MI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Tarifas de corrección del acta de nacimiento de Michigan",
+    "statement": "La ley de Michigan fija una tarifa de $50 para solicitar la enmienda de un acta de nacimiento por un cambio legal de nombre documentado, y una tarifa de $25 para acelerarlo. Fija la misma tarifa base de $50, y $25 por trámite acelerado, para solicitar la creación de una nueva acta de nacimiento después de lo que la ley de tarifas llama un \"cambio de sexo.\"",
+    "detail": "Estas tarifas provienen de las Leyes Compiladas de Michigan, no de la página de instrucciones de la propia agencia. El tiempo de trámite no está garantizado sin importar qué tarifa pague.",
+    "cost": {
+      "amount_usd": 50,
+      "note": "Acelerar la solicitud cuesta $25 más. Esta tarifa base de $50 aplica tanto a una enmienda por cambio legal de nombre como a la creación de una nueva acta después de un cambio de designación de sexo."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-333-2891",
+      "title": "Michigan Legislature — MCL Section 333.2891 (Vital Records Fees)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
   }
 ]

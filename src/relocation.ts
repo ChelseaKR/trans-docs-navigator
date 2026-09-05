@@ -31,6 +31,7 @@ import { formById } from "../api/forms.ts";
 export const RELOCATION_JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-CA", label: "California" },
   { id: "US-IL", label: "Illinois" },
+  { id: "US-MI", label: "Michigan" },
   { id: "US-NY", label: "New York" },
   { id: "US-TX", label: "Texas" },
   { id: "US-WA", label: "Washington" },

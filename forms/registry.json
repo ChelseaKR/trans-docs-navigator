@@ -141,5 +141,44 @@
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "mi-mdos-sex-designation-form",
+    "jurisdiction": "US-MI",
+    "document_type": "drivers-license",
+    "change_type": ["gender-marker"],
+    "title": "Michigan Department of State — Sex Designation Form",
+    "source": {
+      "url": "https://www.michigan.gov/sos/-/media/Project/Websites/sos/License-and-ID/Forms/MDOS_Sex_designation_form.pdf",
+      "title": "Michigan Department of State — Sex Designation Form",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "mi-mdhhs-sex-designation-form",
+    "jurisdiction": "US-MI",
+    "document_type": "birth-certificate",
+    "change_type": ["gender-marker"],
+    "title": "State of Michigan Sex Designation Form",
+    "source": {
+      "url": "https://www.michigan.gov/-/media/Project/Websites/mdhhs/Folder3/Folder17/Folder217/Sex-Designation-Form-New.pdf",
+      "title": "Michigan Department of Health and Human Services — Sex Designation Form",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "mi-vital-records-correction-application",
+    "jurisdiction": "US-MI",
+    "document_type": "birth-certificate",
+    "change_type": ["name", "gender-marker"],
+    "title": "Application to Correct or Change a Michigan Birth Record",
+    "source": {
+      "url": "https://www.michigan.gov/-/media/Project/Websites/mdhhs/Folder1/Folder3/DCH-0847-CHGBX.pdf",
+      "title": "Michigan Department of Health and Human Services — Application to Correct or Change a Michigan Birth Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]

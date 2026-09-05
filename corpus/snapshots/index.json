@@ -149,6 +149,40 @@
       "fetched": "2026-07-13",
       "sha256": "147d6d139b7a709f9608f9d494eb9189aaa9bb43ad0d8339307f9e837cd2fd9e"
     },
+    "https://michiganlegalhelp.org/resources/ids-and-name-change/i-want-change-my-name": {
+      "file": "michiganlegalhelp-org-resources-ids-and-name-change-i-want-change-my-n-6b5aa298.txt",
+      "fetched": "2026-09-05",
+      "sha256": "fc217fcb3910797ba2efe9761ee9a348b998ebb22b2398939fe14b03fd8b3785"
+    },
+    "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-333-2891": {
+      "file": "legislature-mi-gov-laws-mcl-ef0f246b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "3137d0ef9648d997f636a1fbec58c3a217b38acd2caeaff159ed1df8efe13b74"
+    },
+    "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://www.michigan.gov/sos/all-services/license-or-id-name-correction": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml": {
       "file": null,
       "fetched": "2026-07-14",

@@ -1,15 +1,18 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 70,
-  "supported": 152,
+  "records": 82,
+  "supported": 174,
   "unsupported": 0,
-  "uncheckable": 32,
+  "uncheckable": 63,
   "unfetchable_sources": [
+    "https://www.michigan.gov/sos/all-services/license-or-id-name-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
+    "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
+    "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 255,
-  "total_prose_sentences": 322,
+  "unchecked_prose_sentences": 315,
+  "total_prose_sentences": 398,
   "audits": [
     {
       "recordId": "ca.court-order.name",
@@ -562,6 +565,309 @@
       ],
       "uncheckedProse": 3,
       "negatedClaims": 0,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "mi.court-order.name",
+      "language": "en",
+      "url": "https://michiganlegalhelp.org/resources/ids-and-name-change/i-want-change-my-name",
+      "results": [
+        {
+          "kind": "money",
+          "key": "175",
+          "label": "costs $175",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $175"
+        },
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "states $10",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        },
+        {
+          "kind": "money",
+          "key": "11",
+          "label": "states $11",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $11"
+        },
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        },
+        {
+          "kind": "duration",
+          "key": "2 week",
+          "label": "states \"2 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"2 week\""
+        },
+        {
+          "kind": "duration",
+          "key": "8 week",
+          "label": "states \"8 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"8 week\""
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 4,
+      "totalSentences": 8
+    },
+    {
+      "recordId": "mi.drivers-license.name",
+      "language": "en",
+      "url": "https://www.michigan.gov/sos/all-services/license-or-id-name-correction",
+      "results": [
+        {
+          "kind": "money",
+          "key": "9",
+          "label": "costs $9",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "states $10",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 7,
+      "negatedClaims": 2,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "mi.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction",
+      "results": [
+        {
+          "kind": "money",
+          "key": "9",
+          "label": "costs $9",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:mi-mdos-sex-designation-form",
+          "label": "form_ref \"mi-mdos-sex-designation-form\" (Michigan Department of State — Sex Designation Form) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "states $10",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 7,
+      "negatedClaims": 2,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "mi.birth-certificate.name",
+      "language": "en",
+      "url": "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:mi-vital-records-correction-application",
+          "label": "form_ref \"mi-vital-records-correction-application\" (Application to Correct or Change a Michigan Birth Record) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "8 week",
+          "label": "states \"8 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "10 week",
+          "label": "states \"10 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "6 week",
+          "label": "states \"6 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 3,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "mi.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:mi-mdhhs-sex-designation-form",
+          "label": "form_ref \"mi-mdhhs-sex-designation-form\" (State of Michigan Sex Designation Form) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "8 week",
+          "label": "states \"8 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "10 week",
+          "label": "states \"10 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "6 week",
+          "label": "states \"6 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "mi.birth-certificate.fees",
+      "language": "en",
+      "url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-333-2891",
+      "results": [
+        {
+          "kind": "money",
+          "key": "50",
+          "label": "costs $50",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $50"
+        },
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "states $25",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $25"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 2,
       "totalSentences": 3
     },
     {
@@ -1967,6 +2273,300 @@
       "uncheckedProse": 2,
       "negatedClaims": 1,
       "totalSentences": 5
+    },
+    {
+      "recordId": "mi.court-order.name.es",
+      "language": "es",
+      "url": "https://michiganlegalhelp.org/resources/ids-and-name-change/i-want-change-my-name",
+      "results": [
+        {
+          "kind": "money",
+          "key": "175",
+          "label": "costs $175",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $175"
+        },
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "states $10",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        },
+        {
+          "kind": "money",
+          "key": "11",
+          "label": "states $11",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $11"
+        },
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        },
+        {
+          "kind": "duration",
+          "key": "2 week",
+          "label": "states \"2 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"2 week\""
+        },
+        {
+          "kind": "duration",
+          "key": "8 week",
+          "label": "states \"8 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"8 week\""
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 4,
+      "totalSentences": 8
+    },
+    {
+      "recordId": "mi.drivers-license.name.es",
+      "language": "es",
+      "url": "https://www.michigan.gov/sos/all-services/license-or-id-name-correction",
+      "results": [
+        {
+          "kind": "money",
+          "key": "9",
+          "label": "costs $9",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "states $10",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 7,
+      "negatedClaims": 2,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "mi.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction",
+      "results": [
+        {
+          "kind": "money",
+          "key": "9",
+          "label": "costs $9",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:mi-mdos-sex-designation-form",
+          "label": "form_ref \"mi-mdos-sex-designation-form\" (Michigan Department of State — Sex Designation Form) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "states $10",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 7,
+      "negatedClaims": 3,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "mi.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:mi-vital-records-correction-application",
+          "label": "form_ref \"mi-vital-records-correction-application\" (Application to Correct or Change a Michigan Birth Record) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "8 week",
+          "label": "states \"8 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "10 week",
+          "label": "states \"10 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "6 week",
+          "label": "states \"6 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 3,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "mi.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:mi-mdhhs-sex-designation-form",
+          "label": "form_ref \"mi-mdhhs-sex-designation-form\" (State of Michigan Sex Designation Form) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "8 week",
+          "label": "states \"8 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "10 week",
+          "label": "states \"10 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "6 week",
+          "label": "states \"6 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "mi.birth-certificate.fees.es",
+      "language": "es",
+      "url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-333-2891",
+      "results": [
+        {
+          "kind": "money",
+          "key": "50",
+          "label": "costs $50",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $50"
+        },
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "states $25",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $25"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 2,
+      "totalSentences": 3
     },
     {
       "recordId": "tx.court-order.name",
