@@ -97,6 +97,10 @@ export const es: LocaleBundle = {
     stepsLabel: "pasos",
     estimatedCost: "Costo estimado",
     varies: "varía",
+    noStateCoverage:
+      "Todavía no tenemos información verificada para este estado, así que los pasos de abajo cubren solo documentos federales. Este no es un plan completo para el lugar donde vive, y no significa que su estado no le pida nada: simplemente no lo hemos verificado. Empiece por el sitio web oficial de su estado, las páginas de autoayuda de sus tribunales, o una organización de asistencia legal para personas trans.",
+    costIncomplete: (n: number) =>
+      `${n} paso(s) no tienen ninguna tarifa indicada en nuestras fuentes, así que esto es un mínimo, no un costo completo. No estimamos lo que una fuente no indica.`,
     moreHeading: "Más información",
     seeDetailedAnswer: "Vea en detalle lo que dicen las fuentes",
     officialFormIntro: "Este es un formulario oficial del gobierno. Descárguelo desde la fuente a continuación y complételo usted mismo: no lo llenamos por usted, así que siempre trabaja con la versión oficial.",

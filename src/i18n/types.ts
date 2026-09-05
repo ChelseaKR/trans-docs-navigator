@@ -104,6 +104,17 @@ export interface UiMessages {
   stepsLabel: string;
   estimatedCost: string;
   varies: string;
+  /**
+   * Shown when the corpus holds no record for the requested state, so every step on the
+   * page is federal. Says only what is true of US — that we have nothing verified — and
+   * asserts nothing about what that state does or does not require.
+   */
+  noStateCoverage: string;
+  /**
+   * Shown when some steps carry no fee in any cited source, so the summary total is a
+   * floor rather than a cost. Mirrors the relocation planner's `costUnpriced`/`costHonesty`.
+   */
+  costIncomplete(unpricedSteps: number): string;
   moreHeading: string;
   seeDetailedAnswer: string;
   officialFormIntro: string;
