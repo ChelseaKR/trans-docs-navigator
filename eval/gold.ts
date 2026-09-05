@@ -368,6 +368,34 @@ const AUTHORED_GOLD: GoldItem[] = [
     query: { jurisdiction: "US-CO", change_types: ["gender-marker"], documents: ["drivers-license"], language: "es", question: "género no binario licencia Colorado" },
     expect: { refused: false, citesRecord: "co.drivers-license.gender-marker.es", mustContain: ["DR 2083", "femenino, masculino o X"] },
   },
+  {
+    id: "mn-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MN", language: "en" },
+    query: { jurisdiction: "US-MN", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in Minnesota" },
+    expect: { refused: false, citesRecord: "mn.court-order.name", mustContain: ["six months", "two witnesses"] },
+  },
+  {
+    id: "mn-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MN", language: "en" },
+    query: { jurisdiction: "US-MN", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Minnesota driver's license sex designation change" },
+    expect: { refused: false, citesRecord: "mn.drivers-license.gender-marker", mustContain: ["height, weight, and eye color"] },
+  },
+  {
+    id: "mn-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MN", language: "es" },
+    query: { jurisdiction: "US-MN", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Minnesota" },
+    expect: { refused: false, citesRecord: "mn.court-order.name.es", mustContain: ["seis meses", "dos testigos"] },
+  },
+  {
+    id: "mn-marker-dl-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MN", language: "es" },
+    query: { jurisdiction: "US-MN", change_types: ["gender-marker"], documents: ["drivers-license"], language: "es", question: "cambio de designación de sexo en licencia de Minnesota" },
+    expect: { refused: false, citesRecord: "mn.drivers-license.gender-marker.es", mustContain: ["estatura, peso y color de ojos"] },
+  },
 
   // ── Adversarial / robustness suite ──────────────────────────────────────────
   // Stress the system the way real and hostile inputs do. These never relax the

@@ -374,6 +374,31 @@
       "file": "law-cornell-edu-regulations-colorado-5-ccr-1006-1-5-d2aa51f9.txt",
       "fetched": "2026-09-05",
       "sha256": "ec748c0f293c0c5b8d11f5a2fb185c0baef687d35c28610feec573b961f19be6"
+    },
+    "https://dps.mn.gov/divisions/dvs/license-and-id/common-transactions-all-dl-and-id-card-types/change-your-name-your-dl-id-card": {
+      "file": "dps-mn-gov-divisions-dvs-license-and-id-common-transactions-all-dl-and-b8f166b9.txt",
+      "fetched": "2026-09-05",
+      "sha256": "507faec54a951d7bee94457348d5282e9bcaf970b562d28661358bc2bf26deda"
+    },
+    "https://www.health.state.mn.us/people/vitalrecords/change.html": {
+      "file": "health-state-mn-us-people-vitalrecords-change-html-a9772da1.txt",
+      "fetched": "2026-09-05",
+      "sha256": "112a4d4e868784acfc6f401868c6f6c3307f320e6845ad3bf8eae3965e50f6b3"
+    },
+    "https://www.revisor.mn.gov/rules/7410.0400/": {
+      "file": "revisor-mn-gov-rules-7410-0400-468a5d2c.txt",
+      "fetched": "2026-09-05",
+      "sha256": "4298ea4d932bbe617292443fa3e3d743a324f1dcacda9f83818957f30188dc9a"
+    },
+    "https://www.revisor.mn.gov/statutes/cite/259.10": {
+      "file": "revisor-mn-gov-statutes-cite-259-10-44776f17.txt",
+      "fetched": "2026-09-05",
+      "sha256": "6815bdbead7a69ce7d504cdfba46244581c8c92a69e6abc7cb1abc7e5192240f"
+    },
+    "https://www.revisor.mn.gov/statutes/cite/259.11": {
+      "file": "revisor-mn-gov-statutes-cite-259-11-61169b72.txt",
+      "fetched": "2026-09-05",
+      "sha256": "4abcececfbf64e40daf147d8044c06140dbb9f2479205b83ad075dc7118d7ce5"
     }
   }
 }

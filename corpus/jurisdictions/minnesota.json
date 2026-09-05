@@ -1,0 +1,147 @@
+[
+  {
+    "id": "mn.court-order.name",
+    "jurisdiction": "US-MN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Minnesota name change petition",
+    "statement": "To legally change your name in Minnesota, you must have lived in the state for at least six months, then apply to the district court in the county where you reside. You must appear in person before the court and prove your identity with at least two witnesses.",
+    "detail": "Minnesota's name-change statute does not require you to publish notice of your petition in a newspaper, unlike the process in many other states. Anyone who intentionally gives false information on the application commits a misdemeanor.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Minnesota's name-change statute doesn't set a filing fee — the district court sets and collects its own fee. Contact the district court in the county where you'll file for the current amount."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.revisor.mn.gov/statutes/cite/259.10",
+      "title": "Minnesota Statutes § 259.10 — General Requirements (Name Change)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "mn.court-order.grant-standard",
+    "jurisdiction": "US-MN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "When a Minnesota court must grant a name change",
+    "statement": "Under Minnesota law, once you meet the name-change requirements, the court must grant your petition unless there is an intent to defraud or mislead, the change is prohibited for another specific legal reason, or — for a minor child's name — the court decides the change is not in the child's best interests.",
+    "detail": "The court files the signed order and, if the change affects any land records, a certified copy is recorded with the county recorder.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.revisor.mn.gov/statutes/cite/259.11",
+      "title": "Minnesota Statutes § 259.11 — Order; Filing Copies",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "mn.drivers-license.name",
+    "jurisdiction": "US-MN",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Minnesota driver's license name change",
+    "statement": "To change the name on your Minnesota driver's license or ID card, visit any office that offers driver's license or ID renewals and bring your current license or ID plus a certified marriage certificate, a certified divorce decree, or a certified court order that specifies the name change.",
+    "detail": "You must update your name with the Social Security Administration first — your full legal name must match your Social Security card exactly before Minnesota will update your driver's license or ID. This is an in-person transaction only; you cannot complete it online or by mail.",
+    "prerequisites": [
+      "ssa-card",
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dps.mn.gov/divisions/dvs/license-and-id/common-transactions-all-dl-and-id-card-types/change-your-name-your-dl-id-card",
+      "title": "Minnesota Department of Public Safety — Change Your Name on Your Driver's License or ID Card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "mn.drivers-license.gender-marker",
+    "jurisdiction": "US-MN",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Minnesota driver's license sex designation",
+    "statement": "Minnesota's rule for driver's license, permit, and identification card applications lists sex as one of the fields you indicate yourself on the application form, the same way you indicate your height, weight, and eye color.",
+    "detail": "Minnesota's Driver and Vehicle Services division states on its own website that this entry is self-designated, that you don't need to submit any document to change it, and that you can pick an option other than female or male — but that statement could not be cross-checked by any automated tool in this project, because that page delivers its text in a way this project's tools cannot read. A human should read that page directly before relying on it: https://dps.mn.gov/divisions/dvs/license-and-id/dl-and-id-card-information/dl-and-id-card-features-and-options",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.revisor.mn.gov/rules/7410.0400/",
+      "title": "Minnesota Rules 7410.0400 — Documenting Proof of Name, Date of Birth, Identity",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "mn.birth-certificate.name",
+    "jurisdiction": "US-MN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Minnesota birth certificate name change",
+    "statement": "To change the name on a Minnesota birth record, you submit a completed amendment application along with a certified court order or other acceptable documentation, sign the application in front of a notary public, and pay a $40 fee.",
+    "detail": "If you are 18 or older, you — not a parent — must be the one who requests the name-change amendment. You can also order a certified copy of the birth certificate showing your new name for $26.",
+    "cost": {
+      "amount_usd": 40,
+      "note": "A certified copy of the birth certificate with the amended name costs $26 more."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.health.state.mn.us/people/vitalrecords/change.html",
+      "title": "Minnesota Department of Health — Change a Birth Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "mn-mdh-birth-record-amendment",
+    "language": "en"
+  },
+  {
+    "id": "mn.birth-certificate.gender-marker",
+    "jurisdiction": "US-MN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Minnesota birth certificate sex designation",
+    "statement": "To change the sex shown on a Minnesota birth record, you submit an amendment application indicating \"sex\" as the item to amend, along with either a letter from a physician certifying you are receiving treatment for gender transition or a court order directing the change, and pay a $40 fee.",
+    "detail": "If a court order also directs the Department of Health to replace your birth record rather than amend it, the original record is sealed and the new certificate will not show that anything changed. Without a court order, an amendment still updates the record, but the certificate will include a note saying some information was changed, without naming what changed.",
+    "cost": {
+      "amount_usd": 40,
+      "note": "A certified copy of the birth certificate with the amended information costs $26 more."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.health.state.mn.us/people/vitalrecords/change.html",
+      "title": "Minnesota Department of Health — Change a Birth Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "mn-mdh-birth-record-amendment",
+    "language": "en"
+  }
+]

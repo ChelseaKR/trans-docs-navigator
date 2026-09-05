@@ -201,6 +201,22 @@
     }
   },
   {
+    "id": "mn-mdh-birth-record-amendment",
+    "jurisdiction": "US-MN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Birth Record Amendment Request",
+    "source": {
+      "url": "https://www.health.state.mn.us/people/vitalrecords/docs/bamendia_form.pdf",
+      "title": "Minnesota Department of Health — Birth Record Amendment Request",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "ny-doh-5303",
     "jurisdiction": "US-NY",
     "document_type": "birth-certificate",

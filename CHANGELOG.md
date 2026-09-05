@@ -8,6 +8,28 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Minnesota** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (a name-change
+  petition record and a separate record for the statute's mandatory-grant standard;
+  driver's-license name and sex-designation records; birth-certificate name and
+  sex-designation records), 2 referrals, and 1 forms-registry entry, each sourced from an
+  official Minnesota statute, administrative rule, or state agency page and fetched into
+  `corpus/snapshots/`. Minnesota's name-change statute (Minn. Stat. § 259.10–.11) states no
+  newspaper-publication requirement at all, and directs the court to grant a petition unless
+  narrow, enumerated reasons apply — both recorded plainly, since the source states them
+  plainly. Minnesota's driver's-license rule (Minn. R. 7410.0400) lists sex as a
+  self-indicated field with no supporting-document requirement described for it, unlike the
+  documented requirement for a name; the record states only that. What I could not encode as
+  a checkable fact: Minnesota's own DVS "features and options" page states outright that this
+  entry is self-designated, needs no documentation, and offers an option beyond female/male —
+  but that page delivers its substantive content only inside a client-side JSON payload
+  (`<script type="application/json">`), which this project's `normalize()` (shared by
+  `source-snapshot` and `source-watch`, and deliberately strips all `<script>` content) cannot
+  see; the corpus record says so plainly and points a human reviewer at the page directly,
+  the same honest degradation this repo already applies to Georgia's unextractable PDF.
+  Minnesota's district-court name-change process (mncourts.gov) 403s this project's declared
+  user-agent exactly like NY Courts, so the court-order record cites the governing statute on
+  revisor.mn.gov instead — the same "cite the authority, not the blocked page" fix already
+  applied to the SSA records.
 - **Georgia** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (court-order name
   change, driver's-license name and gender-marker, birth-certificate name and
   gender-marker, and a birth-certificate fee record), 2 referrals, and 1 forms-registry

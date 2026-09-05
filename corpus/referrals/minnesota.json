@@ -1,0 +1,38 @@
+[
+  {
+    "id": "mn.referral.outfront-minnesota",
+    "jurisdiction": "US-MN",
+    "name": "OutFront Minnesota",
+    "url": "https://www.outfront.org",
+    "note": {
+      "en": "Minnesota's largest LGBTQ+ advocacy organization; runs a crisis helpline and anti-violence, policy, and education programs relevant to transgender residents.",
+      "es": "La organización de defensa LGBTQ+ más grande de Minnesota; opera una línea de ayuda para crisis y programas contra la violencia, de política pública y de educación relevantes para residentes transgénero."
+    },
+    "source": {
+      "url": "https://www.outfront.org",
+      "title": "OutFront Minnesota",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "mn.referral.lawhelpmn",
+    "jurisdiction": "US-MN",
+    "name": "LawHelp Minnesota",
+    "url": "https://www.lawhelpmn.org",
+    "note": {
+      "en": "Statewide legal-aid portal from the Minnesota Legal Services Coalition, with a free do-it-yourself guide to filing a Minnesota name-change petition and a directory of legal-aid providers and clinics.",
+      "es": "Portal estatal de ayuda legal de la Coalición de Servicios Legales de Minnesota, con una guía gratuita para presentar usted mismo una petición de cambio de nombre en Minnesota y un directorio de proveedores y clínicas de ayuda legal."
+    },
+    "source": {
+      "url": "https://www.lawhelpmn.org",
+      "title": "LawHelp Minnesota",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]
