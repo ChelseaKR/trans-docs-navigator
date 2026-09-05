@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 184 |
-| Load-bearing assertions found | 512 |
-| — checked and **supported** by the cited source | 381 |
+| Records audited | 194 |
+| Load-bearing assertions found | 536 |
+| — checked and **supported** by the cited source | 401 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 131 |
-| of the checked: literal (fee / duration / form-id) matches | 245 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 136 |
+| — **UNCHECKABLE** (reported, never passed) | 135 |
+| of the checked: literal (fee / duration / form-id) matches | 260 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 141 |
 
 ## What this gate cannot vouch for
 
-- **700 of 884 prose sentences** in the corpus carry no extractable
+- **740 of 928 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **228 sentences state a negative** (`you do not need a court order`, `the page no
+- **247 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **136 assertions are necessary-condition only**: the source discusses the topic, which
+- **141 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **6 cited sources refuse automated fetching entirely**, so no
@@ -144,7 +144,7 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `pa.birth-certificate.name.es · a notarized signature is required`
 - `pa.birth-certificate.name.es · states "45 day"`
 
-**the official form has no identifier to match on** — 16 assertion(s):
+**the official form has no identifier to match on** — 20 assertion(s):
 
 - `az.birth-certificate.name · form_ref "az-affidavit-correct-amend-birth" (Affidavit to Correct or Amend a Birth Certificate) carries no form identifier to match on`
 - `il.birth-certificate.gender-marker · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
@@ -154,6 +154,8 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ma.birth-certificate.gender-marker · form_ref "ma-rvrs-sex-affidavit" (Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex) carries no form identifier to match on`
 - `ma.birth-certificate.name · form_ref "ma-rvrs-sex-affidavit" (Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex) carries no form identifier to match on`
 - `nj.birth-certificate.gender-marker · form_ref "nj-doh-reg-l2" (Form REG-L2 — Request Form and Attestation to Amend Sex Designation to Reflect Gender Identity on a Birth Certificate (Adult)) carries no form identifier to match on`
+- `or.court-order.name-and-sex · form_ref "or-courts-name-sex-packet" (Name and Sex Change Packet (Adult)) carries no form identifier to match on`
+- `or.birth-certificate.name · form_ref "or-oha-court-order-name-form" (Request to Change Birth Certificate Based on Court Order of Name Change) carries no form identifier to match on`
 - `az.birth-certificate.name.es · form_ref "az-affidavit-correct-amend-birth" (Affidavit to Correct or Amend a Birth Certificate) carries no form identifier to match on`
 - `il.birth-certificate.gender-marker.es · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 - `il.birth-certificate.name.es · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
@@ -162,6 +164,8 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ma.drivers-license.gender-marker.es · form_ref "ma-rmv-license-id-application" (Driver's License, Learner's Permit or ID Card Application) carries no form identifier to match on`
 - `ma.drivers-license.name.es · form_ref "ma-rmv-license-id-application" (Driver's License, Learner's Permit or ID Card Application) carries no form identifier to match on`
 - `nj.birth-certificate.gender-marker.es · form_ref "nj-doh-reg-l2" (Form REG-L2 — Request Form and Attestation to Amend Sex Designation to Reflect Gender Identity on a Birth Certificate (Adult)) carries no form identifier to match on`
+- `or.birth-certificate.name.es · form_ref "or-oha-court-order-name-form" (Request to Change Birth Certificate Based on Court Order of Name Change) carries no form identifier to match on`
+- `or.court-order.name-and-sex.es · form_ref "or-courts-name-sex-packet" (Name and Sex Change Packet (Adult)) carries no form identifier to match on`
 
 **the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name.** — 15 assertion(s):
 
@@ -342,6 +346,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `oh.drivers-license.gender-marker.law.es` | es | 0 | 0 | 0 | 3/3 |
 | `oh.drivers-license.name` | en | 1 | 0 | 0 | 3/3 |
 | `oh.drivers-license.name.es` | es | 1 | 0 | 0 | 5/5 |
+| `or.birth-certificate.gender-marker` | en | 9 | 0 | 0 | 4/5 |
+| `or.birth-certificate.gender-marker.es` | es | 7 | 0 | 0 | 2/5 |
+| `or.birth-certificate.name` | en | 2 | 0 | 1 | 4/4 |
+| `or.birth-certificate.name.es` | es | 2 | 0 | 1 | 4/4 |
+| `or.court-order.name-and-sex` | en | 0 | 0 | 1 | 4/4 |
+| `or.court-order.name-and-sex.es` | es | 0 | 0 | 1 | 5/5 |
+| `or.drivers-license.gender-marker` | en | 0 | 0 | 0 | 5/5 |
+| `or.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 4/4 |
+| `or.drivers-license.name` | en | 0 | 0 | 0 | 4/4 |
+| `or.drivers-license.name.es` | es | 0 | 0 | 0 | 4/4 |
 | `pa.birth-certificate.gender-marker` | en | 0 | 0 | 5 | 3/3 |
 | `pa.birth-certificate.gender-marker.es` | es | 0 | 0 | 5 | 3/3 |
 | `pa.birth-certificate.name` | en | 0 | 0 | 6 | 4/4 |

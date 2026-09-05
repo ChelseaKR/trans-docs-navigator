@@ -541,6 +541,42 @@ const AUTHORED_GOLD: GoldItem[] = [
     // Must never render the wrong form id (DL 329 is a different jurisdiction's DMV form).
     expect: { refused: false, citesRecord: "ca.court-order.name", mustNotContain: ["DL 329"] },
   },
+  {
+    id: "or-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-OR", language: "en" },
+    query: { jurisdiction: "US-OR", change_types: ["name"], documents: ["court-order"], question: "Oregon circuit court name change packet" },
+    expect: { refused: false, citesRecord: "or.court-order.name-and-sex", mustContain: ["circuit court", "Name and Sex Change Packet"] },
+  },
+  {
+    id: "or-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-OR", language: "es" },
+    query: { jurisdiction: "US-OR", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Oregon" },
+    expect: { refused: false, citesRecord: "or.court-order.name-and-sex.es", mustContain: ["tribunal de circuito"] },
+  },
+  {
+    id: "or-marker-dmv",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-OR", language: "en" },
+    query: { jurisdiction: "US-OR", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Oregon driver's license X gender marker self-attestation" },
+    expect: { refused: false, citesRecord: "or.drivers-license.gender-marker", mustContain: ["self-attestation", "not specified"] },
+  },
+  {
+    id: "or-marker-birth-cert",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-OR", language: "en" },
+    query: { jurisdiction: "US-OR", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Oregon birth certificate sex designation HB 2673 notarized" },
+    // Oregon's administrative route is comparatively permissive: a notarized application, no court order.
+    expect: { refused: false, citesRecord: "or.birth-certificate.gender-marker", mustContain: ["OHA 2673", "notarized"] },
+  },
+  {
+    id: "or-name-birth-cert",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-OR", language: "en" },
+    query: { jurisdiction: "US-OR", change_types: ["name"], documents: ["birth-certificate"], question: "Oregon birth certificate name change court order" },
+    expect: { refused: false, citesRecord: "or.birth-certificate.name", mustContain: ["court-ordered name change"] },
+  },
 ];
 
 // Test-only override (tests/gate-efficacy), the same shape as scripts/security-scan.ts's
