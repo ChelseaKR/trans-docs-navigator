@@ -38,6 +38,7 @@ export const RELOCATION_JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-FL", label: "Florida" },
   { id: "US-GA", label: "Georgia" },
   { id: "US-CO", label: "Colorado" },
+  { id: "US-ID", label: "Idaho" },
   { id: "US-IL", label: "Illinois" },
   { id: "US-MD", label: "Maryland" },
   { id: "US-MI", label: "Michigan" },
@@ -52,11 +53,13 @@ export const RELOCATION_JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-OR", label: "Oregon" },
   { id: "US-SC", label: "South Carolina" },
   { id: "US-TX", label: "Texas" },
+  { id: "US-UT", label: "Utah" },
   { id: "US-VA", label: "Virginia" },
   { id: "US-WA", label: "Washington" },
   { id: "US-KS", label: "Kansas" },
   { id: "US-NE", label: "Nebraska" },
   { id: "US-SD", label: "South Dakota" },
+  { id: "US-WY", label: "Wyoming" },
 ];
 
 const HOLDABLE: DocumentType[] = ["court-order", "ssa-card", "drivers-license", "passport", "birth-certificate"];

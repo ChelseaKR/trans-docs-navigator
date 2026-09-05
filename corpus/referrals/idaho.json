@@ -1,0 +1,38 @@
+[
+  {
+    "id": "id.referral.idaholegalaid",
+    "jurisdiction": "US-ID",
+    "name": "Idaho Legal Aid Services",
+    "url": "https://www.idaholegalaid.org",
+    "note": {
+      "en": "Idaho's statewide, LSC-funded civil legal aid provider for low-income residents.",
+      "es": "Proveedor estatal de ayuda legal civil de Idaho, financiado por LSC, para residentes de bajos ingresos."
+    },
+    "source": {
+      "url": "https://www.idaholegalaid.org",
+      "title": "Idaho Legal Aid Services",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "id.referral.aclu-idaho",
+    "jurisdiction": "US-ID",
+    "name": "ACLU of Idaho — LGBTQ Justice",
+    "url": "https://www.acluidaho.org/issues/lgbtq-justice/",
+    "note": {
+      "en": "ACLU of Idaho's LGBTQ+ justice issue page, covering litigation and advocacy on transgender rights in Idaho, with a linked Know Your Rights section.",
+      "es": "Página de la ACLU de Idaho sobre justicia LGBTQ+, que cubre litigios y defensa de los derechos de las personas transgénero en Idaho, con una sección enlazada de Conozca Sus Derechos."
+    },
+    "source": {
+      "url": "https://www.acluidaho.org/issues/lgbtq-justice/",
+      "title": "ACLU of Idaho — LGBTQ Justice",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

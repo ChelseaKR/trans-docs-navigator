@@ -1040,6 +1040,115 @@ const AUTHORED_GOLD: GoldItem[] = [
     query: { jurisdiction: "US-ME", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Maine" },
     expect: { refused: false, citesRecord: "me.court-order.name.es", mustContain: ["Tribunal Testamentario", "$75"] },
   },
+  {
+    id: "id-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ID", language: "en" },
+    query: { jurisdiction: "US-ID", change_types: ["name"], documents: ["court-order"], question: "Idaho name change petition filing fee" },
+    expect: { refused: false, citesRecord: "id.court-order.name", mustContain: ["$166", "four consecutive weeks"] },
+  },
+  {
+    id: "id-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ID", language: "es" },
+    query: { jurisdiction: "US-ID", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Idaho" },
+    expect: { refused: false, citesRecord: "id.court-order.name.es", mustContain: ["$166"] },
+  },
+  {
+    id: "id-birth-cert-name",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ID", language: "en" },
+    query: { jurisdiction: "US-ID", change_types: ["name"], documents: ["birth-certificate"], question: "Idaho birth certificate name change after court order" },
+    expect: { refused: false, citesRecord: "id.birth-certificate.name", mustContain: ["$20.00"] },
+  },
+  {
+    id: "id-marker-dl-silent",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ID", language: "en" },
+    query: { jurisdiction: "US-ID", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Idaho driver's license gender marker" },
+    // M6: Idaho's ITD required-documents page names no sex/gender field at all, closer to
+    // Tennessee's plain-absence pattern (PR #119) than a discretionary or open route.
+    expect: { refused: false, citesRecord: "id.drivers-license.gender-marker", mustContain: ["does not mention a sex or gender designation"] },
+  },
+  {
+    id: "id-birth-marker-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-ID", language: "en" },
+    query: { jurisdiction: "US-ID", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Idaho birth certificate sex marker change" },
+    // Idaho's sex-marker statute (39-245A) has been through federal litigation and was
+    // amended again in 2024 — recorded needs_reverification rather than a settled fact.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "ut-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-UT", language: "en" },
+    query: { jurisdiction: "US-UT", change_types: ["name"], documents: ["court-order"], question: "Utah name change district court residency" },
+    expect: { refused: false, citesRecord: "ut.court-order.name", mustContain: ["district court", "county where you live"] },
+  },
+  {
+    id: "ut-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-UT", language: "es" },
+    query: { jurisdiction: "US-UT", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Utah" },
+    expect: { refused: false, citesRecord: "ut.court-order.name.es", mustContain: ["condado donde vive"] },
+  },
+  {
+    id: "ut-marker-dl-silent",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-UT", language: "en" },
+    query: { jurisdiction: "US-UT", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Utah driver's license gender marker" },
+    expect: { refused: false, citesRecord: "ut.drivers-license.gender-marker", mustContain: ["do not mention a sex or gender designation"] },
+  },
+  {
+    id: "ut-marker-birth-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-UT", language: "en" },
+    query: { jurisdiction: "US-UT", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Utah birth certificate sex designation change" },
+    // Utah's own current statute (26B-8-111) permits a court-ordered sex-designation
+    // change, but Utah's courts and legislature have sent conflicting signals on this over
+    // time (task brief) and a 2026 bill was reported to target it — needs_reverification,
+    // not a settled fact either way.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "wy-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WY", language: "en" },
+    query: { jurisdiction: "US-WY", change_types: ["name"], documents: ["court-order"], question: "Wyoming name change residency requirement" },
+    expect: { refused: false, citesRecord: "wy.court-order.name", mustContain: ["six (6) months", "county where you live"] },
+  },
+  {
+    id: "wy-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WY", language: "es" },
+    query: { jurisdiction: "US-WY", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Wyoming" },
+    expect: { refused: false, citesRecord: "wy.court-order.name.es", mustContain: ["condado donde vive"] },
+  },
+  {
+    id: "wy-birth-cert-name",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WY", language: "en" },
+    query: { jurisdiction: "US-WY", change_types: ["name"], documents: ["birth-certificate"], question: "Wyoming birth certificate name change after court order" },
+    expect: { refused: false, citesRecord: "wy.birth-certificate.name", mustContain: ["$55"] },
+  },
+  {
+    id: "wy-marker-dl-silent",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WY", language: "en" },
+    query: { jurisdiction: "US-WY", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Wyoming driver's license gender marker" },
+    expect: { refused: false, citesRecord: "wy.drivers-license.gender-marker", mustContain: ["does not mention a sex or gender designation"] },
+  },
+  {
+    id: "wy-marker-birth-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-WY", language: "en" },
+    query: { jurisdiction: "US-WY", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Wyoming birth certificate sex marker change" },
+    // Wyoming's official vital-records pages and statute are silent on a sex-marker
+    // process entirely (task brief: "sparsely documented") — recorded as a genuine gap,
+    // degraded needs_reverification rather than asserted open or closed either way.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
 ];
 
 // Test-only override (tests/gate-efficacy), the same shape as scripts/security-scan.ts's

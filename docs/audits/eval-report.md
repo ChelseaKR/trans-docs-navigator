@@ -8,13 +8,13 @@
 
 | Metric | Value | Threshold | n | Gate |
 |--------|------:|----------:|--:|:----:|
-| groundedness | 99.1% | 95.0% | 112 | ✅ |
-| factual_accuracy | 100.0% | 98.0% | 93 | ✅ |
-| refusal_safety | 100.0% | 100.0% | 20 | ✅ |
-| citation_coverage | 100.0% | 100.0% | 121 | ✅ |
+| groundedness | 99.2% | 95.0% | 123 | ✅ |
+| factual_accuracy | 100.0% | 98.0% | 104 | ✅ |
+| refusal_safety | 100.0% | 100.0% | 23 | ✅ |
+| citation_coverage | 100.0% | 100.0% | 135 | ✅ |
 | adversarial_safety | 100.0% | 100.0% | 8 | ✅ |
-| context_recall_at_8 | 100.0% | 80.0% | 93 | ✅ |
-| context_precision_at_1 | 94.6% | 70.0% | 93 | ✅ |
+| context_recall_at_8 | 100.0% | 80.0% | 104 | ✅ |
+| context_precision_at_1 | 95.2% | 70.0% | 104 | ✅ |
 
 ## Disaggregated accuracy (bias audit §B)
 
@@ -28,6 +28,7 @@
 | jurisdiction:US-DE | 100.0% | 4 | ✅ |
 | jurisdiction:US-FL | 100.0% | 3 | ✅ |
 | jurisdiction:US-GA | 100.0% | 4 | ✅ |
+| jurisdiction:US-ID | 100.0% | 4 | ✅ |
 | jurisdiction:US-IL | 100.0% | 1 | ✅ |
 | jurisdiction:US-KS | 100.0% | 2 | ✅ |
 | jurisdiction:US-MA | 100.0% | 2 | ✅ |
@@ -49,10 +50,12 @@
 | jurisdiction:US-SD | 100.0% | 2 | ✅ |
 | jurisdiction:US-TN | 100.0% | 4 | ✅ |
 | jurisdiction:US-TX | 100.0% | 1 | ✅ |
+| jurisdiction:US-UT | 100.0% | 3 | ✅ |
 | jurisdiction:US-VA | 100.0% | 2 | ✅ |
 | jurisdiction:US-WA | 100.0% | 2 | ✅ |
-| language:en | 100.0% | 64 | ✅ |
-| language:es | 100.0% | 29 | ✅ |
+| jurisdiction:US-WY | 100.0% | 4 | ✅ |
+| language:en | 100.0% | 72 | ✅ |
+| language:es | 100.0% | 32 | ✅ |
 
 ## Jurisdiction readiness (M6 — add only as each passes review)
 
@@ -68,6 +71,7 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 | US-DE | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-FL | 10 | 10 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-GA | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
+| US-ID | 12 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-IL | 8 | 8 | 1 | 100.0% | ✅ | ❌ | ❌ |
 | US-KS | 12 | 6 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-MA | 14 | 14 | 2 | 100.0% | ✅ | ❌ | ❌ |
@@ -89,8 +93,10 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 | US-SD | 10 | 4 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-TN | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-TX | 14 | 12 | 1 | 100.0% | ✅ | ❌ | ❌ |
+| US-UT | 16 | 10 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-VA | 14 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-WA | 10 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
+| US-WY | 10 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
 
 ## Metamorphic properties
 
@@ -244,6 +250,20 @@ FIX-03-dependent) EN/ES citation-shape consistency.
 | me-marker-dl | accuracy | US-ME/en | ✅ |  |
 | me-birth-marker | accuracy | US-ME/en | ✅ |  |
 | me-name-court-es | accuracy | US-ME/es | ✅ |  |
+| id-name-court | accuracy | US-ID/en | ✅ |  |
+| id-name-court-es | accuracy | US-ID/es | ✅ |  |
+| id-birth-cert-name | accuracy | US-ID/en | ✅ |  |
+| id-marker-dl-silent | accuracy | US-ID/en | ✅ |  |
+| id-birth-marker-volatile | refusal | US-ID/en | ✅ |  |
+| ut-name-court | accuracy | US-UT/en | ✅ |  |
+| ut-name-court-es | accuracy | US-UT/es | ✅ |  |
+| ut-marker-dl-silent | accuracy | US-UT/en | ✅ |  |
+| ut-marker-birth-volatile | refusal | US-UT/en | ✅ |  |
+| wy-name-court | accuracy | US-WY/en | ✅ |  |
+| wy-name-court-es | accuracy | US-WY/es | ✅ |  |
+| wy-birth-cert-name | accuracy | US-WY/en | ✅ |  |
+| wy-marker-dl-silent | accuracy | US-WY/en | ✅ |  |
+| wy-marker-birth-volatile | refusal | US-WY/en | ✅ |  |
 
 ## Gold-set provenance (eval validity)
 

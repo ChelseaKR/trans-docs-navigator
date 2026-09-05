@@ -850,6 +850,78 @@
         "status": "HTTP 403",
         "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
       }
+    },
+    "https://courtselfhelp.idaho.gov/Forms/Name": {
+      "file": "courtselfhelp-idaho-gov-forms-name-c372c3e8.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d1a073280bf84d044b4ff47741dd5508daed27ce669c198552a87fa3fe4d1576"
+    },
+    "https://dld.utah.gov/name-change-regular-license/": {
+      "file": "dld-utah-gov-name-change-regular-license-6ff593de.txt",
+      "fetched": "2026-09-05",
+      "sha256": "53ea1731539567e723c38b545709a7ac62ac60134603c59f2f23841aecfe5529"
+    },
+    "https://dld.utah.gov/required-documents/": {
+      "file": "dld-utah-gov-required-documents-92401a17.txt",
+      "fetched": "2026-09-05",
+      "sha256": "76863ea5dd52193e4a460aa27683f459c59e24bf0328b16adc514d09f2f054c1"
+    },
+    "https://health.wyo.gov/admin/vitalstatistics/amending-a-vital-record/": {
+      "file": "health-wyo-gov-admin-vitalstatistics-amending-a-vital-record-bb07fcd6.txt",
+      "fetched": "2026-09-05",
+      "sha256": "b5317de3282d81debd5a9f6f7c19ef63d23d25b144a2180549cbbee20e30b873"
+    },
+    "https://itd.idaho.gov/service/drivers-license-and-id-required-documents/": {
+      "file": "itd-idaho-gov-service-drivers-license-and-id-required-documents-70b7eb6a.txt",
+      "fetched": "2026-09-05",
+      "sha256": "f9ca39a153a49c6f81eae0c5391da23ad27f2483057f862b1c1fb5c835544ded"
+    },
+    "https://le.utah.gov/xcode/Title26B/Chapter8/C26B-8-S111_2025050720250507.html": {
+      "file": "le-utah-gov-xcode-title26b-chapter8-c26b-8-s111-2025050720250507-html-612581aa.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d37c458b461d40f4fbf9f7000a5260a48e06dcd09f8f3bf6980b68f8c0b580c0"
+    },
+    "https://legislature.idaho.gov/statutesrules/idstat/Title39/T39CH2/SECT39-245A/": {
+      "file": "legislature-idaho-gov-statutesrules-idstat-title39-t39ch2-sect39-245a-0a0bbba3.txt",
+      "fetched": "2026-09-05",
+      "sha256": "3cd8ab95afef778b85ac733702ea74f7de70f97e68739c7c3a1a1e36d7a73012"
+    },
+    "https://legislature.idaho.gov/statutesrules/idstat/Title73/T73CH1/SECT73-114/": {
+      "file": "legislature-idaho-gov-statutesrules-idstat-title73-t73ch1-sect73-114-07a482f3.txt",
+      "fetched": "2026-09-05",
+      "sha256": "33a28b7df920cac9d775686da446f8f1e5768161dc83eab29818c0c366f5e5e7"
+    },
+    "https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=1294&dbid=0&repo=PUBLIC-DOCUMENTS": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://vitalrecords.utah.gov/amend-a-vital-record": {
+      "file": "vitalrecords-utah-gov-amend-a-vital-record-4a897314.txt",
+      "fetched": "2026-09-05",
+      "sha256": "31792519dca8ceb3106afbb2db8b6ae0c1e35c2f48753e84c9e63b1959243b6e"
+    },
+    "https://vitalrecords.utah.gov/fee-schedule": {
+      "file": "vitalrecords-utah-gov-fee-schedule-121147c3.txt",
+      "fetched": "2026-09-05",
+      "sha256": "2944e4f52c15354ea0b65ee381c687938119478652fe7a013bc8798c9bdcd13c"
+    },
+    "https://www.dot.state.wy.us/home/driver_license_records/add_or_change_information.html": {
+      "file": "dot-state-wy-us-home-driver-license-records-add-or-change-information--51608243.txt",
+      "fetched": "2026-09-05",
+      "sha256": "fbde74f21715344da54000a193c461ebb59db07794edf32eef325370c1ca87c3"
+    },
+    "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html": {
+      "file": "utcourts-gov-en-self-help-case-categories-family-name-change-sex-chang-46a502ac.txt",
+      "fetched": "2026-09-05",
+      "sha256": "df84bd7459995d56de7622650b3fc7fc3b31e73717749e5527e7adcf467f2320"
+    },
+    "https://www.wyocourts.gov/legal-help-by-topic/adult-name-change/": {
+      "file": "wyocourts-gov-legal-help-by-topic-adult-name-change-04a60ef3.txt",
+      "fetched": "2026-09-05",
+      "sha256": "72cd1ff6657d51474b5c41f98eed18b96d8a243d6f034362aa2fb7d45e5365db"
     }
   }
 }

@@ -8,6 +8,30 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Idaho, Utah, and Wyoming** (M6 — expand jurisdictions): 19 EN + 19 ES corpus records
+  (court-order name change, driver's-license name and gender-marker, and birth-certificate
+  name and gender-marker) across all three states, 7 referrals, and 3 forms-registry
+  entries, each sourced from an official state statute, court self-help page, DMV/driver's
+  license page, or vital-records page and fetched into `corpus/snapshots/`. Idaho's current
+  birth-certificate statute (Idaho Code § 39-245A, added 2020 and amended again in 2024)
+  treats sex as a "material fact" fixed at birth, correctable after the first year only for
+  "fraud, duress, or material mistake of fact" — an earlier version of this same policy was
+  the subject of federal litigation, so both Idaho gender-marker records are marked
+  **`needs_reverification`** rather than presented as a settled bar. Utah's *current* law
+  (Utah Code § 26B-8-111) actually **permits** a court-ordered sex-designation change under
+  detailed criteria (clear-and-convincing evidence, six months' consistent expression,
+  clinically significant distress) — the opposite of a closed route — but Utah's courts and
+  legislature have sent conflicting signals on this over time, so those records are also
+  marked `needs_reverification` rather than asserted as durably settled either way. Wyoming's
+  official vital-records pages and statute (W.S. 35-1-424) never mention a sex/gender
+  designation at all; that silence is recorded as a genuine documentation gap, not inferred
+  as either an open or a closed path (PR #119's standard). Idaho's, Utah's, and Wyoming's
+  driver's-license pages are likewise silent on a sex/gender marker, recorded as `verified`
+  plain absences (Tennessee's PR #119 pattern) rather than volatile facts. Idaho's birth
+  certificate name-change source (a DHW instructions PDF) and Wyoming's and Utah's
+  registered vital-records forms have no drift baseline and are pinned in
+  `tests/watchability.test.ts` as deliberate, not silent, gaps.
+
 - **Delaware, New Hampshire, and Maine** (M6 — expand jurisdictions): 20 EN + 20 ES corpus
   records (court-order name change, driver's-license name and gender-marker, and
   birth-certificate name and gender-marker for all three states), 6 referrals, and 5

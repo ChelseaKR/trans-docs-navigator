@@ -118,9 +118,17 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // pipeline cannot extract, so no baseline can be taken — deliberate addition
     // with the Georgia corpus, not a silent drift in the watch set.
     "https://dph.georgia.gov/document/document/affidavit-amendment-form-3977-revisedpdf/download",
+    // Wyoming's Form to Correct a Wyoming Vital Record — registered in forms/registry.json
+    // (form_ref for wy.birth-certificate.name) but never fetched via `make source-baseline`,
+    // so it has no drift baseline — deliberate, with the Wyoming corpus.
+    "https://health.wyo.gov/wp-content/uploads/2026/07/WDH-VRS-Correction-Form-2026.pdf",
     // Ohio's vital-records page refuses this project's declared user-agent
     // domain-wide, so no baseline can be taken — deliberate, with the Ohio corpus.
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record",
+    // Idaho's Instructions to Request a Court Ordered Name Change on an Idaho Birth
+    // Certificate is a PDF whose text this pipeline cannot extract, so no baseline can
+    // be taken — deliberate addition with the Idaho corpus.
+    "https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=1294&dbid=0&repo=PUBLIC-DOCUMENTS",
     // Arizona: both are PDFs whose text this pipeline cannot extract, so no
     // baseline can be taken — deliberate, with the Arizona corpus.
     "https://superiorcourt.maricopa.gov/media/emucljue/name-gender-change-eng-spa.pdf",
@@ -128,6 +136,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // a PDF whose text this pipeline cannot extract, so no baseline can be taken —
     // deliberate addition with the North Carolina corpus.
     "https://vitalrecords.nc.gov/documents/NCOVR-BirthModificationsApplicationFinal-07072022v6.pdf",
+    // Utah's Form UDOH-OVRS-902 (Amendment of a Record by Court Order) — registered in
+    // forms/registry.json (form_ref for ut.birth-certificate.name) but never fetched via
+    // `make source-baseline`, so it has no drift baseline — deliberate, with the Utah corpus.
+    "https://vitalrecords.utah.gov/wp-content/uploads/902-Affidavit-to-Amend-by-Court-Order.pdf",
     "https://www.azdhs.gov/documents/vital-records/manuals/correction-affidavit-correct-amend-birth.pdf?v=20260409",
     // Tennessee's enacted "definition of sex" bill (SB 1440 / HB 239, 2023) is only
     // published as a PDF on the General Assembly's own site, so no baseline can be
