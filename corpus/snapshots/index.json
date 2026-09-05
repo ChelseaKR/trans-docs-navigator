@@ -73,10 +73,37 @@
       "fetched": "2026-07-13",
       "sha256": "f7c3985611a8e80e8403d385e1caeb1346c793675bc389e868cadacabb12af91"
     },
+    "https://health.maryland.gov/vsa/Documents/Corrections/Birth/Gender%20Reassignment/Gender%20Re-Assignment%20instructions%2009_01_2016.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://health.maryland.gov/vsa/Pages/birthcorrect.aspx": {
+      "file": "health-maryland-gov-vsa-pages-birthcorrect-aspx-cf85915e.txt",
+      "fetched": "2026-09-05",
+      "sha256": "64b2c184ed25d92067813fac17a76e6fb7a121bbba7289c7a471b99dd9235723"
+    },
+    "https://law.lis.virginia.gov/vacode/title32.1/chapter7/section32.1-269/": {
+      "file": "law-lis-virginia-gov-vacode-title32-1-chapter7-section32-1-269-73b3e9a8.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d9944d3cf395e4f855e9a3056d4497153a842b557785df3d8b663e0f37928dec"
+    },
+    "https://law.lis.virginia.gov/vacode/title8.01/chapter3/section8.01-217/": {
+      "file": "law-lis-virginia-gov-vacode-title8-01-chapter3-section8-01-217-23e4d952.txt",
+      "fetched": "2026-09-05",
+      "sha256": "4c9f2bfd841143a750740b6a5f6a2f66db7db6302bce81c9d55a6b34c7c153a3"
+    },
     "https://michiganlegalhelp.org/resources/ids-and-name-change/i-want-change-my-name": {
       "file": "michiganlegalhelp-org-resources-ids-and-name-change-i-want-change-my-n-6b5aa298.txt",
       "fetched": "2026-09-05",
       "sha256": "fc217fcb3910797ba2efe9761ee9a348b998ebb22b2398939fe14b03fd8b3785"
+    },
+    "https://mva.maryland.gov/about-mva/Pages/changing-gender.aspx": {
+      "file": "mva-maryland-gov-about-mva-pages-changing-gender-aspx-9297167f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "77b85b5bb406b6754d73e3043c5330aac949fbe3dbc15a5e934f66fe0d727e7b"
     },
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record": {
       "file": null,
@@ -163,18 +190,6 @@
       "fetched": "2026-07-13",
       "sha256": "cd236fa8c69012b04fba56a9fb7c9786d53505dddcfa9e56b2d0136b2e4d7313"
     },
-    "https://vitalrecords.nc.gov/change.htm": {
-      "file": "vitalrecords-nc-gov-change-htm-6c9e1513.txt",
-      "fetched": "2026-09-05",
-      "sha256": "4163dbe2b8f891355a27fc2af16f3ca065d4ec85e6fb1e713babb27b4bcd4b38"
-    },
-    "https://vitalrecords.nc.gov/documents/NCOVR-BirthModificationsApplicationFinal-07072022v6.pdf": {
-      "file": null,
-      "fetched": "2026-09-05",
-      "unextractable": {
-        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-      }
-    },
     "https://www.azcourts.gov/courtfilingfees/Superior-Court-Filing-Fees": {
       "file": "azcourts-gov-courtfilingfees-superior-court-filing-fees-3f08103c.txt",
       "fetched": "2026-09-05",
@@ -225,6 +240,11 @@
       "fetched": "2026-09-04",
       "sha256": "8343647fb430687194735d92f0104a514a9b0d41f1c03bf64a1b83a523aad366"
     },
+    "https://www.courts.state.md.us/legalhelp/family/namechange": {
+      "file": "courts-state-md-us-legalhelp-family-namechange-a2ece022.txt",
+      "fetched": "2026-09-05",
+      "sha256": "bb242551463e1cd109203453241f87cc3b8345bea675d646461665964a86dc91"
+    },
     "https://www.courts.wa.gov/forms/?fa=forms.static&staticID=13": {
       "file": "courts-wa-gov-forms-86a65aee.txt",
       "fetched": "2026-07-13",
@@ -234,6 +254,16 @@
       "file": "dmv-ca-gov-portal-driver-licenses-identification-cards-updating-inform-7207a6ab.txt",
       "fetched": "2026-07-13",
       "sha256": "53bb9423399b6292c22a8d0748877ea2200ff25cf77faafea41988da38710c9e"
+    },
+    "https://www.dmv.virginia.gov/licenses-ids/license/replace": {
+      "file": "dmv-virginia-gov-licenses-ids-license-replace-aec57486.txt",
+      "fetched": "2026-09-05",
+      "sha256": "7055123ca5d7b68dec025c5771d55c6eafcb41113da0e3d8bd01ee255034ec11"
+    },
+    "https://www.dmv.virginia.gov/records/personal-information-updates": {
+      "file": "dmv-virginia-gov-records-personal-information-updates-25a54ad9.txt",
+      "fetched": "2026-09-05",
+      "sha256": "9b4d4b08184908882d248eb3b1cb868ce6c437206aa485147d478794ee595ac8"
     },
     "https://www.dps.texas.gov/section/driver-license/how-change-information-your-driver-license-or-id-card": {
       "file": "dps-texas-gov-section-driver-license-how-change-information-your-drive-d1b2e244.txt",
@@ -357,6 +387,85 @@
         "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
       }
     },
+    "https://www.nj.gov/health/vital/correcting-vital/": {
+      "file": "nj-gov-health-vital-correcting-vital-190dd4b7.txt",
+      "fetched": "2026-09-05",
+      "sha256": "8a8ea6a426ffc2cbde8ed1c20d61691429396eea88d00a67ad16bf13d1fc2aa0"
+    },
+    "https://www.nj.gov/health/vital/correcting-vital/sexdesignation/": {
+      "file": "nj-gov-health-vital-correcting-vital-sexdesignation-b816769f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "42be9b2dc6bcc7ee64b512c91f5d96f411fa7ffbfd4254b7d17799a68b8bf1f9"
+    },
+    "https://www.nj.gov/transgender/name-changes/drivers-license-gender-change.shtml": {
+      "file": "nj-gov-transgender-name-changes-drivers-license-gender-change-shtml-ed9b0be3.txt",
+      "fetched": "2026-09-05",
+      "sha256": "f363be43784732641ef981fb152cdb0ab323ee6065aad8a6e65efdf4db0808a6"
+    },
+    "https://www.nj.gov/transgender/name-changes/drivers-license-name-change.shtml": {
+      "file": "nj-gov-transgender-name-changes-drivers-license-name-change-shtml-8c89d70f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c12d9f350a6b5bdad2f95c2be28884ae9c579a1727189e24668bce13b20f516a"
+    },
+    "https://www.njcourts.gov/sites/default/files/forms/10551_namechg_adult.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+      }
+    },
+    "https://www.nycourts.gov/courthelp/Family/nameChange.shtml": {
+      "file": null,
+      "fetched": "2026-07-14",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://www.ohiolegalhelp.org/topic/name-change": {
+      "file": "ohiolegalhelp-org-topic-name-change-91c1ef43.txt",
+      "fetched": "2026-09-04",
+      "sha256": "41697d89c5b30ce8b9f16885e73d747ae475381d9c031b88c28147cc865e66a6"
+    },
+    "https://www.pa.gov/content/dam/copapwp-pagov/en/health/documents/topics/documents/certificates-and-records/Request%20to%20Modify%20an%20Adult's%20Birth%20Record.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.pa.gov/services/dmv/change-a-driver-license-name-or-address": {
+      "file": "pa-gov-services-dmv-change-a-driver-license-name-or-address-08403ed0.txt",
+      "fetched": "2026-07-13",
+      "sha256": "1bdf05c42c1e9597f9a3bdb9d109a2fb7ea39d1ecb42cdefe458e9ab388617ec"
+    },
+    "https://www.pa.gov/services/dmv/change-the-gender-designation-on-drivers-license-or-photo-identification-card": {
+      "file": "pa-gov-services-dmv-change-the-gender-designation-on-drivers-license-o-84f9ad21.txt",
+      "fetched": "2026-07-13",
+      "sha256": "229cab1195ed023786edc19fd33049195d039948562ad32a89b50fcc3dcfd8cb"
+    },
+    "https://www.vdh.virginia.gov/vital-records/how-to-request-an-amendment-to-a-birth-certificate/": {
+      "file": "vdh-virginia-gov-vital-records-how-to-request-an-amendment-to-a-birth--69499030.txt",
+      "fetched": "2026-09-05",
+      "sha256": "6aa21a521ee6b568b86a1973c461ba36262d3daf8625d13789a7cea7f3647457"
+    },
+    "https://www.vdh.virginia.gov/vital-records/what-is-the-procedure-to-update-a-virginia-birth-certificate-after-a-person-has-undergone-gender-transition/": {
+      "file": "vdh-virginia-gov-vital-records-what-is-the-procedure-to-update-a-virgi-40d75f25.txt",
+      "fetched": "2026-09-05",
+      "sha256": "8d362790980b564021634dd0bbe530a212f2c1a1b92b8cf823cd684555a116d5"
+    },
+    "https://vitalrecords.nc.gov/change.htm": {
+      "file": "vitalrecords-nc-gov-change-htm-6c9e1513.txt",
+      "fetched": "2026-09-05",
+      "sha256": "4163dbe2b8f891355a27fc2af16f3ca065d4ec85e6fb1e713babb27b4bcd4b38"
+    },
+    "https://vitalrecords.nc.gov/documents/NCOVR-BirthModificationsApplicationFinal-07072022v6.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
     "https://www.ncdot.gov/dmv/downloads/Documents/DL-300.pdf": {
       "file": null,
       "fetched": "2026-09-05",
@@ -388,36 +497,6 @@
       "file": "ncleg-gov-enactedlegislation-statutes-html-bysection-chapter-130a-gs-1-935a059b.txt",
       "fetched": "2026-09-05",
       "sha256": "f026c873e95d9e68f9f4d0d7f9e16af0d5eb1add988088e1d491fec683c819e8"
-    },
-    "https://www.nycourts.gov/courthelp/Family/nameChange.shtml": {
-      "file": null,
-      "fetched": "2026-07-14",
-      "unfetchable": {
-        "status": "HTTP 403",
-        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
-      }
-    },
-    "https://www.ohiolegalhelp.org/topic/name-change": {
-      "file": "ohiolegalhelp-org-topic-name-change-91c1ef43.txt",
-      "fetched": "2026-09-04",
-      "sha256": "41697d89c5b30ce8b9f16885e73d747ae475381d9c031b88c28147cc865e66a6"
-    },
-    "https://www.pa.gov/content/dam/copapwp-pagov/en/health/documents/topics/documents/certificates-and-records/Request%20to%20Modify%20an%20Adult's%20Birth%20Record.pdf": {
-      "file": null,
-      "fetched": "2026-07-13",
-      "unextractable": {
-        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-      }
-    },
-    "https://www.pa.gov/services/dmv/change-a-driver-license-name-or-address": {
-      "file": "pa-gov-services-dmv-change-a-driver-license-name-or-address-08403ed0.txt",
-      "fetched": "2026-07-13",
-      "sha256": "1bdf05c42c1e9597f9a3bdb9d109a2fb7ea39d1ecb42cdefe458e9ab388617ec"
-    },
-    "https://www.pa.gov/services/dmv/change-the-gender-designation-on-drivers-license-or-photo-identification-card": {
-      "file": "pa-gov-services-dmv-change-the-gender-designation-on-drivers-license-o-84f9ad21.txt",
-      "fetched": "2026-07-13",
-      "sha256": "229cab1195ed023786edc19fd33049195d039948562ad32a89b50fcc3dcfd8cb"
     },
     "https://www.shelbycountytn.gov/3826/Name-Changes": {
       "file": "shelbycountytn-gov-3826-name-changes-ce61ec8c.txt",
@@ -508,55 +587,6 @@
       "file": "oregon-gov-oha-ph-birthdeathcertificates-pages-changebirthrecord-aspx-0cbba9d8.txt",
       "fetched": "2026-09-05",
       "sha256": "c14029e5198902f53235eb7a24d39706fcbf3a733d4e606e8f0384eb659b6bc3"
-    },
-    "https://www.nj.gov/health/vital/correcting-vital/": {
-      "file": "nj-gov-health-vital-correcting-vital-190dd4b7.txt",
-      "fetched": "2026-09-05",
-      "sha256": "8a8ea6a426ffc2cbde8ed1c20d61691429396eea88d00a67ad16bf13d1fc2aa0"
-    },
-    "https://www.nj.gov/health/vital/correcting-vital/sexdesignation/": {
-      "file": "nj-gov-health-vital-correcting-vital-sexdesignation-b816769f.txt",
-      "fetched": "2026-09-05",
-      "sha256": "42be9b2dc6bcc7ee64b512c91f5d96f411fa7ffbfd4254b7d17799a68b8bf1f9"
-    },
-    "https://www.nj.gov/transgender/name-changes/drivers-license-gender-change.shtml": {
-      "file": "nj-gov-transgender-name-changes-drivers-license-gender-change-shtml-ed9b0be3.txt",
-      "fetched": "2026-09-05",
-      "sha256": "f363be43784732641ef981fb152cdb0ab323ee6065aad8a6e65efdf4db0808a6"
-    },
-    "https://www.nj.gov/transgender/name-changes/drivers-license-name-change.shtml": {
-      "file": "nj-gov-transgender-name-changes-drivers-license-name-change-shtml-8c89d70f.txt",
-      "fetched": "2026-09-05",
-      "sha256": "c12d9f350a6b5bdad2f95c2be28884ae9c579a1727189e24668bce13b20f516a"
-    },
-    "https://www.njcourts.gov/sites/default/files/forms/10551_namechg_adult.pdf": {
-      "file": null,
-      "fetched": "2026-09-05",
-      "unextractable": {
-        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
-      }
-    },
-    "https://www.courts.state.md.us/legalhelp/family/namechange": {
-      "file": "courts-state-md-us-legalhelp-family-namechange-a2ece022.txt",
-      "fetched": "2026-09-05",
-      "sha256": "bb242551463e1cd109203453241f87cc3b8345bea675d646461665964a86dc91"
-    },
-    "https://health.maryland.gov/vsa/Pages/birthcorrect.aspx": {
-      "file": "health-maryland-gov-vsa-pages-birthcorrect-aspx-cf85915e.txt",
-      "fetched": "2026-09-05",
-      "sha256": "64b2c184ed25d92067813fac17a76e6fb7a121bbba7289c7a471b99dd9235723"
-    },
-    "https://mva.maryland.gov/about-mva/Pages/changing-gender.aspx": {
-      "file": "mva-maryland-gov-about-mva-pages-changing-gender-aspx-9297167f.txt",
-      "fetched": "2026-09-05",
-      "sha256": "77b85b5bb406b6754d73e3043c5330aac949fbe3dbc15a5e934f66fe0d727e7b"
-    },
-    "https://health.maryland.gov/vsa/Documents/Corrections/Birth/Gender%20Reassignment/Gender%20Re-Assignment%20instructions%2009_01_2016.pdf": {
-      "file": null,
-      "fetched": "2026-09-05",
-      "unextractable": {
-        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-      }
     }
   }
 }

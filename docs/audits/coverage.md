@@ -30,6 +30,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
 | US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
+| US-VA | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
 
 ## English · Gender-marker change
@@ -55,6 +56,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-PA | — | — | ✅ | — | ✅ | — |
 | US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
+| US-VA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 
 ## Spanish · Name change
@@ -80,6 +82,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
 | US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
+| US-VA | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
 
 ## Spanish · Gender-marker change
@@ -105,6 +108,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-PA | — | — | ✅ | — | ✅ | — |
 | US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
+| US-VA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 
-**Totals:** 178 current · 20 degraded · 282 uncovered cells.
+**Totals:** 184 current · 24 degraded · 296 uncovered cells.

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "va.referral.equality-virginia",
+    "jurisdiction": "US-VA",
+    "name": "Equality Virginia",
+    "url": "https://equalityvirginia.org",
+    "note": {
+      "en": "A statewide LGBTQ+ advocacy organization that publishes plain-language guides on updating Virginia identity documents, including DMV and birth-certificate gender-marker processes.",
+      "es": "Una organización estatal de defensa LGBTQ+ que publica guías en lenguaje sencillo sobre cómo actualizar los documentos de identidad de Virginia, incluidos los procesos del DMV y del acta de nacimiento para el marcador de género."
+    },
+    "source": {
+      "url": "https://equalityvirginia.org",
+      "title": "Equality Virginia",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "va.referral.legal-aid-justice-center",
+    "jurisdiction": "US-VA",
+    "name": "Legal Aid Justice Center",
+    "url": "https://www.justice4all.org",
+    "note": {
+      "en": "A Virginia legal-aid organization providing direct representation and advocacy for low-income Virginians, including help with legal name-change petitions.",
+      "es": "Una organización de ayuda legal de Virginia que ofrece representación directa y defensa para residentes de bajos ingresos, incluida ayuda con peticiones de cambio de nombre legal."
+    },
+    "source": {
+      "url": "https://www.justice4all.org",
+      "title": "Legal Aid Justice Center",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

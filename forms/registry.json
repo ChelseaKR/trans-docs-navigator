@@ -460,6 +460,21 @@
     }
   },
   {
+    "id": "va-vs42",
+    "jurisdiction": "US-VA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Form VS42 — Changing Sex Designation",
+    "source": {
+      "url": "https://www.vdh.virginia.gov/content/uploads/sites/93/2020/07/VS42_Gender-Designation-Form.pdf",
+      "title": "Virginia Department of Health Form VS42 — Changing Sex Designation",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "wa-doh-422-126",
     "jurisdiction": "US-WA",
     "document_type": "birth-certificate",

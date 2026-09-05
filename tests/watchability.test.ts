@@ -155,6 +155,9 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Tennessee's general vital-records amendment form (PH-1186) is only published as a
     // PDF, so no baseline can be taken — deliberate, with the Tennessee corpus.
     "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf",
+    // Virginia's VS42 (Changing Sex Designation) form is a PDF whose text this pipeline
+    // cannot extract, so no baseline can be taken — deliberate, with the Virginia corpus.
+    "https://www.vdh.virginia.gov/content/uploads/sites/93/2020/07/VS42_Gender-Designation-Form.pdf",
   ]);
   // ...and the two reasons are genuinely different failures, which is why the launch-gate
   // evidence names them separately instead of calling all three a 403.

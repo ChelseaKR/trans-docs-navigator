@@ -490,6 +490,38 @@ const AUTHORED_GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "co.drivers-license.gender-marker.es", mustContain: ["DR 2083", "femenino, masculino o X"] },
   },
   {
+    id: "va-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-VA", language: "en" },
+    query: { jurisdiction: "US-VA", change_types: ["name"], documents: ["court-order"], question: "Virginia circuit court name change" },
+    expect: { refused: false, citesRecord: "va.court-order.name", mustContain: ["circuit court", "under oath"] },
+  },
+  {
+    id: "va-marker-dl-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-VA", language: "en" },
+    query: { jurisdiction: "US-VA", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Virginia DMV gender marker" },
+    // M6: Virginia's DMV and vital-records gender-marker policy has shifted before with
+    // changes in administration (see corpus/jurisdictions/virginia.json), so both gender-marker
+    // records are marked needs_reverification rather than presented as settled — the same
+    // honest-degradation shape as az-marker-volatile / tx-marker-volatile above.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "va-birth-marker-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-VA", language: "en" },
+    query: { jurisdiction: "US-VA", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Virginia birth certificate sex designation change" },
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "va-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-VA", language: "es" },
+    query: { jurisdiction: "US-VA", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Virginia" },
+    expect: { refused: false, citesRecord: "va.court-order.name.es", mustContain: ["tribunal de circuito", "bajo juramento"] },
+  },
+  {
     id: "nc-name-court",
     suite: "accuracy",
     segment: { jurisdiction: "US-NC", language: "en" },

@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 232 |
-| Load-bearing assertions found | 626 |
-| — checked and **supported** by the cited source | 451 |
+| Records audited | 246 |
+| Load-bearing assertions found | 653 |
+| — checked and **supported** by the cited source | 478 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
 | — **UNCHECKABLE** (reported, never passed) | 175 |
-| of the checked: literal (fee / duration / form-id) matches | 296 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 155 |
+| of the checked: literal (fee / duration / form-id) matches | 316 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 162 |
 
 ## What this gate cannot vouch for
 
-- **938 of 1160 prose sentences** in the corpus carry no extractable
+- **994 of 1232 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **319 sentences state a negative** (`you do not need a court order`, `the page no
+- **340 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **155 assertions are necessary-condition only**: the source discusses the topic, which
+- **162 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **6 cited sources refuse automated fetching entirely**, so no
@@ -469,6 +469,20 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `us.ssa-card.gender-marker.es` | es | 0 | 0 | 0 | 6/6 |
 | `us.ssa-card.name` | en | 2 | 0 | 0 | 4/5 |
 | `us.ssa-card.name.es` | es | 2 | 0 | 0 | 4/5 |
+| `va.birth-certificate.fees` | en | 4 | 0 | 0 | 0/4 |
+| `va.birth-certificate.fees.es` | es | 4 | 0 | 0 | 0/4 |
+| `va.birth-certificate.gender-marker` | en | 4 | 0 | 0 | 4/6 |
+| `va.birth-certificate.gender-marker.es` | es | 4 | 0 | 0 | 4/6 |
+| `va.birth-certificate.name` | en | 1 | 0 | 0 | 4/4 |
+| `va.birth-certificate.name.es` | es | 1 | 0 | 0 | 4/4 |
+| `va.court-order.name` | en | 0 | 0 | 0 | 5/5 |
+| `va.court-order.name.es` | es | 0 | 0 | 0 | 5/5 |
+| `va.drivers-license.fees` | en | 3 | 0 | 0 | 3/5 |
+| `va.drivers-license.fees.es` | es | 3 | 0 | 0 | 3/5 |
+| `va.drivers-license.gender-marker` | en | 1 | 0 | 0 | 6/6 |
+| `va.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 6/6 |
+| `va.drivers-license.name` | en | 1 | 0 | 0 | 6/6 |
+| `va.drivers-license.name.es` | es | 1 | 0 | 0 | 6/6 |
 | `wa.birth-certificate.gender-marker` | en | 7 | 0 | 0 | 4/5 |
 | `wa.birth-certificate.gender-marker.es` | es | 7 | 0 | 0 | 4/5 |
 | `wa.birth-certificate.name` | en | 4 | 0 | 0 | 2/5 |
