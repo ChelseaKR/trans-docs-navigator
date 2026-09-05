@@ -12,6 +12,7 @@ driver's-license rows are covered and the federal rows are current.
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ✅ | — | ✅ | — | — |
+| US-AR | ✅ | — | ✅ | — | ✅ | — |
 | US-AZ | ✅ | — | ✅ | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | ✅ | — | — | — | ✅ | — |
@@ -27,8 +28,10 @@ driver's-license rows are covered and the federal rows are current.
 | US-NV | ✅ | — | ✅ | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
 | US-OH | ✅ | — | ✅ | — | ✅ | — |
+| US-OK | ✅ | — | ✅ | — | ✅ | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
+| US-SC | ✅ | — | ✅ | — | ✅ | — |
 | US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
 | US-VA | ✅ | — | ✅ | — | ✅ | — |
@@ -39,6 +42,7 @@ driver's-license rows are covered and the federal rows are current.
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ⚠️ degraded | — | ⚠️ degraded | — | — |
+| US-AR | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-AZ | — | — | ⚠️ degraded | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | — | — | ✅ | — | ✅ | — |
@@ -54,8 +58,10 @@ driver's-license rows are covered and the federal rows are current.
 | US-NV | — | — | ✅ | — | ⚠️ degraded | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-OK | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | — | — | ✅ | — | ✅ | — |
+| US-SC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
 | US-VA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
@@ -66,6 +72,7 @@ driver's-license rows are covered and the federal rows are current.
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ✅ | — | ✅ | — | — |
+| US-AR | ✅ | — | ✅ | — | ✅ | — |
 | US-AZ | ✅ | — | ✅ | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | ✅ | — | — | — | ✅ | — |
@@ -81,8 +88,10 @@ driver's-license rows are covered and the federal rows are current.
 | US-NV | ✅ | — | ✅ | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
 | US-OH | ✅ | — | ✅ | — | ✅ | — |
+| US-OK | ✅ | — | ✅ | — | ✅ | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
+| US-SC | ✅ | — | ✅ | — | ✅ | — |
 | US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
 | US-VA | ✅ | — | ✅ | — | ✅ | — |
@@ -93,6 +102,7 @@ driver's-license rows are covered and the federal rows are current.
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ⚠️ degraded | — | ⚠️ degraded | — | — |
+| US-AR | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-AZ | — | — | ⚠️ degraded | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | — | — | ✅ | — | ✅ | — |
@@ -108,11 +118,13 @@ driver's-license rows are covered and the federal rows are current.
 | US-NV | — | — | ✅ | — | ⚠️ degraded | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-OK | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | — | — | ✅ | — | ✅ | — |
+| US-SC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
 | US-VA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 
-**Totals:** 194 current · 24 degraded · 310 uncovered cells.
+**Totals:** 212 current · 36 degraded · 352 uncovered cells.

@@ -1,0 +1,125 @@
+[
+  {
+    "id": "ok.court-order.name",
+    "jurisdiction": "US-OK",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Oklahoma name change petition",
+    "statement": "In Oklahoma you petition the district court in the county where you live for a change of name, as long as you have lived in that county for more than 30 days.",
+    "detail": "Oklahoma law bars anyone required to register under the Oklahoma Sex Offenders Registration Act from petitioning for a name change. If the person is a minor, the petition is brought by a guardian or next friend instead.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The statute doesn't set a specific filing fee; contact the district court clerk in your county for the current amount."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=94759",
+      "title": "Oklahoma Statutes Citationized — 12 O.S. § 1631, Right to Petition for Change of Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ok.drivers-license.name",
+    "jurisdiction": "US-OK",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Oklahoma driver's license and ID name change",
+    "statement": "You cannot change the name on your Oklahoma driver's license or ID card online. For a name change, you visit a licensed operator or Service Oklahoma (SOK) location in person to request a duplicate, and a new credential is mailed to you for $25.",
+    "detail": "This help-center article doesn't list which documents to bring for a name change specifically; contact Service Oklahoma or a licensed operator for current requirements.",
+    "cost": {
+      "amount_usd": 25,
+      "note": "The $25 is Service Oklahoma's standard duplicate-credential fee — the same one charged for other changes, not a fee specific to name changes."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://intercom.help/service-oklahoma/en/articles/6326824-how-can-i-make-changes-to-the-information-on-my-driver-s-license-card",
+      "title": "Service Oklahoma Help Center — How can I make changes to the information on my Driver's License card?",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ok.drivers-license.gender-marker",
+    "jurisdiction": "US-OK",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Oklahoma driver's license and ID sex/gender designation",
+    "statement": "Service Oklahoma's own list of driver's license and ID services does not include a way to change the sex or gender marker on a license or ID card.",
+    "detail": "This page lists every standard driver's-license and ID service Service Oklahoma offers — a new license, renewals, REAL ID, address updates, and more — and none of them is described as a sex or gender-designation change. Read the current official page yourself, and don't assume a route exists that isn't listed there.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://oklahoma.gov/service/all-services/driving-and-automobiles.html",
+      "title": "Service Oklahoma — Driving and Automobiles",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ok.birth-certificate.name",
+    "jurisdiction": "US-OK",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Oklahoma birth certificate name change",
+    "statement": "A legal name change on an Oklahoma birth record is not treated as a minor correction — the Oklahoma State Department of Health says a District Court order is required, and you should contact your local court clerk or an attorney for help.",
+    "detail": "Small mistakes, like a misspelled name, can go through a $15 application plus a $25 amendment fee instead, with either an administrative order or a district court order. But an actual legal name change, an adoption, or a paternity update all require a District Court order first, and this process can take up to 4 months.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page doesn't state a fee for the District Court order path itself; the $15 application fee and $25 amendment fee it lists apply to the separate minor-correction process."
+    },
+    "timeline": {
+      "typical": "up to 4 months",
+      "note": "This is the department's stated ceiling for legal changes generally (adoptions, paternity, and delayed registrations included), not a name-change-specific estimate."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://oklahoma.gov/health/services/birth-and-death-certificates/amendments.html",
+      "title": "Oklahoma State Department of Health — Amending an Oklahoma Birth or Death Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ok.birth-certificate.gender-marker",
+    "jurisdiction": "US-OK",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Oklahoma birth certificate sex designation",
+    "statement": "Oklahoma law says every birth certificate amended under this statute must show the sex identified at the time of birth, and it cannot be amended to display gender identity, a nonbinary designation, or the letter \"X\".",
+    "detail": "This rule applies to any amendment made under 63 O.S. § 1-321, not only ones related to gender. Oklahoma law describes no court-order or administrative process for changing the sex designation on a birth certificate to match your gender identity. If you were told a route exists, verify it directly with the Oklahoma State Department of Health before relying on it.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=98034",
+      "title": "Oklahoma Statutes Citationized — 63 O.S. § 1-321, Amendment of Certificate or Record",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]

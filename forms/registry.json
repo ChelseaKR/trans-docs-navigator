@@ -550,5 +550,35 @@
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "ar-ds-affidavit-name-change",
+    "jurisdiction": "US-AR",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "title": "Affidavit of Legal Name Change",
+    "source": {
+      "url": "https://www.dfa.arkansas.gov/wp-content/uploads/Affidavit_of_Legal_Name_Change_2019.pdf",
+      "title": "Arkansas DFA Office of Driver Services — Affidavit of Legal Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ar-ds-gender-application",
+    "jurisdiction": "US-AR",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Application to Amend Gender Information Contained on Driver's License or Identification Card",
+    "source": {
+      "url": "https://www.dfa.arkansas.gov/wp-content/uploads/DS_GenderApplication.pdf",
+      "title": "Arkansas DFA Office of Driver Services — Application to Amend Gender Information",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]

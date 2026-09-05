@@ -3261,5 +3261,379 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "language": "es"
+  },
+  {
+    "id": "ar.court-order.name.es",
+    "jurisdiction": "US-AR",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Arkansas",
+    "statement": "En Arkansas usted le pide a un juez del tribunal de circuito del condado donde vive que cambie su nombre legal presentando una Petición de Cambio de Nombre.",
+    "detail": "Prepare una carátula civil y una Petición de Cambio de Nombre notariada que indique su nombre legal actual, fecha de nacimiento, condado, el nombre nuevo que desea y el motivo del cambio. Presente el original y dos copias en la Oficina del Secretario del Tribunal de Circuito. Luego usted se presenta ante un juez, quien puede hacerle preguntas bajo juramento — como su nombre actual, fecha de nacimiento y motivo del cambio — antes de decidir si aprueba el cambio.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El Secretario del Tribunal de Circuito exige una tarifa de presentación de alrededor de $165, aunque el monto exacto depende del condado. Si no puede pagarla, puede presentar una Petición In Forma Pauperis pidiéndole a un juez que exonere la tarifa.",
+      "fee_waiver": true
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://a.arlawhelp.org/name-change/adults",
+      "title": "Arkansas Law Help — Cambio de Nombre para Adultos",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "es"
+  },
+  {
+    "id": "ar.drivers-license.name.es",
+    "jurisdiction": "US-AR",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir e identificación de Arkansas",
+    "statement": "Para actualizar el nombre en su licencia de conducir o identificación de Arkansas, la Oficina de Servicios al Conductor usa una Declaración Jurada de Cambio Legal de Nombre.",
+    "detail": "Este formulario está publicado en la lista pública de formularios de la Oficina de Servicios al Conductor. Esa lista no detalla qué documentos de respaldo llevar para un cambio de nombre en particular — comuníquese con Servicios al Conductor para conocer los requisitos actuales antes de ir.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dfa.arkansas.gov/office/driver-services/driver-services-forms/",
+      "title": "DFA de Arkansas — Formularios de Servicios al Conductor",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ar-ds-affidavit-name-change",
+    "language": "es"
+  },
+  {
+    "id": "ar.drivers-license.gender-marker.es",
+    "jurisdiction": "US-AR",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Información de género en la licencia de conducir e identificación de Arkansas",
+    "statement": "Arkansas solo cambia el género en su licencia o identificación para que coincida con su acta de nacimiento ya enmendada. Debe decir MASCULINO (M) o FEMENINO (F). No puede decir \"X\" ni quedar en blanco.",
+    "detail": "Usted llena una Solicitud para Enmendar la Información de Género. La envía con una copia de un acta de nacimiento que ya muestre el género nuevo. El propio proceso de Arkansas para cambiar el sexo en un acta de nacimiento exige una orden judicial ligada a una cirugía (vea el registro sobre el acta de nacimiento para esta jurisdicción). Por eso no hay aquí un camino más fácil.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dfa.arkansas.gov/wp-content/uploads/DS_GenderApplication.pdf",
+      "title": "Oficina de Servicios al Conductor del DFA de Arkansas — Solicitud para Enmendar la Información de Género Contenida en la Licencia de Conducir o Tarjeta de Identificación",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "ar-ds-gender-application",
+    "language": "es"
+  },
+  {
+    "id": "ar.birth-certificate.name.es",
+    "jurisdiction": "US-AR",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Arkansas",
+    "statement": "Arkansas trata el cambio de apellido en un acta de nacimiento como una de las acciones que requiere una orden judicial antes de que el Departamento de Salud cambie el certificado.",
+    "detail": "Envíe al Departamento de Salud de Arkansas una copia certificada de la orden judicial junto con la tarifa legal de $15.00 para enmendar el certificado, más la tarifa por cualquier copia certificada nueva que desee ($12.00 por la primera copia, $10.00 por cada copia adicional pedida al mismo tiempo). Normalmente se necesita un abogado para el trámite judicial.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "Esta es la tarifa legal para enmendar el certificado. Una copia certificada del certificado nuevo cuesta $12 por la primera copia y $10 por cada copia adicional pedida al mismo tiempo."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://healthy.arkansas.gov/programs-services/certificates-records/change-or-amend-a-birth-or-death-certificate/",
+      "title": "Departamento de Salud de Arkansas — Cambiar o Enmendar un Certificado de Nacimiento o Defunción",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ar.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-AR",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Arkansas",
+    "statement": "Arkansas solo cambiará el sexo en un acta de nacimiento junto con una orden judicial, y esa orden debe indicar que el sexo se está cambiando debido a un procedimiento quirúrgico.",
+    "detail": "Normalmente se necesita un abogado para este trámite judicial. Una vez que tenga la orden judicial, envíe una copia certificada al Departamento de Salud de Arkansas — debe pedir específicamente el cambio del nombre de la persona y declarar que el sexo se está cambiando debido a un procedimiento quirúrgico. No se requieren formularios adicionales más allá de la orden y el pago.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no repite una tarifa; se aplican las tarifas estándar de enmienda y de copias certificadas de Arkansas (vea el registro de cambio de nombre del acta de nacimiento para esos montos)."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://healthy.arkansas.gov/programs-services/certificates-records/change-or-amend-a-birth-or-death-certificate/change-sex-and-name-on-a-birth-record/",
+      "title": "Departamento de Salud de Arkansas — Cambiar el Sexo y el Nombre en un Acta de Nacimiento",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ok.court-order.name.es",
+    "jurisdiction": "US-OK",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Oklahoma",
+    "statement": "En Oklahoma usted presenta una petición en el tribunal de distrito del condado donde vive para cambiar su nombre, siempre que haya vivido en ese condado por más de 30 días.",
+    "detail": "La ley de Oklahoma prohíbe que cualquier persona obligada a registrarse conforme a la Ley de Registro de Delincuentes Sexuales de Oklahoma solicite un cambio de nombre. Si la persona es menor de edad, la petición la presenta un tutor o representante en su lugar.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La ley no fija una tarifa de presentación específica; comuníquese con el secretario del tribunal de distrito de su condado para conocer el monto actual."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=94759",
+      "title": "Estatutos de Oklahoma Citados (OSCN) — 12 O.S. § 1631, Derecho a Solicitar un Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ok.drivers-license.name.es",
+    "jurisdiction": "US-OK",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir e identificación de Oklahoma",
+    "statement": "No puede cambiar el nombre en su licencia de conducir o identificación de Oklahoma en línea. Para un cambio de nombre, debe visitar en persona un operador con licencia o una oficina de Service Oklahoma (SOK) para solicitar un duplicado, y le envían por correo una credencial nueva por $25.",
+    "detail": "Este artículo del centro de ayuda no indica qué documentos llevar para un cambio de nombre en particular; comuníquese con Service Oklahoma o con un operador con licencia para conocer los requisitos actuales.",
+    "cost": {
+      "amount_usd": 25,
+      "note": "Los $25 son la tarifa estándar de Service Oklahoma por una credencial duplicada — la misma que se cobra por otros cambios, no una tarifa específica para cambios de nombre."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://intercom.help/service-oklahoma/en/articles/6326824-how-can-i-make-changes-to-the-information-on-my-driver-s-license-card",
+      "title": "Centro de Ayuda de Service Oklahoma — ¿Cómo puedo hacer cambios en la información de mi licencia de conducir?",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ok.drivers-license.gender-marker.es",
+    "jurisdiction": "US-OK",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo/género en la licencia de conducir e identificación de Oklahoma",
+    "statement": "La propia lista de servicios de licencia de conducir e identificación de Service Oklahoma no incluye una manera de cambiar el marcador de sexo o género en una licencia o identificación.",
+    "detail": "Esta página enumera todos los servicios estándar de licencia de conducir e identificación que ofrece Service Oklahoma — una licencia nueva, renovaciones, REAL ID, actualizaciones de dirección y más — y ninguno se describe como un cambio de designación de sexo o género. Lea usted mismo la página oficial actual y no suponga que existe una vía que no aparece allí.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://oklahoma.gov/service/all-services/driving-and-automobiles.html",
+      "title": "Service Oklahoma — Conducción y Automóviles",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ok.birth-certificate.name.es",
+    "jurisdiction": "US-OK",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Oklahoma",
+    "statement": "Un cambio legal de nombre en un registro de nacimiento de Oklahoma no se trata como una corrección menor — el Departamento Estatal de Salud de Oklahoma dice que se requiere una orden del Tribunal de Distrito, y debe comunicarse con el secretario de su tribunal local o con un abogado para obtener ayuda.",
+    "detail": "Los errores menores, como un nombre mal escrito, pueden tramitarse con una solicitud de $15 más una tarifa de enmienda de $25, con una orden administrativa o una orden del tribunal de distrito. Pero un cambio legal de nombre real, una adopción o una actualización de paternidad requieren primero una orden del Tribunal de Distrito, y este proceso puede tardar hasta 4 meses.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página no indica una tarifa para el trámite de orden del Tribunal de Distrito en sí; la solicitud de $15 y la tarifa de enmienda de $25 que menciona corresponden al proceso separado de corrección menor."
+    },
+    "timeline": {
+      "typical": "hasta 4 meses",
+      "note": "Este es el límite máximo que indica el departamento para cambios legales en general (incluidas adopciones, paternidades y registros tardíos), no una estimación específica para cambios de nombre."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://oklahoma.gov/health/services/birth-and-death-certificates/amendments.html",
+      "title": "Departamento Estatal de Salud de Oklahoma — Cómo Enmendar un Registro de Nacimiento o Defunción de Oklahoma",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ok.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-OK",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Oklahoma",
+    "statement": "La ley de Oklahoma establece que todo certificado de nacimiento enmendado bajo este estatuto debe mostrar el sexo identificado al momento de nacer, y no puede enmendarse para mostrar la identidad de género, una designación no binaria, ni la letra \"X\".",
+    "detail": "Esta regla se aplica a cualquier enmienda hecha bajo el 63 O.S. § 1-321, no solo a las relacionadas con el género. La ley de Oklahoma no describe ningún proceso judicial ni administrativo para cambiar la designación de sexo en un acta de nacimiento para que coincida con su identidad de género. Si le dijeron que existe una vía, verifíquelo directamente con el Departamento Estatal de Salud de Oklahoma antes de confiar en ello.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=98034",
+      "title": "Estatutos de Oklahoma Citados (OSCN) — 63 O.S. § 1-321, Enmienda de Certificado o Registro",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "sc.court-order.name.es",
+    "jurisdiction": "US-SC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Carolina del Sur",
+    "statement": "En Carolina del Sur usted presenta una petición ante un juez del tribunal de familia para un cambio de nombre, y debe haber sido residente de Carolina del Sur durante al menos seis meses.",
+    "detail": "Debe adjuntar a su petición los resultados de una verificación de huellas dactilares y antecedentes penales de SLED, una declaración de evaluación del Departamento de Servicios Sociales sobre el Registro Central de Abuso y Negligencia Infantil, una declaración de evaluación del registro de delincuentes sexuales de SLED, y una declaración jurada firmada sobre cualquier orden de manutención de menores o pensión alimenticia. El tribunal puede exonerar el requisito de residencia de seis meses para una persona que sea víctima de violencia doméstica, acecho u otro abuso similar y que actualmente tema por su seguridad.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La tarifa de presentación la fija una ley aparte y no se indica un monto en dólares aquí; la verificación de antecedentes de SLED tiene su propia tarifa separada también. Comuníquese con el secretario del tribunal de familia para conocer los montos actuales."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.scstatehouse.gov/code/t15c049.php",
+      "title": "Código de Leyes de Carolina del Sur — Título 15, Capítulo 49, Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "sc.drivers-license.name.es",
+    "jurisdiction": "US-SC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir e identificación de Carolina del Sur",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Carolina del Sur, complete una Solicitud de Cambio de Nombre y/o Dirección (Formulario 4057) y una Solicitud de Permiso de Principiante, Licencia de Conducir o Tarjeta de Identificación (Formulario 447-NC), y luego presente documentación como una licencia de matrimonio, un decreto de divorcio, o una orden emitida por el tribunal de familia de su condado.",
+    "detail": "Debe cambiar su nombre con la Administración del Seguro Social al menos 48 horas antes de visitar el SCDMV. Una licencia nueva que refleje su nombre actualizado cuesta $10, o $25 si al mismo tiempo obtiene su primera REAL ID. Solo tiene una oportunidad de cambiar su nombre cuando se casa — cambiarlo después a una variación distinta de su nombre de casado requiere una orden judicial.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Esta es la tarifa estándar por una licencia nueva que refleja un cambio de nombre. Su primera REAL ID cuesta $25 en su lugar, ya que se trata como una renovación de licencia."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.sc.gov/driver-services/drivers-license/address-or-name-change",
+      "title": "DMV de Carolina del Sur — Cambiar Mi Dirección o Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "sc.drivers-license.gender-marker.es",
+    "jurisdiction": "US-SC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo/género en la licencia de conducir e identificación de Carolina del Sur",
+    "statement": "Las propias instrucciones del SCDMV para actualizar su nombre o dirección no mencionan en ningún momento el cambio de una designación de sexo o género en una licencia o identificación.",
+    "detail": "La página describe exactamente qué llevar para un cambio de nombre — una licencia de matrimonio, un decreto de divorcio, una orden del tribunal de familia, o documentos de nombre preferido — y no dice nada sobre un proceso de cambio de designación de sexo. Confirme directamente con el SCDMV antes de suponer que existe una vía.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.sc.gov/driver-services/drivers-license/address-or-name-change",
+      "title": "DMV de Carolina del Sur — Cambiar Mi Dirección o Nombre",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "sc.birth-certificate.name.es",
+    "jurisdiction": "US-SC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Carolina del Sur",
+    "statement": "Carolina del Sur solo puede cambiar el nombre en su acta de nacimiento con una orden judicial certificada — el Departamento de Salud Pública dice que los cambios de nombre y las adopciones solo pueden aplicarse al registro de esa manera.",
+    "detail": "Una orden judicial certificada lleva un sello en relieve o de tinta; no se acepta una fotocopia, y el departamento conserva una copia certificada de forma permanente, así que consiga más de una copia certificada del tribunal. La mayoría de las solicitudes de enmienda en persona se completan en 1 a 2 días hábiles, pero las enmiendas ordenadas por un tribunal pueden tardar hasta 2 semanas. Hay una tarifa de enmienda adicional de $15, y una copia emitida en el último año puede reemplazarse por $3.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "Esta es la tarifa de enmienda adicional una vez procesada la orden judicial. Un registro emitido en el último año puede reemplazarse por $3."
+    },
+    "timeline": {
+      "typical": "1 a 2 días hábiles, o hasta 2 semanas para enmiendas ordenadas por un tribunal"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dph.sc.gov/public/vital-records/birth-certificates",
+      "title": "Departamento de Salud Pública de Carolina del Sur — Actas de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "sc.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-SC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Carolina del Sur",
+    "statement": "El Departamento de Salud Pública de Carolina del Sur describe cómo corregir errores y tramitar cambios de nombre ordenados por un tribunal en un acta de nacimiento, pero su guía pública no describe ningún proceso para cambiar el marcador de sexo según la identidad de género.",
+    "detail": "La página enumera lo que puede corregirse con una declaración jurada notariada (como un nombre mal escrito o una fecha de nacimiento incorrecta) y lo que necesita una orden judicial certificada (cambios de nombre y adopciones). Cambiar el sexo registrado no se menciona en ninguna de las dos categorías. Confirme los requisitos actuales directamente con Registros Vitales antes de suponer que existe una vía.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dph.sc.gov/public/vital-records/birth-certificates",
+      "title": "Departamento de Salud Pública de Carolina del Sur — Actas de Nacimiento",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
   }
 ]

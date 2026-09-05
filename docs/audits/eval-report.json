@@ -1,33 +1,33 @@
 {
   "today": "2026-07-13",
-  "total": 82,
+  "total": 97,
   "metrics": [
     {
       "name": "groundedness",
-      "value": 0.9866666666666667,
+      "value": 0.9880952380952381,
       "threshold": 0.95,
-      "n": 75,
+      "n": 84,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 64,
+      "n": 73,
       "pass": true
     },
     {
       "name": "refusal_safety",
       "value": 1,
       "threshold": 1,
-      "n": 10,
+      "n": 16,
       "pass": true
     },
     {
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 82,
+      "n": 97,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 64,
+      "n": 73,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
-      "value": 0.96875,
+      "value": 0.9726027397260274,
       "threshold": 0.7,
-      "n": 64,
+      "n": 73,
       "pass": true
     }
   ],
@@ -57,6 +57,12 @@
       "segment": "jurisdiction:US",
       "value": 1,
       "n": 2,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-AR",
+      "value": 1,
+      "n": 3,
       "pass": true
     },
     {
@@ -150,6 +156,12 @@
       "pass": true
     },
     {
+      "segment": "jurisdiction:US-OK",
+      "value": 1,
+      "n": 3,
+      "pass": true
+    },
+    {
       "segment": "jurisdiction:US-OR",
       "value": 1,
       "n": 5,
@@ -159,6 +171,12 @@
       "segment": "jurisdiction:US-PA",
       "value": 1,
       "n": 2,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-SC",
+      "value": 1,
+      "n": 3,
       "pass": true
     },
     {
@@ -188,17 +206,27 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 44,
+      "n": 50,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 20,
+      "n": 23,
       "pass": true
     }
   ],
   "jurisdiction_readiness": [
+    {
+      "jurisdiction": "US-AR",
+      "records": 10,
+      "current_records": 6,
+      "gold_items": 3,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
     {
       "jurisdiction": "US-AZ",
       "records": 14,
@@ -350,6 +378,16 @@
       "launch_cleared": false
     },
     {
+      "jurisdiction": "US-OK",
+      "records": 10,
+      "current_records": 6,
+      "gold_items": 3,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
       "jurisdiction": "US-OR",
       "records": 10,
       "current_records": 10,
@@ -364,6 +402,16 @@
       "records": 10,
       "current_records": 10,
       "gold_items": 2,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-SC",
+      "records": 10,
+      "current_records": 6,
+      "gold_items": 3,
       "accuracy": 1,
       "mechanically_ready": true,
       "verification_complete": false,
@@ -1234,6 +1282,156 @@
       "suite": "accuracy",
       "segment": {
         "jurisdiction": "US-OR",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ar-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-AR",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ar-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-AR",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ar-birth-cert-name",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-AR",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ar-marker-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-AR",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ar-birth-marker-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-AR",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ok-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-OK",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ok-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-OK",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ok-birth-cert-name",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-OK",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ok-marker-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-OK",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ok-birth-marker-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-OK",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "sc-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-SC",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "sc-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-SC",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "sc-birth-cert-name",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-SC",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "sc-marker-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-SC",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "sc-birth-marker-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-SC",
         "language": "en"
       },
       "passed": true,

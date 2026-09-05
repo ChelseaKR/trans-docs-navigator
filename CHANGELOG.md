@@ -8,6 +8,55 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Arkansas, Oklahoma, and South Carolina** (M6 — expand jurisdictions): 18 EN + 18 ES
+  corpus records (court-order name change, driver's-license name and gender-marker,
+  birth-certificate name and gender-marker), 3 referrals, and 2 forms-registry entries,
+  each sourced from an official state page and fetched into `corpus/snapshots/`. All
+  three are restrictive on the gender-marker side, and each record says so plainly
+  rather than describing a route that doesn't work (house standard from ddc6d2b / #118
+  and 2609d85):
+  - **Oklahoma**: 63 O.S. § 1-321, current per the Oklahoma Statutes Citationizer
+    (oscn.net), states every amended birth certificate must show the sex identified at
+    birth and bars amending it to display gender identity, a nonbinary designation, or
+    "X" — codifying the 2022 SB 1100 amendment and the 2021 executive order that
+    preceded it. Service Oklahoma's own driver's-license/ID service list and help-center
+    article on changing card information make no mention of a sex/gender-designation
+    change at all — read directly and confirmed silent, not assumed.
+  - **Arkansas**: the Department of Health's own page requires a court order that
+    specifically states the sex is being changed "due to a surgical procedure" before it
+    will amend a birth certificate's sex designation. The Office of Driver Services'
+    Application to Amend Gender Information (a PDF form, posted October 2024, after the
+    DFA rescinded its "X" option in March 2024) will only update a license/ID to match an
+    *already-amended* birth certificate and accepts only MALE or FEMALE — so the
+    surgery-and-court-order gate on the birth certificate is the only route in, and the
+    record says so.
+  - **South Carolina**: the DMV's own name/address-change page and the Department of
+    Public Health's own birth-certificate page are both silent on sex/gender-designation
+    changes — neither describes a process, so the records say the page is silent rather
+    than inferring a bar that isn't written down anywhere official. The name-change
+    process itself (S.C. Code §§ 15-49-10, 15-49-20, scstatehouse.gov) is unusually
+    heavy for a "just a name change" step: a SLED fingerprint and criminal-background
+    check, a DSS Central Registry screening, and a SLED sex-offender-registry screening
+    all attach to the petition, waivable only for a documented safety threat.
+  - What I could not fully verify by machine: two Arkansas PDFs (the Affidavit of Legal
+    Name Change and the Application to Amend Gender Information) are the only sources for
+    those specific driver's-license facts, and PDFs cannot be text-extracted by
+    `make source-snapshot` — every assertion sourced to them is reported UNCHECKABLE in
+    docs/audits/source-fidelity.md, never silently passed, the same honest degradation
+    already applied to Georgia's and Nevada's PDF-sourced records.
+
+  All 36 new records carry `"verifier": "Pilot Seed Reviewer"`; the 6 gender-marker
+  areas per state are `needs_reverification` (30-day SLA, matching the corpus's existing
+  convention for politically volatile topics), the name-change and driver's-license-name
+  records are `verified` (90-day SLA). None are launch-cleared.
+
+  `make verify`: 24/24 gates pass. Snapshot discipline: `make source-snapshot` also
+  refetched the entire pre-existing corpus and surfaced real drift in 24 unrelated
+  sources (WA/CA/IL/NY/NJ/SSA/VA/TX — issue #150), plus 3 removed passport-source
+  snapshots now unreachable under this project's declared user-agent; all reverted,
+  leaving only the 12 new HTML snapshots (plus 1 new PDF marked unextractable) untouched.
+
+
 - **Virginia** (M6 — expand jurisdictions): 7 EN + 7 ES corpus records (court-order name
   change, driver's-license name and gender-marker, a driver's-license replacement-fee
   record, birth-certificate name and gender-marker, and a birth-certificate fee record),

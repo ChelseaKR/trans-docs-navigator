@@ -612,6 +612,73 @@
       "file": "oregon-gov-oha-ph-birthdeathcertificates-pages-changebirthrecord-aspx-0cbba9d8.txt",
       "fetched": "2026-09-05",
       "sha256": "c14029e5198902f53235eb7a24d39706fcbf3a733d4e606e8f0384eb659b6bc3"
+    },
+    "https://a.arlawhelp.org/name-change/adults": {
+      "file": "a-arlawhelp-org-name-change-adults-7f4b5c65.txt",
+      "fetched": "2026-09-05",
+      "sha256": "1c7c8a5b20daad87db4aaa1a2d3d1787b23af83618e6dfa5cedc72aa18f097ec"
+    },
+    "https://dmv.sc.gov/driver-services/drivers-license/address-or-name-change": {
+      "file": "dmv-sc-gov-driver-services-drivers-license-address-or-name-change-524ccf02.txt",
+      "fetched": "2026-09-05",
+      "sha256": "37d8a5661b11846e00f7087c99d96ccecbcf4f92da5581dd155983619b10bdb7"
+    },
+    "https://dph.sc.gov/public/vital-records/birth-certificates": {
+      "file": "dph-sc-gov-public-vital-records-birth-certificates-20fa4e2d.txt",
+      "fetched": "2026-09-05",
+      "sha256": "cef34c1385f9ba13ecee4529fc9e48818a9b24b2f2963e2322647243cd697ae4"
+    },
+    "https://healthy.arkansas.gov/programs-services/certificates-records/change-or-amend-a-birth-or-death-certificate/": {
+      "file": "healthy-arkansas-gov-programs-services-certificates-records-change-or--8a59535f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "cdae2add1ddc3951c064d1096a4396eeac6aa75358a9f77526e18265117e6aea"
+    },
+    "https://healthy.arkansas.gov/programs-services/certificates-records/change-or-amend-a-birth-or-death-certificate/change-sex-and-name-on-a-birth-record/": {
+      "file": "healthy-arkansas-gov-programs-services-certificates-records-change-or--bf46350b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "16a22060fc6cc368971622ed9dfee43891837d2d69670bbd9e33d43fde84f364"
+    },
+    "https://intercom.help/service-oklahoma/en/articles/6326824-how-can-i-make-changes-to-the-information-on-my-driver-s-license-card": {
+      "file": "intercom-help-service-oklahoma-en-articles-6326824-how-can-i-make-chan-79a98102.txt",
+      "fetched": "2026-09-05",
+      "sha256": "b695a0ad35fcd728c75fc9915e22e93f8c8f8430d7fa0d7888221cfcc8c2f210"
+    },
+    "https://oklahoma.gov/health/services/birth-and-death-certificates/amendments.html": {
+      "file": "oklahoma-gov-health-services-birth-and-death-certificates-amendments-h-ad664f1b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "cd952f4c748d45a357ff42ff89b433a51a89eb83c20dca5f3f759963336884ab"
+    },
+    "https://oklahoma.gov/service/all-services/driving-and-automobiles.html": {
+      "file": "oklahoma-gov-service-all-services-driving-and-automobiles-html-5e0559b7.txt",
+      "fetched": "2026-09-05",
+      "sha256": "89848828f1e6dae3772c05b0efe06a0daa08637dc4e13bb4d5dedd1663bac708"
+    },
+    "https://www.dfa.arkansas.gov/office/driver-services/driver-services-forms/": {
+      "file": "dfa-arkansas-gov-office-driver-services-driver-services-forms-b152f04f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "0b2d2627f5dbab10558035e85846c6c8113be22ddf2388875ac9be3b7e3275b4"
+    },
+    "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=94759": {
+      "file": "oscn-net-applications-oscn-deliverdocument-asp-564f5405.txt",
+      "fetched": "2026-09-05",
+      "sha256": "b342096b48ca7dfe083f8a34be18ba82aca175443231a6340f25b4b13e82b4c2"
+    },
+    "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=98034": {
+      "file": "oscn-net-applications-oscn-deliverdocument-asp-af42f120.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c9f285cf53342fd2400664d9c712eab268d3d3de0215f29e6634655adf952db5"
+    },
+    "https://www.scstatehouse.gov/code/t15c049.php": {
+      "file": "scstatehouse-gov-code-t15c049-php-ce401ef0.txt",
+      "fetched": "2026-09-05",
+      "sha256": "bbff6beb82c75e7274b347295eca919b38f4a1ef8b5501e5c83049ca70341d89"
+    },
+    "https://www.dfa.arkansas.gov/wp-content/uploads/DS_GenderApplication.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
     }
   }
 }
