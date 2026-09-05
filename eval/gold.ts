@@ -164,6 +164,34 @@ export const GOLD: GoldItem[] = [
     query: { jurisdiction: "US", change_types: ["gender-marker"], documents: ["passport"], question: "passport gender marker" },
     expect: { refused: true, hasFreshnessNote: true },
   },
+  {
+    id: "co-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CO", language: "en" },
+    query: { jurisdiction: "US-CO", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in Colorado" },
+    expect: { refused: false, citesRecord: "co.court-order.name", mustContain: ["JDF 433", "fingerprint"] },
+  },
+  {
+    id: "co-marker-dmv",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CO", language: "en" },
+    query: { jurisdiction: "US-CO", change_types: ["gender-marker"], documents: ["drivers-license"], question: "nonbinary gender on Colorado license" },
+    expect: { refused: false, citesRecord: "co.drivers-license.gender-marker", mustContain: ["DR 2083", "female, male, or X"] },
+  },
+  {
+    id: "co-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CO", language: "es" },
+    query: { jurisdiction: "US-CO", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Colorado" },
+    expect: { refused: false, citesRecord: "co.court-order.name.es", mustContain: ["JDF 433", "huellas"] },
+  },
+  {
+    id: "co-marker-dmv-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CO", language: "es" },
+    query: { jurisdiction: "US-CO", change_types: ["gender-marker"], documents: ["drivers-license"], language: "es", question: "género no binario licencia Colorado" },
+    expect: { refused: false, citesRecord: "co.drivers-license.gender-marker.es", mustContain: ["DR 2083", "femenino, masculino o X"] },
+  },
 
   // ── Adversarial / robustness suite ──────────────────────────────────────────
   // Stress the system the way real and hostile inputs do. These never relax the

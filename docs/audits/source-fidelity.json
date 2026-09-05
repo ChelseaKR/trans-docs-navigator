@@ -1,15 +1,15 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 70,
-  "supported": 152,
+  "records": 78,
+  "supported": 183,
   "unsupported": 0,
   "uncheckable": 32,
   "unfetchable_sources": [
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 255,
-  "total_prose_sentences": 322,
+  "unchecked_prose_sentences": 277,
+  "total_prose_sentences": 358,
   "audits": [
     {
       "recordId": "ca.court-order.name",
@@ -305,6 +305,172 @@
       "uncheckedProse": 1,
       "negatedClaims": 2,
       "totalSentences": 5
+    },
+    {
+      "recordId": "co.court-order.name",
+      "language": "en",
+      "url": "https://www.coloradojudicial.gov/self-help/adult",
+      "results": [
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "duration",
+          "key": "90 day",
+          "label": "states \"90 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"90 day\""
+        },
+        {
+          "kind": "form-id",
+          "key": "JDF433",
+          "label": "names form JDF433",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names JDF433"
+        },
+        {
+          "kind": "requirement",
+          "key": "background-check",
+          "label": "fingerprints / a criminal-history check are required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "duration",
+          "key": "21 day",
+          "label": "states \"21 day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"21 day\""
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "form-id",
+          "key": "JDF205",
+          "label": "names form JDF205",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names JDF205"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "co.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.law.cornell.edu/regulations/colorado/1-CCR-204-32-1",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "DR2083",
+          "label": "names form DR2083",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DR2083"
+        },
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "co.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.law.cornell.edu/regulations/colorado/5-CCR-1006-1-5",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 3,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "co.birth-certificate.name",
+      "language": "en",
+      "url": "https://www.law.cornell.edu/regulations/colorado/5-CCR-1006-1-5",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 0,
+      "totalSentences": 2
     },
     {
       "recordId": "us.ssa-card.name",
@@ -1967,6 +2133,199 @@
       "uncheckedProse": 2,
       "negatedClaims": 1,
       "totalSentences": 5
+    },
+    {
+      "recordId": "co.court-order.name.es",
+      "language": "es",
+      "url": "https://www.coloradojudicial.gov/self-help/adult",
+      "results": [
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "duration",
+          "key": "90 day",
+          "label": "states \"90 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"90 day\""
+        },
+        {
+          "kind": "form-id",
+          "key": "JDF433",
+          "label": "names form JDF433",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names JDF433"
+        },
+        {
+          "kind": "requirement",
+          "key": "background-check",
+          "label": "fingerprints / a criminal-history check are required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "duration",
+          "key": "21 day",
+          "label": "states \"21 day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"21 day\""
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "form-id",
+          "key": "JDF205",
+          "label": "names form JDF205",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names JDF205"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "co.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.law.cornell.edu/regulations/colorado/1-CCR-204-32-1",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "DR2083",
+          "label": "names form DR2083",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DR2083"
+        },
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "duration",
+          "key": "18 year",
+          "label": "states \"18 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"18 year\""
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "co.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.law.cornell.edu/regulations/colorado/5-CCR-1006-1-5",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "18 year",
+          "label": "states \"18 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"18 year\""
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "co.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.law.cornell.edu/regulations/colorado/5-CCR-1006-1-5",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 0,
+      "totalSentences": 2
     },
     {
       "recordId": "tx.court-order.name",
