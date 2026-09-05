@@ -747,6 +747,111 @@ const AUTHORED_GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "or.birth-certificate.name", mustContain: ["court-ordered name change"] },
   },
   {
+    id: "ks-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-KS", language: "en" },
+    query: { jurisdiction: "US-KS", change_types: ["name"], documents: ["court-order"], question: "Kansas name change district court" },
+    expect: { refused: false, citesRecord: "ks.court-order.name", mustContain: ["district court", "60 days"] },
+  },
+  {
+    id: "ks-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-KS", language: "es" },
+    query: { jurisdiction: "US-KS", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Kansas" },
+    expect: { refused: false, citesRecord: "ks.court-order.name.es", mustContain: ["tribunal de distrito", "60 días"] },
+  },
+  {
+    id: "ks-marker-dl",
+    suite: "refusal",
+    segment: { jurisdiction: "US-KS", language: "en" },
+    query: { jurisdiction: "US-KS", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Kansas driver's license gender marker change" },
+    // M6: since 2023's SB 180 / K.S.A. 77-207 and 2025's SB 244, Kansas offers no forward
+    // path to change a license's gender marker — its own DOV page addresses only reversing
+    // past changes, and that record is degraded (needs_reverification) rather than served
+    // as a settled fact, given the ongoing litigation over this exact question.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "ks-birth-marker",
+    suite: "refusal",
+    segment: { jurisdiction: "US-KS", language: "en" },
+    query: { jurisdiction: "US-KS", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Kansas birth certificate gender marker change" },
+    // Kansas's own KDHE FAQ says plainly it can no longer process gender-identity
+    // amendments; still degraded rather than asserted, per this repo's honesty guardrail.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "ne-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NE", language: "en" },
+    query: { jurisdiction: "US-NE", change_types: ["name"], documents: ["court-order"], question: "Nebraska name change district court" },
+    expect: { refused: false, citesRecord: "ne.court-order.name", mustContain: ["district court", "one year"] },
+  },
+  {
+    id: "ne-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NE", language: "es" },
+    query: { jurisdiction: "US-NE", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Nebraska" },
+    expect: { refused: false, citesRecord: "ne.court-order.name.es", mustContain: ["tribunal de distrito", "un año"] },
+  },
+  {
+    id: "ne-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NE", language: "en" },
+    query: { jurisdiction: "US-NE", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Nebraska driver's license gender marker Certification of Sex Reassignment" },
+    expect: {
+      refused: false,
+      citesRecord: "ne.drivers-license.gender-marker",
+      mustContain: ["Certification of Sex Reassignment", "in person"],
+    },
+  },
+  {
+    id: "ne-birth-marker",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NE", language: "en" },
+    query: { jurisdiction: "US-NE", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Nebraska birth certificate sex reassignment surgery" },
+    // Nebraska Revised Statute 71-604.01 conditions a new birth certificate on a notarized
+    // surgeon's affidavit plus a court order — a narrow, named path, not an open one.
+    expect: {
+      refused: false,
+      citesRecord: "ne.birth-certificate.gender-marker",
+      mustContain: ["notarized affidavit", "sex reassignment surgery"],
+    },
+  },
+  {
+    id: "sd-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-SD", language: "en" },
+    query: { jurisdiction: "US-SD", change_types: ["name"], documents: ["court-order"], question: "South Dakota name change clerk of court" },
+    expect: { refused: false, citesRecord: "sd.court-order.name", mustContain: ["clerk of court", "six months"] },
+  },
+  {
+    id: "sd-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-SD", language: "es" },
+    query: { jurisdiction: "US-SD", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en South Dakota" },
+    expect: { refused: false, citesRecord: "sd.court-order.name.es", mustContain: ["seis meses"] },
+  },
+  {
+    id: "sd-marker-dl",
+    suite: "refusal",
+    segment: { jurisdiction: "US-SD", language: "en" },
+    query: { jurisdiction: "US-SD", change_types: ["gender-marker"], documents: ["drivers-license"], question: "South Dakota driver's license gender marker change" },
+    // M6: South Dakota's DPS page is a JavaScript application this pipeline cannot extract
+    // text from — honestly recorded as "could not confirm", not described as a working
+    // process, and degraded rather than served as fact.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "sd-birth-marker",
+    suite: "refusal",
+    segment: { jurisdiction: "US-SD", language: "en" },
+    query: { jurisdiction: "US-SD", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "South Dakota birth certificate sex designation change" },
+    // South Dakota's own vital-records amendments page never mentions a sex-designation
+    // process at all — honest silence, not a fabricated route, and degraded accordingly.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
     id: "ar-name-court",
     suite: "accuracy",
     segment: { jurisdiction: "US-AR", language: "en" },

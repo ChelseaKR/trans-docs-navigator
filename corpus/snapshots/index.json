@@ -613,6 +613,71 @@
       "fetched": "2026-09-05",
       "sha256": "c14029e5198902f53235eb7a24d39706fcbf3a733d4e606e8f0384eb659b6bc3"
     },
+    "https://dmv.nebraska.gov/dl/certification-sex-reassignment": {
+      "file": "dmv-nebraska-gov-dl-certification-sex-reassignment-627bbe43.txt",
+      "fetched": "2026-09-05",
+      "sha256": "6089c9b387e06de6d95259c46dfbb222e61090b8c0ba4c954507841e1a01945c"
+    },
+    "https://dmv.nebraska.gov/dl/name-change": {
+      "file": "dmv-nebraska-gov-dl-name-change-a4e23196.txt",
+      "fetched": "2026-09-05",
+      "sha256": "bc6d577432f092c18dab605322fa451a4c93390ec634c27ce728d0a4584ee5a6"
+    },
+    "https://doh.sd.gov/licensing-and-records/vital-records/amendments-court-orders/": {
+      "file": "doh-sd-gov-licensing-and-records-vital-records-amendments-court-orders-b3a9d337.txt",
+      "fetched": "2026-09-05",
+      "sha256": "a27d23af03db101ecef08b96282e2d314a6586f346e58499c3ee18f0741278ae"
+    },
+    "https://ksrevisor.gov/statutes/chapters/ch60/060_014_0002.html": {
+      "file": "ksrevisor-gov-statutes-chapters-ch60-060-014-0002-html-d5f60551.txt",
+      "fetched": "2026-09-05",
+      "sha256": "29f0c8af802eb9f031be87513bc485aa9effc76781eb1f8af52122bc5771fd7f"
+    },
+    "https://ksrevisor.gov/statutes/chapters/ch77/077_002_0007.html": {
+      "file": "ksrevisor-gov-statutes-chapters-ch77-077-002-0007-html-f88087ee.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c3e60e9e46413134e10f9dab559f2c276a0c560b7819416c35805caa89493828"
+    },
+    "https://nebraskajudicial.gov/self-help/name-change/adult-name-change": {
+      "file": "nebraskajudicial-gov-self-help-name-change-adult-name-change-66e9480d.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c9d4e20b00f9d1a8c8289a79860594b8442441756d0bc9c0f04112945e8f1364"
+    },
+    "https://nebraskalegislature.gov/laws/statutes.php?statute=71-604.01": {
+      "file": "nebraskalegislature-gov-laws-statutes-php-051ec20b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "15db6ff478218db6003b3098b7c5ba88584d16dc929e25e0f1fe6df9a49d8009"
+    },
+    "https://nebraskalegislature.gov/laws/statutes.php?statute=71-630": {
+      "file": "nebraskalegislature-gov-laws-statutes-php-5e0c911c.txt",
+      "fetched": "2026-09-05",
+      "sha256": "2bb94a54802c4af2c1b7863334aec23f7ddc802c8d71b7f094739453df840ec8"
+    },
+    "https://ujs.sd.gov/self-help/civil-law-help/name-change/": {
+      "file": "ujs-sd-gov-self-help-civil-law-help-name-change-2ff3fc23.txt",
+      "fetched": "2026-09-05",
+      "sha256": "fd009f9beaf927a3d540eca5e7aa5e29abf3d28fae7bdb42b88391649faff130"
+    },
+    "https://www.kdhe.ks.gov/FAQ.aspx?QID=265": {
+      "file": "kdhe-ks-gov-faq-aspx-e05d17a5.txt",
+      "fetched": "2026-09-05",
+      "sha256": "ccbc53ad17b387f473666acf8076eef5dd19ddf5e10202cc7f4641e2855cbe6e"
+    },
+    "https://www.ksrevenue.gov/dovdlfaq.html": {
+      "file": "ksrevenue-gov-dovdlfaq-html-213284af.txt",
+      "fetched": "2026-09-05",
+      "sha256": "b96d75bd8c6a35bac23fdada7693f5cab672b9ae8b084730b8b1616238202f26"
+    },
+    "https://www.ksrevenue.gov/dovgender.html": {
+      "file": "ksrevenue-gov-dovgender-html-8ee8b34b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "b9c33b1de723ae8e57a3d36426511a973a4e25da3521f0d58786990f6a9d28ac"
+    },
+    "https://www.sd.gov/dps?id=cs_kb_article_view&sysparm_article=KB0043549": {
+      "file": "sd-gov-dps-0ed4e9e0.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d03ede6689eff40e09d62dd447882a17a2757bf7292f90815a46f3e351b9f896"
+    },
     "https://a.arlawhelp.org/name-change/adults": {
       "file": "a-arlawhelp-org-name-change-adults-7f4b5c65.txt",
       "fetched": "2026-09-05",

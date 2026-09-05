@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 328 |
-| Load-bearing assertions found | 811 |
-| — checked and **supported** by the cited source | 585 |
+| Records audited | 360 |
+| Load-bearing assertions found | 860 |
+| — checked and **supported** by the cited source | 634 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
 | — **UNCHECKABLE** (reported, never passed) | 226 |
-| of the checked: literal (fee / duration / form-id) matches | 380 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 205 |
+| of the checked: literal (fee / duration / form-id) matches | 415 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 219 |
 
 ## What this gate cannot vouch for
 
-- **1238 of 1548 prose sentences** in the corpus carry no extractable
+- **1370 of 1702 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **432 sentences state a negative** (`you do not need a court order`, `the page no
+- **489 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **205 assertions are necessary-condition only**: the source discusses the topic, which
+- **219 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **8 cited sources refuse automated fetching entirely**, so no
@@ -392,6 +392,18 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `il.court-order.name.es` | es | 1 | 0 | 0 | 5/5 |
 | `il.drivers-license.gender-marker` | en | 1 | 0 | 0 | 4/4 |
 | `il.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 4/4 |
+| `ks.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 8/8 |
+| `ks.birth-certificate.gender-marker.es` | es | 1 | 0 | 0 | 8/8 |
+| `ks.birth-certificate.gender-marker.law` | en | 0 | 0 | 0 | 6/6 |
+| `ks.birth-certificate.gender-marker.law.es` | es | 0 | 0 | 0 | 6/6 |
+| `ks.birth-certificate.name` | en | 2 | 0 | 0 | 3/4 |
+| `ks.birth-certificate.name.es` | es | 2 | 0 | 0 | 3/4 |
+| `ks.court-order.name` | en | 1 | 0 | 0 | 3/4 |
+| `ks.court-order.name.es` | es | 1 | 0 | 0 | 3/4 |
+| `ks.drivers-license.gender-marker` | en | 0 | 0 | 0 | 7/7 |
+| `ks.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 7/7 |
+| `ks.drivers-license.name` | en | 2 | 0 | 0 | 5/5 |
+| `ks.drivers-license.name.es` | es | 2 | 0 | 0 | 5/5 |
 | `ma.birth-certificate.gender-marker` | en | 4 | 0 | 1 | 4/4 |
 | `ma.birth-certificate.gender-marker.es` | es | 4 | 0 | 1 | 4/4 |
 | `ma.birth-certificate.gender-marker.law` | en | 1 | 0 | 0 | 1/3 |
@@ -468,6 +480,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `nc.drivers-license.gender-marker.law.es` | es | 0 | 0 | 0 | 6/6 |
 | `nc.drivers-license.name` | en | 3 | 0 | 0 | 2/4 |
 | `nc.drivers-license.name.es` | es | 3 | 0 | 0 | 4/6 |
+| `ne.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 3/3 |
+| `ne.birth-certificate.gender-marker.es` | es | 1 | 0 | 0 | 3/3 |
+| `ne.birth-certificate.name` | en | 1 | 0 | 0 | 3/3 |
+| `ne.birth-certificate.name.es` | es | 1 | 0 | 0 | 3/3 |
+| `ne.court-order.name` | en | 6 | 0 | 0 | 4/7 |
+| `ne.court-order.name.es` | es | 5 | 0 | 0 | 4/7 |
+| `ne.drivers-license.gender-marker` | en | 0 | 0 | 0 | 5/5 |
+| `ne.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 5/5 |
+| `ne.drivers-license.name` | en | 2 | 0 | 0 | 3/5 |
+| `ne.drivers-license.name.es` | es | 2 | 0 | 0 | 3/5 |
 | `nh.birth-certificate.fees` | en | 2 | 0 | 0 | 1/4 |
 | `nh.birth-certificate.fees.es` | es | 2 | 0 | 0 | 1/4 |
 | `nh.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 3/3 |
@@ -570,6 +592,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `sc.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 3/3 |
 | `sc.drivers-license.name` | en | 3 | 0 | 0 | 3/4 |
 | `sc.drivers-license.name.es` | es | 3 | 0 | 0 | 3/4 |
+| `sd.birth-certificate.gender-marker` | en | 0 | 0 | 0 | 3/3 |
+| `sd.birth-certificate.gender-marker.es` | es | 0 | 0 | 0 | 3/3 |
+| `sd.birth-certificate.name` | en | 3 | 0 | 0 | 3/5 |
+| `sd.birth-certificate.name.es` | es | 3 | 0 | 0 | 3/5 |
+| `sd.court-order.name` | en | 6 | 0 | 0 | 3/5 |
+| `sd.court-order.name.es` | es | 6 | 0 | 0 | 3/5 |
+| `sd.drivers-license.gender-marker` | en | 0 | 0 | 0 | 3/3 |
+| `sd.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 3/3 |
+| `sd.drivers-license.name` | en | 0 | 0 | 0 | 4/4 |
+| `sd.drivers-license.name.es` | es | 0 | 0 | 0 | 4/4 |
 | `tn.birth-certificate.gender-marker` | en | 0 | 0 | 0 | 9/9 |
 | `tn.birth-certificate.gender-marker.es` | es | 0 | 0 | 0 | 9/9 |
 | `tn.birth-certificate.name` | en | 0 | 0 | 4 | 1/5 |

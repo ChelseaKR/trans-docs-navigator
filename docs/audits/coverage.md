@@ -20,12 +20,14 @@ driver's-license rows are covered and the federal rows are current.
 | US-FL | ✅ | — | ✅ | — | ✅ | — |
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
+| US-KS | ✅ | — | ✅ | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
 | US-MD | ✅ | — | ✅ | — | ✅ | — |
 | US-ME | ✅ | — | ✅ | — | ✅ | — |
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-MN | ✅ | — | ✅ | — | ✅ | — |
 | US-NC | ✅ | — | ✅ | — | ✅ | — |
+| US-NE | ✅ | — | ✅ | — | ✅ | — |
 | US-NH | ✅ | — | ✅ | — | ✅ | — |
 | US-NJ | ✅ | — | ✅ | — | ✅ | — |
 | US-NV | ✅ | — | ✅ | — | ✅ | — |
@@ -35,6 +37,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
 | US-SC | ✅ | — | ✅ | — | ✅ | — |
+| US-SD | ✅ | — | ⚠️ degraded | — | ✅ | — |
 | US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
 | US-VA | ✅ | — | ✅ | — | ✅ | — |
@@ -53,12 +56,14 @@ driver's-license rows are covered and the federal rows are current.
 | US-FL | — | — | ✅ | — | ✅ | — |
 | US-GA | — | — | ✅ | — | ✅ | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
+| US-KS | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
 | US-MD | — | — | ✅ | — | ✅ | — |
 | US-ME | — | — | ✅ | — | ✅ | — |
 | US-MI | — | — | ✅ | — | ✅ | — |
 | US-MN | — | — | ✅ | — | ✅ | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-NE | — | — | ✅ | — | ✅ | — |
 | US-NH | — | — | ✅ | — | ✅ | — |
 | US-NJ | — | — | ✅ | — | ✅ | — |
 | US-NV | — | — | ✅ | — | ⚠️ degraded | — |
@@ -68,6 +73,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | — | — | ✅ | — | ✅ | — |
 | US-SC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-SD | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
 | US-VA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
@@ -86,12 +92,14 @@ driver's-license rows are covered and the federal rows are current.
 | US-FL | ✅ | — | ✅ | — | ✅ | — |
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
+| US-KS | ✅ | — | ✅ | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
 | US-MD | ✅ | — | ✅ | — | ✅ | — |
 | US-ME | ✅ | — | ✅ | — | ✅ | — |
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-MN | ✅ | — | ✅ | — | ✅ | — |
 | US-NC | ✅ | — | ✅ | — | ✅ | — |
+| US-NE | ✅ | — | ✅ | — | ✅ | — |
 | US-NH | ✅ | — | ✅ | — | ✅ | — |
 | US-NJ | ✅ | — | ✅ | — | ✅ | — |
 | US-NV | ✅ | — | ✅ | — | ✅ | — |
@@ -101,6 +109,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
 | US-SC | ✅ | — | ✅ | — | ✅ | — |
+| US-SD | ✅ | — | ⚠️ degraded | — | ✅ | — |
 | US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
 | US-VA | ✅ | — | ✅ | — | ✅ | — |
@@ -119,12 +128,14 @@ driver's-license rows are covered and the federal rows are current.
 | US-FL | — | — | ✅ | — | ✅ | — |
 | US-GA | — | — | ✅ | — | ✅ | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
+| US-KS | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
 | US-MD | — | — | ✅ | — | ✅ | — |
 | US-ME | — | — | ✅ | — | ✅ | — |
 | US-MI | — | — | ✅ | — | ✅ | — |
 | US-MN | — | — | ✅ | — | ✅ | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-NE | — | — | ✅ | — | ✅ | — |
 | US-NH | — | — | ✅ | — | ✅ | — |
 | US-NJ | — | — | ✅ | — | ✅ | — |
 | US-NV | — | — | ✅ | — | ⚠️ degraded | — |
@@ -134,9 +145,10 @@ driver's-license rows are covered and the federal rows are current.
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | — | — | ✅ | — | ✅ | — |
 | US-SC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-SD | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
 | US-VA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 
-**Totals:** 242 current · 36 degraded · 394 uncovered cells.
+**Totals:** 262 current · 46 degraded · 436 uncovered cells.
