@@ -6,6 +6,7 @@
 // it is authored alongside the seed corpus to exercise the harness mechanism; the
 // data-card records this limitation.
 
+import { readFileSync } from "node:fs";
 import type { ChangeType, DocumentType, JurisdictionId, Language } from "../api/types.ts";
 
 export interface GoldItem {
@@ -33,7 +34,7 @@ export interface GoldItem {
   };
 }
 
-export const GOLD: GoldItem[] = [
+const AUTHORED_GOLD: GoldItem[] = [
   {
     id: "ca-name-court",
     suite: "accuracy",
@@ -113,6 +114,34 @@ export const GOLD: GoldItem[] = [
     },
   },
   {
+    id: "ma-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MA", language: "en" },
+    query: { jurisdiction: "US-MA", change_types: ["name"], documents: ["court-order"], question: "Massachusetts name change notary Probate and Family Court" },
+    expect: { refused: false, citesRecord: "ma.court-order.name", mustContain: ["notary public", "Probate and Family Court"] },
+  },
+  {
+    id: "ma-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MA", language: "en" },
+    query: { jurisdiction: "US-MA", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Massachusetts X gender designation license" },
+    expect: { refused: false, citesRecord: "ma.drivers-license.gender-marker", mustContain: ["M, F, or X"] },
+  },
+  {
+    id: "mi-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MI", language: "en" },
+    query: { jurisdiction: "US-MI", change_types: ["name"], documents: ["court-order"], question: "Michigan name change circuit court residency" },
+    expect: { refused: false, citesRecord: "mi.court-order.name", mustContain: ["circuit court", "one year"] },
+  },
+  {
+    id: "mi-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MI", language: "en" },
+    query: { jurisdiction: "US-MI", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Michigan nonbinary X gender designation license" },
+    expect: { refused: false, citesRecord: "mi.drivers-license.gender-marker", mustContain: ["nonbinary (X)"] },
+  },
+  {
     id: "tx-name-court",
     suite: "accuracy",
     segment: { jurisdiction: "US-TX", language: "en" },
@@ -130,6 +159,81 @@ export const GOLD: GoldItem[] = [
     expect: { refused: true, hasFreshnessNote: true },
   },
   {
+    id: "az-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-AZ", language: "en" },
+    query: { jurisdiction: "US-AZ", change_types: ["name"], documents: ["court-order"], question: "Arizona superior court name change application" },
+    expect: { refused: false, citesRecord: "az.court-order.name", mustContain: ["superior court", "county of residence"] },
+  },
+  {
+    id: "az-marker-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-AZ", language: "en" },
+    query: { jurisdiction: "US-AZ", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Arizona MVD gender marker" },
+    // Arizona's MVD publishes no page of its own on this, and the one AZ record for it is
+    // sourced to a PDF (source-fidelity treats a PDF as UNCHECKABLE, never verified) and marked
+    // needs_reverification — the same honest-degradation shape as tx-marker-volatile above.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "az-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-AZ", language: "es" },
+    query: { jurisdiction: "US-AZ", change_types: ["name"], documents: ["court-order"], language: "es", question: "solicitud de cambio de nombre en Arizona" },
+    expect: { refused: false, citesRecord: "az.court-order.name.es", mustContain: ["corte superior", "condado donde vive"] },
+  },
+  {
+    id: "pa-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-PA", language: "en" },
+    query: { jurisdiction: "US-PA", change_types: ["name"], documents: ["court-order"], question: "Pennsylvania name change newspaper fingerprints" },
+    // Straight from 54 Pa.C.S. Ch. 7: two newspapers of general circulation, and fingerprints
+    // sent to the State Police for a criminal-history check.
+    expect: { refused: false, citesRecord: "pa.court-order.name", mustContain: ["newspapers", "fingerprints"] },
+  },
+  {
+    id: "pa-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-PA", language: "en" },
+    query: { jurisdiction: "US-PA", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Pennsylvania non-binary X gender designation license" },
+    expect: { refused: false, citesRecord: "pa.drivers-license.gender-marker", mustContain: ["Non-binary", "DL-32"] },
+  },
+  {
+    id: "oh-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-OH", language: "en" },
+    query: { jurisdiction: "US-OH", change_types: ["name"], documents: ["court-order"], question: "Ohio name change probate court" },
+    expect: { refused: false, citesRecord: "oh.court-order.name", mustContain: ["probate court"] },
+  },
+  {
+    id: "oh-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-OH", language: "es" },
+    query: { jurisdiction: "US-OH", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Ohio" },
+    expect: { refused: false, citesRecord: "oh.court-order.name.es", mustContain: ["tribunal de sucesiones"] },
+  },
+  {
+    id: "oh-birth-cert-name",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-OH", language: "en" },
+    query: { jurisdiction: "US-OH", change_types: ["name"], documents: ["birth-certificate"], question: "Ohio birth certificate name change after court order" },
+    expect: { refused: false, citesRecord: "oh.birth-certificate.name", mustContain: ["90 days"] },
+  },
+  {
+    id: "oh-marker-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-OH", language: "en" },
+    query: { jurisdiction: "US-OH", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Ohio license sex marker" },
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "oh-birth-marker-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-OH", language: "en" },
+    query: { jurisdiction: "US-OH", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Ohio birth certificate sex marker" },
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
     id: "ca-marker-dmv-es",
     suite: "accuracy",
     segment: { jurisdiction: "US-CA", language: "es" },
@@ -144,11 +248,83 @@ export const GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "ny.court-order.name.es", mustContain: ["tribunal civil", "publicación"] },
   },
   {
+    id: "mi-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MI", language: "es" },
+    query: { jurisdiction: "US-MI", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Michigan tribunal de circuito" },
+    expect: { refused: false, citesRecord: "mi.court-order.name.es", mustContain: ["tribunal de circuito", "un año"] },
+  },
+  {
     id: "ssa-name-es",
     suite: "accuracy",
     segment: { jurisdiction: "US", language: "es" },
     query: { jurisdiction: "US-CA", change_types: ["name"], documents: ["ssa-card"], language: "es", question: "actualizar tarjeta seguro social nombre" },
     expect: { refused: false, citesRecord: "us.ssa-card.name.es", mustContain: ["SS-5"] },
+  },
+  {
+    id: "fl-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-FL", language: "en" },
+    query: { jurisdiction: "US-FL", change_types: ["name"], documents: ["court-order"], question: "Florida name change fingerprints background check" },
+    expect: { refused: false, citesRecord: "fl.court-order.name", mustContain: ["chancery", "fingerprints"] },
+  },
+  {
+    id: "fl-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-FL", language: "es" },
+    query: { jurisdiction: "US-FL", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Florida" },
+    expect: { refused: false, citesRecord: "fl.court-order.name.es", mustContain: ["huellas dactilares", "chancery"] },
+  },
+  {
+    id: "fl-marker-birth-cert-restricted",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-FL", language: "en" },
+    query: { jurisdiction: "US-FL", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Florida birth certificate gender marker change" },
+    // Honest degradation, not a fabricated process: the cited FL DOH page lists no route to
+    // change the sex field to match gender identity, and the record says so plainly.
+    expect: { refused: false, citesRecord: "fl.birth-certificate.gender-marker", mustContain: ["does not list", "gender identity"] },
+  },
+  {
+    id: "ga-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-GA", language: "en" },
+    query: { jurisdiction: "US-GA", change_types: ["name"], documents: ["court-order"], question: "Georgia name change Superior Court publication" },
+    expect: { refused: false, citesRecord: "ga.court-order.name", mustContain: ["Superior Court", "30 days"] },
+  },
+  {
+    id: "ga-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-GA", language: "en" },
+    query: { jurisdiction: "US-GA", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Georgia driver's license gender marker change" },
+    // M6: Georgia restricts this route rather than closing it outright — a gender reassignment
+    // operation plus a court order or physician's letter, and even then the rule leaves the
+    // decision to the Department's discretion. The expectation pins that restriction in the
+    // rule's own words rather than describing a process anyone can simply complete.
+    expect: {
+      refused: false,
+      citesRecord: "ga.drivers-license.gender-marker",
+      mustContain: ["gender reassignment operation", "discretion"],
+    },
+  },
+  {
+    id: "ga-birth-marker",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-GA", language: "en" },
+    query: { jurisdiction: "US-GA", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Georgia birth certificate sex change" },
+    // Georgia's vital-records rules fold a sex-designation change into the generic "All Other
+    // Amendments" rule — no gender-identity or court-order path is described for this field.
+    expect: {
+      refused: false,
+      citesRecord: "ga.birth-certificate.gender-marker",
+      mustContain: ["All Other Amendments", "five years"],
+    },
+  },
+  {
+    id: "ga-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-GA", language: "es" },
+    query: { jurisdiction: "US-GA", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Georgia" },
+    expect: { refused: false, citesRecord: "ga.court-order.name.es", mustContain: ["Tribunal Superior", "30 días"] },
   },
   {
     id: "tx-unsupported-court",
@@ -163,6 +339,34 @@ export const GOLD: GoldItem[] = [
     segment: { jurisdiction: "US", language: "en" },
     query: { jurisdiction: "US", change_types: ["gender-marker"], documents: ["passport"], question: "passport gender marker" },
     expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "co-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CO", language: "en" },
+    query: { jurisdiction: "US-CO", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in Colorado" },
+    expect: { refused: false, citesRecord: "co.court-order.name", mustContain: ["JDF 433", "fingerprint"] },
+  },
+  {
+    id: "co-marker-dmv",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CO", language: "en" },
+    query: { jurisdiction: "US-CO", change_types: ["gender-marker"], documents: ["drivers-license"], question: "nonbinary gender on Colorado license" },
+    expect: { refused: false, citesRecord: "co.drivers-license.gender-marker", mustContain: ["DR 2083", "female, male, or X"] },
+  },
+  {
+    id: "co-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CO", language: "es" },
+    query: { jurisdiction: "US-CO", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Colorado" },
+    expect: { refused: false, citesRecord: "co.court-order.name.es", mustContain: ["JDF 433", "huellas"] },
+  },
+  {
+    id: "co-marker-dmv-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CO", language: "es" },
+    query: { jurisdiction: "US-CO", change_types: ["gender-marker"], documents: ["drivers-license"], language: "es", question: "género no binario licencia Colorado" },
+    expect: { refused: false, citesRecord: "co.drivers-license.gender-marker.es", mustContain: ["DR 2083", "femenino, masculino o X"] },
   },
 
   // ── Adversarial / robustness suite ──────────────────────────────────────────
@@ -260,3 +464,15 @@ export const GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "ca.court-order.name", mustNotContain: ["DL 329"] },
   },
 ];
+
+// Test-only override (tests/gate-efficacy), the same shape as scripts/security-scan.ts's
+// SECURITY_SCAN_ROOT and content-validate.ts's CORPUS_DIR: point the harness at a
+// poisoned gold set so the ACCURACY ORACLE'S OWN ability to fail can be proven. This is
+// the only gate that can tell a well-formed answer from a correct one, and nothing else
+// in the repo goes red if its scoring or thresholding is short-circuited. Unset in
+// production and in CI, so behaviour is identical.
+const POISON_PATH = process.env.EVAL_GOLD_POISON;
+
+export const GOLD: GoldItem[] = POISON_PATH
+  ? (JSON.parse(readFileSync(POISON_PATH, "utf8")) as GoldItem[])
+  : AUTHORED_GOLD;

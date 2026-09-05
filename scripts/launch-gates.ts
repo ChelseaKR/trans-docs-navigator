@@ -32,6 +32,7 @@ import { join } from "node:path";
 import { loadCorpus, loadVerifierRoster, isPlaceholderVerifier, REPO_ROOT } from "../api/corpus.ts";
 import { loadReferrals } from "../api/referrals.ts";
 import { loadForms } from "../api/forms.ts";
+import { unwatchableAmong, unwatchableReason } from "../api/watchability.ts";
 import { auditCorpus, loadSnapshotIndex } from "./source-fidelity.ts";
 import { read, pass, fail } from "./util.ts";
 
@@ -106,25 +107,20 @@ export function deriveLaunchGates(): LaunchGate[] {
   const totalProse = fidelity.audits.reduce((n, a) => n + a.totalSentences, 0);
 
   // ── 3. Drift baselines ──────────────────────────────────────────────────────────────
-  const formsBaseline: Record<string, string> = JSON.parse(
-    readFileSync(join(REPO_ROOT, "forms", "form-hashes.json"), "utf8"),
-  ) as Record<string, string>;
   // "Unwatched" is not the same as "unbaselined". A source that HAS a committed baseline but
   // that the pipeline can no longer fetch (health.ny.gov 403s our user-agent) is also
   // unwatched: source-watch reports it "unreachable (skipped)" and carries the old hash
   // forward forever, so drift there is undetectable by construction. Counting only the
   // missing baselines would have understated this by one — and that one is the New York
   // birth-certificate page, which six records depend on.
-  const index = loadSnapshotIndex();
-  const unwatched = [
-    ...new Set([
-      ...corpus.map((r) => r.source.url).filter((u) => baseline[u] === undefined),
-      ...forms.map((f) => f.source.url).filter((u) => formsBaseline[u] === undefined),
-      ...Object.entries(index.snapshots)
-        .filter(([, e]) => e.unfetchable !== undefined)
-        .map(([url]) => url),
-    ]),
-  ];
+  //
+  // The derivation lives in api/watchability.ts, which the RUNNING APP also reads to tell a
+  // user which of the sources under their step cannot be monitored (issue #117). One
+  // function, so this README row and that sentence can never disagree.
+  const unwatched = unwatchableAmong([
+    ...corpus.map((r) => r.source.url),
+    ...forms.map((f) => f.source.url),
+  ]);
 
   // ── 4. Gold-set independence ────────────────────────────────────────────────────────
   const provenance = JSON.parse(
@@ -164,13 +160,22 @@ export function deriveLaunchGates(): LaunchGate[] {
     {
       name: "Every cited source actually under drift watch",
       status: unwatched.length === 0 ? "DONE" : "OPEN",
+      // The reason is per-source, and the two are not the same failure: a 403 means no
+      // baseline CAN be taken without spoofing a user-agent we refuse to spoof, while a
+      // missing baseline means none has been taken YET and a verifier can fix it by
+      // reading the page. Reporting both as "(403)" understated one and misdescribed the
+      // other — the SS-5 PDF is a forms-registry link with no reviewed baseline, not a
+      // 403 (docs/STATUS.md 2026-07-13, docs/audits/data-card.md).
       evidence:
         unwatched.length === 0
           ? "every cited source and form is fetchable and has a committed drift baseline"
-          : `**${unwatched.length}** cited source(s) are UNWATCHABLE — they refuse this project's declared ` +
-            `user-agent (403), so no baseline can be taken or compared and drift there is undetectable: ` +
-            unwatched.map((u) => `\`${u}\``).join(", "),
-      derivedFrom: "`corpus/source-hashes.json` + `forms/form-hashes.json` + `corpus/snapshots/index.json`",
+          : `**${unwatched.length}** cited source(s) are UNWATCHABLE — no baseline can be taken or compared, ` +
+            `so drift there is undetectable and \`last_verified\` is a human's assertion rather than a checked ` +
+            `fact: ` +
+            unwatched
+              .map((u) => `\`${u}\` (${unwatchableReason(u) === "refuses-our-user-agent" ? "403 to our declared user-agent; we do not spoof one" : "no reviewed drift baseline"})`)
+              .join(", "),
+      derivedFrom: "`api/watchability.ts` over `corpus/source-hashes.json` + `forms/form-hashes.json` + `corpus/snapshots/index.json`",
     },
     {
       name: "Independently authored expert gold set",
