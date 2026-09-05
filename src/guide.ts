@@ -34,6 +34,7 @@ const STATES: StateDef[] = [
   { slug: "florida", id: "US-FL", name: { en: "Florida", es: "Florida" } },
   { slug: "georgia", id: "US-GA", name: { en: "Georgia", es: "Georgia" } },
   { slug: "colorado", id: "US-CO", name: { en: "Colorado", es: "Colorado" } },
+  { slug: "idaho", id: "US-ID", name: { en: "Idaho", es: "Idaho" } },
   { slug: "illinois", id: "US-IL", name: { en: "Illinois", es: "Illinois" } },
   { slug: "maryland", id: "US-MD", name: { en: "Maryland", es: "Maryland" } },
   { slug: "massachusetts", id: "US-MA", name: { en: "Massachusetts", es: "Massachusetts" } },
@@ -50,11 +51,13 @@ const STATES: StateDef[] = [
   { slug: "oregon", id: "US-OR", name: { en: "Oregon", es: "Oregón" } },
   { slug: "south-carolina", id: "US-SC", name: { en: "South Carolina", es: "Carolina del Sur" } },
   { slug: "texas", id: "US-TX", name: { en: "Texas", es: "Texas" } },
+  { slug: "utah", id: "US-UT", name: { en: "Utah", es: "Utah" } },
   { slug: "virginia", id: "US-VA", name: { en: "Virginia", es: "Virginia" } },
   { slug: "washington", id: "US-WA", name: { en: "Washington", es: "Washington" } },
   { slug: "kansas", id: "US-KS", name: { en: "Kansas", es: "Kansas" } },
   { slug: "nebraska", id: "US-NE", name: { en: "Nebraska", es: "Nebraska" } },
   { slug: "south-dakota", id: "US-SD", name: { en: "South Dakota", es: "Dakota del Sur" } },
+  { slug: "wyoming", id: "US-WY", name: { en: "Wyoming", es: "Wyoming" } },
 ];
 
 const TOPICS: { slug: string; change: ChangeType }[] = [

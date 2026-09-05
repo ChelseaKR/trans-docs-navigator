@@ -1,9 +1,9 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 360,
-  "supported": 634,
+  "records": 398,
+  "supported": 682,
   "unsupported": 0,
-  "uncheckable": 226,
+  "uncheckable": 243,
   "unfetchable_sources": [
     "https://www.michigan.gov/sos/all-services/license-or-id-name-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
@@ -14,8 +14,8 @@
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → HTTP 404: the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 1370,
-  "total_prose_sentences": 1702,
+  "unchecked_prose_sentences": 1493,
+  "total_prose_sentences": 1853,
   "audits": [
     {
       "recordId": "az.court-order.name",
@@ -1440,6 +1440,172 @@
       "uncheckedProse": 1,
       "negatedClaims": 0,
       "totalSentences": 3
+    },
+    {
+      "recordId": "id.court-order.name",
+      "language": "en",
+      "url": "https://courtselfhelp.idaho.gov/Forms/Name",
+      "results": [
+        {
+          "kind": "money",
+          "key": "166",
+          "label": "costs $166",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $166"
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "id.drivers-license.name",
+      "language": "en",
+      "url": "https://itd.idaho.gov/service/drivers-license-and-id-required-documents/",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 0,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "id.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://itd.idaho.gov/service/drivers-license-and-id-required-documents/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "id.birth-certificate.name",
+      "language": "en",
+      "url": "https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=1294&dbid=0&repo=PUBLIC-DOCUMENTS",
+      "results": [
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "costs $20",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:id-dhw-name-change-instructions",
+          "label": "form_ref \"id-dhw-name-change-instructions\" (Instructions to Request the Processing of a Court Ordered Name Change on an Idaho Birth Certificate) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "16",
+          "label": "states $16",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "states $25",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "1 week",
+          "label": "states \"1 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "2 week",
+          "label": "states \"2 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "id.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://legislature.idaho.gov/statutesrules/idstat/Title39/T39CH2/SECT39-245A/",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "id.birth-certificate.gender-marker.law",
+      "language": "en",
+      "url": "https://legislature.idaho.gov/statutesrules/idstat/Title73/T73CH1/SECT73-114/",
+      "results": [],
+      "uncheckedProse": 2,
+      "negatedClaims": 0,
+      "totalSentences": 2
     },
     {
       "recordId": "il.court-order.name",
@@ -6224,6 +6390,171 @@
       "totalSentences": 3
     },
     {
+      "recordId": "id.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://legislature.idaho.gov/statutesrules/idstat/Title39/T39CH2/SECT39-245A/",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "id.birth-certificate.gender-marker.law.es",
+      "language": "es",
+      "url": "https://legislature.idaho.gov/statutesrules/idstat/Title73/T73CH1/SECT73-114/",
+      "results": [],
+      "uncheckedProse": 2,
+      "negatedClaims": 0,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "id.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=1294&dbid=0&repo=PUBLIC-DOCUMENTS",
+      "results": [
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "costs $20",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:id-dhw-name-change-instructions",
+          "label": "form_ref \"id-dhw-name-change-instructions\" (Instructions to Request the Processing of a Court Ordered Name Change on an Idaho Birth Certificate) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "18 year",
+          "label": "states \"18 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "16",
+          "label": "states $16",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "states $25",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "1 week",
+          "label": "states \"1 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "2 week",
+          "label": "states \"2 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "id.court-order.name.es",
+      "language": "es",
+      "url": "https://courtselfhelp.idaho.gov/Forms/Name",
+      "results": [
+        {
+          "kind": "money",
+          "key": "166",
+          "label": "costs $166",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $166"
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "id.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://itd.idaho.gov/service/drivers-license-and-id-required-documents/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "id.drivers-license.name.es",
+      "language": "es",
+      "url": "https://itd.idaho.gov/service/drivers-license-and-id-required-documents/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 0,
+      "totalSentences": 3
+    },
+    {
       "recordId": "il.birth-certificate.gender-marker.es",
       "language": "es",
       "url": "https://dph.illinois.gov/topics-services/birth-death-other-records/birth-records/gender-reassignment.html",
@@ -10190,6 +10521,182 @@
       "totalSentences": 5
     },
     {
+      "recordId": "ut.birth-certificate.fees.es",
+      "language": "es",
+      "url": "https://vitalrecords.utah.gov/fee-schedule",
+      "results": [
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "costs $25",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $25"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "money",
+          "key": "40",
+          "label": "states $40",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $40"
+        },
+        {
+          "kind": "money",
+          "key": "30",
+          "label": "states $30",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $30"
+        }
+      ],
+      "uncheckedProse": 0,
+      "negatedClaims": 0,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ut.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://vitalrecords.utah.gov/amend-a-vital-record",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 1,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "ut.birth-certificate.gender-marker.law.es",
+      "language": "es",
+      "url": "https://le.utah.gov/xcode/Title26B/Chapter8/C26B-8-S111_2025050720250507.html",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "6 month",
+          "label": "states \"6 month\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"6 month\""
+        },
+        {
+          "kind": "duration",
+          "key": "15 year",
+          "label": "states \"15 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"15 year\""
+        },
+        {
+          "kind": "duration",
+          "key": "16 year",
+          "label": "states \"16 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"16 year\""
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 3,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ut.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ut.court-order.gender-marker.es",
+      "language": "es",
+      "url": "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html",
+      "results": [],
+      "uncheckedProse": 6,
+      "negatedClaims": 2,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "ut.court-order.name.es",
+      "language": "es",
+      "url": "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html",
+      "results": [
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "ut.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://dld.utah.gov/required-documents/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ut.drivers-license.name.es",
+      "language": "es",
+      "url": "https://dld.utah.gov/name-change-regular-license/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
       "recordId": "va.birth-certificate.fees.es",
       "language": "es",
       "url": "https://www.vdh.virginia.gov/vital-records/how-to-request-an-amendment-to-a-birth-certificate/",
@@ -10538,6 +11045,145 @@
       ],
       "uncheckedProse": 4,
       "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "wy.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://health.wyo.gov/admin/vitalstatistics/amending-a-vital-record/",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 4,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "wy.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://health.wyo.gov/admin/vitalstatistics/amending-a-vital-record/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "55",
+          "label": "costs $55",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $55"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:wy-vrs-correction-form",
+          "label": "form_ref \"wy-vrs-correction-form\" (Form to Correct a Wyoming Vital Record) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "wy.court-order.name.es",
+      "language": "es",
+      "url": "https://www.wyocourts.gov/legal-help-by-topic/adult-name-change/",
+      "results": [
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "duration",
+          "key": "6 month",
+          "label": "states \"6 month\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"6 month\""
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "wy.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.dot.state.wy.us/home/driver_license_records/add_or_change_information.html",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "wy.drivers-license.name.es",
+      "language": "es",
+      "url": "https://www.dot.state.wy.us/home/driver_license_records/add_or_change_information.html",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "duration",
+          "key": "4 week",
+          "label": "states \"4 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"4 week\""
+        },
+        {
+          "kind": "duration",
+          "key": "6 week",
+          "label": "states \"6 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"6 week\""
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
       "totalSentences": 4
     },
     {
@@ -10920,6 +11566,173 @@
       "totalSentences": 3
     },
     {
+      "recordId": "ut.court-order.name",
+      "language": "en",
+      "url": "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html",
+      "results": [
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "ut.court-order.gender-marker",
+      "language": "en",
+      "url": "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html",
+      "results": [],
+      "uncheckedProse": 6,
+      "negatedClaims": 2,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "ut.drivers-license.name",
+      "language": "en",
+      "url": "https://dld.utah.gov/name-change-regular-license/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ut.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://dld.utah.gov/required-documents/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ut.birth-certificate.name",
+      "language": "en",
+      "url": "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ut.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://vitalrecords.utah.gov/amend-a-vital-record",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 1,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "ut.birth-certificate.gender-marker.law",
+      "language": "en",
+      "url": "https://le.utah.gov/xcode/Title26B/Chapter8/C26B-8-S111_2025050720250507.html",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "6 month",
+          "label": "states \"6 month\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"6 month\""
+        },
+        {
+          "kind": "duration",
+          "key": "15 year",
+          "label": "states \"15 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"15 year\""
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 3,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ut.birth-certificate.fees",
+      "language": "en",
+      "url": "https://vitalrecords.utah.gov/fee-schedule",
+      "results": [
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "costs $25",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $25"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "money",
+          "key": "40",
+          "label": "states $40",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $40"
+        },
+        {
+          "kind": "money",
+          "key": "30",
+          "label": "states $30",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $30"
+        }
+      ],
+      "uncheckedProse": 0,
+      "negatedClaims": 0,
+      "totalSentences": 3
+    },
+    {
       "recordId": "va.court-order.name",
       "language": "en",
       "url": "https://law.lis.virginia.gov/vacode/title8.01/chapter3/section8.01-217/",
@@ -11278,6 +12091,145 @@
       ],
       "uncheckedProse": 2,
       "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "wy.court-order.name",
+      "language": "en",
+      "url": "https://www.wyocourts.gov/legal-help-by-topic/adult-name-change/",
+      "results": [
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "duration",
+          "key": "6 month",
+          "label": "states \"6 month\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"6 month\""
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "wy.drivers-license.name",
+      "language": "en",
+      "url": "https://www.dot.state.wy.us/home/driver_license_records/add_or_change_information.html",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "duration",
+          "key": "4 week",
+          "label": "states \"4 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"4 week\""
+        },
+        {
+          "kind": "duration",
+          "key": "6 week",
+          "label": "states \"6 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"6 week\""
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "wy.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.dot.state.wy.us/home/driver_license_records/add_or_change_information.html",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "wy.birth-certificate.name",
+      "language": "en",
+      "url": "https://health.wyo.gov/admin/vitalstatistics/amending-a-vital-record/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "55",
+          "label": "costs $55",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $55"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:wy-vrs-correction-form",
+          "label": "form_ref \"wy-vrs-correction-form\" (Form to Correct a Wyoming Vital Record) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "wy.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://health.wyo.gov/admin/vitalstatistics/amending-a-vital-record/",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 4,
       "totalSentences": 5
     }
   ]

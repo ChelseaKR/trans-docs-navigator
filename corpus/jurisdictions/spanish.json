@@ -1063,6 +1063,146 @@
     "language": "es"
   },
   {
+    "id": "id.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-ID",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Idaho",
+    "statement": "El Código de Idaho incluye el sexo entre los \"hechos materiales\" que deben aparecer en un acta de nacimiento, junto con la hora, la fecha y el lugar de nacimiento. Estos hechos materiales solo pueden enmendarse dentro de un (1) año desde que se presentó el acta, mediante una declaración jurada de corrección notariada.",
+    "detail": "Después de ese primer año, la ley dice que estos hechos materiales \"solo pueden impugnarse en un tribunal por fraude, coacción, o error material de hecho,\" con la carga de la prueba sobre la persona que impugna. La ley no describe ningún proceso separado para actualizar el marcador de sexo para que coincida con la identidad de género actual de una persona. Esta disposición se agregó en 2020 y se modificó nuevamente en 2024, y una política anterior de Idaho sobre esta misma cuestión fue objeto de litigio federal. Confirme el estado actual y exigible con la Oficina de Registros Vitales o con un abogado antes de basarse en ella.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://legislature.idaho.gov/statutesrules/idstat/Title39/T39CH2/SECT39-245A/",
+      "title": "Estatutos de Idaho — Sección 39-245A, Actas de Nacimiento: Hechos Materiales Incluidos; Enmiendas",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "id.birth-certificate.gender-marker.law.es",
+    "jurisdiction": "US-ID",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Definición legal de sexo en Idaho",
+    "statement": "La ley de Idaho define la palabra \"sexo.\" La Sección 73-114 del Código de Idaho dice: \"'Sexo' significa el sexo biológico de una persona, ya sea masculino o femenino.\"",
+    "detail": "La ley del acta de nacimiento de Idaho es la Sección 39-245A. Esta remite a esta misma definición cuando incluye el sexo como un hecho en un acta de nacimiento.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://legislature.idaho.gov/statutesrules/idstat/Title73/T73CH1/SECT73-114/",
+      "title": "Estatutos de Idaho — Sección 73-114, Definiciones",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "id.birth-certificate.name.es",
+    "jurisdiction": "US-ID",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Idaho",
+    "statement": "Para cambiar el nombre en un acta de nacimiento de Idaho después de un cambio de nombre ordenado por un tribunal, la persona registrada (si tiene 18 años o más), uno de los padres que aparece en el acta, o un tutor legal envía una copia certificada de la orden judicial a Idaho Vital Records, junto con una tarifa de solicitud de $20.00.",
+    "detail": "La copia certificada de la orden judicial debe mostrar la fecha de presentación, el sello original del tribunal, la firma original del secretario del tribunal, su nombre actual, su nuevo nombre y su fecha de nacimiento. Si no indica su fecha de nacimiento, usted también presenta una Declaración Jurada de Ser Una Sola y Misma Persona, notariada. Una nueva copia certificada del acta enmendada cuesta $16.00 cada una, y una tarifa opcional de URGENCIA de $25.00 acelera el trámite a aproximadamente una a dos semanas.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "Una copia certificada del acta enmendada cuesta $16.00 cada una; una tarifa opcional de URGENCIA de $25.00 acelera el trámite."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=1294&dbid=0&repo=PUBLIC-DOCUMENTS",
+      "title": "Departamento de Salud y Bienestar de Idaho, Oficina de Registros Vitales — Instrucciones para Solicitar el Procesamiento de un Cambio de Nombre Ordenado por un Tribunal en un Acta de Nacimiento de Idaho",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "id-dhw-name-change-instructions",
+    "language": "es"
+  },
+  {
+    "id": "id.court-order.name.es",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Idaho",
+    "statement": "Para cambiar legalmente su nombre en Idaho como persona adulta, usted completa una Petición de Cambio de Nombre y la presenta ante el tribunal, usando los formularios e instrucciones del sitio de autoayuda de los tribunales de Idaho. La tarifa de presentación es de $166.",
+    "detail": "Los formularios incluyen una Hoja de Información del Caso Civil General, una Petición de Cambio de Nombre sin Redactar y una Redactada, un Aviso de Audiencia y — una vez que un juez concede su petición — una Sentencia de Cambio de Nombre. Después de presentar su petición, usted lleva el Aviso de Audiencia a un periódico designado por su condado, que debe publicarlo una vez por semana, cuatro veces en total, antes de su audiencia.",
+    "cost": {
+      "amount_usd": 166,
+      "note": "Comuníquese con el secretario del tribunal del condado donde presenta su caso para confirmar la tarifa actual."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/Forms/Name",
+      "title": "Autoayuda de los Tribunales de Idaho — Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "id.drivers-license.gender-marker.es",
+    "jurisdiction": "US-ID",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo/género en la licencia de conducir e identificación de Idaho",
+    "statement": "La página del Departamento de Transporte de Idaho que enumera los documentos necesarios para una licencia de conducir o tarjeta de identificación no menciona una designación de sexo o género, una opción X, ni ningún proceso para cambiarla — solo cubre la prueba de ciudadanía, identidad, residencia y un cambio de nombre.",
+    "detail": "Lea usted mismo las páginas actuales del Departamento de Transporte de Idaho antes de suponer que existe una vía. Este proyecto no pudo encontrar ninguna página oficial del ITD que aborde una designación de sexo o género en una licencia o identificación.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://itd.idaho.gov/service/drivers-license-and-id-required-documents/",
+      "title": "Departamento de Transporte de Idaho — Documentos Requeridos para Licencia de Conducir e Identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "id.drivers-license.name.es",
+    "jurisdiction": "US-ID",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir e identificación de Idaho",
+    "statement": "Para actualizar el nombre en su licencia de conducir o tarjeta de identificación de Idaho, usted presenta un documento que compruebe el cambio. Puede ser un pasaporte estadounidense vigente, una tarjeta de pasaporte con su nombre legal actual, un acta de matrimonio certificada, una sentencia de divorcio certificada, papeles de adopción, o documentos de un cambio de nombre ordenado por un tribunal.",
+    "detail": "El Departamento de Transporte de Idaho enumera estos como los documentos aceptados para un cambio de nombre en su página de documentos requeridos para licencias de conducir y tarjetas de identificación.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://itd.idaho.gov/service/drivers-license-and-id-required-documents/",
+      "title": "Departamento de Transporte de Idaho — Documentos Requeridos para Licencia de Conducir e Identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "il.birth-certificate.gender-marker.es",
     "jurisdiction": "US-IL",
     "document_type": "birth-certificate",
@@ -4225,6 +4365,197 @@
     "language": "es"
   },
   {
+    "id": "ut.birth-certificate.fees.es",
+    "jurisdiction": "US-UT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Tarifas de enmienda del acta de nacimiento de Utah",
+    "statement": "La lista de tarifas de registros vitales de Utah indica $25.00 por una copia certificada inicial de un acta de nacimiento, y $25.00 adicionales por una enmienda — como una hecha mediante declaración jurada, orden judicial, o declaración voluntaria de paternidad — además de la tarifa del acta.",
+    "detail": "Si su caso judicial fue sellado, Utah cobra una tarifa adicional de $40.00 por registro sellado. El procesamiento acelerado cuesta $25.00 más, y el envío acelerado cuesta $30.00 más.",
+    "cost": {
+      "amount_usd": 25,
+      "note": "Esta es la tarifa de enmienda, cobrada además de la tarifa de $25.00 del acta. Se aplica una tarifa de $40.00 por registro sellado si su caso fue sellado."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://vitalrecords.utah.gov/fee-schedule",
+      "title": "Departamento de Salud y Servicios Humanos de Utah, Oficina de Registros Vitales y Estadísticas — Lista de Tarifas",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ut.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-UT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Utah",
+    "statement": "La oficina de registros vitales de Utah dice que una persona puede obtener una orden judicial para cambiar la designación de sexo en un acta de nacimiento. La orden judicial debe indicar el nombre completo de la persona, el sexo que figura actualmente en el acta de nacimiento y el sexo al que se corregirá.",
+    "detail": "Usted presenta la orden judicial certificada junto con un Formulario de Enmienda por Orden Judicial, una Solicitud de Acta de Nacimiento, una copia de su identificación, y un cheque o giro postal por las tarifas correspondientes. Por separado, el acta de una persona intersexual puede enmendarse mediante declaración jurada, con una prueba genética y una declaración jurada de un profesional de la salud, sin necesidad de una orden judicial. Esta es un área políticamente controvertida de la ley de Utah; confirme el estado actual con Vital Records o con un abogado antes de basarse en ella.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://vitalrecords.utah.gov/amend-a-vital-record",
+      "title": "Departamento de Salud y Servicios Humanos de Utah, Oficina de Registros Vitales y Estadísticas — Enmendar un Registro Vital",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ut.birth-certificate.gender-marker.law.es",
+    "jurisdiction": "US-UT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Criterios legales de Utah para un cambio de designación de sexo",
+    "statement": "El Código de Utah 26B-8-111 dice que un tribunal solo puede conceder un cambio de designación de sexo si determina, mediante evidencia clara y convincente, que la persona no está involucrada en una demanda, no es un ofensor bajo la ley del registro estatal de ofensores sexuales, de secuestro y de abuso infantil, y no busca el cambio para cometer fraude, interferir con los derechos de otros, o evadir acreedores o una sentencia penal.",
+    "detail": "El tribunal también debe determinar que la persona \"ha hecho la transición de la designación de sexo del sexo biológico al nacer al sexo solicitado en la petición,\" se ha \"expresado externamente como el sexo solicitado en la petición de manera consistente y uniforme durante al menos seis meses,\" y \"sufre angustia o deterioro clínicamente significativo debido a la designación de sexo actual.\" Para un menor de al menos 15 años y seis meses, el tribunal debe nombrar un tutor ad litem, y ninguna orden que conceda el cambio entra en vigor hasta que el menor cumpla 16 años. Un tribunal no puede conceder una petición para un menor de menos de 15 años y seis meses, ni sin el permiso de un padre o tutor.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://le.utah.gov/xcode/Title26B/Chapter8/C26B-8-S111_2025050720250507.html",
+      "title": "Código de Utah — Sección 26B-8-111, Cambio de Nombre o Designación de Sexo en el Acta de Nacimiento",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ut.birth-certificate.name.es",
+    "jurisdiction": "US-UT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Utah",
+    "statement": "Después de que un tribunal de Utah conceda su cambio de nombre, usted envía a Vital Records and Statistics una copia certificada de la orden firmada junto con el formulario de Enmienda de un Registro por Orden Judicial.",
+    "detail": "Vital Records cobra una tarifa por la enmienda, y una tarifa adicional si su caso judicial fue sellado. Usted envía su solicitud por correo a Vital Records and Statistics, PO Box 141012, Salt Lake City, UT 84114-1012. El trámite puede tardar varias semanas.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página no indica un monto específico para la tarifa de enmienda. Consulte la lista de tarifas de registros vitales de Utah para conocer los montos actuales."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html",
+      "title": "Autoayuda de los Tribunales de Utah — Petición de Cambio de Nombre o Designación de Sexo (Adulto)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ut.court-order.gender-marker.es",
+    "jurisdiction": "US-UT",
+    "document_type": "court-order",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Petición judicial de sexo legal (marcador de género) en Utah",
+    "statement": "Utah también le permite pedirle al tribunal de distrito que cambie su sexo legal — a veces llamado marcador de género — por sí solo o junto con un cambio de nombre. El Código de Utah 26B-8-111 establece lo que el tribunal debe determinar antes de conceder esto.",
+    "detail": "Cuando usted presenta documentos solicitando cambiar su sexo legal, el tribunal marca el caso como privado: los documentos presentados en el caso no pueden ser vistos por el público, aunque el historial del caso y cualquier audiencia pública siguen disponibles. No puede solicitar este cambio para evadir acreedores, para interferir con los derechos de otra persona, ni para otros propósitos indebidos señalados en la ley, y no está disponible si usted se encuentra actualmente bajo custodia del Departamento de Correccionales o en libertad condicional o bajo palabra. Esta es un área políticamente controvertida de la ley de Utah; confirme el estado actual con el tribunal o con un abogado antes de basarse en ella.",
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html",
+      "title": "Autoayuda de los Tribunales de Utah — Petición de Cambio de Nombre o Designación de Sexo (Adulto)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ut.court-order.name.es",
+    "jurisdiction": "US-UT",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Utah",
+    "statement": "En Utah, usted presenta los formularios para un cambio de nombre ante el tribunal de distrito del condado donde vive. Debe haber vivido en ese condado durante al menos un año antes de presentar su solicitud.",
+    "detail": "El sitio web MyPaperwork de Utah puede ayudarle a preparar sus formularios y enviarlos al tribunal en línea para iniciar su caso. Al presentar su solicitud, se le cobra una tarifa de presentación; si no puede pagarla, puede solicitar una exención de tarifa. No puede usar este proceso para evadir acreedores, multas o una sentencia penal, para cometer fraude, o para elegir un nombre extravagante, excesivamente largo, ridículo u ofensivo para la decencia común, y no está disponible si usted se encuentra actualmente bajo custodia del Departamento de Correccionales o en libertad condicional o bajo palabra.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página no indica un monto específico de la tarifa de presentación; enlaza a la lista de tarifas de los tribunales. Solicite una exención de tarifa si no puede pagarla."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html",
+      "title": "Autoayuda de los Tribunales de Utah — Petición de Cambio de Nombre o Designación de Sexo (Adulto)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "es"
+  },
+  {
+    "id": "ut.drivers-license.gender-marker.es",
+    "jurisdiction": "US-UT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo/género en la licencia de conducir e identificación de Utah",
+    "statement": "Las páginas de la División de Licencias de Conducir de Utah sobre el cambio de nombre y los documentos requeridos no mencionan una designación de sexo o género en una licencia o tarjeta de identificación, ni ningún proceso para cambiarla.",
+    "detail": "Este proyecto revisó las páginas de cambio de nombre, documentos requeridos y legislación de la División y no encontró ninguna página oficial que aborde una designación de sexo o género. Lea usted mismo las páginas actuales de la División antes de suponer que existe una vía.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dld.utah.gov/required-documents/",
+      "title": "División de Licencias de Conducir de Utah — Documentos Requeridos",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ut.drivers-license.name.es",
+    "jurisdiction": "US-UT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir e identificación de Utah",
+    "statement": "Para cambiar el nombre en su licencia de conducir o tarjeta de identificación de Utah, usted se presenta en persona en la División de Licencias de Conducir. Si su nombre actual no coincide con sus documentos de identificación, usted lleva documentación legal que explique la diferencia, como un acta de matrimonio certificada, una sentencia de divorcio, un pasaporte actualizado, un nuevo acta de nacimiento, papeles de adopción, un certificado de ciudadanía o naturalización, o documentos judiciales que muestren el cambio de nombre, sellados por el tribunal.",
+    "detail": "Los documentos en idiomas extranjeros deben ser traducidos al inglés por un traductor certificado.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dld.utah.gov/name-change-regular-license/",
+      "title": "División de Licencias de Conducir de Utah — Cambio de Nombre (Licencia Regular)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "va.birth-certificate.fees.es",
     "jurisdiction": "US-VA",
     "document_type": "birth-certificate",
@@ -4517,6 +4848,131 @@
     "source": {
       "url": "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-name-or-address-your-driver-license",
       "title": "DOL de Washington — Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "wy.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-WY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Wyoming",
+    "statement": "La página de Wyoming sobre cómo enmendar un registro vital describe tres formas de cambiar un acta de nacimiento — una Enmienda por Orden Judicial, una Corrección Dentro de Un Año, y una Corrección Después de Un Año — y no menciona una designación de sexo o género, identidad de género, ni ningún proceso dedicado para cambiar el marcador de sexo en un acta de nacimiento.",
+    "detail": "Este es un vacío real en la documentación oficial de Wyoming, no una prohibición confirmada para realizar el cambio. La ley de registros vitales de Wyoming (W.S. 35-1-424) también guarda silencio sobre esto: no usa la palabra \"sexo\" en ninguna parte de sus disposiciones de corrección y enmienda. Lea usted mismo la guía oficial actual del departamento, y confirme con un abogado, antes de suponer que existe o no existe una vía.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.wyo.gov/admin/vitalstatistics/amending-a-vital-record/",
+      "title": "Departamento de Salud de Wyoming, Servicios de Registros Vitales — Enmendar un Registro Vital",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "wy.birth-certificate.name.es",
+    "jurisdiction": "US-WY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Wyoming",
+    "statement": "Para cambiar el nombre en un acta de nacimiento de Wyoming después de una orden judicial, la página de Wyoming sobre cómo enmendar un registro vital indica que usted envía una copia certificada de la orden judicial y una fotocopia de su identificación actual, junto con un formulario de Solicitud de Corrección. La tarifa de esta Enmienda por Orden Judicial es de $55.",
+    "detail": "La página señala que algunas órdenes judiciales pueden requerir evidencia adicional, y que no se aceptan cheques de terceros.",
+    "cost": {
+      "amount_usd": 55,
+      "note": "No se aceptan cheques de terceros."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://health.wyo.gov/admin/vitalstatistics/amending-a-vital-record/",
+      "title": "Departamento de Salud de Wyoming, Servicios de Registros Vitales — Enmendar un Registro Vital",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "wy-vrs-correction-form",
+    "language": "es"
+  },
+  {
+    "id": "wy.court-order.name.es",
+    "jurisdiction": "US-WY",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Wyoming",
+    "statement": "En Wyoming, usted presenta los formularios para un cambio de nombre ante el Tribunal de Distrito del condado donde vive. Debe haber sido residente real de Wyoming durante al menos seis (6) meses antes de poder pedirle al tribunal un cambio de nombre.",
+    "detail": "La mayoría de las peticiones de cambio de nombre son registros públicos, y la ley generalmente exige que se publique un aviso de su cambio de nombre en un periódico local. Las tarifas de presentación dependen del condado donde presente su caso — el Secretario del Tribunal de Distrito de su juzgado local puede indicarle el monto actual — y usted paga por separado el costo del periódico para publicar el aviso, que puede ser considerable (algunos periódicos cobran varios cientos de dólares). Si usted es víctima de violencia doméstica y su seguridad está en peligro, puede pedirle al tribunal que mantenga confidencial la información de su residencia y omitir la publicación en el periódico.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Las tarifas de presentación dependen del condado; comuníquese con el Secretario del Tribunal de Distrito. La publicación en el periódico tiene un costo adicional y puede ser considerable."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.wyocourts.gov/legal-help-by-topic/adult-name-change/",
+      "title": "Poder Judicial de Wyoming — Cambio de Nombre para Adultos",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "es"
+  },
+  {
+    "id": "wy.drivers-license.gender-marker.es",
+    "jurisdiction": "US-WY",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo/género en la licencia de conducir e identificación de Wyoming",
+    "statement": "La página oficial de Wyoming sobre cómo agregar o cambiar información en una licencia de conducir o tarjeta de identificación no menciona una designación de sexo o género, ni ningún proceso para cambiarla.",
+    "detail": "Este proyecto revisó la página de WYDOT sobre cómo agregar o cambiar información y no encontró ninguna página oficial que aborde una designación de sexo o género en una licencia o identificación. Lea usted mismo las páginas actuales de WYDOT antes de suponer que existe una vía.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dot.state.wy.us/home/driver_license_records/add_or_change_information.html",
+      "title": "Departamento de Transporte de Wyoming — Agregar/Cambiar Información",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "wy.drivers-license.name.es",
+    "jurisdiction": "US-WY",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir e identificación de Wyoming",
+    "statement": "Para cambiar el nombre en su licencia de conducir o tarjeta de identificación de Wyoming, usted se presenta en persona en una oficina de examen de conducir de Wyoming, entrega su tarjeta actual, y presenta prueba legal del cambio de nombre, como una orden judicial, un acta de matrimonio, una sentencia de divorcio, u otra verificación legal de un cambio de nombre firmada por un juez.",
+    "detail": "Si aún no ha cambiado su nombre con la Administración del Seguro Social, debe hacerlo primero — su nuevo nombre y fecha de nacimiento deben verificarse con el Seguro Social antes de que WYDOT emita su licencia o identificación revisada. Le tomarán una nueva fotografía y le pedirán una nueva firma, y usted paga la tarifa estándar de renovación. La nueva tarjeta se le envía por correo en aproximadamente 4 a 6 semanas.",
+    "timeline": {
+      "typical": "aproximadamente 4 a 6 semanas para que llegue la nueva tarjeta"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dot.state.wy.us/home/driver_license_records/add_or_change_information.html",
+      "title": "Departamento de Transporte de Wyoming — Agregar/Cambiar Información",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
