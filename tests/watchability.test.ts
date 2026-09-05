@@ -112,6 +112,12 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // domain-wide, so no baseline can be taken — deliberate, with the Ohio corpus.
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
+    // Michigan's SOS and MDHHS pages refuse this project's declared user-agent.
+    // Verified 403 from both Node's fetch and curl sending the same UA, so this is
+    // the host refusing us, not a client artifact — deliberate, with the MI corpus.
+    "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change",
+    "https://www.michigan.gov/sos/all-services/license-or-id-name-correction",
+    "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml",
     "https://www.ssa.gov/forms/ss-5.pdf",
   ]);

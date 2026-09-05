@@ -105,6 +105,17 @@ test("the thinner-coverage note still fires when a language IS genuinely thin", 
   assert.equal(hasThinnerLanguageCoverage({ ...intake, change_types: ["name"], documents: ["court-order"] }, today, withEs), false);
 });
 
+test("Michigan has Spanish parity (court-order + drivers-license + birth-certificate) — no thinner-coverage note", () => {
+  const mi = handleRoute(
+    "GET",
+    u("/checklist?jurisdiction=US-MI&change=name&change=gender-marker&doc=court-order&doc=drivers-license&doc=birth-certificate&language=es"),
+    today,
+  );
+  assert.doesNotMatch(mi.body, /aún no están listos/);
+  assert.match(mi.body, /tribunal de circuito del condado donde vive/); // mi.court-order.name.es
+  assert.match(mi.body, /no binaria \(X\)/); // mi.drivers-license.gender-marker.es
+});
+
 test("Texas now has Spanish parity for name-change (court-order + drivers-license) — no thinner-coverage note", () => {
   // Phase 6.2: tx.*.name.es records were added to mirror the EN Texas records, so the
   // honest thinner-coverage note should no longer fire for TX name-change requests.

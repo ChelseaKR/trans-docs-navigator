@@ -1,19 +1,19 @@
 {
   "today": "2026-07-13",
-  "total": 36,
+  "total": 39,
   "metrics": [
     {
       "name": "groundedness",
       "value": 1,
       "threshold": 0.95,
-      "n": 26,
+      "n": 29,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 23,
+      "n": 26,
       "pass": true
     },
     {
@@ -27,7 +27,7 @@
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 36,
+      "n": 39,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 23,
+      "n": 26,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
       "value": 1,
       "threshold": 0.7,
-      "n": 23,
+      "n": 26,
       "pass": true
     }
   ],
@@ -84,6 +84,12 @@
       "pass": true
     },
     {
+      "segment": "jurisdiction:US-MI",
+      "value": 1,
+      "n": 3,
+      "pass": true
+    },
+    {
       "segment": "jurisdiction:US-NY",
       "value": 1,
       "n": 2,
@@ -110,13 +116,13 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 15,
+      "n": 17,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 8,
+      "n": 9,
       "pass": true
     }
   ],
@@ -156,6 +162,16 @@
       "records": 8,
       "current_records": 8,
       "gold_items": 1,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-MI",
+      "records": 12,
+      "current_records": 12,
+      "gold_items": 3,
       "accuracy": 1,
       "mechanically_ready": true,
       "verification_complete": false,
@@ -292,6 +308,26 @@
       "notes": []
     },
     {
+      "id": "mi-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MI",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "mi-marker-dl",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MI",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
       "id": "tx-name-court",
       "suite": "accuracy",
       "segment": {
@@ -376,6 +412,16 @@
       "suite": "accuracy",
       "segment": {
         "jurisdiction": "US-NY",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "mi-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-MI",
         "language": "es"
       },
       "passed": true,

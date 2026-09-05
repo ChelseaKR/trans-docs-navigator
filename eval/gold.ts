@@ -114,6 +114,20 @@ const AUTHORED_GOLD: GoldItem[] = [
     },
   },
   {
+    id: "mi-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MI", language: "en" },
+    query: { jurisdiction: "US-MI", change_types: ["name"], documents: ["court-order"], question: "Michigan name change circuit court residency" },
+    expect: { refused: false, citesRecord: "mi.court-order.name", mustContain: ["circuit court", "one year"] },
+  },
+  {
+    id: "mi-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MI", language: "en" },
+    query: { jurisdiction: "US-MI", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Michigan nonbinary X gender designation license" },
+    expect: { refused: false, citesRecord: "mi.drivers-license.gender-marker", mustContain: ["nonbinary (X)"] },
+  },
+  {
     id: "tx-name-court",
     suite: "accuracy",
     segment: { jurisdiction: "US-TX", language: "en" },
@@ -178,6 +192,13 @@ const AUTHORED_GOLD: GoldItem[] = [
     segment: { jurisdiction: "US-NY", language: "es" },
     query: { jurisdiction: "US-NY", change_types: ["name"], documents: ["court-order"], language: "es", question: "cambio de nombre Nueva York publicación" },
     expect: { refused: false, citesRecord: "ny.court-order.name.es", mustContain: ["tribunal civil", "publicación"] },
+  },
+  {
+    id: "mi-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MI", language: "es" },
+    query: { jurisdiction: "US-MI", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Michigan tribunal de circuito" },
+    expect: { refused: false, citesRecord: "mi.court-order.name.es", mustContain: ["tribunal de circuito", "un año"] },
   },
   {
     id: "ssa-name-es",
