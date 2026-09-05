@@ -368,6 +368,51 @@ const AUTHORED_GOLD: GoldItem[] = [
     query: { jurisdiction: "US-CO", change_types: ["gender-marker"], documents: ["drivers-license"], language: "es", question: "género no binario licencia Colorado" },
     expect: { refused: false, citesRecord: "co.drivers-license.gender-marker.es", mustContain: ["DR 2083", "femenino, masculino o X"] },
   },
+  {
+    id: "nc-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NC", language: "en" },
+    query: { jurisdiction: "US-NC", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in North Carolina" },
+    expect: { refused: false, citesRecord: "nc.court-order.name", mustContain: ["superior court", "December 1, 2025"] },
+  },
+  {
+    id: "nc-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NC", language: "es" },
+    query: { jurisdiction: "US-NC", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Carolina del Norte" },
+    expect: { refused: false, citesRecord: "nc.court-order.name.es", mustContain: ["tribunal superior"] },
+  },
+  {
+    id: "nc-birth-cert-name",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NC", language: "en" },
+    query: { jurisdiction: "US-NC", change_types: ["name"], documents: ["birth-certificate"], question: "North Carolina birth certificate name change after court order" },
+    expect: { refused: false, citesRecord: "nc.birth-certificate.name", mustContain: ["court order", "30 calendar days"] },
+  },
+  {
+    id: "nc-marker-dl-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-NC", language: "en" },
+    query: { jurisdiction: "US-NC", change_types: ["gender-marker"], documents: ["drivers-license"], question: "North Carolina license sex designation" },
+    // M6: NCDMV's own Sex Designation Form (DL-300) is still published, but a state law
+    // recognizing only two, unchangeable "biological sex" categories for every state
+    // administrative rule and policy took effect January 1, 2026 — so this record is
+    // marked needs_reverification and the runtime must degrade it, not answer with
+    // confidence.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "nc-birth-marker-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-NC", language: "en" },
+    query: { jurisdiction: "US-NC", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "North Carolina birth certificate sex marker" },
+    // M6: a law that took effect December 1, 2025 requires the State Registrar to keep
+    // BOTH the original and the amended certificate together as one multi-page document
+    // whenever a birth certificate's sex is changed — a real restriction on what changing
+    // it actually accomplishes, not a description of the application process. Marked
+    // needs_reverification; the runtime must degrade it rather than answer with confidence.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
 
   // ── Adversarial / robustness suite ──────────────────────────────────────────
   // Stress the system the way real and hostile inputs do. These never relax the

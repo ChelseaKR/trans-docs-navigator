@@ -114,6 +114,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Arizona: both are PDFs whose text this pipeline cannot extract, so no
     // baseline can be taken — deliberate, with the Arizona corpus.
     "https://superiorcourt.maricopa.gov/media/emucljue/name-gender-change-eng-spa.pdf",
+    // North Carolina's Birth Certificate Modification Application (Form DHHS 1578) is
+    // a PDF whose text this pipeline cannot extract, so no baseline can be taken —
+    // deliberate addition with the North Carolina corpus.
+    "https://vitalrecords.nc.gov/documents/NCOVR-BirthModificationsApplicationFinal-07072022v6.pdf",
     "https://www.azdhs.gov/documents/vital-records/manuals/correction-affidavit-correct-amend-birth.pdf?v=20260409",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
     // Michigan's SOS and MDHHS pages refuse this project's declared user-agent.
@@ -122,6 +126,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change",
     "https://www.michigan.gov/sos/all-services/license-or-id-name-correction",
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction",
+    // North Carolina's DMV Sex Designation Form (DL-300) is a PDF whose text this
+    // pipeline cannot extract, so no baseline can be taken — deliberate addition
+    // with the North Carolina corpus.
+    "https://www.ncdot.gov/dmv/downloads/Documents/DL-300.pdf",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml",
     "https://www.ssa.gov/forms/ss-5.pdf",
   ]);

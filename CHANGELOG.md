@@ -8,6 +8,28 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **North Carolina** (M6 — expand jurisdictions): 8 EN + 8 ES corpus records (court-order
+  name change split across the filing statute and its application-requirements statute,
+  driver's-license name and gender-marker, birth-certificate name and gender-marker), 2
+  referrals, and 2 forms-registry entries, each sourced from an official North Carolina
+  statute or state agency page and fetched into `corpus/snapshots/`. North Carolina's name
+  change now requires a state/national criminal history record check (G.S. 101-5) but, as
+  of a December 1, 2025 repeal (Session Laws 2025-54), no longer requires newspaper
+  publication — recorded from the statute's own current text, not from an assumption. Two
+  gender-marker paths are recorded honestly as **restricted, not open**: NCDMV's Sex
+  Designation Form (DL-300) is still published, but a new statewide law (G.S. 12-3.3,
+  effective January 1, 2026) recognizes only two, unchangeable "biological sex" categories
+  for every state administrative rule and policy; and a birth-certificate sex change
+  (G.S. 130A-118, effective December 1, 2025) now requires the State Registrar to preserve
+  the original and the amended certificate together as one multi-page document, so a
+  certified copy discloses the original sex marker rather than replacing it. Both statutory
+  restrictions are split into their own `.law` records, sourced directly to the statute, and
+  every record touching them carries `verification_status: "needs_reverification"` with a
+  30-day recheck SLA rather than describing a settled process. The DMV Sex Designation Form
+  (DL-300) and the birth-certificate modification form (DHHS 1578) are both PDFs; as with
+  Georgia's and Arizona's PDF sources, they cannot be automatically fidelity-checked and are
+  reported UNCHECKABLE rather than silently passed.
+
 - **Georgia** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (court-order name
   change, driver's-license name and gender-marker, birth-certificate name and
   gender-marker, and a birth-certificate fee record), 2 referrals, and 1 forms-registry
