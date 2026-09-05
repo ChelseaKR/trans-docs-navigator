@@ -118,10 +118,24 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // pipeline cannot extract, so no baseline can be taken — deliberate addition
     // with the Georgia corpus, not a silent drift in the watch set.
     "https://dph.georgia.gov/document/document/affidavit-amendment-form-3977-revisedpdf/download",
+    // Montana's Gender Designation Form is a PDF whose text this pipeline cannot
+    // extract, so no baseline can be taken — deliberate, with the Montana corpus.
+    // It is also the source for a contested, litigated rule (see docs/audits): a
+    // human should re-read it periodically, not just trust the last snapshot.
+    "https://dphhs.mt.gov/assets/Statistics/VitalStats/MTGenderDesignationForm.pdf",
+    // Montana's Affidavit for Correction of a Vital Record — the general-purpose
+    // form the Gender Designation Form is filed alongside — is also a PDF whose
+    // text this pipeline cannot extract, so no baseline can be taken.
+    "https://dphhs.mt.gov/assets/Statistics/VitalStats/affidavitcorr.pdf",
     // Wyoming's Form to Correct a Wyoming Vital Record — registered in forms/registry.json
     // (form_ref for wy.birth-certificate.name) but never fetched via `make source-baseline`,
     // so it has no drift baseline — deliberate, with the Wyoming corpus.
     "https://health.wyo.gov/wp-content/uploads/2026/07/WDH-VRS-Correction-Form-2026.pdf",
+    // North Dakota's Century Code chapter 23-02.1 (the statute restricting
+    // gender-identity-based sex-designation amendments, 23-02.1-25.1) is only
+    // published as a PDF of the whole chapter, so no baseline can be taken —
+    // deliberate, with the North Dakota corpus.
+    "https://ndlegis.gov/cencode/t23c02-1.pdf",
     // Ohio's vital-records page refuses this project's declared user-agent
     // domain-wide, so no baseline can be taken — deliberate, with the Ohio corpus.
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record",
@@ -162,6 +176,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf",
     "https://www.dpbh.nv.gov/uploadedFiles/dpbh.nv.gov/content/Programs/BirthDeath/dta/Forms/Corrections%20-%20Birth.pdf",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
+    // North Dakota's Birth Record Amendment Application (Form SFN 60183) is a PDF
+    // whose text this pipeline cannot extract, so no baseline can be taken —
+    // deliberate addition with the North Dakota corpus.
+    "https://www.hhs.nd.gov/sites/www/files/documents/DOH%20Legacy/Vital/SFN%2060183%20-%20Birth%20Amendment%20Changes.pdf",
     // Maine: the VS-7 vital-records amendment form, the BMV's Gender Designation Form
     // (MVL-20), and the Secretary of State's gender-designation guidance memo are all
     // PDFs whose text this pipeline cannot extract, so no baseline can be taken —

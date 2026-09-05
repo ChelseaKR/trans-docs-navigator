@@ -448,6 +448,144 @@ const AUTHORED_GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "md.court-order.name.es", mustContain: ["Tribunal de Circuito", "30 días"] },
   },
   {
+    id: "wi-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WI", language: "en" },
+    query: { jurisdiction: "US-WI", change_types: ["name"], documents: ["court-order"], question: "Wisconsin name change newspaper publication" },
+    // M6: Wisconsin's own self-help page requires newspaper publication of the name-change
+    // notice, waivable only for a confidential filing when a judge finds publication would
+    // endanger the petitioner (Wis. Stat. 786.37(4)).
+    expect: {
+      refused: false,
+      citesRecord: "wi.court-order.name",
+      mustContain: ["newspaper", "three weeks"],
+    },
+  },
+  {
+    id: "wi-marker-dl-restricted",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WI", language: "en" },
+    query: { jurisdiction: "US-WI", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Wisconsin driver's license gender marker change" },
+    // Wisconsin's DMV publishes a name-change process but no analogous page for a sex/gender
+    // designation change (PR #119's standard: say the absence plainly, in the page's own terms).
+    expect: {
+      refused: false,
+      citesRecord: "wi.drivers-license.gender-marker",
+      mustContain: ["does not describe a separate process", "Wisconsin driver license or ID card"],
+    },
+  },
+  {
+    id: "wi-birth-marker",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WI", language: "en" },
+    query: { jurisdiction: "US-WI", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Wisconsin birth certificate sex change" },
+    expect: {
+      refused: false,
+      citesRecord: "wi.birth-certificate.gender-marker",
+      mustContain: ["court order", "$20"],
+    },
+  },
+  {
+    id: "wi-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WI", language: "es" },
+    query: { jurisdiction: "US-WI", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Wisconsin" },
+    expect: { refused: false, citesRecord: "wi.court-order.name.es", mustContain: ["periódico", "tres semanas"] },
+  },
+  {
+    id: "nd-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ND", language: "en" },
+    query: { jurisdiction: "US-ND", change_types: ["name"], documents: ["court-order"], question: "North Dakota name change residency requirement" },
+    expect: {
+      refused: false,
+      citesRecord: "nd.court-order.name",
+      mustContain: ["6 months", "newspaper"],
+    },
+  },
+  {
+    id: "nd-birth-marker-law-restricted",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ND", language: "en" },
+    query: { jurisdiction: "US-ND", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "North Dakota birth certificate sex change law" },
+    // M6: North Dakota Century Code 23-02.1-25.1 forecloses a gender-identity-based
+    // amendment outright, with three narrow, non-transition exceptions. Recorded as a
+    // closed route, not a discretionary or open one -- report what the statute says.
+    expect: {
+      refused: false,
+      citesRecord: "nd.birth-certificate.gender-marker.law",
+      mustContain: ["may not be amended", "gender identity change"],
+    },
+  },
+  {
+    id: "nd-marker-dl-restricted",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ND", language: "en" },
+    query: { jurisdiction: "US-ND", change_types: ["gender-marker"], documents: ["drivers-license"], question: "North Dakota driver's license gender marker change" },
+    expect: {
+      refused: false,
+      citesRecord: "nd.drivers-license.gender-marker",
+      mustContain: ["never says what that documentation is", "names no specific form"],
+    },
+  },
+  {
+    id: "nd-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ND", language: "es" },
+    query: { jurisdiction: "US-ND", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Dakota del Norte" },
+    expect: { refused: false, citesRecord: "nd.court-order.name.es", mustContain: ["6 meses", "periódico"] },
+  },
+  {
+    id: "mt-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MT", language: "en" },
+    query: { jurisdiction: "US-MT", change_types: ["name"], documents: ["court-order"], question: "Montana name change gender reason sealed record" },
+    expect: {
+      refused: false,
+      citesRecord: "mt.court-order.name",
+      mustContain: ["gender change", "sealed-record"],
+    },
+  },
+  {
+    id: "mt-marker-dl-unfetchable",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MT", language: "en" },
+    query: { jurisdiction: "US-MT", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Montana driver's license gender marker change" },
+    // M6: Montana's Motor Vehicle Division page blocks automated review outright (a
+    // Cloudflare challenge), so this pins the honest, sourced disclosure rather than a
+    // guessed process -- the record still cites the courts page it actually points from.
+    expect: {
+      refused: false,
+      citesRecord: "mt.drivers-license.name-and-gender-marker",
+      mustContain: ["Cloudflare check", "Motor Vehicle Division"],
+    },
+  },
+  {
+    id: "mt-birth-marker-restricted-degraded",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MT", language: "en" },
+    query: { jurisdiction: "US-MT", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Montana birth certificate gender marker court order" },
+    // M6: Montana's birth-certificate sex-designation rule has been litigated and enjoined
+    // repeatedly, so mt.birth-certificate.gender-marker is deliberately marked
+    // needs_reverification (corpus/README.md's "freshness demonstration") rather than
+    // asserted as a settled fact -- the runtime must never serve it as current. This pins
+    // the actual degraded behavior: the fee record still answers, and a freshness note
+    // names the withheld rule instead of a wrong confident claim about it.
+    expect: {
+      refused: false,
+      citesRecord: "mt.birth-certificate.fees",
+      hasFreshnessNote: true,
+      mustContain: ["needs reverification"],
+    },
+  },
+  {
+    id: "mt-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MT", language: "es" },
+    query: { jurisdiction: "US-MT", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Montana" },
+    expect: { refused: false, citesRecord: "mt.court-order.name.es", mustContain: ["cambio de género", "expediente sellado"] },
+  },
+  {
     id: "tx-unsupported-court",
     suite: "refusal",
     segment: { jurisdiction: "US-AL", language: "en" },

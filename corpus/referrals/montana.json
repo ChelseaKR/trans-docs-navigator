@@ -1,0 +1,38 @@
+[
+  {
+    "id": "mt.referral.montana-legal-services-association",
+    "jurisdiction": "US-MT",
+    "name": "Montana Legal Services Association",
+    "url": "https://mtlsa.org",
+    "note": {
+      "en": "Statewide nonprofit that provides free civil legal help to low-income Montanans, with offices around the state and a helpline, plus self-help legal information through MontanaLawHelp.org.",
+      "es": "Organización sin fines de lucro estatal que brinda ayuda legal civil gratuita a residentes de Montana de bajos ingresos, con oficinas en todo el estado y una línea de ayuda, además de información legal de autoayuda a través de MontanaLawHelp.org."
+    },
+    "source": {
+      "url": "https://mtlsa.org",
+      "title": "Montana Legal Services Association",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "mt.referral.pride-foundation",
+    "jurisdiction": "US-MT",
+    "name": "Pride Foundation",
+    "url": "https://pridefoundation.org",
+    "note": {
+      "en": "Regional LGBTQ+ nonprofit serving Montana, Alaska, Idaho, Oregon, and Washington, including a program focused on transgender community support.",
+      "es": "Organización regional LGBTQ+ sin fines de lucro que atiende a Montana, Alaska, Idaho, Oregón y Washington, con un programa enfocado en el apoyo a la comunidad transgénero."
+    },
+    "source": {
+      "url": "https://pridefoundation.org",
+      "title": "Pride Foundation",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]
