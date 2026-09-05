@@ -879,5 +879,178 @@
     "recheck_sla_days": 90,
     "form_ref": "wa-doh-422-126",
     "language": "es"
+  },
+  {
+    "id": "az.court-order.name.es",
+    "jurisdiction": "US-AZ",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Solicitud de cambio de nombre en Arizona",
+    "statement": "En Arizona usted presenta una solicitud de cambio de nombre en la corte superior del condado donde vive, indicando el nombre que desea y sus razones para quererlo. Un juez decide si sustituye su nombre original por el nuevo.",
+    "detail": "Una vez que la corte concede el cambio, usted entrega la orden judicial firmada a la oficina de registros vitales del estado donde nació, para que ese estado actualice su acta de nacimiento. La cuota estatal de presentación de esta corte para esta petición se establece en un formulario de cuotas aparte (véase el registro de cuotas de Arizona correspondiente).",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica el monto de la cuota. Las cortes superiores de Arizona publican un formulario de cuotas estatal para una petición de cambio de nombre; véase el registro de cuotas de la corte de Arizona correspondiente para la cifra actual."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://azcourthelp.org/faq/name-change/301-how-name-change",
+      "title": "AZCourtHelp.org (Arizona Bar Foundation) — ¿Qué necesito llenar para cambiar legalmente mi nombre en Arizona?",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "az.court-order.fees.es",
+    "jurisdiction": "US-AZ",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cuota judicial de cambio de nombre en Arizona",
+    "statement": "Las cortes superiores de Arizona cobran un total de $252.00 para presentar una petición de cambio de nombre: una cuota base de $222.00 más una cuota de $15.00 para el fondo de almacenamiento de documentos y una cuota de $15.00 para el fondo de la corte de conciliación.",
+    "detail": "Este es el formulario de cuotas estatal establecido bajo A.R.S. § 12-284, vigente desde el 28 de diciembre de 2024 (Orden Administrativa 2024-210 de la Corte Suprema de Arizona). Cada condado puede agregar cuotas locales adicionales. Las cortes de Arizona también ofrecen un proceso de exención y aplazamiento de cuotas para las personas que no pueden pagar la cuota de presentación.",
+    "cost": {
+      "amount_usd": 252,
+      "note": "Cuota base de $222.00, más una cuota de $15.00 para el fondo de almacenamiento de documentos y una cuota de $15.00 para el fondo de la corte de conciliación. Existe un proceso de exención y aplazamiento de cuotas para quienes no pueden pagar.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.azcourts.gov/courtfilingfees/Superior-Court-Filing-Fees",
+      "title": "Rama Judicial de Arizona — Cuotas de Presentación de la Corte Superior",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "az.drivers-license.name.es",
+    "jurisdiction": "US-AZ",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia o identificación de Arizona",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Arizona, primero cambie su nombre con la Administración del Seguro Social y luego visite una oficina de la División de Vehículos Motorizados (MVD). Debe actualizar su nombre con el MVD dentro de los 10 días posteriores a que su cambio legal de nombre tome efecto.",
+    "detail": "Después de cambiar su nombre con el Seguro Social, espere dos días hábiles antes de visitar una oficina del MVD. Lleve una copia original o certificada de su orden judicial (u otra prueba, como una licencia de matrimonio o un decreto de divorcio) junto con identificación que muestre tanto su nombre nuevo como el anterior. Esto requiere una visita en persona a una oficina del MVD; no se puede completar en línea.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://azdot.gov/mvd/services/driver-license-ID/change-your-name",
+      "title": "Departamento de Transporte de Arizona, División de Vehículos Motorizados — Cambie su Nombre con el MVD",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "az.drivers-license.gender-marker.es",
+    "jurisdiction": "US-AZ",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Cambio de marcador de género en la licencia o identificación de Arizona",
+    "statement": "La División de Vehículos Motorizados de Arizona no publica su propia página pública que describa cómo cambiar el marcador de sexo o género en una licencia o identificación. Una guía rápida de autoayuda de la Corte Superior del Condado de Maricopa dice que el paso es: llevar una orden judicial certificada de cambio de nombre y una carta de su médico, junto con su identificación actual, a una oficina del MVD y completar allí su trámite.",
+    "detail": "Esta guía es un recurso bilingüe (inglés/español) de autoayuda de una corte de condado, no una página de políticas de ADOT, y no está al día en todos sus puntos — su propia información sobre las actas de nacimiento de Arizona no ha seguido el ritmo de las decisiones judiciales recientes. Las reglas de Arizona en esta área han sido impugnadas en una corte federal y están cambiando. Confirme los requisitos actuales directamente con una oficina del MVD, un abogado, o una organización local de apoyo a personas trans antes de basarse en esto.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://superiorcourt.maricopa.gov/media/emucljue/name-gender-change-eng-spa.pdf",
+      "title": "Corte Superior de Arizona en el Condado de Maricopa — Cambios de Marcador de Género y Nombre (Guía Rápida)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "az.birth-certificate.name.es",
+    "jurisdiction": "US-AZ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Arizona",
+    "statement": "Para cambiar el nombre en un acta de nacimiento de Arizona un año o más después del nacimiento, la Oficina de Registros Vitales de Arizona pide una copia certificada del cambio de nombre ordenado por la corte, una Declaración Jurada (Affidavit) completa firmada ante un notario, una solicitud de copia del acta de nacimiento, y una copia de su identificación oficial con fotografía.",
+    "detail": "Las solicitudes presentadas menos de un año después del nacimiento pueden usar evidencia distinta en lugar de una orden judicial. Incluya un sobre con su propia dirección y franqueo pagado junto con su solicitud enviada por correo. La mayoría de los condados de Arizona pueden procesar actas de nacimiento de 1997 al presente; la Oficina de Registros Vitales atiende por correo las actas más antiguas, las de nacidos en el extranjero y las tardías.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica el monto de la cuota; véase el registro de cuotas de actas de nacimiento de Arizona correspondiente para la cifra actual."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.azdhs.gov/includes/content/director/vital-records.php?cont=corrections-amendments-registrants-name",
+      "title": "Departamento de Salud de Arizona, Oficina de Registros Vitales — Cambiar el Nombre de un Registrante en un Acta de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "az-affidavit-correct-amend-birth",
+    "language": "es"
+  },
+  {
+    "id": "az.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-AZ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Marcador de sexo/género en el acta de nacimiento de Arizona",
+    "statement": "La Oficina de Registros Vitales de Arizona indica dos formas de enmendar el marcador de sexo/género en un acta de nacimiento de Arizona: una orden judicial certificada, o una declaración por escrito en papel membretado de un médico que diga que usted se sometió a una operación de cambio de sexo o que tuvo un conteo cromosómico que establece un sexo distinto al de su acta de nacimiento registrada. Las enmiendas al marcador de sexo/género deben presentarse ante la Oficina Estatal, no ante un departamento de salud del condado.",
+    "detail": "Esto es lo que indica la propia página web de la Oficina de Registros Vitales a la fecha de última verificación de este registro. Las reglas de Arizona para cambiar un marcador de sexo o género han sido impugnadas en una corte federal y esta área está cambiando. Confirme los requisitos actuales con la Oficina de Registros Vitales, un abogado, o una organización local de apoyo a personas trans antes de basarse en esto.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.azdhs.gov/includes/content/director/vital-records.php?cont=corrections-amendments-other",
+      "title": "Departamento de Salud de Arizona, Oficina de Registros Vitales — Otros Tipos de Enmiendas al Acta de Nacimiento (Marcador de Sexo/Género)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "az.birth-certificate.fees.es",
+    "jurisdiction": "US-AZ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Cuotas para enmendar el acta de nacimiento de Arizona",
+    "statement": "La Oficina de Registros Vitales de Arizona cobra $30.00 por una solicitud para enmendar o corregir información en un acta de nacimiento registrada, y $20.00 por un Certificado de Registro de Nacimiento (una copia certificada).",
+    "detail": "Estas son las cuotas estatales establecidas bajo el Código Administrativo de Arizona R9-19-105. Los departamentos de salud de cada condado pueden cobrar sus propios montos por los mismos servicios — consulte con la oficina de Registros Vitales de su condado.",
+    "cost": {
+      "amount_usd": 30,
+      "note": "Esta es la cuota para solicitar una enmienda o corrección a un acta de nacimiento registrada. Una copia certificada aparte del acta corregida cuesta $20.00 adicionales."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.azdhs.gov/includes/content/director/vital-records.php?cont=fee-schedule",
+      "title": "Departamento de Salud de Arizona, Oficina de Registros Vitales — Formularios de Cuotas",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
   }
 ]

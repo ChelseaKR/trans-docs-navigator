@@ -141,5 +141,18 @@
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "az-affidavit-correct-amend-birth",
+    "jurisdiction": "US-AZ",
+    "document_type": "birth-certificate",
+    "change_type": ["name", "gender-marker"],
+    "title": "Affidavit to Correct or Amend a Birth Certificate",
+    "source": {
+      "url": "https://www.azdhs.gov/documents/vital-records/manuals/correction-affidavit-correct-amend-birth.pdf?v=20260409",
+      "title": "Arizona Department of Health Services, Bureau of Vital Records — Affidavit to Correct or Amend a Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]

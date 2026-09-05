@@ -8,6 +8,19 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Arizona corpus coverage** (ROADMAP M6): 7 EN + 7 ES records covering court-ordered name
+  change, driver's-license/ID name and gender-marker changes, and birth-certificate name and
+  gender-marker changes, each cited to azcourthelp.org, azcourts.gov, azdot.gov, and
+  azdhs.gov's own pages (the vital-records pages load their content via an in-page fetch, so
+  the corpus cites the exact content endpoint the browser itself calls). Arizona's MVD
+  publishes no page describing a gender-marker process, and its birth-certificate gender/sex
+  rules have been challenged in federal court and were still, as of this snapshot, unchanged
+  on the agency's own page — both AZ gender-marker records are therefore marked
+  `needs_reverification` rather than served as a settled fact, mirroring the existing Texas
+  DMV degradation pattern. Registers `US-AZ` in the intake, relocation, and guide-page
+  jurisdiction lists, adds an Arizona forms-registry entry and two Arizona legal-aid
+  referrals, and adds Arizona gold-eval items (accuracy EN/ES + a refusal case for the
+  volatile MVD record).
 - **ADR directory completed** (`docs/adr/`): the five build ADRs migrated out of
   `docs/ROADMAP.md` §6 into individual Nygard-format files (0001–0005, decision content
   unchanged), plus a new ADR-0006 recording the deliberate no-ESLint/no-Prettier/no-bundler

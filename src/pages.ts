@@ -11,6 +11,7 @@ import { toResumeState } from "./secure-resume.ts";
 import { staleAfterDays } from "./offline.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
+  { id: "US-AZ", label: "Arizona" },
   { id: "US-CA", label: "California" },
   { id: "US-IL", label: "Illinois" },
   { id: "US-NY", label: "New York" },

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "az.referral.azlawhelp",
+    "jurisdiction": "US-AZ",
+    "name": "AZLawHelp.org",
+    "url": "https://azlawhelp.org",
+    "note": {
+      "en": "A collaborative civil legal-aid portal run by Community Legal Services, DNA People's Legal Services, Southern Arizona Legal Aid, and other Arizona legal-aid organizations. It screens for free or reduced-fee legal help for people who qualify.",
+      "es": "Un portal colaborativo de ayuda legal civil administrado por Community Legal Services, DNA People's Legal Services, Southern Arizona Legal Aid y otras organizaciones de ayuda legal de Arizona. Evalúa si usted califica para ayuda legal gratuita o de costo reducido."
+    },
+    "source": {
+      "url": "https://azlawhelp.org",
+      "title": "AZLawHelp.org",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "az.referral.saga-tucson",
+    "jurisdiction": "US-AZ",
+    "name": "Southern Arizona Gender Alliance (SAGA)",
+    "url": "https://sagatucson.org",
+    "note": {
+      "en": "A supportive LGBTQ+ community and education resource based in Tucson, publishing self-help guides on practical topics such as updating identity documents in Arizona.",
+      "es": "Un recurso comunitario y educativo de apoyo LGBTQ+ con sede en Tucson, que publica guías de autoayuda sobre temas prácticos como la actualización de documentos de identidad en Arizona."
+    },
+    "source": {
+      "url": "https://sagatucson.org",
+      "title": "Southern Arizona Gender Alliance (SAGA)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]
