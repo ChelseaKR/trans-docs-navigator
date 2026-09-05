@@ -123,6 +123,12 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // published as a PDF on the General Assembly's own site, so no baseline can be
     // taken — deliberate, with the Tennessee corpus.
     "https://www.capitol.tn.gov/Bills/113/Bill/SB1440.pdf",
+    // DC Superior Court (dccourts.gov) refuses this project's declared user-agent
+    // domain-wide (an Azure Application Gateway WAF, verified on multiple paths
+    // including robots.txt itself), so no baseline can be taken — deliberate, with
+    // the District of Columbia corpus. This is the SAME URL as dc.court-order.name's
+    // source and the dc-name-change-adult form_ref.
+    "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf",
     // Nevada: all three are PDFs whose text this pipeline cannot extract, so no
     // baseline can be taken — deliberate, with the Nevada corpus.
     "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf",

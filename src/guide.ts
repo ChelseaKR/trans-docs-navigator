@@ -27,10 +27,12 @@ interface StateDef {
 const STATES: StateDef[] = [
   { slug: "arizona", id: "US-AZ", name: { en: "Arizona", es: "Arizona" } },
   { slug: "california", id: "US-CA", name: { en: "California", es: "California" } },
+  { slug: "district-of-columbia", id: "US-DC", name: { en: "District of Columbia", es: "Distrito de Columbia" } },
   { slug: "florida", id: "US-FL", name: { en: "Florida", es: "Florida" } },
   { slug: "georgia", id: "US-GA", name: { en: "Georgia", es: "Georgia" } },
   { slug: "colorado", id: "US-CO", name: { en: "Colorado", es: "Colorado" } },
   { slug: "illinois", id: "US-IL", name: { en: "Illinois", es: "Illinois" } },
+  { slug: "kentucky", id: "US-KY", name: { en: "Kentucky", es: "Kentucky" } },
   { slug: "maryland", id: "US-MD", name: { en: "Maryland", es: "Maryland" } },
   { slug: "massachusetts", id: "US-MA", name: { en: "Massachusetts", es: "Massachusetts" } },
   { slug: "michigan", id: "US-MI", name: { en: "Michigan", es: "Michigan" } },
@@ -46,6 +48,7 @@ const STATES: StateDef[] = [
   { slug: "texas", id: "US-TX", name: { en: "Texas", es: "Texas" } },
   { slug: "virginia", id: "US-VA", name: { en: "Virginia", es: "Virginia" } },
   { slug: "washington", id: "US-WA", name: { en: "Washington", es: "Washington" } },
+  { slug: "west-virginia", id: "US-WV", name: { en: "West Virginia", es: "Virginia Occidental" } },
 ];
 
 const TOPICS: { slug: string; change: ChangeType }[] = [

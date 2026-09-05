@@ -31,10 +31,12 @@ import { formById } from "../api/forms.ts";
 export const RELOCATION_JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-AZ", label: "Arizona" },
   { id: "US-CA", label: "California" },
+  { id: "US-DC", label: "District of Columbia" },
   { id: "US-FL", label: "Florida" },
   { id: "US-GA", label: "Georgia" },
   { id: "US-CO", label: "Colorado" },
   { id: "US-IL", label: "Illinois" },
+  { id: "US-KY", label: "Kentucky" },
   { id: "US-MD", label: "Maryland" },
   { id: "US-MI", label: "Michigan" },
   { id: "US-MN", label: "Minnesota" },
@@ -48,6 +50,7 @@ export const RELOCATION_JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-TX", label: "Texas" },
   { id: "US-VA", label: "Virginia" },
   { id: "US-WA", label: "Washington" },
+  { id: "US-WV", label: "West Virginia" },
 ];
 
 const HOLDABLE: DocumentType[] = ["court-order", "ssa-card", "drivers-license", "passport", "birth-certificate"];

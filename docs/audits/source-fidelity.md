@@ -12,28 +12,29 @@
 
 | | Count |
 |---|---|
-| Records audited | 258 |
-| Load-bearing assertions found | 676 |
-| — checked and **supported** by the cited source | 497 |
+| Records audited | 288 |
+| Load-bearing assertions found | 754 |
+| — checked and **supported** by the cited source | 523 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 179 |
-| of the checked: literal (fee / duration / form-id) matches | 327 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 170 |
+| — **UNCHECKABLE** (reported, never passed) | 231 |
+| of the checked: literal (fee / duration / form-id) matches | 345 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 178 |
 
 ## What this gate cannot vouch for
 
-- **1023 of 1270 prose sentences** in the corpus carry no extractable
+- **1148 of 1406 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **354 sentences state a negative** (`you do not need a court order`, `the page no
+- **396 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **170 assertions are necessary-condition only**: the source discusses the topic, which
+- **178 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
-- **6 cited sources refuse automated fetching entirely**, so no
+- **7 cited sources refuse automated fetching entirely**, so no
   snapshot exists and every assertion in every record citing them is unverifiable by any
   gate. We will not spoof a browser user-agent to get around a site that has said no.
+  - https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
   - https://www.michigan.gov/sos/all-services/license-or-id-name-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
   - https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
   - https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.
@@ -47,9 +48,28 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 
 ## Uncheckable assertions (reported, never passed)
 
-**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 64 assertion(s):
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 105 assertion(s):
 
 - `az.drivers-license.gender-marker · a court order is required`
+- `dc.drivers-license.gender-marker · form_ref "dc-dmv-gender-self-designation" (DC DMV — Gender Self-Designation Form) carries no form identifier to match on`
+- `dc.drivers-license.gender-marker · an X sex/gender marker is available`
+- `dc.birth-certificate.name · costs $23`
+- `dc.birth-certificate.name · form_ref "dc-doh-birth-amend-court-order" (DC Health — Amendment to Birth Record (Court Order)) carries no form identifier to match on`
+- `dc.birth-certificate.name · a court order is required`
+- `dc.birth-certificate.name · a notarized signature is required`
+- `dc.birth-certificate.gender-marker · costs $28`
+- `dc.birth-certificate.gender-marker · form_ref "dc-doh-gender-designation" (DC Health — Gender Designation Application (with Model Letter and Instructions)) carries no form identifier to match on`
+- `dc.birth-certificate.gender-marker · a court order is required`
+- `dc.birth-certificate.gender-marker · states $23`
+- `dc.birth-certificate.gender-marker · states $51`
+- `dc.birth-certificate.gender-marker · states "3 business-day"`
+- `ky.birth-certificate.name · costs $10`
+- `ky.birth-certificate.name · official form VS2J backs this step (form_ref: ky-vs-2j)`
+- `ky.birth-certificate.name · a court order is required`
+- `ky.birth-certificate.name · a notarized signature is required`
+- `ky.birth-certificate.gender-marker · costs $10`
+- `ky.birth-certificate.gender-marker · official form VS2J backs this step (form_ref: ky-vs-2j)`
+- `ky.birth-certificate.gender-marker · a court order is required`
 - `md.birth-certificate.gender-marker · costs $10`
 - `md.birth-certificate.gender-marker · form_ref "md-vsa-gender-reassignment" (Application for Change in Sex Designation on a Certificate of Live Birth) carries no form identifier to match on`
 - `md.birth-certificate.gender-marker · a court order is required`
@@ -113,9 +133,33 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `pa.birth-certificate.name.es · a court order is required`
 - `pa.birth-certificate.name.es · a notarized signature is required`
 - `pa.birth-certificate.name.es · states "45 day"`
+- `dc.drivers-license.gender-marker.es · form_ref "dc-dmv-gender-self-designation" (DC DMV — Gender Self-Designation Form) carries no form identifier to match on`
+- `dc.drivers-license.gender-marker.es · an X sex/gender marker is available`
+- `dc.birth-certificate.name.es · costs $23`
+- `dc.birth-certificate.name.es · form_ref "dc-doh-birth-amend-court-order" (DC Health — Amendment to Birth Record (Court Order)) carries no form identifier to match on`
+- `dc.birth-certificate.name.es · a court order is required`
+- `dc.birth-certificate.name.es · a notarized signature is required`
+- `dc.birth-certificate.gender-marker.es · costs $28`
+- `dc.birth-certificate.gender-marker.es · form_ref "dc-doh-gender-designation" (DC Health — Gender Designation Application (with Model Letter and Instructions)) carries no form identifier to match on`
+- `dc.birth-certificate.gender-marker.es · a court order is required`
+- `dc.birth-certificate.gender-marker.es · states $23`
+- `dc.birth-certificate.gender-marker.es · states $51`
+- `dc.birth-certificate.gender-marker.es · states "3 business-day"`
+- `wv.drivers-license.gender-marker.es · official form DMV99 backs this step (form_ref: wv-dmv-99-ro-gender-designation)`
+- `ky.birth-certificate.name.es · costs $10`
+- `ky.birth-certificate.name.es · official form VS2J backs this step (form_ref: ky-vs-2j)`
+- `ky.birth-certificate.name.es · a court order is required`
+- `ky.birth-certificate.name.es · states "18 year"`
+- `ky.birth-certificate.name.es · a notarized signature is required`
+- `ky.birth-certificate.gender-marker.es · costs $10`
+- `ky.birth-certificate.gender-marker.es · official form VS2J backs this step (form_ref: ky-vs-2j)`
+- `ky.birth-certificate.gender-marker.es · a court order is required`
+- `wv.drivers-license.gender-marker · official form DMV99 backs this step (form_ref: wv-dmv-99-ro-gender-designation)`
 
-**the source refuses automated fetching (HTTP 403)** — 59 assertion(s):
+**the source refuses automated fetching (HTTP 403)** — 63 assertion(s):
 
+- `dc.court-order.name · costs $60`
+- `dc.court-order.name · form_ref "dc-name-change-adult" (Application for Change of Name of an Adult (DC Superior Court)) carries no form identifier to match on`
 - `mi.drivers-license.name · costs $9`
 - `mi.drivers-license.name · a court order is required`
 - `mi.drivers-license.name · states $10`
@@ -175,8 +219,10 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ny.birth-certificate.name.es · states $30`
 - `ny.court-order.name.es · a fee waiver is available (cost.fee_waiver: true)`
 - `ny.court-order.name.es · publication in a newspaper is required`
+- `dc.court-order.name.es · costs $60`
+- `dc.court-order.name.es · form_ref "dc-name-change-adult" (Application for Change of Name of an Adult (DC Superior Court)) carries no form identifier to match on`
 
-**the official form has no identifier to match on** — 24 assertion(s):
+**the official form has no identifier to match on** — 28 assertion(s):
 
 - `az.birth-certificate.name · form_ref "az-affidavit-correct-amend-birth" (Affidavit to Correct or Amend a Birth Certificate) carries no form identifier to match on`
 - `il.birth-certificate.gender-marker · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
@@ -202,6 +248,10 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `nj.birth-certificate.gender-marker.es · form_ref "nj-doh-reg-l2" (Form REG-L2 — Request Form and Attestation to Amend Sex Designation to Reflect Gender Identity on a Birth Certificate (Adult)) carries no form identifier to match on`
 - `or.birth-certificate.name.es · form_ref "or-oha-court-order-name-form" (Request to Change Birth Certificate Based on Court Order of Name Change) carries no form identifier to match on`
 - `or.court-order.name-and-sex.es · form_ref "or-courts-name-sex-packet" (Name and Sex Change Packet (Adult)) carries no form identifier to match on`
+- `wv.birth-certificate.name.es · form_ref "wv-hsc-affidavit-correct-birth" (West Virginia Health Statistics Center — Affidavit to Correct Birth (Adult)) carries no form identifier to match on`
+- `wv.birth-certificate.gender-marker.es · form_ref "wv-hsc-sex-designation" (West Virginia Health Statistics Center — Sex Designation Form) carries no form identifier to match on`
+- `wv.birth-certificate.name · form_ref "wv-hsc-affidavit-correct-birth" (West Virginia Health Statistics Center — Affidavit to Correct Birth (Adult)) carries no form identifier to match on`
+- `wv.birth-certificate.gender-marker · form_ref "wv-hsc-sex-designation" (West Virginia Health Statistics Center — Sex Designation Form) carries no form identifier to match on`
 
 **the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name.** — 15 assertion(s):
 
@@ -242,6 +292,12 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `tn.birth-certificate.name · states $15`
 - `tn.birth-certificate.name · a court order is required`
 - `tn.birth-certificate.name · a notarized signature is required`
+
+**the source is application/PDF — this gate extracts text from HTML only, so nothing in it can be checked** — 3 assertion(s):
+
+- `ky.court-order.name · states "18 year"`
+- `ky.court-order.name · a court order is required`
+- `ky.court-order.name.es · states "18 year"`
 
 **the source refuses automated fetching (HTTP 404)** — 1 assertion(s):
 
@@ -291,6 +347,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `co.court-order.name.es` | es | 9 | 0 | 0 | 2/5 |
 | `co.drivers-license.gender-marker` | en | 3 | 0 | 0 | 4/6 |
 | `co.drivers-license.gender-marker.es` | es | 4 | 0 | 0 | 4/6 |
+| `dc.birth-certificate.gender-marker` | en | 0 | 0 | 6 | 5/5 |
+| `dc.birth-certificate.gender-marker.es` | es | 0 | 0 | 6 | 5/5 |
+| `dc.birth-certificate.name` | en | 0 | 0 | 4 | 4/4 |
+| `dc.birth-certificate.name.es` | es | 0 | 0 | 4 | 4/4 |
+| `dc.court-order.name` | en | 0 | 0 | 2 | 5/5 |
+| `dc.court-order.name.es` | es | 0 | 0 | 2 | 5/5 |
+| `dc.drivers-license.gender-marker` | en | 0 | 0 | 2 | 4/4 |
+| `dc.drivers-license.gender-marker.es` | es | 0 | 0 | 2 | 4/4 |
+| `dc.drivers-license.name` | en | 1 | 0 | 0 | 3/3 |
+| `dc.drivers-license.name.es` | es | 1 | 0 | 0 | 3/3 |
 | `fl.birth-certificate.gender-marker` | en | 0 | 0 | 0 | 4/4 |
 | `fl.birth-certificate.gender-marker.es` | es | 0 | 0 | 0 | 4/4 |
 | `fl.birth-certificate.name` | en | 4 | 0 | 0 | 1/4 |
@@ -321,6 +387,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `il.court-order.name.es` | es | 1 | 0 | 0 | 5/5 |
 | `il.drivers-license.gender-marker` | en | 1 | 0 | 0 | 4/4 |
 | `il.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 4/4 |
+| `ky.birth-certificate.gender-marker` | en | 0 | 0 | 3 | 3/4 |
+| `ky.birth-certificate.gender-marker.es` | es | 0 | 0 | 3 | 3/4 |
+| `ky.birth-certificate.name` | en | 0 | 0 | 4 | 3/4 |
+| `ky.birth-certificate.name.es` | es | 0 | 0 | 5 | 2/4 |
+| `ky.court-order.name` | en | 0 | 0 | 2 | 4/5 |
+| `ky.court-order.name.es` | es | 0 | 0 | 1 | 5/6 |
+| `ky.drivers-license.gender-marker` | en | 0 | 0 | 0 | 5/5 |
+| `ky.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 5/5 |
+| `ky.drivers-license.name` | en | 4 | 0 | 0 | 3/4 |
+| `ky.drivers-license.name.es` | es | 4 | 0 | 0 | 4/5 |
 | `ma.birth-certificate.gender-marker` | en | 4 | 0 | 1 | 4/4 |
 | `ma.birth-certificate.gender-marker.es` | es | 4 | 0 | 1 | 4/4 |
 | `ma.birth-certificate.gender-marker.law` | en | 1 | 0 | 0 | 1/3 |
@@ -509,3 +585,13 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `wa.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 6/6 |
 | `wa.drivers-license.name` | en | 1 | 0 | 0 | 4/4 |
 | `wa.drivers-license.name.es` | es | 1 | 0 | 0 | 4/4 |
+| `wv.birth-certificate.gender-marker` | en | 3 | 0 | 1 | 5/5 |
+| `wv.birth-certificate.gender-marker.es` | es | 3 | 0 | 1 | 5/5 |
+| `wv.birth-certificate.name` | en | 4 | 0 | 1 | 4/5 |
+| `wv.birth-certificate.name.es` | es | 4 | 0 | 1 | 4/5 |
+| `wv.court-order.name` | en | 0 | 0 | 0 | 5/5 |
+| `wv.court-order.name.es` | es | 0 | 0 | 0 | 5/5 |
+| `wv.drivers-license.gender-marker` | en | 0 | 0 | 1 | 6/6 |
+| `wv.drivers-license.gender-marker.es` | es | 0 | 0 | 1 | 6/6 |
+| `wv.drivers-license.name` | en | 1 | 0 | 0 | 3/3 |
+| `wv.drivers-license.name.es` | es | 1 | 0 | 0 | 3/3 |

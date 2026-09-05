@@ -550,5 +550,126 @@
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "dc-name-change-adult",
+    "jurisdiction": "US-DC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Application for Change of Name of an Adult (DC Superior Court)",
+    "source": {
+      "url": "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf",
+      "title": "DC Superior Court — Application for Change of Name of an Adult",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "dc-doh-birth-amend-court-order",
+    "jurisdiction": "US-DC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "title": "DC Health — Amendment to Birth Record (Court Order)",
+    "source": {
+      "url": "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Birth%20Amendment%20with%20court%20order_0.pdf",
+      "title": "DC Health — Amendment to Birth Record (Court Order)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "dc-doh-gender-designation",
+    "jurisdiction": "US-DC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "DC Health — Gender Designation Application (with Model Letter and Instructions)",
+    "source": {
+      "url": "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Gender%20Designation%20Application_0.pdf",
+      "title": "DC Health — Gender Designation Application",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "dc-dmv-gender-self-designation",
+    "jurisdiction": "US-DC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "DC DMV — Gender Self-Designation Form",
+    "source": {
+      "url": "https://dmv.dc.gov/sites/default/files/dc/sites/dmv/publication/attachments/DC%20DMV%20Form%20Gender%20Self-Designation%20English.pdf",
+      "title": "DC DMV — Gender Self-Designation Form",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "wv-dmv-99-ro-gender-designation",
+    "jurisdiction": "US-WV",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Form DMV-99-RO — Gender Designation Form",
+    "source": {
+      "url": "https://webapps.transportation.wv.gov/TWS/WVDOTDocumentStorageMigration/PDF/Transportation/DMV/DMVFormSearch/DMV-99-RO-GenderDesignationForm.pdf",
+      "title": "West Virginia DMV Form DMV-99-RO — Gender Designation Form",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "wv-hsc-affidavit-correct-birth",
+    "jurisdiction": "US-WV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "title": "West Virginia Health Statistics Center — Affidavit to Correct Birth (Adult)",
+    "source": {
+      "url": "https://dhhr.wv.gov/HSC/forms/Documents/Affidavit_to_correct_birth.pdf",
+      "title": "West Virginia Health Statistics Center — Affidavit to Correct Birth",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "wv-hsc-sex-designation",
+    "jurisdiction": "US-WV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "West Virginia Health Statistics Center — Sex Designation Form",
+    "source": {
+      "url": "https://dhhr.wv.gov/HSC/forms/Documents/HSC%20Sex%20Designation%20Form.pdf",
+      "title": "West Virginia Health Statistics Center — Sex Designation Form",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ky-vs-2j",
+    "jurisdiction": "US-KY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Form VS-2J — Affidavit for Amendment to Certificate",
+    "source": {
+      "url": "https://www.chfs.ky.gov/agencies/dph/dehp/vsb/Forms/VS2J.pdf",
+      "title": "Kentucky Cabinet for Health and Family Services Form VS-2J",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]

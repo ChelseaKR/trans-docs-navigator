@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ky.referral.fairness-campaign",
+    "jurisdiction": "US-KY",
+    "name": "Fairness Campaign",
+    "url": "https://www.fairnesscampaign.org",
+    "note": {
+      "en": "A Kentucky LGBTQ+ civil-rights organization publishing know-your-rights information and organizing statewide, including Kentucky Pride events.",
+      "es": "Una organización de derechos civiles LGBTQ+ de Kentucky que publica información sobre derechos y organiza actividades en todo el estado, incluidos los eventos de Kentucky Pride."
+    },
+    "source": {
+      "url": "https://www.fairnesscampaign.org",
+      "title": "Fairness Campaign",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ky.referral.kyjustice",
+    "jurisdiction": "US-KY",
+    "name": "KYJustice",
+    "url": "https://www.kyjustice.org",
+    "note": {
+      "en": "Self-help legal information site that the Kentucky Court of Justice's own self-help portal links to for civil legal topics, including name changes.",
+      "es": "Sitio de información legal de autoayuda al que remite el propio portal de autoayuda del Poder Judicial de Kentucky para temas legales civiles, incluidos los cambios de nombre."
+    },
+    "source": {
+      "url": "https://www.kyjustice.org",
+      "title": "KYJustice",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

@@ -3261,5 +3261,406 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "language": "es"
+  },
+  {
+    "id": "dc.court-order.name.es",
+    "jurisdiction": "US-DC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en el Distrito de Columbia",
+    "statement": "En el Distrito de Columbia, usted presenta una Solicitud de Cambio de Nombre de un Adulto ante la División de Acciones Civiles del Tribunal Superior de DC. Debe vivir actualmente en DC, sin importar dónde nació, y un juez celebra una audiencia final antes de otorgarlo.",
+    "detail": "La solicitud debe presentarse con prueba de residencia actual en DC, una identificación con fotografía válida y sus razones para el cambio de nombre. Antes de la audiencia final debe notificar a los acreedores y otras partes interesadas, por entrega personal o por correo certificado o registrado, y presentar prueba de que lo hizo. Si el tribunal aprueba su solicitud, le entregan al menos cinco copias certificadas de la orden de cambio de nombre.",
+    "cost": {
+      "amount_usd": 60,
+      "note": "Puede pedirle al tribunal que exima esta tarifa presentando una Solicitud para Eximir Costos y Tarifas del Tribunal si no puede pagar."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf",
+      "title": "Tribunal Superior de DC — Solicitud de Cambio de Nombre de un Adulto (Instrucciones)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "dc-name-change-adult",
+    "language": "es"
+  },
+  {
+    "id": "dc.drivers-license.name.es",
+    "jurisdiction": "US-DC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir o identificación de DC",
+    "statement": "Para actualizar el nombre en su licencia de conducir o identificación de DC después de un cambio de nombre legal, lleve su orden judicial original junto con los demás documentos de identidad que exige el DMV de DC a un centro de servicio.",
+    "detail": "Las reglas de comprobación de identidad del DMV de DC dicen que si tiene un cambio de nombre por matrimonio, divorcio o una orden judicial (que incluye la adopción), también debe llevar ese documento, además de los documentos de identidad que el DMV de DC exige normalmente. No se aceptan documentos alterados, falsificados, rotos, laminados o borrados.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El DMV de DC cobra su tarifa estándar por una licencia o identificación nueva o modificada; consulte el listado de tarifas del DMV de DC para conocer el monto actual."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dmv.dc.gov/proofofidentity",
+      "title": "DMV de DC — Comprobación de Identidad",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "dc.drivers-license.gender-marker.es",
+    "jurisdiction": "US-DC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de conducir o identificación de DC",
+    "statement": "El DMV de DC le permite cambiar el marcador de género de su licencia de conducir o identificación a M, F o X completando un formulario de Autodesignación de Género. No necesita una carta médica, una orden judicial, ni haber cambiado ya su designación de género en ningún otro documento.",
+    "detail": "Usted presenta el formulario completo, paga la tarifa de una tarjeta nueva o modificada, y le toman una fotografía nueva. El DMV de DC dice que sus empleados no pedirán información adicional relacionada con el género más allá del formulario ni preguntarán sobre su historial médico privado, y no se le exige que sus designaciones de género coincidan en todos sus documentos de identidad.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El DMV de DC cobra su tarifa estándar por una licencia o identificación nueva o modificada; consulte el listado de tarifas del DMV de DC para conocer el monto actual."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.dc.gov/sites/default/files/dc/sites/dmv/publication/attachments/DC%20DMV%20Form%20Gender%20Self-Designation%20English.pdf",
+      "title": "DMV de DC — Procedimiento para Establecer o Cambiar la Designación de Género en una Licencia de Conducir o Tarjeta de Identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "dc-dmv-gender-self-designation",
+    "language": "es"
+  },
+  {
+    "id": "dc.birth-certificate.name.es",
+    "jurisdiction": "US-DC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento del Distrito de Columbia",
+    "statement": "DC solo enmienda el nombre en un acta de nacimiento de las personas que nacieron en el Distrito de Columbia. Después de un cambio de nombre legal, presente el formulario de Enmienda al Registro de Nacimiento (por Orden Judicial) del Departamento de Salud de DC junto con una copia certificada de su orden judicial.",
+    "detail": "Haga autenticar su firma en el formulario ante un notario público, y envíelo por correo con los documentos de identidad requeridos a la División de Registros Vitales del Departamento de Salud de DC. Si no puede cumplir con los requisitos, el Departamento de Salud de DC emite una carta de rechazo, y entonces puede solicitar al Tribunal Superior de DC que ordene la enmienda.",
+    "cost": {
+      "amount_usd": 23,
+      "note": "Esta es la tarifa de procesamiento de la enmienda. Una copia certificada del acta de nacimiento corregida cuesta $23 más si desea que se la envíen por correo."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Birth%20Amendment%20with%20court%20order_0.pdf",
+      "title": "Departamento de Salud de DC — Enmienda al Registro de Nacimiento (por Orden Judicial)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "dc-doh-birth-amend-court-order",
+    "language": "es"
+  },
+  {
+    "id": "dc.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-DC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en el acta de nacimiento del Distrito de Columbia",
+    "statement": "Las personas nacidas en DC pueden actualizar el marcador de género de su acta de nacimiento con una Solicitud de Designación de Género firmada por un proveedor de atención médica con licencia. No se requiere cirugía, y el acta puede mostrar masculino, femenino o desconocido.",
+    "detail": "Su proveedor de atención médica debe certificar que usted ha recibido tratamiento quirúrgico, hormonal u otro tratamiento apropiado para la transición de género, o que tiene una condición intersexual. El Departamento de Salud de DC dice que el formulario de solicitud y la declaración del proveedor son la única documentación de cambio de género que exige, y que no pedirá más información médica. Si también está cambiando su nombre, incluya una copia original o certificada de la orden judicial.",
+    "cost": {
+      "amount_usd": 28,
+      "note": "Esta es la tarifa de procesamiento de la enmienda. Una copia certificada del acta de nacimiento corregida cuesta $23 más si desea una; el propio cálculo de muestra del Departamento de Salud de DC indica $51 en total cuando se solicitan ambas cosas."
+    },
+    "timeline": {
+      "typical": "hasta 3 días hábiles"
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Gender%20Designation%20Application_0.pdf",
+      "title": "Departamento de Salud de DC — Solicitud de Designación de Género (con Carta Modelo e Instrucciones)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "dc-doh-gender-designation",
+    "language": "es"
+  },
+  {
+    "id": "wv.court-order.name.es",
+    "jurisdiction": "US-WV",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en West Virginia",
+    "statement": "En West Virginia, usted presenta una petición para cambiar legalmente su nombre en el tribunal de circuito del condado donde vive. El Código de West Virginia, capítulo 48, artículo 25, rige el proceso.",
+    "detail": "El poder judicial de West Virginia no publica un formulario de petición estándar ni una guía de autoayuda en lenguaje sencillo para un cambio de nombre en su sitio web, y su biblioteca estatal de formularios judiciales no incluye ningún formulario de cambio de nombre. Comuníquese con el secretario del tribunal de circuito de su condado para conocer los formularios, la tarifa de presentación y cualquier otro requisito local; el propio directorio de condados de los tribunales incluye la información de contacto de cada tribunal de circuito.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El poder judicial de West Virginia no publica en línea las tarifas de presentación para un cambio de nombre; comuníquese con el secretario del tribunal de circuito de su condado para conocer la tarifa exacta."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.courtswv.gov/public-resources/court-information-county/county-map",
+      "title": "Poder Judicial de West Virginia — Información de los Tribunales por Condado",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "wv.drivers-license.name.es",
+    "jurisdiction": "US-WV",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir o identificación de West Virginia",
+    "statement": "Para actualizar el nombre en una licencia de conducir o tarjeta de identificación de West Virginia, lleve prueba de su cambio de nombre a una oficina del DMV: una orden judicial, un certificado de matrimonio certificado o un decreto de divorcio certificado con su nombre nuevo.",
+    "detail": "El DMV de West Virginia dice que una orden judicial que especifica un cambio de nombre tiene prioridad sobre un acta de nacimiento o un certificado de matrimonio certificado al decidir cómo se muestra su nombre. Llame al DMV de West Virginia para confirmar exactamente qué documento de prueba de cambio de nombre necesita llevar según su situación.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página del DMV de West Virginia no indica una tarifa por actualizar su nombre; comuníquese con el DMV para conocer la tarifa actual de una tarjeta nueva o modificada."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://transportation.wv.gov/dmv/acceptable-proof-documents",
+      "title": "DMV de West Virginia — Documentos de Prueba Aceptables",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "wv.drivers-license.gender-marker.es",
+    "jurisdiction": "US-WV",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de conducir o identificación de West Virginia",
+    "statement": "Para cambiar el género que aparece en una licencia de conducir o tarjeta de identificación de West Virginia, presente un Formulario de Designación de Género firmado por un médico con licencia. La tarjeta solo puede mostrar masculino o femenino; el formulario de West Virginia no ofrece una tercera opción.",
+    "detail": "No se le exige haber cambiado ya su designación de género en su acta de nacimiento ni en ningún otro documento de identidad. El DMV dice que sus empleados no pedirán información adicional relacionada con el género más allá del formulario ni preguntarán sobre su historial médico privado. Después de presentarlo, usted entrega su tarjeta actual, solicita una licencia o tarjeta de identificación nueva, y le toman una fotografía nueva.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página del DMV de West Virginia no indica una tarifa por este cambio; comuníquese con el DMV para conocer la tarifa actual de una tarjeta nueva o modificada."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://webapps.transportation.wv.gov/TWS/WVDOTDocumentStorageMigration/PDF/Transportation/DMV/DMVFormSearch/DMV-99-RO-GenderDesignationForm.pdf",
+      "title": "DMV de West Virginia — Formulario de Designación de Género (DMV-99-RO)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "wv-dmv-99-ro-gender-designation",
+    "language": "es"
+  },
+  {
+    "id": "wv.birth-certificate.name.es",
+    "jurisdiction": "US-WV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de West Virginia",
+    "statement": "West Virginia enmienda el nombre en un acta de nacimiento a través de su Oficina de Registro Vital. Usted necesita evidencia documental que respalde el cambio, o una copia certificada de una orden judicial si no puede conseguir esa evidencia.",
+    "detail": "Debe presentar al menos dos elementos originales de evidencia documental que se hayan establecido al menos cinco años antes de su solicitud de enmienda, o dentro de los siete años posteriores al evento, según corresponda. Si no puede obtener evidencia de esa antigüedad, puede solicitarlo ante un tribunal del condado donde vive, y entregar a la Oficina de Registro Vital una copia certificada de la orden judicial resultante; quienes no residen en el estado pueden presentar la solicitud ante el Tribunal de Circuito del Condado de Kanawha.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Esta es la tarifa de procesamiento de la enmienda, vigente desde el 1 de julio de 2023. No hay tarifa si la enmienda se hace dentro del primer año después del evento vital. Una copia certificada del acta corregida cuesta $12 más."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dhhr.wv.gov/HSC/VR/Pages/Correct-or-Amend-a-Certificate.aspx",
+      "title": "Centro de Estadísticas de Salud de West Virginia — Corregir o Enmendar un Acta",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "wv-hsc-affidavit-correct-birth",
+    "language": "es"
+  },
+  {
+    "id": "wv.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-WV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de West Virginia",
+    "statement": "Para cambiar el sexo que aparece en un acta de nacimiento de West Virginia, haga que un médico complete el Formulario de Designación de Sexo y preséntelo con el affidávit requerido al Centro de Estadísticas de Salud. No se le exige haber cambiado su designación de sexo en ningún otro documento primero.",
+    "detail": "El Formulario de Designación de Sexo dice que el Centro de Estadísticas de Salud no pedirá información adicional relacionada con el género más allá del formulario ni preguntará sobre su historial médico privado. El acta solo puede mostrar masculino o femenino. Si también está cambiando su nombre, West Virginia exige por separado una copia certificada de la orden judicial para eso.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Esta es la tarifa de procesamiento de la enmienda, vigente desde el 1 de julio de 2023. Una copia certificada del acta corregida cuesta $12 más."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dhhr.wv.gov/HSC/VR/Pages/Correct-or-Amend-a-Certificate.aspx",
+      "title": "Centro de Estadísticas de Salud de West Virginia — Corregir o Enmendar un Acta",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "wv-hsc-sex-designation",
+    "language": "es"
+  },
+  {
+    "id": "ky.court-order.name.es",
+    "jurisdiction": "US-KY",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Kentucky",
+    "statement": "En Kentucky, una persona de al menos 18 años puede cambiar su nombre a través del Tribunal de Distrito del condado donde vive. Si vive en un puesto del Ejército de EE. UU., una reserva militar o un fuerte, el Tribunal de Distrito de un condado adyacente puede hacerlo en su lugar.",
+    "detail": "Una vez que el tribunal ordena el cambio de nombre, se certifica una copia al secretario del condado, quien mantiene un índice alfabético de cada cambio de nombre de ese condado. El portal de autoayuda del Poder Judicial de Kentucky no publica sus propias instrucciones para este proceso; en cambio, remite a las personas a un sitio web externo de entrevistas guiadas.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Se aplica una tarifa de presentación; el secretario del tribunal de distrito la establece y la cobra. El estatuto de Kentucky no publica el monto en esta página, así que pregúntele al secretario cuál es la tarifa actual."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=41791",
+      "title": "Estatutos Revisados de Kentucky 401.010 — Un Adulto Puede Cambiar Su Nombre a Través del Tribunal de Distrito",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ky.drivers-license.name.es",
+    "jurisdiction": "US-KY",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir o identificación de Kentucky",
+    "statement": "Para cambiar el nombre en una licencia de conducir o tarjeta de identificación de Kentucky, primero actualice su nombre con la Administración del Seguro Social. Luego lleve su tarjeta de Seguro Social actualizada y su documentación legal, como una orden judicial, a una Oficina Regional de Licencias de Conducir en persona.",
+    "detail": "El Gabinete de Transporte de Kentucky dice que los cambios de nombre deben hacerse en persona; no se pueden hacer en línea ni por correo. Usted recibe una credencial temporal de inmediato, y su tarjeta permanente normalmente llega por correo entre 10 y 15 días hábiles después.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "Esta es la tarifa de Kentucky para un cambio de nombre en persona en una licencia de conducir o tarjeta de identificación."
+    },
+    "timeline": {
+      "typical": "10 a 15 días hábiles para recibir la tarjeta permanente por correo"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://drive.ky.gov/Drivers/Pages/Update-Replace.aspx",
+      "title": "Gabinete de Transporte de Kentucky — Actualizar o Reemplazar una Licencia de Conducir o Permiso",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ky.drivers-license.gender-marker.es",
+    "jurisdiction": "US-KY",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Marcador de género en la licencia de conducir o identificación de Kentucky",
+    "statement": "El Gabinete de Transporte de Kentucky no publica un formulario ni un proceso separado para cambiar únicamente el marcador de género en una licencia de conducir o tarjeta de identificación. Su propia página de preguntas frecuentes solo menciona que se necesita un documento de cambio de nombre si su nombre legal actual, fecha de nacimiento o género difiere de lo que muestran sus documentos de identidad.",
+    "detail": "No pudimos encontrar una página oficial del Gabinete de Transporte de Kentucky que describa una vía independiente para cambiar el marcador de género de una licencia de conducir o tarjeta de identificación por sí sola. Esa ausencia no es evidencia de que Kentucky no tenga tal proceso, solo que no hemos encontrado uno publicado en línea. Comuníquese directamente con una Oficina Regional de Licencias de Conducir para preguntar qué exige antes de confiar en este registro.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://drive.ky.gov/Drivers/Pages/ID-Cards.aspx",
+      "title": "Gabinete de Transporte de Kentucky — Tarjetas de Identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ky.birth-certificate.name.es",
+    "jurisdiction": "US-KY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Kentucky",
+    "statement": "Kentucky enmienda el nombre en el acta de nacimiento de una persona nacida en el estado cuando la Oficina de Estadísticas Vitales recibe una copia certificada de una orden judicial que cambia el nombre de esa persona.",
+    "detail": "Presente el Affidávit de Enmienda VS-2J notariado junto con la orden judicial certificada ante la Oficina de Estadísticas Vitales. Una persona registrada de 18 años o más firma su propio affidávit; un padre, madre o tutor legal firma por alguien menor.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Esta es la tarifa por una copia certificada del acta de nacimiento corregida. Si se devuelve a la Oficina de Estadísticas Vitales una copia certificada emitida en el último año, se emite la copia corregida sin cargo adicional."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.chfs.ky.gov/agencies/dph/dehp/vsb/Forms/VS2J.pdf",
+      "title": "Gabinete de Kentucky para Servicios de Salud y Familia — Formulario VS-2J",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ky-vs-2j",
+    "language": "es"
+  },
+  {
+    "id": "ky.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-KY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Cambio de género en el acta de nacimiento de Kentucky",
+    "statement": "La ley de Kentucky solo permite enmendar el género en un acta de nacimiento después de que un médico con licencia jure que el género de la persona ha cambiado mediante un procedimiento quirúrgico, y solo junto con una copia certificada de una orden judicial que cambie el nombre de esa persona.",
+    "detail": "Ambos requisitos provienen de la misma ley estatal y deben presentarse juntos en el Affidávit de Enmienda VS-2J; la Oficina de Estadísticas Vitales de Kentucky no describe ninguna otra vía para enmendar este campo. Este requisito de procedimiento quirúrgico es considerablemente más restrictivo que lo que exigen muchas otras jurisdicciones de este corpus, y ha estado vigente en la ley de Kentucky desde 1990.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Esta es la tarifa por una copia certificada del acta de nacimiento corregida."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.chfs.ky.gov/agencies/dph/dehp/vsb/Forms/VS2J.pdf",
+      "title": "Gabinete de Kentucky para Servicios de Salud y Familia — Formulario VS-2J",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "ky-vs-2j",
+    "language": "es"
   }
 ]
