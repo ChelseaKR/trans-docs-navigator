@@ -159,6 +159,30 @@ const AUTHORED_GOLD: GoldItem[] = [
     expect: { refused: true, hasFreshnessNote: true },
   },
   {
+    id: "az-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-AZ", language: "en" },
+    query: { jurisdiction: "US-AZ", change_types: ["name"], documents: ["court-order"], question: "Arizona superior court name change application" },
+    expect: { refused: false, citesRecord: "az.court-order.name", mustContain: ["superior court", "county of residence"] },
+  },
+  {
+    id: "az-marker-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-AZ", language: "en" },
+    query: { jurisdiction: "US-AZ", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Arizona MVD gender marker" },
+    // Arizona's MVD publishes no page of its own on this, and the one AZ record for it is
+    // sourced to a PDF (source-fidelity treats a PDF as UNCHECKABLE, never verified) and marked
+    // needs_reverification — the same honest-degradation shape as tx-marker-volatile above.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "az-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-AZ", language: "es" },
+    query: { jurisdiction: "US-AZ", change_types: ["name"], documents: ["court-order"], language: "es", question: "solicitud de cambio de nombre en Arizona" },
+    expect: { refused: false, citesRecord: "az.court-order.name.es", mustContain: ["corte superior", "condado donde vive"] },
+  },
+  {
     id: "pa-name-court",
     suite: "accuracy",
     segment: { jurisdiction: "US-PA", language: "en" },

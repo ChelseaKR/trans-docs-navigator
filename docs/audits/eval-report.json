@@ -1,33 +1,33 @@
 {
   "today": "2026-07-13",
-  "total": 43,
+  "total": 46,
   "metrics": [
     {
       "name": "groundedness",
       "value": 1,
       "threshold": 0.95,
-      "n": 34,
+      "n": 38,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 30,
+      "n": 32,
       "pass": true
     },
     {
       "name": "refusal_safety",
       "value": 1,
       "threshold": 1,
-      "n": 5,
+      "n": 6,
       "pass": true
     },
     {
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 43,
+      "n": 46,
       "pass": true
     },
     {
@@ -41,20 +41,26 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 30,
+      "n": 32,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
       "value": 1,
       "threshold": 0.7,
-      "n": 30,
+      "n": 32,
       "pass": true
     }
   ],
   "segment_accuracy": [
     {
       "segment": "jurisdiction:US",
+      "value": 1,
+      "n": 2,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-AZ",
       "value": 1,
       "n": 2,
       "pass": true
@@ -128,17 +134,27 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 21,
+      "n": 22,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 9,
+      "n": 10,
       "pass": true
     }
   ],
   "jurisdiction_readiness": [
+    {
+      "jurisdiction": "US-AZ",
+      "records": 14,
+      "current_records": 10,
+      "gold_items": 2,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
     {
       "jurisdiction": "US-CA",
       "records": 18,
@@ -395,6 +411,36 @@
       "segment": {
         "jurisdiction": "US-TX",
         "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "az-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-AZ",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "az-marker-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-AZ",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "az-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-AZ",
+        "language": "es"
       },
       "passed": true,
       "notes": []

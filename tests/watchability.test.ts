@@ -111,6 +111,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Ohio's vital-records page refuses this project's declared user-agent
     // domain-wide, so no baseline can be taken — deliberate, with the Ohio corpus.
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record",
+    // Arizona: both are PDFs whose text this pipeline cannot extract, so no
+    // baseline can be taken — deliberate, with the Arizona corpus.
+    "https://superiorcourt.maricopa.gov/media/emucljue/name-gender-change-eng-spa.pdf",
+    "https://www.azdhs.gov/documents/vital-records/manuals/correction-affidavit-correct-amend-birth.pdf?v=20260409",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
     // Michigan's SOS and MDHHS pages refuse this project's declared user-agent.
     // Verified 403 from both Node's fetch and curl sending the same UA, so this is

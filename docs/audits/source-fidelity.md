@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 140 |
-| Load-bearing assertions found | 417 |
-| — checked and **supported** by the cited source | 315 |
+| Records audited | 154 |
+| Load-bearing assertions found | 449 |
+| — checked and **supported** by the cited source | 343 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 102 |
-| of the checked: literal (fee / duration / form-id) matches | 202 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 113 |
+| — **UNCHECKABLE** (reported, never passed) | 106 |
+| of the checked: literal (fee / duration / form-id) matches | 218 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 125 |
 
 ## What this gate cannot vouch for
 
-- **514 of 654 prose sentences** in the corpus carry no extractable
+- **569 of 720 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **171 sentences state a negative** (`you do not need a court order`, `the page no
+- **181 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **113 assertions are necessary-condition only**: the source discusses the topic, which
+- **125 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **6 cited sources refuse automated fetching entirely**, so no
@@ -109,8 +109,9 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ny.court-order.name.es · a fee waiver is available (cost.fee_waiver: true)`
 - `ny.court-order.name.es · publication in a newspaper is required`
 
-**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 22 assertion(s):
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 24 assertion(s):
 
+- `az.drivers-license.gender-marker · a court order is required`
 - `pa.birth-certificate.gender-marker · costs $20`
 - `pa.birth-certificate.gender-marker · a fee waiver is available (cost.fee_waiver: true)`
 - `pa.birth-certificate.gender-marker · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
@@ -122,6 +123,7 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `pa.birth-certificate.name · a court order is required`
 - `pa.birth-certificate.name · a notarized signature is required`
 - `pa.birth-certificate.name · states "45 day"`
+- `az.drivers-license.gender-marker.es · a court order is required`
 - `pa.birth-certificate.gender-marker.es · costs $20`
 - `pa.birth-certificate.gender-marker.es · a fee waiver is available (cost.fee_waiver: true)`
 - `pa.birth-certificate.gender-marker.es · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
@@ -134,14 +136,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `pa.birth-certificate.name.es · a notarized signature is required`
 - `pa.birth-certificate.name.es · states "45 day"`
 
-**the official form has no identifier to match on** — 12 assertion(s):
+**the official form has no identifier to match on** — 14 assertion(s):
 
+- `az.birth-certificate.name · form_ref "az-affidavit-correct-amend-birth" (Affidavit to Correct or Amend a Birth Certificate) carries no form identifier to match on`
 - `il.birth-certificate.gender-marker · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 - `il.birth-certificate.name · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 - `ma.drivers-license.name · form_ref "ma-rmv-license-id-application" (Driver's License, Learner's Permit or ID Card Application) carries no form identifier to match on`
 - `ma.drivers-license.gender-marker · form_ref "ma-rmv-license-id-application" (Driver's License, Learner's Permit or ID Card Application) carries no form identifier to match on`
 - `ma.birth-certificate.gender-marker · form_ref "ma-rvrs-sex-affidavit" (Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex) carries no form identifier to match on`
 - `ma.birth-certificate.name · form_ref "ma-rvrs-sex-affidavit" (Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex) carries no form identifier to match on`
+- `az.birth-certificate.name.es · form_ref "az-affidavit-correct-amend-birth" (Affidavit to Correct or Amend a Birth Certificate) carries no form identifier to match on`
 - `il.birth-certificate.gender-marker.es · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 - `il.birth-certificate.name.es · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 - `ma.birth-certificate.gender-marker.es · form_ref "ma-rvrs-sex-affidavit" (Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex) carries no form identifier to match on`
@@ -168,6 +172,20 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 
 | Record | Lang | Supported | Unsupported | Uncheckable | Unchecked prose |
 |---|---|---|---|---|---|
+| `az.birth-certificate.fees` | en | 2 | 0 | 0 | 2/3 |
+| `az.birth-certificate.fees.es` | es | 2 | 0 | 0 | 2/3 |
+| `az.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 5/5 |
+| `az.birth-certificate.gender-marker.es` | es | 1 | 0 | 0 | 5/5 |
+| `az.birth-certificate.name` | en | 3 | 0 | 1 | 4/5 |
+| `az.birth-certificate.name.es` | es | 3 | 0 | 1 | 3/5 |
+| `az.court-order.fees` | en | 4 | 0 | 0 | 4/5 |
+| `az.court-order.fees.es` | es | 4 | 0 | 0 | 4/5 |
+| `az.court-order.name` | en | 1 | 0 | 0 | 4/4 |
+| `az.court-order.name.es` | es | 1 | 0 | 0 | 4/4 |
+| `az.drivers-license.gender-marker` | en | 0 | 0 | 1 | 5/5 |
+| `az.drivers-license.gender-marker.es` | es | 0 | 0 | 1 | 5/5 |
+| `az.drivers-license.name` | en | 3 | 0 | 0 | 4/6 |
+| `az.drivers-license.name.es` | es | 3 | 0 | 0 | 4/6 |
 | `ca.birth-certificate.fees` | en | 4 | 0 | 0 | 1/5 |
 | `ca.birth-certificate.fees.es` | es | 4 | 0 | 0 | 1/5 |
 | `ca.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 3/4 |

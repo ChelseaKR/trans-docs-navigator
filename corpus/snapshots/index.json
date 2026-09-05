@@ -149,6 +149,51 @@
       "fetched": "2026-07-13",
       "sha256": "147d6d139b7a709f9608f9d494eb9189aaa9bb43ad0d8339307f9e837cd2fd9e"
     },
+    "https://www.nycourts.gov/courthelp/Family/nameChange.shtml": {
+      "file": null,
+      "fetched": "2026-07-14",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://azcourthelp.org/faq/name-change/301-how-name-change": {
+      "file": "azcourthelp-org-faq-name-change-301-how-name-change-3d4330ed.txt",
+      "fetched": "2026-09-05",
+      "sha256": "776969192f1920c08268fabcdd0bfc401ae250814185a68988f38f9665b58bc2"
+    },
+    "https://www.azcourts.gov/courtfilingfees/Superior-Court-Filing-Fees": {
+      "file": "azcourts-gov-courtfilingfees-superior-court-filing-fees-3f08103c.txt",
+      "fetched": "2026-09-05",
+      "sha256": "9232b8fab70e9ff6317f1664913edf84f30f19e5091e77dff3196728a7856dd7"
+    },
+    "https://azdot.gov/mvd/services/driver-license-ID/change-your-name": {
+      "file": "azdot-gov-mvd-services-driver-license-id-change-your-name-105f6757.txt",
+      "fetched": "2026-09-05",
+      "sha256": "eebb5b9a08a302cd6bc2f658840f11885ec15d4f14af5e3765efd1a783a1a185"
+    },
+    "https://www.azdhs.gov/includes/content/director/vital-records.php?cont=corrections-amendments-registrants-name": {
+      "file": "azdhs-gov-includes-content-director-vital-records-php-ed82e0c5.txt",
+      "fetched": "2026-09-05",
+      "sha256": "f6cba885799d3f51c7c0a687f067cade0d038d11303a1949d698bdc1ce98cf14"
+    },
+    "https://www.azdhs.gov/includes/content/director/vital-records.php?cont=corrections-amendments-other": {
+      "file": "azdhs-gov-includes-content-director-vital-records-php-2b9fd1d2.txt",
+      "fetched": "2026-09-05",
+      "sha256": "f08beaafa62430af0bc6bb9b3b8ae83270878b3db8ff1703dbf10fca18bcd0b7"
+    },
+    "https://www.azdhs.gov/includes/content/director/vital-records.php?cont=fee-schedule": {
+      "file": "azdhs-gov-includes-content-director-vital-records-php-96d9acc4.txt",
+      "fetched": "2026-09-05",
+      "sha256": "fe7c2907879ebd3826978a104755d455bb2153209a37589c2abc0a10c1d3f71e"
+    },
+    "https://superiorcourt.maricopa.gov/media/emucljue/name-gender-change-eng-spa.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
     "https://www.mass.gov/how-to/amend-a-birth-certificate-for-sex-of-the-subject": {
       "file": "mass-gov-how-to-amend-a-birth-certificate-for-sex-of-the-subject-f5e43b0a.txt",
       "fetched": "2026-09-05",
@@ -178,14 +223,6 @@
       "file": "mass-gov-info-details-mass-general-laws-c90-ss-8n-6ec6d4fa.txt",
       "fetched": "2026-09-05",
       "sha256": "2c7d99a27f8844813fa0dbcccc3f8b823d1beaa193a67416476f4f73fbf2ac82"
-    },
-    "https://www.nycourts.gov/courthelp/Family/nameChange.shtml": {
-      "file": null,
-      "fetched": "2026-07-14",
-      "unfetchable": {
-        "status": "HTTP 403",
-        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
-      }
     },
     "https://www.legis.state.pa.us/WU01/LI/LI/CT/HTM/54/00.007..HTM": {
       "file": "legis-state-pa-us-wu01-li-li-ct-htm-54-00-007-htm-5fa75baa.txt",
