@@ -210,8 +210,19 @@ data "aws_iam_policy_document" "github_deploy" {
     resources = [aws_ecr_repository.app.arn]
   }
   statement {
-    sid       = "LambdaDeploy"
-    actions   = ["lambda:UpdateFunctionCode", "lambda:UpdateFunctionConfiguration", "lambda:GetFunction"]
+    sid = "LambdaDeploy"
+    # GetFunctionConfiguration backs `aws lambda wait function-updated`, and
+    # GetFunctionUrlConfig backs the `get-function-url-config` lookup that resolves
+    # SITE_ORIGIN. Both are read-only, and without them the deploy workflow updates
+    # the function code and then dies before it can confirm the update landed — the
+    # worst place to stop, because the new image is already live and unverified.
+    actions = [
+      "lambda:UpdateFunctionCode",
+      "lambda:UpdateFunctionConfiguration",
+      "lambda:GetFunction",
+      "lambda:GetFunctionConfiguration",
+      "lambda:GetFunctionUrlConfig",
+    ]
     resources = [aws_lambda_function.app.arn]
   }
 }
