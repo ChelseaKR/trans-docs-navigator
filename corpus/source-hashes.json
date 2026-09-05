@@ -107,5 +107,17 @@
   "https://www.law.cornell.edu/regulations/delaware/16-Del-Admin-Code-SS-4205-10.0": "5236e0689ba25933f0d7f78774048bddccded02137b3a4c2610bca3777efba77",
   "https://www.maine.gov/dhhs/mecdc/vital-records/amend-correct-or-complete-vital-records/change-the-gender-marker-on-your-birth-record": "eb3b1f944859a6b8e53fb819c99fc3ced47f89c25bb8d876899481bad390975b",
   "https://www.maine.gov/dhhs/mecdc/vital-records/amend-correct-or-complete-vital-records/court-records": "cd609a7bd39d612ef7ee61a80a292a9ec98c14a0715b83ece21b090e1fcf895c",
-  "https://www.maine.gov/sos/bmv/driver-licenses-and-ids/car-license/how-to-obtain-a-license": "1340e128b31a646c1fc2d597aa784a008c3f783a2fb334e40d6afe8d3cdd8ede"
+  "https://www.maine.gov/sos/bmv/driver-licenses-and-ids/car-license/how-to-obtain-a-license": "1340e128b31a646c1fc2d597aa784a008c3f783a2fb334e40d6afe8d3cdd8ede",
+  "https://www.ctprobate.gov/other-matters/name-changes": "1bbf7feb78eaa94eff504e063455d495b3852085ebe583e8fa5d4232e7fb540a",
+  "https://portal.ct.gov/dmv/licenses-permits-ids/change-driver-license": "1996bc34c4495158462c15454236ded06acc8e78f3bc1d5c9803253b6c2be663",
+  "https://portal.ct.gov/dph/vital-records/gender-change": "3e0fd61df3bfceeed6982dba2dc137e73aabb5b8f3b5ca1e67d3fb5e69d5a06d",
+  "https://portal.ct.gov/dph/vital-records/corrections-and-amendments": "1b12ac51d6e19bcfbde9620c7f4cad70b78f1d6c4acd0c108e3ddc1892ca7929",
+  "https://webserver.rilegislature.gov/Statutes/TITLE33/33-22/33-22-28.htm": "516a247f293dd4b01180d4a3e2040357344ea7da90cfe64f6b009ef242844c88",
+  "https://dmv.ri.gov/licenses-permits-ids/drivers-licenses/name-address-change": "518217a0b1760345cd230e37a2c76c70223f1b4dc60405cc8515a10e750f29be",
+  "https://rules.sos.ri.gov/regulations/part/216-10-10-1": "44f0ce0f81a597eef192fe421e551eba5309448d0631f5734d5360d75b680505",
+  "https://rules.sos.ri.gov/regulations/part/216-10-05-2": "737b14f8bc9e11ef2be28ea43a6ad545ef9d44d7017828514ab76b1c9dfaa529",
+  "https://www.vtcourts.gov/probate/name-changes": "89044a01c2a83b891ff13130a71a4ae51fc8226bed5a362cc06fc158f39264e2",
+  "https://dmv.vermont.gov/licenses/name-change": "c816321c29e1eb3c107a5a2454fbac13ab0bc63d4c33b21d59aeb52b98bf014a",
+  "https://dmv.vermont.gov/licenses/identity-documents": "929b8a5c211c3a452c79fe1b4139db4970ce5d2292eb579c428967b1e0003d77",
+  "https://www.healthvermont.gov/stats/vital-records/order-vital-records": "c3e4d0f96987f38bbccec7c80bb094a9e427cc4a33fca25a94d7cb7e8820df6f"
 }

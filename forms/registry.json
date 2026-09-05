@@ -615,5 +615,51 @@
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "ct-dmv-b-385",
+    "jurisdiction": "US-CT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Form B-385 — Gender Designation on a License or Identification Card",
+    "source": {
+      "url": "https://portal.ct.gov/-/media/DMV/20/29/B-385.pdf",
+      "title": "Connecticut DMV Form B-385 — Gender Designation on a License or Identification Card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "vt-vdh-gender-affidavit",
+    "jurisdiction": "US-VT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Affidavit of Gender Identity — Amendment of Vermont Birth Certificate to Reflect Gender Identity",
+    "source": {
+      "url": "https://www.healthvermont.gov/sites/default/files/document/hsi-vr-gender-affidavit.pdf",
+      "title": "Vermont Department of Health — Affidavit of Gender Identity",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "vt-vdh-bc-correct-amend",
+    "jurisdiction": "US-VT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Application to Correct or Amend a Vermont Birth Certificate",
+    "source": {
+      "url": "https://www.healthvermont.gov/sites/default/files/documents/pdf/HS_VR_BC_Correct_Amend.pdf",
+      "title": "Vermont Department of Health — Application to Correct or Amend a Vermont Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]

@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 298 |
-| Load-bearing assertions found | 750 |
-| — checked and **supported** by the cited source | 530 |
+| Records audited | 332 |
+| Load-bearing assertions found | 818 |
+| — checked and **supported** by the cited source | 582 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 220 |
-| of the checked: literal (fee / duration / form-id) matches | 346 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 184 |
+| — **UNCHECKABLE** (reported, never passed) | 236 |
+| of the checked: literal (fee / duration / form-id) matches | 381 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 201 |
 
 ## What this gate cannot vouch for
 
-- **1141 of 1432 prose sentences** in the corpus carry no extractable
+- **1251 of 1572 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **400 sentences state a negative** (`you do not need a court order`, `the page no
+- **444 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **184 assertions are necessary-condition only**: the source discusses the topic, which
+- **201 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **8 cited sources refuse automated fetching entirely**, so no
@@ -286,6 +286,31 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `tn.birth-certificate.name · a court order is required`
 - `tn.birth-certificate.name · a notarized signature is required`
 
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.name.** — 6 assertion(s):
+
+- `vt.birth-certificate.name.es · form_ref "vt-vdh-bc-correct-amend" (Application to Correct or Amend a Vermont Birth Certificate) carries no form identifier to match on`
+- `vt.birth-certificate.name.es · states "6 month"`
+- `vt.birth-certificate.name.es · a court order is required`
+- `vt.birth-certificate.name · form_ref "vt-vdh-bc-correct-amend" (Application to Correct or Amend a Vermont Birth Certificate) carries no form identifier to match on`
+- `vt.birth-certificate.name · states "6 month"`
+- `vt.birth-certificate.name · a court order is required`
+
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ct.drivers-license.gender-marker.** — 5 assertion(s):
+
+- `ct.drivers-license.gender-marker · form_ref "ct-dmv-b-385" (Form B-385 — Gender Designation on a License or Identification Card) carries no form identifier to match on`
+- `ct.drivers-license.gender-marker · an X sex/gender marker is available`
+- `ct.drivers-license.gender-marker · a notarized signature is required`
+- `ct.drivers-license.gender-marker.es · form_ref "ct-dmv-b-385" (Form B-385 — Gender Designation on a License or Identification Card) carries no form identifier to match on`
+- `ct.drivers-license.gender-marker.es · a notarized signature is required`
+
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.gender-marker.** — 5 assertion(s):
+
+- `vt.birth-certificate.gender-marker.es · form_ref "vt-vdh-gender-affidavit" (Affidavit of Gender Identity — Amendment of Vermont Birth Certificate to Reflect Gender Identity) carries no form identifier to match on`
+- `vt.birth-certificate.gender-marker.es · states "16 year"`
+- `vt.birth-certificate.gender-marker · form_ref "vt-vdh-gender-affidavit" (Affidavit of Gender Identity — Amendment of Vermont Birth Certificate to Reflect Gender Identity) carries no form identifier to match on`
+- `vt.birth-certificate.gender-marker · an X sex/gender marker is available`
+- `vt.birth-certificate.gender-marker · a notarized signature is required`
+
 **the source refuses automated fetching (HTTP 404)** — 1 assertion(s):
 
 - `oh.birth-certificate.gender-marker · a court order is required`
@@ -334,6 +359,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `co.court-order.name.es` | es | 9 | 0 | 0 | 2/5 |
 | `co.drivers-license.gender-marker` | en | 3 | 0 | 0 | 4/6 |
 | `co.drivers-license.gender-marker.es` | es | 4 | 0 | 0 | 4/6 |
+| `ct.birth-certificate.gender-marker` | en | 3 | 0 | 0 | 4/5 |
+| `ct.birth-certificate.gender-marker.es` | es | 3 | 0 | 0 | 4/5 |
+| `ct.birth-certificate.name` | en | 2 | 0 | 0 | 4/4 |
+| `ct.birth-certificate.name.es` | es | 3 | 0 | 0 | 3/4 |
+| `ct.court-order.name` | en | 2 | 0 | 0 | 5/6 |
+| `ct.court-order.name.es` | es | 2 | 0 | 0 | 5/6 |
+| `ct.drivers-license.gender-marker` | en | 0 | 0 | 3 | 5/5 |
+| `ct.drivers-license.gender-marker.es` | es | 0 | 0 | 2 | 5/5 |
+| `ct.drivers-license.name` | en | 2 | 0 | 0 | 4/5 |
+| `ct.drivers-license.name.es` | es | 2 | 0 | 0 | 4/5 |
 | `de.birth-certificate.gender-marker` | en | 0 | 0 | 4 | 4/5 |
 | `de.birth-certificate.gender-marker.es` | es | 0 | 0 | 4 | 4/5 |
 | `de.birth-certificate.name` | en | 1 | 0 | 0 | 3/3 |
@@ -534,6 +569,18 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `pa.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 2/3 |
 | `pa.drivers-license.name` | en | 2 | 0 | 0 | 4/5 |
 | `pa.drivers-license.name.es` | es | 2 | 0 | 0 | 4/5 |
+| `ri.birth-certificate.fees` | en | 4 | 0 | 0 | 0/2 |
+| `ri.birth-certificate.fees.es` | es | 4 | 0 | 0 | 0/2 |
+| `ri.birth-certificate.gender-marker` | en | 0 | 0 | 0 | 4/4 |
+| `ri.birth-certificate.gender-marker.es` | es | 0 | 0 | 0 | 4/4 |
+| `ri.birth-certificate.name` | en | 3 | 0 | 0 | 2/4 |
+| `ri.birth-certificate.name.es` | es | 3 | 0 | 0 | 2/4 |
+| `ri.court-order.name` | en | 2 | 0 | 0 | 4/4 |
+| `ri.court-order.name.es` | es | 2 | 0 | 0 | 4/4 |
+| `ri.drivers-license.gender-marker` | en | 0 | 0 | 0 | 3/3 |
+| `ri.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 3/3 |
+| `ri.drivers-license.name` | en | 1 | 0 | 0 | 2/3 |
+| `ri.drivers-license.name.es` | es | 1 | 0 | 0 | 2/3 |
 | `tn.birth-certificate.gender-marker` | en | 0 | 0 | 0 | 9/9 |
 | `tn.birth-certificate.gender-marker.es` | es | 0 | 0 | 0 | 9/9 |
 | `tn.birth-certificate.name` | en | 0 | 0 | 4 | 1/5 |
@@ -582,6 +629,18 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `va.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 6/6 |
 | `va.drivers-license.name` | en | 1 | 0 | 0 | 6/6 |
 | `va.drivers-license.name.es` | es | 1 | 0 | 0 | 6/6 |
+| `vt.birth-certificate.fees` | en | 2 | 0 | 0 | 2/3 |
+| `vt.birth-certificate.fees.es` | es | 2 | 0 | 0 | 2/3 |
+| `vt.birth-certificate.gender-marker` | en | 0 | 0 | 3 | 6/6 |
+| `vt.birth-certificate.gender-marker.es` | es | 0 | 0 | 2 | 5/6 |
+| `vt.birth-certificate.name` | en | 0 | 0 | 3 | 3/5 |
+| `vt.birth-certificate.name.es` | es | 0 | 0 | 3 | 3/5 |
+| `vt.court-order.name` | en | 2 | 0 | 0 | 4/5 |
+| `vt.court-order.name.es` | es | 2 | 0 | 0 | 4/5 |
+| `vt.drivers-license.gender-marker` | en | 0 | 0 | 0 | 3/3 |
+| `vt.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 3/3 |
+| `vt.drivers-license.name` | en | 3 | 0 | 0 | 1/3 |
+| `vt.drivers-license.name.es` | es | 2 | 0 | 0 | 1/3 |
 | `wa.birth-certificate.gender-marker` | en | 7 | 0 | 0 | 4/5 |
 | `wa.birth-certificate.gender-marker.es` | es | 7 | 0 | 0 | 4/5 |
 | `wa.birth-certificate.name` | en | 4 | 0 | 0 | 2/5 |

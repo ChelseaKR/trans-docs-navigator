@@ -718,6 +718,87 @@
         "status": "HTTP 403",
         "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
       }
+    },
+    "https://www.ctprobate.gov/other-matters/name-changes": {
+      "file": "ctprobate-gov-other-matters-name-changes-be4ee3a1.txt",
+      "fetched": "2026-09-05",
+      "sha256": "1bbf7feb78eaa94eff504e063455d495b3852085ebe583e8fa5d4232e7fb540a"
+    },
+    "https://portal.ct.gov/dmv/licenses-permits-ids/change-driver-license": {
+      "file": "portal-ct-gov-dmv-licenses-permits-ids-change-driver-license-8a10bca8.txt",
+      "fetched": "2026-09-05",
+      "sha256": "1996bc34c4495158462c15454236ded06acc8e78f3bc1d5c9803253b6c2be663"
+    },
+    "https://portal.ct.gov/dph/vital-records/gender-change": {
+      "file": "portal-ct-gov-dph-vital-records-gender-change-31168aab.txt",
+      "fetched": "2026-09-05",
+      "sha256": "3e0fd61df3bfceeed6982dba2dc137e73aabb5b8f3b5ca1e67d3fb5e69d5a06d"
+    },
+    "https://portal.ct.gov/dph/vital-records/corrections-and-amendments": {
+      "file": "portal-ct-gov-dph-vital-records-corrections-and-amendments-d8aa31f5.txt",
+      "fetched": "2026-09-05",
+      "sha256": "1b12ac51d6e19bcfbde9620c7f4cad70b78f1d6c4acd0c108e3ddc1892ca7929"
+    },
+    "https://webserver.rilegislature.gov/Statutes/TITLE33/33-22/33-22-28.htm": {
+      "file": "webserver-rilegislature-gov-statutes-title33-33-22-33-22-28-htm-00820245.txt",
+      "fetched": "2026-09-05",
+      "sha256": "516a247f293dd4b01180d4a3e2040357344ea7da90cfe64f6b009ef242844c88"
+    },
+    "https://dmv.ri.gov/licenses-permits-ids/drivers-licenses/name-address-change": {
+      "file": "dmv-ri-gov-licenses-permits-ids-drivers-licenses-name-address-change-b2346007.txt",
+      "fetched": "2026-09-05",
+      "sha256": "518217a0b1760345cd230e37a2c76c70223f1b4dc60405cc8515a10e750f29be"
+    },
+    "https://rules.sos.ri.gov/regulations/part/216-10-10-1": {
+      "file": "rules-sos-ri-gov-regulations-part-216-10-10-1-e3b39346.txt",
+      "fetched": "2026-09-05",
+      "sha256": "44f0ce0f81a597eef192fe421e551eba5309448d0631f5734d5360d75b680505"
+    },
+    "https://rules.sos.ri.gov/regulations/part/216-10-05-2": {
+      "file": "rules-sos-ri-gov-regulations-part-216-10-05-2-d56e1ad2.txt",
+      "fetched": "2026-09-05",
+      "sha256": "737b14f8bc9e11ef2be28ea43a6ad545ef9d44d7017828514ab76b1c9dfaa529"
+    },
+    "https://www.vtcourts.gov/probate/name-changes": {
+      "file": "vtcourts-gov-probate-name-changes-427b2660.txt",
+      "fetched": "2026-09-05",
+      "sha256": "89044a01c2a83b891ff13130a71a4ae51fc8226bed5a362cc06fc158f39264e2"
+    },
+    "https://dmv.vermont.gov/licenses/name-change": {
+      "file": "dmv-vermont-gov-licenses-name-change-165c4797.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c816321c29e1eb3c107a5a2454fbac13ab0bc63d4c33b21d59aeb52b98bf014a"
+    },
+    "https://dmv.vermont.gov/licenses/identity-documents": {
+      "file": "dmv-vermont-gov-licenses-identity-documents-d05626c2.txt",
+      "fetched": "2026-09-05",
+      "sha256": "929b8a5c211c3a452c79fe1b4139db4970ce5d2292eb579c428967b1e0003d77"
+    },
+    "https://www.healthvermont.gov/stats/vital-records/order-vital-records": {
+      "file": "healthvermont-gov-stats-vital-records-order-vital-records-28cbc502.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c3e4d0f96987f38bbccec7c80bb094a9e427cc4a33fca25a94d7cb7e8820df6f"
+    },
+    "https://portal.ct.gov/-/media/DMV/20/29/B-385.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ct.drivers-license.gender-marker."
+      }
+    },
+    "https://www.healthvermont.gov/sites/default/files/document/hsi-vr-gender-affidavit.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.gender-marker."
+      }
+    },
+    "https://www.healthvermont.gov/sites/default/files/documents/pdf/HS_VR_BC_Correct_Amend.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.name."
+      }
     }
   }
 }
