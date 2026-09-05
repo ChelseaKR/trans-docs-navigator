@@ -119,6 +119,11 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // published as a PDF on the General Assembly's own site, so no baseline can be
     // taken — deliberate, with the Tennessee corpus.
     "https://www.capitol.tn.gov/Bills/113/Bill/SB1440.pdf",
+    // Nevada: all three are PDFs whose text this pipeline cannot extract, so no
+    // baseline can be taken — deliberate, with the Nevada corpus.
+    "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf",
+    "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf",
+    "https://www.dpbh.nv.gov/uploadedFiles/dpbh.nv.gov/content/Programs/BirthDeath/dta/Forms/Corrections%20-%20Birth.pdf",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
     // Michigan's SOS and MDHHS pages refuse this project's declared user-agent.
     // Verified 403 from both Node's fetch and curl sending the same UA, so this is
@@ -126,6 +131,13 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change",
     "https://www.michigan.gov/sos/all-services/license-or-id-name-correction",
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction",
+    // New Jersey: both are PDFs whose text this pipeline cannot extract, so no baseline
+    // can be taken — deliberate addition with the New Jersey corpus. The REG-L2 form
+    // backs nj.birth-certificate.gender-marker (which itself cites a checkable HTML
+    // page); the name-change packet is both the court-order.name record's own source
+    // and its form_ref.
+    "https://www.nj.gov/health/forms/reg-l2_1.pdf",
+    "https://www.njcourts.gov/sites/default/files/forms/10551_namechg_adult.pdf",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml",
     // The Sixth Circuit's Gore v. Lee opinion (the source for Tennessee's birth-certificate
     // gender-marker bar) is only published as a PDF on the court's own site, so no baseline

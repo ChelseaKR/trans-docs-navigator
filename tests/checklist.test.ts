@@ -50,7 +50,7 @@ test("empty document selection uses the recommended standard set", () => {
 
 test("records a gap for an unsupported jurisdiction/document", () => {
   const cl = buildChecklist(
-    { jurisdiction: "US-NV", change_types: ["name"], documents: ["court-order"], language: "en" },
+    { jurisdiction: "US-AL", change_types: ["name"], documents: ["court-order"], language: "en" },
     today,
   );
   assert.equal(cl.steps.length, 0);

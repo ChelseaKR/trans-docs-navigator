@@ -8,52 +8,24 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
-- **Tennessee** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (court-order name
+- **Maryland** (M6 — expand jurisdictions): 5 EN + 5 ES corpus records (court-order name
   change, driver's-license name and gender-marker, birth-certificate name and
-  gender-marker), 2 referrals, sourced from official Tennessee, Shelby County, and
-  federal-court pages and fetched into `corpus/snapshots/`. Tennessee is one of the most
-  restrictive states in the corpus:
-  - **Birth certificate, gender marker — a closed route, cited to the litigation itself.**
-    Tenn. Code Ann. § 68-3-203(d) says a "sex change surgery" does not count as a factual
-    error that can be corrected on a birth certificate. Sourced to the Sixth Circuit's own
-    opinion in *Gore v. Lee* (No. 23-5669, July 12, 2024), which quotes the statute directly
-    and upheld it against an Equal Protection / Due Process / First Amendment challenge —
-    not to news coverage of the case.
-  - **Driver's license, gender marker — silence, stated plainly, plus the statutory
-    backdrop.** Tennessee's Driver Services "Helpful Information" page documents a name
-    change and an address change but names no process, form, or page for a sex/gender
-    designation change at all (`tn.drivers-license.gender-marker`, house standard from
-    PR #119: an uncovered path renders as an uncovered path, not a working process). A
-    companion record (`tn.drivers-license.gender-marker.law`) cites the actual enacted
-    statute (2023 Senate Bill 1440 / House Bill 239, Tenn. Code Ann. § 1-3-105(c)), which
-    defines "sex" code-wide as tied to a person's original birth certificate — the
-    proximate legal cause, read directly from the bill's own text. What is NOT asserted:
-    the Department of Safety's internal implementing directive (reported by the ACLU and
-    news outlets as "DLP-302") is not hosted on any fetchable official government page, so
-    it is not written into the corpus.
-  - **Court-ordered name change and driver's-license name change are real, working
-    routes**, sourced to Shelby County's own Probate Court page (name change: $166.50
-    in-person / $170.00 by Zoom) and the state Driver Services page (a certified court
-    order, marriage certificate, or divorce decree; $8–$16 duplicate fee).
-  - **Birth-certificate name change flags a genuine, unresolved gap** rather than papering
-    over it: the state's general amendment form (PH-1186) explicitly lists "court ordered
-    changes (legal name changes...)" among the uses it says the form should NOT be used
-    for, and does not name what to submit instead — read directly off the form, not
-    invented.
+  gender-marker), 2 referrals, and 2 forms-registry entries, each sourced from an official
+  Maryland Judiciary, MVA, or Department of Health page and fetched into
+  `corpus/snapshots/`. Maryland is comparatively permissive on a couple of fronts, recorded
+  exactly as its own sources state them rather than generalized: the MVA's own page says
+  **no documentation** is required to change the gender marker on a driver's license or ID
+  (M/F/X), only an in-person appointment; and Maryland's birth-certificate sex-designation
+  change accepts **either** a licensed health care practitioner's signed statement (surgical,
+  hormonal, "or other treatment appropriate for the individual") **or** a court order — no
+  surgery requirement, unlike some other states already in this corpus. The name-change
+  court petition (Circuit Court, CC-DR-60, $165 filing fee) describes a 30-day objection
+  window for adults, not a newspaper-publication requirement. Both PDF sources cited (the
+  CC-DR-60 form and the Division of Vital Records' sex-designation fact sheet) were
+  fetchable and are under drift watch, unlike Georgia's Form 3977 below — but their own text
+  still cannot be fidelity-checked (PDF, not HTML), so assertions sourced to them are
+  reported UNCHECKABLE rather than silently passed.
 
-  Three of the six sources (the Sixth Circuit opinion, the enacted bill, and the PH-1186
-  form) are PDFs; `make source-snapshot` marks all three `unextractable` and every
-  assertion sourced to them is reported UNCHECKABLE in `docs/audits/source-fidelity.md`,
-  never silently passed — the same honest degradation already applied to Georgia's,
-  Arizona's, and Pennsylvania's PDF sources. All 12 new records carry
-  `"verifier": "Pilot Seed Reviewer"`; none are launch-cleared. Gender-marker records use
-  `recheck_sla_days: 30`, matching this repo's convention for politically volatile topics.
-
-  `make verify`: 24/24 gates pass. Snapshot discipline: `make source-snapshot` also
-  refreshed ~23 pre-existing snapshots with unrelated live drift from this simulated
-  environment's source pages (tracked in issue #150); those refreshes were reverted
-  (`git checkout -- corpus/snapshots/`) and only the 3 new Tennessee HTML snapshots plus
-  their `corpus/source-hashes.json` baselines were added.
 - **Georgia** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (court-order name
   change, driver's-license name and gender-marker, birth-certificate name and
   gender-marker, and a birth-certificate fee record), 2 referrals, and 1 forms-registry

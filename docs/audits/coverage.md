@@ -19,9 +19,13 @@ driver's-license rows are covered and the federal rows are current.
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
+| US-MD | ✅ | — | ✅ | — | ✅ | — |
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
+| US-NJ | ✅ | — | ✅ | — | ✅ | — |
+| US-NV | ✅ | — | ✅ | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
 | US-OH | ✅ | — | ✅ | — | ✅ | — |
+| US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
 | US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
@@ -39,9 +43,13 @@ driver's-license rows are covered and the federal rows are current.
 | US-GA | — | — | ✅ | — | ✅ | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
+| US-MD | — | — | ✅ | — | ✅ | — |
 | US-MI | — | — | ✅ | — | ✅ | — |
+| US-NJ | — | — | ✅ | — | ✅ | — |
+| US-NV | — | — | ✅ | — | ⚠️ degraded | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | — | — | ✅ | — | ✅ | — |
 | US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
@@ -59,9 +67,13 @@ driver's-license rows are covered and the federal rows are current.
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
+| US-MD | ✅ | — | ✅ | — | ✅ | — |
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
+| US-NJ | ✅ | — | ✅ | — | ✅ | — |
+| US-NV | ✅ | — | ✅ | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
 | US-OH | ✅ | — | ✅ | — | ✅ | — |
+| US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
 | US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
@@ -79,12 +91,16 @@ driver's-license rows are covered and the federal rows are current.
 | US-GA | — | — | ✅ | — | ✅ | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
+| US-MD | — | — | ✅ | — | ✅ | — |
 | US-MI | — | — | ✅ | — | ✅ | — |
+| US-NJ | — | — | ✅ | — | ✅ | — |
+| US-NV | — | — | ✅ | — | ⚠️ degraded | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | — | — | ✅ | — | ✅ | — |
 | US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 
-**Totals:** 132 current · 14 degraded · 214 uncovered cells.
+**Totals:** 172 current · 16 degraded · 268 uncovered cells.

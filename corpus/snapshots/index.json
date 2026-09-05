@@ -410,6 +410,109 @@
       "unextractable": {
         "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
       }
+    },
+    "https://dmv.nv.gov/addchange.htm": {
+      "file": "dmv-nv-gov-addchange-htm-fe0c0c69.txt",
+      "fetched": "2026-09-05",
+      "sha256": "0c992bf8c44befe3405779b76a56c00fb56b1a3ba855d118355fdb9a2085a659"
+    },
+    "https://dmv.nv.gov/faqs.htm": {
+      "file": "dmv-nv-gov-faqs-htm-b28fbcbf.txt",
+      "fetched": "2026-09-05",
+      "sha256": "086c3afcf740b532598dd0a67bbc38b41767b6ecce1b4840adba8658528cb759"
+    },
+    "https://selfhelp.nvcourts.gov/self-help/name-changes/name-changes-for-adults": {
+      "file": "selfhelp-nvcourts-gov-self-help-name-changes-name-changes-for-adults-bc9caeed.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d6fccb1802ff2290dd5fe7039035f34c99317cd9678d4df35d505bfa65efe5d3"
+    },
+    "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.courts.oregon.gov/courts/lane/help/pages/namesexchange.aspx": {
+      "file": "courts-oregon-gov-courts-lane-help-pages-namesexchange-aspx-e621ab46.txt",
+      "fetched": "2026-09-05",
+      "sha256": "afe2bad78a74fb2848e64107c9603df785036ced53cf09ee5a3af56e0b070d4d"
+    },
+    "https://www.oregon.gov/odot/dmv/pages/driverid/chg_gender_designation.aspx": {
+      "file": "oregon-gov-odot-dmv-pages-driverid-chg-gender-designation-aspx-66ebd83a.txt",
+      "fetched": "2026-09-05",
+      "sha256": "2f7471fb6bebd1bd0748c452e2fc4ee0a1ea3b370bb19df2e985734125e424bd"
+    },
+    "https://www.oregon.gov/odot/dmv/pages/dv/chgname.aspx": {
+      "file": "oregon-gov-odot-dmv-pages-dv-chgname-aspx-a04fe269.txt",
+      "fetched": "2026-09-05",
+      "sha256": "3bd6b90f78fda7645ce0e71bd05e54e6d0d5dc5bcd1974dbc3eb19eaa8b0fbe4"
+    },
+    "https://www.oregon.gov/oha/ph/birthdeathcertificates/changevitalrecords/pages/changingbirthrecordtosupportgenderidentity.aspx": {
+      "file": "oregon-gov-oha-ph-birthdeathcertificates-changevitalrecords-pages-chan-75e41419.txt",
+      "fetched": "2026-09-05",
+      "sha256": "b9a917244dda6c1fcc481f23c386ff4937b8e91cd2b70f2f3e57682ac3d0eedf"
+    },
+    "https://www.oregon.gov/oha/ph/birthdeathcertificates/pages/changebirthrecord.aspx": {
+      "file": "oregon-gov-oha-ph-birthdeathcertificates-pages-changebirthrecord-aspx-0cbba9d8.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c14029e5198902f53235eb7a24d39706fcbf3a733d4e606e8f0384eb659b6bc3"
+    },
+    "https://www.nj.gov/health/vital/correcting-vital/": {
+      "file": "nj-gov-health-vital-correcting-vital-190dd4b7.txt",
+      "fetched": "2026-09-05",
+      "sha256": "8a8ea6a426ffc2cbde8ed1c20d61691429396eea88d00a67ad16bf13d1fc2aa0"
+    },
+    "https://www.nj.gov/health/vital/correcting-vital/sexdesignation/": {
+      "file": "nj-gov-health-vital-correcting-vital-sexdesignation-b816769f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "42be9b2dc6bcc7ee64b512c91f5d96f411fa7ffbfd4254b7d17799a68b8bf1f9"
+    },
+    "https://www.nj.gov/transgender/name-changes/drivers-license-gender-change.shtml": {
+      "file": "nj-gov-transgender-name-changes-drivers-license-gender-change-shtml-ed9b0be3.txt",
+      "fetched": "2026-09-05",
+      "sha256": "f363be43784732641ef981fb152cdb0ab323ee6065aad8a6e65efdf4db0808a6"
+    },
+    "https://www.nj.gov/transgender/name-changes/drivers-license-name-change.shtml": {
+      "file": "nj-gov-transgender-name-changes-drivers-license-name-change-shtml-8c89d70f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c12d9f350a6b5bdad2f95c2be28884ae9c579a1727189e24668bce13b20f516a"
+    },
+    "https://www.njcourts.gov/sites/default/files/forms/10551_namechg_adult.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+      }
+    },
+    "https://www.courts.state.md.us/legalhelp/family/namechange": {
+      "file": "courts-state-md-us-legalhelp-family-namechange-a2ece022.txt",
+      "fetched": "2026-09-05",
+      "sha256": "bb242551463e1cd109203453241f87cc3b8345bea675d646461665964a86dc91"
+    },
+    "https://health.maryland.gov/vsa/Pages/birthcorrect.aspx": {
+      "file": "health-maryland-gov-vsa-pages-birthcorrect-aspx-cf85915e.txt",
+      "fetched": "2026-09-05",
+      "sha256": "64b2c184ed25d92067813fac17a76e6fb7a121bbba7289c7a471b99dd9235723"
+    },
+    "https://mva.maryland.gov/about-mva/Pages/changing-gender.aspx": {
+      "file": "mva-maryland-gov-about-mva-pages-changing-gender-aspx-9297167f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "77b85b5bb406b6754d73e3043c5330aac949fbe3dbc15a5e934f66fe0d727e7b"
+    },
+    "https://health.maryland.gov/vsa/Documents/Corrections/Birth/Gender%20Reassignment/Gender%20Re-Assignment%20instructions%2009_01_2016.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
     }
   }
 }

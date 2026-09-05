@@ -1,0 +1,38 @@
+[
+  {
+    "id": "md.referral.freestate-justice",
+    "jurisdiction": "US-MD",
+    "name": "FreeState Justice",
+    "url": "https://www.freestate-justice.org",
+    "note": {
+      "en": "Maryland's statewide LGBTQ+ legal services nonprofit, offering free legal help to low-income Marylanders, including with name and gender-marker changes.",
+      "es": "Organización estatal sin fines de lucro de servicios legales LGBTQ+ de Maryland que ofrece ayuda legal gratuita a residentes de bajos ingresos, incluso con cambios de nombre y de marcador de género."
+    },
+    "source": {
+      "url": "https://www.freestate-justice.org",
+      "title": "FreeState Justice",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "md.referral.maryland-legal-aid",
+    "jurisdiction": "US-MD",
+    "name": "Maryland Legal Aid",
+    "url": "https://www.mdlab.org",
+    "note": {
+      "en": "Statewide nonprofit providing free civil legal services to financially eligible Marylanders from 12 office locations, including help with legal filings.",
+      "es": "Organización estatal sin fines de lucro que brinda servicios legales civiles gratuitos a residentes de Maryland con ingresos elegibles desde 12 oficinas, incluida ayuda con trámites legales."
+    },
+    "source": {
+      "url": "https://www.mdlab.org",
+      "title": "Maryland Legal Aid",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

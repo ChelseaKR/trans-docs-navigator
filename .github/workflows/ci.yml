@@ -20,6 +20,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         # `audit` logs outbound egress without blocking (P1-3): a first step over
@@ -62,6 +63,7 @@ jobs:
     # resume modules against the production server and asserts that those interactions
     # issue no network requests.
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         # `audit` logs outbound egress without blocking (P1-3): a first step over
@@ -91,6 +93,7 @@ jobs:
     # (The G9 pseudolocale overflow gate — INTERNATIONALIZATION-STANDARD §4 — is the
     # sibling real-browser i18n check; it runs in the `verify` job above via `make verify`.)
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         # `audit` logs outbound egress without blocking (P1-3): a first step over
@@ -160,6 +163,7 @@ jobs:
           - slug: guide-ca-name-change
             path: "/guide/california/name-change"
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
@@ -203,6 +207,7 @@ jobs:
     needs: lighthouse
     if: always()
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
@@ -220,6 +225,7 @@ jobs:
 
   security-sast:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         # `audit` logs outbound egress without blocking (P1-3): a first step over
@@ -245,6 +251,7 @@ jobs:
     # control for the portfolio's highest-stakes privacy repo (SEC-17/18). Gate 3
     # (scheduled TruffleHog full-history, verified-creds mode) is `secret-scan-scheduled.yml`.
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: read
       # Required for the pull_request scan: gitleaks-action resolves the PR's commit
@@ -289,6 +296,7 @@ jobs:
     # (contents: read) instead of needing `security-events: write` + GitHub Advanced
     # Security (which, per codeql.yml, is unavailable on a private personal repo).
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         # `audit` logs outbound egress without blocking (P1-3): a first step over
@@ -307,6 +315,7 @@ jobs:
 
   container-and-infra:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
         # `audit` logs outbound egress without blocking (P1-3): a first step over
