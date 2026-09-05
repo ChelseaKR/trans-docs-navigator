@@ -399,6 +399,219 @@
       "file": "revisor-mn-gov-statutes-cite-259-11-61169b72.txt",
       "fetched": "2026-09-05",
       "sha256": "4abcececfbf64e40daf147d8044c06140dbb9f2479205b83ad075dc7118d7ce5"
+    },
+    "https://health.maryland.gov/vsa/Documents/Corrections/Birth/Gender%20Reassignment/Gender%20Re-Assignment%20instructions%2009_01_2016.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://health.maryland.gov/vsa/Pages/birthcorrect.aspx": {
+      "file": "health-maryland-gov-vsa-pages-birthcorrect-aspx-cf85915e.txt",
+      "fetched": "2026-09-05",
+      "sha256": "64b2c184ed25d92067813fac17a76e6fb7a121bbba7289c7a471b99dd9235723"
+    },
+    "https://law.lis.virginia.gov/vacode/title32.1/chapter7/section32.1-269/": {
+      "file": "law-lis-virginia-gov-vacode-title32-1-chapter7-section32-1-269-73b3e9a8.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d9944d3cf395e4f855e9a3056d4497153a842b557785df3d8b663e0f37928dec"
+    },
+    "https://law.lis.virginia.gov/vacode/title8.01/chapter3/section8.01-217/": {
+      "file": "law-lis-virginia-gov-vacode-title8-01-chapter3-section8-01-217-23e4d952.txt",
+      "fetched": "2026-09-05",
+      "sha256": "4c9f2bfd841143a750740b6a5f6a2f66db7db6302bce81c9d55a6b34c7c153a3"
+    },
+    "https://mva.maryland.gov/about-mva/Pages/changing-gender.aspx": {
+      "file": "mva-maryland-gov-about-mva-pages-changing-gender-aspx-9297167f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "77b85b5bb406b6754d73e3043c5330aac949fbe3dbc15a5e934f66fe0d727e7b"
+    },
+    "https://www.courts.state.md.us/legalhelp/family/namechange": {
+      "file": "courts-state-md-us-legalhelp-family-namechange-a2ece022.txt",
+      "fetched": "2026-09-05",
+      "sha256": "bb242551463e1cd109203453241f87cc3b8345bea675d646461665964a86dc91"
+    },
+    "https://www.dmv.virginia.gov/licenses-ids/license/replace": {
+      "file": "dmv-virginia-gov-licenses-ids-license-replace-aec57486.txt",
+      "fetched": "2026-09-05",
+      "sha256": "7055123ca5d7b68dec025c5771d55c6eafcb41113da0e3d8bd01ee255034ec11"
+    },
+    "https://www.dmv.virginia.gov/records/personal-information-updates": {
+      "file": "dmv-virginia-gov-records-personal-information-updates-25a54ad9.txt",
+      "fetched": "2026-09-05",
+      "sha256": "9b4d4b08184908882d248eb3b1cb868ce6c437206aa485147d478794ee595ac8"
+    },
+    "https://www.nj.gov/health/vital/correcting-vital/": {
+      "file": "nj-gov-health-vital-correcting-vital-190dd4b7.txt",
+      "fetched": "2026-09-05",
+      "sha256": "8a8ea6a426ffc2cbde8ed1c20d61691429396eea88d00a67ad16bf13d1fc2aa0"
+    },
+    "https://www.nj.gov/health/vital/correcting-vital/sexdesignation/": {
+      "file": "nj-gov-health-vital-correcting-vital-sexdesignation-b816769f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "42be9b2dc6bcc7ee64b512c91f5d96f411fa7ffbfd4254b7d17799a68b8bf1f9"
+    },
+    "https://www.nj.gov/transgender/name-changes/drivers-license-gender-change.shtml": {
+      "file": "nj-gov-transgender-name-changes-drivers-license-gender-change-shtml-ed9b0be3.txt",
+      "fetched": "2026-09-05",
+      "sha256": "f363be43784732641ef981fb152cdb0ab323ee6065aad8a6e65efdf4db0808a6"
+    },
+    "https://www.nj.gov/transgender/name-changes/drivers-license-name-change.shtml": {
+      "file": "nj-gov-transgender-name-changes-drivers-license-name-change-shtml-8c89d70f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c12d9f350a6b5bdad2f95c2be28884ae9c579a1727189e24668bce13b20f516a"
+    },
+    "https://www.njcourts.gov/sites/default/files/forms/10551_namechg_adult.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+      }
+    },
+    "https://www.vdh.virginia.gov/vital-records/how-to-request-an-amendment-to-a-birth-certificate/": {
+      "file": "vdh-virginia-gov-vital-records-how-to-request-an-amendment-to-a-birth--69499030.txt",
+      "fetched": "2026-09-05",
+      "sha256": "6aa21a521ee6b568b86a1973c461ba36262d3daf8625d13789a7cea7f3647457"
+    },
+    "https://www.vdh.virginia.gov/vital-records/what-is-the-procedure-to-update-a-virginia-birth-certificate-after-a-person-has-undergone-gender-transition/": {
+      "file": "vdh-virginia-gov-vital-records-what-is-the-procedure-to-update-a-virgi-40d75f25.txt",
+      "fetched": "2026-09-05",
+      "sha256": "8d362790980b564021634dd0bbe530a212f2c1a1b92b8cf823cd684555a116d5"
+    },
+    "https://vitalrecords.nc.gov/change.htm": {
+      "file": "vitalrecords-nc-gov-change-htm-6c9e1513.txt",
+      "fetched": "2026-09-05",
+      "sha256": "4163dbe2b8f891355a27fc2af16f3ca065d4ec85e6fb1e713babb27b4bcd4b38"
+    },
+    "https://vitalrecords.nc.gov/documents/NCOVR-BirthModificationsApplicationFinal-07072022v6.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.ncdot.gov/dmv/downloads/Documents/DL-300.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.ncdot.gov/dmv/help/moving/Pages/name-changes.aspx": {
+      "file": "ncdot-gov-dmv-help-moving-pages-name-changes-aspx-948fa3a8.txt",
+      "fetched": "2026-09-05",
+      "sha256": "ec3623e0689804b81a74fff7d017a7c9f8086babc28d9402c130edca97d069f7"
+    },
+    "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_101/GS_101-2.html": {
+      "file": "ncleg-gov-enactedlegislation-statutes-html-bysection-chapter-101-gs-10-9c7a3689.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d928f2dadf2d3590f584c943ea3f280932167299ce302da6ec4c64c7d48f0665"
+    },
+    "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_101/GS_101-5.html": {
+      "file": "ncleg-gov-enactedlegislation-statutes-html-bysection-chapter-101-gs-10-f9ac327a.txt",
+      "fetched": "2026-09-05",
+      "sha256": "f5c254f7e901d7d9230392857dec7e1b8bba36193d5d604efad8f98ea3eb20f2"
+    },
+    "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_12/GS_12-3.3.html": {
+      "file": "ncleg-gov-enactedlegislation-statutes-html-bysection-chapter-12-gs-12--dbc62ca8.txt",
+      "fetched": "2026-09-05",
+      "sha256": "de408fbad580420e53453bd43436ea0e92184b695fe576ef745668162f8cc19a"
+    },
+    "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_130A/GS_130A-118.html": {
+      "file": "ncleg-gov-enactedlegislation-statutes-html-bysection-chapter-130a-gs-1-935a059b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "f026c873e95d9e68f9f4d0d7f9e16af0d5eb1add988088e1d491fec683c819e8"
+    },
+    "https://www.shelbycountytn.gov/3826/Name-Changes": {
+      "file": "shelbycountytn-gov-3826-name-changes-ce61ec8c.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d9f8b2fca734655f9c511644db789e097b9fcff1139762815135b3897d7c2cc0"
+    },
+    "https://www.tn.gov/safety/driver-services/helpful-information.html": {
+      "file": "tn-gov-safety-driver-services-helpful-information-html-0de9cb43.txt",
+      "fetched": "2026-09-05",
+      "sha256": "adb5e0b6984680388db5fe3c3a00d1f9827d59b77856717f43a43a0819b10f95"
+    },
+    "https://www.tn.gov/safety/driver-services/helpful-information/dlnamechange.html": {
+      "file": "tn-gov-safety-driver-services-helpful-information-dlnamechange-html-b5062694.txt",
+      "fetched": "2026-09-05",
+      "sha256": "7504cb18ce3ea6b8f1d39cb8adbba4b49981b05c7ebc19729a89965985b9b1ce"
+    },
+    "https://www.capitol.tn.gov/Bills/113/Bill/SB1440.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.drivers-license.gender-marker.law."
+      }
+    },
+    "https://www.opn.ca6.uscourts.gov/opinions.pdf/24a0151p-06.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.gender-marker."
+      }
+    },
+    "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+      }
+    },
+    "https://dmv.nv.gov/addchange.htm": {
+      "file": "dmv-nv-gov-addchange-htm-fe0c0c69.txt",
+      "fetched": "2026-09-05",
+      "sha256": "0c992bf8c44befe3405779b76a56c00fb56b1a3ba855d118355fdb9a2085a659"
+    },
+    "https://dmv.nv.gov/faqs.htm": {
+      "file": "dmv-nv-gov-faqs-htm-b28fbcbf.txt",
+      "fetched": "2026-09-05",
+      "sha256": "086c3afcf740b532598dd0a67bbc38b41767b6ecce1b4840adba8658528cb759"
+    },
+    "https://selfhelp.nvcourts.gov/self-help/name-changes/name-changes-for-adults": {
+      "file": "selfhelp-nvcourts-gov-self-help-name-changes-name-changes-for-adults-bc9caeed.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d6fccb1802ff2290dd5fe7039035f34c99317cd9678d4df35d505bfa65efe5d3"
+    },
+    "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.courts.oregon.gov/courts/lane/help/pages/namesexchange.aspx": {
+      "file": "courts-oregon-gov-courts-lane-help-pages-namesexchange-aspx-e621ab46.txt",
+      "fetched": "2026-09-05",
+      "sha256": "afe2bad78a74fb2848e64107c9603df785036ced53cf09ee5a3af56e0b070d4d"
+    },
+    "https://www.oregon.gov/odot/dmv/pages/driverid/chg_gender_designation.aspx": {
+      "file": "oregon-gov-odot-dmv-pages-driverid-chg-gender-designation-aspx-66ebd83a.txt",
+      "fetched": "2026-09-05",
+      "sha256": "2f7471fb6bebd1bd0748c452e2fc4ee0a1ea3b370bb19df2e985734125e424bd"
+    },
+    "https://www.oregon.gov/odot/dmv/pages/dv/chgname.aspx": {
+      "file": "oregon-gov-odot-dmv-pages-dv-chgname-aspx-a04fe269.txt",
+      "fetched": "2026-09-05",
+      "sha256": "3bd6b90f78fda7645ce0e71bd05e54e6d0d5dc5bcd1974dbc3eb19eaa8b0fbe4"
+    },
+    "https://www.oregon.gov/oha/ph/birthdeathcertificates/changevitalrecords/pages/changingbirthrecordtosupportgenderidentity.aspx": {
+      "file": "oregon-gov-oha-ph-birthdeathcertificates-changevitalrecords-pages-chan-75e41419.txt",
+      "fetched": "2026-09-05",
+      "sha256": "b9a917244dda6c1fcc481f23c386ff4937b8e91cd2b70f2f3e57682ac3d0eedf"
+    },
+    "https://www.oregon.gov/oha/ph/birthdeathcertificates/pages/changebirthrecord.aspx": {
+      "file": "oregon-gov-oha-ph-birthdeathcertificates-pages-changebirthrecord-aspx-0cbba9d8.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c14029e5198902f53235eb7a24d39706fcbf3a733d4e606e8f0384eb659b6bc3"
     }
   }
 }

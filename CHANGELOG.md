@@ -8,28 +8,45 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
-- **Minnesota** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (a name-change
-  petition record and a separate record for the statute's mandatory-grant standard;
-  driver's-license name and sex-designation records; birth-certificate name and
-  sex-designation records), 2 referrals, and 1 forms-registry entry, each sourced from an
-  official Minnesota statute, administrative rule, or state agency page and fetched into
-  `corpus/snapshots/`. Minnesota's name-change statute (Minn. Stat. § 259.10–.11) states no
-  newspaper-publication requirement at all, and directs the court to grant a petition unless
-  narrow, enumerated reasons apply — both recorded plainly, since the source states them
-  plainly. Minnesota's driver's-license rule (Minn. R. 7410.0400) lists sex as a
-  self-indicated field with no supporting-document requirement described for it, unlike the
-  documented requirement for a name; the record states only that. What I could not encode as
-  a checkable fact: Minnesota's own DVS "features and options" page states outright that this
-  entry is self-designated, needs no documentation, and offers an option beyond female/male —
-  but that page delivers its substantive content only inside a client-side JSON payload
-  (`<script type="application/json">`), which this project's `normalize()` (shared by
-  `source-snapshot` and `source-watch`, and deliberately strips all `<script>` content) cannot
-  see; the corpus record says so plainly and points a human reviewer at the page directly,
-  the same honest degradation this repo already applies to Georgia's unextractable PDF.
-  Minnesota's district-court name-change process (mncourts.gov) 403s this project's declared
-  user-agent exactly like NY Courts, so the court-order record cites the governing statute on
-  revisor.mn.gov instead — the same "cite the authority, not the blocked page" fix already
-  applied to the SSA records.
+- **Virginia** (M6 — expand jurisdictions): 7 EN + 7 ES corpus records (court-order name
+  change, driver's-license name and gender-marker, a driver's-license replacement-fee
+  record, birth-certificate name and gender-marker, and a birth-certificate fee record),
+  2 referrals, and 1 forms-registry entry, each sourced from the Code of Virginia,
+  Virginia's Judicial System self-help site, Virginia DMV, or the Virginia Department of
+  Health, and fetched into `corpus/snapshots/`. Virginia's name-change statute
+  (§ 8.01-217) directs a petitioner to the circuit court of the county or city where they
+  live and requires the court to grant the change unless it finds fraud, an infringement
+  of others' rights, or — for a minor — that it is not in the child's best interest; extra
+  requirements apply to incarcerated, probationary, or registered petitioners. Virginia no
+  longer requires a court order to change the sex designation on a birth certificate — an
+  adult files form VS42, signed by a treating medical provider, directly with the State
+  Registrar — but both the DMV and birth-certificate gender-marker records are marked
+  **`needs_reverification`**: Virginia's gender-marker policy has shifted with changes in
+  administration before, so the corpus degrades rather than asserts a settled fact. The
+  Code of Virginia's own site (`law.lis.virginia.gov`) was observed to intermittently
+  include or omit a footer HTML fragment across otherwise-identical fetches; the committed
+  snapshot and drift baseline were pinned to the same fetch to keep `make fidelity`
+  deterministic, but the weekly `source-watch` job may need a human's eye on that one
+  domain (see the PR description).
+
+- **Maryland** (M6 — expand jurisdictions): 5 EN + 5 ES corpus records (court-order name
+  change, driver's-license name and gender-marker, birth-certificate name and
+  gender-marker), 2 referrals, and 2 forms-registry entries, each sourced from an official
+  Maryland Judiciary, MVA, or Department of Health page and fetched into
+  `corpus/snapshots/`. Maryland is comparatively permissive on a couple of fronts, recorded
+  exactly as its own sources state them rather than generalized: the MVA's own page says
+  **no documentation** is required to change the gender marker on a driver's license or ID
+  (M/F/X), only an in-person appointment; and Maryland's birth-certificate sex-designation
+  change accepts **either** a licensed health care practitioner's signed statement (surgical,
+  hormonal, "or other treatment appropriate for the individual") **or** a court order — no
+  surgery requirement, unlike some other states already in this corpus. The name-change
+  court petition (Circuit Court, CC-DR-60, $165 filing fee) describes a 30-day objection
+  window for adults, not a newspaper-publication requirement. Both PDF sources cited (the
+  CC-DR-60 form and the Division of Vital Records' sex-designation fact sheet) were
+  fetchable and are under drift watch, unlike Georgia's Form 3977 below — but their own text
+  still cannot be fidelity-checked (PDF, not HTML), so assertions sourced to them are
+  reported UNCHECKABLE rather than silently passed.
+
 - **Georgia** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (court-order name
   change, driver's-license name and gender-marker, birth-certificate name and
   gender-marker, and a birth-certificate fee record), 2 referrals, and 1 forms-registry

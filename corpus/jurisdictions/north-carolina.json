@@ -1,0 +1,201 @@
+[
+  {
+    "id": "nc.court-order.name",
+    "jurisdiction": "US-NC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "North Carolina name change application",
+    "statement": "In North Carolina you file a name change application before the clerk of superior court, for good cause shown, in the county where you reside. As of December 1, 2025, the law no longer requires you to publish notice of your application in a newspaper before it is decided.",
+    "detail": "The clerk decides your application administratively; the statute describes no courtroom hearing before a judge. Your application and the court's record of it are kept out of the public record if you are enrolled in the state's address confidentiality program, or if you show evidence that you are a victim of domestic violence, a sexual offense, or stalking. A separate section of this same law, G.S. 101-5, lists what you must submit with the application — read that record too before you file.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This statute does not state a dollar filing fee. Contact the clerk of superior court in your county for the current amount."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_101/GS_101-2.html",
+      "title": "North Carolina General Statutes — G.S. 101-2, Procedure for Changing Name; Petition; Notice",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nc.court-order.name.requirements",
+    "jurisdiction": "US-NC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "North Carolina name change application requirements",
+    "statement": "To have a North Carolina name change application granted, you submit your true name, county and date of birth, your parents' names as shown on your birth certificate, and the name you want to adopt. You also submit the results of a state and national criminal history record check completed within 90 days of your application date — done by the State Bureau of Investigation, the Federal Bureau of Investigation, or an FBI-approved Channeler — plus a sworn statement about your residency and any outstanding tax or child support obligations.",
+    "detail": "The clerk tells you how to get fingerprints taken and submitted for the criminal history record check. The clerk then reviews everything submitted to decide whether there is good and sufficient reason to grant or deny your application; this is a judgment call, not a checklist. If the clerk denies your application, the order states the reasons, and you can ask the resident superior court judge to reconsider within 30 days of that order. If reconsideration does not succeed, you must wait 12 months before applying again. This requirement does not apply to an application to change the name of a minor under 16.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This statute does not give a dollar amount for the criminal history record check or for filing. Contact the clerk of superior court in your county, and expect to pay for fingerprinting through the State Bureau of Investigation or an approved Channeler service."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_101/GS_101-5.html",
+      "title": "North Carolina General Statutes — G.S. 101-5, Name Change Application Requirements; Grounds for Clerk to Order or Deny Name Change; Certificate and Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nc.drivers-license.name",
+    "jurisdiction": "US-NC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "North Carolina driver's license and ID name change",
+    "statement": "If your name changes, North Carolina gives you 60 days to notify the NCDMV and get a duplicate driver's license or ID card with your new name.",
+    "detail": "Because NCDMV checks your name against Social Security Administration records, visit your local Social Security office at least 24-36 hours before you go to NCDMV. Bring documented proof from the courts establishing that the name change was officially accomplished — such as a certified marriage license or certificate, a divorce decree, or a document from the courts or Register of Deeds — and complete a notarized DL-101 obtained from a DMV office. All documentation must come from the appropriate government agency of the United States, Puerto Rico, a U.S. territory, or Canada.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page does not state a fee amount for the duplicate card. See NCDMV's fee schedule for the current driver's license and ID fees."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.ncdot.gov/dmv/help/moving/Pages/name-changes.aspx",
+      "title": "Official NCDMV — Name Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nc.drivers-license.gender-marker",
+    "jurisdiction": "US-NC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "North Carolina driver's license and ID sex designation",
+    "statement": "To change the sex designation on a North Carolina driver's license or ID card, NCDMV's Sex Designation Form (DL-300) and its instructions say you surrender your current card and submit one of these: a completed Sex Designation form, a valid U.S. passport displaying the requested sex, a birth certificate displaying the requested sex, or a court order issued by a United States court granting a change of sex or gender.",
+    "detail": "The Sex Designation form itself has two parts: you check a box for the sex you want listed and certify under penalty of law that the request reflects your gender identity and is not for a fraudulent or other unlawful purpose, and a physician, psychiatrist, physician's assistant, licensed therapist, counselor, psychologist, case worker, or social worker signs a second section giving their professional opinion of your gender identity. You pay the applicable fee for a new or amended card and have a new photo taken. Name changes on a license or ID are a separate process and can be done at any time regardless of your sex designation. NCDOT has not removed this form from its site, but do not assume this route stays open exactly as described — a new state law changed how North Carolina defines sex for state agencies. Read NCDMV's current page yourself and confirm before you rely on this.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The form and instructions describe paying 'applicable fees for a new or amended license or identification card' without stating an amount. See NCDMV's fee schedule for current fees."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ncdot.gov/dmv/downloads/Documents/DL-300.pdf",
+      "title": "North Carolina Division of Motor Vehicles — Sex Designation Form (DL-300) and Procedure for Changing Sex Designation",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "nc-dmv-dl-300",
+    "language": "en"
+  },
+  {
+    "id": "nc.drivers-license.gender-marker.law",
+    "jurisdiction": "US-NC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "North Carolina law on sex for state agencies",
+    "statement": "A North Carolina law that took effect January 1, 2026 sets the definitions state agencies must use in every rule, regulation, or public policy. It defines 'biological sex,' 'male,' and 'female.' The same law says gender identity is a person's own 'self-declared identity' that 'may not align with biological sex.' It says gender identity 'shall not be treated as legally or biologically equivalent to sex.'",
+    "detail": "The law defines biological sex by body traits present at birth, such as sex chromosomes and reproductive organs. It also defines Boy, Girl, Man, Woman, Father, and Mother the same way. The law does not say what NCDMV must do with any one form. Read the driver's-license record in this corpus for that. Then check NCDMV's current site yourself before you rely on either record.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_12/GS_12-3.3.html",
+      "title": "North Carolina General Statutes — G.S. 12-3.3, Official Recognition of Two Sexes in All Administrative Rules, Regulations, or Public Policies Adopted by the State of North Carolina or Its Political Subdivisions",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "nc.birth-certificate.gender-marker",
+    "jurisdiction": "US-NC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "North Carolina birth certificate sex designation",
+    "statement": "North Carolina's Birth Certificate Modification Application (Form DHHS 1578) says that, to correct the sex designation on your birth certificate, you can submit any one of: a valid North Carolina driver's license or state ID card, or a valid U.S. passport, that already shows the sex you are requesting; a signed certification of gender identity from a physician, psychiatrist, physician's assistant, licensed therapist, counselor, psychologist, case worker, or social worker; or a signed statement from the person who attended your birth.",
+    "detail": "There is a separate path if your request is because of sex reassignment surgery: the State Registrar creates a new certificate of birth, and the application asks for both a notarized statement from the surgeon (or from a physician who examined you and can certify the surgery happened) and your own written request. The form's own instructions say the sex shown on the ID or passport you use to prove your identity for this application does not have to match the sex you are asking to have corrected on your birth certificate. If you cannot supply the documentary evidence the form lists, North Carolina requires a court order instead. This political and legal area has moved quickly in North Carolina recently — read the current form and North Carolina Vital Records' own page yourself before you rely on this.",
+    "cost": {
+      "amount_usd": 39,
+      "note": "The $39 fee is paid by certified check or money order made out to N.C. Vital Records; personal checks and cash are not accepted."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://vitalrecords.nc.gov/documents/NCOVR-BirthModificationsApplicationFinal-07072022v6.pdf",
+      "title": "North Carolina Vital Records — Birth Certificate Modification Application (Form DHHS 1578)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "nc-dhhs-1578",
+    "language": "en"
+  },
+  {
+    "id": "nc.birth-certificate.gender-marker.law",
+    "jurisdiction": "US-NC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "North Carolina law restricting birth certificate sex changes",
+    "statement": "A North Carolina law that took effect December 1, 2025 says that whenever the sex on a birth certificate is changed — whether through the general amendment process or through the sex-reassignment-surgery process — the State Registrar must attach the new certificate to the certificate of birth already on file and preserve both as a single multi-page document. After that, a certified copy of the birth certificate that is issued is a copy of that whole multi-page document.",
+    "detail": "The register of deeds in the county of birth must do the same thing with its own copy: attach the new certificate to the one on file and preserve both as a multi-page document. Practically, this means a certified copy of an amended North Carolina birth certificate can now show the sex originally recorded on the same document as the corrected one. The State Registrar is directed to adopt rules and policies to carry this out. This is a real change to how the record is kept, not a description of the application process itself — read the sex-designation record in this corpus for how to apply, and confirm both against North Carolina Vital Records' own current page.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_130A/GS_130A-118.html",
+      "title": "North Carolina General Statutes — G.S. 130A-118, Amendment of Birth and Death Certificates",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "nc.birth-certificate.name",
+    "jurisdiction": "US-NC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "North Carolina birth certificate name change",
+    "statement": "To change the name on a North Carolina birth certificate after a legal name change, North Carolina Vital Records asks for a certified copy of the name change court order along with a completed Birth Certificate Modification Application.",
+    "detail": "You can start this request through NC Vital Records' online self-service portal, at the county Register of Deeds office where the birth occurred, or by mail. Birth and death amendment requests are processed within 30 calendar days after the office receives the completed application, the required proof, and payment.",
+    "cost": {
+      "amount_usd": 39,
+      "note": "The fee is $39 to perform the record search and process the application."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://vitalrecords.nc.gov/change.htm",
+      "title": "NCDHHS: DPH: NC Vital Records — Change a Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

@@ -114,7 +114,20 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Arizona: both are PDFs whose text this pipeline cannot extract, so no
     // baseline can be taken — deliberate, with the Arizona corpus.
     "https://superiorcourt.maricopa.gov/media/emucljue/name-gender-change-eng-spa.pdf",
+    // North Carolina's Birth Certificate Modification Application (Form DHHS 1578) is
+    // a PDF whose text this pipeline cannot extract, so no baseline can be taken —
+    // deliberate addition with the North Carolina corpus.
+    "https://vitalrecords.nc.gov/documents/NCOVR-BirthModificationsApplicationFinal-07072022v6.pdf",
     "https://www.azdhs.gov/documents/vital-records/manuals/correction-affidavit-correct-amend-birth.pdf?v=20260409",
+    // Tennessee's enacted "definition of sex" bill (SB 1440 / HB 239, 2023) is only
+    // published as a PDF on the General Assembly's own site, so no baseline can be
+    // taken — deliberate, with the Tennessee corpus.
+    "https://www.capitol.tn.gov/Bills/113/Bill/SB1440.pdf",
+    // Nevada: all three are PDFs whose text this pipeline cannot extract, so no
+    // baseline can be taken — deliberate, with the Nevada corpus.
+    "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf",
+    "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf",
+    "https://www.dpbh.nv.gov/uploadedFiles/dpbh.nv.gov/content/Programs/BirthDeath/dta/Forms/Corrections%20-%20Birth.pdf",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
     // Michigan's SOS and MDHHS pages refuse this project's declared user-agent.
     // Verified 403 from both Node's fetch and curl sending the same UA, so this is
@@ -122,8 +135,29 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change",
     "https://www.michigan.gov/sos/all-services/license-or-id-name-correction",
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction",
+    // North Carolina's DMV Sex Designation Form (DL-300) is a PDF whose text this
+    // pipeline cannot extract, so no baseline can be taken — deliberate addition
+    // with the North Carolina corpus.
+    "https://www.ncdot.gov/dmv/downloads/Documents/DL-300.pdf",
+    // New Jersey: both are PDFs whose text this pipeline cannot extract, so no baseline
+    // can be taken — deliberate addition with the New Jersey corpus. The REG-L2 form
+    // backs nj.birth-certificate.gender-marker (which itself cites a checkable HTML
+    // page); the name-change packet is both the court-order.name record's own source
+    // and its form_ref.
+    "https://www.nj.gov/health/forms/reg-l2_1.pdf",
+    "https://www.njcourts.gov/sites/default/files/forms/10551_namechg_adult.pdf",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml",
+    // The Sixth Circuit's Gore v. Lee opinion (the source for Tennessee's birth-certificate
+    // gender-marker bar) is only published as a PDF on the court's own site, so no baseline
+    // can be taken — deliberate, with the Tennessee corpus.
+    "https://www.opn.ca6.uscourts.gov/opinions.pdf/24a0151p-06.pdf",
     "https://www.ssa.gov/forms/ss-5.pdf",
+    // Tennessee's general vital-records amendment form (PH-1186) is only published as a
+    // PDF, so no baseline can be taken — deliberate, with the Tennessee corpus.
+    "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf",
+    // Virginia's VS42 (Changing Sex Designation) form is a PDF whose text this pipeline
+    // cannot extract, so no baseline can be taken — deliberate, with the Virginia corpus.
+    "https://www.vdh.virginia.gov/content/uploads/sites/93/2020/07/VS42_Gender-Designation-Form.pdf",
   ]);
   // ...and the two reasons are genuinely different failures, which is why the launch-gate
   // evidence names them separately instead of calling all three a 403.
