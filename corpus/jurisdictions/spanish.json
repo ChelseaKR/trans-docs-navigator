@@ -879,5 +879,112 @@
     "recheck_sla_days": 90,
     "form_ref": "wa-doh-422-126",
     "language": "es"
+  },
+  {
+    "id": "co.court-order.name.es",
+    "jurisdiction": "US-CO",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Colorado",
+    "statement": "En Colorado usted cambia su nombre legal presentando una Petición de Cambio de Nombre (JDF 433) en el tribunal de condado o el tribunal de distrito del condado donde vive. Debe adjuntar a la petición una verificación de antecedentes penales basada en huellas dactilares de la CBI y del FBI, hecha dentro de los 90 días antes de presentar la petición.",
+    "detail": "La petición debe firmarse frente a un empleado del tribunal o un notario público. Generalmente también debe publicar el aviso del cambio de nombre en un periódico al menos tres veces dentro de 21 días. No se requiere publicación si usted está cambiando su nombre para que corresponda con su identidad de género, conforme a la sección 13-15-102(4) de los Estatutos Revisados de Colorado, o si usted es una víctima documentada de violencia doméstica, abuso doméstico o abuso infantil.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página no indica un monto de tarifa de presentación — pregunte al empleado del tribunal en el condado donde presenta su caso. Si no puede pagarla, puede pedir presentar sin pago usando el formulario JDF 205.",
+      "fee_waiver": true
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.coloradojudicial.gov/self-help/adult",
+      "title": "Rama Judicial de Colorado — Cambio de Nombre (Adulto)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "es"
+  },
+  {
+    "id": "co.drivers-license.gender-marker.es",
+    "jurisdiction": "US-CO",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en la licencia e identificación de Colorado",
+    "statement": "Las licencias de conducir, tarjetas de identificación y documentos de identificación de Colorado muestran una de tres designaciones de sexo: femenino, masculino o X. Para cambiar la suya, usted (o su padre, madre, tutor o representante legal) entrega al Departamento de Ingresos un formulario de Cambio de Designación de Sexo (DR 2083) completo, o un acta de nacimiento de Colorado nueva que ya muestre la designación de sexo actualizada.",
+    "detail": "La ley de Colorado no le exige ninguna cirugía, tratamiento, atención clínica o atención de salud conductual para cambiar esta designación de sexo. Por ley, el Departamento puede modificar su designación de sexo solo una vez a petición suya; cualquier cambio adicional necesita una copia certificada de una orden judicial. Si usted es menor de 18 años, el formulario DR 2083 también debe estar firmado por un proveedor de atención médica o de salud mental con licencia en Colorado.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El reglamento no indica una tarifa para este cambio. Pregunte a la División de Vehículos Motorizados sobre la tarifa estándar para una tarjeta nueva."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.law.cornell.edu/regulations/colorado/1-CCR-204-32-1",
+      "title": "Cornell Law School LII — 1 CCR 204-32-1, Designación de Sexo para Licencias de Conducir, Tarjetas y Documentos de Identificación (Código de Reglamentos de Colorado)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "co.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-CO",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Colorado",
+    "statement": "Si usted nació en Colorado, puede cambiar la designación de sexo en su acta de nacimiento sin una orden judicial. Usted (o su padre, madre, tutor o representante legal si es menor de 18 años) firma una solicitud por escrito y una declaración que confirma que la designación de sexo en su acta de nacimiento no corresponde con su identidad de género.",
+    "detail": "El registrador estatal cambia la designación de sexo de esta manera solo una vez durante su vida. Cualquier cambio adicional a la designación de sexo en el acta de nacimiento solo puede hacerse mediante una copia certificada de una orden judicial. Si usted es menor de 18 años, la solicitud también debe incluir una declaración de un proveedor de atención médica o de salud mental con licencia en Colorado, que diga que la designación de sexo no corresponde con su identidad de género.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El reglamento no indica una tarifa. Comuníquese con el Departamento de Salud Pública y Medio Ambiente de Colorado, Registros Vitales, para conocer las tarifas actuales."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.law.cornell.edu/regulations/colorado/5-CCR-1006-1-5",
+      "title": "Cornell Law School LII — 5 CCR 1006-1-5, Enmienda de Registros o Certificados (Código de Reglamentos de Colorado, Estadísticas Vitales)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "co.birth-certificate.name.es",
+    "jurisdiction": "US-CO",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Colorado",
+    "statement": "Si ya tiene un acta de nacimiento de Colorado y está cambiando un nombre de pila más de un año después del nacimiento, Colorado exige una orden judicial de cambio legal de nombre de un tribunal competente antes de enmendar el nombre en su acta de nacimiento.",
+    "detail": "La regla de Colorado también permite hacer ambos cambios a la vez: si usted presenta la documentación del cambio de nombre junto con una solicitud para cambiar la designación de sexo, el acta de nacimiento nueva se enmienda para mostrar el nombre nuevo y la designación de sexo nueva juntos.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El reglamento no indica una tarifa. Comuníquese con el Departamento de Salud Pública y Medio Ambiente de Colorado, Registros Vitales, para conocer las tarifas actuales."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.law.cornell.edu/regulations/colorado/5-CCR-1006-1-5",
+      "title": "Cornell Law School LII — 5 CCR 1006-1-5, Enmienda de Registros o Certificados (Código de Reglamentos de Colorado, Estadísticas Vitales)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
   }
 ]

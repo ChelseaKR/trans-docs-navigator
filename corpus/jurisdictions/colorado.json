@@ -1,0 +1,109 @@
+[
+  {
+    "id": "co.court-order.name",
+    "jurisdiction": "US-CO",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Colorado name change petition",
+    "statement": "In Colorado you change your legal name by filing a Petition for Change of Name (JDF 433) in county court or district court in the county where you live. A fingerprint-based criminal history check from the CBI and the FBI, completed within 90 days before you file, must be attached to the petition.",
+    "detail": "The petition must be signed in front of a court clerk or a notary public. Generally you must also publish notice of the name change in a newspaper at least three times within 21 days. Publication is not required if you are changing your name to conform with your gender identity, under section 13-15-102(4) of the Colorado Revised Statutes, or if you are a documented victim of domestic violence, domestic abuse, or child abuse.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page does not state a filing-fee amount — ask the court clerk in the county where you are filing. If you cannot afford it, you can ask to file without payment using form JDF 205.",
+      "fee_waiver": true
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.coloradojudicial.gov/self-help/adult",
+      "title": "Colorado Judicial Branch — Name Change (Adult)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "en"
+  },
+  {
+    "id": "co.drivers-license.gender-marker",
+    "jurisdiction": "US-CO",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Colorado driver's license and ID sex designation",
+    "statement": "Colorado driver's licenses, identification cards, and identification documents show one of three sex designations: female, male, or X. To change yours, you (or your parent, guardian, or legal representative) give the Department of Revenue a completed Change of Sex Designation form (DR 2083), or a new Colorado birth certificate that already shows the updated sex designation.",
+    "detail": "Colorado law does not require you to have any surgery, treatment, clinical care, or behavioral health care to change this sex designation. By law, the Department may amend your sex designation only once at your request; any further change needs a certified copy of a court order. If you are under 18, the DR 2083 form must also be signed by a professional medical or mental health care provider licensed in Colorado.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The regulation does not state a fee for this change. Ask the Division of Motor Vehicles about the standard fee for a new card."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.law.cornell.edu/regulations/colorado/1-CCR-204-32-1",
+      "title": "Cornell Law School LII — 1 CCR 204-32-1, Sex Designation for Driver Licenses, Identification Cards, and Identification Documents (Colorado Code of Regulations)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "co.birth-certificate.gender-marker",
+    "jurisdiction": "US-CO",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Colorado birth certificate sex designation",
+    "statement": "If you were born in Colorado, you can change the sex designation on your birth certificate without a court order. You (or your parent, guardian, or legal representative if you are under 18) sign a written request and a statement confirming that the sex designation on your birth certificate does not align with your gender identity.",
+    "detail": "The state registrar changes the sex designation this way only once during your lifetime. Any further change to the sex designation on the birth record can only be made through a certified copy of a court order. If you are under 18, the request must also include a statement from a professional medical or mental health care provider licensed in Colorado, saying the sex designation does not align with your gender identity.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The regulation does not state a fee. Contact the Colorado Department of Public Health and Environment, Vital Records, for current fees."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.law.cornell.edu/regulations/colorado/5-CCR-1006-1-5",
+      "title": "Cornell Law School LII — 5 CCR 1006-1-5, Amending Records or Certificates (Colorado Code of Regulations, Vital Statistics)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "co.birth-certificate.name",
+    "jurisdiction": "US-CO",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Colorado birth certificate name change",
+    "statement": "If you already have a Colorado birth certificate and you are changing a given name more than one year after birth, Colorado requires a legal change-of-name order from a court of competent jurisdiction before it will amend the name on your birth record.",
+    "detail": "Colorado's rule also lets you make both changes at once: if you submit the name-change documentation together with a request to change the sex designation, the new birth certificate is amended to show the new name and the new sex designation together.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The regulation does not state a fee. Contact the Colorado Department of Public Health and Environment, Vital Records, for current fees."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.law.cornell.edu/regulations/colorado/5-CCR-1006-1-5",
+      "title": "Cornell Law School LII — 5 CCR 1006-1-5, Amending Records or Certificates (Colorado Code of Regulations, Vital Statistics)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]
