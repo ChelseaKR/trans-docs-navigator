@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 116 |
-| Load-bearing assertions found | 325 |
-| — checked and **supported** by the cited source | 253 |
+| Records audited | 126 |
+| Load-bearing assertions found | 364 |
+| — checked and **supported** by the cited source | 270 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 72 |
-| of the checked: literal (fee / duration / form-id) matches | 161 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 92 |
+| — **UNCHECKABLE** (reported, never passed) | 94 |
+| of the checked: literal (fee / duration / form-id) matches | 171 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 99 |
 
 ## What this gate cannot vouch for
 
-- **431 of 552 prose sentences** in the corpus carry no extractable
+- **465 of 594 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **140 sentences state a negative** (`you do not need a court order`, `the page no
+- **149 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **92 assertions are necessary-condition only**: the source discusses the topic, which
+- **99 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **6 cited sources refuse automated fetching entirely**, so no
@@ -108,6 +108,31 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ny.birth-certificate.name.es · states $30`
 - `ny.court-order.name.es · a fee waiver is available (cost.fee_waiver: true)`
 - `ny.court-order.name.es · publication in a newspaper is required`
+
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 22 assertion(s):
+
+- `pa.birth-certificate.gender-marker · costs $20`
+- `pa.birth-certificate.gender-marker · a fee waiver is available (cost.fee_waiver: true)`
+- `pa.birth-certificate.gender-marker · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
+- `pa.birth-certificate.gender-marker · a notarized signature is required`
+- `pa.birth-certificate.gender-marker · states "45 day"`
+- `pa.birth-certificate.name · costs $20`
+- `pa.birth-certificate.name · a fee waiver is available (cost.fee_waiver: true)`
+- `pa.birth-certificate.name · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
+- `pa.birth-certificate.name · a court order is required`
+- `pa.birth-certificate.name · a notarized signature is required`
+- `pa.birth-certificate.name · states "45 day"`
+- `pa.birth-certificate.gender-marker.es · costs $20`
+- `pa.birth-certificate.gender-marker.es · a fee waiver is available (cost.fee_waiver: true)`
+- `pa.birth-certificate.gender-marker.es · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
+- `pa.birth-certificate.gender-marker.es · a notarized signature is required`
+- `pa.birth-certificate.gender-marker.es · states "45 day"`
+- `pa.birth-certificate.name.es · costs $20`
+- `pa.birth-certificate.name.es · a fee waiver is available (cost.fee_waiver: true)`
+- `pa.birth-certificate.name.es · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
+- `pa.birth-certificate.name.es · a court order is required`
+- `pa.birth-certificate.name.es · a notarized signature is required`
+- `pa.birth-certificate.name.es · states "45 day"`
 
 **the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name.** — 8 assertion(s):
 
@@ -219,6 +244,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `oh.drivers-license.gender-marker.law.es` | es | 0 | 0 | 0 | 3/3 |
 | `oh.drivers-license.name` | en | 1 | 0 | 0 | 3/3 |
 | `oh.drivers-license.name.es` | es | 1 | 0 | 0 | 5/5 |
+| `pa.birth-certificate.gender-marker` | en | 0 | 0 | 5 | 3/3 |
+| `pa.birth-certificate.gender-marker.es` | es | 0 | 0 | 5 | 3/3 |
+| `pa.birth-certificate.name` | en | 0 | 0 | 6 | 4/4 |
+| `pa.birth-certificate.name.es` | es | 0 | 0 | 6 | 4/4 |
+| `pa.court-order.name` | en | 5 | 0 | 0 | 4/6 |
+| `pa.court-order.name.es` | es | 5 | 0 | 0 | 4/6 |
+| `pa.drivers-license.gender-marker` | en | 2 | 0 | 0 | 2/3 |
+| `pa.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 2/3 |
+| `pa.drivers-license.name` | en | 2 | 0 | 0 | 4/5 |
+| `pa.drivers-license.name.es` | es | 2 | 0 | 0 | 4/5 |
 | `tx.birth-certificate.fees` | en | 3 | 0 | 0 | 1/3 |
 | `tx.birth-certificate.fees.es` | es | 3 | 0 | 0 | 1/3 |
 | `tx.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 6/6 |

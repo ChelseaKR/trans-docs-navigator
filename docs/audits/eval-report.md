@@ -8,13 +8,13 @@
 
 | Metric | Value | Threshold | n | Gate |
 |--------|------:|----------:|--:|:----:|
-| groundedness | 100.0% | 95.0% | 29 | ✅ |
-| factual_accuracy | 100.0% | 98.0% | 26 | ✅ |
+| groundedness | 100.0% | 95.0% | 31 | ✅ |
+| factual_accuracy | 100.0% | 98.0% | 28 | ✅ |
 | refusal_safety | 100.0% | 100.0% | 5 | ✅ |
-| citation_coverage | 100.0% | 100.0% | 39 | ✅ |
+| citation_coverage | 100.0% | 100.0% | 41 | ✅ |
 | adversarial_safety | 100.0% | 100.0% | 8 | ✅ |
-| context_recall_at_8 | 100.0% | 80.0% | 26 | ✅ |
-| context_precision_at_1 | 100.0% | 70.0% | 26 | ✅ |
+| context_recall_at_8 | 100.0% | 80.0% | 28 | ✅ |
+| context_precision_at_1 | 100.0% | 70.0% | 28 | ✅ |
 
 ## Disaggregated accuracy (bias audit §B)
 
@@ -28,9 +28,10 @@
 | jurisdiction:US-MI | 100.0% | 3 | ✅ |
 | jurisdiction:US-NY | 100.0% | 2 | ✅ |
 | jurisdiction:US-OH | 100.0% | 3 | ✅ |
+| jurisdiction:US-PA | 100.0% | 2 | ✅ |
 | jurisdiction:US-TX | 100.0% | 1 | ✅ |
 | jurisdiction:US-WA | 100.0% | 2 | ✅ |
-| language:en | 100.0% | 17 | ✅ |
+| language:en | 100.0% | 19 | ✅ |
 | language:es | 100.0% | 9 | ✅ |
 
 ## Jurisdiction readiness (M6 — add only as each passes review)
@@ -47,6 +48,7 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 | US-MI | 12 | 12 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-NY | 12 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-OH | 14 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
+| US-PA | 10 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-TX | 14 | 12 | 1 | 100.0% | ✅ | ❌ | ❌ |
 | US-WA | 10 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 
@@ -93,6 +95,8 @@ FIX-03-dependent) EN/ES citation-shape consistency.
 | mi-marker-dl | accuracy | US-MI/en | ✅ |  |
 | tx-name-court | accuracy | US-TX/en | ✅ |  |
 | tx-marker-volatile | refusal | US-TX/en | ✅ |  |
+| pa-name-court | accuracy | US-PA/en | ✅ |  |
+| pa-marker-dl | accuracy | US-PA/en | ✅ |  |
 | oh-name-court | accuracy | US-OH/en | ✅ |  |
 | oh-name-court-es | accuracy | US-OH/es | ✅ |  |
 | oh-birth-cert-name | accuracy | US-OH/en | ✅ |  |

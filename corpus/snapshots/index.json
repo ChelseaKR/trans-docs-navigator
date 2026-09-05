@@ -149,6 +149,36 @@
       "fetched": "2026-07-13",
       "sha256": "147d6d139b7a709f9608f9d494eb9189aaa9bb43ad0d8339307f9e837cd2fd9e"
     },
+    "https://www.nycourts.gov/courthelp/Family/nameChange.shtml": {
+      "file": null,
+      "fetched": "2026-07-14",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://www.legis.state.pa.us/WU01/LI/LI/CT/HTM/54/00.007..HTM": {
+      "file": "legis-state-pa-us-wu01-li-li-ct-htm-54-00-007-htm-5fa75baa.txt",
+      "fetched": "2026-07-13",
+      "sha256": "76a6c537255a1337af2a1aa8ad30185253f8afbdecd0d6eb24b210d2ce32999f"
+    },
+    "https://www.pa.gov/services/dmv/change-a-driver-license-name-or-address": {
+      "file": "pa-gov-services-dmv-change-a-driver-license-name-or-address-08403ed0.txt",
+      "fetched": "2026-07-13",
+      "sha256": "1bdf05c42c1e9597f9a3bdb9d109a2fb7ea39d1ecb42cdefe458e9ab388617ec"
+    },
+    "https://www.pa.gov/services/dmv/change-the-gender-designation-on-drivers-license-or-photo-identification-card": {
+      "file": "pa-gov-services-dmv-change-the-gender-designation-on-drivers-license-o-84f9ad21.txt",
+      "fetched": "2026-07-13",
+      "sha256": "229cab1195ed023786edc19fd33049195d039948562ad32a89b50fcc3dcfd8cb"
+    },
+    "https://www.pa.gov/content/dam/copapwp-pagov/en/health/documents/topics/documents/certificates-and-records/Request%20to%20Modify%20an%20Adult's%20Birth%20Record.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
     "https://michiganlegalhelp.org/resources/ids-and-name-change/i-want-change-my-name": {
       "file": "michiganlegalhelp-org-resources-ids-and-name-change-i-want-change-my-n-6b5aa298.txt",
       "fetched": "2026-09-05",
@@ -178,14 +208,6 @@
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction": {
       "file": null,
       "fetched": "2026-09-05",
-      "unfetchable": {
-        "status": "HTTP 403",
-        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
-      }
-    },
-    "https://www.nycourts.gov/courthelp/Family/nameChange.shtml": {
-      "file": null,
-      "fetched": "2026-07-14",
       "unfetchable": {
         "status": "HTTP 403",
         "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."

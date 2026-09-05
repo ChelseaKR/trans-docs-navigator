@@ -145,6 +145,22 @@ const AUTHORED_GOLD: GoldItem[] = [
     expect: { refused: true, hasFreshnessNote: true },
   },
   {
+    id: "pa-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-PA", language: "en" },
+    query: { jurisdiction: "US-PA", change_types: ["name"], documents: ["court-order"], question: "Pennsylvania name change newspaper fingerprints" },
+    // Straight from 54 Pa.C.S. Ch. 7: two newspapers of general circulation, and fingerprints
+    // sent to the State Police for a criminal-history check.
+    expect: { refused: false, citesRecord: "pa.court-order.name", mustContain: ["newspapers", "fingerprints"] },
+  },
+  {
+    id: "pa-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-PA", language: "en" },
+    query: { jurisdiction: "US-PA", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Pennsylvania non-binary X gender designation license" },
+    expect: { refused: false, citesRecord: "pa.drivers-license.gender-marker", mustContain: ["Non-binary", "DL-32"] },
+  },
+  {
     id: "oh-name-court",
     suite: "accuracy",
     segment: { jurisdiction: "US-OH", language: "en" },

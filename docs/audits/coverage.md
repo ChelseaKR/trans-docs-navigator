@@ -19,6 +19,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
 | US-OH | ✅ | — | ✅ | — | ✅ | — |
+| US-PA | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
 
@@ -34,6 +35,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-MI | — | — | ✅ | — | ✅ | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-PA | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 
@@ -49,6 +51,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
 | US-OH | ✅ | — | ✅ | — | ✅ | — |
+| US-PA | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
 
@@ -64,7 +67,8 @@ driver's-license rows are covered and the federal rows are current.
 | US-MI | — | — | ✅ | — | ✅ | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-PA | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 
-**Totals:** 84 current · 12 degraded · 144 uncovered cells.
+**Totals:** 94 current · 12 degraded · 158 uncovered cells.
