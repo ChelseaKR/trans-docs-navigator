@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 70 |
-| Load-bearing assertions found | 184 |
-| — checked and **supported** by the cited source | 152 |
+| Records audited | 84 |
+| Load-bearing assertions found | 237 |
+| — checked and **supported** by the cited source | 197 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 32 |
-| of the checked: literal (fee / duration / form-id) matches | 101 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 51 |
+| — **UNCHECKABLE** (reported, never passed) | 40 |
+| of the checked: literal (fee / duration / form-id) matches | 132 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 65 |
 
 ## What this gate cannot vouch for
 
-- **255 of 322 prose sentences** in the corpus carry no extractable
+- **304 of 382 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **71 sentences state a negative** (`you do not need a court order`, `the page no
+- **93 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **51 assertions are necessary-condition only**: the source discusses the topic, which
+- **65 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **2 cited sources refuse automated fetching entirely**, so no
@@ -74,12 +74,20 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ny.birth-certificate.name.es · a court order is required`
 - `ny.birth-certificate.name.es · states $30`
 
-**the official form has no identifier to match on** — 4 assertion(s):
+**the official form has no identifier to match on** — 12 assertion(s):
 
 - `il.birth-certificate.gender-marker · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 - `il.birth-certificate.name · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
+- `ma.drivers-license.name · form_ref "ma-rmv-license-id-application" (Driver's License, Learner's Permit or ID Card Application) carries no form identifier to match on`
+- `ma.drivers-license.gender-marker · form_ref "ma-rmv-license-id-application" (Driver's License, Learner's Permit or ID Card Application) carries no form identifier to match on`
+- `ma.birth-certificate.gender-marker · form_ref "ma-rvrs-sex-affidavit" (Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex) carries no form identifier to match on`
+- `ma.birth-certificate.name · form_ref "ma-rvrs-sex-affidavit" (Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex) carries no form identifier to match on`
 - `il.birth-certificate.gender-marker.es · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 - `il.birth-certificate.name.es · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
+- `ma.drivers-license.name.es · form_ref "ma-rmv-license-id-application" (Driver's License, Learner's Permit or ID Card Application) carries no form identifier to match on`
+- `ma.drivers-license.gender-marker.es · form_ref "ma-rmv-license-id-application" (Driver's License, Learner's Permit or ID Card Application) carries no form identifier to match on`
+- `ma.birth-certificate.gender-marker.es · form_ref "ma-rvrs-sex-affidavit" (Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex) carries no form identifier to match on`
+- `ma.birth-certificate.name.es · form_ref "ma-rvrs-sex-affidavit" (Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex) carries no form identifier to match on`
 
 ## Per-record coverage
 
@@ -111,6 +119,20 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `il.court-order.name.es` | es | 1 | 0 | 0 | 5/5 |
 | `il.drivers-license.gender-marker` | en | 1 | 0 | 0 | 4/4 |
 | `il.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 4/4 |
+| `ma.birth-certificate.gender-marker` | en | 4 | 0 | 1 | 4/4 |
+| `ma.birth-certificate.gender-marker.es` | es | 4 | 0 | 1 | 4/4 |
+| `ma.birth-certificate.gender-marker.law` | en | 1 | 0 | 0 | 1/3 |
+| `ma.birth-certificate.gender-marker.law.es` | es | 2 | 0 | 0 | 0/3 |
+| `ma.birth-certificate.name` | en | 3 | 0 | 1 | 4/4 |
+| `ma.birth-certificate.name.es` | es | 3 | 0 | 1 | 4/4 |
+| `ma.court-order.name` | en | 10 | 0 | 0 | 4/7 |
+| `ma.court-order.name.es` | es | 10 | 0 | 0 | 4/7 |
+| `ma.drivers-license.gender-marker` | en | 2 | 0 | 1 | 3/3 |
+| `ma.drivers-license.gender-marker.es` | es | 2 | 0 | 1 | 3/3 |
+| `ma.drivers-license.gender-marker.law` | en | 1 | 0 | 0 | 5/5 |
+| `ma.drivers-license.gender-marker.law.es` | es | 1 | 0 | 0 | 5/5 |
+| `ma.drivers-license.name` | en | 1 | 0 | 1 | 4/4 |
+| `ma.drivers-license.name.es` | es | 1 | 0 | 1 | 4/4 |
 | `ny.birth-certificate.gender-marker` | en | 0 | 0 | 5 | 5/6 |
 | `ny.birth-certificate.gender-marker.affidavit` | en | 0 | 0 | 3 | 2/4 |
 | `ny.birth-certificate.gender-marker.affidavit.es` | es | 0 | 0 | 4 | 2/4 |

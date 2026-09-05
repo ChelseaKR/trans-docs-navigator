@@ -149,6 +149,36 @@
       "fetched": "2026-07-13",
       "sha256": "147d6d139b7a709f9608f9d494eb9189aaa9bb43ad0d8339307f9e837cd2fd9e"
     },
+    "https://www.mass.gov/how-to/amend-a-birth-certificate-for-sex-of-the-subject": {
+      "file": "mass-gov-how-to-amend-a-birth-certificate-for-sex-of-the-subject-f5e43b0a.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c49150e78e40eaf7ae1c1f3c7a847eb66f5b86eb3665f6f400f8175723ca4f0e"
+    },
+    "https://www.mass.gov/how-to/amend-or-correct-a-birth-death-or-marriage-record": {
+      "file": "mass-gov-how-to-amend-or-correct-a-birth-death-or-marriage-record-662a9505.txt",
+      "fetched": "2026-09-05",
+      "sha256": "8d3ae45de0377cfe4736a115a2120a10231134007c37b07e714daef647dafeb2"
+    },
+    "https://www.mass.gov/how-to/change-information-on-your-drivers-license-or-id-card": {
+      "file": "mass-gov-how-to-change-information-on-your-drivers-license-or-id-card-dd8dd22b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "aa8e28b115a1a2b72dacc5a0e8f35c4d7db3207e733d2d5c186dbd033da24f3d"
+    },
+    "https://www.mass.gov/info-details/how-do-i-file-a-change-of-name-for-an-adult": {
+      "file": "mass-gov-info-details-how-do-i-file-a-change-of-name-for-an-adult-e0ade215.txt",
+      "fetched": "2026-09-05",
+      "sha256": "0b3e5aba1e729911d1b27767a1e26b166191d3e285223be2620fe3d24bff1ee6"
+    },
+    "https://www.mass.gov/info-details/mass-general-laws-c46-ss-13": {
+      "file": "mass-gov-info-details-mass-general-laws-c46-ss-13-61f9e688.txt",
+      "fetched": "2026-09-05",
+      "sha256": "2fe24861166d49d394f6aad33ba4f8f2045666ca5ce1abba4f9152e13deace76"
+    },
+    "https://www.mass.gov/info-details/mass-general-laws-c90-ss-8n": {
+      "file": "mass-gov-info-details-mass-general-laws-c90-ss-8n-6ec6d4fa.txt",
+      "fetched": "2026-09-05",
+      "sha256": "2c7d99a27f8844813fa0dbcccc3f8b823d1beaa193a67416476f4f73fbf2ac82"
+    },
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml": {
       "file": null,
       "fetched": "2026-07-14",

@@ -1,15 +1,15 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 70,
-  "supported": 152,
+  "records": 84,
+  "supported": 197,
   "unsupported": 0,
-  "uncheckable": 32,
+  "uncheckable": 40,
   "unfetchable_sources": [
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 255,
-  "total_prose_sentences": 322,
+  "unchecked_prose_sentences": 304,
+  "total_prose_sentences": 382,
   "audits": [
     {
       "recordId": "ca.court-order.name",
@@ -563,6 +563,310 @@
       "uncheckedProse": 3,
       "negatedClaims": 0,
       "totalSentences": 3
+    },
+    {
+      "recordId": "ma.court-order.name",
+      "language": "en",
+      "url": "https://www.mass.gov/info-details/how-do-i-file-a-change-of-name-for-an-adult",
+      "results": [
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "form-id",
+          "key": "CJP27",
+          "label": "official form CJP27 backs this step (form_ref: ma-cjp-27)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names CJP27"
+        },
+        {
+          "kind": "form-id",
+          "key": "CJD400",
+          "label": "names form CJD400",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names CJD400"
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "money",
+          "key": "150",
+          "label": "states $150",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $150"
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $15"
+        },
+        {
+          "kind": "money",
+          "key": "165",
+          "label": "states $165",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $165"
+        },
+        {
+          "kind": "money",
+          "key": "22",
+          "label": "states $22",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $22"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 4,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "ma.drivers-license.name",
+      "language": "en",
+      "url": "https://www.mass.gov/how-to/change-information-on-your-drivers-license-or-id-card",
+      "results": [
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "costs $25",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $25"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:ma-rmv-license-id-application",
+          "label": "form_ref \"ma-rmv-license-id-application\" (Driver's License, Learner's Permit or ID Card Application) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ma.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.mass.gov/how-to/change-information-on-your-drivers-license-or-id-card",
+      "results": [
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "costs $25",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $25"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:ma-rmv-license-id-application",
+          "label": "form_ref \"ma-rmv-license-id-application\" (Driver's License, Learner's Permit or ID Card Application) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 0,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ma.drivers-license.gender-marker.law",
+      "language": "en",
+      "url": "https://www.mass.gov/info-details/mass-general-laws-c90-ss-8n",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "ma.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.mass.gov/how-to/amend-a-birth-certificate-for-sex-of-the-subject",
+      "results": [
+        {
+          "kind": "money",
+          "key": "50",
+          "label": "costs $50",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $50"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:ma-rvrs-sex-affidavit",
+          "label": "form_ref \"ma-rvrs-sex-affidavit\" (Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "money",
+          "key": "32",
+          "label": "states $32",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $32"
+        },
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "states $20",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ma.birth-certificate.gender-marker.law",
+      "language": "en",
+      "url": "https://www.mass.gov/info-details/mass-general-laws-c46-ss-13",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "3 year",
+          "label": "states \"3 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"3 year\""
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ma.birth-certificate.name",
+      "language": "en",
+      "url": "https://www.mass.gov/how-to/amend-or-correct-a-birth-death-or-marriage-record",
+      "results": [
+        {
+          "kind": "money",
+          "key": "50",
+          "label": "costs $50",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $50"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:ma-rvrs-sex-affidavit",
+          "label": "form_ref \"ma-rvrs-sex-affidavit\" (Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "money",
+          "key": "32",
+          "label": "states $32",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $32"
+        },
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "states $20",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
     },
     {
       "recordId": "ny.court-order.name",
@@ -1967,6 +2271,319 @@
       "uncheckedProse": 2,
       "negatedClaims": 1,
       "totalSentences": 5
+    },
+    {
+      "recordId": "ma.court-order.name.es",
+      "language": "es",
+      "url": "https://www.mass.gov/info-details/how-do-i-file-a-change-of-name-for-an-adult",
+      "results": [
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "form-id",
+          "key": "CJP27",
+          "label": "official form CJP27 backs this step (form_ref: ma-cjp-27)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names CJP27"
+        },
+        {
+          "kind": "form-id",
+          "key": "CJD400",
+          "label": "names form CJD400",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names CJD400"
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "money",
+          "key": "150",
+          "label": "states $150",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $150"
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $15"
+        },
+        {
+          "kind": "money",
+          "key": "165",
+          "label": "states $165",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $165"
+        },
+        {
+          "kind": "money",
+          "key": "22",
+          "label": "states $22",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $22"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 4,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "ma.drivers-license.name.es",
+      "language": "es",
+      "url": "https://www.mass.gov/how-to/change-information-on-your-drivers-license-or-id-card",
+      "results": [
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "costs $25",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $25"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:ma-rmv-license-id-application",
+          "label": "form_ref \"ma-rmv-license-id-application\" (Driver's License, Learner's Permit or ID Card Application) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ma.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.mass.gov/how-to/change-information-on-your-drivers-license-or-id-card",
+      "results": [
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "costs $25",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $25"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:ma-rmv-license-id-application",
+          "label": "form_ref \"ma-rmv-license-id-application\" (Driver's License, Learner's Permit or ID Card Application) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 0,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ma.drivers-license.gender-marker.law.es",
+      "language": "es",
+      "url": "https://www.mass.gov/info-details/mass-general-laws-c90-ss-8n",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "ma.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.mass.gov/how-to/amend-a-birth-certificate-for-sex-of-the-subject",
+      "results": [
+        {
+          "kind": "money",
+          "key": "50",
+          "label": "costs $50",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $50"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:ma-rvrs-sex-affidavit",
+          "label": "form_ref \"ma-rvrs-sex-affidavit\" (Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "money",
+          "key": "32",
+          "label": "states $32",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $32"
+        },
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "states $20",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ma.birth-certificate.gender-marker.law.es",
+      "language": "es",
+      "url": "https://www.mass.gov/info-details/mass-general-laws-c46-ss-13",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "18 year",
+          "label": "states \"18 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"18 year\""
+        },
+        {
+          "kind": "duration",
+          "key": "3 year",
+          "label": "states \"3 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"3 year\""
+        }
+      ],
+      "uncheckedProse": 0,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ma.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.mass.gov/how-to/amend-or-correct-a-birth-death-or-marriage-record",
+      "results": [
+        {
+          "kind": "money",
+          "key": "50",
+          "label": "costs $50",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $50"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:ma-rvrs-sex-affidavit",
+          "label": "form_ref \"ma-rvrs-sex-affidavit\" (Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "money",
+          "key": "32",
+          "label": "states $32",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $32"
+        },
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "states $20",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
     },
     {
       "recordId": "tx.court-order.name",

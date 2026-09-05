@@ -114,6 +114,20 @@ const AUTHORED_GOLD: GoldItem[] = [
     },
   },
   {
+    id: "ma-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MA", language: "en" },
+    query: { jurisdiction: "US-MA", change_types: ["name"], documents: ["court-order"], question: "Massachusetts name change notary Probate and Family Court" },
+    expect: { refused: false, citesRecord: "ma.court-order.name", mustContain: ["notary public", "Probate and Family Court"] },
+  },
+  {
+    id: "ma-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MA", language: "en" },
+    query: { jurisdiction: "US-MA", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Massachusetts X gender designation license" },
+    expect: { refused: false, citesRecord: "ma.drivers-license.gender-marker", mustContain: ["M, F, or X"] },
+  },
+  {
     id: "tx-name-court",
     suite: "accuracy",
     segment: { jurisdiction: "US-TX", language: "en" },
