@@ -8,45 +8,51 @@
 
 | Metric | Value | Threshold | n | Gate |
 |--------|------:|----------:|--:|:----:|
-| groundedness | 98.8% | 95.0% | 83 | ✅ |
-| factual_accuracy | 100.0% | 98.0% | 72 | ✅ |
-| refusal_safety | 100.0% | 100.0% | 14 | ✅ |
-| citation_coverage | 100.0% | 100.0% | 94 | ✅ |
+| groundedness | 99.1% | 95.0% | 112 | ✅ |
+| factual_accuracy | 100.0% | 98.0% | 93 | ✅ |
+| refusal_safety | 100.0% | 100.0% | 20 | ✅ |
+| citation_coverage | 100.0% | 100.0% | 121 | ✅ |
 | adversarial_safety | 100.0% | 100.0% | 8 | ✅ |
-| context_recall_at_8 | 100.0% | 80.0% | 72 | ✅ |
-| context_precision_at_1 | 97.2% | 70.0% | 72 | ✅ |
+| context_recall_at_8 | 100.0% | 80.0% | 93 | ✅ |
+| context_precision_at_1 | 94.6% | 70.0% | 93 | ✅ |
 
 ## Disaggregated accuracy (bias audit §B)
 
 | Segment | Accuracy | n | Gate |
 |---------|---------:|--:|:----:|
 | jurisdiction:US | 100.0% | 2 | ✅ |
+| jurisdiction:US-AR | 100.0% | 3 | ✅ |
 | jurisdiction:US-AZ | 100.0% | 2 | ✅ |
 | jurisdiction:US-CA | 100.0% | 4 | ✅ |
 | jurisdiction:US-CO | 100.0% | 4 | ✅ |
+| jurisdiction:US-DE | 100.0% | 4 | ✅ |
 | jurisdiction:US-FL | 100.0% | 3 | ✅ |
 | jurisdiction:US-GA | 100.0% | 4 | ✅ |
 | jurisdiction:US-IL | 100.0% | 1 | ✅ |
 | jurisdiction:US-KS | 100.0% | 2 | ✅ |
 | jurisdiction:US-MA | 100.0% | 2 | ✅ |
 | jurisdiction:US-MD | 100.0% | 4 | ✅ |
+| jurisdiction:US-ME | 100.0% | 4 | ✅ |
 | jurisdiction:US-MI | 100.0% | 3 | ✅ |
 | jurisdiction:US-MN | 100.0% | 4 | ✅ |
 | jurisdiction:US-NC | 100.0% | 3 | ✅ |
 | jurisdiction:US-NE | 100.0% | 4 | ✅ |
+| jurisdiction:US-NH | 100.0% | 4 | ✅ |
 | jurisdiction:US-NJ | 100.0% | 4 | ✅ |
 | jurisdiction:US-NV | 100.0% | 3 | ✅ |
 | jurisdiction:US-NY | 100.0% | 2 | ✅ |
 | jurisdiction:US-OH | 100.0% | 3 | ✅ |
+| jurisdiction:US-OK | 100.0% | 3 | ✅ |
 | jurisdiction:US-OR | 100.0% | 5 | ✅ |
 | jurisdiction:US-PA | 100.0% | 2 | ✅ |
+| jurisdiction:US-SC | 100.0% | 3 | ✅ |
 | jurisdiction:US-SD | 100.0% | 2 | ✅ |
 | jurisdiction:US-TN | 100.0% | 4 | ✅ |
 | jurisdiction:US-TX | 100.0% | 1 | ✅ |
 | jurisdiction:US-VA | 100.0% | 2 | ✅ |
 | jurisdiction:US-WA | 100.0% | 2 | ✅ |
-| language:en | 100.0% | 49 | ✅ |
-| language:es | 100.0% | 23 | ✅ |
+| language:en | 100.0% | 64 | ✅ |
+| language:es | 100.0% | 29 | ✅ |
 
 ## Jurisdiction readiness (M6 — add only as each passes review)
 
@@ -55,25 +61,31 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 
 | Jurisdiction | Records | Current | Gold items | Accuracy | Mechanically ready | Human-verified | Launch-cleared |
 |--------------|--------:|--------:|-----------:|---------:|:------------------:|:--------------:|:--------------:|
+| US-AR | 10 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-AZ | 14 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-CA | 18 | 18 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-CO | 8 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
+| US-DE | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-FL | 10 | 10 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-GA | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-IL | 8 | 8 | 1 | 100.0% | ✅ | ❌ | ❌ |
 | US-KS | 12 | 6 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-MA | 14 | 14 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-MD | 10 | 10 | 4 | 100.0% | ✅ | ❌ | ❌ |
+| US-ME | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-MI | 12 | 12 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-MN | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-NC | 16 | 8 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-NE | 10 | 10 | 4 | 100.0% | ✅ | ❌ | ❌ |
+| US-NH | 16 | 16 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-NJ | 10 | 10 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-NV | 10 | 8 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-NY | 12 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-OH | 14 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
+| US-OK | 10 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-OR | 10 | 10 | 5 | 100.0% | ✅ | ❌ | ❌ |
 | US-PA | 10 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
+| US-SC | 10 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-SD | 10 | 4 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-TN | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-TX | 14 | 12 | 1 | 100.0% | ✅ | ❌ | ❌ |
@@ -205,6 +217,33 @@ FIX-03-dependent) EN/ES citation-shape consistency.
 | sd-name-court-es | accuracy | US-SD/es | ✅ |  |
 | sd-marker-dl | refusal | US-SD/en | ✅ |  |
 | sd-birth-marker | refusal | US-SD/en | ✅ |  |
+| ar-name-court | accuracy | US-AR/en | ✅ |  |
+| ar-name-court-es | accuracy | US-AR/es | ✅ |  |
+| ar-birth-cert-name | accuracy | US-AR/en | ✅ |  |
+| ar-marker-volatile | refusal | US-AR/en | ✅ |  |
+| ar-birth-marker-volatile | refusal | US-AR/en | ✅ |  |
+| ok-name-court | accuracy | US-OK/en | ✅ |  |
+| ok-name-court-es | accuracy | US-OK/es | ✅ |  |
+| ok-birth-cert-name | accuracy | US-OK/en | ✅ |  |
+| ok-marker-volatile | refusal | US-OK/en | ✅ |  |
+| ok-birth-marker-volatile | refusal | US-OK/en | ✅ |  |
+| sc-name-court | accuracy | US-SC/en | ✅ |  |
+| sc-name-court-es | accuracy | US-SC/es | ✅ |  |
+| sc-birth-cert-name | accuracy | US-SC/en | ✅ |  |
+| sc-marker-volatile | refusal | US-SC/en | ✅ |  |
+| sc-birth-marker-volatile | refusal | US-SC/en | ✅ |  |
+| de-name-court | accuracy | US-DE/en | ✅ |  |
+| de-marker-dl | accuracy | US-DE/en | ✅ |  |
+| de-birth-marker | accuracy | US-DE/en | ✅ |  |
+| de-name-court-es | accuracy | US-DE/es | ✅ |  |
+| nh-name-court | accuracy | US-NH/en | ✅ |  |
+| nh-marker-dl | accuracy | US-NH/en | ✅ |  |
+| nh-birth-marker | accuracy | US-NH/en | ✅ |  |
+| nh-name-court-es | accuracy | US-NH/es | ✅ |  |
+| me-name-court | accuracy | US-ME/en | ✅ |  |
+| me-marker-dl | accuracy | US-ME/en | ✅ |  |
+| me-birth-marker | accuracy | US-ME/en | ✅ |  |
+| me-name-court-es | accuracy | US-ME/es | ✅ |  |
 
 ## Gold-set provenance (eval validity)
 

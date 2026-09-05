@@ -1,0 +1,38 @@
+[
+  {
+    "id": "de.referral.declasi",
+    "jurisdiction": "US-DE",
+    "name": "Community Legal Aid Society, Inc. (CLASI)",
+    "url": "https://www.declasi.org",
+    "note": {
+      "en": "Delaware's oldest and largest civil legal-aid organization, providing free civil legal services to low-income Delawareans, including help with family-law filings such as a name-change petition.",
+      "es": "La organización de ayuda legal civil más antigua y grande de Delaware, que ofrece servicios legales civiles gratuitos a residentes de bajos ingresos, incluida ayuda con trámites de derecho familiar como una petición de cambio de nombre."
+    },
+    "source": {
+      "url": "https://www.declasi.org",
+      "title": "Community Legal Aid Society, Inc.",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "de.referral.aclu-de",
+    "jurisdiction": "US-DE",
+    "name": "ACLU of Delaware",
+    "url": "https://www.aclu-de.org",
+    "note": {
+      "en": "Delaware's statewide civil-rights organization, publishing know-your-rights information relevant to transgender residents and advocating on state policy.",
+      "es": "La organización estatal de derechos civiles de Delaware, que publica información sobre derechos relevante para residentes transgénero y defiende políticas estatales."
+    },
+    "source": {
+      "url": "https://www.aclu-de.org",
+      "title": "ACLU of Delaware",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

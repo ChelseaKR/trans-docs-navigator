@@ -45,15 +45,20 @@ const ALL_STATES = [
   "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA",
   "ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK",
   "OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",
+  // Territories, deliberately last. The corpus is being expanded to all 50 states plus DC,
+  // at which point no state is uncovered and the guard below would fire. These keep a real
+  // uncovered jurisdiction available — and they are not filler: a trans person in Puerto
+  // Rico or Guam is exactly who the no-coverage path has to be honest with.
+  "PR","GU","VI","AS","MP",
 ].map((s) => `US-${s}`);
 const COVERED_SET = new Set(corpus.map((r) => r.jurisdiction));
 const UNCOVERED = (() => {
   const free = ALL_STATES.find((j) => !COVERED_SET.has(j));
   if (!free) {
     throw new Error(
-      "coverage-honesty: every US state is now in the corpus, so there is no uncovered " +
-        "jurisdiction left to test the no-coverage path with. This fixture must be " +
-        "rewritten (e.g. against a territory) rather than deleted — the honesty guarantee " +
+      "coverage-honesty: every US state and territory in this list is now in the corpus, " +
+        "so there is no uncovered jurisdiction left to test the no-coverage path with. " +
+        "Extend this list rather than deleting the fixture — the honesty guarantee " +
         "it pins is what stops an uncovered state rendering as a finished plan.",
     );
   }

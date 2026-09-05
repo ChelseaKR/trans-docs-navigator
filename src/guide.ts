@@ -25,8 +25,12 @@ interface StateDef {
 // The states we currently cover. Federal steps (SSA, passport) are woven into each
 // guide by the checklist builder, so they need no separate page.
 const STATES: StateDef[] = [
+  { slug: "arkansas", id: "US-AR", name: { en: "Arkansas", es: "Arkansas" } },
   { slug: "arizona", id: "US-AZ", name: { en: "Arizona", es: "Arizona" } },
   { slug: "california", id: "US-CA", name: { en: "California", es: "California" } },
+  { slug: "delaware", id: "US-DE", name: { en: "Delaware", es: "Delaware" } },
+  { slug: "maine", id: "US-ME", name: { en: "Maine", es: "Maine" } },
+  { slug: "new-hampshire", id: "US-NH", name: { en: "New Hampshire", es: "Nuevo Hampshire" } },
   { slug: "florida", id: "US-FL", name: { en: "Florida", es: "Florida" } },
   { slug: "georgia", id: "US-GA", name: { en: "Georgia", es: "Georgia" } },
   { slug: "colorado", id: "US-CO", name: { en: "Colorado", es: "Colorado" } },
@@ -41,8 +45,10 @@ const STATES: StateDef[] = [
   { slug: "new-york", id: "US-NY", name: { en: "New York", es: "Nueva York" } },
   { slug: "pennsylvania", id: "US-PA", name: { en: "Pennsylvania", es: "Pensilvania" } },
   { slug: "ohio", id: "US-OH", name: { en: "Ohio", es: "Ohio" } },
+  { slug: "oklahoma", id: "US-OK", name: { en: "Oklahoma", es: "Oklahoma" } },
   { slug: "tennessee", id: "US-TN", name: { en: "Tennessee", es: "Tennessee" } },
   { slug: "oregon", id: "US-OR", name: { en: "Oregon", es: "Oregón" } },
+  { slug: "south-carolina", id: "US-SC", name: { en: "South Carolina", es: "Carolina del Sur" } },
   { slug: "texas", id: "US-TX", name: { en: "Texas", es: "Texas" } },
   { slug: "virginia", id: "US-VA", name: { en: "Virginia", es: "Virginia" } },
   { slug: "washington", id: "US-WA", name: { en: "Washington", es: "Washington" } },

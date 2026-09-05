@@ -1,0 +1,192 @@
+[
+  {
+    "id": "nh.court-order.name",
+    "jurisdiction": "US-NH",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "New Hampshire name change petition",
+    "statement": "New Hampshire's probate court may grant a petition to change your name, and the court cannot require you to get anyone's consent to the change.",
+    "detail": "If you're incarcerated, on probation or parole, required to register as a sex offender, or convicted of certain violent felonies or crimes against a child, you must make a compelling showing that the name change is necessary, and the court must give notice to the Department of Corrections or the Department of Safety and the original prosecuting office.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.gencourt.state.nh.us/rsa/html/LVI/547/547-3-i.htm",
+      "title": "New Hampshire RSA 547:3-i — Change of Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nh.court-order.no-notice",
+    "jurisdiction": "US-NH",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "No public notice for a New Hampshire name change",
+    "statement": "A New Hampshire probate court can grant a name change without public notice. The law lists changing the name of someone who resides in the county as a case needing no notice, at the discretion of the judge — so New Hampshire does not require you to publish a newspaper notice of your petition.",
+    "detail": "You must reside in the county where you file your petition.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.gencourt.state.nh.us/rsa/html/LVI/550/550-4.htm",
+      "title": "New Hampshire RSA 550:4 — Cases Requiring No Notice",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nh.court-order.fee",
+    "jurisdiction": "US-NH",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "New Hampshire name change filing fee",
+    "statement": "Filing a Name Change Petition in the Probate Division of a New Hampshire circuit court costs $170. Filing one as part of a Family Division case, such as a divorce, costs $140 instead.",
+    "detail": "If you can't afford the fee, you can ask the court in writing to lower it or waive it. Certified copies of your signed order cost $10 each.",
+    "cost": {
+      "amount_usd": 170,
+      "note": "Filing as part of a Family Division case, such as a divorce, costs $140 instead. If you can't afford the fee, you can ask the court in writing to lower it or waive it."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.courts.nh.gov/sites/g/files/ehbemt471/files/documents/2021-06/filing_fees.pdf",
+      "title": "New Hampshire Circuit Court Filing Fees",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nh.drivers-license.name",
+    "jurisdiction": "US-NH",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "New Hampshire driver's license name change",
+    "statement": "New Hampshire law requires you to notify the DMV in writing within 30 days of legally changing your name. You do this by making an appointment to bring a completed Record Change Request (DSMV 30) to a DMV office, along with your current license and legal proof of the name change, such as a certified court order, a divorce decree, or a marriage certificate.",
+    "detail": "Name changes can't be done by mail. You'll get a 60-day temporary paper license at your appointment while the state mails your permanent one.",
+    "cost": {
+      "amount_usd": 0,
+      "note": "This is for the replacement license issued as part of a name change. Other DMV transactions may carry a separate fee."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dmv.nh.gov/drivers-licensenon-driver-ids/update-personal-information",
+      "title": "New Hampshire DMV — Update Personal Information",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nh.drivers-license.gender-marker",
+    "jurisdiction": "US-NH",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "New Hampshire driver's license gender designation",
+    "statement": "To change the gender on your New Hampshire driver's license or ID, make an appointment at the DMV. Bring a completed Application for Driver License (DSMV 450), marked \"Replacement\" with \"gender change\" as the reason, your current license or ID card, and a payment of $10.00.",
+    "detail": "New Hampshire's current DMV page does not list a court order or a doctor's letter as a requirement for this change.",
+    "cost": {
+      "amount_usd": 10
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dmv.nh.gov/drivers-licensenon-driver-ids/update-personal-information",
+      "title": "New Hampshire DMV — Update Personal Information",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "nh.birth-certificate.name",
+    "jurisdiction": "US-NH",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "New Hampshire birth certificate name change",
+    "statement": "New Hampshire will amend your birth record to show a new name once the clerk of the town or city where you were born receives a certified copy of a court order changing your name. The clerk enters a note that says \"legal change of name per court order\" and adds an \"A.K.A.\" for your original name — it isn't erased.",
+    "detail": "This process is only for people born in New Hampshire. The clerk forwards notice of the change to the state registrar.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.gencourt.state.nh.us/rsa/html/I/5-C/5-C-87.htm",
+      "title": "New Hampshire RSA 5-C:87 — Initiating Amendments and Corrections to Birth Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nh.birth-certificate.gender-marker",
+    "jurisdiction": "US-NH",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "New Hampshire birth certificate sex change",
+    "statement": "New Hampshire prepares a new birth record once it receives a certified copy of a court order advising that a person born in New Hampshire has had a sex change.",
+    "detail": "This is different from a name-only change: instead of adding a note to your existing record, the state prepares a new one. New Hampshire's law does not describe any path for this change that skips the court order.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.gencourt.state.nh.us/rsa/html/I/5-C/5-C-87.htm",
+      "title": "New Hampshire RSA 5-C:87 — Initiating Amendments and Corrections to Birth Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "nh.birth-certificate.fees",
+    "jurisdiction": "US-NH",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "New Hampshire vital-records amendment fees",
+    "statement": "Amending or correcting a New Hampshire birth record costs $10, paid by the person requesting the change. That fee is waived if the town clerk made the original error.",
+    "detail": "Separately, a search for a vital record costs $15, which includes a certified copy if one is found; each additional certified copy costs $10.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "This fee is waived if the town clerk made the original error. A vital-records search costs $15 and includes one certified copy; each additional certified copy costs $10."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.gencourt.state.nh.us/rsa/html/I/5-C/5-C-10.htm",
+      "title": "New Hampshire RSA 5-C:10 — Fees for Copies, Verifications and Amendments to Vital Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]
