@@ -8,13 +8,13 @@
 
 | Metric | Value | Threshold | n | Gate |
 |--------|------:|----------:|--:|:----:|
-| groundedness | 98.2% | 95.0% | 57 | ✅ |
-| factual_accuracy | 100.0% | 98.0% | 51 | ✅ |
+| groundedness | 98.4% | 95.0% | 62 | ✅ |
+| factual_accuracy | 100.0% | 98.0% | 55 | ✅ |
 | refusal_safety | 100.0% | 100.0% | 6 | ✅ |
-| citation_coverage | 100.0% | 100.0% | 65 | ✅ |
+| citation_coverage | 100.0% | 100.0% | 69 | ✅ |
 | adversarial_safety | 100.0% | 100.0% | 8 | ✅ |
-| context_recall_at_8 | 100.0% | 80.0% | 51 | ✅ |
-| context_precision_at_1 | 100.0% | 70.0% | 51 | ✅ |
+| context_recall_at_8 | 100.0% | 80.0% | 55 | ✅ |
+| context_precision_at_1 | 100.0% | 70.0% | 55 | ✅ |
 
 ## Disaggregated accuracy (bias audit §B)
 
@@ -36,10 +36,11 @@
 | jurisdiction:US-OH | 100.0% | 3 | ✅ |
 | jurisdiction:US-OR | 100.0% | 5 | ✅ |
 | jurisdiction:US-PA | 100.0% | 2 | ✅ |
+| jurisdiction:US-TN | 100.0% | 4 | ✅ |
 | jurisdiction:US-TX | 100.0% | 1 | ✅ |
 | jurisdiction:US-WA | 100.0% | 2 | ✅ |
-| language:en | 100.0% | 36 | ✅ |
-| language:es | 100.0% | 15 | ✅ |
+| language:en | 100.0% | 39 | ✅ |
+| language:es | 100.0% | 16 | ✅ |
 
 ## Jurisdiction readiness (M6 — add only as each passes review)
 
@@ -63,6 +64,7 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 | US-OH | 14 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-OR | 10 | 10 | 5 | 100.0% | ✅ | ❌ | ❌ |
 | US-PA | 10 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
+| US-TN | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-TX | 14 | 12 | 1 | 100.0% | ✅ | ❌ | ❌ |
 | US-WA | 10 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 
@@ -132,6 +134,10 @@ FIX-03-dependent) EN/ES citation-shape consistency.
 | ga-marker-dl | accuracy | US-GA/en | ✅ |  |
 | ga-birth-marker | accuracy | US-GA/en | ✅ |  |
 | ga-name-court-es | accuracy | US-GA/es | ✅ |  |
+| tn-name-court | accuracy | US-TN/en | ✅ |  |
+| tn-marker-dl-restricted | accuracy | US-TN/en | ✅ |  |
+| tn-marker-birth-restricted | accuracy | US-TN/en | ✅ |  |
+| tn-name-court-es | accuracy | US-TN/es | ✅ |  |
 | nj-name-court | accuracy | US-NJ/en | ✅ |  |
 | nj-marker-dl | accuracy | US-NJ/en | ✅ |  |
 | nj-birth-marker | accuracy | US-NJ/en | ✅ |  |

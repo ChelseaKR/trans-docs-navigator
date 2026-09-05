@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 204 |
-| Load-bearing assertions found | 574 |
-| — checked and **supported** by the cited source | 417 |
+| Records audited | 216 |
+| Load-bearing assertions found | 597 |
+| — checked and **supported** by the cited source | 432 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 157 |
-| of the checked: literal (fee / duration / form-id) matches | 270 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 147 |
+| — **UNCHECKABLE** (reported, never passed) | 165 |
+| of the checked: literal (fee / duration / form-id) matches | 283 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 149 |
 
 ## What this gate cannot vouch for
 
-- **794 of 992 prose sentences** in the corpus carry no extractable
+- **857 of 1064 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **272 sentences state a negative** (`you do not need a court order`, `the page no
+- **294 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **147 assertions are necessary-condition only**: the source discusses the topic, which
+- **149 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **6 cited sources refuse automated fetching entirely**, so no
@@ -218,6 +218,17 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ga.birth-certificate.name.es · a court order is required`
 - `ga.birth-certificate.name.es · states $25`
 
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name.** — 8 assertion(s):
+
+- `tn.birth-certificate.name.es · names form PH1186`
+- `tn.birth-certificate.name.es · states $15`
+- `tn.birth-certificate.name.es · states "18 year"`
+- `tn.birth-certificate.name.es · a notarized signature is required`
+- `tn.birth-certificate.name · names form PH1186`
+- `tn.birth-certificate.name · states $15`
+- `tn.birth-certificate.name · a court order is required`
+- `tn.birth-certificate.name · a notarized signature is required`
+
 **the source refuses automated fetching (HTTP 404)** — 1 assertion(s):
 
 - `oh.birth-certificate.gender-marker · a court order is required`
@@ -398,6 +409,18 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `pa.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 2/3 |
 | `pa.drivers-license.name` | en | 2 | 0 | 0 | 4/5 |
 | `pa.drivers-license.name.es` | es | 2 | 0 | 0 | 4/5 |
+| `tn.birth-certificate.gender-marker` | en | 0 | 0 | 0 | 9/9 |
+| `tn.birth-certificate.gender-marker.es` | es | 0 | 0 | 0 | 9/9 |
+| `tn.birth-certificate.name` | en | 0 | 0 | 4 | 1/5 |
+| `tn.birth-certificate.name.es` | es | 0 | 0 | 4 | 1/5 |
+| `tn.court-order.name` | en | 3 | 0 | 0 | 7/7 |
+| `tn.court-order.name.es` | es | 4 | 0 | 0 | 6/7 |
+| `tn.drivers-license.gender-marker` | en | 0 | 0 | 0 | 4/4 |
+| `tn.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 4/4 |
+| `tn.drivers-license.gender-marker.law` | en | 0 | 0 | 0 | 3/3 |
+| `tn.drivers-license.gender-marker.law.es` | es | 0 | 0 | 0 | 5/5 |
+| `tn.drivers-license.name` | en | 4 | 0 | 0 | 7/7 |
+| `tn.drivers-license.name.es` | es | 4 | 0 | 0 | 7/7 |
 | `tx.birth-certificate.fees` | en | 3 | 0 | 0 | 1/3 |
 | `tx.birth-certificate.fees.es` | es | 3 | 0 | 0 | 1/3 |
 | `tx.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 6/6 |

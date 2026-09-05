@@ -327,6 +327,49 @@ const AUTHORED_GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "ga.court-order.name.es", mustContain: ["Tribunal Superior", "30 días"] },
   },
   {
+    id: "tn-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-TN", language: "en" },
+    query: { jurisdiction: "US-TN", change_types: ["name"], documents: ["court-order"], question: "Tennessee name change petition" },
+    expect: { refused: false, citesRecord: "tn.court-order.name", mustContain: ["Shelby County", "Probate Court"] },
+  },
+  {
+    id: "tn-marker-dl-restricted",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-TN", language: "en" },
+    query: { jurisdiction: "US-TN", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Tennessee driver's license gender marker change" },
+    // M6: Tennessee is one of the most restrictive states — its Driver Services page
+    // documents a name change and an address change but names no process for a sex or
+    // gender designation change at all. The expectation pins that plain absence in the
+    // page's own words rather than describing a process that no longer works (PR #119).
+    expect: {
+      refused: false,
+      citesRecord: "tn.drivers-license.gender-marker",
+      mustContain: ["Helpful Information", "no topic, form, or page"],
+    },
+  },
+  {
+    id: "tn-marker-birth-restricted",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-TN", language: "en" },
+    query: { jurisdiction: "US-TN", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Tennessee birth certificate sex change" },
+    // Tennessee's vital-records law (Tenn. Code Ann. § 68-3-203(d)) bars changing the sex
+    // listed on a birth certificate outright -- litigated and upheld in Gore v. Lee, 6th
+    // Cir. 2024. Recorded as a closed route, not a discretionary or open one.
+    expect: {
+      refused: false,
+      citesRecord: "tn.birth-certificate.gender-marker",
+      mustContain: ["historical fact", "sex change surgery"],
+    },
+  },
+  {
+    id: "tn-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-TN", language: "es" },
+    query: { jurisdiction: "US-TN", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Tennessee" },
+    expect: { refused: false, citesRecord: "tn.court-order.name.es", mustContain: ["Tribunal de Sucesiones", "condado de Shelby"] },
+  },
+  {
     id: "nj-name-court",
     suite: "accuracy",
     segment: { jurisdiction: "US-NJ", language: "en" },
