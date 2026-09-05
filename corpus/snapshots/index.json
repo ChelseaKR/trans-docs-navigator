@@ -131,6 +131,16 @@
       "fetched": "2026-07-13",
       "sha256": "c3588254b805f81730a3421988e9d53982c36d98e2e83668703c78747e2790f5"
     },
+    "https://www.flhsmv.gov/name-and-address-changes/": {
+      "file": "flhsmv-gov-name-and-address-changes-e69c93d1.txt",
+      "fetched": "2026-07-13",
+      "sha256": "0f588df5e7b01c85dbdd37f1d4d5e2a29d29930019aeaacf66c16b09d2047956"
+    },
+    "https://www.floridahealth.gov/certificates-records/amendments-and-corrections/": {
+      "file": "floridahealth-gov-certificates-records-amendments-and-corrections-09de7bef.txt",
+      "fetched": "2026-07-13",
+      "sha256": "bffae9c3567685648c12a9ce66c43e870f4b526abbea9dd2119cedf5a9c87e24"
+    },
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm": {
       "file": null,
       "fetched": "2026-07-14",
@@ -148,6 +158,11 @@
       "file": "illinoislegalaid-org-legal-information-updating-sex-and-gender-markers-02f8a5f6.txt",
       "fetched": "2026-07-13",
       "sha256": "147d6d139b7a709f9608f9d494eb9189aaa9bb43ad0d8339307f9e837cd2fd9e"
+    },
+    "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0068/Sections/0068.07.html": {
+      "file": "leg-state-fl-us-statutes-index-cfm-aa041df6.txt",
+      "fetched": "2026-07-13",
+      "sha256": "f871ad2e96ab3358e67160b602363bb393d6fb5a5f31db7c8623f7b47676235a"
     },
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml": {
       "file": null,

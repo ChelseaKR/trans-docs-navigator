@@ -8,13 +8,13 @@
 
 | Metric | Value | Threshold | n | Gate |
 |--------|------:|----------:|--:|:----:|
-| groundedness | 100.0% | 95.0% | 38 | ✅ |
-| factual_accuracy | 100.0% | 98.0% | 32 | ✅ |
+| groundedness | 100.0% | 95.0% | 41 | ✅ |
+| factual_accuracy | 100.0% | 98.0% | 35 | ✅ |
 | refusal_safety | 100.0% | 100.0% | 6 | ✅ |
-| citation_coverage | 100.0% | 100.0% | 46 | ✅ |
+| citation_coverage | 100.0% | 100.0% | 49 | ✅ |
 | adversarial_safety | 100.0% | 100.0% | 8 | ✅ |
-| context_recall_at_8 | 100.0% | 80.0% | 32 | ✅ |
-| context_precision_at_1 | 100.0% | 70.0% | 32 | ✅ |
+| context_recall_at_8 | 100.0% | 80.0% | 35 | ✅ |
+| context_precision_at_1 | 100.0% | 70.0% | 35 | ✅ |
 
 ## Disaggregated accuracy (bias audit §B)
 
@@ -24,6 +24,7 @@
 | jurisdiction:US-AZ | 100.0% | 2 | ✅ |
 | jurisdiction:US-CA | 100.0% | 4 | ✅ |
 | jurisdiction:US-CO | 100.0% | 4 | ✅ |
+| jurisdiction:US-FL | 100.0% | 3 | ✅ |
 | jurisdiction:US-GA | 100.0% | 4 | ✅ |
 | jurisdiction:US-IL | 100.0% | 1 | ✅ |
 | jurisdiction:US-MA | 100.0% | 2 | ✅ |
@@ -33,8 +34,8 @@
 | jurisdiction:US-PA | 100.0% | 2 | ✅ |
 | jurisdiction:US-TX | 100.0% | 1 | ✅ |
 | jurisdiction:US-WA | 100.0% | 2 | ✅ |
-| language:en | 100.0% | 22 | ✅ |
-| language:es | 100.0% | 10 | ✅ |
+| language:en | 100.0% | 24 | ✅ |
+| language:es | 100.0% | 11 | ✅ |
 
 ## Jurisdiction readiness (M6 — add only as each passes review)
 
@@ -46,6 +47,7 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 | US-AZ | 14 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-CA | 18 | 18 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-CO | 8 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
+| US-FL | 10 | 10 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-GA | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-IL | 8 | 8 | 1 | 100.0% | ✅ | ❌ | ❌ |
 | US-MA | 14 | 14 | 2 | 100.0% | ✅ | ❌ | ❌ |
@@ -115,6 +117,9 @@ FIX-03-dependent) EN/ES citation-shape consistency.
 | ny-name-court-es | accuracy | US-NY/es | ✅ |  |
 | mi-name-court-es | accuracy | US-MI/es | ✅ |  |
 | ssa-name-es | accuracy | US/es | ✅ |  |
+| fl-name-court | accuracy | US-FL/en | ✅ |  |
+| fl-name-court-es | accuracy | US-FL/es | ✅ |  |
+| fl-marker-birth-cert-restricted | accuracy | US-FL/en | ✅ |  |
 | ga-name-court | accuracy | US-GA/en | ✅ |  |
 | ga-marker-dl | accuracy | US-GA/en | ✅ |  |
 | ga-birth-marker | accuracy | US-GA/en | ✅ |  |

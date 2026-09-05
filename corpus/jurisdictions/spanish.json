@@ -509,6 +509,125 @@
     "language": "es"
   },
   {
+    "id": "fl.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-FL",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Florida",
+    "statement": "La página oficial de Florida que enumera cómo enmendar un acta de nacimiento de Florida cubre los cambios legales de nombre, el reconocimiento de paternidad y las correcciones por adopción. No enumera ninguna manera de cambiar el sexo indicado en un acta de nacimiento para que coincida con la identidad de género de alguien.",
+    "detail": "La misma oficina corrige ciertos errores del acta cuando la evidencia documental respalda la corrección, pero cambiar el sexo para que coincida con la identidad de género no es una de las razones enumeradas. Lea la página oficial usted mismo, y no asuma que existe una vía disponible — esta es un área de la política de Florida que está activamente disputada y en cambio.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.floridahealth.gov/certificates-records/amendments-and-corrections/",
+      "title": "Departamento de Salud de la Florida — Enmiendas y Correcciones",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "fl.birth-certificate.name.es",
+    "jurisdiction": "US-FL",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Florida",
+    "statement": "Florida solo enmienda las actas de nacimiento de las personas que nacieron en Florida. Si un tribunal de Florida otorgó su cambio legal de nombre, el secretario del tribunal lo reporta a la Oficina de Estadísticas Vitales de Florida — por lo general dentro de 30 días — y su acta se enmienda automáticamente, sin que usted tenga que presentar una solicitud aparte.",
+    "detail": "Si un tribunal de otro estado otorgó su cambio de nombre, usted debe solicitarlo: presente la Solicitud de Enmienda al Acta de Nacimiento de Florida (formulario DH429) junto con una copia certificada de esa orden judicial e identificación con fotografía válida. En cualquiera de los dos casos, Florida cobra una tarifa de $20 no reembolsable que incluye una copia certificada del acta enmendada.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "La tarifa de $20 no reembolsable incluye una copia certificada del acta enmendada."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.floridahealth.gov/certificates-records/amendments-and-corrections/",
+      "title": "Departamento de Salud de la Florida — Enmiendas y Correcciones",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "fl-dh429",
+    "language": "es"
+  },
+  {
+    "id": "fl.court-order.name.es",
+    "jurisdiction": "US-FL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Florida",
+    "statement": "La ley de Florida da a los tribunales de equidad (chancery) jurisdicción sobre los cambios de nombre, y usted presenta su petición en el condado donde vive.",
+    "detail": "Antes de su audiencia, debe tomarse las huellas dactilares para una verificación de antecedentes penales estatal y federal, a menos que solo esté restaurando un nombre anterior. Usted paga esa toma de huellas y verificación de antecedentes (un padre o tutor la paga por un menor). Un juez revisa la petición y dicta la sentencia final que otorga el cambio de nombre.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta ley no fija la tarifa de presentación de la petición. Pregunte al secretario del tribunal del condado donde presenta la petición cuál es el monto exacto. Usted paga aparte por la verificación de antecedentes con huellas dactilares que exige la ley."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0068/Sections/0068.07.html",
+      "title": "Los Estatutos de la Florida — 68.07 Cambio de nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "fl.drivers-license.gender-marker.es",
+    "jurisdiction": "US-FL",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo o género en la licencia de Florida",
+    "statement": "La página oficial de Florida para actualizar su licencia de conducir o identificación cubre únicamente los cambios de nombre y dirección. No describe ninguna manera de actualizar el marcador de sexo o género en una licencia o identificación de Florida.",
+    "detail": "El Departamento de Seguridad Vial y Vehículos Motorizados de Florida publica esta página para quienes cambian su nombre o dirección. No ofrece ninguna solicitud, formulario ni proceso para cambiar el sexo que aparece en una licencia o identificación. Lea la página oficial usted mismo, y no asuma que existe una vía disponible — esta es un área de la política de Florida que está activamente disputada y en cambio.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.flhsmv.gov/name-and-address-changes/",
+      "title": "Departamento de Seguridad Vial y Vehículos Motorizados de Florida — Cambios de Nombre y Dirección",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "fl.drivers-license.name.es",
+    "jurisdiction": "US-FL",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir o identificación de Florida",
+    "statement": "Para actualizar el nombre en su licencia de conducir o identificación de Florida, primero cambie su nombre con la Administración del Seguro Social. Luego visite en persona una oficina de licencias de conducir de Florida para actualizar su licencia o identificación.",
+    "detail": "Florida dice que todos los cambios de nombre deben completarse en persona en una oficina local — esto no se puede hacer por correo ni en línea. Espere de 24 a 48 horas después de que se complete su cambio de nombre con el Seguro Social antes de ir a la oficina, para que los dos registros coincidan. Los documentos exactos que necesita dependen de su estado de residencia o inmigración.",
+    "prerequisites": [
+      "ssa-card"
+    ],
+    "source": {
+      "url": "https://www.flhsmv.gov/name-and-address-changes/",
+      "title": "Departamento de Seguridad Vial y Vehículos Motorizados de Florida — Cambios de Nombre y Dirección",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "ga.birth-certificate.fees.es",
     "jurisdiction": "US-GA",
     "document_type": "birth-certificate",

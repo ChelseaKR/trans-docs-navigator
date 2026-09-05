@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 154 |
-| Load-bearing assertions found | 449 |
-| — checked and **supported** by the cited source | 343 |
+| Records audited | 164 |
+| Load-bearing assertions found | 459 |
+| — checked and **supported** by the cited source | 353 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
 | — **UNCHECKABLE** (reported, never passed) | 106 |
-| of the checked: literal (fee / duration / form-id) matches | 218 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 125 |
+| of the checked: literal (fee / duration / form-id) matches | 224 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 129 |
 
 ## What this gate cannot vouch for
 
-- **569 of 720 prose sentences** in the corpus carry no extractable
+- **607 of 764 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **181 sentences state a negative** (`you do not need a court order`, `the page no
+- **198 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **125 assertions are necessary-condition only**: the source discusses the topic, which
+- **129 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **6 cited sources refuse automated fetching entirely**, so no
@@ -212,6 +212,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `co.court-order.name.es` | es | 9 | 0 | 0 | 2/5 |
 | `co.drivers-license.gender-marker` | en | 3 | 0 | 0 | 4/6 |
 | `co.drivers-license.gender-marker.es` | es | 4 | 0 | 0 | 4/6 |
+| `fl.birth-certificate.gender-marker` | en | 0 | 0 | 0 | 4/4 |
+| `fl.birth-certificate.gender-marker.es` | es | 0 | 0 | 0 | 4/4 |
+| `fl.birth-certificate.name` | en | 4 | 0 | 0 | 1/4 |
+| `fl.birth-certificate.name.es` | es | 4 | 0 | 0 | 1/4 |
+| `fl.court-order.name` | en | 1 | 0 | 0 | 4/4 |
+| `fl.court-order.name.es` | es | 1 | 0 | 0 | 4/4 |
+| `fl.drivers-license.gender-marker` | en | 0 | 0 | 0 | 5/5 |
+| `fl.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 5/5 |
+| `fl.drivers-license.name` | en | 0 | 0 | 0 | 5/5 |
+| `fl.drivers-license.name.es` | es | 0 | 0 | 0 | 5/5 |
 | `ga.birth-certificate.fees` | en | 3 | 0 | 0 | 1/3 |
 | `ga.birth-certificate.fees.es` | es | 3 | 0 | 0 | 1/3 |
 | `ga.birth-certificate.gender-marker` | en | 2 | 0 | 0 | 3/4 |
