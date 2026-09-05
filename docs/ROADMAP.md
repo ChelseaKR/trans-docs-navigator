@@ -2,10 +2,12 @@
 
 > The buildable spec. Reads top-to-bottom as product → research → design → architecture → quality → build plan → community → legal → ops. Generic enforcement lives in `/STANDARDS`; this document carries the decisions and the project-specific values.
 >
-> **Last verified: 2026-08-15 · Recheck cadence: quarterly for legal content; per-API for integrations.** Legal requirements change; treat every jurisdiction fact as needing reverification before launch.
+> **Legal content last verified: 2026-07-12 · Recheck cadence: quarterly for legal content; per-API for integrations.** Legal requirements change; treat every jurisdiction fact as needing reverification before launch.
 >
-> Architecture statements in §§1, 5, 6 and 8 were re-checked against the code on
-> 2026-08-15 and corrected where they had drifted (issue #115). Where this document
+> **Architecture last verified: 2026-08-15.** Statements in §§1, 5, 6 and 8 were re-checked
+> against the code on 2026-08-15 and corrected where they had drifted (issue #115). That pass
+> read code, not law: it did not revisit §9 (community and partner review) or §10 (legal and
+> compliance), so it does not advance the legal-content clock above. Where this document
 > describes something not yet built, it says **Planned**; where a scoped feature was
 > withdrawn, it says **Withdrawn** and gives the reason.
 
