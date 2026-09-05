@@ -162,12 +162,12 @@
 | Milestone | Status | Evidence |
 |-----------|--------|----------|
 | **M0 — Scaffold & gates** | ✅ Done | `make verify` runs the 24-stage blocking pipeline; CI in `.github/workflows/ci.yml`; `Dockerfile`; `infra/`. |
-| **M1 — Corpus & data model** | ✅ Done (seed) | 80 schema-validated records (6 states + federal; 40 EN + 40 ES); `make content` + `make freshness` + `make fidelity` green. Content is **seed data**, not launch-verified (ADR-3) — the record/verifier counts in the generated launch-gate table below are the machine-derived source of truth. |
+| **M1 — Corpus & data model** | ✅ Done (seed) | 78 schema-validated records (6 states + federal; 39 EN + 39 ES); `make content` + `make freshness` + `make fidelity` green. Content is **seed data**, not launch-verified (ADR-3) — the record/verifier counts in the generated launch-gate table below are the machine-derived source of truth. |
 | **M2 — Retrieval-mandatory guidance** | ✅ Done | `api/retrieval.ts` → `api/generator.ts` → `api/citation.enforce()`; groundedness 100%, citation coverage 100% on the gold set. |
 | **M3 — Checklist engine** | ✅ Done | `api/checklist.ts`; ordered, prerequisite-aware, freshness-flagged; matches gold expectations. |
 | **M4 — Client-side form pre-fill** | ◑ Scoped fallback; PDF fill not done | The shipped helper keeps current/new legal-name fields on-device, formats them for copying, and links to authoritative official forms. It deliberately does **not** auto-fill the XFA/LiveCycle PDFs; ROADMAP M4's field-mapped pilot-form done condition remains unmet rather than being simulated with unsafe fixtures. |
 | **M5 — Experience & a11y hardening** | ✅ Done (auto-gated parts) | Full flow + no saved browser session by default (explicit "private mode" affordance) + **printable packet** (`/packet`, print CSS, no-JS-friendly) + **Spanish parity** (16 ES records, EN/ES both 100% on the gold set) + keyboard-path tests; mechanical a11y auto-gated across 19 templates. Manual SR/keyboard/zoom walkthrough remains **review-gated (PENDING)**. |
-| **M6 — Expand jurisdictions** | ◑ In progress | 6 states + federal represented (TX, WA, and FL added through the gates). Each carries a **mechanical readiness** row in `eval-report.md`; **launch-clearance is review-gated and OPEN** for all. TX DMV gender-marker is `needs_reverification` (volatile); FL's driver-license and birth-certificate gender-marker records instead state plainly, on a shortened 30-day SLA, that the cited official page describes no route to change the sex/gender field — demonstrates per-jurisdiction degradation and honest closed-route framing. |
+| **M6 — Expand jurisdictions** | ◑ In progress | 6 states + federal represented (TX, WA, and CO added through the gates). Each carries a **mechanical readiness** row in `eval-report.md`; **launch-clearance is review-gated and OPEN** for all. TX DMV gender-marker is `needs_reverification` (volatile) — demonstrates per-jurisdiction degradation. |
 
 ## Hard guardrails — how each is enforced
 
@@ -185,8 +185,8 @@
 |--------|--------|-----|
 | Citation coverage | 100% | 100% ✅ |
 | Groundedness | ≥ 0.95 | 1.00 ✅ |
-| Factual accuracy (gold) | ≥ 0.98 | 1.00 ✅ (12 items; co-authored gold — see caveat) |
-| Per-segment accuracy (jurisdiction × language) | ≥ 0.95 each | 100% all 8 segments ✅ |
+| Factual accuracy (gold) | ≥ 0.98 | 1.00 ✅ (16 items; co-authored gold — see caveat) |
+| Per-segment accuracy (jurisdiction × language) | ≥ 0.95 each | 100% all 9 segments ✅ |
 | Refusal safety | 1.0 | 1.00 ✅ |
 | Corpus freshness | 0 stale-as-current | 0 ✅ (8 records correctly degraded) |
 | Mechanical a11y violations | 0 | 0 ✅ |
@@ -213,9 +213,9 @@ can be cleared by editing this table. **No record in this corpus has been verifi
 
 | Launch gate | Status | Machine-derived evidence | Derived from |
 |---|---|---|---|
-| Named-human verification of every record | 🔴 **OPEN** | **0 of 104** records verified by a named human. 104 carry the `Pilot Seed Reviewer` placeholder. | `corpus/` + `forms/registry.json` × `corpus/VERIFIERS.json` |
-| Every record's claims backed by its own cited source | 🔴 **OPEN** | 162 assertion(s) located in their cited source, 0 unsupported (merge-blocking), **32 UNCHECKABLE**. Separately, **293 of 366 prose sentences carry no checkable literal** and no gate vouches for them. | `make fidelity` (`scripts/source-fidelity.ts`) |
-| Every cited source actually under drift watch | 🔴 **OPEN** | **3** cited source(s) are UNWATCHABLE — they refuse this project's declared user-agent (403), so no baseline can be taken or compared and drift there is undetectable: `https://www.nycourts.gov/courthelp/Family/nameChange.shtml`, `https://www.ssa.gov/forms/ss-5.pdf`, `https://www.health.ny.gov/vital_records/gender_designation_corrections.htm` | `corpus/source-hashes.json` + `forms/form-hashes.json` + `corpus/snapshots/index.json` |
+| Named-human verification of every record | 🔴 **OPEN** | **0 of 211** records verified by a named human. 211 carry the `Pilot Seed Reviewer` placeholder. | `corpus/` + `forms/registry.json` × `corpus/VERIFIERS.json` |
+| Every record's claims backed by its own cited source | 🔴 **OPEN** | 353 assertion(s) located in their cited source, 0 unsupported (merge-blocking), **106 UNCHECKABLE**. Separately, **607 of 764 prose sentences carry no checkable literal** and no gate vouches for them. | `make fidelity` (`scripts/source-fidelity.ts`) |
+| Every cited source actually under drift watch | 🔴 **OPEN** | **10** cited source(s) are UNWATCHABLE — no baseline can be taken or compared, so drift there is undetectable and `last_verified` is a human's assertion rather than a checked fact: `https://dph.georgia.gov/document/document/affidavit-amendment-form-3977-revisedpdf/download` (no reviewed drift baseline), `https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record` (403 to our declared user-agent; we do not spoof one), `https://superiorcourt.maricopa.gov/media/emucljue/name-gender-change-eng-spa.pdf` (no reviewed drift baseline), `https://www.azdhs.gov/documents/vital-records/manuals/correction-affidavit-correct-amend-birth.pdf?v=20260409` (no reviewed drift baseline), `https://www.health.ny.gov/vital_records/gender_designation_corrections.htm` (403 to our declared user-agent; we do not spoof one), `https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change` (403 to our declared user-agent; we do not spoof one), `https://www.michigan.gov/sos/all-services/license-or-id-name-correction` (403 to our declared user-agent; we do not spoof one), `https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction` (403 to our declared user-agent; we do not spoof one), `https://www.nycourts.gov/courthelp/Family/nameChange.shtml` (403 to our declared user-agent; we do not spoof one), `https://www.ssa.gov/forms/ss-5.pdf` (no reviewed drift baseline) | `api/watchability.ts` over `corpus/source-hashes.json` + `forms/form-hashes.json` + `corpus/snapshots/index.json` |
 | Independently authored expert gold set | 🔴 **OPEN** | `independent_author: false` — the gold set was co-authored with the corpus, so accuracy is partly tautological | `eval/gold.provenance.json` |
 | Counsel review of the disclaimers (UPL) | 🔴 **OPEN** | no sign-off in `docs/signoffs/` — this gate cannot be cleared by editing a doc | docs/signoffs/*.json (gate: `counsel-review`) |
 | Manual screen-reader / keyboard / 200%-zoom walkthrough | 🔴 **OPEN** | no sign-off in `docs/signoffs/` — this gate cannot be cleared by editing a doc | docs/signoffs/*.json (gate: `accessibility-walkthrough`) |

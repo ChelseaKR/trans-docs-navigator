@@ -1,0 +1,175 @@
+[
+  {
+    "id": "az.court-order.name",
+    "jurisdiction": "US-AZ",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Arizona name change application",
+    "statement": "In Arizona you file an application for a name change in the superior court in your county of residence, listing the name you want and your reasons for wanting it. A judge decides whether to substitute your new name for your original one.",
+    "detail": "Once the court grants the change, you give the signed court order to the office of vital records in the state where you were born, so that state can update your birth certificate. Arizona's statewide court filing fee for this petition is set on a separate fee schedule (see the paired fee record for this jurisdiction).",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page does not state the fee amount. Arizona's superior courts publish a statewide filing-fee schedule for a petition for change of name; see the paired Arizona court-fee record for the current figure."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://azcourthelp.org/faq/name-change/301-how-name-change",
+      "title": "AZCourtHelp.org (Arizona Bar Foundation) — What do I need to fill out to legally change my name in Arizona?",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "az.court-order.fees",
+    "jurisdiction": "US-AZ",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Arizona name-change court filing fee",
+    "statement": "Arizona's superior courts charge a total of $252.00 to file a petition for change of name: a $222.00 base fee plus a $15.00 document-storage-fund fee and a $15.00 conciliation-court-fund fee.",
+    "detail": "This is the statewide fee schedule set under A.R.S. § 12-284, effective December 28, 2024 (Arizona Supreme Court Administrative Order 2024-210). Individual counties may add local fees on top of it. Arizona courts also offer a fee waiver and deferral process for people who cannot afford the filing fee.",
+    "cost": {
+      "amount_usd": 252,
+      "note": "$222.00 base fee, plus a $15.00 document-storage-fund fee and a $15.00 conciliation-court-fund fee. A fee waiver and deferral process exists for people who cannot pay.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.azcourts.gov/courtfilingfees/Superior-Court-Filing-Fees",
+      "title": "Arizona Judicial Branch — Superior Court Filing Fees",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "az.drivers-license.name",
+    "jurisdiction": "US-AZ",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Arizona driver's license or ID name change",
+    "statement": "To change the name on your Arizona driver's license or ID card, first change your name with the Social Security Administration, then visit a Motor Vehicle Division office. You must update your name with MVD within 10 days of your legal name change taking effect.",
+    "detail": "After you change your name with the Social Security Administration, wait two business days before you visit an MVD office. Bring an original or certified copy of your court order (or other proof, such as a marriage license or divorce decree) plus identification showing both your new and previous names. This requires an in-person MVD office visit; it cannot be completed online.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://azdot.gov/mvd/services/driver-license-ID/change-your-name",
+      "title": "Arizona Department of Transportation, Motor Vehicle Division — Change Your Name with MVD",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "az.drivers-license.gender-marker",
+    "jurisdiction": "US-AZ",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Arizona driver's license or ID gender-marker change",
+    "statement": "Arizona's Motor Vehicle Division does not publish its own public webpage describing how to change the sex or gender marker on a license or ID. A Maricopa County Superior Court self-help quick guide says the step is: bring a certified name-change court order and a doctor's letter, along with your current ID, to an MVD office and complete their paperwork there.",
+    "detail": "This guide is a bilingual (English/Spanish) self-help quick-reference from a county court, not an ADOT policy page, and it is not current on every point — its own information about Arizona birth certificates has not kept pace with recent court rulings. Arizona's rules in this area have been challenged in federal court and are moving. Confirm current requirements directly with an MVD office, an attorney, or a local trans-support organization before you rely on this.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://superiorcourt.maricopa.gov/media/emucljue/name-gender-change-eng-spa.pdf",
+      "title": "Superior Court of Arizona in Maricopa County — Changing Your Gender Marker & Name (Quick Guide)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "az.birth-certificate.name",
+    "jurisdiction": "US-AZ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Arizona birth certificate name change",
+    "statement": "To change the name on an Arizona birth certificate one year or more after birth, Arizona's Bureau of Vital Records asks for a certified copy of the court-ordered name change, a completed Affidavit signed in the presence of a notary, a Request for Copy of Birth Certificate application, and a copy of your government-issued photo ID.",
+    "detail": "Requests submitted less than a year after birth can use different evidence instead of a court order. Send a self-addressed stamped envelope with a mailed request. Most Arizona counties can process birth records from 1997 to the present; the Bureau of Vital Records itself handles older, foreign-born, and delayed birth certificates by mail.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page does not state the fee amount itself; see the paired Arizona birth-certificate fee record for the current figure."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.azdhs.gov/includes/content/director/vital-records.php?cont=corrections-amendments-registrants-name",
+      "title": "Arizona Department of Health Services, Bureau of Vital Records — Change a Registrant's Name on a Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "az-affidavit-correct-amend-birth",
+    "language": "en"
+  },
+  {
+    "id": "az.birth-certificate.gender-marker",
+    "jurisdiction": "US-AZ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Arizona birth certificate sex/gender marker",
+    "statement": "Arizona's Bureau of Vital Records lists two ways to amend the sex/gender marker on an Arizona birth certificate: a certified court order, or a written statement on a physician's letterhead saying you have undergone a sex change operation or have had a chromosomal count establishing a sex different from your registered birth record. Amendments to the sex/gender marker must be submitted to the State Office, not a local county health department.",
+    "detail": "This is what the Bureau of Vital Records' own webpage states as of this record's last-verified date. Arizona's rules for changing a sex or gender marker have been challenged in federal court and this area is moving. Confirm current requirements with the Bureau of Vital Records, an attorney, or a local trans-support organization before you rely on this.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.azdhs.gov/includes/content/director/vital-records.php?cont=corrections-amendments-other",
+      "title": "Arizona Department of Health Services, Bureau of Vital Records — Other Types of Birth Amendments (Sex/Gender Marker)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "az.birth-certificate.fees",
+    "jurisdiction": "US-AZ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Arizona birth-certificate amendment fees",
+    "statement": "Arizona's Bureau of Vital Records charges $30.00 for a request to amend or correct information on a registered birth certificate, and $20.00 for a Certificate of Birth Registration (a certified copy).",
+    "detail": "These are the statewide fees set under Arizona Administrative Code R9-19-105. Individual county health departments may charge their own amounts for the same services — check with your local county Vital Records office.",
+    "cost": {
+      "amount_usd": 30,
+      "note": "This is the fee to request an amendment or correction to a registered birth certificate. A separate certified copy of the corrected certificate costs $20.00."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.azdhs.gov/includes/content/director/vital-records.php?cont=fee-schedule",
+      "title": "Arizona Department of Health Services, Bureau of Vital Records — Fee Schedules",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

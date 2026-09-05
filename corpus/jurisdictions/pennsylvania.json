@@ -1,0 +1,130 @@
+[
+  {
+    "id": "pa.court-order.name",
+    "jurisdiction": "US-PA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Pennsylvania name change petition",
+    "statement": "In Pennsylvania, you file a petition for a name change in the court of common pleas of the county where you live. The court sets a hearing between one and three months after you file, and unless it waives this for your safety, you must publish notice of the petition in two newspapers of general circulation before the hearing.",
+    "detail": "The court sends your fingerprints to the Pennsylvania State Police for a criminal history record check. At the hearing you present proof that you published the notice, plus an official search — from every county you have lived in during the past five years — showing there are no judgments, decrees of record, or similar matters against you. If publishing the notice would endanger you or a child, the court can waive it and seal the case file. People convicted of certain violent or sexual offenses cannot get a name change this way, and people convicted of other felonies must wait at least two calendar years after completing their sentence.",
+    "cost": {
+      "amount_usd": null,
+      "note": "State law doesn't set a filing fee; fees for filing, fingerprinting, and newspaper publication are set locally, so ask your county's court of common pleas for exact amounts."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legis.state.pa.us/WU01/LI/LI/CT/HTM/54/00.007..HTM",
+      "title": "Pennsylvania Consolidated Statutes, Title 54 (Names) — Chapter 7, Judicial Change of Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "pa.drivers-license.name",
+    "jurisdiction": "US-PA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Pennsylvania driver's license name change",
+    "statement": "To change the name on your Pennsylvania driver's license or photo ID, complete Form DL-80 and take it to a Driver License Center in person. If your name changed by court order, bring a Certified Copy of the Court Order; to use your spouse's surname, bring your marriage certificate.",
+    "detail": "All documents must be original — PennDOT does not accept photocopies. If you're using a name for another reason, bring your Social Security card plus two other documents issued in that name, such as tax records, a passport, or voter registration.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.pa.gov/services/dmv/change-a-driver-license-name-or-address",
+      "title": "Pennsylvania DMV — Change a Driver's License Name or Address",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "pa-dl-80",
+    "language": "en"
+  },
+  {
+    "id": "pa.drivers-license.gender-marker",
+    "jurisdiction": "US-PA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Pennsylvania driver's license gender designation",
+    "statement": "Pennsylvania driver's licenses and photo ID cards offer three gender designations: \"M\" (Male), \"F\" (Female), and \"X\" (Non-binary). To change yours, complete Form DL-32 and bring it to any PennDOT Driver License Center.",
+    "detail": "No doctor or social worker needs to sign off on the request, and PennDOT says there are no fees associated with the change.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.pa.gov/services/dmv/change-the-gender-designation-on-drivers-license-or-photo-identification-card",
+      "title": "Pennsylvania DMV — Change Gender Designation on Driver's License or Photo Identification Card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "pa-dl-32",
+    "language": "en"
+  },
+  {
+    "id": "pa.birth-certificate.gender-marker",
+    "jurisdiction": "US-PA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Pennsylvania birth certificate gender designation",
+    "statement": "For an adult born in Pennsylvania, the Department of Health will show a gender designation on the birth certificate that differs from the recorded sex if you submit a letter from the physician who is providing your clinical treatment for gender transition.",
+    "detail": "Use the Request to Modify an Adult's Birth Record form and sign it in front of a notary. Mail it to the PA Department of Health, Bureau of Health Statistics and Registries, ATTN: Birth Registry, 555 Walnut Street, 6th Floor, Harrisburg, PA 17101-1934.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "This is the cost of a certified copy of the updated birth certificate. A fee waiver is available if you're returning an incorrect certificate you received in the last 45 days, or if you or your current legal spouse is an active-duty or honorably discharged member of the U.S. armed forces.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/health/documents/topics/documents/certificates-and-records/Request%20to%20Modify%20an%20Adult's%20Birth%20Record.pdf",
+      "title": "Pennsylvania Department of Health — Request to Modify an Adult's Birth Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "pa-doh-hd002292",
+    "language": "en"
+  },
+  {
+    "id": "pa.birth-certificate.name",
+    "jurisdiction": "US-PA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Pennsylvania birth certificate name change",
+    "statement": "For an adult born in Pennsylvania, the Department of Health corrects the name on a birth certificate when a court authorized the change. Submit the Request to Modify an Adult's Birth Record form with a certified copy of the court order — Pennsylvania says the order must meet or exceed its own judicial name-change process.",
+    "detail": "Sign the form in front of a notary and mail it, with acceptable ID and payment, to the PA Department of Health, Bureau of Health Statistics and Registries, ATTN: Birth Registry, 555 Walnut Street, 6th Floor, Harrisburg, PA 17101-1934. A court order entered outside Pennsylvania may need additional review.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "This is the cost of a certified copy of the updated birth certificate. A fee waiver is available if you're returning an incorrect certificate you received in the last 45 days, or if you or your current legal spouse is an active-duty or honorably discharged member of the U.S. armed forces.",
+      "fee_waiver": true
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/health/documents/topics/documents/certificates-and-records/Request%20to%20Modify%20an%20Adult's%20Birth%20Record.pdf",
+      "title": "Pennsylvania Department of Health — Request to Modify an Adult's Birth Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "pa-doh-hd002292",
+    "language": "en"
+  }
+]

@@ -1,0 +1,156 @@
+[
+  {
+    "id": "ga.court-order.name",
+    "jurisdiction": "US-GA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Georgia name change petition",
+    "statement": "To legally change your name in Georgia, you file a petition with the Clerk's Office of the Superior Court of the county where you reside. When you request a name change you are generally required to publish notice of your petition and wait at least 30 days before a hearing; courts may waive the publication requirement in some cases, such as for victims of family violence.",
+    "detail": "The notice must appear in a newspaper specified by the court at least once a week for four weeks. You will need proof of identity, and the required forms for your petition — such as a Petition to Change Name, a Verification form, and a Notice of Petition — which can vary by county and are provided by the Clerk's Office of the Superior Court. At a hearing, a judge reviews your case and decides whether to grant it. The whole process generally takes about five to seven weeks from filing to a final order, depending on the court's schedule.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page does not give a dollar amount — it says only that you pay fees for filing the petition and for publishing the notice. Contact the Clerk's Office of the Superior Court in your county for the current amounts."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://georgia.gov/apply-name-change",
+      "title": "Georgia.gov — Apply for a Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "en"
+  },
+  {
+    "id": "ga.drivers-license.name",
+    "jurisdiction": "US-GA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Georgia driver's license name change",
+    "statement": "To change the name on your Georgia driver's license or ID, you submit a certified court order to the Department of Driver Services showing the name change. Its FAQ lists marriage certificates, divorce decrees, adoption orders, gender-change orders, and name-change orders as accepted documents, and it says a driver's license name change must be done within 60 days of the date your name changed.",
+    "detail": "If you were married in Georgia after 1982 and want to hyphenate your name, you instead present a certified copy of the marriage license application showing the hyphenated name.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dds.georgia.gov/license-faqs",
+      "title": "Georgia Department of Driver Services — License FAQs",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ga.drivers-license.gender-marker",
+    "jurisdiction": "US-GA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Georgia driver's license gender designation",
+    "statement": "Georgia's driver's license rule only lets the Department of Driver Services change the gender designation on a license after a gender reassignment operation. You present either a court order or a physician's letter stating your name, date of birth, and the date of that operation. Even then, the rule says the decision to make the change is at the discretion of the Department — meeting the requirements does not guarantee approval.",
+    "detail": "The rule names no path based on gender identity alone, and no path for anyone who has not had a gender reassignment operation. You must surrender every license and ID card you hold, and you must pay whichever fee applies — the renewal license fee or the duplicate license fee — with no rebate for a license you surrender.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The rule requires paying the renewal license fee or the duplicate license fee, whichever applies, with no rebate for a surrendered license. It gives no dollar figure; check the Department of Driver Services fee schedule for current amounts."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://rules.sos.ga.gov/gac/375-3-1",
+      "title": "Georgia Secretary of State — Rules of the Department of Driver Services, Rule 375-3-1-.17 (Changing Gender on License)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ga.birth-certificate.gender-marker",
+    "jurisdiction": "US-GA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Georgia birth certificate sex designation",
+    "statement": "Georgia's vital-records rules put a change to the sex shown on a birth certificate under the same general rule as any other correction made after the registrant's first year of life, 'All Other Amendments.' The change must be supported by a sworn affidavit and by documentary evidence created at least five years before you apply, or within seven years of the birth. The rules describe no separate court-order or gender-identity-based path for this item.",
+    "detail": "The State Registrar decides whether to allow the change after reviewing the evidence you submit. Georgia's rules say that if the Registrar rejects your evidence, you must be told the reasons in writing, and that you have the right to appeal.",
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://rules.sos.ga.gov/gac/511-1-3",
+      "title": "Georgia Secretary of State — Rules of the Department of Public Health, Vital Records, Rule 511-1-3-.25 (All Other Amendments)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ga.birth-certificate.name",
+    "jurisdiction": "US-GA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Georgia birth certificate name change",
+    "statement": "To change the name on a Georgia birth certificate after a court-ordered name change, Georgia's Affidavit for Amendment (Form 3977) asks for a certified court order showing the change from your original name to your new name. The form also asks for a letterhead statement from a physician stating an intersex/transgender diagnosis, bearing the physician's original signature and title, to be kept on file with the court order.",
+    "detail": "Read the form's own instructions before you rely on this — it does not explain why an ordinary court-ordered name change asks for a physician's statement, and this seed record could not be cross-checked by any automated tool because the form is only published as a PDF. Amending the record costs $10; a certified copy of the corrected birth certificate costs $25 more.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "A certified copy of the corrected birth certificate costs $25 more."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dph.georgia.gov/document/document/affidavit-amendment-form-3977-revisedpdf/download",
+      "title": "Georgia Department of Public Health — Affidavit for Amendment (Form 3977)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ga-dph-3977",
+    "language": "en"
+  },
+  {
+    "id": "ga.birth-certificate.fees",
+    "jurisdiction": "US-GA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Georgia birth certificate amendment fees",
+    "statement": "Georgia's vital records fee schedule lists $10.00 to amend a birth certificate, plus the cost of the certificate itself. A certified copy of a birth certificate costs $25.00, plus $5.00 for each additional copy ordered at the same time.",
+    "detail": "Georgia law requires payment before the State Office of Vital Records provides a record or a service, and fees are non-refundable once a service has been provided.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "A certified copy of the birth certificate costs $25.00 more, plus $5.00 for each additional copy ordered at the same time."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dph.georgia.gov/ways-request-vital-record/fees",
+      "title": "Georgia Department of Public Health — Vital Records Fees",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

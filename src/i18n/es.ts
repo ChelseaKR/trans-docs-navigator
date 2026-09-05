@@ -25,6 +25,7 @@ export const es: LocaleBundle = {
     verifiedBy: "verificado por",
     notHumanVerified: "aún sin verificar por una persona revisora designada",
     recordedOn: "registrado",
+    sourceNotWatched: "No podemos revisar esta fuente automáticamente para detectar cambios. Revísela usted antes de presentar su solicitud.",
     needsRecheck: "Necesita reverificación, así que no se muestra como actual.",
     discretionary: "Varía según el tribunal/secretario.",
     cost: "Costo",

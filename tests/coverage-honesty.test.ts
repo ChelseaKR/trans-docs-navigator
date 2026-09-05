@@ -33,10 +33,32 @@ const corpus = loadCorpus();
 
 /**
  * A state that is deliberately NOT in the corpus. Shape-valid, so the router accepts it.
- * Was "US-FL" (Florida) until the corpus gained real Florida records — pick any state
- * genuinely absent from corpus/jurisdictions/ so this fixture keeps meaning what it says.
+ *
+ * Derived, not hardcoded. This was "US-FL" until Florida was added, then "US-OH" until
+ * Ohio was added — each time silently pointing at a state the corpus had since gained,
+ * which turns every assertion below into a test of covered behaviour while still passing
+ * under a name that claims the opposite. That is the exact failure this file exists to
+ * prevent, so the fixture now reads the corpus and fails loudly if it cannot find a
+ * genuinely uncovered state.
  */
-const UNCOVERED = "US-OH";
+const ALL_STATES = [
+  "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA",
+  "ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK",
+  "OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",
+].map((s) => `US-${s}`);
+const COVERED_SET = new Set(corpus.map((r) => r.jurisdiction));
+const UNCOVERED = (() => {
+  const free = ALL_STATES.find((j) => !COVERED_SET.has(j));
+  if (!free) {
+    throw new Error(
+      "coverage-honesty: every US state is now in the corpus, so there is no uncovered " +
+        "jurisdiction left to test the no-coverage path with. This fixture must be " +
+        "rewritten (e.g. against a territory) rather than deleted — the honesty guarantee " +
+        "it pins is what stops an uncovered state rendering as a finished plan.",
+    );
+  }
+  return free;
+})();
 /** A state the corpus does cover. */
 const COVERED = "US-CA";
 

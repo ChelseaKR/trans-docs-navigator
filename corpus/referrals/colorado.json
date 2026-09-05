@@ -1,0 +1,38 @@
+[
+  {
+    "id": "co.referral.colorado-legal-services",
+    "jurisdiction": "US-CO",
+    "name": "Colorado Legal Services",
+    "url": "https://www.coloradolegalservices.org",
+    "note": {
+      "en": "Colorado's statewide civil legal aid program, which can help low-income residents with legal name-change filings and fee waivers.",
+      "es": "Programa estatal de ayuda legal civil de Colorado, que puede ayudar a residentes de bajos ingresos con solicitudes de cambio legal de nombre y exenciones de tarifas."
+    },
+    "source": {
+      "url": "https://www.coloradolegalservices.org",
+      "title": "Colorado Legal Services",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "co.referral.one-colorado",
+    "jurisdiction": "US-CO",
+    "name": "One Colorado",
+    "url": "https://www.one-colorado.org",
+    "note": {
+      "en": "Colorado's statewide LGBTQ advocacy organization, which publishes a guide to updating identity documents and connects people to the Colorado Name Change Project.",
+      "es": "Organización estatal de defensa LGBTQ de Colorado, que publica una guía para actualizar documentos de identidad y conecta a las personas con el Colorado Name Change Project."
+    },
+    "source": {
+      "url": "https://www.one-colorado.org",
+      "title": "One Colorado",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

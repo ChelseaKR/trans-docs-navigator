@@ -25,10 +25,17 @@ interface StateDef {
 // The states we currently cover. Federal steps (SSA, passport) are woven into each
 // guide by the checklist builder, so they need no separate page.
 const STATES: StateDef[] = [
+  { slug: "arizona", id: "US-AZ", name: { en: "Arizona", es: "Arizona" } },
   { slug: "california", id: "US-CA", name: { en: "California", es: "California" } },
   { slug: "florida", id: "US-FL", name: { en: "Florida", es: "Florida" } },
+  { slug: "georgia", id: "US-GA", name: { en: "Georgia", es: "Georgia" } },
+  { slug: "colorado", id: "US-CO", name: { en: "Colorado", es: "Colorado" } },
   { slug: "illinois", id: "US-IL", name: { en: "Illinois", es: "Illinois" } },
+  { slug: "massachusetts", id: "US-MA", name: { en: "Massachusetts", es: "Massachusetts" } },
+  { slug: "michigan", id: "US-MI", name: { en: "Michigan", es: "Michigan" } },
   { slug: "new-york", id: "US-NY", name: { en: "New York", es: "Nueva York" } },
+  { slug: "pennsylvania", id: "US-PA", name: { en: "Pennsylvania", es: "Pensilvania" } },
+  { slug: "ohio", id: "US-OH", name: { en: "Ohio", es: "Ohio" } },
   { slug: "texas", id: "US-TX", name: { en: "Texas", es: "Texas" } },
   { slug: "washington", id: "US-WA", name: { en: "Washington", es: "Washington" } },
 ];
