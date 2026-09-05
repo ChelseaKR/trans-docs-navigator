@@ -1,33 +1,33 @@
 {
   "today": "2026-07-13",
-  "total": 82,
+  "total": 94,
   "metrics": [
     {
       "name": "groundedness",
-      "value": 0.9866666666666667,
+      "value": 0.9882352941176471,
       "threshold": 0.95,
-      "n": 75,
+      "n": 85,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 64,
+      "n": 74,
       "pass": true
     },
     {
       "name": "refusal_safety",
       "value": 1,
       "threshold": 1,
-      "n": 10,
+      "n": 12,
       "pass": true
     },
     {
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 82,
+      "n": 94,
       "pass": true
     },
     {
@@ -41,20 +41,26 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 64,
+      "n": 74,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
-      "value": 0.96875,
+      "value": 0.972972972972973,
       "threshold": 0.7,
-      "n": 64,
+      "n": 74,
       "pass": true
     }
   ],
   "segment_accuracy": [
     {
       "segment": "jurisdiction:US",
+      "value": 1,
+      "n": 2,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-AK",
       "value": 1,
       "n": 2,
       "pass": true
@@ -85,6 +91,12 @@
     },
     {
       "segment": "jurisdiction:US-GA",
+      "value": 1,
+      "n": 4,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-HI",
       "value": 1,
       "n": 4,
       "pass": true
@@ -127,6 +139,12 @@
     },
     {
       "segment": "jurisdiction:US-NJ",
+      "value": 1,
+      "n": 4,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-NM",
       "value": 1,
       "n": 4,
       "pass": true
@@ -188,17 +206,27 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 44,
+      "n": 49,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 20,
+      "n": 25,
       "pass": true
     }
   ],
   "jurisdiction_readiness": [
+    {
+      "jurisdiction": "US-AK",
+      "records": 10,
+      "current_records": 6,
+      "gold_items": 2,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
     {
       "jurisdiction": "US-AZ",
       "records": 14,
@@ -243,6 +271,16 @@
       "jurisdiction": "US-GA",
       "records": 12,
       "current_records": 12,
+      "gold_items": 4,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-HI",
+      "records": 10,
+      "current_records": 8,
       "gold_items": 4,
       "accuracy": 1,
       "mechanically_ready": true,
@@ -311,6 +349,16 @@
     },
     {
       "jurisdiction": "US-NJ",
+      "records": 10,
+      "current_records": 10,
+      "gold_items": 4,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-NM",
       "records": 10,
       "current_records": 10,
       "gold_items": 4,
@@ -1235,6 +1283,126 @@
       "segment": {
         "jurisdiction": "US-OR",
         "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ak-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-AK",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ak-marker-dl",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-AK",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ak-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-AK",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ak-marker-dl-es",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-AK",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "hi-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-HI",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "hi-marker-dl",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-HI",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "hi-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-HI",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "hi-marker-dl-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-HI",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "nm-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-NM",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "nm-marker-dl",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-NM",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "nm-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-NM",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "nm-marker-dl-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-NM",
+        "language": "es"
       },
       "passed": true,
       "notes": []

@@ -173,6 +173,54 @@ test("Minnesota has full Spanish parity (court-order, drivers-license, birth-cer
   assert.match(mn.body, /estatura, peso y color de ojos/); // mn.drivers-license.gender-marker.es
 });
 
+test("Alaska has full Spanish parity (court-order, drivers-license, birth-certificate) — no thinner-coverage note", () => {
+  // Alaska's five EN records each ship with an ES twin from the start, so a Spanish
+  // user must never see the honest "not ready yet" gap note for any Alaska
+  // document/change-type combination this corpus covers.
+  const ak = handleRoute(
+    "GET",
+    u(
+      "/checklist?jurisdiction=US-AK&change=name&change=gender-marker&doc=court-order&doc=drivers-license&doc=birth-certificate&language=es",
+    ),
+    today,
+  );
+  assert.doesNotMatch(ak.body, /aún no están listos/);
+  assert.match(ak.body, /cuatro semanas consecutivas/); // ak.court-order.name.es
+  assert.match(ak.body, /Servicios Especiales/); // ak.birth-certificate.name.es
+});
+
+test("Hawaii has full Spanish parity (court-order, drivers-license, birth-certificate) — no thinner-coverage note", () => {
+  // Hawaii's five EN records each ship with an ES twin from the start, so a Spanish
+  // user must never see the honest "not ready yet" gap note for any Hawaii
+  // document/change-type combination this corpus covers.
+  const hi = handleRoute(
+    "GET",
+    u(
+      "/checklist?jurisdiction=US-HI&change=name&change=gender-marker&doc=court-order&doc=drivers-license&doc=birth-certificate&language=es",
+    ),
+    today,
+  );
+  assert.doesNotMatch(hi.body, /aún no están listos/);
+  assert.match(hi.body, /Vicegobernador/); // hi.court-order.name.es
+  assert.match(hi.body, /No Especificado/); // hi.drivers-license.gender-marker.es
+});
+
+test("New Mexico has full Spanish parity (court-order, drivers-license, birth-certificate) — no thinner-coverage note", () => {
+  // New Mexico's five EN records each ship with an ES twin from the start, so a Spanish
+  // user must never see the honest "not ready yet" gap note for any New Mexico
+  // document/change-type combination this corpus covers.
+  const nm = handleRoute(
+    "GET",
+    u(
+      "/checklist?jurisdiction=US-NM&change=name&change=gender-marker&doc=court-order&doc=drivers-license&doc=birth-certificate&language=es",
+    ),
+    today,
+  );
+  assert.doesNotMatch(nm.body, /aún no están listos/);
+  assert.match(nm.body, /40-8-1/); // nm.court-order.name.es
+  assert.match(nm.body, /MVD-10237/); // nm.drivers-license.gender-marker.es
+});
+
 test("official-form page is localized and links to the real source (no auto-fill)", () => {
   const en = handleRoute("GET", u("/forms/us-ss-5")).body;
   assert.match(en, /complete it yourself/); // honest: we don't fill it

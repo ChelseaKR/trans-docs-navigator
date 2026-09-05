@@ -12,11 +12,13 @@ driver's-license rows are covered and the federal rows are current.
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ✅ | — | ✅ | — | — |
+| US-AK | ✅ | — | ✅ | — | ✅ | — |
 | US-AZ | ✅ | — | ✅ | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | ✅ | — | — | — | ✅ | — |
 | US-FL | ✅ | — | ✅ | — | ✅ | — |
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
+| US-HI | ✅ | — | ✅ | — | ⚠️ degraded | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
 | US-MD | ✅ | — | ✅ | — | ✅ | — |
@@ -24,6 +26,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-MN | ✅ | — | ✅ | — | ✅ | — |
 | US-NC | ✅ | — | ✅ | — | ✅ | — |
 | US-NJ | ✅ | — | ✅ | — | ✅ | — |
+| US-NM | ✅ | — | ✅ | — | ✅ | — |
 | US-NV | ✅ | — | ✅ | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
 | US-OH | ✅ | — | ✅ | — | ✅ | — |
@@ -39,11 +42,13 @@ driver's-license rows are covered and the federal rows are current.
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ⚠️ degraded | — | ⚠️ degraded | — | — |
+| US-AK | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-AZ | — | — | ⚠️ degraded | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | — | — | ✅ | — | ✅ | — |
 | US-FL | — | — | ✅ | — | ✅ | — |
 | US-GA | — | — | ✅ | — | ✅ | — |
+| US-HI | — | — | ✅ | — | ✅ | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
 | US-MD | — | — | ✅ | — | ✅ | — |
@@ -51,6 +56,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-MN | — | — | ✅ | — | ✅ | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-NJ | — | — | ✅ | — | ✅ | — |
+| US-NM | — | — | ✅ | — | ✅ | — |
 | US-NV | — | — | ✅ | — | ⚠️ degraded | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
@@ -66,11 +72,13 @@ driver's-license rows are covered and the federal rows are current.
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ✅ | — | ✅ | — | — |
+| US-AK | ✅ | — | ✅ | — | ✅ | — |
 | US-AZ | ✅ | — | ✅ | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | ✅ | — | — | — | ✅ | — |
 | US-FL | ✅ | — | ✅ | — | ✅ | — |
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
+| US-HI | ✅ | — | ✅ | — | ⚠️ degraded | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
 | US-MD | ✅ | — | ✅ | — | ✅ | — |
@@ -78,6 +86,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-MN | ✅ | — | ✅ | — | ✅ | — |
 | US-NC | ✅ | — | ✅ | — | ✅ | — |
 | US-NJ | ✅ | — | ✅ | — | ✅ | — |
+| US-NM | ✅ | — | ✅ | — | ✅ | — |
 | US-NV | ✅ | — | ✅ | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
 | US-OH | ✅ | — | ✅ | — | ✅ | — |
@@ -93,11 +102,13 @@ driver's-license rows are covered and the federal rows are current.
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ⚠️ degraded | — | ⚠️ degraded | — | — |
+| US-AK | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-AZ | — | — | ⚠️ degraded | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | — | — | ✅ | — | ✅ | — |
 | US-FL | — | — | ✅ | — | ✅ | — |
 | US-GA | — | — | ✅ | — | ✅ | — |
+| US-HI | — | — | ✅ | — | ✅ | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
 | US-MD | — | — | ✅ | — | ✅ | — |
@@ -105,6 +116,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-MN | — | — | ✅ | — | ✅ | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-NJ | — | — | ✅ | — | ✅ | — |
+| US-NM | — | — | ✅ | — | ✅ | — |
 | US-NV | — | — | ✅ | — | ⚠️ degraded | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
@@ -115,4 +127,4 @@ driver's-license rows are covered and the federal rows are current.
 | US-VA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 
-**Totals:** 194 current · 24 degraded · 310 uncovered cells.
+**Totals:** 218 current · 30 degraded · 352 uncovered cells.

@@ -550,5 +550,81 @@
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "ak-civ-700-petition-name-change",
+    "jurisdiction": "US-AK",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form CIV-700 — Petition for Change of Name",
+    "source": {
+      "url": "https://public.courts.alaska.gov/web/forms/docs/civ-700.pdf",
+      "title": "Alaska Court System Form CIV-700",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ak-dmv-427-cert-change-of-sex",
+    "jurisdiction": "US-AK",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Form 427 — Certification for Change of Sex",
+    "source": {
+      "url": "https://doa.alaska.gov/dmv/forms/pdfs/427.pdf",
+      "title": "Alaska Division of Motor Vehicles Form 427",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "hi-dl-application",
+    "jurisdiction": "US-HI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "State of Hawaii Driver's License Application",
+    "source": {
+      "url": "https://www4.honolulu.gov/docushare/dsweb/Get/Document-325980/State%20of%20Hawaii%20Driver_s%20License%20Application.pdf",
+      "title": "City and County of Honolulu — State of Hawaii Driver's License Application",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "nm-mvd-10237-gender-designation",
+    "jurisdiction": "US-NM",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Form MVD-10237 — Request for Sex Designation Change",
+    "source": {
+      "url": "https://realfile.tax.newmexico.gov/mvd10237.pdf",
+      "title": "New Mexico Taxation and Revenue Department, Motor Vehicle Division Form MVD-10237",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "nm-health-gender-designation-adult-form",
+    "jurisdiction": "US-NM",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Request to Change Gender Designation on a Birth Certificate: Adult Form",
+    "source": {
+      "url": "https://www.nmhealth.org/publication/view/form/5429/",
+      "title": "New Mexico Department of Health — Request to Change Gender Designation on a Birth Certificate: Adult Form",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]

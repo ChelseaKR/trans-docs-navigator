@@ -12,11 +12,13 @@ import { staleAfterDays } from "./offline.ts";
 import { isDriftWatchable } from "../api/watchability.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
+  { id: "US-AK", label: "Alaska" },
   { id: "US-AZ", label: "Arizona" },
   { id: "US-CA", label: "California" },
   { id: "US-FL", label: "Florida" },
   { id: "US-GA", label: "Georgia" },
   { id: "US-CO", label: "Colorado" },
+  { id: "US-HI", label: "Hawaii" },
   { id: "US-IL", label: "Illinois" },
   { id: "US-MD", label: "Maryland" },
   { id: "US-MA", label: "Massachusetts" },
@@ -25,6 +27,7 @@ const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-NC", label: "North Carolina" },
   { id: "US-NV", label: "Nevada" },
   { id: "US-NJ", label: "New Jersey" },
+  { id: "US-NM", label: "New Mexico" },
   { id: "US-NY", label: "New York" },
   { id: "US-PA", label: "Pennsylvania" },
   { id: "US-OH", label: "Ohio" },
