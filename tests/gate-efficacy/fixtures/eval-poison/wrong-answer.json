@@ -28,18 +28,18 @@
     "id": "base-unsupported-refusal",
     "suite": "refusal",
     "segment": {
-      "jurisdiction": "US-NV",
+      "jurisdiction": "US-AL",
       "language": "en"
     },
     "query": {
-      "jurisdiction": "US-NV",
+      "jurisdiction": "US-AL",
       "change_types": [
         "name"
       ],
       "documents": [
         "court-order"
       ],
-      "question": "Nevada name change"
+      "question": "Alabama name change"
     },
     "expect": {
       "refused": true
