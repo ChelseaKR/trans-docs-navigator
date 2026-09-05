@@ -8,20 +8,23 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
-- **Ohio corpus coverage** (ROADMAP M6): 7 EN + 7 ES records (14 total) covering
-  court-ordered name change, driver's-license/ID name change, and birth-certificate name
-  change from Ohio's own official sources (Ohio Legal Help, the Ohio BMV, and — for the
-  birth record — the Ohio Department of Health, read directly since `odh.ohio.gov` refuses
-  this project's declared user-agent on every path, same class as `health.ny.gov`). Ohio's
-  driver's-license/ID **and** birth-certificate sex/gender-marker paths are modeled as
-  contested/unavailable, never as working processes: the Ohio BMV's own public forms list
-  no longer includes a gender-marker form (Ohio Revised Code 9.05, effective 2025-09-30,
-  states the sexes are "not changeable"), and a divided Ohio Supreme Court in November 2024
-  (*In re Application for Correction of Birth Record of Adelaide*) left standing a probate
-  court's denial of a birth-certificate sex-marker change without resolving whether state
-  law allows one at all — both are cited, both are `needs_reverification`. Adds
-  `corpus/referrals/ohio.json` (Ohio Legal Help, Equitas Health's gender-affirming legal
-  clinics), `US-OH` to the intake/guide jurisdiction lists, and 6 new gold-set items.
+- **Georgia** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (court-order name
+  change, driver's-license name and gender-marker, birth-certificate name and
+  gender-marker, and a birth-certificate fee record), 2 referrals, and 1 forms-registry
+  entry, each sourced from an official Georgia state page or administrative rule and
+  fetched into `corpus/snapshots/`. Georgia's driver's-license gender-marker rule
+  (Ga. Comp. R. & Regs. 375-3-1-.17) is recorded as **restricted, not open**: it requires
+  a gender-reassignment operation plus a court order or physician's letter, and even then
+  leaves the decision to the Department's discretion. Georgia's vital-records rules fold a
+  birth-certificate sex-designation change into the generic "All Other Amendments" rule
+  (511-1-3-.25), with no separate gender-identity or court-order path described. A
+  name-change amendment to a Georgia birth certificate also carries an unusual,
+  directly-sourced requirement — a physician's letterhead statement of an
+  "intersex/transgender diagnosis" — read from the official Affidavit for Amendment
+  (Form 3977); as a PDF, that source cannot be automatically fidelity-checked and is
+  reported UNCHECKABLE rather than silently passed, the same honest degradation already
+  applied to the New York sources this project cannot fetch.
+
 - **ADR directory completed** (`docs/adr/`): the five build ADRs migrated out of
   `docs/ROADMAP.md` §6 into individual Nygard-format files (0001–0005, decision content
   unchanged), plus a new ADR-0006 recording the deliberate no-ESLint/no-Prettier/no-bundler

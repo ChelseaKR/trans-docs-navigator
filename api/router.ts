@@ -7,7 +7,7 @@
 // rendering. Checklist selections and optional question text are server inputs; direct
 // identity-form fields are not read. See the Privacy Notice for cache/log boundaries.
 
-import { buildChecklist, hasThinnerLanguageCoverage } from "./checklist.ts";
+import { buildChecklist, hasThinnerLanguageCoverage, hasNoStateCoverage } from "./checklist.ts";
 import { buildRelocationPlan } from "./relocation.ts";
 import { answer } from "./guidance.ts";
 import { loadCorpus } from "./corpus.ts";
@@ -222,7 +222,13 @@ function checklistCacheKeyOf(k: ChecklistCacheKey): string {
 
 // The rendered checklist page is pure given (intake, today, thinnerCoverage) — cache it.
 const cachedChecklistPage = memoize<ChecklistCacheKey, string>(
-  (k) => renderChecklistPage(buildChecklist(k.intake, k.today), loadCorpus(), k.intake.language, intakeQuery(k.intake), { thinnerCoverage: k.thinnerCoverage }),
+  // `noStateCoverage` is derived INSIDE the builder rather than added to the cache key:
+  // it is a pure function of the jurisdiction, which intakeQuery() already puts in the key.
+  (k) =>
+    renderChecklistPage(buildChecklist(k.intake, k.today), loadCorpus(), k.intake.language, intakeQuery(k.intake), {
+      thinnerCoverage: k.thinnerCoverage,
+      noStateCoverage: hasNoStateCoverage(k.intake.jurisdiction),
+    }),
   { keyOf: checklistCacheKeyOf },
 );
 
@@ -425,7 +431,9 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     return {
       status: 200,
       contentType: HTML,
-      body: renderPacketPage(checklist, loadCorpus(), intake.language, generatedOn, intakeQuery(intake)),
+      body: renderPacketPage(checklist, loadCorpus(), intake.language, generatedOn, intakeQuery(intake), {
+        noStateCoverage: hasNoStateCoverage(intake.jurisdiction),
+      }),
       log: { event: "packet", fields: { jurisdiction: intake.jurisdiction, language: intake.language, status: 200 } },
     };
   }

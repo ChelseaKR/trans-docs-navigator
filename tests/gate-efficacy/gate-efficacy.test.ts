@@ -7,12 +7,16 @@
 // short-circuited (e.g. refactored to `return pass(...)`) fails these tests even
 // though every OTHER test in the repo stays green — that is the whole point.
 //
-// SCOPE: covers the 19 CLI/spawnable merge gates. Two gates are out of scope per the
+// SCOPE: covers the 20 CLI/spawnable merge gates. Two gates are out of scope per the
 // roadmap item's own spec and are covered by CI broken-fixture pages instead:
 //   - a11y-lint.ts (pa11y-ci runs the deep accessibility pass in a real browser)
 //   - i18n-overflow (Playwright pseudolocale-overflow gate; starts a browser+server)
-// Two more are deferred with a TODO below (typecheck, eval) — see the note at the
-// bottom of this file for why.
+// One remains deferred (typecheck) — see the note at the bottom of this file for why.
+//
+// A gate with more than one half needs a control per half. `security` has two (a
+// dependency audit and a secret scan) and only the secret half was covered here, which
+// is exactly how the audit half came to fail open — silently printing "0C/0H" for an
+// audit that never ran. Both halves are covered now, and so is `eval`.
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -21,7 +25,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
-import { runGate, fixture, REPO_ROOT, isolatedChildEnv } from "./runner.ts";
+import { runGate, runScript, fixture, REPO_ROOT, isolatedChildEnv } from "./runner.ts";
 
 // ── content (scripts/content-validate.ts) ──────────────────────────────────────
 // Harm: a corpus record ships with no source block (a claim with no provenance).
@@ -266,11 +270,181 @@ test("seo gate fails on an indexable page missing its canonical link", () => {
 });
 
 // ── security (scripts/security-scan.ts) ─────────────────────────────────────────
+// This gate has TWO halves and needs a negative control for each. Only the secret-scan
+// half was covered here originally, which is exactly why the dependency-advisory half
+// was free to fail open for as long as it did: `JSON.parse(stdout || "{}")` never
+// throws, so an audit that never ran left the counters at 0 and printed a green
+// "no high/critical dependency advisories (0C/0H)". Three controls now:
+//   1. secret half — a hardcoded credential.
+//   2. advisory half, positive — a lockfile with a real critical advisory.
+//   3. advisory half, fail-closed — an audit that cannot run must not be a pass.
+
 // Harm: a hardcoded credential committed to app code.
 test("security gate fails on a hardcoded secret", () => {
   const r = runGate("security-scan", { env: { SECURITY_SCAN_ROOT: fixture("security-poison") } });
   assert.notEqual(r.code, 0);
   assert.match(r.output, /possible hardcoded bearer\/secret/);
+});
+
+// Harm: the gate enumerated files by walking the filesystem, skipping only
+// node_modules and .git. So it descended into ignored, untracked trees — build
+// output, a scratch clone, a nested git worktree — and reported what it found
+// there as "possible secret(s) committed". Two things were wrong at once: the
+// finding is a false positive, and its wording is false, because the path named
+// was never in a commit and the developer cannot fix it by editing anything the
+// repository tracks. The prefix-anchored fixture exclusion below also missed a
+// nested copy of this repo, so the gate re-detected its OWN negative control and
+// blocked every push. A gate that cries wolf on untracked scratch files teaches
+// people to pass --no-verify, which switches off the real scan too.
+//
+// The claim this gate makes is "committed", so the set it scans is what git tracks.
+test("security gate scans what git tracks, not the whole filesystem", () => {
+  const dir = mkdtempSync(join(tmpdir(), "secret-scan-tracked-"));
+  try {
+    // A clean, auditable tree so the dependency half passes and the scan is reached.
+    cpSync(fixture("security-clean"), dir, { recursive: true });
+    execFileSync("git", ["init", "-q"], { cwd: dir });
+    execFileSync("git", ["config", "user.email", "gate@example.test"], { cwd: dir });
+    execFileSync("git", ["config", "user.name", "gate"], { cwd: dir });
+    writeFileSync(join(dir, ".gitignore"), "scratch.ts\n");
+    execFileSync("git", ["add", "-A"], { cwd: dir });
+    execFileSync("git", ["commit", "-qm", "init"], { cwd: dir });
+
+    // Ignored and never committed — exactly the shape that produced the false alarm.
+    // Assembled at runtime: this test file is itself tracked and scanned, so it
+    // must not carry a credential-shaped literal of its own.
+    const credentialShaped = `const ${"api" + "Key"} = "${"abcdef0123456789ABCDEF"}";\n`;
+    writeFileSync(join(dir, "scratch.ts"), credentialShaped);
+
+    const ignored = runGate("security-scan", { env: { SECURITY_SCAN_ROOT: dir } });
+    assert.doesNotMatch(
+      ignored.output,
+      /scratch\.ts/,
+      `an untracked, ignored file must never be reported as committed. Output:\n${ignored.output}`,
+    );
+
+    // Same bytes, now tracked: the gate must still catch it, or the assertion above
+    // would be passing for the trivial reason that the scan found nothing at all.
+    execFileSync("git", ["add", "-f", "scratch.ts"], { cwd: dir });
+    execFileSync("git", ["commit", "-qm", "track the secret"], { cwd: dir });
+
+    const tracked = runGate("security-scan", { env: { SECURITY_SCAN_ROOT: dir } });
+    assert.notEqual(tracked.code, 0, `a tracked secret must fail the gate. Output:\n${tracked.output}`);
+    assert.match(tracked.output, /scratch\.ts — possible hardcoded bearer\/secret/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// Harm: a dependency carrying a high/critical advisory ships (SEC-12). The poisoned
+// tree is written to a temp dir rather than committed as a fixture on purpose: a
+// checked-in lockfile pinning a known-vulnerable package would be picked up by the
+// repository's own dependency graph and raise a permanent, bogus Dependabot alert
+// against this repo. lodash 4.17.4 carries GHSA-jf85-cpcp-j695 (prototype pollution,
+// CRITICAL); the advisory is a decade-stable historical record, and `npm audit`
+// resolves it from the lockfile alone, with no node_modules install.
+test("security gate fails on a dependency carrying a critical advisory", () => {
+  const dir = mkdtempSync(join(tmpdir(), "gate-efficacy-audit-"));
+  try {
+    writeFileSync(
+      join(dir, "package.json"),
+      JSON.stringify(
+        { name: "advisory-poison-fixture", private: true, version: "0.0.0", dependencies: { lodash: "4.17.4" } },
+        null,
+        2,
+      ),
+    );
+    writeFileSync(
+      join(dir, "package-lock.json"),
+      JSON.stringify(
+        {
+          name: "advisory-poison-fixture",
+          version: "0.0.0",
+          lockfileVersion: 3,
+          requires: true,
+          packages: {
+            "": { name: "advisory-poison-fixture", version: "0.0.0", dependencies: { lodash: "4.17.4" } },
+            "node_modules/lodash": {
+              version: "4.17.4",
+              resolved: "https://registry.npmjs.org/lodash/-/lodash-4.17.4.tgz",
+              integrity: "sha1-eCA6TRwyiuHBsdsJdnrhsCPpHD8=",
+            },
+          },
+        },
+        null,
+        2,
+      ),
+    );
+
+    const r = runGate("security-scan", { env: { SECURITY_SCAN_ROOT: dir } });
+    assert.notEqual(r.code, 0, `a critical advisory must fail the gate. Output:\n${r.output}`);
+    // Either verdict is a correctly-closed gate: the advisory was counted, or the
+    // audit could not reach the registry and the gate refused to claim it was clean.
+    // What must never appear is a green line — asserted by the exit code above.
+    assert.match(r.output, /dependency audit: [1-9]\d* critical|dependency audit did not run/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// Harm: THE fail-open bug. `npm audit` produces no usable report (no lockfile here;
+// equally: npm absent from PATH, no network, a registry error) and the gate reports
+// success anyway, asserting a 0C/0H figure it never obtained. SEC-12 is an AUTO-GATE;
+// a gate that can be silenced by taking away its network is not one.
+test("security gate fails closed when the dependency audit cannot run", () => {
+  const r = runGate("security-scan", { env: { SECURITY_SCAN_ROOT: fixture("security-audit-poison") } });
+  assert.notEqual(r.code, 0, `an audit that did not run must not pass. Output:\n${r.output}`);
+  assert.match(r.output, /dependency audit did not run, so SEC-12 is unverified/);
+  assert.doesNotMatch(r.output, /0C\/0H/);
+});
+
+// The offline escape hatch must be explicit and must name itself in the verdict, so a
+// skipped advisory check can never be mistaken for a clean one. `CI`/`GITHUB_ACTIONS`
+// are blanked here because this suite itself runs inside `make verify`, which runs in
+// CI — and in CI the opt-out is refused (next test).
+test("security gate's offline opt-out is loud and does not claim an advisory count", () => {
+  const r = runGate("security-scan", {
+    env: {
+      SECURITY_SCAN_ROOT: fixture("security-audit-poison"),
+      SECURITY_SCAN_ALLOW_NO_AUDIT: "1",
+      CI: "",
+      GITHUB_ACTIONS: "",
+    },
+  });
+  assert.equal(r.code, 0, `the explicit opt-out should let a local run proceed. Output:\n${r.output}`);
+  assert.match(r.output, /SECURITY_SCAN_ALLOW_NO_AUDIT=1/);
+  assert.match(r.output, /SKIPPED/);
+  assert.doesNotMatch(r.output, /no high\/critical dependency advisories/);
+});
+
+// Harm: the escape hatch becomes the bypass. This repository is PUBLIC, and for a
+// `pull_request` event GitHub runs the workflow definition from the PR head — so a
+// contributor who reads scripts/security-scan.ts (anyone can) could add
+// `SECURITY_SCAN_ALLOW_NO_AUDIT: 1` to the verify job's env and turn the
+// dependency-advisory half of a merge-blocking gate green in the same commit that
+// introduces the advisory, relying on a reviewer to catch it in a YAML diff.
+test("security gate REFUSES the offline opt-out in CI", () => {
+  for (const ciVar of ["GITHUB_ACTIONS", "CI"]) {
+    const r = runGate("security-scan", {
+      env: {
+        SECURITY_SCAN_ROOT: fixture("security-audit-poison"),
+        SECURITY_SCAN_ALLOW_NO_AUDIT: "1",
+        [ciVar]: "true",
+      },
+    });
+    assert.notEqual(r.code, 0, `${ciVar}: the opt-out must not work in CI. Output:\n${r.output}`);
+    assert.match(r.output, /REFUSED in CI/);
+    assert.doesNotMatch(r.output, /0C\/0H/);
+  }
+});
+
+// A scan pointed somewhere other than this repository must never render as a plain
+// green line, so a redirected run is visible in the CI log and not only in the diff
+// that redirected it.
+test("security gate labels its verdict when SECURITY_SCAN_ROOT redirects the scan", () => {
+  const r = runGate("security-scan", { env: { SECURITY_SCAN_ROOT: fixture("security-clean") } });
+  assert.equal(r.code, 0, `a clean fixture tree should pass. Output:\n${r.output}`);
+  assert.match(r.output, /SECURITY_SCAN_ROOT override in effect — NOT a scan of this repository/);
 });
 
 // ── lint (scripts/lint.ts) ──────────────────────────────────────────────────────
@@ -292,15 +466,78 @@ test("test gate fails when the underlying test run fails", () => {
   assert.match(r.output, /tests failed or coverage below threshold/);
 });
 
+// ── eval (eval/run.ts, stage 20) ────────────────────────────────────────────────
+// The accuracy oracle: the only gate that can tell a well-formed answer from a CORRECT
+// one. Its scoring and thresholding are not covered by any other test in this repo — if
+// a metric with no data started returning a pass, or a threshold comparison inverted,
+// everything else here would stay green. Poisoning is by whole-gold-set replacement
+// (EVAL_GOLD_POISON, eval/gold.ts), with the report redirected to a throwaway directory
+// (EVAL_REPORT_DIR) so a deliberately-failing run never rewrites docs/audits/.
+//
+// Each poison changes ONE thing against a shared clean base of three items, so the
+// assertion names the metric that must block. See fixtures/eval-poison/README.md.
+function runEvalGate(goldFixture: string): ReturnType<typeof runScript> {
+  const dir = mkdtempSync(join(tmpdir(), "gate-efficacy-eval-"));
+  try {
+    return runScript(join("eval", "run.ts"), {
+      env: {
+        EVAL_GOLD_POISON: fixture("eval-poison", goldFixture),
+        EVAL_REPORT_DIR: dir,
+      },
+    });
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+// The control for the controls: without this, a harness that failed on EVERY input
+// would satisfy all three poison assertions below while proving nothing at all.
+test("eval gate passes on the clean baseline gold set (so the poisons below mean something)", () => {
+  const r = runEvalGate("baseline-clean.json");
+  assert.equal(r.code, 0, `the clean baseline must pass. Output:\n${r.output}`);
+  assert.match(r.output, /✅ eval:/);
+});
+
+// Harm: the served answer diverges from the expert-reviewed truth — the accuracy
+// regression this gate is the sole detector for. The poisoned item pins "NC-100", the
+// wrong California name-change form for this app's users (see eval/gold.ts's own note),
+// which the system correctly never emits.
+test("eval gate fails when a gold item's expected answer is not the one served", () => {
+  const r = runEvalGate("wrong-answer.json");
+  assert.notEqual(r.code, 0, `an accuracy miss must fail the gate. Output:\n${r.output}`);
+  assert.match(r.output, /❌ factual_accuracy: 50\.0% \(≥ 98\.0%/);
+  assert.match(r.output, /one or more eval gates below threshold/);
+});
+
+// Harm: THE fail-closed property eval/harness.ts asserts in its own header —
+// "a metric with no data is a failure, never a silent pass". With no gold items at all,
+// every metric is unmeasured, and unmeasured must never read as met. Note
+// citation_coverage's value is a vacuous 100% here: it is n=0 that blocks it, which is
+// precisely the rule under test.
+test("eval gate fails closed when a metric has no scored data", () => {
+  const r = runEvalGate("empty-gold.json");
+  assert.notEqual(r.code, 0, `an unmeasured metric must not pass. Output:\n${r.output}`);
+  assert.match(r.output, /❌ groundedness: .*n=0/);
+  assert.match(r.output, /❌ citation_coverage: 100\.0% .*n=0/);
+  assert.doesNotMatch(r.output, /✅ eval:/);
+});
+
+// Harm: a retrieval regression — the expected record is no longer in the top-K, so the
+// generator can never cite it. This is the metric pair (AIEV-03/04) that a retriever
+// seam swap (lexical → embedding, ADR-2) would silently break.
+test("eval gate fails when the expected record is outside the retrieved top-K", () => {
+  const r = runEvalGate("retrieval-miss.json");
+  assert.notEqual(r.code, 0, `a retrieval miss must fail the gate. Output:\n${r.output}`);
+  assert.match(r.output, /❌ context_recall_at_8: 50\.0% \(≥ 80\.0%/);
+  assert.match(r.output, /❌ context_precision_at_1: 50\.0% \(≥ 70\.0%/);
+});
+
 // ── Deferred (documented, not covered here) ─────────────────────────────────────
 // - typecheck (`tsc --noEmit`): not a scripts/*.ts gate with a pass()/fail() message
 //   contract — it's a whole-project compile, and its "failure message" is tsc's own
 //   diagnostic output, not ours. A meaningful negative control here means standing up
 //   an isolated tsconfig + fixture module, which is a bigger side-quest than this
-//   suite's scope; TODO a follow-up item if this needs its own regression coverage.
-// - eval (`eval/run.ts`): a groundedness/accuracy/refusal harness, not named in this
-//   roadmap item's fixture list; poisoning it meaningfully needs its own eval-case
-//   fixture set (a separate, larger effort). TODO a follow-up item.
-// Both remain covered indirectly: eval and typecheck both call into api/* code paths
-// that ARE exercised by tests/*.test.ts and by the OTHER gate-efficacy tests above
-// (e.g. citation/disclosure poisoning both go through api/guidance.ts).
+//   suite's scope. Tracked as its own follow-up rather than a bare TODO here; it stays
+//   covered indirectly, since it compiles the same api/* code paths that the gates
+//   above exercise as real child processes.
+// `eval` is no longer deferred — see the four tests immediately above.

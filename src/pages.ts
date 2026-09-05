@@ -4,14 +4,17 @@
 // Identity fields are entered only in the form-helper page and stay in the browser.
 
 import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from "../api/types.ts";
-import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel, preparationList } from "./render.ts";
+import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel, preparationList, verificationCaption } from "./render.ts";
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
 import { toResumeState } from "./secure-resume.ts";
 import { staleAfterDays } from "./offline.ts";
+import { isDriftWatchable } from "../api/watchability.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-CA", label: "California" },
+  { id: "US-GA", label: "Georgia" },
+  { id: "US-CO", label: "Colorado" },
   { id: "US-IL", label: "Illinois" },
   { id: "US-NY", label: "New York" },
   { id: "US-OH", label: "Ohio" },
@@ -84,12 +87,15 @@ export function renderChecklistPage(
   records: CorpusRecord[],
   lang: Language,
   query = "",
-  opts: { thinnerCoverage?: boolean } = {},
+  opts: { thinnerCoverage?: boolean; noStateCoverage?: boolean } = {},
 ): string {
   const s = uiStrings(lang);
   const coverageNote = opts.thinnerCoverage ? `<p class="flag" role="note">${escapeHtml(s.thinnerCoverage)}</p>` : "";
+  // The state itself is absent from the corpus: every step below is federal. Said BEFORE
+  // the steps, because after them the page already reads as a finished plan.
+  const stateNote = opts.noStateCoverage ? `<p class="flag" role="note">${escapeHtml(s.noStateCoverage)}</p>` : "";
   const intro = `<p>${escapeHtml(s.checklistIntro)}</p>
-<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${coverageNote}`;
+<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${stateNote}${coverageNote}`;
   const q = query ? `?${query}` : "";
   const actions = `<p class="no-print"><a href="/packet${q}">📄 ${escapeHtml(s.print)}</a> · <a href="/">${escapeHtml(s.startOver)}</a></p>`;
   const gaps = checklist.gaps.length
@@ -103,18 +109,35 @@ export function renderChecklistPage(
     ? `<p class="flag" role="note">${escapeHtml(s.noStepsLead)}</p><p class="no-print"><a href="/">${escapeHtml(s.backToStart)}</a></p>`
     : renderChecklist(checklist, records, lang);
 
-  // Plan summary: step count + an honest estimated cost (sum of known amounts; "+"
-  // when some steps vary; "varies" when none are fixed).
+  // Plan summary: step count + an honest estimated cost.
+  //
+  // Three distinct states have to stay distinguishable, because two of them are absences
+  // and an absence must never be added to a total as if it were zero:
+  //   • a stated amount              → add it
+  //   • `amount_usd: null`           → the source names a fee but not a number ("varies")
+  //   • no `cost` on the step at all → NO cited source prices this step (unpriced)
+  // Unpriced steps used to be skipped silently, so a plan with a $435 court fee and an
+  // unpriced DMV step rendered "Estimated cost: $435" — a floor presented as a total, on
+  // the barrier users report as their biggest. They now count toward the "+" and are
+  // stated outright, matching what the relocation planner already does (api/relocation.ts
+  // costModel → `unpriced_step_keys`).
   let known = 0;
   let anyVaries = false;
+  let unpriced = 0;
   for (const st of checklist.steps) {
-    if (!st.cost || st.done) continue; // already-done steps (e.g. has_court_order) don't cost anything more
+    if (st.done) continue; // already-done steps (e.g. has_court_order) don't cost anything more
+    if (!st.cost) {
+      unpriced++;
+      continue;
+    }
     if (st.cost.amount_usd === null) anyVaries = true;
     else known += st.cost.amount_usd;
   }
-  const costText = known > 0 ? `$${known}${anyVaries ? "+" : ""}` : anyVaries ? s.varies : "";
+  const incomplete = anyVaries || unpriced > 0;
+  const costText = known > 0 ? `$${known}${incomplete ? "+" : ""}` : incomplete ? s.varies : "";
+  const unpricedNote = unpriced > 0 ? `<p class="meta">${escapeHtml(s.costIncomplete(unpriced))}</p>` : "";
   const summary = hasSteps
-    ? `<p class="plan-summary"><strong>${checklist.steps.length} ${escapeHtml(s.stepsLabel)}</strong>${costText ? ` · ${escapeHtml(s.estimatedCost)}: ${escapeHtml(costText)}` : ""}</p>
+    ? `<p class="plan-summary"><strong>${checklist.steps.length} ${escapeHtml(s.stepsLabel)}</strong>${costText ? ` · ${escapeHtml(s.estimatedCost)}: ${escapeHtml(costText)}` : ""}</p>${unpricedNote}
 <p id="progress-count" class="meta no-print" role="status" aria-live="polite"></p>`
     : "";
 
@@ -202,10 +225,14 @@ export function renderPacketPage(
   lang: Language,
   generatedOn: string,
   intakeQuery = "",
+  opts: { noStateCoverage?: boolean } = {},
 ): string {
   const s = uiStrings(lang);
   const actions = `<p class="no-print"><button type="button" id="print-btn">🖨️ ${escapeHtml(s.print)}</button> <a href="/">${escapeHtml(s.startOver)}</a></p>
 <script type="module" src="/assets/packet.js"></script>`;
+  // The packet is the artifact people print and carry to a clerk, so the "these are
+  // federal steps only" caveat has to survive onto paper — not be a screen-only note.
+  const stateNote = opts.noStateCoverage ? `<p class="flag" role="note">${escapeHtml(s.noStateCoverage)}</p>` : "";
   // Offline saving: the packet itself, plus the checklist to go back to.
   const offlineUrls = intakeQuery
     ? [
@@ -214,7 +241,7 @@ export function renderPacketPage(
       ]
     : [];
   const offline = renderOfflinePanel(s, offlineUrls);
-  const body = actions + renderPacket(checklist, records, lang, generatedOn) + offline;
+  const body = actions + stateNote + renderPacket(checklist, records, lang, generatedOn) + offline;
   return page({ lang, title: s.packetTitle, heading: s.packetHeading, body });
 }
 
@@ -236,6 +263,9 @@ export function renderFormFillPage(form: FormDef, lang: Language = "en"): string
   const body = `
 <p>${escapeHtml(s.officialFormIntro)}</p>
 <p class="cta"><a href="${escapeHtml(form.source.url)}" rel="noopener noreferrer">${escapeHtml(s.getFormCta)}: ${escapeHtml(form.source.title)}</a></p>
+<p class="meta">${escapeHtml(verificationCaption(form.source, s))}${
+    isDriftWatchable(form.source.url) ? "" : ` <span class="flag">${escapeHtml(s.sourceNotWatched)}</span>`
+  }</p>
 ${preparationList(form.preparation, lang)}
 <section class="copy-helper no-print" aria-labelledby="copy-h">
   <h2 id="copy-h">${escapeHtml(s.copyTitle)}</h2>
