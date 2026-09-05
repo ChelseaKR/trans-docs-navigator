@@ -193,6 +193,172 @@
       "unextractable": {
         "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
+    },
+    "https://www.mass.gov/how-to/amend-a-birth-certificate-for-sex-of-the-subject": {
+      "file": "mass-gov-how-to-amend-a-birth-certificate-for-sex-of-the-subject-f5e43b0a.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c49150e78e40eaf7ae1c1f3c7a847eb66f5b86eb3665f6f400f8175723ca4f0e"
+    },
+    "https://www.mass.gov/how-to/amend-or-correct-a-birth-death-or-marriage-record": {
+      "file": "mass-gov-how-to-amend-or-correct-a-birth-death-or-marriage-record-662a9505.txt",
+      "fetched": "2026-09-05",
+      "sha256": "8d3ae45de0377cfe4736a115a2120a10231134007c37b07e714daef647dafeb2"
+    },
+    "https://www.mass.gov/how-to/change-information-on-your-drivers-license-or-id-card": {
+      "file": "mass-gov-how-to-change-information-on-your-drivers-license-or-id-card-dd8dd22b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "aa8e28b115a1a2b72dacc5a0e8f35c4d7db3207e733d2d5c186dbd033da24f3d"
+    },
+    "https://www.mass.gov/info-details/how-do-i-file-a-change-of-name-for-an-adult": {
+      "file": "mass-gov-info-details-how-do-i-file-a-change-of-name-for-an-adult-e0ade215.txt",
+      "fetched": "2026-09-05",
+      "sha256": "0b3e5aba1e729911d1b27767a1e26b166191d3e285223be2620fe3d24bff1ee6"
+    },
+    "https://www.mass.gov/info-details/mass-general-laws-c46-ss-13": {
+      "file": "mass-gov-info-details-mass-general-laws-c46-ss-13-61f9e688.txt",
+      "fetched": "2026-09-05",
+      "sha256": "2fe24861166d49d394f6aad33ba4f8f2045666ca5ce1abba4f9152e13deace76"
+    },
+    "https://www.mass.gov/info-details/mass-general-laws-c90-ss-8n": {
+      "file": "mass-gov-info-details-mass-general-laws-c90-ss-8n-6ec6d4fa.txt",
+      "fetched": "2026-09-05",
+      "sha256": "2c7d99a27f8844813fa0dbcccc3f8b823d1beaa193a67416476f4f73fbf2ac82"
+    },
+    "https://www.legis.state.pa.us/WU01/LI/LI/CT/HTM/54/00.007..HTM": {
+      "file": "legis-state-pa-us-wu01-li-li-ct-htm-54-00-007-htm-5fa75baa.txt",
+      "fetched": "2026-07-13",
+      "sha256": "76a6c537255a1337af2a1aa8ad30185253f8afbdecd0d6eb24b210d2ce32999f"
+    },
+    "https://www.pa.gov/services/dmv/change-a-driver-license-name-or-address": {
+      "file": "pa-gov-services-dmv-change-a-driver-license-name-or-address-08403ed0.txt",
+      "fetched": "2026-07-13",
+      "sha256": "1bdf05c42c1e9597f9a3bdb9d109a2fb7ea39d1ecb42cdefe458e9ab388617ec"
+    },
+    "https://www.pa.gov/services/dmv/change-the-gender-designation-on-drivers-license-or-photo-identification-card": {
+      "file": "pa-gov-services-dmv-change-the-gender-designation-on-drivers-license-o-84f9ad21.txt",
+      "fetched": "2026-07-13",
+      "sha256": "229cab1195ed023786edc19fd33049195d039948562ad32a89b50fcc3dcfd8cb"
+    },
+    "https://www.pa.gov/content/dam/copapwp-pagov/en/health/documents/topics/documents/certificates-and-records/Request%20to%20Modify%20an%20Adult's%20Birth%20Record.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://michiganlegalhelp.org/resources/ids-and-name-change/i-want-change-my-name": {
+      "file": "michiganlegalhelp-org-resources-ids-and-name-change-i-want-change-my-n-6b5aa298.txt",
+      "fetched": "2026-09-05",
+      "sha256": "fc217fcb3910797ba2efe9761ee9a348b998ebb22b2398939fe14b03fd8b3785"
+    },
+    "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-333-2891": {
+      "file": "legislature-mi-gov-laws-mcl-ef0f246b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "3137d0ef9648d997f636a1fbec58c3a217b38acd2caeaff159ed1df8efe13b74"
+    },
+    "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://www.michigan.gov/sos/all-services/license-or-id-name-correction": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record": {
+      "file": null,
+      "fetched": "2026-09-04",
+      "unfetchable": {
+        "status": "HTTP 404",
+        "note": "the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://www.ohiolegalhelp.org/topic/name-change": {
+      "file": "ohiolegalhelp-org-topic-name-change-91c1ef43.txt",
+      "fetched": "2026-09-04",
+      "sha256": "41697d89c5b30ce8b9f16885e73d747ae475381d9c031b88c28147cc865e66a6"
+    },
+    "https://www.bmv.ohio.gov/dl-identity-documents.aspx": {
+      "file": "bmv-ohio-gov-dl-identity-documents-aspx-ddc12258.txt",
+      "fetched": "2026-09-04",
+      "sha256": "be759cc8b442d0bd7dc1827905e529002b43ed0f073c6e577e95d2641ec5d1fe"
+    },
+    "https://www.bmv.ohio.gov/doc-forms.aspx": {
+      "file": "bmv-ohio-gov-doc-forms-aspx-9778086e.txt",
+      "fetched": "2026-09-04",
+      "sha256": "633794f0c1d1077f518849ac035009e7aa444ed7f012ea1aa689ba400e038f9f"
+    },
+    "https://codes.ohio.gov/ohio-revised-code/section-9.05": {
+      "file": "codes-ohio-gov-ohio-revised-code-section-9-05-70e0c74c.txt",
+      "fetched": "2026-09-04",
+      "sha256": "8e64e7c0f328f8ff7ec537ad6b7f8ae9c061ce393541643e4ba599c65d7de9bd"
+    },
+    "https://www.courtnewsohio.gov/cases/2024/SCO/1119/220934.asp": {
+      "file": "courtnewsohio-gov-cases-2024-sco-1119-220934-asp-973ce3f3.txt",
+      "fetched": "2026-09-04",
+      "sha256": "8343647fb430687194735d92f0104a514a9b0d41f1c03bf64a1b83a523aad366"
+    },
+    "https://georgia.gov/apply-name-change": {
+      "file": "georgia-gov-apply-name-change-c3e94f10.txt",
+      "fetched": "2026-09-05",
+      "sha256": "4b2c1184cd7cb47c02498b7a7337d0237da8995091a7b4e0cc78a96f5d4e22c2"
+    },
+    "https://dds.georgia.gov/license-faqs": {
+      "file": "dds-georgia-gov-license-faqs-211136cc.txt",
+      "fetched": "2026-09-05",
+      "sha256": "1fefd760c8c6bfb596234c357e2ef88ec03dcf9bcf1ac7dd4f942ebd4db59dd5"
+    },
+    "https://rules.sos.ga.gov/gac/375-3-1": {
+      "file": "rules-sos-ga-gov-gac-375-3-1-7d2e3f0a.txt",
+      "fetched": "2026-09-05",
+      "sha256": "094a321334544e729666ab191268ac753441be1e3cb0bff5536542f98cd62b76"
+    },
+    "https://rules.sos.ga.gov/gac/511-1-3": {
+      "file": "rules-sos-ga-gov-gac-511-1-3-9496aa33.txt",
+      "fetched": "2026-09-05",
+      "sha256": "5e483c0e538edaeabcde2b79f8002b99b862c438eeac7173bcb9cd1a06996c54"
+    },
+    "https://dph.georgia.gov/ways-request-vital-record/fees": {
+      "file": "dph-georgia-gov-ways-request-vital-record-fees-dd70f5bb.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c0b4d206853e98cc7353eb61c2b233650421c507d7f93c38bdfce9d638143f59"
+    },
+    "https://dph.georgia.gov/document/document/affidavit-amendment-form-3977-revisedpdf/download": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name."
+      }
+    },
+    "https://www.coloradojudicial.gov/self-help/adult": {
+      "file": "coloradojudicial-gov-self-help-adult-c2c5b400.txt",
+      "fetched": "2026-09-05",
+      "sha256": "6ab27c5a242b2cd3494752fbb6ba601cd7395aeeaaaf11ecf3833eff6d428cea"
+    },
+    "https://www.law.cornell.edu/regulations/colorado/1-CCR-204-32-1": {
+      "file": "law-cornell-edu-regulations-colorado-1-ccr-204-32-1-b0439ce1.txt",
+      "fetched": "2026-09-05",
+      "sha256": "7e5001c59c6902b718282200a04fe4e6bc3d16257f5174d7354c9d4a6c039fd9"
+    },
+    "https://www.law.cornell.edu/regulations/colorado/5-CCR-1006-1-5": {
+      "file": "law-cornell-edu-regulations-colorado-5-ccr-1006-1-5-d2aa51f9.txt",
+      "fetched": "2026-09-05",
+      "sha256": "ec748c0f293c0c5b8d11f5a2fb185c0baef687d35c28610feec573b961f19be6"
     }
   }
 }

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "mi.referral.michiganlegalhelp",
+    "jurisdiction": "US-MI",
+    "name": "Michigan Legal Help",
+    "url": "https://michiganlegalhelp.org",
+    "note": {
+      "en": "Michigan's statewide self-help legal website, including step-by-step instructions and a Do-It-Yourself Name Change tool that can help low-income residents with legal name-change filings.",
+      "es": "Sitio web legal de autoayuda de todo el estado de Michigan, con instrucciones paso a paso y una herramienta de Cambio de Nombre por Cuenta Propia que puede ayudar a residentes de bajos ingresos con solicitudes de cambio legal de nombre."
+    },
+    "source": {
+      "url": "https://michiganlegalhelp.org",
+      "title": "Michigan Legal Help",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "mi.referral.equalitymi",
+    "jurisdiction": "US-MI",
+    "name": "Equality Michigan",
+    "url": "https://equalitymi.org",
+    "note": {
+      "en": "Michigan's statewide LGBTQ advocacy organization. Contact them to find current local name-change and gender-marker clinics and legal referrals in your area.",
+      "es": "Organización estatal de defensa LGBTQ de Michigan. Comuníquese con ellos para encontrar clínicas locales actuales de cambio de nombre y de marcador de género, y remisiones legales en su área."
+    },
+    "source": {
+      "url": "https://equalitymi.org",
+      "title": "Equality Michigan",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

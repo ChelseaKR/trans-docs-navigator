@@ -8,19 +8,23 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
-- **Arizona corpus coverage** (ROADMAP M6): 7 EN + 7 ES records covering court-ordered name
-  change, driver's-license/ID name and gender-marker changes, and birth-certificate name and
-  gender-marker changes, each cited to azcourthelp.org, azcourts.gov, azdot.gov, and
-  azdhs.gov's own pages (the vital-records pages load their content via an in-page fetch, so
-  the corpus cites the exact content endpoint the browser itself calls). Arizona's MVD
-  publishes no page describing a gender-marker process, and its birth-certificate gender/sex
-  rules have been challenged in federal court and were still, as of this snapshot, unchanged
-  on the agency's own page — both AZ gender-marker records are therefore marked
-  `needs_reverification` rather than served as a settled fact, mirroring the existing Texas
-  DMV degradation pattern. Registers `US-AZ` in the intake, relocation, and guide-page
-  jurisdiction lists, adds an Arizona forms-registry entry and two Arizona legal-aid
-  referrals, and adds Arizona gold-eval items (accuracy EN/ES + a refusal case for the
-  volatile MVD record).
+- **Georgia** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (court-order name
+  change, driver's-license name and gender-marker, birth-certificate name and
+  gender-marker, and a birth-certificate fee record), 2 referrals, and 1 forms-registry
+  entry, each sourced from an official Georgia state page or administrative rule and
+  fetched into `corpus/snapshots/`. Georgia's driver's-license gender-marker rule
+  (Ga. Comp. R. & Regs. 375-3-1-.17) is recorded as **restricted, not open**: it requires
+  a gender-reassignment operation plus a court order or physician's letter, and even then
+  leaves the decision to the Department's discretion. Georgia's vital-records rules fold a
+  birth-certificate sex-designation change into the generic "All Other Amendments" rule
+  (511-1-3-.25), with no separate gender-identity or court-order path described. A
+  name-change amendment to a Georgia birth certificate also carries an unusual,
+  directly-sourced requirement — a physician's letterhead statement of an
+  "intersex/transgender diagnosis" — read from the official Affidavit for Amendment
+  (Form 3977); as a PDF, that source cannot be automatically fidelity-checked and is
+  reported UNCHECKABLE rather than silently passed, the same honest degradation already
+  applied to the New York sources this project cannot fetch.
+
 - **ADR directory completed** (`docs/adr/`): the five build ADRs migrated out of
   `docs/ROADMAP.md` §6 into individual Nygard-format files (0001–0005, decision content
   unchanged), plus a new ADR-0006 recording the deliberate no-ESLint/no-Prettier/no-bundler
