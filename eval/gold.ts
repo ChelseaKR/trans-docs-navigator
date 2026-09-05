@@ -6,6 +6,7 @@
 // it is authored alongside the seed corpus to exercise the harness mechanism; the
 // data-card records this limitation.
 
+import { readFileSync } from "node:fs";
 import type { ChangeType, DocumentType, JurisdictionId, Language } from "../api/types.ts";
 
 export interface GoldItem {
@@ -33,7 +34,7 @@ export interface GoldItem {
   };
 }
 
-export const GOLD: GoldItem[] = [
+const AUTHORED_GOLD: GoldItem[] = [
   {
     id: "ca-name-court",
     suite: "accuracy",
@@ -260,3 +261,15 @@ export const GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "ca.court-order.name", mustNotContain: ["DL 329"] },
   },
 ];
+
+// Test-only override (tests/gate-efficacy), the same shape as scripts/security-scan.ts's
+// SECURITY_SCAN_ROOT and content-validate.ts's CORPUS_DIR: point the harness at a
+// poisoned gold set so the ACCURACY ORACLE'S OWN ability to fail can be proven. This is
+// the only gate that can tell a well-formed answer from a correct one, and nothing else
+// in the repo goes red if its scoring or thresholding is short-circuited. Unset in
+// production and in CI, so behaviour is identical.
+const POISON_PATH = process.env.EVAL_GOLD_POISON;
+
+export const GOLD: GoldItem[] = POISON_PATH
+  ? (JSON.parse(readFileSync(POISON_PATH, "utf8")) as GoldItem[])
+  : AUTHORED_GOLD;
