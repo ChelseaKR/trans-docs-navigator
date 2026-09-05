@@ -124,6 +124,9 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml",
     "https://www.ssa.gov/forms/ss-5.pdf",
+    // Virginia's VS42 (Changing Sex Designation) form is a PDF whose text this pipeline
+    // cannot extract, so no baseline can be taken — deliberate, with the Virginia corpus.
+    "https://www.vdh.virginia.gov/content/uploads/sites/93/2020/07/VS42_Gender-Designation-Form.pdf",
   ]);
   // ...and the two reasons are genuinely different failures, which is why the launch-gate
   // evidence names them separately instead of calling all three a 403.

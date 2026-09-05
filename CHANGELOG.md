@@ -8,6 +8,27 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Virginia** (M6 — expand jurisdictions): 7 EN + 7 ES corpus records (court-order name
+  change, driver's-license name and gender-marker, a driver's-license replacement-fee
+  record, birth-certificate name and gender-marker, and a birth-certificate fee record),
+  2 referrals, and 1 forms-registry entry, each sourced from the Code of Virginia,
+  Virginia's Judicial System self-help site, Virginia DMV, or the Virginia Department of
+  Health, and fetched into `corpus/snapshots/`. Virginia's name-change statute
+  (§ 8.01-217) directs a petitioner to the circuit court of the county or city where they
+  live and requires the court to grant the change unless it finds fraud, an infringement
+  of others' rights, or — for a minor — that it is not in the child's best interest; extra
+  requirements apply to incarcerated, probationary, or registered petitioners. Virginia no
+  longer requires a court order to change the sex designation on a birth certificate — an
+  adult files form VS42, signed by a treating medical provider, directly with the State
+  Registrar — but both the DMV and birth-certificate gender-marker records are marked
+  **`needs_reverification`**: Virginia's gender-marker policy has shifted with changes in
+  administration before, so the corpus degrades rather than asserts a settled fact. The
+  Code of Virginia's own site (`law.lis.virginia.gov`) was observed to intermittently
+  include or omit a footer HTML fragment across otherwise-identical fetches; the committed
+  snapshot and drift baseline were pinned to the same fetch to keep `make fidelity`
+  deterministic, but the weekly `source-watch` job may need a human's eye on that one
+  domain (see the PR description).
+
 - **Georgia** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (court-order name
   change, driver's-license name and gender-marker, birth-certificate name and
   gender-marker, and a birth-certificate fee record), 2 referrals, and 1 forms-registry

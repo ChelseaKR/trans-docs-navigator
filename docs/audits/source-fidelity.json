@@ -1,7 +1,7 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 164,
-  "supported": 353,
+  "records": 178,
+  "supported": 380,
   "unsupported": 0,
   "uncheckable": 106,
   "unfetchable_sources": [
@@ -12,8 +12,8 @@
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → HTTP 404: the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 607,
-  "total_prose_sentences": 764,
+  "unchecked_prose_sentences": 663,
+  "total_prose_sentences": 836,
   "audits": [
     {
       "recordId": "az.court-order.name",
@@ -5375,6 +5375,191 @@
       "totalSentences": 4
     },
     {
+      "recordId": "va.court-order.name.es",
+      "language": "es",
+      "url": "https://law.lis.virginia.gov/vacode/title8.01/chapter3/section8.01-217/",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "va.drivers-license.name.es",
+      "language": "es",
+      "url": "https://www.dmv.virginia.gov/records/personal-information-updates",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 2,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "va.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.dmv.virginia.gov/records/personal-information-updates",
+      "results": [],
+      "uncheckedProse": 6,
+      "negatedClaims": 3,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "va.drivers-license.fees.es",
+      "language": "es",
+      "url": "https://www.dmv.virginia.gov/licenses-ids/license/replace",
+      "results": [
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "costs $20",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        },
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "states $10",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        },
+        {
+          "kind": "money",
+          "key": "2",
+          "label": "states $2",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $2"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 0,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "va.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://law.lis.virginia.gov/vacode/title32.1/chapter7/section32.1-269/",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "va.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.vdh.virginia.gov/vital-records/what-is-the-procedure-to-update-a-virginia-birth-certificate-after-a-person-has-undergone-gender-transition/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        },
+        {
+          "kind": "form-id",
+          "key": "VS42",
+          "label": "official form VS42 backs this step (form_ref: va-vs42)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names VS42"
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $15"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "va.birth-certificate.fees.es",
+      "language": "es",
+      "url": "https://www.vdh.virginia.gov/vital-records/how-to-request-an-amendment-to-a-birth-certificate/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        },
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "states $25",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $25"
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $15"
+        },
+        {
+          "kind": "form-id",
+          "key": "VS43",
+          "label": "names form VS43",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names VS43"
+        }
+      ],
+      "uncheckedProse": 0,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
       "recordId": "tx.court-order.name",
       "language": "en",
       "url": "https://texaslawhelp.org/guide/i-want-to-change-my-name",
@@ -5596,6 +5781,201 @@
       "uncheckedProse": 1,
       "negatedClaims": 1,
       "totalSentences": 3
+    },
+    {
+      "recordId": "va.court-order.name",
+      "language": "en",
+      "url": "https://law.lis.virginia.gov/vacode/title8.01/chapter3/section8.01-217/",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "va.drivers-license.name",
+      "language": "en",
+      "url": "https://www.dmv.virginia.gov/records/personal-information-updates",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 2,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "va.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.dmv.virginia.gov/records/personal-information-updates",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 2,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "va.drivers-license.fees",
+      "language": "en",
+      "url": "https://www.dmv.virginia.gov/licenses-ids/license/replace",
+      "results": [
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "costs $20",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        },
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "states $10",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        },
+        {
+          "kind": "money",
+          "key": "2",
+          "label": "states $2",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $2"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 0,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "va.birth-certificate.name",
+      "language": "en",
+      "url": "https://law.lis.virginia.gov/vacode/title32.1/chapter7/section32.1-269/",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "va.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.vdh.virginia.gov/vital-records/what-is-the-procedure-to-update-a-virginia-birth-certificate-after-a-person-has-undergone-gender-transition/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        },
+        {
+          "kind": "form-id",
+          "key": "VS42",
+          "label": "official form VS42 backs this step (form_ref: va-vs42)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names VS42"
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $15"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "va.birth-certificate.fees",
+      "language": "en",
+      "url": "https://www.vdh.virginia.gov/vital-records/how-to-request-an-amendment-to-a-birth-certificate/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        },
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "states $25",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $25"
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $15"
+        },
+        {
+          "kind": "form-id",
+          "key": "VS43",
+          "label": "names form VS43",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names VS43"
+        }
+      ],
+      "uncheckedProse": 0,
+      "negatedClaims": 0,
+      "totalSentences": 4
     },
     {
       "recordId": "wa.court-order.name",

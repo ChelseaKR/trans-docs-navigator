@@ -24,6 +24,7 @@ const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-PA", label: "Pennsylvania" },
   { id: "US-OH", label: "Ohio" },
   { id: "US-TX", label: "Texas" },
+  { id: "US-VA", label: "Virginia" },
   { id: "US-WA", label: "Washington" },
 ];
 const DOCUMENT_IDS: DocumentType[] = ["court-order", "ssa-card", "drivers-license", "passport", "birth-certificate", "financial-records"];

@@ -1,33 +1,33 @@
 {
   "today": "2026-07-13",
-  "total": 49,
+  "total": 53,
   "metrics": [
     {
       "name": "groundedness",
       "value": 1,
       "threshold": 0.95,
-      "n": 41,
+      "n": 43,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 35,
+      "n": 37,
       "pass": true
     },
     {
       "name": "refusal_safety",
       "value": 1,
       "threshold": 1,
-      "n": 6,
+      "n": 8,
       "pass": true
     },
     {
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 49,
+      "n": 53,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 35,
+      "n": 37,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
       "value": 1,
       "threshold": 0.7,
-      "n": 35,
+      "n": 37,
       "pass": true
     }
   ],
@@ -132,6 +132,12 @@
       "pass": true
     },
     {
+      "segment": "jurisdiction:US-VA",
+      "value": 1,
+      "n": 2,
+      "pass": true
+    },
+    {
       "segment": "jurisdiction:US-WA",
       "value": 1,
       "n": 2,
@@ -140,13 +146,13 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 24,
+      "n": 25,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 11,
+      "n": 12,
       "pass": true
     }
   ],
@@ -266,6 +272,16 @@
       "records": 14,
       "current_records": 12,
       "gold_items": 1,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-VA",
+      "records": 14,
+      "current_records": 10,
+      "gold_items": 2,
       "accuracy": 1,
       "mechanically_ready": true,
       "verification_complete": false,
@@ -696,6 +712,46 @@
       "suite": "accuracy",
       "segment": {
         "jurisdiction": "US-CO",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "va-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-VA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "va-marker-dl-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-VA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "va-birth-marker-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-VA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "va-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-VA",
         "language": "es"
       },
       "passed": true,

@@ -37,6 +37,7 @@ const STATES: StateDef[] = [
   { slug: "pennsylvania", id: "US-PA", name: { en: "Pennsylvania", es: "Pensilvania" } },
   { slug: "ohio", id: "US-OH", name: { en: "Ohio", es: "Ohio" } },
   { slug: "texas", id: "US-TX", name: { en: "Texas", es: "Texas" } },
+  { slug: "virginia", id: "US-VA", name: { en: "Virginia", es: "Virginia" } },
   { slug: "washington", id: "US-WA", name: { en: "Washington", es: "Washington" } },
 ];
 

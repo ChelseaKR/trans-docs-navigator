@@ -2070,5 +2070,178 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "language": "es"
+  },
+  {
+    "id": "va.court-order.name.es",
+    "jurisdiction": "US-VA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Solicitud de cambio de nombre en Virginia",
+    "statement": "En Virginia, usted solicita el cambio de su nombre en el tribunal de circuito (circuit court) del condado o ciudad donde vive. Si no tiene un lugar fijo de residencia, puede presentar la solicitud en cualquier tribunal de circuito que determine que existe causa justificada para considerar su caso.",
+    "detail": "Su solicitud debe hacerse bajo juramento e incluir su lugar de residencia, los nombres de ambos padres (incluido el apellido de soltera de su madre), su fecha y lugar de nacimiento, su historial de condenas por delitos graves (felony) si lo tiene, y cualquier nombre que haya cambiado antes. En la audiencia, el tribunal debe ordenar el cambio de nombre a menos que la evidencia muestre que usted lo solicita con un propósito fraudulento, que infringiría los derechos de otra persona, o — en el caso de un menor — que no sería en el mejor interés del menor. Se aplican requisitos adicionales si usted está encarcelado, en libertad condicional (probation), o debe registrarse en el Registro de Delincuentes Sexuales y Delitos Contra Menores.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta ley no establece la tarifa de presentación. Las tarifas las fija el secretario (clerk) del tribunal de circuito y pueden variar; consulte con la oficina del secretario donde presenta su solicitud para conocer el monto actual."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://law.lis.virginia.gov/vacode/title8.01/chapter3/section8.01-217/",
+      "title": "Código de Virginia § 8.01-217 — Cómo Se Puede Cambiar el Nombre de una Persona",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "va.drivers-license.name.es",
+    "jurisdiction": "US-VA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir o identificación de Virginia",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Virginia, inicie el cambio en línea o complete una Solicitud de Licencia de Conducir y Tarjeta de Identificación en un centro de servicio al cliente del DMV. Necesita uno de los siguientes: un certificado de matrimonio o unión civil, un decreto de divorcio que indique el cambio de su nombre de casada a su nombre de soltera, o una orden judicial que otorgue el cambio de nombre.",
+    "detail": "Lleve su licencia de conducir, permiso de aprendizaje o identificación con foto vigente de Virginia si tiene uno; si no, deberá presentar otro documento de prueba de identidad. El DMV pide que use su nombre legal completo — no abreviaturas ni apodos — y que lleve documentos originales, no copias. Una vez procesado el cambio de nombre, todavía necesita obtener una licencia o identificación de reemplazo que muestre el nombre nuevo.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dmv.virginia.gov/records/personal-information-updates",
+      "title": "DMV de Virginia — Cambiar Dirección, Nombre o Designación de Sexo",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "va.drivers-license.gender-marker.es",
+    "jurisdiction": "US-VA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en la licencia de conducir o identificación de Virginia",
+    "statement": "Virginia le permite elegir M (masculino), F (femenino) o X (no binario) como designación de sexo en su licencia de conducir o identificación. Es posible que pueda cambiarla en línea; si no, puede cambiarla cuando solicite, renueve o reemplace una licencia, permiso de aprendizaje, tarjeta de identificación o tarjeta de privilegio de conducir. No se requiere certificación de un proveedor de atención médica.",
+    "detail": "Esto es lo que indica la propia página del DMV de Virginia a la fecha de última verificación de este registro. La política sobre la designación de sexo en los documentos de identificación estatales ha cambiado antes con los cambios de administración, así que confirme los requisitos actuales directamente con el DMV, un abogado o una organización local de apoyo a personas trans antes de basarse en esto.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dmv.virginia.gov/records/personal-information-updates",
+      "title": "DMV de Virginia — Cambiar Dirección, Nombre o Designación de Sexo",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "va.drivers-license.fees.es",
+    "jurisdiction": "US-VA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Tarifa de reemplazo de licencia/identificación de Virginia",
+    "statement": "Después de procesar un cambio de nombre o de designación de sexo, el DMV de Virginia emite una licencia o identificación nueva como credencial de reemplazo. En persona, una licencia de reemplazo cuesta $20 (agregue $10 si también está actualizando a REAL ID en la misma visita); un permiso de aprendizaje de reemplazo cuesta $2.",
+    "detail": "Muchas veces puede obtener un reemplazo en línea, pero el DMV exige una visita en persona a un centro de servicio al cliente si necesita cambiar o corregir el nombre en su licencia o permiso. En persona, usted presenta una Solicitud de Licencia de Conducir y Tarjeta de Identificación completa, un documento de prueba de identidad, se toma una foto nueva y paga la tarifa de reemplazo.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "$20 por una licencia de reemplazo, más $10 si también está actualizando a REAL ID en la misma visita. Un permiso de aprendizaje de reemplazo cuesta $2."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dmv.virginia.gov/licenses-ids/license/replace",
+      "title": "DMV de Virginia — Reemplace su Licencia de Conducir o Permiso de Aprendizaje",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "va.birth-certificate.name.es",
+    "jurisdiction": "US-VA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Virginia tras una orden judicial",
+    "statement": "El Registrador Estatal de Virginia enmendará su acta de nacimiento para mostrar un nuevo nombre legal después de recibir una copia certificada de la orden judicial que cambió su nombre, junto con una solicitud de usted o de su padre, madre, tutor o representante legal.",
+    "detail": "Si la orden judicial no indica su nombre al nacer junto con su fecha y lugar de nacimiento, también debe enviar una copia de la petición o solicitud de cambio de nombre. Esta ley no indica la tarifa de la enmienda ni de una copia certificada; consulte el registro de tarifas del acta de nacimiento de Virginia (registro pareja) para conocer las cifras actuales.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta ley no indica una tarifa. Consulte el registro de tarifas del acta de nacimiento de Virginia (va.birth-certificate.fees) para conocer las tarifas administrativas y de copia certificada actuales."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://law.lis.virginia.gov/vacode/title32.1/chapter7/section32.1-269/",
+      "title": "Código de Virginia § 32.1-269 — Enmienda de Registros Vitales; Cambio de Nombre; Reconocimiento de Paternidad",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "va.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-VA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Cambio de designación de sexo en el acta de nacimiento de Virginia",
+    "statement": "Para actualizar la designación de sexo en un acta de nacimiento de Virginia, el Registrador Estatal necesita una solicitud de usted (o de su padre o madre si usted es menor de edad), una copia de su identificación vigente, y el formulario de Cambio de Designación de Sexo (VS42) completado, con firma en tinta y fecha, por el proveedor médico que confirma que usted ha recibido tratamiento clínicamente apropiado para la transición de género.",
+    "detail": "No se requiere una orden judicial para el cambio de designación de sexo por sí solo. Si también está cambiando su nombre, incluya una copia certificada de la orden judicial; si esa orden no muestra su nombre al nacer, fecha y lugar de nacimiento, incluya también una copia de la petición o solicitud de cambio de nombre. El Registrador Estatal cobra una tarifa administrativa de $10 para establecer el acta de nacimiento enmendada, más $15 por cada copia certificada que solicite. La política de designación de sexo en los registros vitales de Virginia ha cambiado antes con los cambios de administración, así que confirme los requisitos actuales directamente con la Oficina de Registros Vitales, un abogado o una organización local de apoyo a personas trans antes de basarse en esto.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Tarifa administrativa de $10 para establecer el acta enmendada. Agregue $15 por cada copia certificada que solicite."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.vdh.virginia.gov/vital-records/what-is-the-procedure-to-update-a-virginia-birth-certificate-after-a-person-has-undergone-gender-transition/",
+      "title": "Departamento de Salud de Virginia — ¿Cuál es el procedimiento para actualizar un acta de nacimiento de Virginia después de que una persona se ha sometido a una transición de género?",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "va-vs42",
+    "language": "es"
+  },
+  {
+    "id": "va.birth-certificate.fees.es",
+    "jurisdiction": "US-VA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Tarifa de enmienda del acta de nacimiento de Virginia",
+    "statement": "La Oficina de Registros Vitales de Virginia cobra una tarifa de administración de $10.00 por cualquier cambio hecho a un acta de nacimiento. Si también desea una copia del acta una vez enmendada, el costo total es de $25.00 — la tarifa de administración de $10.00 más una tarifa de certificado de $15.00.",
+    "detail": "Esta es la tarifa general de enmienda de actas de nacimiento que indica el Departamento de Salud de Virginia para cualquier solicitud de cambio o corrección, presentada en el formulario VS43. Es la misma tarifa de administración de $10.00 mencionada en la página separada del departamento sobre transición de género.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Tarifa de administración de $10.00 por cualquier cambio al acta. Con una copia certificada del acta enmendada, el total es de $25.00 ($10.00 de tarifa administrativa más $15.00 de tarifa de certificado)."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.vdh.virginia.gov/vital-records/how-to-request-an-amendment-to-a-birth-certificate/",
+      "title": "Departamento de Salud de Virginia — Cómo Solicitar una Enmienda a un Acta de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
   }
 ]

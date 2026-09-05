@@ -1,0 +1,175 @@
+[
+  {
+    "id": "va.court-order.name",
+    "jurisdiction": "US-VA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Virginia name change application",
+    "statement": "In Virginia you apply to change your name in the circuit court of the county or city where you live. If you have no fixed place of residence, you can apply to any circuit court that finds good cause to consider your case.",
+    "detail": "Your application must be made under oath and must state your place of residence, both parents' names (including your mother's maiden name), your date and place of birth, your felony conviction record if any, and any name you've changed before. At a hearing, the court must order the name change unless the evidence shows you are seeking it for a fraudulent purpose, it would infringe on someone else's rights, or — for a minor — it would not be in the child's best interest. Extra requirements apply if you are incarcerated, on probation, or required to register with the Sex Offender and Crimes Against Minors Registry.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This statute does not set the filing fee. Filing fees are set and collected by the circuit court clerk and can vary by court; contact the clerk's office where you are filing for the current amount."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://law.lis.virginia.gov/vacode/title8.01/chapter3/section8.01-217/",
+      "title": "Code of Virginia § 8.01-217 — How Name of Person May Be Changed",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "va.drivers-license.name",
+    "jurisdiction": "US-VA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Virginia driver's license or ID name change",
+    "statement": "To change the name on your Virginia driver's license or ID, start the change online or complete a Driver's License and Identification Card Application at a DMV customer service center. You need one of: a marriage or civil-union certificate, a divorce decree that states the change from your married name to your maiden name, or a court order granting the name change.",
+    "detail": "Bring your current Virginia driver's license, learner's permit, or photo ID if you have one; if you don't, you need to present a different proof-of-identity document instead. DMV asks you to use your full legal name — not abbreviations or nicknames — and to bring original documents, not copies. Once your name change is processed, you still need to get a replacement license or ID card showing the new name.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dmv.virginia.gov/records/personal-information-updates",
+      "title": "Virginia DMV — Change Address, Name or Sex Designation",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "va.drivers-license.gender-marker",
+    "jurisdiction": "US-VA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Virginia driver's license or ID sex designation",
+    "statement": "Virginia lets you choose M (male), F (female), or X (non-binary) as the sex designation on your driver's license or ID. You may be able to change it online; if not, you can change it any time you apply for, renew, or replace a license, learner's permit, ID card, or driver privilege card. A healthcare provider's certification is not required.",
+    "detail": "This is what Virginia DMV's own page states as of this record's last-verified date. Gender-marker policy for state ID documents has shifted before with changes in administration, so confirm current requirements directly with DMV, an attorney, or a local trans-support organization before you rely on this.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dmv.virginia.gov/records/personal-information-updates",
+      "title": "Virginia DMV — Change Address, Name or Sex Designation",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "va.drivers-license.fees",
+    "jurisdiction": "US-VA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Virginia driver's license/ID replacement fee",
+    "statement": "After a name or sex-designation change is processed, Virginia DMV issues a new license or ID as a replacement credential. In person, a replacement license costs $20 (add $10 if you're also upgrading to REAL ID at the same visit); a replacement learner's permit costs $2.",
+    "detail": "You can often get a replacement online, but DMV requires an in-person visit at a customer service center if you need to change or correct the name on your license or permit. In person, you present a completed Driver's License and Identification Card Application, one proof-of-identity document, have a new photo taken, and pay the replacement fee.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "$20 for a replacement license, plus $10 if you're also upgrading to REAL ID in the same visit. A replacement learner's permit costs $2."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dmv.virginia.gov/licenses-ids/license/replace",
+      "title": "Virginia DMV — Replace Your Driver's License or Learner's Permit",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "va.birth-certificate.name",
+    "jurisdiction": "US-VA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Virginia birth certificate name change after a court order",
+    "statement": "Virginia's State Registrar will amend your birth certificate to show a new legal name after receiving a certified copy of the court order that changed your name, along with a request from you or your parent, guardian, or legal representative.",
+    "detail": "If the court order doesn't list your name at birth along with your date and place of birth, you also need to send a copy of the name-change petition or application. This statute does not state the fee for the amendment or for a certified copy; see the paired Virginia birth-certificate fee record for current figures.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This statute does not state a fee. See the paired Virginia birth-certificate fee record (va.birth-certificate.fees) for the current administrative and certified-copy fees."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://law.lis.virginia.gov/vacode/title32.1/chapter7/section32.1-269/",
+      "title": "Code of Virginia § 32.1-269 — Amending Vital Records; Change of Name; Acknowledgment of Paternity",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "va.birth-certificate.gender-marker",
+    "jurisdiction": "US-VA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Virginia birth certificate sex designation change",
+    "statement": "To update the sex designation on a Virginia birth certificate, the State Registrar needs a request from you (or your parent if you're under 18), a copy of your valid ID, and a completed Changing Sex Designation (VS42) form with a live-ink signature and date from the medical provider confirming you've had clinically appropriate treatment for gender transition.",
+    "detail": "No court order is required for the sex-designation change by itself. If you are also changing your name, include a certified copy of the court order; if that order doesn't show your name at birth, date of birth, and place of birth, also include a copy of the name-change petition or application. The State Registrar charges a $10 administrative fee to establish the amended birth certificate, plus $15 for each certified copy of it you request. Virginia's gender-marker policy for vital records has shifted before with changes in administration, so confirm current requirements directly with the Office of Vital Records, an attorney, or a local trans-support organization before you rely on this.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "$10 administrative fee to establish the amended certificate. Add $15 for each certified copy you request."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.vdh.virginia.gov/vital-records/what-is-the-procedure-to-update-a-virginia-birth-certificate-after-a-person-has-undergone-gender-transition/",
+      "title": "Virginia Department of Health — What Is the Procedure to Update a Virginia Birth Certificate After a Person Has Undergone Gender Transition?",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "va-vs42",
+    "language": "en"
+  },
+  {
+    "id": "va.birth-certificate.fees",
+    "jurisdiction": "US-VA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Virginia birth certificate amendment fee",
+    "statement": "Virginia's Office of Vital Records charges a $10.00 administration fee for any change made to a birth certificate. If you also want a copy of the certificate once it's amended, the total cost is $25.00 — the $10.00 administration fee plus a $15.00 certificate fee.",
+    "detail": "This is the general birth-certificate amendment fee the Virginia Department of Health states for any change or correction request, filed on the VS43 form. It's the same $10.00 administration fee referenced on the department's separate gender-transition page.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "$10.00 administration fee for any change to the certificate. With a certified copy of the amended certificate, the total is $25.00 ($10.00 administration fee plus $15.00 certificate fee)."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.vdh.virginia.gov/vital-records/how-to-request-an-amendment-to-a-birth-certificate/",
+      "title": "Virginia Department of Health — How to Request an Amendment to a Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]
