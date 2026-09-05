@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 164 |
-| Load-bearing assertions found | 459 |
-| — checked and **supported** by the cited source | 353 |
+| Records audited | 174 |
+| Load-bearing assertions found | 497 |
+| — checked and **supported** by the cited source | 369 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 106 |
-| of the checked: literal (fee / duration / form-id) matches | 224 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 129 |
+| — **UNCHECKABLE** (reported, never passed) | 128 |
+| of the checked: literal (fee / duration / form-id) matches | 234 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 135 |
 
 ## What this gate cannot vouch for
 
-- **607 of 764 prose sentences** in the corpus carry no extractable
+- **661 of 828 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **198 sentences state a negative** (`you do not need a court order`, `the page no
+- **223 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **129 assertions are necessary-condition only**: the source discusses the topic, which
+- **135 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **6 cited sources refuse automated fetching entirely**, so no
@@ -109,9 +109,20 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ny.court-order.name.es · a fee waiver is available (cost.fee_waiver: true)`
 - `ny.court-order.name.es · publication in a newspaper is required`
 
-**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 24 assertion(s):
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 46 assertion(s):
 
 - `az.drivers-license.gender-marker · a court order is required`
+- `nv.birth-certificate.name · costs $45`
+- `nv.birth-certificate.name · form_ref "nv-dpbh-court-ordered-change" (Application for a Correction of a Record — Court Ordered Change Only) carries no form identifier to match on`
+- `nv.birth-certificate.name · a court order is required`
+- `nv.birth-certificate.name · states $25`
+- `nv.birth-certificate.name · states "4 week"`
+- `nv.birth-certificate.name · states "6 week"`
+- `nv.birth-certificate.gender-marker · form_ref "nv-dpbh-corrections-birth" (Application for a Correction of a Birth Record (Affidavit for Correction of a Record + Supplemental Affidavit)) carries no form identifier to match on`
+- `nv.birth-certificate.gender-marker · a notarized signature is required`
+- `nv.birth-certificate.gender-marker · a court order is required`
+- `nv.birth-certificate.gender-marker · states $40`
+- `nv.birth-certificate.gender-marker · states $45`
 - `pa.birth-certificate.gender-marker · costs $20`
 - `pa.birth-certificate.gender-marker · a fee waiver is available (cost.fee_waiver: true)`
 - `pa.birth-certificate.gender-marker · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
@@ -124,6 +135,17 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `pa.birth-certificate.name · a notarized signature is required`
 - `pa.birth-certificate.name · states "45 day"`
 - `az.drivers-license.gender-marker.es · a court order is required`
+- `nv.birth-certificate.name.es · costs $45`
+- `nv.birth-certificate.name.es · form_ref "nv-dpbh-court-ordered-change" (Application for a Correction of a Record — Court Ordered Change Only) carries no form identifier to match on`
+- `nv.birth-certificate.name.es · a court order is required`
+- `nv.birth-certificate.name.es · states $25`
+- `nv.birth-certificate.name.es · states "4 week"`
+- `nv.birth-certificate.name.es · states "6 week"`
+- `nv.birth-certificate.gender-marker.es · form_ref "nv-dpbh-corrections-birth" (Application for a Correction of a Birth Record (Affidavit for Correction of a Record + Supplemental Affidavit)) carries no form identifier to match on`
+- `nv.birth-certificate.gender-marker.es · a notarized signature is required`
+- `nv.birth-certificate.gender-marker.es · a court order is required`
+- `nv.birth-certificate.gender-marker.es · states $40`
+- `nv.birth-certificate.gender-marker.es · states $45`
 - `pa.birth-certificate.gender-marker.es · costs $20`
 - `pa.birth-certificate.gender-marker.es · a fee waiver is available (cost.fee_waiver: true)`
 - `pa.birth-certificate.gender-marker.es · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
@@ -268,6 +290,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `mi.drivers-license.gender-marker.es` | es | 0 | 0 | 3 | 7/7 |
 | `mi.drivers-license.name` | en | 0 | 0 | 3 | 7/7 |
 | `mi.drivers-license.name.es` | es | 0 | 0 | 3 | 7/7 |
+| `nv.birth-certificate.gender-marker` | en | 0 | 0 | 5 | 6/6 |
+| `nv.birth-certificate.gender-marker.es` | es | 0 | 0 | 5 | 6/6 |
+| `nv.birth-certificate.name` | en | 0 | 0 | 6 | 5/7 |
+| `nv.birth-certificate.name.es` | es | 0 | 0 | 6 | 5/7 |
+| `nv.court-order.name` | en | 2 | 0 | 0 | 6/7 |
+| `nv.court-order.name.es` | es | 2 | 0 | 0 | 6/7 |
+| `nv.drivers-license.gender-marker` | en | 1 | 0 | 0 | 7/7 |
+| `nv.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 7/7 |
+| `nv.drivers-license.name` | en | 5 | 0 | 0 | 3/5 |
+| `nv.drivers-license.name.es` | es | 5 | 0 | 0 | 3/5 |
 | `ny.birth-certificate.gender-marker` | en | 0 | 0 | 5 | 5/6 |
 | `ny.birth-certificate.gender-marker.affidavit` | en | 0 | 0 | 3 | 2/4 |
 | `ny.birth-certificate.gender-marker.affidavit.es` | es | 0 | 0 | 4 | 2/4 |

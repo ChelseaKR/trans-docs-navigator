@@ -374,6 +374,35 @@
       "file": "law-cornell-edu-regulations-colorado-5-ccr-1006-1-5-d2aa51f9.txt",
       "fetched": "2026-09-05",
       "sha256": "ec748c0f293c0c5b8d11f5a2fb185c0baef687d35c28610feec573b961f19be6"
+    },
+    "https://dmv.nv.gov/addchange.htm": {
+      "file": "dmv-nv-gov-addchange-htm-fe0c0c69.txt",
+      "fetched": "2026-09-05",
+      "sha256": "0c992bf8c44befe3405779b76a56c00fb56b1a3ba855d118355fdb9a2085a659"
+    },
+    "https://dmv.nv.gov/faqs.htm": {
+      "file": "dmv-nv-gov-faqs-htm-b28fbcbf.txt",
+      "fetched": "2026-09-05",
+      "sha256": "086c3afcf740b532598dd0a67bbc38b41767b6ecce1b4840adba8658528cb759"
+    },
+    "https://selfhelp.nvcourts.gov/self-help/name-changes/name-changes-for-adults": {
+      "file": "selfhelp-nvcourts-gov-self-help-name-changes-name-changes-for-adults-bc9caeed.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d6fccb1802ff2290dd5fe7039035f34c99317cd9678d4df35d505bfa65efe5d3"
+    },
+    "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
     }
   }
 }

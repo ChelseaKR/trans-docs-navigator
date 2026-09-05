@@ -103,7 +103,7 @@ test("empty model output degrades to a refusal, never a fabricated answer", asyn
 test("when nothing is current, the model path refuses without calling the model", async () => {
   let called = false;
   const gen = new BedrockGenerator(async () => { called = true; return "x"; });
-  const ans = await answerAsync({ jurisdiction: "US-NV", change_types: ["name"], documents: ["court-order"], today }, { generator: gen });
+  const ans = await answerAsync({ jurisdiction: "US-AL", change_types: ["name"], documents: ["court-order"], today }, { generator: gen });
   assert.equal(ans.refused, true);
   assert.equal(called, false); // no retrieved records ⇒ no spend
 });

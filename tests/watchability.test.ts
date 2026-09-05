@@ -115,6 +115,11 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // baseline can be taken — deliberate, with the Arizona corpus.
     "https://superiorcourt.maricopa.gov/media/emucljue/name-gender-change-eng-spa.pdf",
     "https://www.azdhs.gov/documents/vital-records/manuals/correction-affidavit-correct-amend-birth.pdf?v=20260409",
+    // Nevada: all three are PDFs whose text this pipeline cannot extract, so no
+    // baseline can be taken — deliberate, with the Nevada corpus.
+    "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf",
+    "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf",
+    "https://www.dpbh.nv.gov/uploadedFiles/dpbh.nv.gov/content/Programs/BirthDeath/dta/Forms/Corrections%20-%20Birth.pdf",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
     // Michigan's SOS and MDHHS pages refuse this project's declared user-agent.
     // Verified 403 from both Node's fetch and curl sending the same UA, so this is

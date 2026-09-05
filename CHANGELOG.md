@@ -8,6 +8,24 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Nevada** (M6 — expand jurisdictions): 5 EN + 5 ES corpus records (court-order name
+  change, driver's-license name and gender-marker, birth-certificate name and
+  gender-marker), 2 referrals, and 2 forms-registry entries. Nevada's name-change statute
+  (NRS 41.270–.290) and the state courts' own self-help page state a genuine,
+  gender-identity-specific accommodation: publication of the name-change notice in a
+  newspaper is required in general, but the court "shall not require" it when the petition
+  states the change conforms to the petitioner's gender identity — recorded as a real
+  statutory exception, not asserted generically. The DMV's own FAQ page states a driver's
+  license/ID gender designation of M, F, or X with "no medical certification... required,"
+  matching Nevada Administrative Code 483.070's self-declaration rule. The birth-certificate
+  gender-marker record is deliberately degraded (`verification_status: needs_reverification`,
+  `cost.amount_usd: null`): Nevada's own published guide to the process states a $40
+  amendment fee, but the department's current (2025) corrections-packet form states $45 for
+  the same service, and rather than pick one, the record says so and asserts no figure.
+  Both birth-certificate records cite PDF sources (the department publishes no HTML
+  page describing either process), so — like Georgia's Form 3977 — they cannot be
+  automatically fidelity-checked and are reported UNCHECKABLE rather than silently passed.
+
 - **Georgia** (M6 — expand jurisdictions): 6 EN + 6 ES corpus records (court-order name
   change, driver's-license name and gender-marker, birth-certificate name and
   gender-marker, and a birth-certificate fee record), 2 referrals, and 1 forms-registry

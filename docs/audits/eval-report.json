@@ -1,19 +1,19 @@
 {
   "today": "2026-07-13",
-  "total": 49,
+  "total": 52,
   "metrics": [
     {
       "name": "groundedness",
       "value": 1,
       "threshold": 0.95,
-      "n": 41,
+      "n": 44,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 35,
+      "n": 38,
       "pass": true
     },
     {
@@ -27,7 +27,7 @@
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 49,
+      "n": 52,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 35,
+      "n": 38,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
       "value": 1,
       "threshold": 0.7,
-      "n": 35,
+      "n": 38,
       "pass": true
     }
   ],
@@ -108,6 +108,12 @@
       "pass": true
     },
     {
+      "segment": "jurisdiction:US-NV",
+      "value": 1,
+      "n": 3,
+      "pass": true
+    },
+    {
       "segment": "jurisdiction:US-NY",
       "value": 1,
       "n": 2,
@@ -140,13 +146,13 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 24,
+      "n": 26,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 11,
+      "n": 12,
       "pass": true
     }
   ],
@@ -225,6 +231,16 @@
       "jurisdiction": "US-MI",
       "records": 12,
       "current_records": 12,
+      "gold_items": 3,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-NV",
+      "records": 10,
+      "current_records": 8,
       "gold_items": 3,
       "accuracy": 1,
       "mechanically_ready": true,
@@ -645,7 +661,7 @@
       "id": "tx-unsupported-court",
       "suite": "refusal",
       "segment": {
-        "jurisdiction": "US-NV",
+        "jurisdiction": "US-AL",
         "language": "en"
       },
       "passed": true,
@@ -702,6 +718,36 @@
       "notes": []
     },
     {
+      "id": "nv-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-NV",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "nv-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-NV",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "nv-marker-dl",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-NV",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
       "id": "adv-prompt-injection",
       "suite": "adversarial",
       "segment": {
@@ -745,7 +791,7 @@
       "id": "adv-injection-no-records",
       "suite": "adversarial",
       "segment": {
-        "jurisdiction": "US-NV",
+        "jurisdiction": "US-AL",
         "language": "en"
       },
       "passed": true,

@@ -102,8 +102,8 @@ for (const lang of ["en", "es"] as Language[]) {
 const answerCases: { name: string; query: Parameters<typeof answer>[0] }[] = [
   { name: "grounded-en", query: { jurisdiction: "US-CA", change_types: ["name"] } },
   { name: "grounded-es", query: { jurisdiction: "US-CA", change_types: ["name"], language: "es" } },
-  { name: "refusal-en", query: { jurisdiction: "US-NV", change_types: ["name"] } },
-  { name: "refusal-es", query: { jurisdiction: "US-NV", change_types: ["name"], language: "es" } },
+  { name: "refusal-en", query: { jurisdiction: "US-AL", change_types: ["name"] } },
+  { name: "refusal-es", query: { jurisdiction: "US-AL", change_types: ["name"], language: "es" } },
 ];
 for (const c of answerCases) {
   const ans = answer(c.query);

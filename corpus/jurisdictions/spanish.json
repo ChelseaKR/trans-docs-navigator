@@ -1242,6 +1242,141 @@
     "language": "es"
   },
   {
+    "id": "nv.court-order.name.es",
+    "jurisdiction": "US-NV",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Nevada",
+    "statement": "En Nevada, usted presenta una petición jurada de cambio de nombre ante el tribunal de distrito del condado donde vive. Debe publicar un aviso sobre su petición una vez en un periódico de ese condado, a menos que esté cambiando su nombre para adecuarlo a su identidad de género, en cuyo caso no tiene que publicar nada ni llenar el formulario de aviso.",
+    "detail": "Junto con la petición, presenta una Hoja de Carátula Familiar y, cuando su caso esté listo, una Orden de Cambio de Nombre de Adulto para que el juez la firme; algunos condados también piden una Solicitud de Resolución Sumaria y Declaración de Apoyo. Debe declarar cualquier condena por delito grave, y si tiene antecedentes penales deberá presentar sus huellas dactilares. Cuando se requiere publicación, el periódico le entrega una Declaración Jurada de Publicación para presentar ante el tribunal, y el juez no puede otorgar su cambio de nombre hasta 10 días después de que se publique el aviso. La cuota de presentación la fija cada condado — pregunte en su tribunal de distrito local cuánto cobra, y pregunte sobre una exención de cuota si no puede pagarla.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La cuota de presentación varía según el condado; pregunte en su tribunal de distrito local cuánto cobra. Hay una exención de cuota disponible si no puede pagarla."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://selfhelp.nvcourts.gov/self-help/name-changes/name-changes-for-adults",
+      "title": "Nevada State Self-Help Center — Name Changes for Adults",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nv.drivers-license.name.es",
+    "jurisdiction": "US-NV",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Nevada",
+    "statement": "Para cambiar el nombre en su licencia de conducir o tarjeta de identificación de Nevada, primero actualice su nombre con la Administración del Seguro Social — el DMV no puede procesar su cambio de nombre hasta que los registros del Seguro Social estén actualizados. Luego haga una cita y visite en persona una oficina del DMV de Nevada con su licencia o identificación actual y un documento legal original o certificado que autorice el cambio, como un certificado de matrimonio, un decreto de divorcio o una orden judicial.",
+    "detail": "También debe completar la Solicitud de Privilegios de Conducir o Tarjeta de Identificación (DMV 002). Una tarjeta actualizada del Seguro Social por sí sola no es suficiente prueba del cambio de nombre. Se aplican las cuotas estándar: $8.50 por una licencia de conducir no comercial, $7.50 por una tarjeta de identificación y $12.50 por una licencia de conducir comercial.",
+    "cost": {
+      "amount_usd": null,
+      "note": "$8.50 por una licencia de conducir no comercial, $7.50 por una tarjeta de identificación, $12.50 por una licencia de conducir comercial."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dmv.nv.gov/addchange.htm",
+      "title": "Nevada DMV — Name and Address Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nv.drivers-license.gender-marker.es",
+    "jurisdiction": "US-NV",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de conducir de Nevada",
+    "statement": "Las licencias de conducir y tarjetas de identificación de Nevada ofrecen tres designaciones de género — M, F o X. Para cambiar la suya, visite una oficina del DMV en persona; no se requiere certificación médica, y usted simplemente selecciona el género que desea en su solicitud.",
+    "detail": "Haga una cita antes de visitar el DMV. Las actualizaciones no se pueden hacer en línea ni por correo. Se aplican las cuotas estándar de reemplazo — consulte la página de Cambios de Nombre y Dirección del DMV para ver la tabla de cuotas; la página de preguntas frecuentes no indica una cuota separada específica para el cambio de género.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página de preguntas frecuentes del DMV solo indica que 'se aplican las cuotas estándar de reemplazo', sin dar una cifra exacta para una actualización únicamente de género."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.nv.gov/faqs.htm",
+      "title": "Nevada DMV — Frequently Asked Questions",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "nv.birth-certificate.name.es",
+    "jurisdiction": "US-NV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Nevada",
+    "statement": "Si usted nació en Nevada, puede actualizar el nombre en su acta de nacimiento después de un cambio legal de nombre enviando por correo a la Oficina de Registros Vitales una solicitud de corrección completa junto con una copia CERTIFICADA de su orden judicial. La oficina no acepta una fotocopia ni una copia sin certificar.",
+    "detail": "La cuota es de $45.00 por persona del registro, e incluye la corrección y una copia certificada; cada copia certificada adicional cuesta $25.00. Pague con cheque, giro postal o cheque de caja a nombre de la Oficina de Registros Vitales — la oficina no acepta efectivo. Envíe sus documentos por correo a la Oficina de Registros Vitales y Estadísticas, 4150 Technology Way, Suite 104, Carson City, NV 89706. Cualquier corrector líquido, tachadura o borrón en la orden judicial presentada hará que rechacen su solicitud, y tendrá que volver a presentar una copia debidamente certificada.",
+    "cost": {
+      "amount_usd": 45,
+      "note": "$25.00 por cada copia certificada adicional después de la primera."
+    },
+    "timeline": {
+      "typical": "4 a 6 semanas"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf",
+      "title": "Nevada Office of Vital Records — Application for a Correction of a Record (Court Ordered Change Only)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "nv-dpbh-court-ordered-change",
+    "language": "es"
+  },
+  {
+    "id": "nv.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-NV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Cambio del marcador de género en el acta de nacimiento de Nevada",
+    "statement": "Nevada cambia el marcador de género en un acta de nacimiento emitida en Nevada mediante un proceso de autodeclaración — no necesita una orden judicial ni una carta médica, a menos que elija presentar una de todos modos. Complete usted mismo una Declaración Jurada de Corrección de un Registro, notariada, más una Declaración Jurada Suplementaria de otra persona que pueda dar fe de que usted se identifica y pretende mantener el género que está solicitando.",
+    "detail": "Quien firme la Declaración Jurada Suplementaria no puede ser usted ni quien firmó la declaración principal. En lugar de las dos declaraciones juradas, puede presentar otra evidencia verificable, como una carta de un profesional de salud con licencia o una orden judicial que reconozca su género. Envíe sus documentos en persona o por correo a la Oficina de Registros Vitales y Estadísticas en Carson City; llame al 775-684-4242 y pregunte por un empleado de enmiendas si tiene dudas.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La guía de Nevada sobre este proceso indica una cuota de enmienda de $40.00, pero el formulario actual del paquete de correcciones de actas de nacimiento del departamento indica $45.00 por el mismo servicio — los dos documentos del departamento no coinciden, así que aquí no se afirma ninguna cifra. Confirme la cuota vigente con la Oficina de Registros Vitales (775-684-4242) antes de pagar."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf",
+      "title": "Nevada Division of Public and Behavioral Health — Changing Your Gender in Nevada: A Guide to Name and Gender Marker Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "nv-dpbh-corrections-birth",
+    "language": "es"
+  },
+  {
     "id": "ny.birth-certificate.gender-marker.affidavit.es",
     "jurisdiction": "US-NY",
     "document_type": "birth-certificate",
