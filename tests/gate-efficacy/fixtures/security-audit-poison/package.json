@@ -1,0 +1,8 @@
+{
+  "name": "security-audit-poison-fixture",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "comment": "Poison fixture: a package.json with NO package-lock.json, so `npm audit` cannot build a tree and establishes no advisory count. The harm is not a vulnerable dependency — it is a dependency-advisory gate that reports success without having checked anything. See scripts/security-scan.ts's fail-closed contract.",
+  "dependencies": {}
+}
