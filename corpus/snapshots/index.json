@@ -73,6 +73,18 @@
       "fetched": "2026-07-13",
       "sha256": "f7c3985611a8e80e8403d385e1caeb1346c793675bc389e868cadacabb12af91"
     },
+    "https://health.maryland.gov/vsa/Documents/Corrections/Birth/Gender%20Reassignment/Gender%20Re-Assignment%20instructions%2009_01_2016.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://health.maryland.gov/vsa/Pages/birthcorrect.aspx": {
+      "file": "health-maryland-gov-vsa-pages-birthcorrect-aspx-cf85915e.txt",
+      "fetched": "2026-09-05",
+      "sha256": "64b2c184ed25d92067813fac17a76e6fb7a121bbba7289c7a471b99dd9235723"
+    },
     "https://law.lis.virginia.gov/vacode/title32.1/chapter7/section32.1-269/": {
       "file": "law-lis-virginia-gov-vacode-title32-1-chapter7-section32-1-269-73b3e9a8.txt",
       "fetched": "2026-09-05",
@@ -87,6 +99,11 @@
       "file": "michiganlegalhelp-org-resources-ids-and-name-change-i-want-change-my-n-6b5aa298.txt",
       "fetched": "2026-09-05",
       "sha256": "fc217fcb3910797ba2efe9761ee9a348b998ebb22b2398939fe14b03fd8b3785"
+    },
+    "https://mva.maryland.gov/about-mva/Pages/changing-gender.aspx": {
+      "file": "mva-maryland-gov-about-mva-pages-changing-gender-aspx-9297167f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "77b85b5bb406b6754d73e3043c5330aac949fbe3dbc15a5e934f66fe0d727e7b"
     },
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record": {
       "file": null,
@@ -222,6 +239,11 @@
       "file": "courtnewsohio-gov-cases-2024-sco-1119-220934-asp-973ce3f3.txt",
       "fetched": "2026-09-04",
       "sha256": "8343647fb430687194735d92f0104a514a9b0d41f1c03bf64a1b83a523aad366"
+    },
+    "https://www.courts.state.md.us/legalhelp/family/namechange": {
+      "file": "courts-state-md-us-legalhelp-family-namechange-a2ece022.txt",
+      "fetched": "2026-09-05",
+      "sha256": "bb242551463e1cd109203453241f87cc3b8345bea675d646461665964a86dc91"
     },
     "https://www.courts.wa.gov/forms/?fa=forms.static&staticID=13": {
       "file": "courts-wa-gov-forms-86a65aee.txt",
