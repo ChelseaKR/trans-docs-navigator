@@ -6,7 +6,7 @@
     "url": "https://mtlsa.org",
     "note": {
       "en": "Statewide nonprofit that provides free civil legal help to low-income Montanans, with offices around the state and a helpline, plus self-help legal information through MontanaLawHelp.org.",
-      "es": "Organización sin fines de lucro estatal que brinda ayuda legal civil gratuita a residentes de Montana de bajos ingresos, con oficinas en todo el estado y una línea de ayuda, además de información legal de autoayuda a través de MontanaLawHelp.org."
+      "es": "Organizaci\u00f3n sin fines de lucro estatal que brinda ayuda legal civil gratuita a residentes de Montana de bajos ingresos, con oficinas en todo el estado y una l\u00ednea de ayuda, adem\u00e1s de informaci\u00f3n legal de autoayuda a trav\u00e9s de MontanaLawHelp.org."
     },
     "source": {
       "url": "https://mtlsa.org",
@@ -24,11 +24,29 @@
     "url": "https://pridefoundation.org",
     "note": {
       "en": "Regional LGBTQ+ nonprofit serving Montana, Alaska, Idaho, Oregon, and Washington, including a program focused on transgender community support.",
-      "es": "Organización regional LGBTQ+ sin fines de lucro que atiende a Montana, Alaska, Idaho, Oregón y Washington, con un programa enfocado en el apoyo a la comunidad transgénero."
+      "es": "Organizaci\u00f3n regional LGBTQ+ sin fines de lucro que atiende a Montana, Alaska, Idaho, Oreg\u00f3n y Washington, con un programa enfocado en el apoyo a la comunidad transg\u00e9nero."
     },
     "source": {
       "url": "https://pridefoundation.org",
       "title": "Pride Foundation",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "mt.referral.a4te",
+    "jurisdiction": "US-MT",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Montana identity documents guide",
+    "url": "https://transequality.org/documents/montana-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Montana documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Montana. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/montana-identity-documents",
+      "title": "A4TE \u2014 Montana Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

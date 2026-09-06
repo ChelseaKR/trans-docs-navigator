@@ -6,7 +6,7 @@
     "url": "https://www.equalitymaine.org",
     "note": {
       "en": "Maine's statewide LGBTQ+ advocacy organization, building community and publishing resources relevant to transgender residents.",
-      "es": "La organización estatal de defensa LGBTQ+ de Maine, que construye comunidad y publica recursos relevantes para residentes transgénero."
+      "es": "La organizaci\u00f3n estatal de defensa LGBTQ+ de Maine, que construye comunidad y publica recursos relevantes para residentes transg\u00e9nero."
     },
     "source": {
       "url": "https://www.equalitymaine.org",
@@ -24,11 +24,29 @@
     "url": "https://www.mejp.org",
     "note": {
       "en": "A Maine legal-aid and anti-poverty advocacy organization that can help low-income Mainers with legal filings such as a name-change petition.",
-      "es": "Una organización de ayuda legal y defensa contra la pobreza en Maine que puede ayudar a residentes de bajos ingresos con trámites legales como una petición de cambio de nombre."
+      "es": "Una organizaci\u00f3n de ayuda legal y defensa contra la pobreza en Maine que puede ayudar a residentes de bajos ingresos con tr\u00e1mites legales como una petici\u00f3n de cambio de nombre."
     },
     "source": {
       "url": "https://www.mejp.org",
       "title": "Maine Equal Justice",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "me.referral.a4te",
+    "jurisdiction": "US-ME",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Maine identity documents guide",
+    "url": "https://transequality.org/documents/maine-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Maine documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Maine. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/maine-identity-documents",
+      "title": "A4TE \u2014 Maine Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

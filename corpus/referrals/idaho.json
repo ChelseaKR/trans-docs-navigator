@@ -20,16 +20,34 @@
   {
     "id": "id.referral.aclu-idaho",
     "jurisdiction": "US-ID",
-    "name": "ACLU of Idaho — LGBTQ Justice",
+    "name": "ACLU of Idaho \u2014 LGBTQ Justice",
     "url": "https://www.acluidaho.org/issues/lgbtq-justice/",
     "note": {
       "en": "ACLU of Idaho's LGBTQ+ justice issue page, covering litigation and advocacy on transgender rights in Idaho, with a linked Know Your Rights section.",
-      "es": "Página de la ACLU de Idaho sobre justicia LGBTQ+, que cubre litigios y defensa de los derechos de las personas transgénero en Idaho, con una sección enlazada de Conozca Sus Derechos."
+      "es": "P\u00e1gina de la ACLU de Idaho sobre justicia LGBTQ+, que cubre litigios y defensa de los derechos de las personas transg\u00e9nero en Idaho, con una secci\u00f3n enlazada de Conozca Sus Derechos."
     },
     "source": {
       "url": "https://www.acluidaho.org/issues/lgbtq-justice/",
-      "title": "ACLU of Idaho — LGBTQ Justice",
+      "title": "ACLU of Idaho \u2014 LGBTQ Justice",
       "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "id.referral.a4te",
+    "jurisdiction": "US-ID",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Idaho identity documents guide",
+    "url": "https://transequality.org/documents/idaho-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Idaho documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Idaho. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/idaho-identity-documents",
+      "title": "A4TE \u2014 Idaho Identity Documents",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",

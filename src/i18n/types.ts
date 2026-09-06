@@ -119,6 +119,9 @@ export interface UiMessages {
   costIncomplete(unpricedSteps: number): string;
   moreHeading: string;
   seeDetailedAnswer: string;
+  /** "Where to get help": legal-aid and guide referrals for the jurisdiction (corpus/referrals/). */
+  helpHeading: string;
+  helpIntro: string;
   officialFormIntro: string;
   /** "What to bring" preparation-list heading on the form-fill page (rendered only when a form has cited items). */
   whatToBringTitle: string;

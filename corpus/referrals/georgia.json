@@ -6,7 +6,7 @@
     "url": "https://georgiaequality.org",
     "note": {
       "en": "Statewide LGBTQ+ advocacy organization that tracks Georgia policy and publishes know-your-rights information relevant to transgender residents.",
-      "es": "Organización estatal de defensa LGBTQ+ que da seguimiento a las políticas de Georgia y publica información sobre derechos relevante para residentes transgénero."
+      "es": "Organizaci\u00f3n estatal de defensa LGBTQ+ que da seguimiento a las pol\u00edticas de Georgia y publica informaci\u00f3n sobre derechos relevante para residentes transg\u00e9nero."
     },
     "source": {
       "url": "https://georgiaequality.org",
@@ -24,11 +24,29 @@
     "url": "https://www.glsp.org",
     "note": {
       "en": "Free civil legal aid for low-income and senior Georgians outside metro Atlanta, including help with legal filings such as a name-change petition.",
-      "es": "Ayuda legal civil gratuita para personas de bajos ingresos y personas mayores en Georgia fuera del área metropolitana de Atlanta, incluida ayuda con trámites legales como una petición de cambio de nombre."
+      "es": "Ayuda legal civil gratuita para personas de bajos ingresos y personas mayores en Georgia fuera del \u00e1rea metropolitana de Atlanta, incluida ayuda con tr\u00e1mites legales como una petici\u00f3n de cambio de nombre."
     },
     "source": {
       "url": "https://www.glsp.org",
       "title": "Georgia Legal Services Program",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ga.referral.a4te",
+    "jurisdiction": "US-GA",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Georgia identity documents guide",
+    "url": "https://transequality.org/documents/georgia-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Georgia documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Georgia. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/georgia-identity-documents",
+      "title": "A4TE \u2014 Georgia Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

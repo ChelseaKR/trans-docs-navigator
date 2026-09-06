@@ -6,7 +6,7 @@
     "url": "https://www.fairnesscampaign.org",
     "note": {
       "en": "A Kentucky LGBTQ+ civil-rights organization publishing know-your-rights information and organizing statewide, including Kentucky Pride events.",
-      "es": "Una organización de derechos civiles LGBTQ+ de Kentucky que publica información sobre derechos y organiza actividades en todo el estado, incluidos los eventos de Kentucky Pride."
+      "es": "Una organizaci\u00f3n de derechos civiles LGBTQ+ de Kentucky que publica informaci\u00f3n sobre derechos y organiza actividades en todo el estado, incluidos los eventos de Kentucky Pride."
     },
     "source": {
       "url": "https://www.fairnesscampaign.org",
@@ -24,11 +24,29 @@
     "url": "https://www.kyjustice.org",
     "note": {
       "en": "Self-help legal information site that the Kentucky Court of Justice's own self-help portal links to for civil legal topics, including name changes.",
-      "es": "Sitio de información legal de autoayuda al que remite el propio portal de autoayuda del Poder Judicial de Kentucky para temas legales civiles, incluidos los cambios de nombre."
+      "es": "Sitio de informaci\u00f3n legal de autoayuda al que remite el propio portal de autoayuda del Poder Judicial de Kentucky para temas legales civiles, incluidos los cambios de nombre."
     },
     "source": {
       "url": "https://www.kyjustice.org",
       "title": "KYJustice",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ky.referral.a4te",
+    "jurisdiction": "US-KY",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Kentucky identity documents guide",
+    "url": "https://transequality.org/documents/kentucky-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Kentucky documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Kentucky. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/kentucky-identity-documents",
+      "title": "A4TE \u2014 Kentucky Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

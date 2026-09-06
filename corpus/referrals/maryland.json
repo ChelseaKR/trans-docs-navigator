@@ -6,7 +6,7 @@
     "url": "https://www.freestate-justice.org",
     "note": {
       "en": "Maryland's statewide LGBTQ+ legal services nonprofit, offering free legal help to low-income Marylanders, including with name and gender-marker changes.",
-      "es": "Organización estatal sin fines de lucro de servicios legales LGBTQ+ de Maryland que ofrece ayuda legal gratuita a residentes de bajos ingresos, incluso con cambios de nombre y de marcador de género."
+      "es": "Organizaci\u00f3n estatal sin fines de lucro de servicios legales LGBTQ+ de Maryland que ofrece ayuda legal gratuita a residentes de bajos ingresos, incluso con cambios de nombre y de marcador de g\u00e9nero."
     },
     "source": {
       "url": "https://www.freestate-justice.org",
@@ -24,11 +24,29 @@
     "url": "https://www.mdlab.org",
     "note": {
       "en": "Statewide nonprofit providing free civil legal services to financially eligible Marylanders from 12 office locations, including help with legal filings.",
-      "es": "Organización estatal sin fines de lucro que brinda servicios legales civiles gratuitos a residentes de Maryland con ingresos elegibles desde 12 oficinas, incluida ayuda con trámites legales."
+      "es": "Organizaci\u00f3n estatal sin fines de lucro que brinda servicios legales civiles gratuitos a residentes de Maryland con ingresos elegibles desde 12 oficinas, incluida ayuda con tr\u00e1mites legales."
     },
     "source": {
       "url": "https://www.mdlab.org",
       "title": "Maryland Legal Aid",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "md.referral.a4te",
+    "jurisdiction": "US-MD",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Maryland identity documents guide",
+    "url": "https://transequality.org/documents/maryland-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Maryland documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Maryland. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/maryland-identity-documents",
+      "title": "A4TE \u2014 Maryland Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

@@ -6,7 +6,7 @@
     "url": "https://www.fairnesswv.org",
     "note": {
       "en": "West Virginia's statewide LGBTQ+ advocacy organization, publishing know-your-rights and policy information relevant to transgender residents.",
-      "es": "La organización estatal de defensa LGBTQ+ de West Virginia, que publica información sobre derechos y políticas relevante para residentes transgénero."
+      "es": "La organizaci\u00f3n estatal de defensa LGBTQ+ de West Virginia, que publica informaci\u00f3n sobre derechos y pol\u00edticas relevante para residentes transg\u00e9nero."
     },
     "source": {
       "url": "https://www.fairnesswv.org",
@@ -24,11 +24,29 @@
     "url": "https://legalaidwv.org",
     "note": {
       "en": "Statewide nonprofit law firm offering free civil legal help to low-income West Virginians, including help with legal filings such as a name-change petition.",
-      "es": "Firma legal estatal sin fines de lucro que ofrece ayuda legal civil gratuita a residentes de bajos ingresos de West Virginia, incluida ayuda con trámites legales como una petición de cambio de nombre."
+      "es": "Firma legal estatal sin fines de lucro que ofrece ayuda legal civil gratuita a residentes de bajos ingresos de West Virginia, incluida ayuda con tr\u00e1mites legales como una petici\u00f3n de cambio de nombre."
     },
     "source": {
       "url": "https://legalaidwv.org",
       "title": "Legal Aid of West Virginia",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "wv.referral.a4te",
+    "jurisdiction": "US-WV",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 West Virginia identity documents guide",
+    "url": "https://transequality.org/documents/west-virginia-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on West Virginia documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Virginia Occidental. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/west-virginia-identity-documents",
+      "title": "A4TE \u2014 West Virginia Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
