@@ -1,9 +1,9 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 602,
-  "supported": 916,
+  "records": 634,
+  "supported": 920,
   "unsupported": 0,
-  "uncheckable": 434,
+  "uncheckable": 444,
   "unfetchable_sources": [
     "https://doa.alaska.gov/dmv/akol/namchg.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
@@ -21,8 +21,8 @@
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → unreachable (fetch and curl both failed): the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://travel.state.gov/es/pasaportes/renovar-o-reemplazar/cambiar-o-corregir.html → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 2207,
-  "total_prose_sentences": 2725,
+  "unchecked_prose_sentences": 2306,
+  "total_prose_sentences": 2830,
   "audits": [
     {
       "recordId": "al.court-order.name",
@@ -1800,6 +1800,219 @@
       "uncheckedProse": 6,
       "negatedClaims": 1,
       "totalSentences": 6
+    },
+    {
+      "recordId": "us.green-card.name",
+      "language": "en",
+      "url": "https://www.uscis.gov/sites/default/files/document/forms/i-90instr.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-i-90",
+          "label": "form_ref \"us-i-90\" (Form I-90 — Application to Replace Permanent Resident Card) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.green-card.gender-marker",
+      "language": "en",
+      "url": "https://www.uscis.gov/policy-manual/volume-11-part-a-chapter-2",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.naturalization-certificate.name",
+      "language": "en",
+      "url": "https://www.uscis.gov/policy-manual/volume-12-part-k-chapter-4",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-n-565",
+          "label": "form_ref \"us-n-565\" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 0,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "us.naturalization-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.uscis.gov/policy-manual/volume-12-part-k-chapter-4",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-n-565",
+          "label": "form_ref \"us-n-565\" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.ead.name",
+      "language": "en",
+      "url": "https://www.uscis.gov/i-765",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-i-765",
+          "label": "form_ref \"us-i-765\" (Form I-765 — Application for Employment Authorization) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 3,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.ead.gender-marker",
+      "language": "en",
+      "url": "https://www.uscis.gov/policy-manual/volume-11-part-a-chapter-2",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.selective-service.name",
+      "language": "en",
+      "url": "https://www.sss.gov/verify/update-info/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.selective-service.gender-marker",
+      "language": "en",
+      "url": "https://www.sss.gov",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.military-records.correction",
+      "language": "en",
+      "url": "https://www.archives.gov/veterans/military-service-records/correct-service-records.html",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "DD214",
+          "label": "names form DD214",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DD214"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.military-records.va-name-change",
+      "language": "en",
+      "url": "https://www.va.gov/resources/how-to-change-your-legal-name-on-file-with-va/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.trusted-traveler.name-tsa-precheck",
+      "language": "en",
+      "url": "https://www.tsa.gov/precheck/faq",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "45 day",
+          "label": "states \"45 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"45 day\""
+        }
+      ],
+      "uncheckedProse": 0,
+      "negatedClaims": 1,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "us.trusted-traveler.name-global-entry",
+      "language": "en",
+      "url": "https://www.cbp.gov/travel/trusted-traveler-programs/global-entry/frequently-asked-questions",
+      "results": [],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "us.trusted-traveler.gender-marker-tsa-precheck",
+      "language": "en",
+      "url": "https://www.tsa.gov/precheck/faq",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.trusted-traveler.gender-marker-global-entry",
+      "language": "en",
+      "url": "https://www.cbp.gov/travel/trusted-traveler-programs/global-entry/frequently-asked-questions",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.federal-employment-records.name",
+      "language": "en",
+      "url": "https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.federal-employment-records.gender-marker",
+      "language": "en",
+      "url": "https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
     },
     {
       "recordId": "fl.court-order.name",
@@ -16523,6 +16736,219 @@
       "uncheckedProse": 3,
       "negatedClaims": 1,
       "totalSentences": 4
+    },
+    {
+      "recordId": "us.green-card.name.es",
+      "language": "es",
+      "url": "https://www.uscis.gov/sites/default/files/document/forms/i-90instr.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-i-90",
+          "label": "form_ref \"us-i-90\" (Form I-90 — Application to Replace Permanent Resident Card) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 1,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "us.green-card.gender-marker.es",
+      "language": "es",
+      "url": "https://www.uscis.gov/policy-manual/volume-11-part-a-chapter-2",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.naturalization-certificate.name.es",
+      "language": "es",
+      "url": "https://www.uscis.gov/policy-manual/volume-12-part-k-chapter-4",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-n-565",
+          "label": "form_ref \"us-n-565\" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 0,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "us.naturalization-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.uscis.gov/policy-manual/volume-12-part-k-chapter-4",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-n-565",
+          "label": "form_ref \"us-n-565\" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.ead.name.es",
+      "language": "es",
+      "url": "https://www.uscis.gov/i-765",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-i-765",
+          "label": "form_ref \"us-i-765\" (Form I-765 — Application for Employment Authorization) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 3,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.ead.gender-marker.es",
+      "language": "es",
+      "url": "https://www.uscis.gov/policy-manual/volume-11-part-a-chapter-2",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.selective-service.name.es",
+      "language": "es",
+      "url": "https://www.sss.gov/verify/update-info/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.selective-service.gender-marker.es",
+      "language": "es",
+      "url": "https://www.sss.gov",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 3,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "us.military-records.correction.es",
+      "language": "es",
+      "url": "https://www.archives.gov/veterans/military-service-records/correct-service-records.html",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "DD214",
+          "label": "names form DD214",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DD214"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.military-records.va-name-change.es",
+      "language": "es",
+      "url": "https://www.va.gov/resources/how-to-change-your-legal-name-on-file-with-va/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.trusted-traveler.name-tsa-precheck.es",
+      "language": "es",
+      "url": "https://www.tsa.gov/precheck/faq",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "45 day",
+          "label": "states \"45 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"45 day\""
+        }
+      ],
+      "uncheckedProse": 0,
+      "negatedClaims": 1,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "us.trusted-traveler.name-global-entry.es",
+      "language": "es",
+      "url": "https://www.cbp.gov/travel/trusted-traveler-programs/global-entry/frequently-asked-questions",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.trusted-traveler.gender-marker-tsa-precheck.es",
+      "language": "es",
+      "url": "https://www.tsa.gov/precheck/faq",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.trusted-traveler.gender-marker-global-entry.es",
+      "language": "es",
+      "url": "https://www.cbp.gov/travel/trusted-traveler-programs/global-entry/frequently-asked-questions",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.federal-employment-records.name.es",
+      "language": "es",
+      "url": "https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.federal-employment-records.gender-marker.es",
+      "language": "es",
+      "url": "https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 3
     },
     {
       "recordId": "tn.court-order.name",

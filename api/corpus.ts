@@ -28,6 +28,13 @@ const DOCUMENT_TYPES: readonly DocumentType[] = [
   "passport",
   "birth-certificate",
   "financial-records",
+  "green-card",
+  "naturalization-certificate",
+  "ead",
+  "selective-service",
+  "military-records",
+  "trusted-traveler",
+  "federal-employment-records",
 ];
 const CHANGE_TYPES: readonly ChangeType[] = ["name", "gender-marker"];
 const VERIFICATION_STATUSES: readonly VerificationStatus[] = [

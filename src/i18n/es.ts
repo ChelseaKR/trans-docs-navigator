@@ -141,6 +141,13 @@ export const es: LocaleBundle = {
     passport: "Actualice su pasaporte de EE. UU.",
     "birth-certificate": "Modifique su acta de nacimiento",
     "financial-records": "Actualice registros financieros y otros",
+    "green-card": "Actualice su tarjeta verde (Formulario I-90)",
+    "naturalization-certificate": "Actualice su certificado de naturalización (Formulario N-565)",
+    ead: "Actualice su permiso de trabajo (Documento de Autorización de Empleo)",
+    "selective-service": "Actualice su registro del Servicio Selectivo",
+    "military-records": "Corrija su registro de servicio militar (DD-214)",
+    "trusted-traveler": "Actualice su membresía de TSA PreCheck o Global Entry",
+    "federal-employment-records": "Actualice sus registros de empleo federal",
   },
 
   docLabels: {
@@ -150,6 +157,13 @@ export const es: LocaleBundle = {
     passport: "Pasaporte de EE. UU.",
     "birth-certificate": "Acta de nacimiento",
     "financial-records": "Registros financieros y otros",
+    "green-card": "Tarjeta verde (Formulario I-90)",
+    "naturalization-certificate": "Certificado de naturalización (Formulario N-565)",
+    ead: "Permiso de trabajo (EAD)",
+    "selective-service": "Registro del Servicio Selectivo",
+    "military-records": "Registro de servicio militar (DD-214)",
+    "trusted-traveler": "TSA PreCheck / Global Entry",
+    "federal-employment-records": "Registros de empleo federal",
   },
 
   fieldLabels: {

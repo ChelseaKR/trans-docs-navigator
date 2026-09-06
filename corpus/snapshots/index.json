@@ -717,6 +717,11 @@
       "fetched": "2026-09-05",
       "sha256": "1c3b9927c18a9486113e8cf7ab9d74e381325cb510f6a55bb9c939e03aced2a4"
     },
+    "https://www.archives.gov/veterans/military-service-records/correct-service-records.html": {
+      "file": "archives-gov-veterans-military-service-records-correct-service-records-637db133.txt",
+      "fetched": "2026-09-06",
+      "sha256": "a3f0c20d4e1a7c3e45aac1acbe50e64b2542f1e94303f18500bf8ed15b0ad087"
+    },
     "https://www.azcourts.gov/courtfilingfees/Superior-Court-Filing-Fees": {
       "file": "azcourts-gov-courtfilingfees-superior-court-filing-fees-3f08103c.txt",
       "fetched": "2026-09-05",
@@ -753,6 +758,11 @@
       "unextractable": {
         "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
+    },
+    "https://www.cbp.gov/travel/trusted-traveler-programs/global-entry/frequently-asked-questions": {
+      "file": "cbp-gov-travel-trusted-traveler-programs-global-entry-frequently-asked-077a22ef.txt",
+      "fetched": "2026-09-06",
+      "sha256": "039ff83650f5524d3c997b7600a9f80683b7871accfbbd874cdfc9f104114296"
     },
     "https://www.cdph.ca.gov/Programs/CHSI/Pages/Amending-a-California-Birth-Record.aspx": {
       "file": "cdph-ca-gov-programs-chsi-pages-amending-a-california-birth-record-asp-2d85b264.txt",
@@ -1255,6 +1265,13 @@
       "fetched": "2026-09-04",
       "sha256": "41697d89c5b30ce8b9f16885e73d747ae475381d9c031b88c28147cc865e66a6"
     },
+    "https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf": {
+      "file": null,
+      "fetched": "2026-09-06",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
     "https://www.opn.ca6.uscourts.gov/opinions.pdf/24a0151p-06.pdf": {
       "file": null,
       "fetched": "2026-09-06",
@@ -1346,6 +1363,16 @@
         "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
+    "https://www.sss.gov": {
+      "file": "sss-gov-e5b83ce5.txt",
+      "fetched": "2026-09-06",
+      "sha256": "6b7255f0832764cfaee4f02e922032e88256908a3b17c8bd24ff35335b4cd206"
+    },
+    "https://www.sss.gov/verify/update-info/": {
+      "file": "sss-gov-verify-update-info-84b96d65.txt",
+      "fetched": "2026-09-06",
+      "sha256": "159482554d29198b45f39e5e032cb5b56888cb367766c94b36fc75c98347cda5"
+    },
     "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf": {
       "file": null,
       "fetched": "2026-09-06",
@@ -1363,10 +1390,42 @@
       "fetched": "2026-09-05",
       "sha256": "7504cb18ce3ea6b8f1d39cb8adbba4b49981b05c7ebc19729a89965985b9b1ce"
     },
+    "https://www.tsa.gov/precheck/faq": {
+      "file": "tsa-gov-precheck-faq-0840e7c7.txt",
+      "fetched": "2026-09-06",
+      "sha256": "d6c4a209e406b5093f7c3be15f0d292fbddb9e832fcd68e7739df6d9ba5a0f8d"
+    },
+    "https://www.uscis.gov/i-765": {
+      "file": "uscis-gov-i-765-e9c0da03.txt",
+      "fetched": "2026-09-06",
+      "sha256": "1b0303e39f67c90c81397077d69cf14cce6d6b1867d4104c6017afc005729831"
+    },
+    "https://www.uscis.gov/policy-manual/volume-11-part-a-chapter-2": {
+      "file": "uscis-gov-policy-manual-volume-11-part-a-chapter-2-ebafc863.txt",
+      "fetched": "2026-09-06",
+      "sha256": "2595fd0ea3354afe62e4a36b243fb34245ec3e1f028b9e90e0d86ebe6f44d944"
+    },
+    "https://www.uscis.gov/policy-manual/volume-12-part-k-chapter-4": {
+      "file": "uscis-gov-policy-manual-volume-12-part-k-chapter-4-3a8c4937.txt",
+      "fetched": "2026-09-06",
+      "sha256": "3792c493fbdf15a8bcb666925fb472bbaf8b1d123b27396412559fb9d591f1bd"
+    },
+    "https://www.uscis.gov/sites/default/files/document/forms/i-90instr.pdf": {
+      "file": null,
+      "fetched": "2026-09-06",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
     "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html": {
       "file": "utcourts-gov-en-self-help-case-categories-family-name-change-sex-chang-46a502ac.txt",
       "fetched": "2026-09-05",
       "sha256": "df84bd7459995d56de7622650b3fc7fc3b31e73717749e5527e7adcf467f2320"
+    },
+    "https://www.va.gov/resources/how-to-change-your-legal-name-on-file-with-va/": {
+      "file": "va-gov-resources-how-to-change-your-legal-name-on-file-with-va-34b5b287.txt",
+      "fetched": "2026-09-06",
+      "sha256": "01350e863edf19a23f92db40db7e05c198139a043a521bd39d24c580e5036c51"
     },
     "https://www.vdh.virginia.gov/vital-records/how-to-request-an-amendment-to-a-birth-certificate/": {
       "file": "vdh-virginia-gov-vital-records-how-to-request-an-amendment-to-a-birth--69499030.txt",

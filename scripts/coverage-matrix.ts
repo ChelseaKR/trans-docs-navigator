@@ -13,7 +13,21 @@ import { pass } from "./util.ts";
 const today = process.env.NAV_TODAY ?? TEST_TODAY;
 const corpus = loadCorpus();
 
-const DOCS: DocumentType[] = ["court-order", "ssa-card", "drivers-license", "passport", "birth-certificate", "financial-records"];
+const DOCS: DocumentType[] = [
+  "court-order",
+  "ssa-card",
+  "drivers-license",
+  "passport",
+  "birth-certificate",
+  "financial-records",
+  "green-card",
+  "naturalization-certificate",
+  "ead",
+  "selective-service",
+  "military-records",
+  "trusted-traveler",
+  "federal-employment-records",
+];
 const LANGS: Language[] = ["en", "es"];
 const CHANGES: ChangeType[] = ["name", "gender-marker"];
 const jurisdictions = [...new Set(corpus.map((r) => r.jurisdiction))].sort();

@@ -1038,5 +1038,67 @@
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "us-i-90",
+    "jurisdiction": "US",
+    "document_type": "green-card",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form I-90 — Application to Replace Permanent Resident Card",
+    "source": {
+      "url": "https://www.uscis.gov/sites/default/files/document/forms/i-90.pdf",
+      "title": "USCIS Form I-90, Application to Replace Permanent Resident Card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "us-n-565",
+    "jurisdiction": "US",
+    "document_type": "naturalization-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Form N-565 — Application for Replacement Naturalization/Citizenship Document",
+    "source": {
+      "url": "https://www.uscis.gov/sites/default/files/document/forms/n-565.pdf",
+      "title": "USCIS Form N-565, Application for Replacement Naturalization/Citizenship Document",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "us-i-765",
+    "jurisdiction": "US",
+    "document_type": "ead",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form I-765 — Application for Employment Authorization",
+    "source": {
+      "url": "https://www.uscis.gov/sites/default/files/document/forms/i-765.pdf",
+      "title": "USCIS Form I-765, Application for Employment Authorization",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "us-dd-149",
+    "jurisdiction": "US",
+    "document_type": "military-records",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "DD Form 149 — Application for Correction of Military Record",
+    "source": {
+      "url": "https://www.esd.whs.mil/Portals/54/Documents/DD/forms/dd/dd0149.pdf",
+      "title": "Department of Defense DD Form 149, Application for Correction of Military Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]
