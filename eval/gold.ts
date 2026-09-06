@@ -1582,10 +1582,15 @@ const AUTHORED_GOLD: GoldItem[] = [
   },
   {
     id: "ut-marker-dl-silent",
-    suite: "accuracy",
+    suite: "refusal",
     segment: { jurisdiction: "US-UT", language: "en" },
     query: { jurisdiction: "US-UT", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Utah driver's license gender marker" },
-    expect: { refused: false, citesRecord: "ut.drivers-license.gender-marker", mustContain: ["do not mention a sex or gender designation"] },
+    // Issue #187: the record cited only the required-documents page, but claimed a
+    // universal negative ("no official page ... at all") that also relied on two pages
+    // it never cited. Narrowed to what the cited page actually supports and moved to
+    // needs_reverification (matching sc./sd.drivers-license.gender-marker), so this now
+    // refuses rather than serving the narrowed claim as settled fact.
+    expect: { refused: true, hasFreshnessNote: true },
   },
   {
     id: "ut-marker-birth-volatile",

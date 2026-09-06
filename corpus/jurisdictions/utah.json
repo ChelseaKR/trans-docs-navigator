@@ -81,8 +81,8 @@
       "gender-marker"
     ],
     "topic": "Utah driver's license and ID sex/gender designation",
-    "statement": "Utah's Driver License Division pages for a name change and for required documents do not mention a sex or gender designation on a license or ID card, or any process for changing one.",
-    "detail": "This project checked the Division's name-change, required-documents, and legislation pages and found no official page that addresses a sex or gender marker at all. Read the Division's current pages yourself before assuming a route exists.",
+    "statement": "The Utah Driver License Division's own required-documents page makes no mention of a sex or gender designation on a license or ID card, or of any process for changing one.",
+    "detail": "That page is the Division's general list of what to bring to any in-person transaction, not a survey of everything the Division offers — read the Division's current pages yourself before assuming a marker-specific process is open or closed. This project's other Utah record on the judicial route to a legal sex change shows that Utah's courts tell someone who completes that process to then visit the Driver License Division's website for a new license or ID, so a path to updating the sex shown on a license or ID may exist even though this page never describes one.",
     "prerequisites": [],
     "source": {
       "url": "https://dld.utah.gov/required-documents/",
@@ -90,7 +90,7 @@
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
-    "verification_status": "verified",
+    "verification_status": "needs_reverification",
     "recheck_sla_days": 30,
     "language": "en"
   },
