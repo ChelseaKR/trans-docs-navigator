@@ -1,9 +1,9 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 658,
-  "supported": 991,
+  "records": 670,
+  "supported": 997,
   "unsupported": 0,
-  "uncheckable": 476,
+  "uncheckable": 510,
   "unfetchable_sources": [
     "https://doa.alaska.gov/dmv/akol/namchg.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
@@ -22,8 +22,8 @@
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → unreachable (fetch and curl both failed): the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://travel.state.gov/es/pasaportes/renovar-o-reemplazar/cambiar-o-corregir.html → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 2421,
-  "total_prose_sentences": 2969,
+  "unchecked_prose_sentences": 2507,
+  "total_prose_sentences": 3070,
   "audits": [
     {
       "recordId": "al.court-order.name",
@@ -6085,6 +6085,15 @@
           "strength": "literal",
           "verdict": "supported",
           "why": "the source states $11"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:nj-mvc-gender-designation-change",
+          "label": "form_ref \"nj-mvc-gender-designation-change\" (Declaration of Gender Designation Change for New Jersey Motor Vehicle Commission Driver License or Non-Driver Identification Card) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
         }
       ],
       "uncheckedProse": 4,
@@ -6368,8 +6377,8 @@
         {
           "kind": "form-id",
           "key": "MV44",
-          "label": "names form MV44",
-          "field": "statement",
+          "label": "official form MV44 backs this step (form_ref: ny-dmv-mv-44)",
+          "field": "form_ref",
           "strength": "literal",
           "verdict": "supported",
           "why": "the source names MV44"
@@ -6377,7 +6386,35 @@
       ],
       "uncheckedProse": 3,
       "negatedClaims": 1,
-      "totalSentences": 5
+      "totalSentences": 6
+    },
+    {
+      "recordId": "ny.drivers-license.gender-marker.form",
+      "language": "en",
+      "url": "https://dmv.ny.gov/forms/mv44.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "MV44",
+          "label": "official form MV44 backs this step (form_ref: ny-dmv-mv-44)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 3
     },
     {
       "recordId": "ny.drivers-license.name",
@@ -6387,8 +6424,8 @@
         {
           "kind": "form-id",
           "key": "MV44NC",
-          "label": "names form MV44NC",
-          "field": "statement",
+          "label": "official form MV44NC backs this step (form_ref: ny-dmv-mv-44nc)",
+          "field": "form_ref",
           "strength": "literal",
           "verdict": "supported",
           "why": "the source names MV44NC"
@@ -6935,11 +6972,21 @@
     {
       "recordId": "nd.drivers-license.gender-marker",
       "language": "en",
-      "url": "https://www.dot.nd.gov/driver/driver-license",
-      "results": [],
-      "uncheckedProse": 4,
-      "negatedClaims": 2,
-      "totalSentences": 4
+      "url": "https://www.dot.nd.gov/forms/sfn61146.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:nd-dot-sfn-61146",
+          "label": "form_ref \"nd-dot-sfn-61146\" (Form SFN 61146 — Gender Designation (Driver License)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 3,
+      "totalSentences": 5
     },
     {
       "recordId": "nd.birth-certificate.name",
@@ -7260,15 +7307,33 @@
       "language": "en",
       "url": "https://oklahoma.gov/service/all-services/driving-and-automobiles.html",
       "results": [],
-      "uncheckedProse": 3,
+      "uncheckedProse": 4,
       "negatedClaims": 2,
-      "totalSentences": 3
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ok.drivers-license.gender-marker.law",
+      "language": "en",
+      "url": "https://www.sos.ok.gov/documents/executive/2079.pdf",
+      "results": [],
+      "uncheckedProse": 9,
+      "negatedClaims": 1,
+      "totalSentences": 9
     },
     {
       "recordId": "ok.birth-certificate.name",
       "language": "en",
       "url": "https://oklahoma.gov/health/services/birth-and-death-certificates/amendments.html",
       "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:ok-osdh-birth-certificate-request-form",
+          "label": "form_ref \"ok-osdh-birth-certificate-request-form\" (Birth Certificate Request Form (OSDH Vital Records)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
         {
           "kind": "money",
           "key": "15",
@@ -7306,9 +7371,73 @@
           "why": "the source discusses this topic (necessary condition only — NOT verified)"
         }
       ],
-      "uncheckedProse": 1,
+      "uncheckedProse": 2,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "ok.birth-certificate.name.form-fee",
+      "language": "en",
+      "url": "https://oklahoma.gov/content/dam/ok/en/health/health2/aem-documents/vital-records/forms/18008vr-vr-birth-application-eng-eform.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "40",
+          "label": "costs $40",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:ok-osdh-birth-certificate-request-form",
+          "label": "form_ref \"ok-osdh-birth-certificate-request-form\" (Birth Certificate Request Form (OSDH Vital Records)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "7 business-day",
+          "label": "states \"7 business-day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "10 business-day",
+          "label": "states \"10 business-day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 2,
       "negatedClaims": 1,
-      "totalSentences": 3
+      "totalSentences": 5
     },
     {
       "recordId": "ok.birth-certificate.gender-marker",
@@ -7759,8 +7888,8 @@
         {
           "kind": "form-id",
           "key": "LI1",
-          "label": "names form LI1",
-          "field": "statement",
+          "label": "official form LI1 backs this step (form_ref: ri-dmv-li-1)",
+          "field": "form_ref",
           "strength": "literal",
           "verdict": "supported",
           "why": "the source names LI1"
@@ -7774,10 +7903,48 @@
       "recordId": "ri.drivers-license.gender-marker",
       "language": "en",
       "url": "https://dmv.ri.gov/licenses-permits-ids/drivers-licenses/name-address-change",
-      "results": [],
-      "uncheckedProse": 3,
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:ri-dmv-gender-designation",
+          "label": "form_ref \"ri-dmv-gender-designation\" (Gender Designation on a License or Identification Card) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 4,
       "negatedClaims": 1,
-      "totalSentences": 3
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ri.drivers-license.gender-marker.form",
+      "language": "en",
+      "url": "https://dmv.ri.gov/media/41/download",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:ri-dmv-gender-designation",
+          "label": "form_ref \"ri-dmv-gender-designation\" (Gender Designation on a License or Identification Card) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 7,
+      "negatedClaims": 1,
+      "totalSentences": 7
     },
     {
       "recordId": "ri.birth-certificate.name",
@@ -7821,9 +7988,83 @@
       "language": "en",
       "url": "https://rules.sos.ri.gov/regulations/part/216-10-10-1",
       "results": [],
-      "uncheckedProse": 4,
-      "negatedClaims": 4,
-      "totalSentences": 4
+      "uncheckedProse": 5,
+      "negatedClaims": 5,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "ri.birth-certificate.gender-marker.procedure",
+      "language": "en",
+      "url": "https://health.ri.gov/sites/g/files/xkgbur1006/files/2025-01/RI-Vital-Records-Correction-and-Amendment-Requirements.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "22",
+          "label": "states $22",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "states $25",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 9,
+      "negatedClaims": 2,
+      "totalSentences": 9
+    },
+    {
+      "recordId": "ri.birth-certificate.amendment-request",
+      "language": "en",
+      "url": "https://health.ri.gov/vital-records/changes-birth-death-or-marriage-records",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "3 week",
+          "label": "states \"3 week\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"3 week\""
+        },
+        {
+          "kind": "duration",
+          "key": "4 week",
+          "label": "states \"4 week\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"4 week\""
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 8,
+      "negatedClaims": 0,
+      "totalSentences": 9
     },
     {
       "recordId": "ri.birth-certificate.fees",
@@ -13620,11 +13861,21 @@
     {
       "recordId": "nd.drivers-license.gender-marker.es",
       "language": "es",
-      "url": "https://www.dot.nd.gov/driver/driver-license",
-      "results": [],
-      "uncheckedProse": 4,
-      "negatedClaims": 2,
-      "totalSentences": 4
+      "url": "https://www.dot.nd.gov/forms/sfn61146.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:nd-dot-sfn-61146",
+          "label": "form_ref \"nd-dot-sfn-61146\" (Form SFN 61146 — Gender Designation (Driver License)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 3,
+      "totalSentences": 6
     },
     {
       "recordId": "nd.drivers-license.name.es",
@@ -14139,6 +14390,15 @@
           "strength": "literal",
           "verdict": "supported",
           "why": "the source states $11"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:nj-mvc-gender-designation-change",
+          "label": "form_ref \"nj-mvc-gender-designation-change\" (Declaration of Gender Designation Change for New Jersey Motor Vehicle Commission Driver License or Non-Driver Identification Card) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
         }
       ],
       "uncheckedProse": 4,
@@ -14862,8 +15122,8 @@
         {
           "kind": "form-id",
           "key": "MV44",
-          "label": "names form MV44",
-          "field": "statement",
+          "label": "official form MV44 backs this step (form_ref: ny-dmv-mv-44)",
+          "field": "form_ref",
           "strength": "literal",
           "verdict": "supported",
           "why": "the source names MV44"
@@ -14871,7 +15131,26 @@
       ],
       "uncheckedProse": 3,
       "negatedClaims": 2,
-      "totalSentences": 5
+      "totalSentences": 6
+    },
+    {
+      "recordId": "ny.drivers-license.gender-marker.form.es",
+      "language": "es",
+      "url": "https://dmv.ny.gov/forms/mv44.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "MV44",
+          "label": "official form MV44 backs this step (form_ref: ny-dmv-mv-44)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 4
     },
     {
       "recordId": "ny.drivers-license.name.es",
@@ -14881,8 +15160,8 @@
         {
           "kind": "form-id",
           "key": "MV44NC",
-          "label": "names form MV44NC",
-          "field": "statement",
+          "label": "official form MV44NC backs this step (form_ref: ny-dmv-mv-44nc)",
+          "field": "form_ref",
           "strength": "literal",
           "verdict": "supported",
           "why": "the source names MV44NC"
@@ -15099,6 +15378,15 @@
       "url": "https://oklahoma.gov/health/services/birth-and-death-certificates/amendments.html",
       "results": [
         {
+          "kind": "form-id",
+          "key": "unnamed:ok-osdh-birth-certificate-request-form",
+          "label": "form_ref \"ok-osdh-birth-certificate-request-form\" (Birth Certificate Request Form (OSDH Vital Records)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
           "kind": "money",
           "key": "15",
           "label": "states $15",
@@ -15126,9 +15414,73 @@
           "why": "the source states \"4 month\""
         }
       ],
-      "uncheckedProse": 1,
-      "negatedClaims": 1,
-      "totalSentences": 3
+      "uncheckedProse": 2,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "ok.birth-certificate.name.form-fee.es",
+      "language": "es",
+      "url": "https://oklahoma.gov/content/dam/ok/en/health/health2/aem-documents/vital-records/forms/18008vr-vr-birth-application-eng-eform.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "40",
+          "label": "costs $40",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:ok-osdh-birth-certificate-request-form",
+          "label": "form_ref \"ok-osdh-birth-certificate-request-form\" (Birth Certificate Request Form (OSDH Vital Records)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "7 business-day",
+          "label": "states \"7 business-day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "10 business-day",
+          "label": "states \"10 business-day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 2,
+      "totalSentences": 5
     },
     {
       "recordId": "ok.court-order.name.es",
@@ -15154,9 +15506,18 @@
       "language": "es",
       "url": "https://oklahoma.gov/service/all-services/driving-and-automobiles.html",
       "results": [],
-      "uncheckedProse": 3,
+      "uncheckedProse": 4,
       "negatedClaims": 2,
-      "totalSentences": 3
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ok.drivers-license.gender-marker.law.es",
+      "language": "es",
+      "url": "https://www.sos.ok.gov/documents/executive/2079.pdf",
+      "results": [],
+      "uncheckedProse": 10,
+      "negatedClaims": 1,
+      "totalSentences": 10
     },
     {
       "recordId": "ok.drivers-license.name.es",
@@ -15596,9 +15957,92 @@
       "language": "es",
       "url": "https://rules.sos.ri.gov/regulations/part/216-10-10-1",
       "results": [],
-      "uncheckedProse": 4,
-      "negatedClaims": 4,
-      "totalSentences": 4
+      "uncheckedProse": 5,
+      "negatedClaims": 5,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "ri.birth-certificate.gender-marker.procedure.es",
+      "language": "es",
+      "url": "https://health.ri.gov/sites/g/files/xkgbur1006/files/2025-01/RI-Vital-Records-Correction-and-Amendment-Requirements.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "18 year",
+          "label": "states \"18 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "22",
+          "label": "states $22",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "25",
+          "label": "states $25",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 8,
+      "negatedClaims": 2,
+      "totalSentences": 9
+    },
+    {
+      "recordId": "ri.birth-certificate.amendment-request.es",
+      "language": "es",
+      "url": "https://health.ri.gov/vital-records/changes-birth-death-or-marriage-records",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "3 week",
+          "label": "states \"3 week\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"3 week\""
+        },
+        {
+          "kind": "duration",
+          "key": "4 week",
+          "label": "states \"4 week\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"4 week\""
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 8,
+      "negatedClaims": 0,
+      "totalSentences": 9
     },
     {
       "recordId": "ri.birth-certificate.name.es",
@@ -15678,10 +16122,48 @@
       "recordId": "ri.drivers-license.gender-marker.es",
       "language": "es",
       "url": "https://dmv.ri.gov/licenses-permits-ids/drivers-licenses/name-address-change",
-      "results": [],
-      "uncheckedProse": 3,
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:ri-dmv-gender-designation",
+          "label": "form_ref \"ri-dmv-gender-designation\" (Gender Designation on a License or Identification Card) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 4,
       "negatedClaims": 1,
-      "totalSentences": 3
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ri.drivers-license.gender-marker.form.es",
+      "language": "es",
+      "url": "https://dmv.ri.gov/media/41/download",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:ri-dmv-gender-designation",
+          "label": "form_ref \"ri-dmv-gender-designation\" (Gender Designation on a License or Identification Card) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 7,
+      "negatedClaims": 1,
+      "totalSentences": 7
     },
     {
       "recordId": "ri.drivers-license.name.es",
@@ -15691,8 +16173,8 @@
         {
           "kind": "form-id",
           "key": "LI1",
-          "label": "names form LI1",
-          "field": "statement",
+          "label": "official form LI1 backs this step (form_ref: ri-dmv-li-1)",
+          "field": "form_ref",
           "strength": "literal",
           "verdict": "supported",
           "why": "the source names LI1"

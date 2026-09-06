@@ -628,6 +628,21 @@
     }
   },
   {
+    "id": "nd-dot-sfn-61146",
+    "jurisdiction": "US-ND",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Form SFN 61146 — Gender Designation (Driver License)",
+    "source": {
+      "url": "https://www.dot.nd.gov/forms/sfn61146.pdf",
+      "title": "North Dakota Department of Transportation, Driver License — Form SFN 61146, Gender Designation (4-2026)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "nj-courts-namechg-adult",
     "jurisdiction": "US-NJ",
     "document_type": "court-order",
@@ -654,6 +669,36 @@
       "url": "https://www.nj.gov/health/forms/reg-l2_1.pdf",
       "title": "New Jersey Department of Health Form REG-L2",
       "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "nj-mvc-gender-designation-change",
+    "jurisdiction": "US-NJ",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Declaration of Gender Designation Change for New Jersey Motor Vehicle Commission Driver License or Non-Driver Identification Card",
+    "source": {
+      "url": "https://www.nj.gov/mvc/pdf/license/genderchange.pdf",
+      "title": "New Jersey Motor Vehicle Commission — Declaration of Gender Designation Change (GENDER1, R3/21)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "nj-doh-reg-15",
+    "jurisdiction": "US-NJ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form REG-15 — Application to Amend a New Jersey Vital Record",
+    "source": {
+      "url": "https://www.nj.gov/health/forms/reg-15.pdf",
+      "title": "New Jersey Department of Health Form REG-15",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
   },
@@ -745,6 +790,37 @@
       "url": "https://www.health.ny.gov/forms/doh-5305.pdf",
       "title": "New York State Department of Health Form DOH-5305",
       "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ny-dmv-mv-44",
+    "jurisdiction": "US-NY",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Form MV-44 — Application for Permit, Driver License or Non-Driver ID Card",
+    "source": {
+      "url": "https://dmv.ny.gov/forms/mv44.pdf",
+      "title": "New York State Department of Motor Vehicles Form MV-44 (4/26)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ny-dmv-mv-44nc",
+    "jurisdiction": "US-NY",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form MV-44NC — Application for Name Change Only on Standard Permit, Driver License or Non-Driver ID Card",
+    "source": {
+      "url": "https://dmv.ny.gov/forms/mv44nc.pdf",
+      "title": "New York State Department of Motor Vehicles Form MV-44NC",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
   },
@@ -1263,6 +1339,51 @@
     "source": {
       "url": "https://www.vtcourts.gov/sites/default/files/documents/600-00228%20%E2%80%93%20Application%20to%20Waive%20Filing%20Fees%20%26%20Service%20Costs_0.pdf",
       "title": "Vermont Judiciary Form 600-00228 — Application to Waive Filing Fees and Service Costs",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ri-dmv-li-1",
+    "jurisdiction": "US-RI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form LI-1 — Application for License, Identification Card and Permit",
+    "source": {
+      "url": "https://dmv.ri.gov/media/391/download",
+      "title": "Rhode Island Division of Motor Vehicles — Application for License, Identification Card and Permit (LI-1)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ri-dmv-gender-designation",
+    "jurisdiction": "US-RI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Gender Designation on a License or Identification Card",
+    "source": {
+      "url": "https://dmv.ri.gov/media/41/download",
+      "title": "Rhode Island Division of Motor Vehicles — Gender Designation on a License or Identification Card (rev. 7/20)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ok-osdh-birth-certificate-request-form",
+    "jurisdiction": "US-OK",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "title": "Birth Certificate Request Form (OSDH Vital Records)",
+    "source": {
+      "url": "https://oklahoma.gov/content/dam/ok/en/health/health2/aem-documents/vital-records/forms/18008vr-vr-birth-application-eng-eform.pdf",
+      "title": "Oklahoma State Department of Health, Vital Records — Birth Certificate Request Form",
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }

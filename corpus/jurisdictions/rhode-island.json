@@ -51,6 +51,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "ri-dmv-li-1",
     "language": "en"
   },
   {
@@ -62,7 +63,7 @@
     ],
     "topic": "Rhode Island driver's license gender designation",
     "statement": "To change the gender designation on your Rhode Island driver's license or ID, you surrender your current state-issued license or ID, submit a completed Gender Designation form, pay the applicable fee for a new or updated card, and have a new photograph taken. DMV employees may not ask for gender-related information beyond what the form itself requires, or ask about your private medical history or records.",
-    "detail": "Changing the name that goes with a gender change is done separately, through appropriate court documents, and must also be reflected on your Social Security card.",
+    "detail": "Changing the name that goes with a gender change is done separately, through appropriate court documents, and must also be reflected on your Social Security card. The DMV's own Gender Designation form is covered in a companion record — read it for what the form itself asks.",
     "cost": {
       "amount_usd": null,
       "note": "The page doesn't state a dollar amount for this transaction — it points to the DMV's own Fee Table. Contact the DMV for the current fee."
@@ -76,6 +77,33 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 30,
+    "form_ref": "ri-dmv-gender-designation",
+    "language": "en"
+  },
+  {
+    "id": "ri.drivers-license.gender-marker.form",
+    "jurisdiction": "US-RI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Rhode Island DMV Gender Designation form",
+    "statement": "Rhode Island DMV's Gender Designation form (\"Gender Designation on a License or Identification Card\") asks you to check the designation you want your driver's license or ID card to read: M, F, or X. You declare under penalty of perjury that the statements on the application are true and complete.",
+    "detail": "The form restates the DMV's procedure: surrender any current state-issued license or ID card, submit the completed form, pay the applicable fees for a new or updated card, and have a new photograph taken. It says DMV employees shall not request additional gender-related information beyond what the form requires or ask about your private medical history or records, and that the form contains private medical information kept confidential under the federal Driver's Privacy Protection Act. Name changes related to gender are done through court documents and must also be reflected on your Social Security card. The form is marked rev. 7/20.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The form says to pay the applicable fees for a new or updated license or ID card without stating an amount. Contact the DMV for the current fee."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.ri.gov/media/41/download",
+      "title": "Rhode Island Division of Motor Vehicles — Gender Designation on a License or Identification Card (form, rev. 7/20)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "ri-dmv-gender-designation",
     "language": "en"
   },
   {
@@ -110,7 +138,7 @@
     ],
     "topic": "Rhode Island birth certificate sex designation",
     "statement": "To correct the sex shown on a Rhode Island birth certificate so it differs from the sex on the original record, Rhode Island's vital-records rule requires only an affidavit — executed by you if you're of legal age, or by your parent, legal guardian, or legal representative if you're not. The State Registrar then changes the certificate to reflect the new sex designation without indicating that a change was made.",
-    "detail": "If your correction request for sex also includes a request for a legal name change, the certificate will be marked \"Amended\" only with respect to the name change — the sex correction itself leaves no such mark. The rule describes no separate requirement for a court order or a physician's statement to change the sex marker alone.",
+    "detail": "If your correction request for sex also includes a request for a legal name change, the certificate will be marked \"Amended\" only with respect to the name change — the sex correction itself leaves no such mark. The rule describes no separate requirement for a court order or a physician's statement to change the sex marker alone. The Department of Health's own requirements sheet and its web page add procedural steps the rule itself doesn't spell out — read the companion records before you go.",
     "prerequisites": [],
     "source": {
       "url": "https://rules.sos.ri.gov/regulations/part/216-10-10-1",
@@ -120,6 +148,56 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ri.birth-certificate.gender-marker.procedure",
+    "jurisdiction": "US-RI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Rhode Island birth certificate sex-field change: RIDOH's requirements",
+    "statement": "The Rhode Island Department of Health's own requirements sheet says that, since October 1, 2019, the sex field on a Rhode Island birth certificate can be changed to reflect your sex or gender identity. The person whose certificate will change must come to the Office of Vital Records in person to self-attest, so staff can create an affidavit for that person to sign; if the person is younger than 18, their parent, legal guardian, or legal representative signs it. The sheet says people can change the sex field from M to F or F to M using the affidavit, and that people born in Rhode Island who identify as non-binary or neither male nor female can change it to X.",
+    "detail": "Bring a government-issued photo ID (driver's license, passport, military ID, Certificate of Naturalization, or Alien Registration Card). People of any age can make this change, but minors need parental or guardian consent. The sheet also says that once an item has been amended on a vital record it cannot be changed again unless the State Registrar receives a court order. This is the department's procedural guidance; the underlying vital-records rule is covered in a companion record.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "The $10 is to make the change on the birth record. A copy of the changed record costs $22 for in-person customers or $25 by mail."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.ri.gov/sites/g/files/xkgbur1006/files/2025-01/RI-Vital-Records-Correction-and-Amendment-Requirements.pdf",
+      "title": "Rhode Island Department of Health, Office of Vital Records — Requirements and Fees for Changes to Birth, Marriage, or Death Records",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ri.birth-certificate.amendment-request",
+    "jurisdiction": "US-RI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Rhode Island birth certificate amendment: who can request, ID, and processing time",
+    "statement": "The Rhode Island Department of Health says it takes 3 - 4 weeks to process an amendment request for a birth, death, or marriage record. To make a change you must provide a valid, government-issued photo identification to prove you are entitled to make the request — a driver's license, passport, military identification, Certificate of Naturalization, or Alien Registration Card — and if you request the change by mail you must include a readable copy of one of those.",
+    "detail": "Vital records are confidential, so changes can only be requested by you; your mother, father, child, sibling, guardian, or authorized agent; attorneys, title examiners, or members of legally incorporated genealogical societies conducting official duties; a person who needs the information to determine or protect personal or property rights; or a person with a court order instructing the registrar to change the document. The Center of Vital Records is at 6 Harrington Rd., Cranston, and the page says an appointment is suggested. For the requirements specific to a name change or sex change, the page points to the department's own requirements document, covered in companion records.",
+    "timeline": {
+      "typical": "3 - 4 weeks to process an amendment request"
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.ri.gov/vital-records/changes-birth-death-or-marriage-records",
+      "title": "Rhode Island Department of Health — Changes To Birth, Death Or Marriage Records",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 90,
     "language": "en"
   },
   {

@@ -1531,6 +1531,53 @@
       "file": "mass-gov-info-details-eligibility-requirements-for-indigency-waiver-of-bc737a19.txt",
       "fetched": "2026-09-06",
       "sha256": "ecd2f8d5b790aa5ff872ec8a25262de08eb1da53e728f2db3940f0d681a09e71"
+    },
+    "https://dmv.ny.gov/forms/mv44.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://dmv.ri.gov/media/41/download": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://health.ri.gov/sites/g/files/xkgbur1006/files/2025-01/RI-Vital-Records-Correction-and-Amendment-Requirements.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://health.ri.gov/vital-records/changes-birth-death-or-marriage-records": {
+      "file": "health-ri-gov-vital-records-changes-birth-death-or-marriage-records-7cda08f5.txt",
+      "fetched": "2026-09-05",
+      "sha256": "7860ff56f89fb763d6fe0a3fd16157c3c8672b4d92341941ccb98aa42fc2fa5f"
+    },
+    "https://oklahoma.gov/content/dam/ok/en/health/health2/aem-documents/vital-records/forms/18008vr-vr-birth-application-eng-eform.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.dot.nd.gov/forms/sfn61146.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.sos.ok.gov/documents/executive/2079.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
     }
   }
 }

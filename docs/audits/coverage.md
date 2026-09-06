@@ -97,7 +97,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-MS | — | — | ⚠️ degraded | — | ✅ | — | — | — | — | — | — | — | — |
 | US-MT | — | — | ✅ | — | ✅ | — | — | — | — | — | — | — | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — | — | — | — | — | — | — | — |
-| US-ND | — | — | ✅ | — | ✅ | — | — | — | — | — | — | — | — |
+| US-ND | — | — | ⚠️ degraded | — | ✅ | — | — | — | — | — | — | — | — |
 | US-NE | — | — | ✅ | — | ✅ | — | — | — | — | — | — | — | — |
 | US-NH | — | — | ✅ | — | ✅ | — | — | — | — | — | — | — | — |
 | US-NJ | — | — | ✅ | — | ✅ | — | — | — | — | — | — | — | — |
@@ -211,7 +211,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-MS | — | — | ⚠️ degraded | — | ✅ | — | — | — | — | — | — | — | — |
 | US-MT | — | — | ✅ | — | ✅ | — | — | — | — | — | — | — | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — | — | — | — | — | — | — | — |
-| US-ND | — | — | ✅ | — | ✅ | — | — | — | — | — | — | — | — |
+| US-ND | — | — | ⚠️ degraded | — | ✅ | — | — | — | — | — | — | — | — |
 | US-NE | — | — | ✅ | — | ✅ | — | — | — | — | — | — | — | — |
 | US-NH | — | — | ✅ | — | ✅ | — | — | — | — | — | — | — | — |
 | US-NJ | — | — | ✅ | — | ✅ | — | — | — | — | — | — | — | — |
@@ -235,4 +235,4 @@ driver's-license rows are covered and the federal rows are current.
 | US-WV | — | — | ✅ | — | ✅ | — | — | — | — | — | — | — | — |
 | US-WY | — | — | ✅ | — | ⚠️ degraded | — | — | — | — | — | — | — | — |
 
-**Totals:** 448 current · 100 degraded · 2156 uncovered cells.
+**Totals:** 446 current · 102 degraded · 2156 uncovered cells.

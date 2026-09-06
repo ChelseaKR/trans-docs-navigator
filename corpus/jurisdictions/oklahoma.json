@@ -58,11 +58,32 @@
     ],
     "topic": "Oklahoma driver's license and ID sex/gender designation",
     "statement": "Service Oklahoma's own list of driver's license and ID services does not include a way to change the sex or gender marker on a license or ID card.",
-    "detail": "This page lists every standard driver's-license and ID service Service Oklahoma offers — a new license, renewals, REAL ID, address updates, and more — and none of them is described as a sex or gender-designation change. Read the current official page yourself, and don't assume a route exists that isn't listed there.",
+    "detail": "This page lists every standard driver's-license and ID service Service Oklahoma offers — a new license, renewals, REAL ID, address updates, and more — and none of them is described as a sex or gender-designation change. Read the current official page yourself, and don't assume a route exists that isn't listed there. A companion record covers Executive Order 2023-20, the governor's 2023 order on how state agencies must define sex.",
     "prerequisites": [],
     "source": {
       "url": "https://oklahoma.gov/service/all-services/driving-and-automobiles.html",
       "title": "Service Oklahoma — Driving and Automobiles",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ok.drivers-license.gender-marker.law",
+    "jurisdiction": "US-OK",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Oklahoma Executive Order 2023-20 on the definition of sex",
+    "statement": "Executive Order 2023-20 is an order from Oklahoma's governor, J. Kevin Stitt. It was filed with the Secretary of State on August 1, 2023. It tells every state agency, board, and commission how to define \"sex\" when they write rules, enforce decisions, or decide disputes: a natural person's \"biological sex, either male or female at birth.\" It also defines \"female,\" \"male,\" \"woman,\" \"girl,\" \"man,\" \"boy,\" \"mother,\" and \"father\" by the body's reproductive system.",
+    "detail": "The order also says that any state agency that collects vital statistics — for anti-discrimination laws, or for health, crime, economic, or other data — must record each person as male or female as the order defines them. It lets agencies offer services in single-sex settings where the law allows. The order does not mention driver's licenses, ID cards, or Service Oklahoma by name. A companion record covers what Service Oklahoma's own list of services says. Confirm the current position with Service Oklahoma before relying on either.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.sos.ok.gov/documents/executive/2079.pdf",
+      "title": "Oklahoma Secretary of State — Executive Order 2023-20 (filed August 1, 2023)",
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     },
@@ -79,10 +100,10 @@
     ],
     "topic": "Oklahoma birth certificate name change",
     "statement": "A legal name change on an Oklahoma birth record is not treated as a minor correction — the Oklahoma State Department of Health says a District Court order is required, and you should contact your local court clerk or an attorney for help.",
-    "detail": "Small mistakes, like a misspelled name, can go through a $15 application plus a $25 amendment fee instead, with either an administrative order or a district court order. But an actual legal name change, an adoption, or a paternity update all require a District Court order first, and this process can take up to 4 months.",
+    "detail": "Small mistakes, like a misspelled name, go through the page's own amendment process instead: you send the amendment application (the page's 'Order by Mail' link is OSDH's Birth Certificate Request Form), a $15 fee, a copy of a valid ID, and a short statement explaining the mistake; then you get either an administrative order from OSDH's Administrative Law Court or a district court order; then, once Vital Records has the order, you pay a $25 amendment fee and the amended certificate is issued. An actual legal name change, an adoption, or a paternity update are not minor corrections — they require a District Court order first — and the page says all legal changes to a record can take up to 4 months.",
     "cost": {
       "amount_usd": null,
-      "note": "The page doesn't state a fee for the District Court order path itself; the $15 application fee and $25 amendment fee it lists apply to the separate minor-correction process."
+      "note": "The page doesn't state a separate fee for the District Court order path; the $15 application fee and $25 amendment fee it lists are the two payments in its own amendment process. OSDH's request form itself prints a single combined amendment fee — see the companion record."
     },
     "timeline": {
       "typical": "up to 4 months",
@@ -99,6 +120,38 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "ok-osdh-birth-certificate-request-form",
+    "language": "en"
+  },
+  {
+    "id": "ok.birth-certificate.name.form-fee",
+    "jurisdiction": "US-OK",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Oklahoma birth certificate amendment fee on OSDH's request form",
+    "statement": "The Oklahoma State Department of Health's Birth Certificate Request Form lists a single $40.00 one-time initial fee for \"delayed registration, amendment, paternity, adoption, or legitimation requests,\" which includes one certified copy of the record.",
+    "detail": "The same form lists a standard certified copy at $15 each (a non-refundable, non-transferable record search fee that includes one certified copy if the record is found; additional copies are $15 each), says processing time may be 7-10 business days, that all fees expire one year after the date paid, and that you may send a maximum of five applications per order or envelope. The form must be fully completed and signed, with a photocopy of a current, valid photo ID, full payment, and proof of eligibility, or it will not be processed. OSDH's amendments web page describes the same amendment cost as two payments — see the companion record.",
+    "cost": {
+      "amount_usd": 40,
+      "note": "One-time initial fee for an amendment request, including one certified copy; additional certified copies are $15 each."
+    },
+    "timeline": {
+      "typical": "processing time may be 7-10 business days"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://oklahoma.gov/content/dam/ok/en/health/health2/aem-documents/vital-records/forms/18008vr-vr-birth-application-eng-eform.pdf",
+      "title": "Oklahoma State Department of Health, Vital Records — Birth Certificate Request Form",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 90,
+    "form_ref": "ok-osdh-birth-certificate-request-form",
     "language": "en"
   },
   {
