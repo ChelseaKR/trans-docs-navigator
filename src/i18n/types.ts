@@ -305,6 +305,29 @@ export interface SeoMessages {
   legalDescription: { terms: string; privacy: string; accessibility: string; methodology: string };
   /** Meta description for the /transparency report page. */
   transparencyDescription: string;
+
+  // ── Per-jurisdiction change-alert feeds (RSS/Atom; no accounts, no PII) ──────────────
+  // Entries must report only that OUR RECORDS changed, never that the law changed — see
+  // api/feed.ts. Every string below carries that framing so a translator can't drop it.
+  /** /feeds/ HTML index page: links every jurisdiction's feed. */
+  feedIndexTitle: string;
+  feedIndexDescription: string;
+  feedIndexLead: string;
+  feedIndexAllHeading: string;
+  /** Plain link surfaced on a jurisdiction's checklist page (and each row of the index). */
+  feedLinkLabel(stateName: string): string;
+  /** RSS `<title>`, and the `<link rel="alternate" title="...">` autodiscovery label. */
+  feedChannelTitle(stateName: string): string;
+  /** RSS channel `<description>` — what this feed reports, before the trailing disclosure. */
+  feedChannelDescription(stateName: string): string;
+  /** One entry's `<title>`, e.g. "3 records for Washington updated on 2026-09-06". */
+  feedEntryTitle(count: number, stateName: string, date: string): string;
+  /** One entry's `<description>` body (before the trailing disclosure is appended). */
+  feedEntryDescription(count: number, stateName: string, date: string, docTypes: string): string;
+  /** Appended to an entry when at least one backing record currently needs reverification. */
+  feedEntryDegradedNote: string;
+  /** Shown when a jurisdiction has no dated records yet in the feed's language. */
+  feedEmptyNote: string;
 }
 
 /** Everything one language needs. The compiler enforces parity across languages. */
