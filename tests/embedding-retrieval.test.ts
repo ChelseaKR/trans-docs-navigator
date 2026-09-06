@@ -46,7 +46,7 @@ test("the embedding retriever is drop-in: guidance produces a grounded, cited an
 
 test("unsupported jurisdiction still refuses under the embedding retriever", () => {
   const ans = answer(
-    { jurisdiction: "US-AL", change_types: ["name"], documents: ["court-order"], today },
+    { jurisdiction: "US-PR", change_types: ["name"], documents: ["court-order"], today },
     { retriever: embeddingRetrieve },
   );
   assert.equal(ans.refused, true);
