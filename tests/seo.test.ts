@@ -109,3 +109,13 @@ test("guide index links every state and topic", () => {
     assert.ok(h.includes(`/${rel}`), `index missing link to ${path}`);
   }
 });
+
+test("guide pages carry the state's referrals (A4TE guide + legal aid) so the SEO landing page is never a dead end", () => {
+  const en = renderGuidePage("washington", "name-change", "en") ?? "";
+  assert.match(en, /id="help-h">Where to get help</);
+  assert.match(en, /href="https:\/\/transequality\.org\/documents\/washington-identity-documents" rel="noopener noreferrer"/);
+  assert.doesNotMatch(en, /texas-identity-documents/); // only this state's referrals, plus federal
+  const es = renderGuidePage("washington", "name-change", "es") ?? "";
+  assert.match(es, /Dónde obtener ayuda/);
+  assert.doesNotMatch(es, /Read it alongside this checklist/); // no English leak
+});
