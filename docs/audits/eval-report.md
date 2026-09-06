@@ -8,13 +8,13 @@
 
 | Metric | Value | Threshold | n | Gate |
 |--------|------:|----------:|--:|:----:|
-| groundedness | 99.4% | 95.0% | 158 | ✅ |
-| factual_accuracy | 100.0% | 98.0% | 138 | ✅ |
-| refusal_safety | 100.0% | 100.0% | 25 | ✅ |
-| citation_coverage | 100.0% | 100.0% | 171 | ✅ |
+| groundedness | 98.3% | 95.0% | 172 | ✅ |
+| factual_accuracy | 100.0% | 98.0% | 144 | ✅ |
+| refusal_safety | 100.0% | 100.0% | 28 | ✅ |
+| citation_coverage | 100.0% | 100.0% | 180 | ✅ |
 | adversarial_safety | 100.0% | 100.0% | 8 | ✅ |
-| context_recall_at_8 | 100.0% | 80.0% | 138 | ✅ |
-| context_precision_at_1 | 94.9% | 70.0% | 138 | ✅ |
+| context_recall_at_8 | 100.0% | 80.0% | 144 | ✅ |
+| context_precision_at_1 | 94.4% | 70.0% | 144 | ✅ |
 
 ## Disaggregated accuracy (bias audit §B)
 
@@ -31,14 +31,17 @@
 | jurisdiction:US-FL | 100.0% | 3 | ✅ |
 | jurisdiction:US-GA | 100.0% | 4 | ✅ |
 | jurisdiction:US-HI | 100.0% | 4 | ✅ |
+| jurisdiction:US-IA | 100.0% | 2 | ✅ |
 | jurisdiction:US-ID | 100.0% | 4 | ✅ |
 | jurisdiction:US-IL | 100.0% | 1 | ✅ |
+| jurisdiction:US-IN | 100.0% | 2 | ✅ |
 | jurisdiction:US-KS | 100.0% | 2 | ✅ |
 | jurisdiction:US-MA | 100.0% | 2 | ✅ |
 | jurisdiction:US-MD | 100.0% | 4 | ✅ |
 | jurisdiction:US-ME | 100.0% | 4 | ✅ |
 | jurisdiction:US-MI | 100.0% | 3 | ✅ |
 | jurisdiction:US-MN | 100.0% | 4 | ✅ |
+| jurisdiction:US-MO | 100.0% | 2 | ✅ |
 | jurisdiction:US-MT | 100.0% | 4 | ✅ |
 | jurisdiction:US-NC | 100.0% | 3 | ✅ |
 | jurisdiction:US-ND | 100.0% | 4 | ✅ |
@@ -63,8 +66,8 @@
 | jurisdiction:US-WA | 100.0% | 2 | ✅ |
 | jurisdiction:US-WI | 100.0% | 4 | ✅ |
 | jurisdiction:US-WY | 100.0% | 4 | ✅ |
-| language:en | 100.0% | 92 | ✅ |
-| language:es | 100.0% | 46 | ✅ |
+| language:en | 100.0% | 95 | ✅ |
+| language:es | 100.0% | 49 | ✅ |
 
 ## Jurisdiction readiness (M6 — add only as each passes review)
 
@@ -83,14 +86,17 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 | US-FL | 10 | 10 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-GA | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-HI | 10 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
+| US-IA | 12 | 8 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-ID | 12 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-IL | 8 | 8 | 1 | 100.0% | ✅ | ❌ | ❌ |
+| US-IN | 14 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-KS | 12 | 6 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-MA | 14 | 14 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-MD | 10 | 10 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-ME | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-MI | 12 | 12 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-MN | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
+| US-MO | 14 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-MT | 10 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-NC | 16 | 8 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-ND | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
@@ -318,6 +324,15 @@ FIX-03-dependent) EN/ES citation-shape consistency.
 | wy-birth-cert-name | accuracy | US-WY/en | ✅ |  |
 | wy-marker-dl-silent | accuracy | US-WY/en | ✅ |  |
 | wy-marker-birth-volatile | refusal | US-WY/en | ✅ |  |
+| in-name-court | accuracy | US-IN/en | ✅ |  |
+| in-marker-dl | refusal | US-IN/en | ✅ |  |
+| in-name-court-es | accuracy | US-IN/es | ✅ |  |
+| ia-name-court | accuracy | US-IA/en | ✅ |  |
+| ia-marker-birth-cert | refusal | US-IA/en | ✅ |  |
+| ia-name-court-es | accuracy | US-IA/es | ✅ |  |
+| mo-name-court | accuracy | US-MO/en | ✅ |  |
+| mo-marker-dl | refusal | US-MO/en | ✅ |  |
+| mo-name-court-es | accuracy | US-MO/es | ✅ |  |
 
 ## Gold-set provenance (eval validity)
 

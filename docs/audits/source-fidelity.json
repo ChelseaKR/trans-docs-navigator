@@ -1,22 +1,23 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 494,
-  "supported": 853,
+  "records": 534,
+  "supported": 879,
   "unsupported": 0,
-  "uncheckable": 304,
+  "uncheckable": 327,
   "unfetchable_sources": [
     "https://doa.alaska.gov/dmv/akol/namchg.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.michigan.gov/sos/all-services/license-or-id-name-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
+    "https://www.courts.mo.gov/page.jsp?id=3834 → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.courts.nh.gov/sites/g/files/ehbemt471/files/documents/2021-06/filing_fees.pdf → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.dmv.nh.gov/drivers-licensenon-driver-ids/update-personal-information → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → HTTP 404: the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 1824,
-  "total_prose_sentences": 2286,
+  "unchecked_prose_sentences": 1966,
+  "total_prose_sentences": 2447,
   "audits": [
     {
       "recordId": "ak.court-order.name",
@@ -2257,6 +2258,276 @@
       "totalSentences": 3
     },
     {
+      "recordId": "in.court-order.name",
+      "language": "en",
+      "url": "https://indianalegalhelp.org/legal-topic/name-change/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "in.court-order.publication",
+      "language": "en",
+      "url": "https://indianalegalhelp.org/wp-content/uploads/2024/09/Adult-Name-Change-Packet-INSTRUCTIONS-202409-Update.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:in-cca-namechange-adult",
+          "label": "form_ref \"in-cca-namechange-adult\" (Indiana Legal Help / Coalition for Court Access — Adult Name Change Instructions and Forms) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "3 week",
+          "label": "states \"3 week\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 14,
+      "negatedClaims": 0,
+      "totalSentences": 15
+    },
+    {
+      "recordId": "in.court-order.filing-fee",
+      "language": "en",
+      "url": "https://indianalegalhelp.org/filing-fee-frequently-asked-questions/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "157",
+          "label": "costs $157",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $157"
+        },
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "money",
+          "key": "185",
+          "label": "states $185",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $185"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "in.drivers-license.name",
+      "language": "en",
+      "url": "https://www.in.gov/bmv/licenses-permits-ids/learners-permits-and-drivers-licenses-overview/drivers-license/amending-your-drivers-license-or-identification-card",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "30 day",
+          "label": "states \"30 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"30 day\""
+        },
+        {
+          "kind": "duration",
+          "key": "1 business-day",
+          "label": "states \"1 business-day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 business-day\""
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "in.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.in.gov/bmv/licenses-permits-ids/learners-permits-and-drivers-licenses-overview/drivers-license/amending-your-drivers-license-or-identification-card",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "in.birth-certificate.name",
+      "language": "en",
+      "url": "https://www.in.gov/health/vital-records/frequently-asked-questions/amendments-corrections-faqs",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 0,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "in.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.in.gov/health/vital-records/frequently-asked-questions/amendments-corrections-faqs",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ia.court-order.name",
+      "language": "en",
+      "url": "https://www.iowacourts.gov/for-the-public/representing-yourself/name-change/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "195",
+          "label": "costs $195",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $195"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "ia.court-order.waiting-period",
+      "language": "en",
+      "url": "https://www.legis.iowa.gov/docs/code/2026/674.pdf",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ia.drivers-license.name",
+      "language": "en",
+      "url": "https://iowadot.gov/drivers-licenses-ids/other-services/change-information",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ia.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://iowadot.gov/drivers-licenses-ids/get-or-renew-drivers-licenses-ids-permits/designations",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 3,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ia.birth-certificate.name",
+      "language": "en",
+      "url": "https://hhs.iowa.gov/family-community/vital-records",
+      "results": [
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "costs $15",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $15"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 0,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "ia.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.legis.iowa.gov/docs/code/2026/144.23.pdf",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
       "recordId": "ks.birth-certificate.gender-marker",
       "language": "en",
       "url": "https://www.kdhe.ks.gov/FAQ.aspx?QID=265",
@@ -3490,6 +3761,155 @@
       ],
       "uncheckedProse": 2,
       "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "mo.court-order.name",
+      "language": "en",
+      "url": "https://revisor.mo.gov/main/OneSection.aspx?section=527.270",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "mo.court-order.publication",
+      "language": "en",
+      "url": "https://www.courts.mo.gov/page.jsp?id=3834",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "10 day",
+          "label": "states \"10 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "mo.drivers-license.name",
+      "language": "en",
+      "url": "https://dor.mo.gov/driver-license/issuance/id-requirements.html",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 0,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "mo.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://dor.mo.gov/driver-license/issuance/id-requirements.html",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "mo.birth-certificate.name",
+      "language": "en",
+      "url": "https://health.mo.gov/vital-records-registries/vital-records/correctamend-vital-record",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 0,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "mo.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.sos.mo.gov/cmsimages/adrules/csr/current/19csr/19c10-10.pdf",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "mo.birth-certificate.fees",
+      "language": "en",
+      "url": "https://health.mo.gov/sites/health/files/media/pdf/2026/04/Aff_for_Correction.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "costs $15",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "MO5800645",
+          "label": "official form MO5800645 backs this step (form_ref: mo-dhss-580-0645)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "VS460",
+          "label": "official form VS460 backs this step (form_ref: mo-dhss-580-0645)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 1,
       "totalSentences": 3
     },
     {
@@ -8082,6 +8502,109 @@
       "totalSentences": 4
     },
     {
+      "recordId": "ia.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.legis.iowa.gov/docs/code/2026/144.23.pdf",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 3,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "ia.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://hhs.iowa.gov/family-community/vital-records",
+      "results": [
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "costs $15",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $15"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 0,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "ia.court-order.name.es",
+      "language": "es",
+      "url": "https://www.iowacourts.gov/for-the-public/representing-yourself/name-change/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "195",
+          "label": "costs $195",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $195"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "ia.court-order.waiting-period.es",
+      "language": "es",
+      "url": "https://www.legis.iowa.gov/docs/code/2026/674.pdf",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ia.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://iowadot.gov/drivers-licenses-ids/get-or-renew-drivers-licenses-ids-permits/designations",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 4,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ia.drivers-license.name.es",
+      "language": "es",
+      "url": "https://iowadot.gov/drivers-licenses-ids/other-services/change-information",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
       "recordId": "id.birth-certificate.gender-marker.es",
       "language": "es",
       "url": "https://legislature.idaho.gov/statutesrules/idstat/Title39/T39CH2/SECT39-245A/",
@@ -8384,6 +8907,164 @@
       "uncheckedProse": 4,
       "negatedClaims": 1,
       "totalSentences": 4
+    },
+    {
+      "recordId": "in.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.in.gov/health/vital-records/frequently-asked-questions/amendments-corrections-faqs",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "in.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.in.gov/health/vital-records/frequently-asked-questions/amendments-corrections-faqs",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 0,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "in.court-order.filing-fee.es",
+      "language": "es",
+      "url": "https://indianalegalhelp.org/filing-fee-frequently-asked-questions/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "157",
+          "label": "costs $157",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $157"
+        },
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "money",
+          "key": "185",
+          "label": "states $185",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $185"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "in.court-order.name.es",
+      "language": "es",
+      "url": "https://indianalegalhelp.org/legal-topic/name-change/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "in.court-order.publication.es",
+      "language": "es",
+      "url": "https://indianalegalhelp.org/wp-content/uploads/2024/09/Adult-Name-Change-Packet-INSTRUCTIONS-202409-Update.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:in-cca-namechange-adult",
+          "label": "form_ref \"in-cca-namechange-adult\" (Indiana Legal Help / Coalition for Court Access — Adult Name Change Instructions and Forms) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "3 week",
+          "label": "states \"3 week\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 14,
+      "negatedClaims": 0,
+      "totalSentences": 15
+    },
+    {
+      "recordId": "in.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.in.gov/bmv/licenses-permits-ids/learners-permits-and-drivers-licenses-overview/drivers-license/amending-your-drivers-license-or-identification-card",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "in.drivers-license.name.es",
+      "language": "es",
+      "url": "https://www.in.gov/bmv/licenses-permits-ids/learners-permits-and-drivers-licenses-overview/drivers-license/amending-your-drivers-license-or-identification-card",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "30 day",
+          "label": "states \"30 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"30 day\""
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 5
     },
     {
       "recordId": "ks.birth-certificate.gender-marker.es",
@@ -9619,6 +10300,154 @@
       "uncheckedProse": 4,
       "negatedClaims": 1,
       "totalSentences": 4
+    },
+    {
+      "recordId": "mo.birth-certificate.fees.es",
+      "language": "es",
+      "url": "https://health.mo.gov/sites/health/files/media/pdf/2026/04/Aff_for_Correction.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "costs $15",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "MO5800645",
+          "label": "official form MO5800645 backs this step (form_ref: mo-dhss-580-0645)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "VS460",
+          "label": "official form VS460 backs this step (form_ref: mo-dhss-580-0645)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "mo.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.sos.mo.gov/cmsimages/adrules/csr/current/19csr/19c10-10.pdf",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "mo.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://health.mo.gov/vital-records-registries/vital-records/correctamend-vital-record",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 0,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "mo.court-order.name.es",
+      "language": "es",
+      "url": "https://revisor.mo.gov/main/OneSection.aspx?section=527.270",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "mo.court-order.publication.es",
+      "language": "es",
+      "url": "https://www.courts.mo.gov/page.jsp?id=3834",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "3 week",
+          "label": "states \"3 week\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "10 day",
+          "label": "states \"10 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "requirement",
+          "key": "newspaper-publication",
+          "label": "publication in a newspaper is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "mo.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://dor.mo.gov/driver-license/issuance/id-requirements.html",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "mo.drivers-license.name.es",
+      "language": "es",
+      "url": "https://dor.mo.gov/driver-license/issuance/id-requirements.html",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
     },
     {
       "recordId": "mt.birth-certificate.fees.es",

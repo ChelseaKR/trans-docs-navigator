@@ -22,14 +22,17 @@ driver's-license rows are covered and the federal rows are current.
 | US-FL | ✅ | — | ✅ | — | ✅ | — |
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
 | US-HI | ✅ | — | ✅ | — | ⚠️ degraded | — |
+| US-IA | ✅ | — | ✅ | — | ✅ | — |
 | US-ID | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
+| US-IN | ✅ | — | ✅ | — | ✅ | — |
 | US-KS | ✅ | — | ✅ | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
 | US-MD | ✅ | — | ✅ | — | ✅ | — |
 | US-ME | ✅ | — | ✅ | — | ✅ | — |
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-MN | ✅ | — | ✅ | — | ✅ | — |
+| US-MO | ✅ | — | ✅ | — | ✅ | — |
 | US-MT | ✅ | — | ✅ | — | ✅ | — |
 | US-NC | ✅ | — | ✅ | — | ✅ | — |
 | US-ND | ✅ | — | ✅ | — | ✅ | — |
@@ -70,14 +73,17 @@ driver's-license rows are covered and the federal rows are current.
 | US-FL | — | — | ✅ | — | ✅ | — |
 | US-GA | — | — | ✅ | — | ✅ | — |
 | US-HI | — | — | ✅ | — | ✅ | — |
+| US-IA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-ID | — | — | ✅ | — | ⚠️ degraded | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
+| US-IN | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-KS | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
 | US-MD | — | — | ✅ | — | ✅ | — |
 | US-ME | — | — | ✅ | — | ✅ | — |
 | US-MI | — | — | ✅ | — | ✅ | — |
 | US-MN | — | — | ✅ | — | ✅ | — |
+| US-MO | — | — | ⚠️ degraded | — | ✅ | — |
 | US-MT | — | — | ✅ | — | ✅ | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-ND | — | — | ✅ | — | ✅ | — |
@@ -118,14 +124,17 @@ driver's-license rows are covered and the federal rows are current.
 | US-FL | ✅ | — | ✅ | — | ✅ | — |
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
 | US-HI | ✅ | — | ✅ | — | ⚠️ degraded | — |
+| US-IA | ✅ | — | ✅ | — | ✅ | — |
 | US-ID | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
+| US-IN | ✅ | — | ✅ | — | ✅ | — |
 | US-KS | ✅ | — | ✅ | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
 | US-MD | ✅ | — | ✅ | — | ✅ | — |
 | US-ME | ✅ | — | ✅ | — | ✅ | — |
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-MN | ✅ | — | ✅ | — | ✅ | — |
+| US-MO | ✅ | — | ✅ | — | ✅ | — |
 | US-MT | ✅ | — | ✅ | — | ✅ | — |
 | US-NC | ✅ | — | ✅ | — | ✅ | — |
 | US-ND | ✅ | — | ✅ | — | ✅ | — |
@@ -166,14 +175,17 @@ driver's-license rows are covered and the federal rows are current.
 | US-FL | — | — | ✅ | — | ✅ | — |
 | US-GA | — | — | ✅ | — | ✅ | — |
 | US-HI | — | — | ✅ | — | ✅ | — |
+| US-IA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-ID | — | — | ✅ | — | ⚠️ degraded | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
+| US-IN | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-KS | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
 | US-MD | — | — | ✅ | — | ✅ | — |
 | US-ME | — | — | ✅ | — | ✅ | — |
 | US-MI | — | — | ✅ | — | ✅ | — |
 | US-MN | — | — | ✅ | — | ✅ | — |
+| US-MO | — | — | ⚠️ degraded | — | ✅ | — |
 | US-MT | — | — | ✅ | — | ✅ | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-ND | — | — | ✅ | — | ✅ | — |
@@ -199,4 +211,4 @@ driver's-license rows are covered and the federal rows are current.
 | US-WI | — | — | ✅ | — | ✅ | — |
 | US-WY | — | — | ✅ | — | ⚠️ degraded | — |
 
-**Totals:** 370 current · 60 degraded · 602 uncovered cells.
+**Totals:** 390 current · 70 degraded · 644 uncovered cells.

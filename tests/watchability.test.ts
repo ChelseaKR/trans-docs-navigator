@@ -134,10 +134,16 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // form the Gender Designation Form is filed alongside — is also a PDF whose
     // text this pipeline cannot extract, so no baseline can be taken.
     "https://dphhs.mt.gov/assets/Statistics/VitalStats/affidavitcorr.pdf",
+    // Missouri's birth-record correction-affidavit form (MO 580-0645) is a PDF whose
+    // text this pipeline cannot extract — deliberate addition with the Missouri corpus.
+    "https://health.mo.gov/sites/health/files/media/pdf/2026/04/Aff_for_Correction.pdf",
     // Wyoming's Form to Correct a Wyoming Vital Record — registered in forms/registry.json
     // (form_ref for wy.birth-certificate.name) but never fetched via `make source-baseline`,
     // so it has no drift baseline — deliberate, with the Wyoming corpus.
     "https://health.wyo.gov/wp-content/uploads/2026/07/WDH-VRS-Correction-Form-2026.pdf",
+    // Indiana's Adult Name Change packet (Coalition for Court Access) is a PDF whose
+    // text this pipeline cannot extract — deliberate addition with the Indiana corpus.
+    "https://indianalegalhelp.org/wp-content/uploads/2024/09/Adult-Name-Change-Packet-INSTRUCTIONS-202409-Update.pdf",
     // North Dakota's Century Code chapter 23-02.1 (the statute restricting
     // gender-identity-based sex-designation amendments, 23-02.1-25.1) is only
     // published as a PDF of the whole chapter, so no baseline can be taken —
@@ -179,6 +185,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // published as a PDF on the General Assembly's own site, so no baseline can be
     // taken — deliberate, with the Tennessee corpus.
     "https://www.capitol.tn.gov/Bills/113/Bill/SB1440.pdf",
+    // Missouri's courts website blocks this project's declared user-agent domain-wide
+    // (an explicit anti-scraper 403 on every internal page) — deliberate, with the
+    // Missouri corpus.
+    "https://www.courts.mo.gov/page.jsp?id=3834",
     // New Hampshire: courts.nh.gov and dmv.nh.gov both refuse this project's declared
     // user-agent (confirmed 403 from both Node's fetch and curl sending the same UA), so
     // no baseline can be taken — deliberate, with the New Hampshire corpus. The court-order
@@ -205,6 +215,11 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // whose text this pipeline cannot extract, so no baseline can be taken —
     // deliberate addition with the North Dakota corpus.
     "https://www.hhs.nd.gov/sites/www/files/documents/DOH%20Legacy/Vital/SFN%2060183%20-%20Birth%20Amendment%20Changes.pdf",
+    // Iowa Code chapter 674 (name-change statute) and § 144.23 (birth-certificate sex
+    // designation) are only published as PDFs whose text this pipeline cannot extract —
+    // deliberate addition with the Iowa corpus.
+    "https://www.legis.iowa.gov/docs/code/2026/144.23.pdf",
+    "https://www.legis.iowa.gov/docs/code/2026/674.pdf",
     // Maine: the VS-7 vital-records amendment form, the BMV's Gender Designation Form
     // (MVL-20), and the Secretary of State's gender-designation guidance memo are all
     // PDFs whose text this pipeline cannot extract, so no baseline can be taken —
@@ -237,6 +252,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // gender-marker bar) is only published as a PDF on the court's own site, so no baseline
     // can be taken — deliberate, with the Tennessee corpus.
     "https://www.opn.ca6.uscourts.gov/opinions.pdf/24a0151p-06.pdf",
+    // Missouri's vital-records rule (19 CSR 10-10.110) is only published as a PDF
+    // compilation whose text this pipeline cannot extract — deliberate, with the
+    // Missouri corpus.
+    "https://www.sos.mo.gov/cmsimages/adrules/csr/current/19csr/19c10-10.pdf",
     "https://www.ssa.gov/forms/ss-5.pdf",
     // Tennessee's general vital-records amendment form (PH-1186) is only published as a
     // PDF, so no baseline can be taken — deliberate, with the Tennessee corpus.

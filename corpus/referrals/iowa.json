@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ia.referral.one-iowa",
+    "jurisdiction": "US-IA",
+    "name": "One Iowa",
+    "url": "https://oneiowa.org",
+    "note": {
+      "en": "Iowa's statewide LGBTQ+ advocacy organization, based in Des Moines, with initiatives focused on transgender Iowans and healthcare and policy advocacy.",
+      "es": "Organización estatal de defensa LGBTQ+ de Iowa, con sede en Des Moines, con iniciativas centradas en personas transgénero de Iowa y en la defensa de políticas y acceso a la salud."
+    },
+    "source": {
+      "url": "https://oneiowa.org",
+      "title": "One Iowa",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ia.referral.iowa-legal-aid",
+    "jurisdiction": "US-IA",
+    "name": "Iowa Legal Aid",
+    "url": "https://www.iowalegalaid.org",
+    "note": {
+      "en": "Free civil legal aid for low-income Iowans, including help with family-law legal filings.",
+      "es": "Ayuda legal civil gratuita para residentes de bajos ingresos de Iowa, incluida ayuda con trámites legales de derecho de familia."
+    },
+    "source": {
+      "url": "https://www.iowalegalaid.org",
+      "title": "Iowa Legal Aid",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

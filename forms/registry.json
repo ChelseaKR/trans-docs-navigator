@@ -871,5 +871,36 @@
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "in-cca-namechange-adult",
+    "jurisdiction": "US-IN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Indiana Legal Help / Coalition for Court Access — Adult Name Change Instructions and Forms",
+    "source": {
+      "url": "https://indianalegalhelp.org/wp-content/uploads/2024/09/Adult-Name-Change-Packet-INSTRUCTIONS-202409-Update.pdf",
+      "title": "Indiana Legal Help — Adult Name Change Instructions and Forms",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "mo-dhss-580-0645",
+    "jurisdiction": "US-MO",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Form MO 580-0645 (VS-460) — Affidavit for Correction of a Birth, Death, or Fetal Death Record",
+    "source": {
+      "url": "https://health.mo.gov/sites/health/files/media/pdf/2026/04/Aff_for_Correction.pdf",
+      "title": "Missouri Department of Health and Senior Services Form MO 580-0645 — Affidavit for Correction",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]
