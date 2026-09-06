@@ -3,10 +3,19 @@ name: scorecard
 # OpenSSF Scorecard (P1-2, SEC-36/37/38, CICD-03/11): a supply-chain-hygiene score
 # (Pinned-Dependencies, Token-Permissions, Branch-Protection, Dangerous-Workflow,
 # Vulnerabilities, …) computed monthly and on demand, published to the Security tab
-# as SARIF (same Advanced-Security caveat as codeql.yml: SARIF upload to
-# a *private* repo needs GitHub Advanced Security, so it's a no-op there, not a failure).
+# as SARIF. The Advanced-Security caveat below is conditional and does NOT currently
+# apply: this repository is PUBLIC, and the SARIF upload is confirmed working — the
+# 2026-09-06 run on `main` landed 3 analyses / 6 findings as `Scorecard`-tool code
+# scanning alerts. The guard on the upload step is future-proofing in case the repo is
+# ever flipped private, not a description of today.
+#
 # The result is also uploaded as a build artifact so `docs/audits/scorecard-YYYY-MM.md`
-# can be hand-transcribed from a real run each month (SEC-38).
+# can be hand-transcribed from a real run each month (SEC-38). CAVEAT for whoever does
+# that transcription: Scorecard's SARIF carries only checks scoring BELOW maximum and
+# has no aggregate field, so a score table CANNOT be read off this artifact — a check
+# absent from the SARIF scored 10/10, it was not "unchecked". Use the CLI
+# (`scorecard --repo=… --format=default`) for a real aggregate; see the `## 2026-09-06`
+# section of docs/audits/scorecard-2026-07.md.
 
 on:
   workflow_dispatch: {}
@@ -55,7 +64,13 @@ jobs:
         with:
           results_file: results.sarif
           results_format: sarif
-          publish_results: false # private repo — publishing requires a public repo
+          # NOTE: the previous justification here ("private repo — publishing requires a
+          # public repo") is factually wrong — this repository IS public, so publishing to
+          # the OpenSSF public dataset is available. Left OFF rather than flipped, because
+          # turning it on starts publishing to a third-party public dataset and enables the
+          # Scorecard badge; that is the repo owner's call, not a silent side effect of a
+          # documentation fix. To enable: change this to `true` (no other change needed).
+          publish_results: false
 
       - name: Upload Scorecard results as a build artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -65,9 +80,10 @@ jobs:
           retention-days: 90
 
       - name: Upload SARIF to Code Scanning
-        # Same guard as codeql.yml: Advanced Security (required for code-scanning SARIF
-        # upload on a private repo) is only free on public repos. No-op, not a failure,
-        # if this repo is ever flipped private.
+        # Code-scanning SARIF upload is free on public repos and needs Advanced Security
+        # on private ones. This repo is public, so this step RUNS and is verified working
+        # (2026-09-06: 3 analyses uploaded, 6 findings). The guard only makes it a no-op
+        # rather than a failure if the repo is ever flipped private.
         if: ${{ !github.event.repository.private }}
         uses: github/codeql-action/upload-sarif@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9
         with:

@@ -137,3 +137,121 @@ Not chased: no check here was "fixed" by loosening a control, muting a scanner, 
 adding a suppression to move a number. Every change above is either a real permissions
 bug (scorecard.yml, content-watch.yml, deploy-aws-preview.yml) or a documentation of why
 a check stays where it is.
+
+---
+
+## 2026-09-06: a real scored run — aggregate 7.5 / 10 (was 5.8)
+
+This is the dated, scored section the `2026-09` triage section above promised and could not
+produce ("Next step, immediately after this PR merges: `gh workflow run scorecard.yml --ref
+main`, then append a real scored section here from that run — don't hand-wave a number in
+its place"). Both halves of that promise are now discharged.
+
+**The CI automation is confirmed fixed, by a run, not by inspection.** `scorecard.yml` ran
+green on `main` on 2026-09-06T02:04:38Z (run `34005526933`, `workflow_dispatch`, 44s) — the
+first successful run since 2026-07-06, after three consecutive failures (07-06, 07-09,
+08-11) at `Run analysis`. Its SARIF also reached GitHub code scanning at 2026-09-06T02:05:15Z
+(3 analyses, 6 findings, now visible as `Scorecard`-tool alerts), so the upload path works
+too.
+
+### Provenance of the numbers below
+
+| | |
+|---|---|
+| Tool | `scorecard` CLI **v5.5.0** — the same version `ossf/scorecard-action@2d1146689b` pins in `scorecard.yml` |
+| Commit analyzed | `6b74989cd9b1e6a3634ba418dfebb6e3962edf36` (`origin/main` at the time of the run) |
+| Run date | 2026-09-06 |
+| Data source | live GitHub API, same as the 2026-07-05 baseline above |
+
+**Why the CLI and not the CI artifact.** `scorecard.yml` emits `results_format: sarif`, and
+Scorecard's SARIF carries *only* checks that scored below maximum — it has no aggregate field
+and omits every 10/10 check entirely. The 2026-09-06 CI artifact therefore contains 6
+findings across 3 runs and nothing else; a score table cannot be transcribed from it. That is
+a limitation of the artifact format, not of the run. Anyone re-doing this must run the CLI (or
+add a second JSON-format step) rather than inferring a score from missing SARIF entries —
+**an absent SARIF entry means "scored 10", not "not checked", and the two must not be
+conflated.**
+
+### Aggregate: 7.5 / 10
+
+Take this number from the tool. It is **not** the arithmetic mean of the per-check scores —
+that would be 7.2 — because Scorecard weights checks by risk. The 2026-07-05 baseline shows
+the same gap (its 16 scored checks average 5.6, and it reports 5.8). Do not recompute it by
+hand.
+
+### Per-check, against the 2026-07-05 baseline
+
+| Check | 2026-07-05 | 2026-09-06 | Δ | Reason given by this run |
+|---|--:|--:|:--:|---|
+| Binary-Artifacts | 10 | 10 | — | no binaries found in the repo |
+| Branch-Protection | 3 | 3 | — | branch protection is not maximal on development and all release branches |
+| CI-Tests | 10 | 10 | — | 30 out of 30 merged PRs checked by a CI test |
+| CII-Best-Practices | 0 | 0 | — | no effort to earn an OpenSSF best practices badge detected |
+| Code-Review | 0 | 0 | — | found 0/30 approved changesets |
+| Contributors | 0 | **3** | **+3** | 1 contributing company or organization |
+| Dangerous-Workflow | 10 | 10 | — | no dangerous workflow patterns detected |
+| Dependency-Update-Tool | 10 | 10 | — | update tool detected |
+| Fuzzing | 0 | 0 | — | project is not fuzzed |
+| License | 10 | 10 | — | license file detected |
+| Maintained | 0 | **10** | **+10** | 30 commits and 30 issue activity in the last 90 days |
+| Packaging | N/A | **10** | **N/A→10** | packaging workflow detected |
+| Pinned-Dependencies | 9 | 9 | — | dependency not pinned by hash detected |
+| SAST | 8 | **7** | **−1** | SAST tool detected but not run on all commits |
+| Security-Policy | 10 | 10 | — | security policy file detected |
+| Signed-Releases | N/A | N/A | — | no releases found |
+| Token-Permissions | 0 | **10** | **+10** | workflow tokens follow principle of least privilege |
+| Vulnerabilities | 10 | 10 | — | 0 existing vulnerabilities detected |
+
+**`Signed-Releases` is reported as `-1` in the JSON output.** That is Scorecard's sentinel for
+*not applicable*, not a score, and it is excluded from the aggregate. Transcribing it as a
+zero would drag the number down by a check that was never assessed — the exact
+absence-rendered-as-a-value mistake this repo's audits keep catching elsewhere. It stays N/A
+here for the same reason it did in July: no releases exist (`git tag -l` is still empty).
+
+### What actually moved, and why — none of it by loosening anything
+
+- **Token-Permissions 0 → 10.** The workflow-level write-scope grants triaged in the section
+  above (`codeql.yml`, `release.yml`, then `content-watch.yml` and `deploy-aws-preview.yml`)
+  are all now job-scoped. This is the one movement that is directly a fix landing, and it is
+  the largest single contributor to the aggregate: Token-Permissions is a high-weight check.
+- **Maintained 0 → 10.** Exactly as the section above predicted and flagged: the 0/10 was
+  Scorecard's "created within the last 90 days" heuristic, which expired around 2026-09-03.
+  The fresh reason is now activity-based (30 commits, 30 issue events in 90 days), so this is
+  a real signal now rather than an age artifact.
+- **Contributors 0 → 3.** Still a single-maintainer repo; Scorecard now resolves one
+  contributing organization. Structurally capped, not a gap that further work closes.
+- **Packaging N/A → 10.** `release.yml`'s rewrite (job-scoped `packages`/`id-token`/
+  `attestations`, dataset publish) is now recognized as a packaging workflow. Note this is
+  detection of the *workflow*, not evidence a release has ever run — `release.yml` still has
+  never executed, and `Signed-Releases` remains N/A for that reason. Do not read
+  `Packaging 10/10` as "releases are signed".
+- **SAST 8 → 7.** A drop, and worth naming rather than burying: the reason string is
+  unchanged ("SAST tool detected but not run on all commits"), so this is the same
+  commit-sampling behaviour the baseline already diagnosed as a normalization artifact,
+  re-sampled over a different (and much busier) commit window. Semgrep still runs on every
+  push and PR into `main`. Flagged as watch-not-act; if it keeps sliding, re-examine rather
+  than assuming the artifact explanation still holds.
+
+### Still open after this run
+
+- **Branch-Protection (3/10)** and **Code-Review (0/10)** — unchanged and unchanged for the
+  same reason: both need a repo-settings/policy decision that is the repo owner's, not a
+  PR's. `docs/audits/branch-protection-2026-07-05.md` holds the detail, and the additive-only
+  required-status-checks command named in the section above is still un-run.
+- **CII-Best-Practices (0/10)**, **Fuzzing (0/10)** — prior explicit low-priority calls,
+  restated, not revisited.
+- **Signed-Releases (N/A)** — unattainable until a first tag is cut.
+- **SEC-37 (Scorecard aggregate ≥ 8)** — **still not met**, but the gap is now 0.5, not 2.2.
+  The remaining distance is almost entirely Branch-Protection + Code-Review, i.e. the owner
+  decision above, plus two checks (Contributors, Fuzzing) that are structurally capped for
+  this repo's shape. It is worth being explicit that SEC-37 cannot be reached by code changes
+  alone from here.
+
+### Re-running this
+
+```sh
+GITHUB_AUTH_TOKEN=$(gh auth token) \
+  scorecard --repo=github.com/ChelseaKR/trans-docs-navigator --format=default
+```
+
+Append a new dated section below; do not overwrite this one or the baseline above.
