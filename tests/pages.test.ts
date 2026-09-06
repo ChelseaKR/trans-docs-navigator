@@ -147,7 +147,7 @@ test("resume panel is hidden when there is no selection yet (progressive enhance
 });
 
 test("checklist page surfaces gaps for an uncovered jurisdiction", () => {
-  const cl = buildChecklist({ jurisdiction: "US-AL", change_types: ["name"], documents: ["court-order"], language: "en" });
+  const cl = buildChecklist({ jurisdiction: "US-PR", change_types: ["name"], documents: ["court-order"], language: "en" });
   const h = renderChecklistPage(cl, corpus, "en", "jurisdiction=US-AL&change=name");
   assert.match(h, /Not yet covered/);
 });
