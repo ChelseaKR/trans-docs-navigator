@@ -16,5 +16,23 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90
+  },
+  {
+    "id": "ok.referral.a4te",
+    "jurisdiction": "US-OK",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Oklahoma identity documents guide",
+    "url": "https://transequality.org/documents/oklahoma-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Oklahoma documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Oklahoma. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/oklahoma-identity-documents",
+      "title": "A4TE \u2014 Oklahoma Identity Documents",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
   }
 ]

@@ -1,9 +1,9 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 626,
-  "supported": 961,
+  "records": 658,
+  "supported": 965,
   "unsupported": 0,
-  "uncheckable": 450,
+  "uncheckable": 460,
   "unfetchable_sources": [
     "https://doa.alaska.gov/dmv/akol/namchg.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
@@ -22,8 +22,8 @@
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → unreachable (fetch and curl both failed): the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://travel.state.gov/es/pasaportes/renovar-o-reemplazar/cambiar-o-corregir.html → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 2322,
-  "total_prose_sentences": 2864,
+  "unchecked_prose_sentences": 2421,
+  "total_prose_sentences": 2969,
   "audits": [
     {
       "recordId": "al.court-order.name",
@@ -1912,6 +1912,219 @@
       "uncheckedProse": 6,
       "negatedClaims": 1,
       "totalSentences": 6
+    },
+    {
+      "recordId": "us.green-card.name",
+      "language": "en",
+      "url": "https://www.uscis.gov/sites/default/files/document/forms/i-90instr.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-i-90",
+          "label": "form_ref \"us-i-90\" (Form I-90 — Application to Replace Permanent Resident Card) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.green-card.gender-marker",
+      "language": "en",
+      "url": "https://www.uscis.gov/policy-manual/volume-11-part-a-chapter-2",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.naturalization-certificate.name",
+      "language": "en",
+      "url": "https://www.uscis.gov/policy-manual/volume-12-part-k-chapter-4",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-n-565",
+          "label": "form_ref \"us-n-565\" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 0,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "us.naturalization-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.uscis.gov/policy-manual/volume-12-part-k-chapter-4",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-n-565",
+          "label": "form_ref \"us-n-565\" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.ead.name",
+      "language": "en",
+      "url": "https://www.uscis.gov/i-765",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-i-765",
+          "label": "form_ref \"us-i-765\" (Form I-765 — Application for Employment Authorization) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 3,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.ead.gender-marker",
+      "language": "en",
+      "url": "https://www.uscis.gov/policy-manual/volume-11-part-a-chapter-2",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.selective-service.name",
+      "language": "en",
+      "url": "https://www.sss.gov/verify/update-info/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.selective-service.gender-marker",
+      "language": "en",
+      "url": "https://www.sss.gov",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.military-records.correction",
+      "language": "en",
+      "url": "https://www.archives.gov/veterans/military-service-records/correct-service-records.html",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "DD214",
+          "label": "names form DD214",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DD214"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.military-records.va-name-change",
+      "language": "en",
+      "url": "https://www.va.gov/resources/how-to-change-your-legal-name-on-file-with-va/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.trusted-traveler.name-tsa-precheck",
+      "language": "en",
+      "url": "https://www.tsa.gov/precheck/faq",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "45 day",
+          "label": "states \"45 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"45 day\""
+        }
+      ],
+      "uncheckedProse": 0,
+      "negatedClaims": 1,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "us.trusted-traveler.name-global-entry",
+      "language": "en",
+      "url": "https://www.cbp.gov/travel/trusted-traveler-programs/global-entry/frequently-asked-questions",
+      "results": [],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "us.trusted-traveler.gender-marker-tsa-precheck",
+      "language": "en",
+      "url": "https://www.tsa.gov/precheck/faq",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.trusted-traveler.gender-marker-global-entry",
+      "language": "en",
+      "url": "https://www.cbp.gov/travel/trusted-traveler-programs/global-entry/frequently-asked-questions",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.federal-employment-records.name",
+      "language": "en",
+      "url": "https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.federal-employment-records.gender-marker",
+      "language": "en",
+      "url": "https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
     },
     {
       "recordId": "fl.court-order.name",
@@ -8556,6 +8769,34 @@
       "totalSentences": 4
     },
     {
+      "recordId": "ca.birth-certificate.gender-marker.minor.es",
+      "language": "es",
+      "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Assembly-Bill-(AB)-218.aspx",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "VS24B",
+          "label": "official form VS24B backs this step (form_ref: ca-vs-24b)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names VS24B"
+        },
+        {
+          "kind": "form-id",
+          "key": "AB218",
+          "label": "names form AB218",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names AB218"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
       "recordId": "ca.birth-certificate.gender-marker.no-court-order.es",
       "language": "es",
       "url": "https://selfhelp.courts.ca.gov/gender-recognition/update-gender-marker-ID-documents",
@@ -8648,6 +8889,52 @@
       "totalSentences": 3
     },
     {
+      "recordId": "ca.court-order.gender-marker.minor.es",
+      "language": "es",
+      "url": "https://selfhelp.courts.ca.gov/gender-recognition",
+      "results": [
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "money",
+          "key": "435",
+          "label": "states $435",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $435"
+        },
+        {
+          "kind": "money",
+          "key": "450",
+          "label": "states $450",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $450"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "cost.note",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 4,
+      "totalSentences": 5
+    },
+    {
       "recordId": "ca.court-order.name.es",
       "language": "es",
       "url": "https://selfhelp.courts.ca.gov/es/cambie-su-nombre-en-california",
@@ -8738,6 +9025,52 @@
       "uncheckedProse": 2,
       "negatedClaims": 0,
       "totalSentences": 4
+    },
+    {
+      "recordId": "ca.court-order.name.minor.es",
+      "language": "es",
+      "url": "https://selfhelp.courts.ca.gov/name-change",
+      "results": [
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "duration",
+          "key": "1 month",
+          "label": "states \"1 month\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 month\""
+        },
+        {
+          "kind": "money",
+          "key": "435",
+          "label": "states $435",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $435"
+        },
+        {
+          "kind": "money",
+          "key": "450",
+          "label": "states $450",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $450"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 5,
+      "totalSentences": 7
     },
     {
       "recordId": "ca.drivers-license.gender-marker.es",
@@ -9107,6 +9440,191 @@
       "uncheckedProse": 4,
       "negatedClaims": 3,
       "totalSentences": 5
+    },
+    {
+      "recordId": "dc.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Gender%20Designation%20Application_0.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "28",
+          "label": "costs $28",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:dc-doh-gender-designation",
+          "label": "form_ref \"dc-doh-gender-designation\" (DC Health — Gender Designation Application (with Model Letter and Instructions)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "23",
+          "label": "states $23",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "51",
+          "label": "states $51",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "3 business-day",
+          "label": "states \"3 business-day\"",
+          "field": "timeline.typical",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "dc.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Birth%20Amendment%20with%20court%20order_0.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "23",
+          "label": "costs $23",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:dc-doh-birth-amend-court-order",
+          "label": "form_ref \"dc-doh-birth-amend-court-order\" (DC Health — Amendment to Birth Record (Court Order)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "dc.court-order.name.es",
+      "language": "es",
+      "url": "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "60",
+          "label": "costs $60",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:dc-name-change-adult",
+          "label": "form_ref \"dc-name-change-adult\" (Application for Change of Name of an Adult (DC Superior Court)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "dc.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://dmv.dc.gov/sites/default/files/dc/sites/dmv/publication/attachments/DC%20DMV%20Form%20Gender%20Self-Designation%20English.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:dc-dmv-gender-self-designation",
+          "label": "form_ref \"dc-dmv-gender-self-designation\" (DC DMV — Gender Self-Designation Form) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "x-marker-available",
+          "label": "an X sex/gender marker is available",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "dc.drivers-license.name.es",
+      "language": "es",
+      "url": "https://dmv.dc.gov/proofofidentity",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
     },
     {
       "recordId": "de.birth-certificate.gender-marker.es",
@@ -10079,6 +10597,43 @@
       "totalSentences": 5
     },
     {
+      "recordId": "il.birth-certificate.gender-marker.minor.es",
+      "language": "es",
+      "url": "https://dph.illinois.gov/topics-services/birth-death-other-records/birth-records/gender-reassignment.html",
+      "results": [
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "costs $15",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $15"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:il-affidavit-correction",
+          "label": "form_ref \"il-affidavit-correction\" (Affidavit and Certificate of Correction Request) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "money",
+          "key": "2",
+          "label": "states $2",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $2"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
       "recordId": "il.birth-certificate.name.es",
       "language": "es",
       "url": "https://dph.illinois.gov/topics-services/birth-death-other-records/birth-records/gender-reassignment.html",
@@ -10142,6 +10697,52 @@
       "uncheckedProse": 5,
       "negatedClaims": 1,
       "totalSentences": 5
+    },
+    {
+      "recordId": "il.court-order.name.minor.es",
+      "language": "es",
+      "url": "https://ilga.gov/Legislation/ILCS/Articles?ActID=2017&ChapterID=56&Chapter=CIVIL%20PROCEDURE&MajorTopic=RIGHTS%20AND%20REMEDIES",
+      "results": [],
+      "uncheckedProse": 7,
+      "negatedClaims": 1,
+      "totalSentences": 7
+    },
+    {
+      "recordId": "il.court-order.name.minor.faq.es",
+      "language": "es",
+      "url": "https://www.illinoislegalaid.org/legal-information/changing-childs-name",
+      "results": [
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "duration",
+          "key": "3 week",
+          "label": "states \"3 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"3 week\""
+        },
+        {
+          "kind": "duration",
+          "key": "6 week",
+          "label": "states \"6 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"6 week\""
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 4,
+      "totalSentences": 7
     },
     {
       "recordId": "il.drivers-license.gender-marker.es",
@@ -10429,6 +11030,172 @@
         }
       ],
       "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "ky.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.chfs.ky.gov/agencies/dph/dehp/vsb/Forms/VS2J.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "VS2J",
+          "label": "official form VS2J backs this step (form_ref: ky-vs-2j)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ky.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.chfs.ky.gov/agencies/dph/dehp/vsb/Forms/VS2J.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "VS2J",
+          "label": "official form VS2J backs this step (form_ref: ky-vs-2j)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "18 year",
+          "label": "states \"18 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ky.court-order.name.es",
+      "language": "es",
+      "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=41791",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "18 year",
+          "label": "states \"18 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/PDF — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "ky.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://drive.ky.gov/Drivers/Pages/ID-Cards.aspx",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 3,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "ky.drivers-license.name.es",
+      "language": "es",
+      "url": "https://drive.ky.gov/Drivers/Pages/Update-Replace.aspx",
+      "results": [
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "costs $15",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $15"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "duration",
+          "key": "10 business-day",
+          "label": "states \"10 business-day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"10 business-day\""
+        },
+        {
+          "kind": "duration",
+          "key": "15 business-day",
+          "label": "states \"15 business-day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"15 business-day\""
+        }
+      ],
+      "uncheckedProse": 4,
       "negatedClaims": 1,
       "totalSentences": 5
     },
@@ -13615,6 +14382,61 @@
       "totalSentences": 6
     },
     {
+      "recordId": "ny.birth-certificate.gender-marker.minor.es",
+      "language": "es",
+      "url": "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "16 year",
+          "label": "states \"16 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "17 year",
+          "label": "states \"17 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "form-id",
+          "key": "DOH5306",
+          "label": "names form DOH5306",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "form-id",
+          "key": "DOH5304",
+          "label": "names form DOH5304",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
       "recordId": "ny.birth-certificate.name.es",
       "language": "es",
       "url": "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
@@ -13678,6 +14500,34 @@
       "uncheckedProse": 3,
       "negatedClaims": 0,
       "totalSentences": 3
+    },
+    {
+      "recordId": "ny.court-order.name.minor.es",
+      "language": "es",
+      "url": "https://www.nycourts.gov/courthelp/NameChange/childNameChange.shtml",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "14 year",
+          "label": "states \"14 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 7,
+      "negatedClaims": 4,
+      "totalSentences": 8
     },
     {
       "recordId": "ny.drivers-license.gender-marker.es",
@@ -15145,6 +15995,43 @@
       "totalSentences": 6
     },
     {
+      "recordId": "tx.court-order.name.minor.es",
+      "language": "es",
+      "url": "https://texaslawhelp.org/guide/i-want-to-change-my-childs-name",
+      "results": [
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "duration",
+          "key": "10 year",
+          "label": "states \"10 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"10 year\""
+        },
+        {
+          "kind": "duration",
+          "key": "45 day",
+          "label": "states \"45 day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"45 day\""
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 4,
+      "totalSentences": 6
+    },
+    {
       "recordId": "tx.drivers-license.gender-marker.es",
       "language": "es",
       "url": "https://guides.sll.texas.gov/name-changes/gender-marker-and-name-change",
@@ -15190,6 +16077,155 @@
       "uncheckedProse": 1,
       "negatedClaims": 0,
       "totalSentences": 1
+    },
+    {
+      "recordId": "us.ead.gender-marker.es",
+      "language": "es",
+      "url": "https://www.uscis.gov/policy-manual/volume-11-part-a-chapter-2",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.ead.name.es",
+      "language": "es",
+      "url": "https://www.uscis.gov/i-765",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-i-765",
+          "label": "form_ref \"us-i-765\" (Form I-765 — Application for Employment Authorization) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 3,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.federal-employment-records.gender-marker.es",
+      "language": "es",
+      "url": "https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.federal-employment-records.name.es",
+      "language": "es",
+      "url": "https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.green-card.gender-marker.es",
+      "language": "es",
+      "url": "https://www.uscis.gov/policy-manual/volume-11-part-a-chapter-2",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.green-card.name.es",
+      "language": "es",
+      "url": "https://www.uscis.gov/sites/default/files/document/forms/i-90instr.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-i-90",
+          "label": "form_ref \"us-i-90\" (Form I-90 — Application to Replace Permanent Resident Card) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 1,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "us.military-records.correction.es",
+      "language": "es",
+      "url": "https://www.archives.gov/veterans/military-service-records/correct-service-records.html",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "DD214",
+          "label": "names form DD214",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DD214"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.military-records.va-name-change.es",
+      "language": "es",
+      "url": "https://www.va.gov/resources/how-to-change-your-legal-name-on-file-with-va/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.naturalization-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.uscis.gov/policy-manual/volume-12-part-k-chapter-4",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-n-565",
+          "label": "form_ref \"us-n-565\" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "us.naturalization-certificate.name.es",
+      "language": "es",
+      "url": "https://www.uscis.gov/policy-manual/volume-12-part-k-chapter-4",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:us-n-565",
+          "label": "form_ref \"us-n-565\" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 0,
+      "totalSentences": 2
     },
     {
       "recordId": "us.passport.gender-marker.es",
@@ -15284,6 +16320,24 @@
       "totalSentences": 5
     },
     {
+      "recordId": "us.selective-service.gender-marker.es",
+      "language": "es",
+      "url": "https://www.sss.gov",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 3,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "us.selective-service.name.es",
+      "language": "es",
+      "url": "https://www.sss.gov/verify/update-info/",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
       "recordId": "us.ssa-card.gender-marker.es",
       "language": "es",
       "url": "https://secure.ssa.gov/poms.nsf/lnx/0110212200",
@@ -15319,6 +16373,52 @@
       "uncheckedProse": 4,
       "negatedClaims": 0,
       "totalSentences": 5
+    },
+    {
+      "recordId": "us.trusted-traveler.gender-marker-global-entry.es",
+      "language": "es",
+      "url": "https://www.cbp.gov/travel/trusted-traveler-programs/global-entry/frequently-asked-questions",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.trusted-traveler.gender-marker-tsa-precheck.es",
+      "language": "es",
+      "url": "https://www.tsa.gov/precheck/faq",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.trusted-traveler.name-global-entry.es",
+      "language": "es",
+      "url": "https://www.cbp.gov/travel/trusted-traveler-programs/global-entry/frequently-asked-questions",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "us.trusted-traveler.name-tsa-precheck.es",
+      "language": "es",
+      "url": "https://www.tsa.gov/precheck/faq",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "45 day",
+          "label": "states \"45 day\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"45 day\""
+        }
+      ],
+      "uncheckedProse": 0,
+      "negatedClaims": 1,
+      "totalSentences": 2
     },
     {
       "recordId": "ut.birth-certificate.fees.es",
@@ -15913,6 +17013,52 @@
       "totalSentences": 5
     },
     {
+      "recordId": "wa.birth-certificate.gender-marker.minor.es",
+      "language": "es",
+      "url": "https://doh.wa.gov/licenses-permits-and-certificates/vital-records/sex-designation-change-birth-certificate",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "DOH422144",
+          "label": "official form DOH422144 backs this step (form_ref: wa-doh-422-144)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DOH422144"
+        },
+        {
+          "kind": "duration",
+          "key": "18 year",
+          "label": "states \"18 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"18 year\""
+        },
+        {
+          "kind": "form-id",
+          "key": "DOH422143",
+          "label": "names form DOH422143",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DOH422143"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 7
+    },
+    {
       "recordId": "wa.birth-certificate.name.es",
       "language": "es",
       "url": "https://doh.wa.gov/licenses-permits-and-certificates/vital-records/court-ordered-name-change",
@@ -15978,6 +17124,25 @@
       "totalSentences": 6
     },
     {
+      "recordId": "wa.court-order.name.minor.es",
+      "language": "es",
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=4.24.130",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "RCW4",
+          "label": "names form RCW4",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names RCW4"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 4,
+      "totalSentences": 6
+    },
+    {
       "recordId": "wa.drivers-license.gender-marker.es",
       "language": "es",
       "url": "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-gender-designation",
@@ -15995,6 +17160,15 @@
       "uncheckedProse": 6,
       "negatedClaims": 3,
       "totalSentences": 6
+    },
+    {
+      "recordId": "wa.drivers-license.gender-marker.minor.es",
+      "language": "es",
+      "url": "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-gender-designation",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
     },
     {
       "recordId": "wa.drivers-license.name.es",
@@ -16174,6 +17348,154 @@
       "totalSentences": 4
     },
     {
+      "recordId": "wv.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://dhhr.wv.gov/HSC/VR/Pages/Correct-or-Amend-a-Certificate.aspx",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:wv-hsc-sex-designation",
+          "label": "form_ref \"wv-hsc-sex-designation\" (West Virginia Health Statistics Center — Sex Designation Form) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "money",
+          "key": "12",
+          "label": "states $12",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $12"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "wv.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://dhhr.wv.gov/HSC/VR/Pages/Correct-or-Amend-a-Certificate.aspx",
+      "results": [
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "costs $10",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:wv-hsc-affidavit-correct-birth",
+          "label": "form_ref \"wv-hsc-affidavit-correct-birth\" (West Virginia Health Statistics Center — Affidavit to Correct Birth (Adult)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "duration",
+          "key": "5 year",
+          "label": "states \"5 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"5 year\""
+        },
+        {
+          "kind": "duration",
+          "key": "7 year",
+          "label": "states \"7 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"7 year\""
+        },
+        {
+          "kind": "money",
+          "key": "12",
+          "label": "states $12",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $12"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 3,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "wv.court-order.name.es",
+      "language": "es",
+      "url": "https://www.courtswv.gov/public-resources/court-information-county/county-map",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "wv.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://webapps.transportation.wv.gov/TWS/WVDOTDocumentStorageMigration/PDF/Transportation/DMV/DMVFormSearch/DMV-99-RO-GenderDesignationForm.pdf",
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "DMV99",
+          "label": "official form DMV99 backs this step (form_ref: wv-dmv-99-ro-gender-designation)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 6,
+      "negatedClaims": 3,
+      "totalSentences": 6
+    },
+    {
+      "recordId": "wv.drivers-license.name.es",
+      "language": "es",
+      "url": "https://transportation.wv.gov/dmv/acceptable-proof-documents",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 0,
+      "totalSentences": 3
+    },
+    {
       "recordId": "wy.birth-certificate.gender-marker.es",
       "language": "es",
       "url": "https://health.wyo.gov/admin/vitalstatistics/amending-a-vital-record/",
@@ -16311,902 +17633,6 @@
       "uncheckedProse": 3,
       "negatedClaims": 1,
       "totalSentences": 4
-    },
-    {
-      "recordId": "dc.court-order.name.es",
-      "language": "es",
-      "url": "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf",
-      "results": [
-        {
-          "kind": "money",
-          "key": "60",
-          "label": "costs $60",
-          "field": "cost.amount_usd",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        },
-        {
-          "kind": "form-id",
-          "key": "unnamed:dc-name-change-adult",
-          "label": "form_ref \"dc-name-change-adult\" (Application for Change of Name of an Adult (DC Superior Court)) carries no form identifier to match on",
-          "field": "form_ref",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        }
-      ],
-      "uncheckedProse": 5,
-      "negatedClaims": 1,
-      "totalSentences": 5
-    },
-    {
-      "recordId": "dc.drivers-license.name.es",
-      "language": "es",
-      "url": "https://dmv.dc.gov/proofofidentity",
-      "results": [
-        {
-          "kind": "requirement",
-          "key": "court-order-required",
-          "label": "a court order is required",
-          "field": "statement",
-          "strength": "necessary-condition",
-          "verdict": "supported",
-          "why": "the source discusses this topic (necessary condition only — NOT verified)"
-        }
-      ],
-      "uncheckedProse": 3,
-      "negatedClaims": 1,
-      "totalSentences": 3
-    },
-    {
-      "recordId": "dc.drivers-license.gender-marker.es",
-      "language": "es",
-      "url": "https://dmv.dc.gov/sites/default/files/dc/sites/dmv/publication/attachments/DC%20DMV%20Form%20Gender%20Self-Designation%20English.pdf",
-      "results": [
-        {
-          "kind": "form-id",
-          "key": "unnamed:dc-dmv-gender-self-designation",
-          "label": "form_ref \"dc-dmv-gender-self-designation\" (DC DMV — Gender Self-Designation Form) carries no form identifier to match on",
-          "field": "form_ref",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "requirement",
-          "key": "x-marker-available",
-          "label": "an X sex/gender marker is available",
-          "field": "statement",
-          "strength": "necessary-condition",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        }
-      ],
-      "uncheckedProse": 4,
-      "negatedClaims": 2,
-      "totalSentences": 4
-    },
-    {
-      "recordId": "dc.birth-certificate.name.es",
-      "language": "es",
-      "url": "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Birth%20Amendment%20with%20court%20order_0.pdf",
-      "results": [
-        {
-          "kind": "money",
-          "key": "23",
-          "label": "costs $23",
-          "field": "cost.amount_usd",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "form-id",
-          "key": "unnamed:dc-doh-birth-amend-court-order",
-          "label": "form_ref \"dc-doh-birth-amend-court-order\" (DC Health — Amendment to Birth Record (Court Order)) carries no form identifier to match on",
-          "field": "form_ref",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "requirement",
-          "key": "court-order-required",
-          "label": "a court order is required",
-          "field": "statement",
-          "strength": "necessary-condition",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "requirement",
-          "key": "notarized",
-          "label": "a notarized signature is required",
-          "field": "detail",
-          "strength": "necessary-condition",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        }
-      ],
-      "uncheckedProse": 4,
-      "negatedClaims": 1,
-      "totalSentences": 4
-    },
-    {
-      "recordId": "dc.birth-certificate.gender-marker.es",
-      "language": "es",
-      "url": "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Gender%20Designation%20Application_0.pdf",
-      "results": [
-        {
-          "kind": "money",
-          "key": "28",
-          "label": "costs $28",
-          "field": "cost.amount_usd",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "form-id",
-          "key": "unnamed:dc-doh-gender-designation",
-          "label": "form_ref \"dc-doh-gender-designation\" (DC Health — Gender Designation Application (with Model Letter and Instructions)) carries no form identifier to match on",
-          "field": "form_ref",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "requirement",
-          "key": "court-order-required",
-          "label": "a court order is required",
-          "field": "detail",
-          "strength": "necessary-condition",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "money",
-          "key": "23",
-          "label": "states $23",
-          "field": "cost.note",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "money",
-          "key": "51",
-          "label": "states $51",
-          "field": "cost.note",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "duration",
-          "key": "3 business-day",
-          "label": "states \"3 business-day\"",
-          "field": "timeline.typical",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        }
-      ],
-      "uncheckedProse": 5,
-      "negatedClaims": 2,
-      "totalSentences": 5
-    },
-    {
-      "recordId": "wv.court-order.name.es",
-      "language": "es",
-      "url": "https://www.courtswv.gov/public-resources/court-information-county/county-map",
-      "results": [],
-      "uncheckedProse": 5,
-      "negatedClaims": 1,
-      "totalSentences": 5
-    },
-    {
-      "recordId": "wv.drivers-license.name.es",
-      "language": "es",
-      "url": "https://transportation.wv.gov/dmv/acceptable-proof-documents",
-      "results": [
-        {
-          "kind": "requirement",
-          "key": "court-order-required",
-          "label": "a court order is required",
-          "field": "statement",
-          "strength": "necessary-condition",
-          "verdict": "supported",
-          "why": "the source discusses this topic (necessary condition only — NOT verified)"
-        }
-      ],
-      "uncheckedProse": 3,
-      "negatedClaims": 0,
-      "totalSentences": 3
-    },
-    {
-      "recordId": "wv.drivers-license.gender-marker.es",
-      "language": "es",
-      "url": "https://webapps.transportation.wv.gov/TWS/WVDOTDocumentStorageMigration/PDF/Transportation/DMV/DMVFormSearch/DMV-99-RO-GenderDesignationForm.pdf",
-      "results": [
-        {
-          "kind": "form-id",
-          "key": "DMV99",
-          "label": "official form DMV99 backs this step (form_ref: wv-dmv-99-ro-gender-designation)",
-          "field": "form_ref",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        }
-      ],
-      "uncheckedProse": 6,
-      "negatedClaims": 3,
-      "totalSentences": 6
-    },
-    {
-      "recordId": "wv.birth-certificate.name.es",
-      "language": "es",
-      "url": "https://dhhr.wv.gov/HSC/VR/Pages/Correct-or-Amend-a-Certificate.aspx",
-      "results": [
-        {
-          "kind": "money",
-          "key": "10",
-          "label": "costs $10",
-          "field": "cost.amount_usd",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states $10"
-        },
-        {
-          "kind": "form-id",
-          "key": "unnamed:wv-hsc-affidavit-correct-birth",
-          "label": "form_ref \"wv-hsc-affidavit-correct-birth\" (West Virginia Health Statistics Center — Affidavit to Correct Birth (Adult)) carries no form identifier to match on",
-          "field": "form_ref",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the official form has no identifier to match on"
-        },
-        {
-          "kind": "duration",
-          "key": "5 year",
-          "label": "states \"5 year\"",
-          "field": "detail",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states \"5 year\""
-        },
-        {
-          "kind": "duration",
-          "key": "7 year",
-          "label": "states \"7 year\"",
-          "field": "detail",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states \"7 year\""
-        },
-        {
-          "kind": "money",
-          "key": "12",
-          "label": "states $12",
-          "field": "cost.note",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states $12"
-        }
-      ],
-      "uncheckedProse": 4,
-      "negatedClaims": 3,
-      "totalSentences": 5
-    },
-    {
-      "recordId": "wv.birth-certificate.gender-marker.es",
-      "language": "es",
-      "url": "https://dhhr.wv.gov/HSC/VR/Pages/Correct-or-Amend-a-Certificate.aspx",
-      "results": [
-        {
-          "kind": "money",
-          "key": "10",
-          "label": "costs $10",
-          "field": "cost.amount_usd",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states $10"
-        },
-        {
-          "kind": "form-id",
-          "key": "unnamed:wv-hsc-sex-designation",
-          "label": "form_ref \"wv-hsc-sex-designation\" (West Virginia Health Statistics Center — Sex Designation Form) carries no form identifier to match on",
-          "field": "form_ref",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the official form has no identifier to match on"
-        },
-        {
-          "kind": "requirement",
-          "key": "court-order-required",
-          "label": "a court order is required",
-          "field": "detail",
-          "strength": "necessary-condition",
-          "verdict": "supported",
-          "why": "the source discusses this topic (necessary condition only — NOT verified)"
-        },
-        {
-          "kind": "money",
-          "key": "12",
-          "label": "states $12",
-          "field": "cost.note",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states $12"
-        }
-      ],
-      "uncheckedProse": 5,
-      "negatedClaims": 2,
-      "totalSentences": 5
-    },
-    {
-      "recordId": "ky.court-order.name.es",
-      "language": "es",
-      "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=41791",
-      "results": [
-        {
-          "kind": "duration",
-          "key": "18 year",
-          "label": "states \"18 year\"",
-          "field": "statement",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/PDF — this gate extracts text from HTML only, so nothing in it can be checked"
-        }
-      ],
-      "uncheckedProse": 5,
-      "negatedClaims": 1,
-      "totalSentences": 6
-    },
-    {
-      "recordId": "ky.drivers-license.name.es",
-      "language": "es",
-      "url": "https://drive.ky.gov/Drivers/Pages/Update-Replace.aspx",
-      "results": [
-        {
-          "kind": "money",
-          "key": "15",
-          "label": "costs $15",
-          "field": "cost.amount_usd",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states $15"
-        },
-        {
-          "kind": "requirement",
-          "key": "court-order-required",
-          "label": "a court order is required",
-          "field": "statement",
-          "strength": "necessary-condition",
-          "verdict": "supported",
-          "why": "the source discusses this topic (necessary condition only — NOT verified)"
-        },
-        {
-          "kind": "duration",
-          "key": "10 business-day",
-          "label": "states \"10 business-day\"",
-          "field": "detail",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states \"10 business-day\""
-        },
-        {
-          "kind": "duration",
-          "key": "15 business-day",
-          "label": "states \"15 business-day\"",
-          "field": "detail",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states \"15 business-day\""
-        }
-      ],
-      "uncheckedProse": 4,
-      "negatedClaims": 1,
-      "totalSentences": 5
-    },
-    {
-      "recordId": "ky.drivers-license.gender-marker.es",
-      "language": "es",
-      "url": "https://drive.ky.gov/Drivers/Pages/ID-Cards.aspx",
-      "results": [],
-      "uncheckedProse": 5,
-      "negatedClaims": 3,
-      "totalSentences": 5
-    },
-    {
-      "recordId": "ky.birth-certificate.name.es",
-      "language": "es",
-      "url": "https://www.chfs.ky.gov/agencies/dph/dehp/vsb/Forms/VS2J.pdf",
-      "results": [
-        {
-          "kind": "money",
-          "key": "10",
-          "label": "costs $10",
-          "field": "cost.amount_usd",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "form-id",
-          "key": "VS2J",
-          "label": "official form VS2J backs this step (form_ref: ky-vs-2j)",
-          "field": "form_ref",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "requirement",
-          "key": "court-order-required",
-          "label": "a court order is required",
-          "field": "statement",
-          "strength": "necessary-condition",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "duration",
-          "key": "18 year",
-          "label": "states \"18 year\"",
-          "field": "detail",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "requirement",
-          "key": "notarized",
-          "label": "a notarized signature is required",
-          "field": "detail",
-          "strength": "necessary-condition",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        }
-      ],
-      "uncheckedProse": 2,
-      "negatedClaims": 0,
-      "totalSentences": 4
-    },
-    {
-      "recordId": "ky.birth-certificate.gender-marker.es",
-      "language": "es",
-      "url": "https://www.chfs.ky.gov/agencies/dph/dehp/vsb/Forms/VS2J.pdf",
-      "results": [
-        {
-          "kind": "money",
-          "key": "10",
-          "label": "costs $10",
-          "field": "cost.amount_usd",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "form-id",
-          "key": "VS2J",
-          "label": "official form VS2J backs this step (form_ref: ky-vs-2j)",
-          "field": "form_ref",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "requirement",
-          "key": "court-order-required",
-          "label": "a court order is required",
-          "field": "statement",
-          "strength": "necessary-condition",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        }
-      ],
-      "uncheckedProse": 3,
-      "negatedClaims": 1,
-      "totalSentences": 4
-    },
-    {
-      "recordId": "ca.court-order.name.minor.es",
-      "language": "es",
-      "url": "https://selfhelp.courts.ca.gov/name-change",
-      "results": [
-        {
-          "kind": "fee-waiver",
-          "key": "fee-waiver",
-          "label": "a fee waiver is available (cost.fee_waiver: true)",
-          "field": "cost.fee_waiver",
-          "strength": "necessary-condition",
-          "verdict": "supported",
-          "why": "the source describes a fee waiver / inability-to-pay route"
-        },
-        {
-          "kind": "duration",
-          "key": "1 month",
-          "label": "states \"1 month\"",
-          "field": "detail",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states \"1 month\""
-        },
-        {
-          "kind": "money",
-          "key": "435",
-          "label": "states $435",
-          "field": "cost.note",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states $435"
-        },
-        {
-          "kind": "money",
-          "key": "450",
-          "label": "states $450",
-          "field": "cost.note",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states $450"
-        }
-      ],
-      "uncheckedProse": 6,
-      "negatedClaims": 5,
-      "totalSentences": 7
-    },
-    {
-      "recordId": "ca.court-order.gender-marker.minor.es",
-      "language": "es",
-      "url": "https://selfhelp.courts.ca.gov/gender-recognition",
-      "results": [
-        {
-          "kind": "fee-waiver",
-          "key": "fee-waiver",
-          "label": "a fee waiver is available (cost.fee_waiver: true)",
-          "field": "cost.fee_waiver",
-          "strength": "necessary-condition",
-          "verdict": "supported",
-          "why": "the source describes a fee waiver / inability-to-pay route"
-        },
-        {
-          "kind": "money",
-          "key": "435",
-          "label": "states $435",
-          "field": "cost.note",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states $435"
-        },
-        {
-          "kind": "money",
-          "key": "450",
-          "label": "states $450",
-          "field": "cost.note",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states $450"
-        },
-        {
-          "kind": "requirement",
-          "key": "court-order-required",
-          "label": "a court order is required",
-          "field": "cost.note",
-          "strength": "necessary-condition",
-          "verdict": "supported",
-          "why": "the source discusses this topic (necessary condition only — NOT verified)"
-        }
-      ],
-      "uncheckedProse": 5,
-      "negatedClaims": 4,
-      "totalSentences": 5
-    },
-    {
-      "recordId": "ca.birth-certificate.gender-marker.minor.es",
-      "language": "es",
-      "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Assembly-Bill-(AB)-218.aspx",
-      "results": [
-        {
-          "kind": "form-id",
-          "key": "VS24B",
-          "label": "official form VS24B backs this step (form_ref: ca-vs-24b)",
-          "field": "form_ref",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names VS24B"
-        },
-        {
-          "kind": "form-id",
-          "key": "AB218",
-          "label": "names form AB218",
-          "field": "statement",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names AB218"
-        }
-      ],
-      "uncheckedProse": 1,
-      "negatedClaims": 1,
-      "totalSentences": 3
-    },
-    {
-      "recordId": "wa.court-order.name.minor.es",
-      "language": "es",
-      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=4.24.130",
-      "results": [
-        {
-          "kind": "form-id",
-          "key": "RCW4",
-          "label": "names form RCW4",
-          "field": "statement",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names RCW4"
-        }
-      ],
-      "uncheckedProse": 5,
-      "negatedClaims": 4,
-      "totalSentences": 6
-    },
-    {
-      "recordId": "wa.birth-certificate.gender-marker.minor.es",
-      "language": "es",
-      "url": "https://doh.wa.gov/licenses-permits-and-certificates/vital-records/sex-designation-change-birth-certificate",
-      "results": [
-        {
-          "kind": "form-id",
-          "key": "DOH422144",
-          "label": "official form DOH422144 backs this step (form_ref: wa-doh-422-144)",
-          "field": "form_ref",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names DOH422144"
-        },
-        {
-          "kind": "duration",
-          "key": "18 year",
-          "label": "states \"18 year\"",
-          "field": "statement",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states \"18 year\""
-        },
-        {
-          "kind": "form-id",
-          "key": "DOH422143",
-          "label": "names form DOH422143",
-          "field": "detail",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names DOH422143"
-        },
-        {
-          "kind": "requirement",
-          "key": "court-order-required",
-          "label": "a court order is required",
-          "field": "detail",
-          "strength": "necessary-condition",
-          "verdict": "supported",
-          "why": "the source discusses this topic (necessary condition only — NOT verified)"
-        }
-      ],
-      "uncheckedProse": 4,
-      "negatedClaims": 2,
-      "totalSentences": 7
-    },
-    {
-      "recordId": "wa.drivers-license.gender-marker.minor.es",
-      "language": "es",
-      "url": "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-gender-designation",
-      "results": [],
-      "uncheckedProse": 4,
-      "negatedClaims": 2,
-      "totalSentences": 4
-    },
-    {
-      "recordId": "il.court-order.name.minor.es",
-      "language": "es",
-      "url": "https://ilga.gov/Legislation/ILCS/Articles?ActID=2017&ChapterID=56&Chapter=CIVIL%20PROCEDURE&MajorTopic=RIGHTS%20AND%20REMEDIES",
-      "results": [],
-      "uncheckedProse": 7,
-      "negatedClaims": 1,
-      "totalSentences": 7
-    },
-    {
-      "recordId": "il.court-order.name.minor.faq.es",
-      "language": "es",
-      "url": "https://www.illinoislegalaid.org/legal-information/changing-childs-name",
-      "results": [
-        {
-          "kind": "fee-waiver",
-          "key": "fee-waiver",
-          "label": "a fee waiver is available (cost.fee_waiver: true)",
-          "field": "cost.fee_waiver",
-          "strength": "necessary-condition",
-          "verdict": "supported",
-          "why": "the source describes a fee waiver / inability-to-pay route"
-        },
-        {
-          "kind": "duration",
-          "key": "3 week",
-          "label": "states \"3 week\"",
-          "field": "detail",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states \"3 week\""
-        },
-        {
-          "kind": "duration",
-          "key": "6 week",
-          "label": "states \"6 week\"",
-          "field": "detail",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states \"6 week\""
-        }
-      ],
-      "uncheckedProse": 6,
-      "negatedClaims": 4,
-      "totalSentences": 7
-    },
-    {
-      "recordId": "il.birth-certificate.gender-marker.minor.es",
-      "language": "es",
-      "url": "https://dph.illinois.gov/topics-services/birth-death-other-records/birth-records/gender-reassignment.html",
-      "results": [
-        {
-          "kind": "money",
-          "key": "15",
-          "label": "costs $15",
-          "field": "cost.amount_usd",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states $15"
-        },
-        {
-          "kind": "form-id",
-          "key": "unnamed:il-affidavit-correction",
-          "label": "form_ref \"il-affidavit-correction\" (Affidavit and Certificate of Correction Request) carries no form identifier to match on",
-          "field": "form_ref",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the official form has no identifier to match on"
-        },
-        {
-          "kind": "money",
-          "key": "2",
-          "label": "states $2",
-          "field": "cost.note",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states $2"
-        }
-      ],
-      "uncheckedProse": 4,
-      "negatedClaims": 2,
-      "totalSentences": 4
-    },
-    {
-      "recordId": "tx.court-order.name.minor.es",
-      "language": "es",
-      "url": "https://texaslawhelp.org/guide/i-want-to-change-my-childs-name",
-      "results": [
-        {
-          "kind": "fee-waiver",
-          "key": "fee-waiver",
-          "label": "a fee waiver is available (cost.fee_waiver: true)",
-          "field": "cost.fee_waiver",
-          "strength": "necessary-condition",
-          "verdict": "supported",
-          "why": "the source describes a fee waiver / inability-to-pay route"
-        },
-        {
-          "kind": "duration",
-          "key": "10 year",
-          "label": "states \"10 year\"",
-          "field": "statement",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states \"10 year\""
-        },
-        {
-          "kind": "duration",
-          "key": "45 day",
-          "label": "states \"45 day\"",
-          "field": "detail",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states \"45 day\""
-        }
-      ],
-      "uncheckedProse": 4,
-      "negatedClaims": 4,
-      "totalSentences": 6
-    },
-    {
-      "recordId": "ny.court-order.name.minor.es",
-      "language": "es",
-      "url": "https://www.nycourts.gov/courthelp/NameChange/childNameChange.shtml",
-      "results": [
-        {
-          "kind": "duration",
-          "key": "14 year",
-          "label": "states \"14 year\"",
-          "field": "detail",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        },
-        {
-          "kind": "requirement",
-          "key": "notarized",
-          "label": "a notarized signature is required",
-          "field": "detail",
-          "strength": "necessary-condition",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        }
-      ],
-      "uncheckedProse": 7,
-      "negatedClaims": 4,
-      "totalSentences": 8
-    },
-    {
-      "recordId": "ny.birth-certificate.gender-marker.minor.es",
-      "language": "es",
-      "url": "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
-      "results": [
-        {
-          "kind": "duration",
-          "key": "16 year",
-          "label": "states \"16 year\"",
-          "field": "statement",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        },
-        {
-          "kind": "duration",
-          "key": "17 year",
-          "label": "states \"17 year\"",
-          "field": "statement",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        },
-        {
-          "kind": "form-id",
-          "key": "DOH5306",
-          "label": "names form DOH5306",
-          "field": "statement",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        },
-        {
-          "kind": "form-id",
-          "key": "DOH5304",
-          "label": "names form DOH5304",
-          "field": "statement",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        },
-        {
-          "kind": "requirement",
-          "key": "notarized",
-          "label": "a notarized signature is required",
-          "field": "statement",
-          "strength": "necessary-condition",
-          "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 403)"
-        }
-      ],
-      "uncheckedProse": 3,
-      "negatedClaims": 2,
-      "totalSentences": 5
     },
     {
       "recordId": "tn.court-order.name",

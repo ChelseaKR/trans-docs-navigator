@@ -1792,6 +1792,118 @@ const AUTHORED_GOLD: GoldItem[] = [
     query: { jurisdiction: "US-FL", change_types: ["name"], documents: ["court-order"], language: "es", for_minor: true, question: "cómo cambio el nombre de mi hijo en Florida" },
     expect: { refused: false, citesRecord: "fl.court-order.name.es", mustContain: ["para adultos"] },
   },
+  // ── Federal immigration/military/employment layer (M7) ──────────────────────────
+  {
+    id: "green-card-name",
+    suite: "accuracy",
+    segment: { jurisdiction: "US", language: "en" },
+    query: { jurisdiction: "US-CA", change_types: ["name"], documents: ["green-card"], question: "update green card after name change" },
+    expect: { refused: false, citesRecord: "us.green-card.name", mustContain: ["I-90"] },
+  },
+  {
+    id: "green-card-name-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US", language: "es" },
+    query: { jurisdiction: "US-CA", change_types: ["name"], documents: ["green-card"], language: "es", question: "actualizar tarjeta verde después de un cambio de nombre" },
+    expect: { refused: false, citesRecord: "us.green-card.name.es", mustContain: ["I-90"] },
+  },
+  {
+    id: "naturalization-certificate-name",
+    suite: "accuracy",
+    segment: { jurisdiction: "US", language: "en" },
+    query: { jurisdiction: "US-CA", change_types: ["name"], documents: ["naturalization-certificate"], question: "update naturalization certificate name" },
+    expect: { refused: false, citesRecord: "us.naturalization-certificate.name", mustContain: ["N-565"] },
+  },
+  {
+    id: "naturalization-certificate-name-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US", language: "es" },
+    query: {
+      jurisdiction: "US-CA",
+      change_types: ["name"],
+      documents: ["naturalization-certificate"],
+      language: "es",
+      question: "actualizar certificado de naturalización nombre",
+    },
+    expect: { refused: false, citesRecord: "us.naturalization-certificate.name.es", mustContain: ["N-565"] },
+  },
+  {
+    id: "ead-name",
+    suite: "accuracy",
+    segment: { jurisdiction: "US", language: "en" },
+    query: { jurisdiction: "US-CA", change_types: ["name"], documents: ["ead"], question: "update work permit EAD after name change" },
+    expect: { refused: false, citesRecord: "us.ead.name", mustContain: ["I-765"] },
+  },
+  {
+    id: "selective-service-name",
+    suite: "accuracy",
+    segment: { jurisdiction: "US", language: "en" },
+    query: { jurisdiction: "US-CA", change_types: ["name"], documents: ["selective-service"], question: "update Selective Service registration name" },
+    expect: { refused: false, citesRecord: "us.selective-service.name", mustContain: ["Legal name changes"] },
+  },
+  {
+    id: "selective-service-name-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US", language: "es" },
+    query: {
+      jurisdiction: "US-CA",
+      change_types: ["name"],
+      documents: ["selective-service"],
+      language: "es",
+      question: "actualizar registro del servicio selectivo nombre",
+    },
+    expect: { refused: false, citesRecord: "us.selective-service.name.es", mustContain: ["cambios de nombre legal"] },
+  },
+  {
+    id: "selective-service-marker-silent",
+    suite: "refusal",
+    segment: { jurisdiction: "US", language: "en" },
+    query: { jurisdiction: "US-CA", change_types: ["gender-marker"], documents: ["selective-service"], question: "Selective Service gender marker change" },
+    // Selective Service's own pages never describe a way to change the sex tied to a
+    // registration record — the honest degradation (PR #119's standard), not an invented process.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "military-records-marker-silent",
+    suite: "refusal",
+    segment: { jurisdiction: "US", language: "en" },
+    query: { jurisdiction: "US-CA", change_types: ["gender-marker"], documents: ["military-records"], question: "DD-214 gender marker correction" },
+    // The National Archives' page names DD Form 149 and the service boards but never says
+    // whether a sex-marker correction is in scope — the honest degradation, not a guess.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "trusted-traveler-name-tsa",
+    suite: "accuracy",
+    segment: { jurisdiction: "US", language: "en" },
+    query: { jurisdiction: "US-CA", change_types: ["name"], documents: ["trusted-traveler"], question: "update TSA PreCheck name" },
+    expect: { refused: false, citesRecord: "us.trusted-traveler.name-tsa-precheck", mustContain: ["45 days"] },
+  },
+  {
+    id: "federal-employment-records-name",
+    suite: "accuracy",
+    segment: { jurisdiction: "US", language: "en" },
+    query: { jurisdiction: "US-CA", change_types: ["name"], documents: ["federal-employment-records"], question: "change name federal personnel record" },
+    expect: {
+      refused: false,
+      citesRecord: "us.federal-employment-records.name",
+      mustContain: ["court action (e.g., divorce or legal name change)"],
+    },
+  },
+  {
+    id: "federal-employment-records-marker-silent",
+    suite: "refusal",
+    segment: { jurisdiction: "US", language: "en" },
+    query: {
+      jurisdiction: "US-CA",
+      change_types: ["gender-marker"],
+      documents: ["federal-employment-records"],
+      question: "update gender marker on federal personnel record",
+    },
+    // OPM's own personnel-actions guide never mentions sex or gender anywhere in its text —
+    // the honest degradation, not an invented process.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
 ];
 
 // Test-only override (tests/gate-efficacy), the same shape as scripts/security-scan.ts's

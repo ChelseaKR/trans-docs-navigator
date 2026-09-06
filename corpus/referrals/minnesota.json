@@ -6,7 +6,7 @@
     "url": "https://www.outfront.org",
     "note": {
       "en": "Minnesota's largest LGBTQ+ advocacy organization; runs a crisis helpline and anti-violence, policy, and education programs relevant to transgender residents.",
-      "es": "La organización de defensa LGBTQ+ más grande de Minnesota; opera una línea de ayuda para crisis y programas contra la violencia, de política pública y de educación relevantes para residentes transgénero."
+      "es": "La organizaci\u00f3n de defensa LGBTQ+ m\u00e1s grande de Minnesota; opera una l\u00ednea de ayuda para crisis y programas contra la violencia, de pol\u00edtica p\u00fablica y de educaci\u00f3n relevantes para residentes transg\u00e9nero."
     },
     "source": {
       "url": "https://www.outfront.org",
@@ -24,11 +24,29 @@
     "url": "https://www.lawhelpmn.org",
     "note": {
       "en": "Statewide legal-aid portal from the Minnesota Legal Services Coalition, with a free do-it-yourself guide to filing a Minnesota name-change petition and a directory of legal-aid providers and clinics.",
-      "es": "Portal estatal de ayuda legal de la Coalición de Servicios Legales de Minnesota, con una guía gratuita para presentar usted mismo una petición de cambio de nombre en Minnesota y un directorio de proveedores y clínicas de ayuda legal."
+      "es": "Portal estatal de ayuda legal de la Coalici\u00f3n de Servicios Legales de Minnesota, con una gu\u00eda gratuita para presentar usted mismo una petici\u00f3n de cambio de nombre en Minnesota y un directorio de proveedores y cl\u00ednicas de ayuda legal."
     },
     "source": {
       "url": "https://www.lawhelpmn.org",
       "title": "LawHelp Minnesota",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "mn.referral.a4te",
+    "jurisdiction": "US-MN",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Minnesota identity documents guide",
+    "url": "https://transequality.org/documents/minnesota-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Minnesota documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Minnesota. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/minnesota-identity-documents",
+      "title": "A4TE \u2014 Minnesota Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

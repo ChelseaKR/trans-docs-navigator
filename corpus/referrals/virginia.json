@@ -6,7 +6,7 @@
     "url": "https://equalityvirginia.org",
     "note": {
       "en": "A statewide LGBTQ+ advocacy organization that publishes plain-language guides on updating Virginia identity documents, including DMV and birth-certificate gender-marker processes.",
-      "es": "Una organización estatal de defensa LGBTQ+ que publica guías en lenguaje sencillo sobre cómo actualizar los documentos de identidad de Virginia, incluidos los procesos del DMV y del acta de nacimiento para el marcador de género."
+      "es": "Una organizaci\u00f3n estatal de defensa LGBTQ+ que publica gu\u00edas en lenguaje sencillo sobre c\u00f3mo actualizar los documentos de identidad de Virginia, incluidos los procesos del DMV y del acta de nacimiento para el marcador de g\u00e9nero."
     },
     "source": {
       "url": "https://equalityvirginia.org",
@@ -24,11 +24,29 @@
     "url": "https://www.justice4all.org",
     "note": {
       "en": "A Virginia legal-aid organization providing direct representation and advocacy for low-income Virginians, including help with legal name-change petitions.",
-      "es": "Una organización de ayuda legal de Virginia que ofrece representación directa y defensa para residentes de bajos ingresos, incluida ayuda con peticiones de cambio de nombre legal."
+      "es": "Una organizaci\u00f3n de ayuda legal de Virginia que ofrece representaci\u00f3n directa y defensa para residentes de bajos ingresos, incluida ayuda con peticiones de cambio de nombre legal."
     },
     "source": {
       "url": "https://www.justice4all.org",
       "title": "Legal Aid Justice Center",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "va.referral.a4te",
+    "jurisdiction": "US-VA",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Virginia identity documents guide",
+    "url": "https://transequality.org/documents/virginia-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Virginia documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Virginia. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/virginia-identity-documents",
+      "title": "A4TE \u2014 Virginia Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

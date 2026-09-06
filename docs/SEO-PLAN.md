@@ -8,8 +8,11 @@
 **Landed — Phases 0, 1, 2, 3, and 4 (the code half):**
 - **Phase 0** — the indexing contract is encoded, not just documented: `page()` defaults
   to `noindex`, so a surface is private until it opts in. Indexable: home, `/guide` and
-  the guide pages, the three legal pages. Everything else (`/checklist`, `/packet`,
-  `/answer`, `/forms/*`, errors) is `noindex` automatically.
+  the guide pages, the three legal pages, and (added later) the `/feeds` change-alert
+  index. Everything else (`/checklist`, `/packet`, `/answer`, `/forms/*`, errors) is
+  `noindex` automatically. The per-jurisdiction feed XML files themselves are discovered
+  via `<link rel="alternate" type="application/rss+xml">` autodiscovery, not the HTML
+  sitemap — see `src/feeds.ts`.
 - **Phase 1** — `src/seo.ts` centralizes the head: meta description, self-referential
   canonical, en/es/x-default hreflang, Open Graph + Twitter cards, brand title template,
   favicon (`favicon.svg`) and web manifest. Descriptions and titles live in the i18n

@@ -106,6 +106,8 @@ export const es: LocaleBundle = {
       `${n} paso(s) no tienen ninguna tarifa indicada en nuestras fuentes, así que esto es un mínimo, no un costo completo. No estimamos lo que una fuente no indica.`,
     moreHeading: "Más información",
     seeDetailedAnswer: "Vea en detalle lo que dicen las fuentes",
+    helpHeading: "Dónde obtener ayuda",
+    helpIntro: "Estas organizaciones publican sus propias guías o pueden ayudarle directamente.",
     officialFormIntro: "Este es un formulario oficial del gobierno. Descárguelo desde la fuente a continuación y complételo usted mismo: no lo llenamos por usted, así que siempre trabaja con la versión oficial.",
     whatToBringTitle: "Qué traer",
     copyTitle: "Sus datos, listos para copiar",
@@ -141,6 +143,13 @@ export const es: LocaleBundle = {
     passport: "Actualice su pasaporte de EE. UU.",
     "birth-certificate": "Modifique su acta de nacimiento",
     "financial-records": "Actualice registros financieros y otros",
+    "green-card": "Actualice su tarjeta verde (Formulario I-90)",
+    "naturalization-certificate": "Actualice su certificado de naturalización (Formulario N-565)",
+    ead: "Actualice su permiso de trabajo (Documento de Autorización de Empleo)",
+    "selective-service": "Actualice su registro del Servicio Selectivo",
+    "military-records": "Corrija su registro de servicio militar (DD-214)",
+    "trusted-traveler": "Actualice su membresía de TSA PreCheck o Global Entry",
+    "federal-employment-records": "Actualice sus registros de empleo federal",
   },
 
   docLabels: {
@@ -150,6 +159,13 @@ export const es: LocaleBundle = {
     passport: "Pasaporte de EE. UU.",
     "birth-certificate": "Acta de nacimiento",
     "financial-records": "Registros financieros y otros",
+    "green-card": "Tarjeta verde (Formulario I-90)",
+    "naturalization-certificate": "Certificado de naturalización (Formulario N-565)",
+    ead: "Permiso de trabajo (EAD)",
+    "selective-service": "Registro del Servicio Selectivo",
+    "military-records": "Registro de servicio militar (DD-214)",
+    "trusted-traveler": "TSA PreCheck / Global Entry",
+    "federal-employment-records": "Registros de empleo federal",
   },
 
   fieldLabels: {
@@ -443,5 +459,23 @@ export const es: LocaleBundle = {
     },
     transparencyDescription:
       "Entradas trimestrales sobre lo que Trans Docs Navigator podría y no podría producir ante una solicitud legal. Sin warrant canary: revisión legal pendiente.",
+
+    feedIndexTitle: "Reciba avisos cuando cambien los registros de un estado (RSS)",
+    feedIndexDescription:
+      "Suscríbase por RSS o Atom a las actualizaciones de los registros de cambio de nombre y marcador de género. Sin cuenta, sin correo, sin rastreo.",
+    feedIndexLead:
+      "Elija un estado para obtener el enlace de su feed. Cada feed le indica cuándo actualizamos nuestros propios registros de ese estado — nunca una afirmación de que la ley misma cambió.",
+    feedIndexAllHeading: "Todos los feeds por estado",
+    feedLinkLabel: (state: string) => `Reciba avisos cuando actualicemos los registros de ${state} (RSS)`,
+    feedChannelTitle: (state: string) => `${state}: registros actualizados`,
+    feedChannelDescription: (state: string) =>
+      `Avisos cuando Trans Docs Navigator actualiza sus propios registros citados para ${state} — nunca un aviso de que la ley misma cambió. Suscríbase con cualquier lector de RSS o Atom. No hay cuenta, no se pide correo electrónico y no se recopila nada sobre usted para entregar este feed.`,
+    feedEntryTitle: (count: number, state: string, date: string) =>
+      `${count} registro${count === 1 ? "" : "s"} de ${state} actualizado${count === 1 ? "" : "s"} el ${date}`,
+    feedEntryDescription: (count: number, state: string, date: string, docTypes: string) =>
+      `(Re)verificamos ${count} registro${count === 1 ? "" : "s"} de ${state} el ${date}, sobre: ${docTypes}. Esto significa que nuestros registros cambiaron — no necesariamente la ley. Confirme siempre con la fuente oficial enlazada en cada paso.`,
+    feedEntryDegradedNote:
+      "Al menos uno de estos registros necesita reverificación actualmente y no se muestra como vigente en el resto del sitio.",
+    feedEmptyNote: "Todavía no tenemos registros con fecha para esta jurisdicción en este idioma.",
   },
 };

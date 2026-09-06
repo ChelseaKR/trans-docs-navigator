@@ -13,7 +13,16 @@ export type DocumentType =
   | "drivers-license"
   | "passport"
   | "birth-certificate"
-  | "financial-records";
+  | "financial-records"
+  // Federal immigration/military/employment records (M7): all federally portable,
+  // encoded as such in api/relocation.ts's PORTABILITY map.
+  | "green-card"
+  | "naturalization-certificate"
+  | "ead"
+  | "selective-service"
+  | "military-records"
+  | "trusted-traveler"
+  | "federal-employment-records";
 
 /** Which kind of legal change a record/step addresses. */
 export type ChangeType = "name" | "gender-marker";

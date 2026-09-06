@@ -558,11 +558,34 @@ test("every document type has a portability class", () => {
     "passport",
     "birth-certificate",
     "financial-records",
+    "green-card",
+    "naturalization-certificate",
+    "ead",
+    "selective-service",
+    "military-records",
+    "trusted-traveler",
+    "federal-employment-records",
   ];
   for (const d of docs) assert.ok(PORTABILITY[d], `${d} has no portability class`);
   assert.equal(PORTABILITY["passport"], "federal");
   assert.equal(PORTABILITY["drivers-license"], "state-of-residence");
   assert.equal(PORTABILITY["court-order"], "state-of-record");
+});
+
+test("the new federal immigration/military/employment document types are all federal — a move never changes which rules govern them", () => {
+  // Unlike ssa-card/passport, none of these are on the relocation intake today (not in
+  // CANONICAL_ORDER/DEFAULT_SET in api/relocation.ts), so this only pins the taxonomy
+  // fact — that they are federally portable — for whenever that surface is extended.
+  const federalDocs: DocumentType[] = [
+    "green-card",
+    "naturalization-certificate",
+    "ead",
+    "selective-service",
+    "military-records",
+    "trusted-traveler",
+    "federal-employment-records",
+  ];
+  for (const d of federalDocs) assert.equal(PORTABILITY[d], "federal", `${d} should be federal`);
 });
 
 test("a Spanish plan never cites an English record — it reports a gap instead of falling back", () => {
