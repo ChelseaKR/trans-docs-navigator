@@ -96,7 +96,7 @@ export function guidePaths(): string[] {
 /** The full set of indexable paths (home + guides + legal) — single source for the
  *  sitemap and the seo-lint gate. */
 export function indexablePaths(): string[] {
-  return ["/", ...guidePaths(), "/terms", "/privacy", "/accessibility", "/methodology", "/transparency"];
+  return ["/", "/compare", ...guidePaths(), "/terms", "/privacy", "/accessibility", "/methodology", "/transparency"];
 }
 
 /** Guide links matching a checklist's jurisdiction × change types (empty if none cover it). */

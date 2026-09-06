@@ -1,8 +1,12 @@
 # Relocation planner — the destination delta
 
-> Status: shipped behind the same 22 merge-blocking gates as the rest of the app.
+> Status: shipped behind the same merge-blocking gates as the rest of the app (`make verify`).
 > Code: [`api/relocation.ts`](../api/relocation.ts) (engine), [`src/relocation.ts`](../src/relocation.ts) (pages),
 > [`tests/relocation.test.ts`](../tests/relocation.test.ts). Routes: `/move` (intake) → `/plan` (the delta).
+>
+> Its inverse — "which state has a documented path?", over every covered state at once — is
+> [`api/compare.ts`](../api/compare.ts) / [`src/compare.ts`](../src/compare.ts), routes `/compare`
+> (form) → `/compare?doc=...&change=...` (the table). See "The inverse question" below.
 
 ## Why this exists
 
@@ -217,11 +221,45 @@ sources themselves state that the clinic serves trans patients, under the existi
 named-verifier gate. That is a content problem, not an API problem. A test asserts no runtime
 module reaches the NPPES host, so "just call the API" cannot land quietly.
 
+## The inverse question: "which state?"
+
+`/move` → `/plan` answers "I'm moving from X to Y, what changes." The far more common
+question — the one the Williams Institute/Plume numbers above are actually about, before
+anyone has picked a destination — is the other direction: *"I know what I need to update;
+which states have a documented way to do it, and which don't?"* [`api/compare.ts`](../api/compare.ts)
+(engine) and [`src/compare.ts`](../src/compare.ts) (pages) answer that, over every covered
+state at once, from the exact same corpus and freshness rules. Routes: `/compare` (form) →
+`/compare?doc=...&change=...` (the table). Tests: [`tests/compare.test.ts`](../tests/compare.test.ts).
+
+Same corpus, inverted query — and the same discipline that keeps `/move`/`/plan` honest
+applies here, tightened in one specific way:
+
+- **No editorial ranking, anywhere.** A cell is one of exactly four `CoverageStatus` values
+  (`documented`, `needs_reverification`, `no_path_documented`, `not_covered`) — never a
+  score, a color scale standing in for a verdict, or a label like "safe"/"friendly"/"hostile".
+  Default sort is alphabetical; the only other sort offered is a literal count
+  (`documentedPathCount` — "number of documented paths"), labelled as exactly that. This is
+  the same "risk map vs. cited plan" gap `/move` fills, in the other direction: a rating tells
+  you a state is dangerous; this table tells you an official source describes no route to
+  amend a birth certificate's sex field, cites the record, and leaves the reader to draw their
+  own conclusion.
+- **"No path" is not "not covered".** A `verified` record can itself assert an absence — e.g.
+  a state's own cited source says its DMV page "does not describe any way to update the sex
+  or gender marker." `describesNoPath()` detects that from the record's own `statement` (a
+  narrow, conservative pattern match, documented and tested in `api/compare.ts` /
+  `tests/compare.test.ts`) so it renders as `no_path_documented`, distinctly from
+  `not_covered` (no record at all — this project simply hasn't checked). Collapsing those two
+  would be exactly the honesty failure `hasNoStateCoverage` (`api/checklist.ts`) already
+  guards against at the whole-jurisdiction level, one level more specific.
+- **Every cell links to its record(s).** A `<details>` disclosure on each non-`not_covered`
+  cell carries the backing record's own statement and `sourceItem()` citation — the same
+  citation rendering the checklist and plan pages already use.
+
 ## How the gates cover this
 
-No new `make verify` stage was added — the count stays at 22. That is the stronger choice: the
-relocation surface is enforced *inside* the existing gates rather than in a stage of its own
-that a future refactor could forget to run.
+No new `make verify` stage was added for `/move`/`/plan`, or for `/compare` (api/compare.ts,
+src/compare.ts) after it — both are enforced *inside* the existing gates rather than in a
+stage of their own that a future refactor could forget to run.
 
 - **citation** — `relocationAnswer()` pushes every plan through the *same* `citation.enforce()`
   as `/answer`. `scripts/citation-coverage.ts` now exercises the full
@@ -229,8 +267,17 @@ that a future refactor could forget to run.
   uncited, stale-cited, or unresolvable. Every substantive sentence on a plan page is a record
   statement; the structural chrome (phase headings, badges, totals) is non-substantive by
   construction, and there is nowhere in the engine to put a legal claim that lacks a record.
+  `/compare` follows the same non-substantive-chrome discipline without a parallel synthetic
+  answer to push through `citation.enforce()`: every visible fact is a record's own statement
+  behind a `<details>`, exactly like the checklist page.
 - **content** — the `relocation.residency_bound` rule above.
 - **disclosure / a11y / seo** — `/move` and `/plan` are in each gate's page list, in both
-  languages, including the same-state error state and the held-document render branch.
+  languages, including the same-state error state and the held-document render branch;
+  `/compare`'s form and results pages (several `CoverageStatus` combinations, both languages,
+  a `current`-state marker) joined the same lists.
 - **i18n** — EN/ES parity is enforced by the existing key-parity gate; the Spanish bundle
   carries the same `PENDING native-speaker review` posture as the rest of the app.
+- **i18n-overflow** — `/compare`'s results table is the widest layout in the app (up to 51
+  rows), so it gets its own pseudolocale-overflow routes: the responsive design collapses to
+  per-row cards under 640px specifically because a 51-row table cannot rely on horizontal
+  scroll alone on a phone (see `src/render.ts` STYLE, `.compare-table`).

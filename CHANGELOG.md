@@ -8,6 +8,27 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **"Which state?" comparison** (`/compare`, `api/compare.ts` + `src/compare.ts`): the
+  relocation planner's inverse question. `/move` → `/plan` answers "I'm moving from X to Y,
+  what changes"; `/compare` answers "which states have a documented path for what I need,
+  and which don't", as a table of every covered state against the documents/changes
+  selected. Each cell is one of exactly four corpus-derived facts — `documented`,
+  `documented, needs reverification`, `no path documented` (a record's own text says the
+  official source describes no route — a fact about the source), or `not covered` (no
+  record at all — this project simply hasn't checked). Those last two read differently on
+  purpose: collapsing "we looked and the source says no" into "we haven't looked" is exactly
+  the honesty failure `api/checklist.ts:hasNoStateCoverage` already guards against one level
+  up. No editorial ranking anywhere: no score, no "safe"/"friendly"/"hostile" label, default
+  sort is alphabetical, and the only other sort offered is a literal count
+  (`documentedPathCount` — "number of documented paths"), labelled as exactly that. Every
+  cell links to the record(s) it came from via a `<details>` disclosure. The results table
+  (up to 51 rows) is responsive: a horizontally-scrolling box on wider viewports, a per-row
+  card list under 640px — both proven against the pseudolocale-overflow gate (G9) at ~40%
+  text expansion. Reuses `PORTABILITY` from `api/relocation.ts` (a federal document like the
+  SSA card resolves to the same record for every state) rather than re-deriving it. No new
+  `make verify` stage: enforced inside the existing gates, like the relocation planner
+  before it. See [`docs/RELOCATION.md`](./docs/RELOCATION.md) §"The inverse question" and
+  [`tests/compare.test.ts`](./tests/compare.test.ts).
 - **District of Columbia, West Virginia, and Kentucky** (M6 — expand jurisdictions): 15 EN
   + 15 ES corpus records (court-order name change, driver's-license name and
   gender-marker, birth-certificate name and gender-marker), 6 referrals, and 8

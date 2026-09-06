@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   handleRoute,
   parseIntake,
+  parseCompareInput,
   intakeQuery,
   validJurisdiction,
   sanitizeQuestion,
@@ -10,6 +11,7 @@ import {
   languageParam,
   LIMITS,
 } from "../api/router.ts";
+import { DEFAULT_COMPARE_DOCUMENTS, DEFAULT_COMPARE_CHANGES, COMPARE_JURISDICTIONS } from "../api/compare.ts";
 
 const u = (path: string) => new URL(path, "http://localhost:8080");
 
@@ -222,4 +224,90 @@ test("unknown route 404s with a not_found log", () => {
   const r = handleRoute("GET", u("/whatever"));
   assert.equal(r.status, 404);
   assert.equal(r.log?.fields.route, "_unmatched");
+});
+
+// ── /compare: the "which state?" comparison (api/compare.ts) ──────────────────────────
+
+test("parseCompareInput: a bare visit wants the form, not results", () => {
+  const q = parseCompareInput(u("/compare"));
+  assert.equal(q.wantsResults, false);
+});
+
+test("parseCompareInput: presence of doc OR change alone is enough to want results", () => {
+  assert.equal(parseCompareInput(u("/compare?doc=drivers-license")).wantsResults, true);
+  assert.equal(parseCompareInput(u("/compare?change=name")).wantsResults, true);
+});
+
+test("parseCompareInput: filters enums and never reflects an unrecognized current-state shape", () => {
+  const q = parseCompareInput(u("/compare?doc=drivers-license&doc=evil&change=name&change=bogus&current=nope"));
+  assert.deepEqual(q.documents, ["drivers-license"]);
+  assert.deepEqual(q.change_types, ["name"]);
+  assert.equal(q.current, undefined, "a shape-invalid current value is dropped, never reflected");
+});
+
+test("parseCompareInput: a well-formed current is kept; sort defaults to alpha and only 'count' overrides it", () => {
+  assert.equal(parseCompareInput(u("/compare?current=US-CA")).current, "US-CA");
+  assert.equal(parseCompareInput(u("/compare")).sort, "alpha");
+  assert.equal(parseCompareInput(u("/compare?sort=count")).sort, "count");
+  assert.equal(parseCompareInput(u("/compare?sort=bogus")).sort, "alpha");
+});
+
+test("GET /compare with no query renders the form (indexable, not logged as a result)", () => {
+  const r = handleRoute("GET", u("/compare"));
+  assert.equal(r.status, 200);
+  assert.match(r.body, /action="\/compare"/);
+  assert.equal(r.log, undefined, "the form itself carries no selection to log");
+});
+
+test("GET /compare?doc=...&change=... renders the results table and logs bounded selection metadata", () => {
+  const r = handleRoute("GET", u("/compare?doc=drivers-license&change=name"), "2026-07-13");
+  assert.equal(r.status, 200);
+  assert.equal(r.log?.event, "compare");
+  assert.deepEqual(r.log?.fields.documents, ["drivers-license"]);
+  assert.deepEqual(r.log?.fields.change_types, ["name"]);
+  assert.equal(r.log?.fields.current, undefined);
+  assert.match(r.body, /<table class="compare-table"/);
+});
+
+test("GET /compare defaults an empty document or change list, exactly like /checklist defaults, rather than showing an empty table", () => {
+  // Only `change` present, no `doc` at all — the router must still treat this as "wants
+  // results" and hand buildCompareTable an empty documents array, which it defaults.
+  const r = handleRoute("GET", u("/compare?change=name"));
+  assert.equal(r.status, 200);
+  assert.deepEqual(r.log?.fields.documents, DEFAULT_COMPARE_DOCUMENTS);
+  assert.deepEqual(r.log?.fields.change_types, ["name"]);
+});
+
+test("GET /compare with only invalid doc/change values still renders (never a 400) and falls back to defaults", () => {
+  const r = handleRoute("GET", u("/compare?doc=nonsense&change=nonsense"));
+  assert.equal(r.status, 200);
+  assert.deepEqual(r.log?.fields.documents, DEFAULT_COMPARE_DOCUMENTS);
+  assert.deepEqual(r.log?.fields.change_types, DEFAULT_COMPARE_CHANGES);
+});
+
+test("GET /compare logs the optional current-state selection, at the same sensitivity class as /checklist's jurisdiction", () => {
+  const r = handleRoute("GET", u("/compare?doc=drivers-license&change=name&current=US-CA"));
+  assert.equal(r.log?.fields.current, "US-CA");
+});
+
+test("GET /compare never carries an origin/destination pair — it is not the relocation planner", () => {
+  const r = handleRoute("GET", u("/compare?doc=drivers-license&change=name"));
+  assert.equal(r.log?.fields.origin, undefined);
+  assert.equal(r.log?.fields.destination, undefined);
+});
+
+test("GET /compare renders every covered jurisdiction as a row, regardless of selection", () => {
+  const r = handleRoute("GET", u("/compare?doc=financial-records&change=name"));
+  assert.equal((r.body.match(/<th scope="row" role="rowheader">/g) ?? []).length, COMPARE_JURISDICTIONS.length);
+});
+
+test("GET /compare?sort=count changes the row order relative to the alphabetical default", () => {
+  const alpha = handleRoute("GET", u("/compare?doc=birth-certificate&change=gender-marker"), "2026-07-13");
+  const byCount = handleRoute("GET", u("/compare?doc=birth-certificate&change=gender-marker&sort=count"), "2026-07-13");
+  assert.notEqual(alpha.body, byCount.body);
+});
+
+test("GET /compare?lang=es renders in Spanish, same alias support as the rest of the router", () => {
+  const r = handleRoute("GET", u("/compare?lang=es"));
+  assert.match(r.body, /Comparar estados/);
 });

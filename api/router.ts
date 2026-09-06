@@ -9,14 +9,16 @@
 
 import { buildChecklist, hasThinnerLanguageCoverage, hasNoStateCoverage } from "./checklist.ts";
 import { buildRelocationPlan } from "./relocation.ts";
+import { buildCompareTable, COMPARE_JURISDICTIONS } from "./compare.ts";
 import { answer } from "./guidance.ts";
 import { loadCorpus } from "./corpus.ts";
 import { isCurrent } from "./freshness.ts";
 import { formById } from "./forms.ts";
 import { memoize } from "./cache.ts";
-import type { ChangeType, CorpusRecord, DocumentType, Intake, Language, RelocationIntake } from "./types.ts";
+import type { ChangeType, CorpusRecord, DocumentType, Intake, JurisdictionId, Language, RelocationIntake } from "./types.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
 import { renderMovePage, renderPlanPage } from "../src/relocation.ts";
+import { renderCompareFormPage, renderCompareResultsPage, type CompareSort } from "../src/compare.ts";
 import { renderAnswer, page, uiStrings, escapeHtml, STYLE } from "../src/render.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderTransparencyPage } from "../src/transparency.ts";
@@ -153,6 +155,39 @@ export function parseIntake(url: URL): Intake | null {
     documents: documents(url),
     language: asLanguage(languageParam(url)),
     ...(hasCourtOrder ? { has_court_order: true } : {}),
+  };
+}
+
+/**
+ * Parsed input for the "which state?" comparison (/compare). `wantsResults` is true the
+ * moment either `doc` or `change` appears on the query string at all — even if every
+ * value on it fails enum validation — so a form submission with a request that turns
+ * out empty still renders results (buildCompareTable defaults an empty list, the same
+ * way buildChecklist/buildRelocationPlan default an empty one), and only a genuinely
+ * bare `/compare` (or a submission with every checkbox left unchecked, which a browser
+ * sends as no params at all) shows the form. `current` is optional and cosmetic — a
+ * shape-invalid or unrecognized value is simply never displayed (see src/compare.ts),
+ * never rejected with a 400 and never reflected back into the page.
+ */
+export interface CompareQuery {
+  wantsResults: boolean;
+  documents: DocumentType[];
+  change_types: ChangeType[];
+  current?: JurisdictionId;
+  sort: CompareSort;
+  language: Language;
+}
+
+export function parseCompareInput(url: URL): CompareQuery {
+  const rawCurrent = url.searchParams.get("current");
+  const current = rawCurrent && JURISDICTION_RE.test(rawCurrent) ? rawCurrent : undefined;
+  return {
+    wantsResults: url.searchParams.has("doc") || url.searchParams.has("change"),
+    documents: documents(url),
+    change_types: changeTypes(url),
+    ...(current ? { current } : {}),
+    sort: url.searchParams.get("sort") === "count" ? "count" : "alpha",
+    language: asLanguage(languageParam(url)),
   };
 }
 
@@ -473,6 +508,53 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
       status: 200,
       contentType: HTML,
       body: renderPlanPage(plan, loadCorpus(), intake.language, { thinnerCoverage: thinner }),
+    };
+  }
+
+  // ── "Which state?" comparison (the relocation planner's inverse question) ──────
+  // Less sensitive than /move+/plan (no origin→destination pair — the closest thing to
+  // one, `current`, is a single state, the same sensitivity class as /checklist's
+  // `jurisdiction`), so this route IS logged, with the same bounded-enum fields the
+  // rest of the app already logs. Not cached (IP §5.2 caches are opt-in per route, not
+  // a default every new route must earn — /move and /plan skip it too): the table is a
+  // full corpus scan across every jurisdiction, but on this corpus's current size that
+  // recompute is cheap, and skipping a cache here is simpler, not a privacy trade.
+  if (p === "/compare") {
+    const q = parseCompareInput(url);
+    if (!q.wantsResults) {
+      return { status: 200, contentType: HTML, body: renderCompareFormPage(q.language) };
+    }
+    const table = buildCompareTable({ documents: q.documents, change_types: q.change_types }, today);
+    // Coverage honesty: does the user's language have thinner coverage than English for
+    // ANY compared state? (Mirrors /checklist and /plan's own thinner-coverage check,
+    // applied across the whole compared set rather than one jurisdiction.)
+    const thinner =
+      q.language !== "en" &&
+      COMPARE_JURISDICTIONS.some((j) =>
+        hasThinnerLanguageCoverage(
+          { jurisdiction: j, change_types: table.change_types, documents: table.documents, language: q.language },
+          today,
+        ),
+      );
+    return {
+      status: 200,
+      contentType: HTML,
+      body: renderCompareResultsPage(table, loadCorpus(), q.language, {
+        ...(q.current ? { current: q.current } : {}),
+        sort: q.sort,
+        thinnerCoverage: thinner,
+      }),
+      log: {
+        event: "compare",
+        fields: {
+          documents: table.documents,
+          change_types: table.change_types,
+          ...(q.current ? { current: q.current } : {}),
+          sort: q.sort,
+          language: q.language,
+          status: 200,
+        },
+      },
     };
   }
 

@@ -23,6 +23,9 @@
     "http://localhost:8080/guide/california/name-change",
     "http://localhost:8080/guide/texas/gender-marker?language=es",
     "http://localhost:8080/offline",
-    "http://localhost:8080/offline?language=es"
+    "http://localhost:8080/offline?language=es",
+    "http://localhost:8080/compare",
+    "http://localhost:8080/compare?language=es",
+    "http://localhost:8080/compare?doc=drivers-license&doc=birth-certificate&change=name&change=gender-marker&current=US-CA"
   ]
 }
