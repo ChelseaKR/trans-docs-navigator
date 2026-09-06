@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 658 |
-| Load-bearing assertions found | 1467 |
-| — checked and **supported** by the cited source | 991 |
+| Records audited | 662 |
+| Load-bearing assertions found | 1485 |
+| — checked and **supported** by the cited source | 1009 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
 | — **UNCHECKABLE** (reported, never passed) | 476 |
-| of the checked: literal (fee / duration / form-id) matches | 667 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 324 |
+| of the checked: literal (fee / duration / form-id) matches | 683 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 326 |
 
 ## What this gate cannot vouch for
 
-- **2421 of 2969 prose sentences** in the corpus carry no extractable
+- **2445 of 3001 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **946 sentences state a negative** (`you do not need a court order`, `the page no
+- **953 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **324 assertions are necessary-condition only**: the source discusses the topic, which
+- **326 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **16 cited sources refuse automated fetching entirely**, so no
@@ -63,12 +63,12 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `al.court-order.name · official form PS12 backs this step (form_ref: al-aoc-ps12)`
 - `al.court-order.name · states "19 year"`
 - `al.court-order.name · a notarized signature is required`
+- `ak.court-order.name · a fee waiver is available (cost.fee_waiver: true)`
 - `ak.court-order.name · official form CIV700 backs this step (form_ref: ak-civ-700-petition-name-change)`
 - `ak.court-order.name · states "40 day"`
 - `ak.court-order.name · states "30 day"`
 - `ak.court-order.name · names form CIV708`
 - `ak.court-order.name · publication in a newspaper is required`
-- `ak.court-order.name · names form TF920`
 - `az.drivers-license.gender-marker · a court order is required`
 - `ar.drivers-license.gender-marker · form_ref "ar-ds-gender-application" (Application to Amend Gender Information Contained on Driver's License or Identification Card) carries no form identifier to match on`
 - `ar.drivers-license.gender-marker · a court order is required`
@@ -180,13 +180,13 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `pa.birth-certificate.name · a court order is required`
 - `pa.birth-certificate.name · a notarized signature is required`
 - `pa.birth-certificate.name · states "45 day"`
+- `ak.court-order.name.es · a fee waiver is available (cost.fee_waiver: true)`
 - `ak.court-order.name.es · official form CIV700 backs this step (form_ref: ak-civ-700-petition-name-change)`
 - `ak.court-order.name.es · states "4 week"`
 - `ak.court-order.name.es · states "40 day"`
 - `ak.court-order.name.es · states "30 day"`
 - `ak.court-order.name.es · names form CIV708`
 - `ak.court-order.name.es · publication in a newspaper is required`
-- `ak.court-order.name.es · names form TF920`
 - `al.court-order.name.es · this action happens where you live, so the route closes when you move`
 - `al.court-order.name.es · official form PS12 backs this step (form_ref: al-aoc-ps12)`
 - `al.court-order.name.es · states "19 year"`
@@ -559,8 +559,10 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `ak.birth-certificate.gender-marker.es` | es | 1 | 0 | 0 | 3/3 |
 | `ak.birth-certificate.name` | en | 3 | 0 | 0 | 2/5 |
 | `ak.birth-certificate.name.es` | es | 3 | 0 | 0 | 2/5 |
-| `ak.court-order.name` | en | 0 | 0 | 6 | 3/6 |
-| `ak.court-order.name.es` | es | 0 | 0 | 7 | 2/6 |
+| `ak.court-order.fees` | en | 4 | 0 | 0 | 3/5 |
+| `ak.court-order.fees.es` | es | 4 | 0 | 0 | 3/5 |
+| `ak.court-order.name` | en | 2 | 0 | 6 | 3/6 |
+| `ak.court-order.name.es` | es | 2 | 0 | 7 | 2/6 |
 | `ak.drivers-license.gender-marker` | en | 0 | 0 | 1 | 5/5 |
 | `ak.drivers-license.gender-marker.es` | es | 0 | 0 | 1 | 5/5 |
 | `ak.drivers-license.name` | en | 0 | 0 | 3 | 5/6 |
@@ -573,8 +575,8 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `al.court-order.fees.es` | es | 2 | 0 | 0 | 3/4 |
 | `al.court-order.name` | en | 0 | 0 | 4 | 3/5 |
 | `al.court-order.name.es` | es | 0 | 0 | 4 | 3/5 |
-| `al.drivers-license.gender-marker` | en | 0 | 0 | 0 | 4/4 |
-| `al.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 4/4 |
+| `al.drivers-license.gender-marker` | en | 0 | 0 | 0 | 6/6 |
+| `al.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 8/8 |
 | `al.drivers-license.name` | en | 1 | 0 | 0 | 4/4 |
 | `al.drivers-license.name.es` | es | 1 | 0 | 0 | 4/4 |
 | `ar.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 4/4 |
@@ -591,12 +593,12 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `az.birth-certificate.fees.es` | es | 2 | 0 | 0 | 2/3 |
 | `az.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 5/5 |
 | `az.birth-certificate.gender-marker.es` | es | 1 | 0 | 0 | 5/5 |
-| `az.birth-certificate.name` | en | 3 | 0 | 1 | 4/5 |
-| `az.birth-certificate.name.es` | es | 3 | 0 | 1 | 3/5 |
+| `az.birth-certificate.name` | en | 3 | 0 | 1 | 5/6 |
+| `az.birth-certificate.name.es` | es | 3 | 0 | 1 | 4/6 |
 | `az.court-order.fees` | en | 5 | 0 | 1 | 4/5 |
 | `az.court-order.fees.es` | es | 5 | 0 | 1 | 4/5 |
-| `az.court-order.name` | en | 1 | 0 | 0 | 4/4 |
-| `az.court-order.name.es` | es | 1 | 0 | 0 | 4/4 |
+| `az.court-order.name` | en | 1 | 0 | 0 | 5/5 |
+| `az.court-order.name.es` | es | 1 | 0 | 0 | 5/5 |
 | `az.drivers-license.gender-marker` | en | 0 | 0 | 1 | 5/5 |
 | `az.drivers-license.gender-marker.es` | es | 0 | 0 | 1 | 5/5 |
 | `az.drivers-license.name` | en | 3 | 0 | 0 | 4/6 |
@@ -635,8 +637,8 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `co.drivers-license.gender-marker.es` | es | 4 | 0 | 0 | 4/6 |
 | `ct.birth-certificate.gender-marker` | en | 3 | 0 | 0 | 4/5 |
 | `ct.birth-certificate.gender-marker.es` | es | 3 | 0 | 0 | 4/5 |
-| `ct.birth-certificate.name` | en | 2 | 0 | 0 | 4/4 |
-| `ct.birth-certificate.name.es` | es | 3 | 0 | 0 | 3/4 |
+| `ct.birth-certificate.name` | en | 2 | 0 | 0 | 5/5 |
+| `ct.birth-certificate.name.es` | es | 3 | 0 | 0 | 4/5 |
 | `ct.court-order.name` | en | 2 | 0 | 0 | 5/6 |
 | `ct.court-order.name.es` | es | 2 | 0 | 0 | 5/6 |
 | `ct.drivers-license.gender-marker` | en | 0 | 0 | 3 | 5/5 |
@@ -649,6 +651,8 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `dc.birth-certificate.name.es` | es | 0 | 0 | 4 | 4/4 |
 | `dc.court-order.name` | en | 0 | 0 | 2 | 5/5 |
 | `dc.court-order.name.es` | es | 0 | 0 | 2 | 5/5 |
+| `dc.drivers-license.fees` | en | 3 | 0 | 0 | 3/5 |
+| `dc.drivers-license.fees.es` | es | 3 | 0 | 0 | 3/5 |
 | `dc.drivers-license.gender-marker` | en | 0 | 0 | 2 | 4/4 |
 | `dc.drivers-license.gender-marker.es` | es | 0 | 0 | 2 | 4/4 |
 | `dc.drivers-license.name` | en | 1 | 0 | 0 | 3/3 |

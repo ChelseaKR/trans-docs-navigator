@@ -1,7 +1,7 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 658,
-  "supported": 991,
+  "records": 662,
+  "supported": 1009,
   "unsupported": 0,
   "uncheckable": 476,
   "unfetchable_sources": [
@@ -22,8 +22,8 @@
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → unreachable (fetch and curl both failed): the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://travel.state.gov/es/pasaportes/renovar-o-reemplazar/cambiar-o-corregir.html → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 2421,
-  "total_prose_sentences": 2969,
+  "unchecked_prose_sentences": 2445,
+  "total_prose_sentences": 3001,
   "audits": [
     {
       "recordId": "al.court-order.name",
@@ -123,9 +123,9 @@
       "language": "en",
       "url": "https://www.alea.gov/dps/driver-license/driver-license-forms",
       "results": [],
-      "uncheckedProse": 4,
-      "negatedClaims": 2,
-      "totalSentences": 4
+      "uncheckedProse": 6,
+      "negatedClaims": 3,
+      "totalSentences": 6
     },
     {
       "recordId": "al.birth-certificate.name",
@@ -179,6 +179,15 @@
       "url": "https://public.courts.alaska.gov/web/forms/docs/civ-699.pdf",
       "results": [
         {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
           "kind": "form-id",
           "key": "CIV700",
           "label": "official form CIV700 backs this step (form_ref: ak-civ-700-petition-name-change)",
@@ -186,6 +195,26 @@
           "strength": "literal",
           "verdict": "uncheckable",
           "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "TF920",
+          "label": "official fee-waiver form TF920 backs this waiver (cost.fee_waiver_form: ak-tf-920)",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://courts.alaska.gov/shc/courtfees.htm",
+          "verdict": "supported",
+          "why": "the source names TF920"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "to request waiver of the filing fee for your case, submit the following form when you file your case: tf-920 - request for exemption from payment of fees",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://courts.alaska.gov/shc/courtfees.htm",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
         },
         {
           "kind": "duration",
@@ -222,20 +251,57 @@
           "strength": "necessary-condition",
           "verdict": "uncheckable",
           "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "form-id",
-          "key": "TF920",
-          "label": "names form TF920",
-          "field": "cost.note",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
       "uncheckedProse": 3,
       "negatedClaims": 1,
       "totalSentences": 6
+    },
+    {
+      "recordId": "ak.court-order.fees",
+      "language": "en",
+      "url": "https://courts.alaska.gov/shc/courtfees.htm",
+      "results": [
+        {
+          "kind": "money",
+          "key": "200",
+          "label": "costs $200",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $200"
+        },
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "form-id",
+          "key": "TF920",
+          "label": "official fee-waiver form TF920 backs this waiver (cost.fee_waiver_form: ak-tf-920)",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names TF920"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "to request waiver of the filing fee for your case, submit the following form when you file your case: tf-920 - request for exemption from payment of fees",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 5
     },
     {
       "recordId": "ak.drivers-license.name",
@@ -364,9 +430,9 @@
           "why": "the source discusses this topic (necessary condition only — NOT verified)"
         }
       ],
-      "uncheckedProse": 4,
+      "uncheckedProse": 5,
       "negatedClaims": 0,
-      "totalSentences": 4
+      "totalSentences": 5
     },
     {
       "recordId": "az.court-order.fees",
@@ -532,9 +598,9 @@
           "why": "the source discusses this topic (necessary condition only — NOT verified)"
         }
       ],
-      "uncheckedProse": 4,
+      "uncheckedProse": 5,
       "negatedClaims": 0,
-      "totalSentences": 5
+      "totalSentences": 6
     },
     {
       "recordId": "az.birth-certificate.gender-marker",
@@ -1232,6 +1298,15 @@
         },
         {
           "kind": "form-id",
+          "key": "JDF433",
+          "label": "official form JDF433 backs this step (form_ref: co-jdf-433)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names JDF433"
+        },
+        {
+          "kind": "form-id",
           "key": "JDF205",
           "label": "official fee-waiver form JDF205 backs this waiver (cost.fee_waiver_form: co-jdf-205)",
           "field": "cost.fee_waiver_form",
@@ -1256,15 +1331,6 @@
           "strength": "literal",
           "verdict": "supported",
           "why": "the source states \"90 day\""
-        },
-        {
-          "kind": "form-id",
-          "key": "JDF433",
-          "label": "names form JDF433",
-          "field": "statement",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names JDF433"
         },
         {
           "kind": "requirement",
@@ -1536,9 +1602,9 @@
           "why": "the source discusses this topic (necessary condition only — NOT verified)"
         }
       ],
-      "uncheckedProse": 4,
+      "uncheckedProse": 5,
       "negatedClaims": 1,
-      "totalSentences": 4
+      "totalSentences": 5
     },
     {
       "recordId": "de.court-order.name",
@@ -1772,6 +1838,43 @@
       "uncheckedProse": 4,
       "negatedClaims": 2,
       "totalSentences": 4
+    },
+    {
+      "recordId": "dc.drivers-license.fees",
+      "language": "en",
+      "url": "https://dmv.dc.gov/book/dmv-fees/driver-license-fees",
+      "results": [
+        {
+          "kind": "money",
+          "key": "47",
+          "label": "states $47",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $47"
+        },
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "states $20",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        },
+        {
+          "kind": "duration",
+          "key": "8 year",
+          "label": "states \"8 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"8 year\""
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 5
     },
     {
       "recordId": "dc.birth-certificate.name",
@@ -8227,6 +8330,15 @@
       "url": "https://public.courts.alaska.gov/web/forms/docs/civ-699.pdf",
       "results": [
         {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
           "kind": "form-id",
           "key": "CIV700",
           "label": "official form CIV700 backs this step (form_ref: ak-civ-700-petition-name-change)",
@@ -8234,6 +8346,26 @@
           "strength": "literal",
           "verdict": "uncheckable",
           "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "TF920",
+          "label": "official fee-waiver form TF920 backs this waiver (cost.fee_waiver_form: ak-tf-920)",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://courts.alaska.gov/shc/courtfees.htm",
+          "verdict": "supported",
+          "why": "the source names TF920"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "to request waiver of the filing fee for your case, submit the following form when you file your case: tf-920 - request for exemption from payment of fees",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://courts.alaska.gov/shc/courtfees.htm",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
         },
         {
           "kind": "duration",
@@ -8279,20 +8411,57 @@
           "strength": "necessary-condition",
           "verdict": "uncheckable",
           "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
-        },
-        {
-          "kind": "form-id",
-          "key": "TF920",
-          "label": "names form TF920",
-          "field": "cost.note",
-          "strength": "literal",
-          "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
       "uncheckedProse": 2,
       "negatedClaims": 3,
       "totalSentences": 6
+    },
+    {
+      "recordId": "ak.court-order.fees.es",
+      "language": "es",
+      "url": "https://courts.alaska.gov/shc/courtfees.htm",
+      "results": [
+        {
+          "kind": "money",
+          "key": "200",
+          "label": "costs $200",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $200"
+        },
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "form-id",
+          "key": "TF920",
+          "label": "official fee-waiver form TF920 backs this waiver (cost.fee_waiver_form: ak-tf-920)",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names TF920"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "to request waiver of the filing fee for your case, submit the following form when you file your case: tf-920 - request for exemption from payment of fees",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 5
     },
     {
       "recordId": "ak.drivers-license.gender-marker.es",
@@ -8475,9 +8644,9 @@
       "language": "es",
       "url": "https://www.alea.gov/dps/driver-license/driver-license-forms",
       "results": [],
-      "uncheckedProse": 4,
+      "uncheckedProse": 8,
       "negatedClaims": 3,
-      "totalSentences": 4
+      "totalSentences": 8
     },
     {
       "recordId": "al.drivers-license.name.es",
@@ -8765,9 +8934,9 @@
           "why": "the source discusses this topic (necessary condition only — NOT verified)"
         }
       ],
-      "uncheckedProse": 3,
+      "uncheckedProse": 4,
       "negatedClaims": 0,
-      "totalSentences": 5
+      "totalSentences": 6
     },
     {
       "recordId": "az.court-order.fees.es",
@@ -8850,9 +9019,9 @@
           "why": "the source discusses this topic (necessary condition only — NOT verified)"
         }
       ],
-      "uncheckedProse": 4,
+      "uncheckedProse": 5,
       "negatedClaims": 0,
-      "totalSentences": 4
+      "totalSentences": 5
     },
     {
       "recordId": "az.drivers-license.gender-marker.es",
@@ -9418,6 +9587,15 @@
         },
         {
           "kind": "form-id",
+          "key": "JDF433",
+          "label": "official form JDF433 backs this step (form_ref: co-jdf-433)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names JDF433"
+        },
+        {
+          "kind": "form-id",
           "key": "JDF205",
           "label": "official fee-waiver form JDF205 backs this waiver (cost.fee_waiver_form: co-jdf-205)",
           "field": "cost.fee_waiver_form",
@@ -9442,15 +9620,6 @@
           "strength": "literal",
           "verdict": "supported",
           "why": "the source states \"90 day\""
-        },
-        {
-          "kind": "form-id",
-          "key": "JDF433",
-          "label": "names form JDF433",
-          "field": "statement",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names JDF433"
         },
         {
           "kind": "requirement",
@@ -9609,9 +9778,9 @@
           "why": "the source discusses this topic (necessary condition only — NOT verified)"
         }
       ],
-      "uncheckedProse": 3,
+      "uncheckedProse": 4,
       "negatedClaims": 1,
-      "totalSentences": 4
+      "totalSentences": 5
     },
     {
       "recordId": "ct.court-order.name.es",
@@ -9862,6 +10031,43 @@
       "uncheckedProse": 4,
       "negatedClaims": 2,
       "totalSentences": 4
+    },
+    {
+      "recordId": "dc.drivers-license.fees.es",
+      "language": "es",
+      "url": "https://dmv.dc.gov/book/dmv-fees/driver-license-fees",
+      "results": [
+        {
+          "kind": "money",
+          "key": "47",
+          "label": "states $47",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $47"
+        },
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "states $20",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        },
+        {
+          "kind": "duration",
+          "key": "8 year",
+          "label": "states \"8 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"8 year\""
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 3,
+      "totalSentences": 5
     },
     {
       "recordId": "dc.drivers-license.name.es",

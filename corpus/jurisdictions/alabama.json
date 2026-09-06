@@ -91,12 +91,12 @@
     ],
     "topic": "Alabama driver's license/ID sex or gender designation",
     "statement": "The Alabama Law Enforcement Agency's page listing driver-license forms and requirements describes how to update your name after a legal name change. It names no form or process for changing the sex or gender shown on a driver's license or ID card.",
-    "detail": "A separate ALEA list of the documents accepted to prove your identity for a license or ID also does not mention sex or gender anywhere. Read ALEA's current pages yourself, or call the Driver License Division, before assuming a route is open or closed.",
+    "detail": "ALEA's separate Document Requirements and Fees page mentions sex only when it describes a certified U.S. birth certificate as a document that shows a person's date of birth, full name and sex; neither that page nor ALEA's STAR ID document list describes any way to change the sex shown on a license or ID card. This project re-read ALEA's driver-license pages on September 5, 2026 and found nothing new on this. Read ALEA's current pages yourself, or call the Driver License Division, before assuming a route is open or closed.",
     "prerequisites": [],
     "source": {
       "url": "https://www.alea.gov/dps/driver-license/driver-license-forms",
       "title": "Alabama Law Enforcement Agency — Driver License Forms",
-      "last_verified": "2026-07-13",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",
