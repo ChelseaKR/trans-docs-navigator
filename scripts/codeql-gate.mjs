@@ -26,6 +26,25 @@
  * that distinction is visible in the log. Raising the floor to fail on warnings is a separate,
  * deliberate decision — it is not made here, and nothing that passes today starts failing.
  *
+ * CodeQL CARRIES TWO INDEPENDENT SEVERITY AXES, and reporting only the first one understated
+ * what was found. `problem.severity` (error / warning / recommendation) is the one above. Security
+ * queries ALSO carry `security-severity`, a CVSS-style 0.0-10.0 score in the rule's properties,
+ * and GitHub bands it exactly as it bands a vulnerability: >= 9.0 critical, >= 7.0 high, >= 4.0
+ * medium, > 0 low. The two axes do not track each other. Every security finding this repo has
+ * seen so far sits at `problem.severity: warning` AND `security-severity: high` — measured
+ * 2026-09-06, when the live gate printed "0 error-severity finding(s)" and "9 warning" for nine
+ * findings GitHub classifies as HIGH (js/incomplete-multi-character-sanitization x5,
+ * js/file-system-race x2, js/regex/missing-regexp-anchor x2). "9 warning" reads as nine style
+ * nits; it was nine high-severity security findings. That is the same shape as the bug two
+ * paragraphs up, one axis over.
+ *
+ * So the report now states the security band explicitly, and says out loud when high or critical
+ * findings are passing ungated. The EXIT CODE IS STILL error-severity only: raising the floor to
+ * fail on high `security-severity` would be a real policy change that turns the build red until
+ * the existing findings are triaged, and that is the repo owner's call to make deliberately, not
+ * a side effect of teaching this script to read a field it was ignoring. What changes here is
+ * that the log can no longer be misread as "nothing serious found".
+ *
  *     node scripts/codeql-gate.mjs <sarif-dir-or-file> [...]
  */
 
@@ -37,6 +56,50 @@ import { pathToFileURL } from 'node:url';
 const SEVERITY_ORDER = { error: 0, warning: 1, note: 2 };
 
 const severityRank = (severity) => SEVERITY_ORDER[severity] ?? 99;
+
+// GitHub's own banding of CodeQL's `security-severity` CVSS-style score. Kept identical to the
+// thresholds the code-scanning UI and API use, so a band named here matches the band a reviewer
+// sees on the alert rather than inventing a private scale.
+const SECURITY_BANDS = [
+  ['critical', 9.0],
+  ['high', 7.0],
+  ['medium', 4.0],
+  ['low', 0.0],
+];
+
+// Bands worth shouting about: these are the ones a green check would otherwise hide.
+const ALARMING_BANDS = new Set(['critical', 'high']);
+
+/**
+ * The rule's `security-severity`, as a number, or null when the rule carries none.
+ *
+ * Non-security queries simply omit the property, and that absence means "not a security finding",
+ * NOT "a security finding scoring zero" — so it returns null rather than 0 and callers skip it.
+ * A malformed or non-numeric value is treated the same way as absent rather than coerced, because
+ * silently turning an unparseable score into 0 would file a finding of unknown severity under the
+ * lowest band, which is the exact absence-rendered-as-a-value mistake this repo keeps auditing for.
+ */
+function securitySeverityOf(rule) {
+  const raw = rule?.properties?.['security-severity'];
+  if (raw === undefined || raw === null || String(raw).trim() === '') {
+    return null;
+  }
+  const score = Number(raw);
+  return Number.isFinite(score) ? score : null;
+}
+
+/** GitHub's band name for a `security-severity` score, or null when there is no score. */
+function securityBand(score) {
+  if (score === null) {
+    return null;
+  }
+  for (const [name, floor] of SECURITY_BANDS) {
+    if (score >= floor) {
+      return name;
+    }
+  }
+  return null;
+}
 
 // Composite map key for the per-rule tally; NUL cannot occur in a CodeQL rule id.
 const KEY_SEP = '\u0000';
@@ -148,6 +211,53 @@ function reportAdvisory(counts, perRule) {
   }
 }
 
+/**
+ * The security-severity half of the summary.
+ *
+ * Printed even when everything is clean, because "no security findings" and "this script never
+ * looked at security severity" produced identical output before and a reader could not tell them
+ * apart. Findings that ARE gated (error problem-severity) are excluded from the ungated tally so
+ * the alarming line only ever counts findings that genuinely slipped through.
+ */
+function reportSecurity(counts, perRule, ungatedAlarming) {
+  const bands = [...counts.entries()];
+  if (bands.length === 0) {
+    console.log('CodeQL: no findings carried a security-severity score.');
+    return;
+  }
+  const order = SECURITY_BANDS.map(([name]) => name);
+  const rank = (band) => {
+    const i = order.indexOf(band);
+    return i === -1 ? 99 : i;
+  };
+  bands.sort(([a], [b]) => rank(a) - rank(b));
+  console.log(
+    `CodeQL security-severity (GitHub banding): ${bands
+      .map(([band, n]) => `${n} ${band}`)
+      .join(', ')}.`,
+  );
+  const rows = [...perRule.entries()].map(([key, n]) => [...key.split(KEY_SEP), n]);
+  rows.sort(
+    ([bandA, ruleA, nA], [bandB, ruleB, nB]) =>
+      rank(bandA) - rank(bandB) || nB - nA || ruleA.localeCompare(ruleB),
+  );
+  for (const [band, ruleId, n] of rows) {
+    console.log(`  ${band.padEnd(9)} ${String(n).padStart(4)}  ${ruleId}`);
+  }
+  if (ungatedAlarming > 0) {
+    // Deliberately loud, and deliberately not a failure. This gate's floor is error
+    // problem-severity; `security-severity` is a different axis and a high score there does not
+    // raise `problem.severity`. Saying so in the log is what stops a green check from being read
+    // as "CodeQL found nothing serious".
+    console.log(
+      `CodeQL: ⚠ ${ungatedAlarming} finding(s) at HIGH or CRITICAL security severity are NOT ` +
+        `gated by this check — its floor is error problem-severity, and CodeQL's security ` +
+        `queries report at warning problem-severity regardless of how high they score. A green ` +
+        `check here does NOT mean no high-severity security findings.`,
+    );
+  }
+}
+
 export async function gate(paths) {
   const files = await sarifFiles(paths);
   if (files.length === 0) {
@@ -165,6 +275,9 @@ export async function gate(paths) {
   }
   const counts = new Map();
   const perRule = new Map();
+  const securityCounts = new Map();
+  const securityPerRule = new Map();
+  let ungatedAlarming = 0;
   const bump = (map, key) => map.set(key, (map.get(key) ?? 0) + 1);
   let totalErrors = 0;
   for (const file of files) {
@@ -175,6 +288,15 @@ export async function gate(paths) {
         const severity = severityOf(result, rules);
         bump(counts, severity);
         bump(perRule, `${severity}${KEY_SEP}${result.ruleId ?? '?'}`);
+        const band = securityBand(securitySeverityOf(rules.get(result.ruleId)));
+        if (band !== null) {
+          bump(securityCounts, band);
+          bump(securityPerRule, `${band}${KEY_SEP}${result.ruleId ?? '?'}`);
+          // Only count it as slipping through if the exit code is not already failing on it.
+          if (ALARMING_BANDS.has(band) && severity !== 'error') {
+            ungatedAlarming += 1;
+          }
+        }
       }
       const errors = (run.results ?? []).filter((result) => isError(result, rules));
       totalErrors += errors.length;
@@ -192,6 +314,7 @@ export async function gate(paths) {
     `CodeQL: ${totalErrors} error-severity finding(s) across ${files.length} SARIF file(s).`,
   );
   reportAdvisory(counts, perRule);
+  reportSecurity(securityCounts, securityPerRule, ungatedAlarming);
   return totalErrors > 0 ? 1 : 0;
 }
 
