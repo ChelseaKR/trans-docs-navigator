@@ -104,6 +104,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
   // silent change to either has to be deliberate.
   const urls = [...loadCorpus().map((r) => r.source.url), ...loadForms().map((f) => f.source.url)];
   assert.deepEqual(unwatchableAmong(urls), [
+    // Mississippi's enacted 2026 name-change act (SB 2126) is only published as a PDF
+    // on the Legislature's own bill-document site, so no baseline can be taken —
+    // deliberate, with the Mississippi corpus.
+    "https://billstatus.ls.state.ms.us/documents/2026/pdf/SB/2100-2199/SB2126SG.pdf",
     // Delaware: the Court of Common Pleas name-change petition packet, the DMV's gender-
     // designation procedure and its Form MV2020, and the Division of Public Health's
     // Gender Reassignment instructions and Requester's Affidavit are all PDFs whose text
@@ -134,6 +138,9 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // form the Gender Designation Form is filed alongside — is also a PDF whose
     // text this pipeline cannot extract, so no baseline can be taken.
     "https://dphhs.mt.gov/assets/Statistics/VitalStats/affidavitcorr.pdf",
+    // Alabama's Request to Change Name (Form PS-12) is a PDF whose text this pipeline
+    // cannot extract, so no baseline can be taken — deliberate, with the Alabama corpus.
+    "https://eforms.alacourt.gov/media/jtzbncuw/request-to-change-name.pdf",
     // Missouri's birth-record correction-affidavit form (MO 580-0645) is a PDF whose
     // text this pipeline cannot extract — deliberate addition with the Missouri corpus.
     "https://health.mo.gov/sites/health/files/media/pdf/2026/04/Aff_for_Correction.pdf",
@@ -144,6 +151,13 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Indiana's Adult Name Change packet (Coalition for Court Access) is a PDF whose
     // text this pipeline cannot extract — deliberate addition with the Indiana corpus.
     "https://indianalegalhelp.org/wp-content/uploads/2024/09/Adult-Name-Change-Packet-INSTRUCTIONS-202409-Update.pdf",
+    // Louisiana's Department of Health birth-records amendment page refuses this
+    // project's declared user-agent (HTTP 403) — deliberate, with the Louisiana corpus.
+    "https://ldh.la.gov/vital-records/amendments-to-birth-records",
+    // Mississippi's Vital Records rules (birth-certificate name and sex-designation
+    // amendment) are only published as a PDF, so no baseline can be taken —
+    // deliberate, with the Mississippi corpus.
+    "https://msdh.ms.gov/phs/VR_rules_2023_new_format.pdf",
     // North Dakota's Century Code chapter 23-02.1 (the statute restricting
     // gender-identity-based sex-designation amendments, 23-02.1-25.1) is only
     // published as a PDF of the whole chapter, so no baseline can be taken —
@@ -161,6 +175,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // deliberate, with the Alaska corpus.
     "https://public.courts.alaska.gov/web/forms/docs/civ-699.pdf",
     "https://public.courts.alaska.gov/web/forms/docs/civ-700.pdf",
+    // Louisiana's OMV internal gender-change policy (Policy 22.01) is a PDF whose text
+    // this pipeline cannot extract, so no baseline can be taken — deliberate, with the
+    // Louisiana corpus.
+    "https://public.powerdms.com/ladpsc/documents/368304",
     // Idaho's Instructions to Request a Court Ordered Name Change on an Idaho Birth
     // Certificate is a PDF whose text this pipeline cannot extract, so no baseline can
     // be taken — deliberate addition with the Idaho corpus.

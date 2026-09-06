@@ -6,7 +6,7 @@
     "change_type": [
       "name"
     ],
-    "title": "Form CIV-700 \u2014 Petition for Change of Name",
+    "title": "Form CIV-700 — Petition for Change of Name",
     "source": {
       "url": "https://public.courts.alaska.gov/web/forms/docs/civ-700.pdf",
       "title": "Alaska Court System Form CIV-700",
@@ -21,10 +21,25 @@
     "change_type": [
       "gender-marker"
     ],
-    "title": "Form 427 \u2014 Certification for Change of Sex",
+    "title": "Form 427 — Certification for Change of Sex",
     "source": {
       "url": "https://doa.alaska.gov/dmv/forms/pdfs/427.pdf",
       "title": "Alaska Division of Motor Vehicles Form 427",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "al-aoc-ps12",
+    "jurisdiction": "US-AL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form PS-12 — Request to Change Name (For An Adult)",
+    "source": {
+      "url": "https://eforms.alacourt.gov/media/jtzbncuw/request-to-change-name.pdf",
+      "title": "Alabama Administrative Office of Courts — Request to Change Name (For An Adult), Form PS-12",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -39,7 +54,7 @@
     "title": "Affidavit of Legal Name Change",
     "source": {
       "url": "https://www.dfa.arkansas.gov/wp-content/uploads/Affidavit_of_Legal_Name_Change_2019.pdf",
-      "title": "Arkansas DFA Office of Driver Services \u2014 Affidavit of Legal Name Change",
+      "title": "Arkansas DFA Office of Driver Services — Affidavit of Legal Name Change",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -54,7 +69,7 @@
     "title": "Application to Amend Gender Information Contained on Driver's License or Identification Card",
     "source": {
       "url": "https://www.dfa.arkansas.gov/wp-content/uploads/DS_GenderApplication.pdf",
-      "title": "Arkansas DFA Office of Driver Services \u2014 Application to Amend Gender Information",
+      "title": "Arkansas DFA Office of Driver Services — Application to Amend Gender Information",
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -70,7 +85,7 @@
     "title": "Affidavit to Correct or Amend a Birth Certificate",
     "source": {
       "url": "https://www.azdhs.gov/documents/vital-records/manuals/correction-affidavit-correct-amend-birth.pdf?v=20260409",
-      "title": "Arizona Department of Health Services, Bureau of Vital Records \u2014 Affidavit to Correct or Amend a Birth Certificate",
+      "title": "Arizona Department of Health Services, Bureau of Vital Records — Affidavit to Correct or Amend a Birth Certificate",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -82,7 +97,7 @@
     "change_type": [
       "name"
     ],
-    "title": "Form NC-200 \u2014 Petition for Change of Name to Conform to Gender Identity",
+    "title": "Form NC-200 — Petition for Change of Name to Conform to Gender Identity",
     "source": {
       "url": "https://www.courts.ca.gov/documents/nc200.pdf",
       "title": "California Form NC-200",
@@ -97,7 +112,7 @@
     "change_type": [
       "name"
     ],
-    "title": "Form VS 23 \u2014 Application to Amend a Birth Record After a Court Order Name Change",
+    "title": "Form VS 23 — Application to Amend a Birth Record After a Court Order Name Change",
     "source": {
       "url": "https://www.cdph.ca.gov/CDPH%20Document%20Library/ControlledForms/VS23.pdf",
       "title": "California Department of Public Health Form VS 23",
@@ -112,7 +127,7 @@
     "change_type": [
       "gender-marker"
     ],
-    "title": "Form VS 24B \u2014 Application to Amend a Birth Record",
+    "title": "Form VS 24B — Application to Amend a Birth Record",
     "source": {
       "url": "https://www.cdph.ca.gov/CDPH%20Document%20Library/ControlledForms/VS24B.pdf",
       "title": "California Department of Public Health Form VS 24B",
@@ -127,10 +142,70 @@
     "change_type": [
       "gender-marker"
     ],
-    "title": "Form B-385 \u2014 Gender Designation on a License or Identification Card",
+    "title": "Form B-385 — Gender Designation on a License or Identification Card",
     "source": {
       "url": "https://portal.ct.gov/-/media/DMV/20/29/B-385.pdf",
-      "title": "Connecticut DMV Form B-385 \u2014 Gender Designation on a License or Identification Card",
+      "title": "Connecticut DMV Form B-385 — Gender Designation on a License or Identification Card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "dc-dmv-gender-self-designation",
+    "jurisdiction": "US-DC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "DC DMV — Gender Self-Designation Form",
+    "source": {
+      "url": "https://dmv.dc.gov/sites/default/files/dc/sites/dmv/publication/attachments/DC%20DMV%20Form%20Gender%20Self-Designation%20English.pdf",
+      "title": "DC DMV — Gender Self-Designation Form",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "dc-doh-birth-amend-court-order",
+    "jurisdiction": "US-DC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "title": "DC Health — Amendment to Birth Record (Court Order)",
+    "source": {
+      "url": "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Birth%20Amendment%20with%20court%20order_0.pdf",
+      "title": "DC Health — Amendment to Birth Record (Court Order)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "dc-doh-gender-designation",
+    "jurisdiction": "US-DC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "DC Health — Gender Designation Application (with Model Letter and Instructions)",
+    "source": {
+      "url": "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Gender%20Designation%20Application_0.pdf",
+      "title": "DC Health — Gender Designation Application",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "dc-name-change-adult",
+    "jurisdiction": "US-DC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Application for Change of Name of an Adult (DC Superior Court)",
+    "source": {
+      "url": "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf",
+      "title": "DC Superior Court — Application for Change of Name of an Adult",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -142,10 +217,10 @@
     "change_type": [
       "name"
     ],
-    "title": "Change of Name Petition Packet \u2014 Court of Common Pleas for the State of Delaware",
+    "title": "Change of Name Petition Packet — Court of Common Pleas for the State of Delaware",
     "source": {
       "url": "https://courts.delaware.gov/forms/download.aspx?id=16858",
-      "title": "Delaware Court of Common Pleas \u2014 Change of Name Petition Packet",
+      "title": "Delaware Court of Common Pleas — Change of Name Petition Packet",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -157,7 +232,7 @@
     "change_type": [
       "gender-marker"
     ],
-    "title": "Form MV2020 \u2014 Request for Gender Change on Driver License/Identification Card",
+    "title": "Form MV2020 — Request for Gender Change on Driver License/Identification Card",
     "source": {
       "url": "https://dmv.de.gov/forms/driver_serv_forms/pdfs/gender_change_request_form.pdf",
       "title": "Delaware DMV Form MV2020",
@@ -175,7 +250,7 @@
     "title": "Requester's Affidavit for Sex Change on Birth Certificate",
     "source": {
       "url": "https://dhss.delaware.gov/wp-content/uploads/sites/12/dph/pdf/RequesterAffidavitSexChange.pdf",
-      "title": "Delaware Division of Public Health \u2014 Requester's Affidavit for Sex Change on Birth Certificate",
+      "title": "Delaware Division of Public Health — Requester's Affidavit for Sex Change on Birth Certificate",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -187,7 +262,7 @@
     "change_type": [
       "name"
     ],
-    "title": "Form DH429 \u2014 Application for Amendment to Florida Birth Record",
+    "title": "Form DH429 — Application for Amendment to Florida Birth Record",
     "source": {
       "url": "https://www.floridahealth.gov/wp-content/uploads/2025/07/DH429-Birth-Amendment-Application-7-14-2023.pdf",
       "title": "Florida Department of Health Form DH429",
@@ -203,10 +278,10 @@
       "name",
       "gender-marker"
     ],
-    "title": "Form 3977 \u2014 Affidavit for Amendment",
+    "title": "Form 3977 — Affidavit for Amendment",
     "source": {
       "url": "https://dph.georgia.gov/document/document/affidavit-amendment-form-3977-revisedpdf/download",
-      "title": "Georgia Department of Public Health Form 3977 \u2014 Affidavit for Amendment",
+      "title": "Georgia Department of Public Health Form 3977 — Affidavit for Amendment",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -222,7 +297,7 @@
     "title": "State of Hawaii Driver's License Application",
     "source": {
       "url": "https://www4.honolulu.gov/docushare/dsweb/Get/Document-325980/State%20of%20Hawaii%20Driver_s%20License%20Application.pdf",
-      "title": "City and County of Honolulu \u2014 State of Hawaii Driver's License Application",
+      "title": "City and County of Honolulu — State of Hawaii Driver's License Application",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -237,7 +312,7 @@
     "title": "Instructions to Request the Processing of a Court Ordered Name Change on an Idaho Birth Certificate",
     "source": {
       "url": "https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=1294&dbid=0&repo=PUBLIC-DOCUMENTS",
-      "title": "Idaho Department of Health and Welfare, Bureau of Vital Records \u2014 Instructions to Request the Processing of a Court Ordered Name Change on an Idaho Birth Certificate",
+      "title": "Idaho Department of Health and Welfare, Bureau of Vital Records — Instructions to Request the Processing of a Court Ordered Name Change on an Idaho Birth Certificate",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -253,7 +328,38 @@
     "title": "Affidavit and Certificate of Correction Request",
     "source": {
       "url": "https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/formsoppsaffidavitcertificatecorrectionre.pdf",
-      "title": "Illinois Department of Public Health \u2014 Affidavit and Certificate of Correction Request",
+      "title": "Illinois Department of Public Health — Affidavit and Certificate of Correction Request",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "in-cca-namechange-adult",
+    "jurisdiction": "US-IN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Indiana Legal Help / Coalition for Court Access — Adult Name Change Instructions and Forms",
+    "source": {
+      "url": "https://indianalegalhelp.org/wp-content/uploads/2024/09/Adult-Name-Change-Packet-INSTRUCTIONS-202409-Update.pdf",
+      "title": "Indiana Legal Help — Adult Name Change Instructions and Forms",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ky-vs-2j",
+    "jurisdiction": "US-KY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Form VS-2J — Affidavit for Amendment to Certificate",
+    "source": {
+      "url": "https://www.chfs.ky.gov/agencies/dph/dehp/vsb/Forms/VS2J.pdf",
+      "title": "Kentucky Cabinet for Health and Family Services Form VS-2J",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -265,7 +371,7 @@
     "change_type": [
       "name"
     ],
-    "title": "Form CJP 27 \u2014 Petition to Change Name of Adult",
+    "title": "Form CJP 27 — Petition to Change Name of Adult",
     "source": {
       "url": "https://www.mass.gov/doc/petition-to-change-name-of-adult-cjp-27/download",
       "title": "Massachusetts Probate and Family Court Form CJP 27",
@@ -284,7 +390,7 @@
     "title": "Driver's License, Learner's Permit or ID Card Application",
     "source": {
       "url": "https://www.mass.gov/doc/learners-permit-drivers-license-and-id-card-application/download",
-      "title": "Massachusetts RMV \u2014 Driver's License, Learner's Permit or ID Card Application",
+      "title": "Massachusetts RMV — Driver's License, Learner's Permit or ID Card Application",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -300,7 +406,7 @@
     "title": "Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex",
     "source": {
       "url": "https://www.mass.gov/doc/applicant-affidavit-for-amending-sex-on-a-birth-certificate-2/download",
-      "title": "Massachusetts Registry of Vital Records and Statistics \u2014 Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex",
+      "title": "Massachusetts Registry of Vital Records and Statistics — Applicant Affidavit in Support of Amendment of a Birth Certificate for Sex",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -315,7 +421,7 @@
     "title": "Petition for Change of Name of an Adult (CC-DR-60)",
     "source": {
       "url": "https://www.courts.state.md.us/sites/default/files/court-forms/ccdr060.pdf",
-      "title": "Maryland Judiciary \u2014 Petition for Change of Name of an Adult (CC-DR-60)",
+      "title": "Maryland Judiciary — Petition for Change of Name of an Adult (CC-DR-60)",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -330,7 +436,7 @@
     "title": "Application for Change in Sex Designation on a Certificate of Live Birth",
     "source": {
       "url": "https://health.maryland.gov/vsa/Documents/Corrections/Birth/Gender%20Reassignment/Gender%20Re-Assignment%20instructions%2009_01_2016.pdf",
-      "title": "Maryland Department of Health, Division of Vital Records \u2014 Applying for a New Certificate of Birth Following Sex Change or Diagnosis of an Intersex Condition",
+      "title": "Maryland Department of Health, Division of Vital Records — Applying for a New Certificate of Birth Following Sex Change or Diagnosis of an Intersex Condition",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -342,7 +448,7 @@
     "change_type": [
       "gender-marker"
     ],
-    "title": "Form MVL-20 \u2014 Gender Designation Form",
+    "title": "Form MVL-20 — Gender Designation Form",
     "source": {
       "url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/GENDER%20DESIGNATION%20FORM2019.pdf",
       "title": "Maine Bureau of Motor Vehicles Form MVL-20",
@@ -358,7 +464,7 @@
       "name",
       "gender-marker"
     ],
-    "title": "Form VS-7 \u2014 Application to Correct a Vital Record in Maine",
+    "title": "Form VS-7 — Application to Correct a Vital Record in Maine",
     "source": {
       "url": "https://www.maine.gov/dhhs/mecdc/sites/maine.gov.dhhs.mecdc/files/Application%20to%20Correct%20a%20Vital%20Record%20in%20Maine%20%28VS-7%29.pdf",
       "title": "Maine Division of Data, Research and Vital Statistics Form VS-7",
@@ -376,7 +482,7 @@
     "title": "State of Michigan Sex Designation Form",
     "source": {
       "url": "https://www.michigan.gov/-/media/Project/Websites/mdhhs/Folder3/Folder17/Folder217/Sex-Designation-Form-New.pdf",
-      "title": "Michigan Department of Health and Human Services \u2014 Sex Designation Form",
+      "title": "Michigan Department of Health and Human Services — Sex Designation Form",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -388,10 +494,10 @@
     "change_type": [
       "gender-marker"
     ],
-    "title": "Michigan Department of State \u2014 Sex Designation Form",
+    "title": "Michigan Department of State — Sex Designation Form",
     "source": {
       "url": "https://www.michigan.gov/sos/-/media/Project/Websites/sos/License-and-ID/Forms/MDOS_Sex_designation_form.pdf",
-      "title": "Michigan Department of State \u2014 Sex Designation Form",
+      "title": "Michigan Department of State — Sex Designation Form",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -407,7 +513,7 @@
     "title": "Application to Correct or Change a Michigan Birth Record",
     "source": {
       "url": "https://www.michigan.gov/-/media/Project/Websites/mdhhs/Folder1/Folder3/DCH-0847-CHGBX.pdf",
-      "title": "Michigan Department of Health and Human Services \u2014 Application to Correct or Change a Michigan Birth Record",
+      "title": "Michigan Department of Health and Human Services — Application to Correct or Change a Michigan Birth Record",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -423,7 +529,23 @@
     "title": "Birth Record Amendment Request",
     "source": {
       "url": "https://www.health.state.mn.us/people/vitalrecords/docs/bamendia_form.pdf",
-      "title": "Minnesota Department of Health \u2014 Birth Record Amendment Request",
+      "title": "Minnesota Department of Health — Birth Record Amendment Request",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "mo-dhss-580-0645",
+    "jurisdiction": "US-MO",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Form MO 580-0645 (VS-460) — Affidavit for Correction of a Birth, Death, or Fetal Death Record",
+    "source": {
+      "url": "https://health.mo.gov/sites/health/files/media/pdf/2026/04/Aff_for_Correction.pdf",
+      "title": "Missouri Department of Health and Senior Services Form MO 580-0645 — Affidavit for Correction",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -439,7 +561,7 @@
     "title": "Affidavit for Correction of a Vital Record",
     "source": {
       "url": "https://dphhs.mt.gov/assets/Statistics/VitalStats/affidavitcorr.pdf",
-      "title": "Montana Department of Public Health and Human Services \u2014 Affidavit for Correction of a Vital Record",
+      "title": "Montana Department of Public Health and Human Services — Affidavit for Correction of a Vital Record",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -454,7 +576,7 @@
     "title": "Gender Designation Form",
     "source": {
       "url": "https://dphhs.mt.gov/assets/Statistics/VitalStats/MTGenderDesignationForm.pdf",
-      "title": "Montana Department of Public Health and Human Services \u2014 Gender Designation Form",
+      "title": "Montana Department of Public Health and Human Services — Gender Designation Form",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -467,10 +589,10 @@
       "name",
       "gender-marker"
     ],
-    "title": "Form DHHS 1578 \u2014 Birth Certificate Modification Application",
+    "title": "Form DHHS 1578 — Birth Certificate Modification Application",
     "source": {
       "url": "https://vitalrecords.nc.gov/documents/NCOVR-BirthModificationsApplicationFinal-07072022v6.pdf",
-      "title": "North Carolina Department of Health and Human Services Form DHHS 1578 \u2014 Birth Certificate Modification Application",
+      "title": "North Carolina Department of Health and Human Services Form DHHS 1578 — Birth Certificate Modification Application",
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -482,10 +604,10 @@
     "change_type": [
       "gender-marker"
     ],
-    "title": "Form DL-300 \u2014 Sex Designation Form",
+    "title": "Form DL-300 — Sex Designation Form",
     "source": {
       "url": "https://www.ncdot.gov/dmv/downloads/Documents/DL-300.pdf",
-      "title": "North Carolina Division of Motor Vehicles Form DL-300 \u2014 Sex Designation Form",
+      "title": "North Carolina Division of Motor Vehicles Form DL-300 — Sex Designation Form",
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -497,10 +619,10 @@
     "change_type": [
       "name"
     ],
-    "title": "Form SFN 60183 \u2014 Birth Record Amendment Application",
+    "title": "Form SFN 60183 — Birth Record Amendment Application",
     "source": {
       "url": "https://www.hhs.nd.gov/sites/www/files/documents/DOH%20Legacy/Vital/SFN%2060183%20-%20Birth%20Amendment%20Changes.pdf",
-      "title": "North Dakota Health and Human Services Form SFN 60183 \u2014 Birth Record Amendment Application",
+      "title": "North Dakota Health and Human Services Form SFN 60183 — Birth Record Amendment Application",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -512,10 +634,10 @@
     "change_type": [
       "name"
     ],
-    "title": "How to Ask the Court to Change Your Name \u2014 Adults Only (CN 10551)",
+    "title": "How to Ask the Court to Change Your Name — Adults Only (CN 10551)",
     "source": {
       "url": "https://www.njcourts.gov/sites/default/files/forms/10551_namechg_adult.pdf",
-      "title": "New Jersey Courts \u2014 Name Change, Adult (CN 10551)",
+      "title": "New Jersey Courts — Name Change, Adult (CN 10551)",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -527,7 +649,7 @@
     "change_type": [
       "gender-marker"
     ],
-    "title": "Form REG-L2 \u2014 Request Form and Attestation to Amend Sex Designation to Reflect Gender Identity on a Birth Certificate (Adult)",
+    "title": "Form REG-L2 — Request Form and Attestation to Amend Sex Designation to Reflect Gender Identity on a Birth Certificate (Adult)",
     "source": {
       "url": "https://www.nj.gov/health/forms/reg-l2_1.pdf",
       "title": "New Jersey Department of Health Form REG-L2",
@@ -545,7 +667,7 @@
     "title": "Request to Change Gender Designation on a Birth Certificate: Adult Form",
     "source": {
       "url": "https://www.nmhealth.org/publication/view/form/5429/",
-      "title": "New Mexico Department of Health \u2014 Request to Change Gender Designation on a Birth Certificate: Adult Form",
+      "title": "New Mexico Department of Health — Request to Change Gender Designation on a Birth Certificate: Adult Form",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -557,7 +679,7 @@
     "change_type": [
       "gender-marker"
     ],
-    "title": "Form MVD-10237 \u2014 Request for Sex Designation Change",
+    "title": "Form MVD-10237 — Request for Sex Designation Change",
     "source": {
       "url": "https://realfile.tax.newmexico.gov/mvd10237.pdf",
       "title": "New Mexico Taxation and Revenue Department, Motor Vehicle Division Form MVD-10237",
@@ -575,7 +697,7 @@
     "title": "Application for a Correction of a Birth Record (Affidavit for Correction of a Record + Supplemental Affidavit)",
     "source": {
       "url": "https://www.dpbh.nv.gov/uploadedFiles/dpbh.nv.gov/content/Programs/BirthDeath/dta/Forms/Corrections%20-%20Birth.pdf",
-      "title": "Nevada Office of Vital Records \u2014 Application for a Correction of a Birth Record",
+      "title": "Nevada Office of Vital Records — Application for a Correction of a Birth Record",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -587,10 +709,10 @@
     "change_type": [
       "name"
     ],
-    "title": "Application for a Correction of a Record \u2014 Court Ordered Change Only",
+    "title": "Application for a Correction of a Record — Court Ordered Change Only",
     "source": {
       "url": "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf",
-      "title": "Nevada Office of Vital Records \u2014 Application for a Correction of a Record (Court Ordered Change Only)",
+      "title": "Nevada Office of Vital Records — Application for a Correction of a Record (Court Ordered Change Only)",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -602,7 +724,7 @@
     "change_type": [
       "gender-marker"
     ],
-    "title": "Form DOH-5303 \u2014 Notarized Affidavit of Gender Change for a Person 17 Years of Age or Older",
+    "title": "Form DOH-5303 — Notarized Affidavit of Gender Change for a Person 17 Years of Age or Older",
     "source": {
       "url": "https://www.health.ny.gov/forms/doh-5303.pdf",
       "title": "New York State Department of Health Form DOH-5303",
@@ -618,7 +740,7 @@
       "name",
       "gender-marker"
     ],
-    "title": "Form DOH-5305 \u2014 Application for Amendment of Certificate of Birth for Gender Designation for an Adult",
+    "title": "Form DOH-5305 — Application for Amendment of Certificate of Birth for Gender Designation for an Adult",
     "source": {
       "url": "https://www.health.ny.gov/forms/doh-5305.pdf",
       "title": "New York State Department of Health Form DOH-5305",
@@ -637,7 +759,7 @@
     "title": "Name and Sex Change Packet (Adult)",
     "source": {
       "url": "https://www.courts.oregon.gov/forms/Documents/Name%20and%20Sex%20Change%20Packet%20(Adult).pdf",
-      "title": "Oregon Judicial Department \u2014 Name and Sex Change Packet (Adult)",
+      "title": "Oregon Judicial Department — Name and Sex Change Packet (Adult)",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -650,7 +772,7 @@
       "name",
       "gender-marker"
     ],
-    "title": "Form OHA 2673 \u2014 Application to Change the Name and/or Sex on a Record of Live Birth to Support Gender Identity",
+    "title": "Form OHA 2673 — Application to Change the Name and/or Sex on a Record of Live Birth to Support Gender Identity",
     "source": {
       "url": "https://www.oregon.gov/oha/PH/BIRTHDEATHCERTIFICATES/Document%20Forms/OHA2673FormEnglish.pdf",
       "title": "Oregon Health Authority Form OHA 2673",
@@ -668,7 +790,7 @@
     "title": "Request to Change Birth Certificate Based on Court Order of Name Change",
     "source": {
       "url": "https://www.oregon.gov/oha/PH/BIRTHDEATHCERTIFICATES/Document%20Forms/CourtOrderNameChangeForm.pdf",
-      "title": "Oregon Health Authority \u2014 Request to Change Birth Certificate Based on Court Order of Name Change",
+      "title": "Oregon Health Authority — Request to Change Birth Certificate Based on Court Order of Name Change",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -680,7 +802,7 @@
     "change_type": [
       "gender-marker"
     ],
-    "title": "Form DL-32 \u2014 Request for Gender Change on Driver's License/Identification Card",
+    "title": "Form DL-32 — Request for Gender Change on Driver's License/Identification Card",
     "source": {
       "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/penndot/documents/public/dvspubsforms/bdl/bdl-form/dl-32.pdf",
       "title": "PennDOT Form DL-32",
@@ -695,7 +817,7 @@
     "change_type": [
       "name"
     ],
-    "title": "Form DL-80 \u2014 Non-Commercial Driver's License Application for Change/Correction/Replacement",
+    "title": "Form DL-80 — Non-Commercial Driver's License Application for Change/Correction/Replacement",
     "source": {
       "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/penndot/documents/public/dvspubsforms/bdl/bdl-form/dl-80.pdf",
       "title": "PennDOT Form DL-80",
@@ -711,7 +833,7 @@
       "name",
       "gender-marker"
     ],
-    "title": "Form HD002292 \u2014 Request to Modify an Adult's Birth Record",
+    "title": "Form HD002292 — Request to Modify an Adult's Birth Record",
     "source": {
       "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/health/documents/topics/documents/certificates-and-records/Request%20to%20Modify%20an%20Adult's%20Birth%20Record.pdf",
       "title": "Pennsylvania Department of Health Form HD002292",
@@ -726,7 +848,7 @@
     "change_type": [
       "name"
     ],
-    "title": "Form VS-170 \u2014 Application to Correct a Birth Certificate",
+    "title": "Form VS-170 — Application to Correct a Birth Certificate",
     "source": {
       "url": "https://www.dshs.texas.gov/sites/default/files/vs/doc/correcting-birth-certificate-vs-170_1.2026.pdf",
       "title": "Texas DSHS Vital Statistics Form VS-170",
@@ -741,7 +863,7 @@
     "change_type": [
       "name"
     ],
-    "title": "Form DS-82 \u2014 U.S. Passport Renewal",
+    "title": "Form DS-82 — U.S. Passport Renewal",
     "source": {
       "url": "https://eforms.state.gov/Forms/ds82_pdf.PDF",
       "title": "U.S. Department of State Form DS-82",
@@ -756,7 +878,7 @@
     "change_type": [
       "name"
     ],
-    "title": "Form SS-5 \u2014 Application for a Social Security Card",
+    "title": "Form SS-5 — Application for a Social Security Card",
     "source": {
       "url": "https://www.ssa.gov/forms/ss-5.pdf",
       "title": "SSA Form SS-5",
@@ -772,10 +894,10 @@
       "name",
       "gender-marker"
     ],
-    "title": "Form UDOH-OVRS-902 \u2014 Amendment of a Record by Court Order",
+    "title": "Form UDOH-OVRS-902 — Amendment of a Record by Court Order",
     "source": {
       "url": "https://vitalrecords.utah.gov/wp-content/uploads/902-Affidavit-to-Amend-by-Court-Order.pdf",
-      "title": "Utah Office of Vital Records and Statistics, Form UDOH-OVRS-902 \u2014 Amendment of a Record by Court Order",
+      "title": "Utah Office of Vital Records and Statistics, Form UDOH-OVRS-902 — Amendment of a Record by Court Order",
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -787,10 +909,10 @@
     "change_type": [
       "gender-marker"
     ],
-    "title": "Form VS42 \u2014 Changing Sex Designation",
+    "title": "Form VS42 — Changing Sex Designation",
     "source": {
       "url": "https://www.vdh.virginia.gov/content/uploads/sites/93/2020/07/VS42_Gender-Designation-Form.pdf",
-      "title": "Virginia Department of Health Form VS42 \u2014 Changing Sex Designation",
+      "title": "Virginia Department of Health Form VS42 — Changing Sex Designation",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -806,7 +928,7 @@
     "title": "Application to Correct or Amend a Vermont Birth Certificate",
     "source": {
       "url": "https://www.healthvermont.gov/sites/default/files/documents/pdf/HS_VR_BC_Correct_Amend.pdf",
-      "title": "Vermont Department of Health \u2014 Application to Correct or Amend a Vermont Birth Certificate",
+      "title": "Vermont Department of Health — Application to Correct or Amend a Vermont Birth Certificate",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -818,10 +940,10 @@
     "change_type": [
       "gender-marker"
     ],
-    "title": "Affidavit of Gender Identity \u2014 Amendment of Vermont Birth Certificate to Reflect Gender Identity",
+    "title": "Affidavit of Gender Identity — Amendment of Vermont Birth Certificate to Reflect Gender Identity",
     "source": {
       "url": "https://www.healthvermont.gov/sites/default/files/document/hsi-vr-gender-affidavit.pdf",
-      "title": "Vermont Department of Health \u2014 Affidavit of Gender Identity",
+      "title": "Vermont Department of Health — Affidavit of Gender Identity",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -833,7 +955,7 @@
     "change_type": [
       "name"
     ],
-    "title": "Form DOH 422-126 \u2014 Court Order Legal Name Change Request",
+    "title": "Form DOH 422-126 — Court Order Legal Name Change Request",
     "source": {
       "url": "https://doh.wa.gov/sites/default/files/legacy/Documents/Pubs/422-126-LegalNameChangeRequest.pdf",
       "title": "Washington State Department of Health Form DOH 422-126",
@@ -848,10 +970,55 @@
     "change_type": [
       "gender-marker"
     ],
-    "title": "Form DOH 422-143 \u2014 Request to Change Sex Designation on a Birth Certificate for an Adult",
+    "title": "Form DOH 422-143 — Request to Change Sex Designation on a Birth Certificate for an Adult",
     "source": {
       "url": "https://doh.wa.gov/sites/default/files/legacy/Documents/Pubs/422-143-SexDesignationChangeAdult.pdf",
       "title": "Washington State Department of Health Form DOH 422-143",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "wv-dmv-99-ro-gender-designation",
+    "jurisdiction": "US-WV",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Form DMV-99-RO — Gender Designation Form",
+    "source": {
+      "url": "https://webapps.transportation.wv.gov/TWS/WVDOTDocumentStorageMigration/PDF/Transportation/DMV/DMVFormSearch/DMV-99-RO-GenderDesignationForm.pdf",
+      "title": "West Virginia DMV Form DMV-99-RO — Gender Designation Form",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "wv-hsc-affidavit-correct-birth",
+    "jurisdiction": "US-WV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "title": "West Virginia Health Statistics Center — Affidavit to Correct Birth (Adult)",
+    "source": {
+      "url": "https://dhhr.wv.gov/HSC/forms/Documents/Affidavit_to_correct_birth.pdf",
+      "title": "West Virginia Health Statistics Center — Affidavit to Correct Birth",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "wv-hsc-sex-designation",
+    "jurisdiction": "US-WV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "West Virginia Health Statistics Center — Sex Designation Form",
+    "source": {
+      "url": "https://dhhr.wv.gov/HSC/forms/Documents/HSC%20Sex%20Designation%20Form.pdf",
+      "title": "West Virginia Health Statistics Center — Sex Designation Form",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -867,160 +1034,8 @@
     "title": "Form to Correct a Wyoming Vital Record",
     "source": {
       "url": "https://health.wyo.gov/wp-content/uploads/2026/07/WDH-VRS-Correction-Form-2026.pdf",
-      "title": "Wyoming Department of Health, Vital Records Services \u2014 Form to Correct a Wyoming Vital Record",
+      "title": "Wyoming Department of Health, Vital Records Services — Form to Correct a Wyoming Vital Record",
       "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "in-cca-namechange-adult",
-    "jurisdiction": "US-IN",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "title": "Indiana Legal Help / Coalition for Court Access \u2014 Adult Name Change Instructions and Forms",
-    "source": {
-      "url": "https://indianalegalhelp.org/wp-content/uploads/2024/09/Adult-Name-Change-Packet-INSTRUCTIONS-202409-Update.pdf",
-      "title": "Indiana Legal Help \u2014 Adult Name Change Instructions and Forms",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "mo-dhss-580-0645",
-    "jurisdiction": "US-MO",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "name",
-      "gender-marker"
-    ],
-    "title": "Form MO 580-0645 (VS-460) \u2014 Affidavit for Correction of a Birth, Death, or Fetal Death Record",
-    "source": {
-      "url": "https://health.mo.gov/sites/health/files/media/pdf/2026/04/Aff_for_Correction.pdf",
-      "title": "Missouri Department of Health and Senior Services Form MO 580-0645 \u2014 Affidavit for Correction",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "dc-name-change-adult",
-    "jurisdiction": "US-DC",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "title": "Application for Change of Name of an Adult (DC Superior Court)",
-    "source": {
-      "url": "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf",
-      "title": "DC Superior Court \u2014 Application for Change of Name of an Adult",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "dc-doh-birth-amend-court-order",
-    "jurisdiction": "US-DC",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "name"
-    ],
-    "title": "DC Health \u2014 Amendment to Birth Record (Court Order)",
-    "source": {
-      "url": "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Birth%20Amendment%20with%20court%20order_0.pdf",
-      "title": "DC Health \u2014 Amendment to Birth Record (Court Order)",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "dc-doh-gender-designation",
-    "jurisdiction": "US-DC",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "gender-marker"
-    ],
-    "title": "DC Health \u2014 Gender Designation Application (with Model Letter and Instructions)",
-    "source": {
-      "url": "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Gender%20Designation%20Application_0.pdf",
-      "title": "DC Health \u2014 Gender Designation Application",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "dc-dmv-gender-self-designation",
-    "jurisdiction": "US-DC",
-    "document_type": "drivers-license",
-    "change_type": [
-      "gender-marker"
-    ],
-    "title": "DC DMV \u2014 Gender Self-Designation Form",
-    "source": {
-      "url": "https://dmv.dc.gov/sites/default/files/dc/sites/dmv/publication/attachments/DC%20DMV%20Form%20Gender%20Self-Designation%20English.pdf",
-      "title": "DC DMV \u2014 Gender Self-Designation Form",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "wv-dmv-99-ro-gender-designation",
-    "jurisdiction": "US-WV",
-    "document_type": "drivers-license",
-    "change_type": [
-      "gender-marker"
-    ],
-    "title": "Form DMV-99-RO \u2014 Gender Designation Form",
-    "source": {
-      "url": "https://webapps.transportation.wv.gov/TWS/WVDOTDocumentStorageMigration/PDF/Transportation/DMV/DMVFormSearch/DMV-99-RO-GenderDesignationForm.pdf",
-      "title": "West Virginia DMV Form DMV-99-RO \u2014 Gender Designation Form",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "wv-hsc-affidavit-correct-birth",
-    "jurisdiction": "US-WV",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "name"
-    ],
-    "title": "West Virginia Health Statistics Center \u2014 Affidavit to Correct Birth (Adult)",
-    "source": {
-      "url": "https://dhhr.wv.gov/HSC/forms/Documents/Affidavit_to_correct_birth.pdf",
-      "title": "West Virginia Health Statistics Center \u2014 Affidavit to Correct Birth",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "wv-hsc-sex-designation",
-    "jurisdiction": "US-WV",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "gender-marker"
-    ],
-    "title": "West Virginia Health Statistics Center \u2014 Sex Designation Form",
-    "source": {
-      "url": "https://dhhr.wv.gov/HSC/forms/Documents/HSC%20Sex%20Designation%20Form.pdf",
-      "title": "West Virginia Health Statistics Center \u2014 Sex Designation Form",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "ky-vs-2j",
-    "jurisdiction": "US-KY",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "name",
-      "gender-marker"
-    ],
-    "title": "Form VS-2J \u2014 Affidavit for Amendment to Certificate",
-    "source": {
-      "url": "https://www.chfs.ky.gov/agencies/dph/dehp/vsb/Forms/VS2J.pdf",
-      "title": "Kentucky Cabinet for Health and Family Services Form VS-2J",
-      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
   }

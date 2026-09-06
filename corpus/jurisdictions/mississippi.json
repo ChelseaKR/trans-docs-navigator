@@ -1,0 +1,152 @@
+[
+  {
+    "id": "ms.court-order.name",
+    "jurisdiction": "US-MS",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Mississippi name change petition",
+    "statement": "To legally change your name as an adult in Mississippi, you petition the chancery court of the county where you live. Mississippi law gives that court jurisdiction over a petition to change a person's name.",
+    "detail": "As of July 1, 2026, Mississippi law makes it a felony for a person required to register as a sex offender to change their name, unless the name changed because of a marriage or a divorce. This new rule does not affect most people filing a name-change petition, but it matters if you have a sex-offender registration requirement.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Mississippi's name-change law does not state a filing fee — the chancery court where you file sets its own. Contact the chancery clerk in the county where you'll file for the current amount."
+    },
+    "prerequisites": [],
+    "relocation": {
+      "residency_bound": true
+    },
+    "source": {
+      "url": "https://billstatus.ls.state.ms.us/documents/2026/pdf/SB/2100-2199/SB2126SG.pdf",
+      "title": "Mississippi Legislature — Senate Bill 2126 (2026 Regular Session), Chapter 419, Laws of 2026, as enacted (amending Miss. Code Ann. Section 93-17-1)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ms.drivers-license.name",
+    "jurisdiction": "US-MS",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Mississippi driver's license/ID name change",
+    "statement": "To change the name on your Mississippi driver's license or ID card, the Driver Service Bureau only accepts one of four documents: a marriage license, a divorce decree, an adoption order, or a court order.",
+    "detail": "Your Social Security card doesn't have to show your new name for this transaction, but the Bureau strongly encourages updating it with the Social Security Administration before you renew your license or ID card.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.driverservicebureau.dps.ms.gov/node/303",
+      "title": "Mississippi Department of Public Safety, Driver Service Bureau — Required Documents",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ms.drivers-license.gender-marker",
+    "jurisdiction": "US-MS",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Mississippi driver's license/ID sex or gender designation",
+    "statement": "Mississippi's Driver Service Bureau publishes its full list of required documents for a name change, proof of residency, and proof of date of birth. That list does not mention sex or gender anywhere, and the Bureau names no form or process for changing the sex or gender shown on a license or ID card.",
+    "detail": "Read the Bureau's current pages yourself, or call a local Driver Service Bureau office, before assuming a route is open or closed.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.driverservicebureau.dps.ms.gov/node/303",
+      "title": "Mississippi Department of Public Safety, Driver Service Bureau — Required Documents",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ms.birth-certificate.name",
+    "jurisdiction": "US-MS",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Mississippi birth certificate name change",
+    "statement": "Mississippi lets you add a court-ordered name change to a birth certificate as a marginal note: you send a certified copy of the court order that changed your name, plus the required fee, and the state notes the change without erasing your birth name.",
+    "detail": "Mississippi's own rule warns that a chancery court name-change judgment does not by itself entitle you to a birth-certificate amendment unless the State Board of Health was made a party to the case — ask about joining the Board of Health when you file your name-change petition if you also want your birth certificate updated.",
+    "cost": {
+      "amount_usd": 28,
+      "note": "This fee is for a court-order or affidavit amendment and includes one certified copy of the amended record. Additional certified copies ordered at the same time cost $6.00 each."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://msdh.ms.gov/phs/VR_rules_2023_new_format.pdf",
+      "title": "Mississippi State Department of Health — Rules Governing the Registration and Certification of Vital Events (Rev. May 11, 2023)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ms.birth-certificate.gender-marker",
+    "jurisdiction": "US-MS",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Mississippi birth certificate sex designation",
+    "statement": "Mississippi's vital-records rules let you add a sex-designation change to a birth certificate as a marginal note: you send a certified court order, a medical statement attesting to the reassignment, and the required fee.",
+    "detail": "This is not a rewrite of the original record — the note is added alongside the original entry. Mississippi's Department of Health has not published this option on its consumer-facing birth-certificate or Q&A web pages; it appears only in this rule. Confirm current practice directly with the Department before relying on it.",
+    "cost": {
+      "amount_usd": 28,
+      "note": "This fee is for a court-order or affidavit amendment and includes one certified copy of the amended record. Additional certified copies ordered at the same time cost $6.00 each."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://msdh.ms.gov/phs/VR_rules_2023_new_format.pdf",
+      "title": "Mississippi State Department of Health — Rules Governing the Registration and Certification of Vital Events (Rev. May 11, 2023)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ms.birth-certificate.fees",
+    "jurisdiction": "US-MS",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Mississippi birth certificate copy fees",
+    "statement": "A standard certified copy of a Mississippi birth certificate costs $17, with a $6 fee for each additional copy of the same record ordered at the same time.",
+    "detail": "This is the fee for ordering a copy of your record as it already stands — it is separate from the fee to amend or correct a record, which the Department of Health states elsewhere.",
+    "cost": {
+      "amount_usd": 17,
+      "note": "Each additional certified copy of the same record ordered at the same time costs $6 more."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://msdh.ms.gov/msdhsite/_static/31,0,109,808.html",
+      "title": "Mississippi State Department of Health — Birth Certificates",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

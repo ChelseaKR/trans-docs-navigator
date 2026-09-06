@@ -1,0 +1,152 @@
+[
+  {
+    "id": "al.court-order.name",
+    "jurisdiction": "US-AL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Alabama name change petition",
+    "statement": "To change your name as an adult in Alabama, you complete a Request to Change Name (Form PS-12) and file it in the probate court of the county where you live. You must be at least 19 years old and of sound mind, and you sign the form in front of a notary.",
+    "detail": "Attach a certified copy of your birth certificate and a copy of your photo ID. The form asks you to state that you are not facing criminal charges or involved in another pending court case, that you have never been convicted of a criminal sex offense (as Alabama Code Section 15-20-21 defines that term), a crime of moral turpitude, or a felony, and that you are not changing your name to avoid a debt or commit fraud. The form does not name a state law that sets out this process, and it does not describe a newspaper-notice requirement.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The statewide form does not list a filing fee — each Alabama county's probate court sets its own. Contact the probate court in the county where you'll file for the current amount."
+    },
+    "prerequisites": [],
+    "relocation": {
+      "residency_bound": true
+    },
+    "source": {
+      "url": "https://eforms.alacourt.gov/media/jtzbncuw/request-to-change-name.pdf",
+      "title": "Alabama Administrative Office of Courts — Request to Change Name (For An Adult), Form PS-12",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "al-aoc-ps12",
+    "language": "en"
+  },
+  {
+    "id": "al.court-order.fees",
+    "jurisdiction": "US-AL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Alabama probate court name-change fee (county example)",
+    "statement": "Alabama probate courts set their own fee for an adult name change. Jefferson County's court-costs schedule lists $125.00, cash only, to set an adult name change for a hearing — a different, higher fee than the $27.00 over-the-counter fee for changing a minor's name.",
+    "detail": "This is one county's example, not a statewide fee. Contact the probate court in the county where you'll file for its current amount.",
+    "cost": {
+      "amount_usd": 125,
+      "note": "This is Jefferson County's fee, from a schedule effective October 15, 2025. Other Alabama counties set their own fee for this filing."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://jeffcoprobatecourt.com/judicial/court-costs/",
+      "title": "Jefferson County, Alabama Probate Court — Filing Fees",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "al.drivers-license.name",
+    "jurisdiction": "US-AL",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Alabama driver's license/ID name change",
+    "statement": "To update the name on your Alabama driver's license or ID after a legal name change, you visit a local probate or licensing office, or an ALEA Driver License Office, to be issued a duplicate license at the normal duplicate fee. You bring documents that support the name change, such as a marriage certificate, divorce decree, court order, or other legal name-change document.",
+    "detail": "ALEA also asks you to show proof that your name has already been changed with the Social Security Administration. A separate ALEA list of acceptable identification documents names a \"name-change decree\" from a court of record as one document accepted for a license or ID transaction.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page doesn't give a dollar figure for this \"normal duplicate fee.\" Contact an ALEA Driver License Office or your local probate licensing office for the current amount."
+    },
+    "prerequisites": [
+      "ssa-card",
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.alea.gov/dps/driver-license/driver-license-forms",
+      "title": "Alabama Law Enforcement Agency — Driver License Forms",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "al.drivers-license.gender-marker",
+    "jurisdiction": "US-AL",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Alabama driver's license/ID sex or gender designation",
+    "statement": "The Alabama Law Enforcement Agency's page listing driver-license forms and requirements describes how to update your name after a legal name change. It names no form or process for changing the sex or gender shown on a driver's license or ID card.",
+    "detail": "A separate ALEA list of the documents accepted to prove your identity for a license or ID also does not mention sex or gender anywhere. Read ALEA's current pages yourself, or call the Driver License Division, before assuming a route is open or closed.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.alea.gov/dps/driver-license/driver-license-forms",
+      "title": "Alabama Law Enforcement Agency — Driver License Forms",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "al.birth-certificate.name",
+    "jurisdiction": "US-AL",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Alabama birth certificate name change",
+    "statement": "Alabama's birth-certificate correction page describes three kinds of changes: correcting information that was wrong when the certificate was first prepared, adding a father's name after legitimation or paternity, and updating a certificate after an adoption. It names no separate category for updating a birth certificate after a legal name change granted by a court later in life.",
+    "detail": "The same page's general amendment form, the Application to Change an Alabama Birth or Death Certificate, is mailed in with a $20.00 fee that includes one certified copy of the amended record; additional copies cost $6.00 each, and there's a $15.00 fee to expedite a request. The page tells you to call the Center for Health Statistics at (334) 206-2637 with questions — worth doing here, since the page does not say whether or how this general form covers a legal name change made official after birth.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "Includes one certified copy of the amended record. Additional copies cost $6.00 each. An expedited request costs $15.00 more."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.alabamapublichealth.gov/vitalrecords/birth-certificate-corrections.html",
+      "title": "Alabama Department of Public Health — Birth Certificate Corrections/Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "al.birth-certificate.gender-marker",
+    "jurisdiction": "US-AL",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Alabama birth certificate sex designation",
+    "statement": "Alabama's birth-certificate correction page does not mention sex or gender anywhere. It names no category, form, or process for updating the sex marker on an Alabama birth certificate.",
+    "detail": "The page's only three named categories are correcting an error made when the certificate was first prepared, adding a father's name after legitimation or paternity, and updating a certificate after an adoption. Call the Center for Health Statistics at (334) 206-2637, or read Alabama's current vital-statistics rules yourself, before assuming a route is open or closed.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.alabamapublichealth.gov/vitalrecords/birth-certificate-corrections.html",
+      "title": "Alabama Department of Public Health — Birth Certificate Corrections/Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]

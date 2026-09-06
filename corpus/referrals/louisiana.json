@@ -1,0 +1,38 @@
+[
+  {
+    "id": "la.referral.louisiana-trans-advocates",
+    "jurisdiction": "US-LA",
+    "name": "Louisiana Trans Advocates",
+    "url": "https://www.latransadvocates.org/",
+    "note": {
+      "en": "A Louisiana organization run by and for transgender people, offering community support and advocacy on state policy affecting transgender residents.",
+      "es": "Una organización de Luisiana dirigida por y para personas transgénero, que ofrece apoyo comunitario y defensa de políticas estatales que afectan a residentes transgénero."
+    },
+    "source": {
+      "url": "https://www.latransadvocates.org/",
+      "title": "Louisiana Trans Advocates",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "la.referral.aclu-louisiana",
+    "jurisdiction": "US-LA",
+    "name": "ACLU of Louisiana",
+    "url": "https://www.laaclu.org/",
+    "note": {
+      "en": "The Louisiana affiliate of the American Civil Liberties Union tracks LGBTQ+ policy in the state and publishes know-your-rights information relevant to transgender residents.",
+      "es": "La filial de Luisiana de la Unión Estadounidense por las Libertades Civiles (ACLU) da seguimiento a las políticas LGBTQ+ del estado y publica información sobre derechos relevante para residentes transgénero."
+    },
+    "source": {
+      "url": "https://www.laaclu.org/",
+      "title": "ACLU of Louisiana",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

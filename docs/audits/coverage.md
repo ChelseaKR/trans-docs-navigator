@@ -13,6 +13,7 @@ driver's-license rows are covered and the federal rows are current.
 |---|---|---|---|---|---|---|
 | US | — | ✅ | — | ✅ | — | — |
 | US-AK | ✅ | — | ✅ | — | ✅ | — |
+| US-AL | ✅ | — | ✅ | — | ⚠️ degraded | — |
 | US-AR | ✅ | — | ✅ | — | ✅ | — |
 | US-AZ | ✅ | — | ✅ | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
@@ -29,12 +30,14 @@ driver's-license rows are covered and the federal rows are current.
 | US-IN | ✅ | — | ✅ | — | ✅ | — |
 | US-KS | ✅ | — | ✅ | — | ✅ | — |
 | US-KY | ✅ | — | ✅ | — | ✅ | — |
+| US-LA | ✅ | — | ✅ | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
 | US-MD | ✅ | — | ✅ | — | ✅ | — |
 | US-ME | ✅ | — | ✅ | — | ✅ | — |
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-MN | ✅ | — | ✅ | — | ✅ | — |
 | US-MO | ✅ | — | ✅ | — | ✅ | — |
+| US-MS | ✅ | — | ✅ | — | ✅ | — |
 | US-MT | ✅ | — | ✅ | — | ✅ | — |
 | US-NC | ✅ | — | ✅ | — | ✅ | — |
 | US-ND | ✅ | — | ✅ | — | ✅ | — |
@@ -67,6 +70,7 @@ driver's-license rows are covered and the federal rows are current.
 |---|---|---|---|---|---|---|
 | US | — | ⚠️ degraded | — | ⚠️ degraded | — | — |
 | US-AK | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-AL | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-AR | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-AZ | — | — | ⚠️ degraded | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
@@ -83,12 +87,14 @@ driver's-license rows are covered and the federal rows are current.
 | US-IN | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-KS | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-KY | — | — | ⚠️ degraded | — | ✅ | — |
+| US-LA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
 | US-MD | — | — | ✅ | — | ✅ | — |
 | US-ME | — | — | ✅ | — | ✅ | — |
 | US-MI | — | — | ✅ | — | ✅ | — |
 | US-MN | — | — | ✅ | — | ✅ | — |
 | US-MO | — | — | ⚠️ degraded | — | ✅ | — |
+| US-MS | — | — | ⚠️ degraded | — | ✅ | — |
 | US-MT | — | — | ✅ | — | ✅ | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-ND | — | — | ✅ | — | ✅ | — |
@@ -121,6 +127,7 @@ driver's-license rows are covered and the federal rows are current.
 |---|---|---|---|---|---|---|
 | US | — | ✅ | — | ✅ | — | — |
 | US-AK | ✅ | — | ✅ | — | ✅ | — |
+| US-AL | ✅ | — | ✅ | — | ⚠️ degraded | — |
 | US-AR | ✅ | — | ✅ | — | ✅ | — |
 | US-AZ | ✅ | — | ✅ | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
@@ -137,12 +144,14 @@ driver's-license rows are covered and the federal rows are current.
 | US-IN | ✅ | — | ✅ | — | ✅ | — |
 | US-KS | ✅ | — | ✅ | — | ✅ | — |
 | US-KY | ✅ | — | ✅ | — | ✅ | — |
+| US-LA | ✅ | — | ✅ | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
 | US-MD | ✅ | — | ✅ | — | ✅ | — |
 | US-ME | ✅ | — | ✅ | — | ✅ | — |
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-MN | ✅ | — | ✅ | — | ✅ | — |
 | US-MO | ✅ | — | ✅ | — | ✅ | — |
+| US-MS | ✅ | — | ✅ | — | ✅ | — |
 | US-MT | ✅ | — | ✅ | — | ✅ | — |
 | US-NC | ✅ | — | ✅ | — | ✅ | — |
 | US-ND | ✅ | — | ✅ | — | ✅ | — |
@@ -175,6 +184,7 @@ driver's-license rows are covered and the federal rows are current.
 |---|---|---|---|---|---|---|
 | US | — | ⚠️ degraded | — | ⚠️ degraded | — | — |
 | US-AK | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-AL | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-AR | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-AZ | — | — | ⚠️ degraded | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
@@ -191,12 +201,14 @@ driver's-license rows are covered and the federal rows are current.
 | US-IN | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-KS | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-KY | — | — | ⚠️ degraded | — | ✅ | — |
+| US-LA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
 | US-MD | — | — | ✅ | — | ✅ | — |
 | US-ME | — | — | ✅ | — | ✅ | — |
 | US-MI | — | — | ✅ | — | ✅ | — |
 | US-MN | — | — | ✅ | — | ✅ | — |
 | US-MO | — | — | ⚠️ degraded | — | ✅ | — |
+| US-MS | — | — | ⚠️ degraded | — | ✅ | — |
 | US-MT | — | — | ✅ | — | ✅ | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-ND | — | — | ✅ | — | ✅ | — |
@@ -223,4 +235,4 @@ driver's-license rows are covered and the federal rows are current.
 | US-WV | — | — | ✅ | — | ✅ | — |
 | US-WY | — | — | ✅ | — | ⚠️ degraded | — |
 
-**Totals:** 418 current · 72 degraded · 686 uncovered cells.
+**Totals:** 436 current · 84 degraded · 728 uncovered cells.

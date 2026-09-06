@@ -1,5 +1,5 @@
 {
-  "_comment": "Offline snapshots of every cited corpus source, normalized with the SAME normalize() that scripts/source-watch.ts hashes, so each `sha256` here must equal the drift baseline in corpus/source-hashes.json for the same URL. scripts/source-fidelity.ts (`make fidelity`) reads these offline to check that each record's load-bearing assertions are actually locatable in the source it cites. Regenerate deliberately with `make source-snapshot`, then READ THE DIFF \u2014 see docs/OPERATIONS.md. A source recorded as `unfetchable` has no snapshot and its records' claims are UNCHECKABLE, never silently passed.",
+  "_comment": "Offline snapshots of every cited corpus source, normalized with the SAME normalize() that scripts/source-watch.ts hashes, so each `sha256` here must equal the drift baseline in corpus/source-hashes.json for the same URL. scripts/source-fidelity.ts (`make fidelity`) reads these offline to check that each record's load-bearing assertions are actually locatable in the source it cites. Regenerate deliberately with `make source-snapshot`, then READ THE DIFF — see docs/OPERATIONS.md. A source recorded as `unfetchable` has no snapshot and its records' claims are UNCHECKABLE, never silently passed.",
   "snapshots": {
     "https://dmv.ny.gov/driver-license/change-information-on-dmv-photo-documents": {
       "file": "dmv-ny-gov-driver-license-change-information-on-dmv-photo-documents-cb331605.txt",
@@ -206,7 +206,7 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://www.mass.gov/how-to/amend-a-birth-certificate-for-sex-of-the-subject": {
@@ -258,7 +258,7 @@
       "file": null,
       "fetched": "2026-07-13",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://michiganlegalhelp.org/resources/ids-and-name-change/i-want-change-my-name": {
@@ -357,7 +357,7 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name."
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name."
       }
     },
     "https://www.coloradojudicial.gov/self-help/adult": {
@@ -404,7 +404,7 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://health.maryland.gov/vsa/Pages/birthcorrect.aspx": {
@@ -466,7 +466,7 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
       }
     },
     "https://www.vdh.virginia.gov/vital-records/how-to-request-an-amendment-to-a-birth-certificate/": {
@@ -488,14 +488,14 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://www.ncdot.gov/dmv/downloads/Documents/DL-300.pdf": {
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://www.ncdot.gov/dmv/help/moving/Pages/name-changes.aspx": {
@@ -542,21 +542,21 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.drivers-license.gender-marker.law."
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.drivers-license.gender-marker.law."
       }
     },
     "https://www.opn.ca6.uscourts.gov/opinions.pdf/24a0151p-06.pdf": {
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.gender-marker."
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.gender-marker."
       }
     },
     "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf": {
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
       }
     },
     "https://dmv.nv.gov/addchange.htm": {
@@ -578,14 +578,14 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf": {
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://www.courts.oregon.gov/courts/lane/help/pages/namesexchange.aspx": {
@@ -625,21 +625,21 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://realfile.tax.newmexico.gov/mvd10237.pdf": {
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/octet-stream \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/octet-stream — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://www4.honolulu.gov/docushare/dsweb/Get/Document-325980/State%20of%20Hawaii%20Driver_s%20License%20Application.pdf": {
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://health.alaska.gov/en/services/vital-records-orders/": {
@@ -736,35 +736,35 @@
       "file": null,
       "fetched": "2026-07-13",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://dmv.de.gov/DriverServices/drivers_license/pdfs/gender_designation_change_procedure.pdf": {
       "file": null,
       "fetched": "2026-07-13",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://dhss.delaware.gov/wp-content/uploads/sites/12/dph/pdf/GenderReassignment.pdf": {
       "file": null,
       "fetched": "2026-07-13",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/GENDER%20DESIGNATION%20FORM2019.pdf": {
       "file": null,
       "fetched": "2026-07-13",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/Guidance%20about%20Gender%20Designations%20on%20Maine%20Drivers%20Licenses_1.pdf": {
       "file": null,
       "fetched": "2026-07-13",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://www.courts.nh.gov/sites/g/files/ehbemt471/files/documents/2021-06/filing_fees.pdf": {
@@ -847,21 +847,21 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ct.drivers-license.gender-marker."
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ct.drivers-license.gender-marker."
       }
     },
     "https://www.healthvermont.gov/sites/default/files/document/hsi-vr-gender-affidavit.pdf": {
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.gender-marker."
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.gender-marker."
       }
     },
     "https://www.healthvermont.gov/sites/default/files/documents/pdf/HS_VR_BC_Correct_Amend.pdf": {
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.name."
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.name."
       }
     },
     "https://courts.mt.gov/Forms/namechange": {
@@ -918,14 +918,14 @@
       "file": null,
       "fetched": "2026-07-13",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://ndlegis.gov/cencode/t23c02-1.pdf": {
       "file": null,
       "fetched": "2026-07-13",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://dmv.nebraska.gov/dl/certification-sex-reassignment": {
@@ -1057,7 +1057,7 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://courtselfhelp.idaho.gov/Forms/Name": {
@@ -1104,7 +1104,7 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://vitalrecords.utah.gov/amend-a-vital-record": {
@@ -1191,21 +1191,21 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://www.legis.iowa.gov/docs/code/2026/674.pdf": {
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://www.legis.iowa.gov/docs/code/2026/144.23.pdf": {
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://www.courts.mo.gov/page.jsp?id=3834": {
@@ -1220,14 +1220,14 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://health.mo.gov/sites/health/files/media/pdf/2026/04/Aff_for_Correction.pdf": {
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf": {
@@ -1247,21 +1247,21 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Birth%20Amendment%20with%20court%20order_0.pdf": {
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Gender%20Designation%20Application_0.pdf": {
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://www.courtswv.gov/public-resources/court-information-county/county-map": {
@@ -1278,7 +1278,7 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://dhhr.wv.gov/HSC/VR/Pages/Correct-or-Amend-a-Certificate.aspx": {
@@ -1290,7 +1290,7 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/PDF \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/PDF — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
     "https://drive.ky.gov/Drivers/Pages/Update-Replace.aspx": {
@@ -1307,8 +1307,89 @@
       "file": null,
       "fetched": "2026-09-05",
       "unextractable": {
-        "reason": "the source is application/pdf \u2014 this gate extracts text from HTML only, so nothing in it can be checked"
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
+    },
+    "https://billstatus.ls.state.ms.us/documents/2026/pdf/SB/2100-2199/SB2126SG.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://eforms.alacourt.gov/media/jtzbncuw/request-to-change-name.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://expresslane.la.gov/omv/resources/faqs/": {
+      "file": "expresslane-la-gov-omv-resources-faqs-9eb81d9b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "b02f4147dc958f2b2c4b53f77d39ffeaf25b0f0d73ef8f4af9f872905a625460"
+    },
+    "https://jeffcoprobatecourt.com/judicial/court-costs/": {
+      "file": "jeffcoprobatecourt-com-judicial-court-costs-d756ce53.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d573188da5ec0cefec2a0aa2108c9c1d5c82b21be254ae1fc00caac1a8f490d2"
+    },
+    "https://ldh.la.gov/vital-records/amendments-to-birth-records": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://msdh.ms.gov/msdhsite/_static/31,0,109,808.html": {
+      "file": "msdh-ms-gov-msdhsite-static-31-0-109-808-html-9d4cc439.txt",
+      "fetched": "2026-09-05",
+      "sha256": "aac3383830de492a192369b1f3f4ba6881ee163bf9079f0042bf38394f394a38"
+    },
+    "https://msdh.ms.gov/phs/VR_rules_2023_new_format.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://public.powerdms.com/ladpsc/documents/368304": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.alabamapublichealth.gov/vitalrecords/birth-certificate-corrections.html": {
+      "file": "alabamapublichealth-gov-vitalrecords-birth-certificate-corrections-htm-a1cbede7.txt",
+      "fetched": "2026-09-05",
+      "sha256": "7f85653f1721a5d832909cfafea73de4e1da565edd2afbc219f6d8720686721a"
+    },
+    "https://www.alea.gov/dps/driver-license/driver-license-forms": {
+      "file": "alea-gov-dps-driver-license-driver-license-forms-c5352255.txt",
+      "fetched": "2026-09-05",
+      "sha256": "1c3b9927c18a9486113e8cf7ab9d74e381325cb510f6a55bb9c939e03aced2a4"
+    },
+    "https://www.driverservicebureau.dps.ms.gov/node/303": {
+      "file": "driverservicebureau-dps-ms-gov-node-303-9f31deeb.txt",
+      "fetched": "2026-09-05",
+      "sha256": "cf52f4775499634277d78d1f939c79fe6a2ba97a855f6d1561b4e5cb284201b2"
+    },
+    "https://www.legis.la.gov/Legis/Law.aspx?d=77843": {
+      "file": "legis-la-gov-legis-law-aspx-9bd40bc8.txt",
+      "fetched": "2026-09-05",
+      "sha256": "ce91be0615e8a322d85d4218348513b9690e3694255e779229e1a4b5a6c40324"
+    },
+    "https://www.legis.la.gov/Legis/Law.aspx?d=77847": {
+      "file": "legis-la-gov-legis-law-aspx-bbab921b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "fc0e5fb8585e10ee5733ef9fa916610ad49f4e93c00ecca66077960288dd46c2"
+    },
+    "https://www.legis.la.gov/Legis/Law.aspx?d=98725": {
+      "file": "legis-la-gov-legis-law-aspx-354feb41.txt",
+      "fetched": "2026-09-05",
+      "sha256": "1bb9cd7cfb46208e7e386427824250a6dfc53b54d1b8da429dca6b83d7bd8d0e"
     }
   }
 }

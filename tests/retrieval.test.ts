@@ -50,7 +50,7 @@ test("degraded federal records are returned but marked not current", () => {
 test("unsupported state still surfaces federal records, but no state records", () => {
   const r = retrieve({ jurisdiction: "US-PR", change_types: ["name"], today });
   assert.ok(r.length > 0);
-  assert.ok(r.every((x) => x.record.jurisdiction === "US")); // federal only; no Alabama records exist
+  assert.ok(r.every((x) => x.record.jurisdiction === "US")); // federal only; no Puerto Rico records exist
 });
 
 test("unsupported state with a state-only document (court-order) returns nothing", () => {

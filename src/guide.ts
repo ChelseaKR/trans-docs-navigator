@@ -25,6 +25,7 @@ interface StateDef {
 // The states we currently cover. Federal steps (SSA, passport) are woven into each
 // guide by the checklist builder, so they need no separate page.
 const STATES: StateDef[] = [
+  { slug: "alabama", id: "US-AL", name: { en: "Alabama", es: "Alabama" } },
   { slug: "alaska", id: "US-AK", name: { en: "Alaska", es: "Alaska" } },
   { slug: "arkansas", id: "US-AR", name: { en: "Arkansas", es: "Arkansas" } },
   { slug: "arizona", id: "US-AZ", name: { en: "Arizona", es: "Arizona" } },
@@ -40,12 +41,14 @@ const STATES: StateDef[] = [
   { slug: "idaho", id: "US-ID", name: { en: "Idaho", es: "Idaho" } },
   { slug: "illinois", id: "US-IL", name: { en: "Illinois", es: "Illinois" } },
   { slug: "kentucky", id: "US-KY", name: { en: "Kentucky", es: "Kentucky" } },
+  { slug: "louisiana", id: "US-LA", name: { en: "Louisiana", es: "Luisiana" } },
   { slug: "indiana", id: "US-IN", name: { en: "Indiana", es: "Indiana" } },
   { slug: "iowa", id: "US-IA", name: { en: "Iowa", es: "Iowa" } },
   { slug: "maryland", id: "US-MD", name: { en: "Maryland", es: "Maryland" } },
   { slug: "massachusetts", id: "US-MA", name: { en: "Massachusetts", es: "Massachusetts" } },
   { slug: "michigan", id: "US-MI", name: { en: "Michigan", es: "Michigan" } },
   { slug: "minnesota", id: "US-MN", name: { en: "Minnesota", es: "Minnesota" } },
+  { slug: "mississippi", id: "US-MS", name: { en: "Mississippi", es: "Misisipi" } },
   { slug: "missouri", id: "US-MO", name: { en: "Missouri", es: "Misuri" } },
   { slug: "north-carolina", id: "US-NC", name: { en: "North Carolina", es: "Carolina del Norte" } },
   { slug: "nevada", id: "US-NV", name: { en: "Nevada", es: "Nevada" } },
