@@ -307,6 +307,16 @@ export function checkCoverage(
  * smuggle a stale/unfaithful citation alongside a valid one. This is the post-generation
  * check ROADMAP §6 requires — the safety property holds for any generator.
  */
+/**
+ * Thrown when the citation gate refuses to render an answer. Distinct from any other
+ * error so callers can tell "the safety gate did its job" apart from "the generator or
+ * its transport failed" — conflating the two lets a totally broken model path report
+ * itself as safe (see eval/run-bedrock.ts).
+ */
+export class CitationRejectedError extends Error {
+  override readonly name = "CitationRejectedError";
+}
+
 export function enforce(
   answer: GroundedAnswer,
   corpus: CorpusRecord[],
@@ -316,7 +326,7 @@ export function enforce(
   const report = checkCoverage(answer, corpus, today, opts);
   if (report.coverage < 1 || report.violations.length > 0) {
     const why = report.violations.map((v) => `${v.reason}: ${v.detail}`).join("; ");
-    throw new Error(
+    throw new CitationRejectedError(
       `Citation check failed (coverage ${(report.coverage * 100).toFixed(1)}%, ${report.violations.length} violation(s)) — answer rejected. ${why}`,
     );
   }
