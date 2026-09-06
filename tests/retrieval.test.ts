@@ -44,14 +44,17 @@ test("degraded federal records are returned but marked not current", () => {
   assert.ok(r.every((x) => x.current === false));
 });
 
+// US-PR is a territory, deliberately outside the 50-state expansion, so these
+// no-coverage cases stay genuine as the corpus grows (see #174). US-AL was used
+// here until Alabama was added.
 test("unsupported state still surfaces federal records, but no state records", () => {
-  const r = retrieve({ jurisdiction: "US-AL", change_types: ["name"], today });
+  const r = retrieve({ jurisdiction: "US-PR", change_types: ["name"], today });
   assert.ok(r.length > 0);
   assert.ok(r.every((x) => x.record.jurisdiction === "US")); // federal only; no Alabama records exist
 });
 
 test("unsupported state with a state-only document (court-order) returns nothing", () => {
   // There is no federal court-order, so an unsupported state court-order query is a genuine gap.
-  const r = retrieve({ jurisdiction: "US-AL", change_types: ["name"], documents: ["court-order"], today });
+  const r = retrieve({ jurisdiction: "US-PR", change_types: ["name"], documents: ["court-order"], today });
   assert.equal(r.length, 0);
 });

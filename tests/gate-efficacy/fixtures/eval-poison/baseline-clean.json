@@ -14,9 +14,9 @@
   {
     "id": "base-unsupported-refusal",
     "suite": "refusal",
-    "segment": { "jurisdiction": "US-AL", "language": "en" },
+    "segment": { "jurisdiction": "US-PR", "language": "en" },
     "query": {
-      "jurisdiction": "US-AL",
+      "jurisdiction": "US-PR",
       "change_types": ["name"],
       "documents": ["court-order"],
       "question": "Alabama name change"

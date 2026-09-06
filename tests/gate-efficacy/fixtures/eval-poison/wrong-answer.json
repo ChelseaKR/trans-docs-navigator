@@ -28,11 +28,11 @@
     "id": "base-unsupported-refusal",
     "suite": "refusal",
     "segment": {
-      "jurisdiction": "US-AL",
+      "jurisdiction": "US-PR",
       "language": "en"
     },
     "query": {
-      "jurisdiction": "US-AL",
+      "jurisdiction": "US-PR",
       "change_types": [
         "name"
       ],
