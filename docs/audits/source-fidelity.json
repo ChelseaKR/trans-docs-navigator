@@ -3,7 +3,7 @@
   "records": 658,
   "supported": 991,
   "unsupported": 0,
-  "uncheckable": 476,
+  "uncheckable": 483,
   "unfetchable_sources": [
     "https://doa.alaska.gov/dmv/akol/namchg.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
@@ -22,8 +22,8 @@
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → unreachable (fetch and curl both failed): the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://travel.state.gov/es/pasaportes/renovar-o-reemplazar/cambiar-o-corregir.html → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 2421,
-  "total_prose_sentences": 2969,
+  "unchecked_prose_sentences": 2441,
+  "total_prose_sentences": 2992,
   "audits": [
     {
       "recordId": "al.court-order.name",
@@ -4866,9 +4866,9 @@
           "why": "the source states \"6 month\""
         }
       ],
-      "uncheckedProse": 3,
-      "negatedClaims": 1,
-      "totalSentences": 4
+      "uncheckedProse": 5,
+      "negatedClaims": 3,
+      "totalSentences": 6
     },
     {
       "recordId": "mn.court-order.grant-standard",
@@ -5023,9 +5023,9 @@
           "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
-      "uncheckedProse": 4,
-      "negatedClaims": 1,
-      "totalSentences": 4
+      "uncheckedProse": 11,
+      "negatedClaims": 3,
+      "totalSentences": 11
     },
     {
       "recordId": "ms.drivers-license.name",
@@ -5310,7 +5310,17 @@
       "recordId": "mt.court-order.name",
       "language": "en",
       "url": "https://courts.mt.gov/Forms/namechange",
-      "results": [],
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:mt-adult-name-change-packet",
+          "label": "form_ref \"mt-adult-name-change-packet\" (Changing Your Name as an Adult — instructions and forms packet (Petition for Name Change, Order Setting Hearing, Notice of Hearing, Order Changing Name)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
       "uncheckedProse": 8,
       "negatedClaims": 2,
       "totalSentences": 8
@@ -5320,9 +5330,9 @@
       "language": "en",
       "url": "https://courts.mt.gov/Forms/namechange",
       "results": [],
-      "uncheckedProse": 3,
-      "negatedClaims": 1,
-      "totalSentences": 3
+      "uncheckedProse": 6,
+      "negatedClaims": 2,
+      "totalSentences": 6
     },
     {
       "recordId": "mt.birth-certificate.name",
@@ -5488,6 +5498,15 @@
           "why": "the source itself conditions the action on where you live"
         },
         {
+          "kind": "form-id",
+          "key": "DC6",
+          "label": "official form DC6 backs this step (form_ref: ne-dc-6-9-1-name-change-petition)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DC6"
+        },
+        {
           "kind": "duration",
           "key": "1 year",
           "label": "states \"1 year\"",
@@ -5513,15 +5532,6 @@
           "strength": "literal",
           "verdict": "supported",
           "why": "the source states \"6 week\""
-        },
-        {
-          "kind": "form-id",
-          "key": "DC6",
-          "label": "names form DC6",
-          "field": "detail",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names DC6"
         },
         {
           "kind": "duration",
@@ -5579,6 +5589,15 @@
       "language": "en",
       "url": "https://selfhelp.nvcourts.gov/self-help/name-changes/name-changes-for-adults",
       "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:nv-petition-adult-name-change",
+          "label": "form_ref \"nv-petition-adult-name-change\" (Petition for Adult Name Change) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
         {
           "kind": "duration",
           "key": "10 day",
@@ -12800,9 +12819,9 @@
           "why": "the source states \"6 month\""
         }
       ],
-      "uncheckedProse": 3,
-      "negatedClaims": 1,
-      "totalSentences": 4
+      "uncheckedProse": 6,
+      "negatedClaims": 3,
+      "totalSentences": 7
     },
     {
       "recordId": "mn.drivers-license.gender-marker.es",
@@ -13095,11 +13114,38 @@
           "strength": "necessary-condition",
           "verdict": "uncheckable",
           "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "21 year",
+          "label": "states \"21 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "20 year",
+          "label": "states \"20 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "16 year",
+          "label": "states \"16 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
-      "uncheckedProse": 4,
-      "negatedClaims": 1,
-      "totalSentences": 4
+      "uncheckedProse": 6,
+      "negatedClaims": 3,
+      "totalSentences": 9
     },
     {
       "recordId": "ms.drivers-license.gender-marker.es",
@@ -13244,7 +13290,17 @@
       "recordId": "mt.court-order.name.es",
       "language": "es",
       "url": "https://courts.mt.gov/Forms/namechange",
-      "results": [],
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:mt-adult-name-change-packet",
+          "label": "form_ref \"mt-adult-name-change-packet\" (Changing Your Name as an Adult — instructions and forms packet (Petition for Name Change, Order Setting Hearing, Notice of Hearing, Order Changing Name)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
       "uncheckedProse": 9,
       "negatedClaims": 2,
       "totalSentences": 9
@@ -13254,9 +13310,9 @@
       "language": "es",
       "url": "https://courts.mt.gov/Forms/namechange",
       "results": [],
-      "uncheckedProse": 3,
-      "negatedClaims": 1,
-      "totalSentences": 3
+      "uncheckedProse": 6,
+      "negatedClaims": 3,
+      "totalSentences": 6
     },
     {
       "recordId": "nc.birth-certificate.gender-marker.es",
@@ -13716,6 +13772,15 @@
           "why": "the source itself conditions the action on where you live"
         },
         {
+          "kind": "form-id",
+          "key": "DC6",
+          "label": "official form DC6 backs this step (form_ref: ne-dc-6-9-1-name-change-petition)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names DC6"
+        },
+        {
           "kind": "duration",
           "key": "1 year",
           "label": "states \"1 year\"",
@@ -13741,15 +13806,6 @@
           "strength": "literal",
           "verdict": "supported",
           "why": "the source states \"6 week\""
-        },
-        {
-          "kind": "form-id",
-          "key": "DC6",
-          "label": "names form DC6",
-          "field": "detail",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names DC6"
         }
       ],
       "uncheckedProse": 4,
@@ -14499,6 +14555,15 @@
       "language": "es",
       "url": "https://selfhelp.nvcourts.gov/self-help/name-changes/name-changes-for-adults",
       "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:nv-petition-adult-name-change",
+          "label": "form_ref \"nv-petition-adult-name-change\" (Petition for Adult Name Change) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
         {
           "kind": "duration",
           "key": "10 day",
