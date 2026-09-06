@@ -1,0 +1,38 @@
+[
+  {
+    "id": "wv.referral.fairness-wv",
+    "jurisdiction": "US-WV",
+    "name": "Fairness West Virginia",
+    "url": "https://www.fairnesswv.org",
+    "note": {
+      "en": "West Virginia's statewide LGBTQ+ advocacy organization, publishing know-your-rights and policy information relevant to transgender residents.",
+      "es": "La organización estatal de defensa LGBTQ+ de West Virginia, que publica información sobre derechos y políticas relevante para residentes transgénero."
+    },
+    "source": {
+      "url": "https://www.fairnesswv.org",
+      "title": "Fairness West Virginia",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "wv.referral.legal-aid-wv",
+    "jurisdiction": "US-WV",
+    "name": "Legal Aid of West Virginia",
+    "url": "https://legalaidwv.org",
+    "note": {
+      "en": "Statewide nonprofit law firm offering free civil legal help to low-income West Virginians, including help with legal filings such as a name-change petition.",
+      "es": "Firma legal estatal sin fines de lucro que ofrece ayuda legal civil gratuita a residentes de bajos ingresos de West Virginia, incluida ayuda con trámites legales como una petición de cambio de nombre."
+    },
+    "source": {
+      "url": "https://legalaidwv.org",
+      "title": "Legal Aid of West Virginia",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

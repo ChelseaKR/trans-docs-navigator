@@ -757,6 +757,94 @@ const AUTHORED_GOLD: GoldItem[] = [
     query: { jurisdiction: "US-NV", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Nevada X gender marker driver license" },
     expect: { refused: false, citesRecord: "nv.drivers-license.gender-marker", mustContain: ["M, F, or X", "no medical certification"] },
   },
+  {
+    id: "dc-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-DC", language: "en" },
+    query: { jurisdiction: "US-DC", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in DC" },
+    expect: { refused: false, citesRecord: "dc.court-order.name", mustContain: ["DC Superior Court", "currently live in DC"] },
+  },
+  {
+    id: "dc-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-DC", language: "es" },
+    query: { jurisdiction: "US-DC", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en el Distrito de Columbia" },
+    expect: { refused: false, citesRecord: "dc.court-order.name.es", mustContain: ["Tribunal Superior de DC", "vivir actualmente en DC"] },
+  },
+  {
+    id: "dc-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-DC", language: "en" },
+    query: { jurisdiction: "US-DC", change_types: ["gender-marker"], documents: ["drivers-license"], question: "DC DMV gender marker M F or X" },
+    expect: { refused: false, citesRecord: "dc.drivers-license.gender-marker", mustContain: ["Gender Self-Designation", "M, F, or X"] },
+  },
+  {
+    id: "dc-birth-marker",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-DC", language: "en" },
+    query: { jurisdiction: "US-DC", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "DC birth certificate gender marker healthcare provider" },
+    expect: { refused: false, citesRecord: "dc.birth-certificate.gender-marker", mustContain: ["licensed healthcare provider", "Surgery is not required"] },
+  },
+  {
+    id: "wv-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WV", language: "en" },
+    query: { jurisdiction: "US-WV", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in West Virginia" },
+    expect: { refused: false, citesRecord: "wv.court-order.name", mustContain: ["circuit court", "chapter 48, article 25"] },
+  },
+  {
+    id: "wv-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WV", language: "es" },
+    query: { jurisdiction: "US-WV", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en West Virginia" },
+    expect: { refused: false, citesRecord: "wv.court-order.name.es", mustContain: ["tribunal de circuito", "capítulo 48, artículo 25"] },
+  },
+  {
+    id: "wv-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WV", language: "en" },
+    query: { jurisdiction: "US-WV", change_types: ["gender-marker"], documents: ["drivers-license"], question: "West Virginia driver's license gender designation physician" },
+    expect: { refused: false, citesRecord: "wv.drivers-license.gender-marker", mustContain: ["licensed physician", "only male or female"] },
+  },
+  {
+    id: "wv-birth-marker",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WV", language: "en" },
+    query: { jurisdiction: "US-WV", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "West Virginia birth certificate sex designation form" },
+    expect: { refused: false, citesRecord: "wv.birth-certificate.gender-marker", mustContain: ["Sex Designation Form", "Health Statistics Center"] },
+  },
+  {
+    id: "ky-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-KY", language: "en" },
+    query: { jurisdiction: "US-KY", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in Kentucky" },
+    expect: { refused: false, citesRecord: "ky.court-order.name", mustContain: ["District Court", "18 years old"] },
+  },
+  {
+    id: "ky-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-KY", language: "es" },
+    query: { jurisdiction: "US-KY", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Kentucky" },
+    expect: { refused: false, citesRecord: "ky.court-order.name.es", mustContain: ["Tribunal de Distrito", "18 años"] },
+  },
+  {
+    id: "ky-marker-dl-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-KY", language: "en" },
+    query: { jurisdiction: "US-KY", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Kentucky driver's license gender marker change" },
+    // M6: Kentucky's Transportation Cabinet publishes no standalone process for a
+    // driver's-license/ID gender-marker change (see corpus/jurisdictions/kentucky.json) —
+    // marked needs_reverification and the runtime must degrade it, not answer with
+    // confidence, the same honest-degradation shape as az-marker-volatile / tx-marker-volatile.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "ky-birth-marker",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-KY", language: "en" },
+    query: { jurisdiction: "US-KY", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Kentucky birth certificate gender change surgery requirement" },
+    expect: { refused: false, citesRecord: "ky.birth-certificate.gender-marker", mustContain: ["surgical procedure", "certified copy of a court order"] },
+  },
 
   // ── Adversarial / robustness suite ──────────────────────────────────────────
   // Stress the system the way real and hostile inputs do. These never relax the

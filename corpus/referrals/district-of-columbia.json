@@ -1,0 +1,38 @@
+[
+  {
+    "id": "dc.referral.whitman-walker",
+    "jurisdiction": "US-DC",
+    "name": "Whitman-Walker Health",
+    "url": "https://www.whitman-walker.org",
+    "note": {
+      "en": "A DC-based LGBTQ+ health center whose Legal Services program helps clients with name-change and gender-marker document updates.",
+      "es": "Un centro de salud LGBTQ+ con sede en DC cuyo programa de Servicios Legales ayuda a los clientes con actualizaciones de documentos por cambio de nombre y marcador de género."
+    },
+    "source": {
+      "url": "https://www.whitman-walker.org",
+      "title": "Whitman-Walker Health",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "dc.referral.dc-bar-foundation",
+    "jurisdiction": "US-DC",
+    "name": "DC Bar Foundation",
+    "url": "https://dcbarfoundation.org",
+    "note": {
+      "en": "Builds and funds the District of Columbia's civil legal aid network, which can help low-income DC residents with legal filings such as a name-change petition.",
+      "es": "Construye y financia la red de ayuda legal civil del Distrito de Columbia, que puede ayudar a residentes de bajos ingresos de DC con trámites legales como una petición de cambio de nombre."
+    },
+    "source": {
+      "url": "https://dcbarfoundation.org",
+      "title": "DC Bar Foundation",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

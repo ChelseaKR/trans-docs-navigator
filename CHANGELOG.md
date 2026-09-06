@@ -8,6 +8,38 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **District of Columbia, West Virginia, and Kentucky** (M6 — expand jurisdictions): 15 EN
+  + 15 ES corpus records (court-order name change, driver's-license name and
+  gender-marker, birth-certificate name and gender-marker), 6 referrals, and 8
+  forms-registry entries. DC is modeled as a district under jurisdiction id `US-DC`
+  (labeled "District of Columbia" throughout, never called a state) consistent with the
+  existing `US-XX` convention. Sourced from DC Superior Court, DC Health Vital Records,
+  and DC DMV; West Virginia's Judiciary, DMV, and Health Statistics Center; and Kentucky's
+  Revised Statutes, Transportation Cabinet, and Cabinet for Health and Family Services'
+  Office of Vital Statistics.
+
+  DC Superior Court (`dccourts.gov`) refuses this project's declared user-agent
+  domain-wide (like NY Courts), so `dc.court-order.name` cites the court's own name-change
+  instructions PDF and is UNCHECKABLE by `make fidelity`, never silently passed. Two DC
+  Health PDF forms are likewise unextractable-but-authoritative, matching the Georgia
+  precedent.
+
+  West Virginia's own statute portal (`code.wvlegislature.gov`) is fetchable but renders
+  its actual statute text only via client-side JavaScript, so no automated snapshot can
+  ever contain it; `wv.court-order.name` instead cites the Judiciary's county-court
+  directory and plainly states that West Virginia publishes no standard name-change form
+  or self-help guide online — the honest degradation this project's own standard calls
+  for rather than describing a process that does not work.
+
+  Kentucky's law (KRS 213.121(5)) is considerably more restrictive than most jurisdictions
+  in this corpus: a birth certificate's gender marker may only be amended after a licensed
+  physician swears the person's gender has been changed **by surgical procedure**, together
+  with a certified court-ordered name change — sourced directly to the current statute and
+  to the state's own VS-2J amendment form, which reprints it. Kentucky's Transportation
+  Cabinet publishes no separate process for a driver's-license/ID gender-marker change on
+  its own; `ky.drivers-license.gender-marker` says so plainly and is marked
+  `needs_reverification` rather than describing a path that may not exist.
+
 - **Indiana, Iowa, and Missouri** (M6 — expand jurisdictions): 7 + 6 + 7 EN corpus records
   (20 EN + 20 ES, 40 total), 6 referrals, and 2 forms-registry entries, each sourced from an
   official state page, a state statute, or a state administrative rule and fetched into
@@ -58,6 +90,7 @@ lives under `[Unreleased]`.
     safety exception, directly demonstrate this repo's `needs_reverification` /
     honest-gap discipline on contested and recently-changed law rather than describing a
     process that does not work (PR #119's standard).
+
 - **Idaho, Utah, and Wyoming** (M6 — expand jurisdictions): 19 EN + 19 ES corpus records
   (court-order name change, driver's-license name and gender-marker, and birth-certificate
   name and gender-marker) across all three states, 7 referrals, and 3 forms-registry

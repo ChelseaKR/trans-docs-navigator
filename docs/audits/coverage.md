@@ -19,6 +19,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | ✅ | — | — | — | ✅ | — |
 | US-CT | ✅ | — | ✅ | — | ✅ | — |
+| US-DC | ✅ | — | ✅ | — | ✅ | — |
 | US-DE | ✅ | — | ✅ | — | ✅ | — |
 | US-FL | ✅ | — | ✅ | — | ✅ | — |
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
@@ -28,6 +29,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-IL | ✅ | — | — | — | ✅ | — |
 | US-IN | ✅ | — | ✅ | — | ✅ | — |
 | US-KS | ✅ | — | ✅ | — | ✅ | — |
+| US-KY | ✅ | — | ✅ | — | ✅ | — |
 | US-LA | ✅ | — | ✅ | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
 | US-MD | ✅ | — | ✅ | — | ✅ | — |
@@ -59,6 +61,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-VT | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
 | US-WI | ✅ | — | ✅ | — | ✅ | — |
+| US-WV | ✅ | — | ✅ | — | ✅ | — |
 | US-WY | ✅ | — | ✅ | — | ✅ | — |
 
 ## English · Gender-marker change
@@ -73,6 +76,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | — | — | ✅ | — | ✅ | — |
 | US-CT | — | — | ✅ | — | ✅ | — |
+| US-DC | — | — | ✅ | — | ✅ | — |
 | US-DE | — | — | ✅ | — | ✅ | — |
 | US-FL | — | — | ✅ | — | ✅ | — |
 | US-GA | — | — | ✅ | — | ✅ | — |
@@ -82,6 +86,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-IL | — | — | ✅ | — | ✅ | — |
 | US-IN | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-KS | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-KY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-LA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
 | US-MD | — | — | ✅ | — | ✅ | — |
@@ -113,6 +118,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-VT | — | — | ✅ | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 | US-WI | — | — | ✅ | — | ✅ | — |
+| US-WV | — | — | ✅ | — | ✅ | — |
 | US-WY | — | — | ✅ | — | ⚠️ degraded | — |
 
 ## Spanish · Name change
@@ -127,6 +133,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | ✅ | — | — | — | ✅ | — |
 | US-CT | ✅ | — | ✅ | — | ✅ | — |
+| US-DC | ✅ | — | ✅ | — | ✅ | — |
 | US-DE | ✅ | — | ✅ | — | ✅ | — |
 | US-FL | ✅ | — | ✅ | — | ✅ | — |
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
@@ -136,6 +143,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-IL | ✅ | — | — | — | ✅ | — |
 | US-IN | ✅ | — | ✅ | — | ✅ | — |
 | US-KS | ✅ | — | ✅ | — | ✅ | — |
+| US-KY | ✅ | — | ✅ | — | ✅ | — |
 | US-LA | ✅ | — | ✅ | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
 | US-MD | ✅ | — | ✅ | — | ✅ | — |
@@ -167,6 +175,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-VT | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
 | US-WI | ✅ | — | ✅ | — | ✅ | — |
+| US-WV | ✅ | — | ✅ | — | ✅ | — |
 | US-WY | ✅ | — | ✅ | — | ✅ | — |
 
 ## Spanish · Gender-marker change
@@ -181,6 +190,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | — | — | ✅ | — | ✅ | — |
 | US-CT | — | — | ✅ | — | ✅ | — |
+| US-DC | — | — | ✅ | — | ✅ | — |
 | US-DE | — | — | ✅ | — | ✅ | — |
 | US-FL | — | — | ✅ | — | ✅ | — |
 | US-GA | — | — | ✅ | — | ✅ | — |
@@ -190,6 +200,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-IL | — | — | ✅ | — | ✅ | — |
 | US-IN | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-KS | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-KY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-LA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
 | US-MD | — | — | ✅ | — | ✅ | — |
@@ -221,6 +232,7 @@ driver's-license rows are covered and the federal rows are current.
 | US-VT | — | — | ✅ | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
 | US-WI | — | — | ✅ | — | ✅ | — |
+| US-WV | — | — | ✅ | — | ✅ | — |
 | US-WY | — | — | ✅ | — | ⚠️ degraded | — |
 
-**Totals:** 408 current · 82 degraded · 686 uncovered cells.
+**Totals:** 436 current · 84 degraded · 728 uncovered cells.

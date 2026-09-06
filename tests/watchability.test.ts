@@ -213,6 +213,12 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // and birth-certificate records instead cite gencourt.state.nh.us (the statute site),
     // which is not blocked and is checkable.
     "https://www.courts.nh.gov/sites/g/files/ehbemt471/files/documents/2021-06/filing_fees.pdf",
+    // DC Superior Court (dccourts.gov) refuses this project's declared user-agent
+    // domain-wide (an Azure Application Gateway WAF, verified on multiple paths
+    // including robots.txt itself), so no baseline can be taken — deliberate, with
+    // the District of Columbia corpus. This is the SAME URL as dc.court-order.name's
+    // source and the dc-name-change-adult form_ref.
+    "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf",
     // Arkansas: both are PDFs whose text this pipeline cannot extract, so no
     // baseline can be taken — deliberate, with the Arkansas corpus.
     "https://www.dfa.arkansas.gov/wp-content/uploads/Affidavit_of_Legal_Name_Change_2019.pdf",

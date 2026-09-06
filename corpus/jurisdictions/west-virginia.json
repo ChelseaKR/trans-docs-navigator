@@ -1,0 +1,135 @@
+[
+  {
+    "id": "wv.court-order.name",
+    "jurisdiction": "US-WV",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "West Virginia name change petition",
+    "statement": "In West Virginia, you petition to legally change your name in the circuit court of the county where you live. West Virginia Code chapter 48, article 25 governs the process.",
+    "detail": "West Virginia's judiciary does not publish a standard petition form or a plain-language self-help guide for a name change on its website, and its statewide court-forms library lists no name-change form. Contact the circuit clerk in your county for the forms, filing fee, and any other local requirements; the courts' own county directory lists every circuit court's contact information.",
+    "cost": {
+      "amount_usd": null,
+      "note": "West Virginia's judiciary does not publish name-change filing fees online; contact the circuit clerk in your county for the exact fee."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.courtswv.gov/public-resources/court-information-county/county-map",
+      "title": "West Virginia Judiciary — Court Information by County",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "wv.drivers-license.name",
+    "jurisdiction": "US-WV",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "West Virginia driver's license or ID name change",
+    "statement": "To update the name on a West Virginia driver's license or ID card, bring proof of your name change to a DMV office — a court order, a certified marriage certificate, or a certified divorce decree with your new name.",
+    "detail": "West Virginia DMV says a court order specifying a change of name supersedes a birth certificate or a certified marriage certificate when it decides how your name is displayed. Call West Virginia DMV to confirm exactly which proof-of-name-change document you need to bring for your situation.",
+    "cost": {
+      "amount_usd": null,
+      "note": "West Virginia DMV's page does not state a fee for updating your name; contact DMV for the current fee for a new or amended card."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://transportation.wv.gov/dmv/acceptable-proof-documents",
+      "title": "West Virginia DMV — Acceptable Proof Documents",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "wv.drivers-license.gender-marker",
+    "jurisdiction": "US-WV",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "West Virginia driver's license or ID gender designation",
+    "statement": "To change the gender shown on a West Virginia driver's license or ID card, submit a Gender Designation Form signed by a licensed physician. The card can show only male or female; West Virginia's form does not offer a third option.",
+    "detail": "You are not required to have already changed your gender designation on your birth certificate or any other form of identification. DMV says its employees will not request additional gender-related information beyond the form or ask about your private medical history. After you submit it, you surrender your current card, apply for a new driver's license or ID card, and have a new photograph taken.",
+    "cost": {
+      "amount_usd": null,
+      "note": "West Virginia DMV's page does not state a fee for this change; contact DMV for the current fee for a new or amended card."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://webapps.transportation.wv.gov/TWS/WVDOTDocumentStorageMigration/PDF/Transportation/DMV/DMVFormSearch/DMV-99-RO-GenderDesignationForm.pdf",
+      "title": "West Virginia DMV — Gender Designation Form (DMV-99-RO)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "wv-dmv-99-ro-gender-designation",
+    "language": "en"
+  },
+  {
+    "id": "wv.birth-certificate.name",
+    "jurisdiction": "US-WV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "West Virginia birth certificate name change",
+    "statement": "West Virginia amends the name on a birth certificate through its Vital Registration Office. You need documentary evidence to support the change, or a certified copy of a court order if you cannot get that evidence.",
+    "detail": "You must submit at least two original items of documentary evidence that were established at least five years before your amendment request, or within seven years of the event, whichever applies. If you cannot obtain evidence that old, you can petition a court in the county where you live, and give the Vital Registration Office a certified copy of the resulting court order instead; non-residents may petition the Kanawha County Circuit Court.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "This is the amendment-processing fee, effective July 1, 2023. There is no fee if the amendment is made within the first year after the vital event. A certified copy of the corrected certificate costs $12 more."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dhhr.wv.gov/HSC/VR/Pages/Correct-or-Amend-a-Certificate.aspx",
+      "title": "West Virginia Health Statistics Center — Correct or Amend a Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "wv-hsc-affidavit-correct-birth",
+    "language": "en"
+  },
+  {
+    "id": "wv.birth-certificate.gender-marker",
+    "jurisdiction": "US-WV",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "West Virginia birth certificate sex designation",
+    "statement": "To change the sex listed on a West Virginia birth certificate, have a physician complete the Sex Designation Form and submit it with the required affidavit to the Health Statistics Center. You are not required to have changed your sex designation on any other document first.",
+    "detail": "The Sex Designation Form says the Health Statistics Center will not request additional gender-related information beyond the form or ask about your private medical history. The certificate can show only male or female. If you are also changing your name, West Virginia requires a certified copy of the court order for that separately.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "This is the amendment-processing fee, effective July 1, 2023. A certified copy of the corrected certificate costs $12 more."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dhhr.wv.gov/HSC/VR/Pages/Correct-or-Amend-a-Certificate.aspx",
+      "title": "West Virginia Health Statistics Center — Correct or Amend a Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "wv-hsc-sex-designation",
+    "language": "en"
+  }
+]

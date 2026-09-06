@@ -1,0 +1,134 @@
+[
+  {
+    "id": "ky.court-order.name",
+    "jurisdiction": "US-KY",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Kentucky name change petition",
+    "statement": "In Kentucky, a person at least 18 years old may have their name changed by the District Court of the county where they live. If you live on a United States Army post, military reservation, or fort, the District Court of an adjacent county may do it instead.",
+    "detail": "Once the court orders the name change, a copy is certified to the county clerk, who keeps an alphabetical index of every name change for that county. The Kentucky Court of Justice's self-help portal does not publish its own instructions for this process; it points people to a third-party guided-interview website instead.",
+    "cost": {
+      "amount_usd": null,
+      "note": "A filing fee applies; the district court clerk sets and collects it. Kentucky's statute does not publish the amount on this page, so ask the clerk for the current fee."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=41791",
+      "title": "Kentucky Revised Statutes 401.010 — Adult May Have Name Changed by District Court",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ky.drivers-license.name",
+    "jurisdiction": "US-KY",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Kentucky driver's license or ID name change",
+    "statement": "To change the name on a Kentucky driver's license or ID card, first update your name with the Social Security Administration. Then bring your updated Social Security card and legal documentation, such as a court order, to a Driver Licensing Regional Office in person.",
+    "detail": "Kentucky's Transportation Cabinet says name changes must be completed in person and cannot be done online or by mail. You receive a temporary credential right away, and your permanent card typically arrives by mail within 10 to 15 business days.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "This is Kentucky's fee for an in-person name change on a driver's license or ID card."
+    },
+    "timeline": {
+      "typical": "10-15 business days for the permanent card by mail"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://drive.ky.gov/Drivers/Pages/Update-Replace.aspx",
+      "title": "Kentucky Transportation Cabinet — Update or Replace a Driver's License or Permit",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ky.drivers-license.gender-marker",
+    "jurisdiction": "US-KY",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Kentucky driver's license or ID gender marker",
+    "statement": "Kentucky's Transportation Cabinet does not publish a separate form or process for changing only the gender marker on a driver's license or ID card. Its own FAQ page only mentions that a name-change document is needed if your current legal name, date of birth, or gender differs from what your identity documents show.",
+    "detail": "We could not find an official Kentucky Transportation Cabinet page describing a standalone way to change a driver's license or ID card's gender marker on its own, separate from your underlying identity documents. That absence is not evidence Kentucky has no such process — only that we have not found one published online. Contact a Driver Licensing Regional Office directly to ask what it requires before relying on this record.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://drive.ky.gov/Drivers/Pages/ID-Cards.aspx",
+      "title": "Kentucky Transportation Cabinet — Identification Cards",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ky.birth-certificate.name",
+    "jurisdiction": "US-KY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Kentucky birth certificate name change",
+    "statement": "Kentucky amends the name on the birth certificate of a person born in the Commonwealth once the Office of Vital Statistics receives a certified copy of a court order changing that person's name.",
+    "detail": "File the notarized VS-2J Affidavit for Amendment along with the certified court order with the Office of Vital Statistics. A registrant who is 18 or older signs their own affidavit; a parent or legal guardian signs for someone younger.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "This is the fee for a certified copy of the corrected birth certificate. If a certified copy issued within the past year is returned to the Office of Vital Statistics, a corrected copy is issued without an additional charge."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.chfs.ky.gov/agencies/dph/dehp/vsb/Forms/VS2J.pdf",
+      "title": "Kentucky Cabinet for Health and Family Services — VS-2J Affidavit for Amendment to Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ky-vs-2j",
+    "language": "en"
+  },
+  {
+    "id": "ky.birth-certificate.gender-marker",
+    "jurisdiction": "US-KY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Kentucky birth certificate gender change",
+    "statement": "Kentucky law only allows the gender on a birth certificate to be amended after a licensed physician swears that the person's gender has been changed by surgical procedure, and only together with a certified copy of a court order changing that person's name.",
+    "detail": "Both requirements come from the same state law and must be submitted together on the VS-2J Affidavit for Amendment; Kentucky's Office of Vital Statistics describes no other path to amend this field. This surgical-procedure requirement is considerably more restrictive than what many other jurisdictions in this corpus require, and it has been in Kentucky law since 1990.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "This is the fee for a certified copy of the corrected birth certificate."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.chfs.ky.gov/agencies/dph/dehp/vsb/Forms/VS2J.pdf",
+      "title": "Kentucky Cabinet for Health and Family Services — VS-2J Affidavit for Amendment to Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "ky-vs-2j",
+    "language": "en"
+  }
+]

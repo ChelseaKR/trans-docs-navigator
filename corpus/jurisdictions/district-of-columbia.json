@@ -1,0 +1,138 @@
+[
+  {
+    "id": "dc.court-order.name",
+    "jurisdiction": "US-DC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "District of Columbia name change petition",
+    "statement": "In the District of Columbia, you file an Application for Change of Name of an Adult with the Civil Actions Branch of the DC Superior Court. You must currently live in DC, no matter where you were born, and a judge holds a final hearing before granting it.",
+    "detail": "The application must be filed with proof of current DC residency, valid photo identification, and your reasons for the name change. Before the final hearing you must notify creditors and other interested parties, by personal service or by registered or certified mail, and file proof that you did. If the court grants your application, you are given at least five certified copies of the order for name change.",
+    "cost": {
+      "amount_usd": 60,
+      "note": "You can ask the court to waive this fee by filing an Application to Waive Court Costs and Fees if you cannot pay."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf",
+      "title": "DC Superior Court — Application for Change of Name of an Adult (Instructions)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "dc-name-change-adult",
+    "language": "en"
+  },
+  {
+    "id": "dc.drivers-license.name",
+    "jurisdiction": "US-DC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "District of Columbia driver's license or ID name change",
+    "statement": "To update the name on a DC driver's license or ID card after a legal name change, bring your original court order along with DC DMV's other required identity documents to a service center.",
+    "detail": "DC DMV's proof-of-identity rules say that if you have a name change due to marriage, divorce, or a court order (which includes adoption), you must also bring that document in addition to the identity documents DC DMV otherwise requires. Documents that are altered, counterfeit, torn, laminated, or erased are not accepted.",
+    "cost": {
+      "amount_usd": null,
+      "note": "DC DMV charges its standard fee for a new or amended license or ID card; see DC DMV's fee schedule for the current amount."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dmv.dc.gov/proofofidentity",
+      "title": "DC DMV — Proof of Identity",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "dc.drivers-license.gender-marker",
+    "jurisdiction": "US-DC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "District of Columbia driver's license or ID gender designation",
+    "statement": "DC DMV lets you change the gender marker on your driver's license or ID card to M, F, or X by completing a Gender Self-Designation form. You do not need a doctor's letter, a court order, or to have already changed your gender designation on any other document.",
+    "detail": "You submit the completed form, pay the fee for a new or amended card, and have a new photograph taken. DC DMV says its employees will not request additional gender-related information beyond the form or ask about your private medical history, and you are not required to have matching gender designations on every form of identification.",
+    "cost": {
+      "amount_usd": null,
+      "note": "DC DMV charges its standard fee for a new or amended license or ID card; see DC DMV's fee schedule for the current amount."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.dc.gov/sites/default/files/dc/sites/dmv/publication/attachments/DC%20DMV%20Form%20Gender%20Self-Designation%20English.pdf",
+      "title": "DC DMV — Procedure for Establishing or Changing Gender Designation on a Driver License or Identification Card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "dc-dmv-gender-self-designation",
+    "language": "en"
+  },
+  {
+    "id": "dc.birth-certificate.name",
+    "jurisdiction": "US-DC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "District of Columbia birth certificate name change",
+    "statement": "DC only amends the name on a birth certificate for people who were born in the District of Columbia. After a legal name change, submit DC Health's Amendment to Birth Record (Court Order) form along with a certified copy of your court order.",
+    "detail": "Have your signature on the form authenticated by a notary public, and mail it with the required identity documents to the DC Health Vital Records Division. If you are unable to meet the requirements, DC Health issues a rejection letter, and you can then petition DC Superior Court to order the amendment.",
+    "cost": {
+      "amount_usd": 23,
+      "note": "This is the amendment-processing fee. A certified copy of the corrected birth certificate costs $23 more if you want one mailed to you."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Birth%20Amendment%20with%20court%20order_0.pdf",
+      "title": "DC Health — Amendment to Birth Record (Court Order)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "dc-doh-birth-amend-court-order",
+    "language": "en"
+  },
+  {
+    "id": "dc.birth-certificate.gender-marker",
+    "jurisdiction": "US-DC",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "District of Columbia birth certificate gender designation",
+    "statement": "People born in DC can update the gender marker on their birth certificate with a Gender Designation Application signed by a licensed healthcare provider. Surgery is not required, and the certificate can show male, female, or unknown.",
+    "detail": "Your healthcare provider must certify that you have had surgical, hormonal, or other treatment appropriate for gender transition, or that you have an intersex condition. DC Health says the application form and the provider's statement are the only documentation of gender change it requires, and it will not ask for more medical information. If you are also changing your name, include an original or certified copy of the court order.",
+    "cost": {
+      "amount_usd": 28,
+      "note": "This is the amendment-processing fee. A certified copy of the corrected birth certificate costs $23 more if you want one; DC Health's own sample calculation shows $51 total when both are requested."
+    },
+    "timeline": {
+      "typical": "up to 3 business days"
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dchealth.dc.gov/sites/default/files/dc/sites/doh/page_content/attachments/Gender%20Designation%20Application_0.pdf",
+      "title": "DC Health — Gender Designation Application (with Model Letter and Instructions)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "dc-doh-gender-designation",
+    "language": "en"
+  }
+]
