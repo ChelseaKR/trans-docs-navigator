@@ -12,12 +12,17 @@ import { staleAfterDays } from "./offline.ts";
 import { isDriftWatchable } from "../api/watchability.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
+  { id: "US-AR", label: "Arkansas" },
   { id: "US-AZ", label: "Arizona" },
   { id: "US-CA", label: "California" },
   { id: "US-DC", label: "District of Columbia" },
+  { id: "US-DE", label: "Delaware" },
+  { id: "US-ME", label: "Maine" },
+  { id: "US-NH", label: "New Hampshire" },
   { id: "US-FL", label: "Florida" },
   { id: "US-GA", label: "Georgia" },
   { id: "US-CO", label: "Colorado" },
+  { id: "US-ID", label: "Idaho" },
   { id: "US-IL", label: "Illinois" },
   { id: "US-KY", label: "Kentucky" },
   { id: "US-MD", label: "Maryland" },
@@ -30,12 +35,25 @@ const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-NY", label: "New York" },
   { id: "US-PA", label: "Pennsylvania" },
   { id: "US-OH", label: "Ohio" },
+  { id: "US-OK", label: "Oklahoma" },
   { id: "US-TN", label: "Tennessee" },
   { id: "US-OR", label: "Oregon" },
+  { id: "US-SC", label: "South Carolina" },
   { id: "US-TX", label: "Texas" },
+  { id: "US-UT", label: "Utah" },
   { id: "US-VA", label: "Virginia" },
   { id: "US-WA", label: "Washington" },
   { id: "US-WV", label: "West Virginia" },
+  { id: "US-CT", label: "Connecticut" },
+  { id: "US-RI", label: "Rhode Island" },
+  { id: "US-VT", label: "Vermont" },
+  { id: "US-WI", label: "Wisconsin" },
+  { id: "US-ND", label: "North Dakota" },
+  { id: "US-MT", label: "Montana" },
+  { id: "US-KS", label: "Kansas" },
+  { id: "US-NE", label: "Nebraska" },
+  { id: "US-SD", label: "South Dakota" },
+  { id: "US-WY", label: "Wyoming" },
 ];
 const DOCUMENT_IDS: DocumentType[] = ["court-order", "ssa-card", "drivers-license", "passport", "birth-certificate", "financial-records"];
 

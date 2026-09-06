@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ri.referral.gladlaw",
+    "jurisdiction": "US-RI",
+    "name": "GLAD Law",
+    "url": "https://www.gladlaw.org",
+    "note": {
+      "en": "New England LGBTQ+ legal organization; publishes a Rhode Island-specific guide to changing your name and gender marker on ID documents.",
+      "es": "Organización legal LGBTQ+ de Nueva Inglaterra; publica una guía específica de Rhode Island sobre cómo cambiar su nombre y marcador de género en documentos de identidad."
+    },
+    "source": {
+      "url": "https://www.gladlaw.org",
+      "title": "GLAD Law",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ri.referral.rils",
+    "jurisdiction": "US-RI",
+    "name": "Rhode Island Legal Services",
+    "url": "https://www.rils.org",
+    "note": {
+      "en": "Statewide civil legal aid organization for low-income Rhode Islanders, including help with legal filings such as a name-change petition.",
+      "es": "Organización estatal de ayuda legal civil para residentes de Rhode Island de bajos ingresos, incluida ayuda con trámites legales como una petición de cambio de nombre."
+    },
+    "source": {
+      "url": "https://www.rils.org",
+      "title": "Rhode Island Legal Services",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

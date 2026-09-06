@@ -12,119 +12,191 @@ driver's-license rows are covered and the federal rows are current.
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ✅ | — | ✅ | — | — |
+| US-AR | ✅ | — | ✅ | — | ✅ | — |
 | US-AZ | ✅ | — | ✅ | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | ✅ | — | — | — | ✅ | — |
+| US-CT | ✅ | — | ✅ | — | ✅ | — |
 | US-DC | ✅ | — | ✅ | — | ✅ | — |
+| US-DE | ✅ | — | ✅ | — | ✅ | — |
 | US-FL | ✅ | — | ✅ | — | ✅ | — |
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
+| US-ID | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
+| US-KS | ✅ | — | ✅ | — | ✅ | — |
 | US-KY | ✅ | — | ✅ | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
 | US-MD | ✅ | — | ✅ | — | ✅ | — |
+| US-ME | ✅ | — | ✅ | — | ✅ | — |
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-MN | ✅ | — | ✅ | — | ✅ | — |
+| US-MT | ✅ | — | ✅ | — | ✅ | — |
 | US-NC | ✅ | — | ✅ | — | ✅ | — |
+| US-ND | ✅ | — | ✅ | — | ✅ | — |
+| US-NE | ✅ | — | ✅ | — | ✅ | — |
+| US-NH | ✅ | — | ✅ | — | ✅ | — |
 | US-NJ | ✅ | — | ✅ | — | ✅ | — |
 | US-NV | ✅ | — | ✅ | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
 | US-OH | ✅ | — | ✅ | — | ✅ | — |
+| US-OK | ✅ | — | ✅ | — | ✅ | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
+| US-RI | ✅ | — | ✅ | — | ✅ | — |
+| US-SC | ✅ | — | ✅ | — | ✅ | — |
+| US-SD | ✅ | — | ⚠️ degraded | — | ✅ | — |
 | US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
+| US-UT | ✅ | — | ✅ | — | ✅ | — |
 | US-VA | ✅ | — | ✅ | — | ✅ | — |
+| US-VT | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
+| US-WI | ✅ | — | ✅ | — | ✅ | — |
 | US-WV | ✅ | — | ✅ | — | ✅ | — |
+| US-WY | ✅ | — | ✅ | — | ✅ | — |
 
 ## English · Gender-marker change
 
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ⚠️ degraded | — | ⚠️ degraded | — | — |
+| US-AR | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-AZ | — | — | ⚠️ degraded | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | — | — | ✅ | — | ✅ | — |
+| US-CT | — | — | ✅ | — | ✅ | — |
 | US-DC | — | — | ✅ | — | ✅ | — |
+| US-DE | — | — | ✅ | — | ✅ | — |
 | US-FL | — | — | ✅ | — | ✅ | — |
 | US-GA | — | — | ✅ | — | ✅ | — |
+| US-ID | — | — | ✅ | — | ⚠️ degraded | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
+| US-KS | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-KY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
 | US-MD | — | — | ✅ | — | ✅ | — |
+| US-ME | — | — | ✅ | — | ✅ | — |
 | US-MI | — | — | ✅ | — | ✅ | — |
 | US-MN | — | — | ✅ | — | ✅ | — |
+| US-MT | — | — | ✅ | — | ✅ | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-ND | — | — | ✅ | — | ✅ | — |
+| US-NE | — | — | ✅ | — | ✅ | — |
+| US-NH | — | — | ✅ | — | ✅ | — |
 | US-NJ | — | — | ✅ | — | ✅ | — |
 | US-NV | — | — | ✅ | — | ⚠️ degraded | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-OK | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | — | — | ✅ | — | ✅ | — |
+| US-RI | — | — | ✅ | — | ✅ | — |
+| US-SC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-SD | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
+| US-UT | ⚠️ degraded | — | ✅ | — | ⚠️ degraded | — |
 | US-VA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-VT | — | — | ✅ | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
+| US-WI | — | — | ✅ | — | ✅ | — |
 | US-WV | — | — | ✅ | — | ✅ | — |
+| US-WY | — | — | ✅ | — | ⚠️ degraded | — |
 
 ## Spanish · Name change
 
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ✅ | — | ✅ | — | — |
+| US-AR | ✅ | — | ✅ | — | ✅ | — |
 | US-AZ | ✅ | — | ✅ | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | ✅ | — | — | — | ✅ | — |
+| US-CT | ✅ | — | ✅ | — | ✅ | — |
 | US-DC | ✅ | — | ✅ | — | ✅ | — |
+| US-DE | ✅ | — | ✅ | — | ✅ | — |
 | US-FL | ✅ | — | ✅ | — | ✅ | — |
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
+| US-ID | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
+| US-KS | ✅ | — | ✅ | — | ✅ | — |
 | US-KY | ✅ | — | ✅ | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
 | US-MD | ✅ | — | ✅ | — | ✅ | — |
+| US-ME | ✅ | — | ✅ | — | ✅ | — |
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-MN | ✅ | — | ✅ | — | ✅ | — |
+| US-MT | ✅ | — | ✅ | — | ✅ | — |
 | US-NC | ✅ | — | ✅ | — | ✅ | — |
+| US-ND | ✅ | — | ✅ | — | ✅ | — |
+| US-NE | ✅ | — | ✅ | — | ✅ | — |
+| US-NH | ✅ | — | ✅ | — | ✅ | — |
 | US-NJ | ✅ | — | ✅ | — | ✅ | — |
 | US-NV | ✅ | — | ✅ | — | ✅ | — |
 | US-NY | ✅ | — | ✅ | — | ✅ | — |
 | US-OH | ✅ | — | ✅ | — | ✅ | — |
+| US-OK | ✅ | — | ✅ | — | ✅ | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
+| US-RI | ✅ | — | ✅ | — | ✅ | — |
+| US-SC | ✅ | — | ✅ | — | ✅ | — |
+| US-SD | ✅ | — | ⚠️ degraded | — | ✅ | — |
 | US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
+| US-UT | ✅ | — | ✅ | — | ✅ | — |
 | US-VA | ✅ | — | ✅ | — | ✅ | — |
+| US-VT | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
+| US-WI | ✅ | — | ✅ | — | ✅ | — |
 | US-WV | ✅ | — | ✅ | — | ✅ | — |
+| US-WY | ✅ | — | ✅ | — | ✅ | — |
 
 ## Spanish · Gender-marker change
 
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ⚠️ degraded | — | ⚠️ degraded | — | — |
+| US-AR | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-AZ | — | — | ⚠️ degraded | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | — | — | ✅ | — | ✅ | — |
+| US-CT | — | — | ✅ | — | ✅ | — |
 | US-DC | — | — | ✅ | — | ✅ | — |
+| US-DE | — | — | ✅ | — | ✅ | — |
 | US-FL | — | — | ✅ | — | ✅ | — |
 | US-GA | — | — | ✅ | — | ✅ | — |
+| US-ID | — | — | ✅ | — | ⚠️ degraded | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
+| US-KS | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-KY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
 | US-MD | — | — | ✅ | — | ✅ | — |
+| US-ME | — | — | ✅ | — | ✅ | — |
 | US-MI | — | — | ✅ | — | ✅ | — |
 | US-MN | — | — | ✅ | — | ✅ | — |
+| US-MT | — | — | ✅ | — | ✅ | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-ND | — | — | ✅ | — | ✅ | — |
+| US-NE | — | — | ✅ | — | ✅ | — |
+| US-NH | — | — | ✅ | — | ✅ | — |
 | US-NJ | — | — | ✅ | — | ✅ | — |
 | US-NV | — | — | ✅ | — | ⚠️ degraded | — |
 | US-NY | — | — | ⚠️ degraded | — | ✅ | — |
 | US-OH | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-OK | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | — | — | ✅ | — | ✅ | — |
+| US-RI | — | — | ✅ | — | ✅ | — |
+| US-SC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-SD | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
+| US-UT | ⚠️ degraded | — | ✅ | — | ⚠️ degraded | — |
 | US-VA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-VT | — | — | ✅ | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
+| US-WI | — | — | ✅ | — | ✅ | — |
 | US-WV | — | — | ✅ | — | ✅ | — |
+| US-WY | — | — | ✅ | — | ⚠️ degraded | — |
 
-**Totals:** 222 current · 26 degraded · 352 uncovered cells.
+**Totals:** 374 current · 56 degraded · 602 uncovered cells.

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "wy.referral.legalaidwyoming",
+    "jurisdiction": "US-WY",
+    "name": "Legal Aid of Wyoming",
+    "url": "https://www.lawyoming.org",
+    "note": {
+      "en": "Wyoming's statewide, federally funded civil legal aid provider for low-income residents, with offices in Cheyenne, Casper, Lander, and Gillette.",
+      "es": "Proveedor estatal de ayuda legal civil de Wyoming, financiado federalmente, para residentes de bajos ingresos, con oficinas en Cheyenne, Casper, Lander y Gillette."
+    },
+    "source": {
+      "url": "https://www.lawyoming.org",
+      "title": "Legal Aid of Wyoming",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "wy.referral.aclu-wyoming",
+    "jurisdiction": "US-WY",
+    "name": "ACLU of Wyoming",
+    "url": "https://www.aclu-wy.org",
+    "note": {
+      "en": "ACLU of Wyoming's advocacy and legal work, which includes LGBTQ+ and Two Spirit rights.",
+      "es": "El trabajo legal y de defensa de la ACLU de Wyoming, que incluye los derechos LGBTQ+ y de personas Two Spirit."
+    },
+    "source": {
+      "url": "https://www.aclu-wy.org",
+      "title": "ACLU of Wyoming",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "wy.referral.wyoming-equality",
+    "jurisdiction": "US-WY",
+    "name": "Wyoming Equality",
+    "url": "https://www.wyomingequality.org",
+    "note": {
+      "en": "A Wyoming LGBTQ+ organization running community, health-access, and support programs.",
+      "es": "Una organización LGBTQ+ de Wyoming que dirige programas comunitarios, de acceso a la salud y de apoyo."
+    },
+    "source": {
+      "url": "https://www.wyomingequality.org",
+      "title": "Wyoming Equality",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

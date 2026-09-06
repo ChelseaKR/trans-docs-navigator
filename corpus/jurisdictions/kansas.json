@@ -1,0 +1,151 @@
+[
+  {
+    "id": "ks.birth-certificate.gender-marker",
+    "jurisdiction": "US-KS",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Kansas birth certificate sex designation",
+    "statement": "Kansas does not let you amend a birth certificate to align with your gender identity. The Kansas Department of Health and Environment says that, in accordance with the new law, it can no longer process gender-identity amendments to Kansas birth certificates; amendments for other reasons, like an input error, are still allowed. No exception is described here for a court order, a physician's letter, or any other route based on gender identity.",
+    "detail": "If KDHE previously changed a birth certificate to align with someone's gender identity, Senate Bill 244 directs the department to invalidate that change and amend the certificate to reflect the person's sex at birth as defined in K.S.A. 77-207. KDHE says it cannot proactively notify anyone affected, because birth records do not have current contact information. KDHE also says it will not refund fees already paid for a gender-identity amendment that has since been invalidated.",
+    "cost": {
+      "amount_usd": null,
+      "note": "KDHE does not charge to invalidate a certificate on its own initiative. If you request a new certificate be sent to you, the fee is $20 per certificate."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.kdhe.ks.gov/FAQ.aspx?QID=265",
+      "title": "Kansas Department of Health and Environment — Vital Statistics FAQs: How to Amend Birth Certificates for Adults",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ks.birth-certificate.gender-marker.law",
+    "jurisdiction": "US-KS",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Kansas law defining sex for state records",
+    "statement": "Kansas Statutes Annotated 77-207 defines an individual's 'sex' for purposes of Kansas law as the person's biological sex, either male or female, at birth, and states this applies notwithstanding any other provision of state law.",
+    "detail": "The statute defines a 'female' as a person whose biological reproductive system is developed to produce ova, and a 'male' as a person whose biological reproductive system is developed to fertilize the ova of a female. It states that laws distinguishing between the sexes are subject to intermediate constitutional scrutiny, and that a person with a medically verifiable diagnosis of a difference in sex development is entitled to protections under the Americans with Disabilities Act and applicable Kansas statutes. It was enacted in L. 2023, ch. 84, effective July 1.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://ksrevisor.gov/statutes/chapters/ch77/077_002_0007.html",
+      "title": "Kansas Office of Revisor of Statutes — K.S.A. 77-207, Biological Sex; Application Thereof to Any State Law",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ks.birth-certificate.name",
+    "jurisdiction": "US-KS",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Kansas birth certificate name change",
+    "statement": "To change the name on a Kansas birth certificate after a court-ordered legal name change, mail a certified copy of the order to Kansas Vital Statistics along with a cover letter giving your name at birth, date of birth, and what you want done. The fee to amend the certificate is $20, which does not include the cost of a certified copy.",
+    "detail": "This is different from correcting a misspelled name, which needs an old identifying document instead of a court order. Send your certified court order and cover letter to the Amendment Unit, Office of Vital Statistics, 1000 SW Jackson, Suite 120, Topeka, KS 66612-2221.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "This does not include the cost of a certified copy of the corrected certificate."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.kdhe.ks.gov/FAQ.aspx?QID=265",
+      "title": "Kansas Department of Health and Environment — Vital Statistics FAQs: How to Amend Birth Certificates for Adults",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ks.court-order.name",
+    "jurisdiction": "US-KS",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Kansas name change petition",
+    "statement": "In Kansas you file a name-change petition in the district court of the county where you reside, after living in Kansas for at least 60 days. A judge grants the change if satisfied there is reasonable cause for it.",
+    "detail": "Kansas Statutes Annotated 60-1402 lets the court give notice of the hearing either by mail or by publication, at the court's discretion — it does not require every case to be published in a newspaper. Contact the district court clerk's office in the county where you reside for that county's petition forms, current filing fee, and hearing process.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The statute does not state a filing fee; contact the district court clerk in the county where you reside for the current amount."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://ksrevisor.gov/statutes/chapters/ch60/060_014_0002.html",
+      "title": "Kansas Office of Revisor of Statutes — K.S.A. 60-1402, Change of Name of Person; Notice; Order",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ks.drivers-license.gender-marker",
+    "jurisdiction": "US-KS",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Kansas driver's license gender/sex designation",
+    "statement": "Kansas does not offer a way to newly change the sex or gender marker on a driver's license or ID card going forward. The Kansas Division of Vehicles' current guidance under Senate Bill 244 addresses only reversing past changes: if the gender/sex indication on your credential does not match your sex assigned at birth, you must surrender it, and a replacement will be issued reflecting your sex assigned at birth.",
+    "detail": "The Division says no additional documentation is required to comply — bring in and surrender your current credential, and a temporary license is issued while the permanent replacement is mailed. Kansans affected receive a letter from the Division of Vehicles. The compliance deadline stated on this page was close of business March 25, 2026, after which the Division said it did not anticipate further grace periods. You may appeal under K.S.A. 8-259, but filing an appeal does not preserve your current credential's validity while the appeal is pending.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page addresses only the mandatory surrender described above and states no separate fee for it."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ksrevenue.gov/dovgender.html",
+      "title": "Kansas Department of Revenue, Division of Vehicles — Gender Reclassification FAQs",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ks.drivers-license.name",
+    "jurisdiction": "US-KS",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Kansas driver's license and ID name change",
+    "statement": "To change the name on your Kansas driver's license or ID card, bring your current Kansas credential, proof of your legal name change, and proof of your current residential address to a driver's license office. You must update your name with the Social Security Administration at least 24 hours before you update your Kansas credential.",
+    "detail": "Kansas duplicate marriage licenses cannot be accepted as proof of a legal name change. Appointments are recommended and receive priority; schedule one through the Division of Vehicles' appointment site.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The fee is $16 for a driver's license and $12 for an ID card."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ksrevenue.gov/dovdlfaq.html",
+      "title": "Kansas Department of Revenue, Division of Vehicles — Driver's License and ID FAQs",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]
