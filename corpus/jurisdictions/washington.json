@@ -57,7 +57,7 @@
     ],
     "topic": "Washington driver's license gender designation",
     "statement": "Washington offers three gender designations on a driver's license or ID: M (male), F (female), and X (not exclusively male or female). You can change yours in person or by mail; there is no online option.",
-    "detail": "In person, you bring your current card to a driver licensing office and confirm your gender designation out loud. By mail, you complete a Gender Designation Request form and mail it to the address on the form. The page does not ask for any medical documentation.",
+    "detail": "In person, you bring your current card to a driver licensing office and confirm your gender designation out loud. By mail, you complete a Change of Gender Designation request form and mail it to the address on the form. The page does not ask for any medical documentation.",
     "cost": {
       "amount_usd": 0,
       "note": "If the gender designation is the only thing you update, the new card is free. If you update anything else at the same time, such as your name, there may be an extra fee."
@@ -71,6 +71,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "wa-dol-change-of-gender-designation",
     "language": "en"
   },
   {
@@ -190,6 +191,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "wa-dol-change-of-gender-designation",
     "audience": "minor",
     "language": "en"
   }

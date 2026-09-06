@@ -1551,6 +1551,11 @@
       "file": "ag-idaho-gov-newsroom-attorney-general-labrador-secures-court-order-en-b82ff90c.txt",
       "fetched": "2026-09-05",
       "sha256": "718b0440812ad0489b52d81c8e7a654bfccd11b06344e8d853140573009af759"
+    },
+    "https://www.sccourts.org/courts/trial-courts/family-court/court-fees/": {
+      "file": "sccourts-org-courts-trial-courts-family-court-court-fees-df26be08.txt",
+      "fetched": "2026-09-05",
+      "sha256": "0617aefc8f8d4097fd108a333e0960bb7efd28e3fd8c91146ee9a36377b8435e"
     }
   }
 }

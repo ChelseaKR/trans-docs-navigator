@@ -789,3 +789,15 @@ test("/plan shows no no-minor-coverage note for a pilot-to-pilot move", () => {
   ).body;
   assert.doesNotMatch(html, /for adults/i);
 });
+
+// ── Referrals: the destination's help block, never the origin's ─────────────────────
+
+test("the plan carries the DESTINATION's referrals (A4TE guide + legal aid) — static links only, nothing queried", () => {
+  const html = renderPlanPage(buildRelocationPlan(intake(), TODAY, corpus), corpus, "en");
+  assert.match(html, /id="help-h">Where to get help</);
+  assert.match(html, /washington-identity-documents/);
+  assert.doesNotMatch(html, /texas-identity-documents/); // the origin is not what the reader needs help with next
+  // Outbound referral links never carry the plan URL along (global no-referrer policy is the
+  // second lock; this is the per-link one).
+  for (const m of html.matchAll(/<a href="https:\/\/transequality\.org[^"]*"([^>]*)>/g)) assert.match(m[1] ?? "", /rel="noopener noreferrer"/);
+});

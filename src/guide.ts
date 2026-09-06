@@ -14,6 +14,7 @@ import { buildChecklist } from "../api/checklist.ts";
 import { loadCorpus } from "../api/corpus.ts";
 import { page, renderChecklist, escapeHtml } from "./render.ts";
 import { t as locale } from "./i18n/index.ts";
+import { renderHelpSection } from "./help.ts";
 import { absoluteUrl, jsonLd } from "./seo.ts";
 
 export interface StateDef {
@@ -193,6 +194,7 @@ export function renderGuidePage(stateSlug: string, topicSlug: string, lang: Lang
     cta,
     renderChecklist(checklist, corpus, lang),
     cta,
+    renderHelpSection(state.id, lang, ui),
     reviewedNote,
     structuredData(state, topic, lang, checklist, byId),
   ].join("\n");
