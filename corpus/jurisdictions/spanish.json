@@ -1597,8 +1597,8 @@
       "gender-marker"
     ],
     "topic": "Designación de sexo en el acta de nacimiento de Georgia",
-    "statement": "Las normas de registros vitales de Georgia ponen un cambio en el sexo indicado en un acta de nacimiento bajo la misma regla general que cualquier otra corrección hecha después del primer año de vida de la persona registrada: 'Todas las Demás Enmiendas.' El cambio debe estar respaldado por una declaración jurada y por evidencia documental creada al menos cinco años antes de solicitarlo, o dentro de los siete años posteriores al nacimiento. Las normas no describen una vía separada basada en una orden judicial o en la identidad de género para este dato.",
-    "detail": "El Registrador Estatal decide si permite el cambio después de revisar la evidencia que usted presenta. Las normas de Georgia dicen que, si el Registrador rechaza su evidencia, deben informarle los motivos por escrito, y que usted tiene derecho a apelar.",
+    "statement": "Las normas de registros vitales de Georgia ponen un cambio en el sexo indicado en un acta de nacimiento bajo la misma regla general que cualquier otra corrección hecha después del primer año de vida de la persona registrada: 'Todas las Demás Enmiendas.' El cambio debe estar respaldado por una declaración jurada y por evidencia documental creada al menos cinco años antes de solicitarlo, o dentro de los siete años posteriores al nacimiento. Esa regla aplica 'a menos que estas Normas o una ley dispongan otra cosa,' y las mismas normas indican por separado que un acta de nacimiento enmendada conforme a la sección 31-10-23(e) del Código Oficial de Georgia Anotado se enmienda preparando un acta nueva — pero las normas no dicen qué abarca esa ley, y este proyecto no pudo leer la ley misma en una página oficial.",
+    "detail": "El Registrador Estatal decide si permite el cambio después de revisar la evidencia que usted presenta. Las normas de Georgia dicen que, si el Registrador rechaza su evidencia, deben informarle los motivos por escrito, y que usted tiene derecho a apelar. Para un acta nueva preparada conforme a la sección 31-10-23(e), las normas dicen que los datos enmendados no se identifican en el acta nueva ni en sus copias certificadas, se asigna un nuevo número de archivo estatal, y el acta original se retira de los archivos activos y se guarda con la orden en los archivos confidenciales. Pregunte a la Oficina Estatal de Registros Vitales, o a un abogado, si esa vía legal aplica a un cambio de designación de sexo antes de basarse en cualquiera de las dos rutas.",
     "discretionary": true,
     "prerequisites": [],
     "source": {
@@ -1740,7 +1740,8 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
-    "language": "es"
+    "language": "es",
+    "form_ref": "hi-doh-application-amendment-birth-record"
   },
   {
     "id": "hi.birth-certificate.name.es",
@@ -1909,7 +1910,8 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
-    "language": "es"
+    "language": "es",
+    "form_ref": "ia-petition-change-of-name-adult"
   },
   {
     "id": "ia.court-order.waiting-period.es",
@@ -1987,11 +1989,32 @@
     ],
     "topic": "Designación de sexo en el acta de nacimiento de Idaho",
     "statement": "El Código de Idaho incluye el sexo entre los \"hechos materiales\" que deben aparecer en un acta de nacimiento, junto con la hora, la fecha y el lugar de nacimiento. Estos hechos materiales solo pueden enmendarse dentro de un (1) año desde que se presentó el acta, mediante una declaración jurada de corrección notariada.",
-    "detail": "Después de ese primer año, la ley dice que estos hechos materiales \"solo pueden impugnarse en un tribunal por fraude, coacción, o error material de hecho,\" con la carga de la prueba sobre la persona que impugna. La ley no describe ningún proceso separado para actualizar el marcador de sexo para que coincida con la identidad de género actual de una persona. Esta disposición se agregó en 2020 y se modificó nuevamente en 2024, y una política anterior de Idaho sobre esta misma cuestión fue objeto de litigio federal. Confirme el estado actual y exigible con la Oficina de Registros Vitales o con un abogado antes de basarse en ella.",
+    "detail": "Después de ese primer año, la ley dice que estos hechos materiales \"solo pueden impugnarse en un tribunal por fraude, coacción, o error material de hecho,\" con la carga de la prueba sobre la persona que impugna. La ley no describe ningún proceso separado para actualizar el marcador de sexo para que coincida con la identidad de género actual de una persona. Esta disposición se agregó en 2020 y se modificó nuevamente en 2024, y una política anterior de Idaho sobre esta misma cuestión fue objeto de litigio federal. Para conocer lo que dice el Estado sobre la aplicación de esta sección ahora que se disolvió el mandato judicial de ese litigio, vea el registro relacionado que cita el anuncio del Procurador General de Idaho de enero de 2026. Confirme el estado actual y exigible con la Oficina de Registros Vitales o con un abogado antes de basarse en ella.",
     "prerequisites": [],
     "source": {
       "url": "https://legislature.idaho.gov/statutesrules/idstat/Title39/T39CH2/SECT39-245A/",
       "title": "Estatutos de Idaho — Sección 39-245A, Actas de Nacimiento: Hechos Materiales Incluidos; Enmiendas",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "id.birth-certificate.gender-marker.injunction.es",
+    "jurisdiction": "US-ID",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Idaho: el mandato judicial federal de 2018 se disolvió en enero de 2026",
+    "statement": "El Procurador General de Idaho anunció que el 8 de enero de 2026 el Juez Magistrado Principal de EE. UU. Raymond E. Patricco disolvió el mandato judicial (injunction) federal de 2018 que había impedido a Idaho aplicar su ley que exige que las actas de nacimiento reflejen el sexo biológico al nacer. El anuncio dice que el Departamento de Salud y Bienestar de Idaho ahora puede aplicar esa ley por primera vez desde 2018, y que el mandato de 2018 había obligado a Idaho a procesar solicitudes para cambiar el marcador de sexo con base en la identidad de género.",
+    "detail": "Según el anuncio, las partes presentaron una estipulación conjunta aceptando disolver el mandato después de que el Procurador General pidió disolverlo en octubre de 2025, citando dos decisiones de la Corte Suprema de EE. UU. de 2025 (Trump v. CASA y United States v. Skrmetti). El Procurador General describe el proceso de enmienda que ahora aplica a todas las personas: dentro de un año del registro, una declaración jurada notariada que indique que la información se registró incorrectamente; después de un año, un procedimiento judicial que demuestre fraude, coacción o error material de hecho. Esta es la descripción del Procurador General de la posición del estado, no una página de procedimientos del Departamento de Salud y Bienestar. Confirme el estado actual y exigible con la Oficina de Registros Vitales o con un abogado antes de basarse en ella.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ag.idaho.gov/newsroom/attorney-general-labrador-secures-court-order-ending-yearslong-block-on-idahos-birth-certificate-law/",
+      "title": "Oficina del Procurador General de Idaho — El Procurador General Labrador obtiene una orden judicial que pone fin al bloqueo de años sobre la ley de actas de nacimiento de Idaho (comunicado de prensa)",
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     },
@@ -2208,7 +2231,7 @@
     ],
     "topic": "Petición de cambio de nombre en Illinois",
     "statement": "En Illinois usted cambia su nombre legal presentando una Solicitud de Cambio de Nombre ante el secretario del tribunal de circuito, y un juez firma una Orden de Cambio de Nombre que la concede.",
-    "detail": "Llena una Solicitud de Cambio de Nombre y una Orden de Cambio de Nombre, las presenta ante el secretario del tribunal de circuito (por lo general con presentación electrónica), recibe una fecha de audiencia y va ante un juez. Si tener su expediente judicial abierto al público dañaría su salud o su seguridad, también puede presentar una Moción para Sellar el expediente (Motion to Impound). La guía dice que las leyes sobre el cambio de nombre de adultos se actualizaron a partir del 1 de enero de 2024 y de nuevo el 1 de marzo de 2025. La guía ya no incluye un paso de publicación en un periódico.",
+    "detail": "Llena una Solicitud de Cambio de Nombre y una Orden de Cambio de Nombre, las presenta ante el secretario del tribunal de circuito (por lo general con presentación electrónica), recibe una fecha de audiencia y va ante un juez. Si tener su expediente judicial abierto al público dañaría su salud o su seguridad, también puede presentar una Moción para Sellar el expediente (Motion to Impound). La guía dice que las leyes sobre el cambio de nombre de adultos se actualizaron a partir del 1 de enero de 2024 y de nuevo el 1 de marzo de 2025. La guía ya no incluye un paso de publicación en un periódico. La ley de Illinois también establece un requisito de residencia y restringe quién puede presentar la petición después de ciertas condenas penales — vea el registro de elegibilidad relacionado, que cita el estatuto mismo.",
     "cost": {
       "amount_usd": null,
       "note": "Las tarifas de presentación cambian de caso a caso y de condado a condado — pregunte al secretario del tribunal de circuito. Hay una exención de tarifas disponible si califica.",
@@ -2232,6 +2255,29 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "language": "es",
+    "form_ref": "il-nc-a-request-for-name-change"
+  },
+  {
+    "id": "il.court-order.name.eligibility.es",
+    "jurisdiction": "US-IL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en Illinois: requisito de residencia y quién puede presentar la petición",
+    "statement": "La ley de Illinois (735 ILCS 5/21-101, según la enmienda vigente desde el 1 de marzo de 2025) permite que una persona residente de Illinois presente una petición de cambio de nombre en el tribunal de circuito del condado donde reside. La persona peticionaria debe haber residido en Illinois durante 3 meses al momento de la audiencia de cambio de nombre o de la emisión de la orden que concede el cambio.",
+    "detail": "La página del estatuto muestra dos versiones anteriores de esta sección, vigentes desde el 1 de julio de 2024, que exigían 6 meses de residencia antes de presentar la petición; la versión del 1 de marzo de 2025 es la más reciente. La misma sección restringe quién puede presentar la petición. Una persona condenada por un delito que exige registrarse conforme a la Ley de Registro de Delincuentes Sexuales, la Ley de Registro de Asesinos y Delincuentes Violentos contra Menores, o la Ley de Registro de Incendiarios, y que no ha sido indultada, no puede presentar una petición de cambio de nombre durante el período de registro, a menos que declare bajo juramento que la petición se debe a matrimonio, creencias religiosas, su condición de víctima de trata, o su identidad relacionada con el género según la define la Ley de Derechos Humanos de Illinois — y un juez puede conceder o negar esa solicitud. Una persona condenada por un delito grave (felony) cuya sentencia no se ha completado, terminado o cumplido no puede presentar la petición a menos que haya sido indultada. Si el tribunal concede un cambio de nombre a alguien con una condena sin indulto, un cargo pendiente, o un arresto sin cargo presentado, una copia de la orden se envía a la Policía Estatal de Illinois, que actualiza sus registros para mostrar tanto el nombre nuevo como el anterior.",
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://ilga.gov/Documents/legislation/ilcs/documents/073500050K21-101.htm",
+      "title": "Asamblea General de Illinois — 735 ILCS 5/21-101, Cambio de Nombre: Procedimientos; Partes",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
     "language": "es"
   },
   {
@@ -2323,7 +2369,7 @@
     "detail": "Esta página de preguntas frecuentes no explica cómo obtener esa orden judicial, y este proyecto no pudo encontrar un formulario o página oficial de Indiana que describa ese proceso: el propio paquete estatal de petición de cambio de nombre solo ofrece actualizar el nombre en un acta de nacimiento, no la designación de sexo. Una guía aparte de ayuda legal del Proyecto LGBTQ+ de Indiana Legal Services enumera el acta de nacimiento de Indiana como un documento cuyo marcador de género no se puede cambiar en absoluto, lo cual contradice lo que indica el propio departamento de salud aquí — este proyecto no puede resolver esa contradicción usando solo fuentes oficiales.",
     "cost": {
       "amount_usd": null,
-      "note": "Esta página de preguntas frecuentes no indica una tarifa por la corrección de la designación de sexo; se aplica una tarifa aparte por una copia certificada del acta actualizada."
+      "note": "Esta página de preguntas frecuentes no indica una tarifa por la corrección de la designación de sexo. El listado de tarifas del departamento indica montos separados para una enmienda y para una copia certificada — vea el registro relacionado de tarifas del acta de nacimiento de Indiana."
     },
     "prerequisites": [
       "court-order"
@@ -2331,11 +2377,38 @@
     "source": {
       "url": "https://www.in.gov/health/vital-records/frequently-asked-questions/amendments-corrections-faqs",
       "title": "Indiana Department of Health — Amendments & Corrections FAQs",
-      "last_verified": "2026-07-13",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",
     "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "in.birth-certificate.fees.es",
+    "jurisdiction": "US-IN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Tarifas para enmendar un acta de nacimiento de Indiana y obtener copias certificadas",
+    "statement": "El listado de tarifas de registros vitales del Departamento de Salud de Indiana indica $8.00 por una enmienda o corrección en un acta de nacimiento, y $10.00 por un acta de nacimiento, más $4.00 por cada acta de nacimiento adicional en el mismo pedido.",
+    "detail": "El listado presenta la tarifa de enmienda y la tarifa del acta como partidas separadas; no dice si una persona que enmienda un registro también paga la tarifa del acta para recibir una copia que muestre el cambio. Para solicitar un acta de nacimiento por correo, la página indica imprimir el Formulario 49607 y pagar con cheque o giro postal.",
+    "cost": {
+      "amount_usd": 8,
+      "note": "Un acta de nacimiento cuesta $10.00, y cada acta adicional en el mismo pedido cuesta $4.00; la página no indica un total combinado para una enmienda más una copia."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.in.gov/health/vital-records/",
+      "title": "Departamento de Salud de Indiana — Registros Vitales (servicios, cómo solicitar, listado de tarifas)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "in-idoh-49607",
     "language": "es"
   },
   {
@@ -2350,7 +2423,7 @@
     "detail": "Llame a la división de Registros Vitales del Departamento de Salud de Indiana al (317) 233-2700 para corregir o enmendar un acta de nacimiento; los requisitos varían según el cambio solicitado.",
     "cost": {
       "amount_usd": null,
-      "note": "Esta página de preguntas frecuentes no indica una tarifa por la corrección del nombre; se aplica una tarifa aparte por una copia certificada del acta actualizada."
+      "note": "Esta página de preguntas frecuentes no indica una tarifa por la corrección del nombre. El listado de tarifas del departamento indica montos separados para una enmienda y para una copia certificada — vea el registro relacionado de tarifas del acta de nacimiento de Indiana."
     },
     "prerequisites": [
       "court-order"
@@ -2542,7 +2615,7 @@
     ],
     "topic": "Cambio de nombre en el acta de nacimiento de Kansas",
     "statement": "Para cambiar el nombre en un acta de nacimiento de Kansas después de un cambio legal de nombre ordenado por un tribunal, envíe por correo una copia certificada de la orden a Estadísticas Vitales de Kansas junto con una carta de presentación que indique su nombre al nacer, fecha de nacimiento y lo que desea que se haga. La tarifa para enmendar el acta es de $20, la cual no incluye el costo de una copia certificada.",
-    "detail": "Esto es diferente de corregir un nombre mal escrito, lo cual requiere un documento de identificación antiguo en lugar de una orden judicial. Envíe su orden judicial certificada y carta de presentación a la Unidad de Enmiendas, Oficina de Estadísticas Vitales, 1000 SW Jackson, Suite 120, Topeka, KS 66612-2221.",
+    "detail": "Esto es diferente de corregir un nombre mal escrito, lo cual requiere un documento de identificación antiguo en lugar de una orden judicial. Envíe su orden judicial certificada y carta de presentación a la Unidad de Enmiendas, Oficina de Estadísticas Vitales, 1000 SW Jackson, Suite 120, Topeka, KS 66612-2221. Las preguntas frecuentes de KDHE indican usar su Formulario de Solicitud de Enmienda, que debe estar notariado, para indicar qué desea que se enmiende.",
     "cost": {
       "amount_usd": 20,
       "note": "Esto no incluye el costo de una copia certificada del acta corregida."
@@ -2558,7 +2631,8 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
-    "language": "es"
+    "language": "es",
+    "form_ref": "ks-kdhe-amendment-request-form"
   },
   {
     "id": "ks.court-order.name.es",
@@ -2783,6 +2857,27 @@
       "url": "https://ldh.la.gov/vital-records/amendments-to-birth-records",
       "title": "Louisiana Department of Health, Center for Vital Records and Statistics — Amendments to Birth Records",
       "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "la.birth-certificate.gender-marker.mistaken-designation-law.es",
+    "jurisdiction": "US-LA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "La ley de Luisiana detrás de la corrección de sexo con dos médicos excluye la reasignación de género",
+    "statement": "Los Estatutos Revisados de Luisiana 40:62.1 permiten que el registrador estatal emita una nueva acta de nacimiento con la designación de sexo corregida, y con el primer nombre o nombre de pila cambiado, para un menor cuyo sexo se registró por error al nacer — cuando uno de los padres, o la persona legalmente responsable del menor, presenta declaraciones juradas de dos o más médicos que establezcan por diagnóstico médico que el error se debió a un defecto genético hereditario o a una deficiencia hormonal, como la hiperplasia suprarrenal congénita o una condición relacionada. La ley dice que esto no aplica cuando el cambio se debe a una reasignación sexual o a una cirugía correctiva mayor, lo cual, según la ley, se contempla en R.S. 40:62.",
+    "detail": "Cuando se emite una nueva acta conforme a esta sección, el acta de nacimiento original del menor, las declaraciones juradas y la evidencia relacionada se sellan y se archivan en los archivos del registro de registros vitales. Esta es la ley que corresponde al proceso de corrección con dos proveedores del Departamento de Salud descrito en el registro relacionado sobre la guía de la agencia — el proceso que la propia página del Departamento describe como 'no aplica para reasignación de género.' La vía basada en cirugía está en R.S. 40:62, cubierta por un registro aparte.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=98726",
+      "title": "Legislatura del Estado de Luisiana — La. R.S. 40:62.1, Emisión de una Nueva Acta de Nacimiento para un Menor con Designación de Sexo Errónea en el Acta Original",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",
@@ -6331,6 +6426,32 @@
     "language": "es"
   },
   {
+    "id": "sc.court-order.fees.es",
+    "jurisdiction": "US-SC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Tarifa de presentación del Tribunal de Familia de Carolina del Sur para un cambio de nombre",
+    "statement": "El calendario de tarifas de presentación del Tribunal de Familia del Poder Judicial de Carolina del Sur indica una tarifa de presentación de $150 para las Acciones de Cambio de Nombre y Corrección de Registro de Nacimiento.",
+    "detail": "El mismo calendario dice que no se requiere tarifa de presentación para un caso presentado con una orden que concede una Moción de Autorización para Proceder In Forma Pauperis (Regla 3(b)(1), SCRCP). Tampoco indica tarifa cuando una parte está representada por un abogado que trabaja en nombre de una sociedad de asistencia legal, una organización de servicios legales u otra organización sin fines de lucro, o del Programa Pro Bono de Carolina del Sur, con certificación escrita del abogado (Regla 3(b)(2), SCRCP). Las tarifas por mociones se indican por separado. Consulte la propia página de tarifas del tribunal para confirmar el monto actual antes de presentar su caso.",
+    "cost": {
+      "amount_usd": 150,
+      "note": "La tarifa de presentación para las Acciones de Cambio de Nombre y Corrección de Registro de Nacimiento. El calendario no indica ninguna tarifa para un caso presentado con una orden que concede una Moción de Autorización para Proceder In Forma Pauperis.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.sccourts.org/courts/trial-courts/family-court/court-fees/",
+      "title": "Poder Judicial de Carolina del Sur — Tarifas de Presentación del Tribunal de Familia",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
     "id": "sc.court-order.name.es",
     "jurisdiction": "US-SC",
     "document_type": "court-order",
@@ -6764,7 +6885,7 @@
     ],
     "topic": "Petición de cambio de nombre en Texas",
     "statement": "En Texas usted presenta una petición de cambio de nombre en el condado de Texas donde vive, y un juez firma una orden que lo concede. Debe tener al menos 18 años.",
-    "detail": "Le toman un juego de huellas dactilares legible y completo, y le da a la corte información completa sobre todos los delitos graves y los delitos menores de Clase A o B. Presenta su petición en la oficina del secretario de distrito de su condado. En algunos condados también paga por una verificación de antecedentes penales. La orden firmada se usa luego para actualizar otros documentos.",
+    "detail": "Le toman un juego de huellas dactilares legible y completo, y le da a la corte información completa sobre todos los delitos graves y los delitos menores de Clase A o B. Presenta su petición en la oficina del secretario de distrito de su condado. En algunos condados también paga por una verificación de antecedentes penales. La orden firmada se usa luego para actualizar otros documentos. Si tiene una condena por un delito grave, TexasLawHelp dice que la corte no puede cambiar su nombre a menos que presente prueba de que fue indultado, de que han pasado al menos dos años desde que salió de prisión o completó la libertad condicional, o de que está cambiando su nombre al nombre principal que aparece en su historial penal (Código de Familia de Texas 45.103(b)(2)). Si está obligado a registrarse como delincuente sexual, debe presentar prueba de que notificó a la autoridad policial local sobre su solicitud de cambio de nombre.",
     "cost": {
       "amount_usd": null,
       "note": "La cuota de presentación puede ser de entre $150 y $300 según dónde viva — pregunte en la oficina del secretario de distrito de su condado. Si tiene bajos ingresos, puede pedir a la corte que le exente la cuota con una Declaración de Incapacidad para Pagar los Costos de la Corte. También paga por las huellas dactilares y, en algunos condados, por la verificación de antecedentes penales.",
@@ -7973,7 +8094,7 @@
     ],
     "topic": "Designación de género en la licencia de Washington",
     "statement": "Washington ofrece tres designaciones de género en la licencia de conducir o identificación: M (masculino), F (femenino) y X (no exclusivamente masculino ni femenino). Puede cambiarla en persona o por correo; no hay opción en línea.",
-    "detail": "En persona, lleve su tarjeta actual a una oficina de licencias y confirme su designación de género en voz alta. Por correo, complete un formulario de Solicitud de Designación de Género y envíelo a la dirección que aparece en el formulario. La página no pide ninguna documentación médica.",
+    "detail": "En persona, lleve su tarjeta actual a una oficina de licencias y confirme su designación de género en voz alta. Por correo, complete un formulario de Solicitud de Cambio de Designación de Género y envíelo a la dirección que aparece en el formulario. La página no pide ninguna documentación médica.",
     "cost": {
       "amount_usd": 0,
       "note": "Si la designación de género es lo único que actualiza, la tarjeta nueva es gratis. Si actualiza algo más al mismo tiempo, como su nombre, puede haber una tarifa adicional."
@@ -7987,6 +8108,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "wa-dol-change-of-gender-designation",
     "language": "es"
   },
   {
@@ -8008,6 +8130,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "wa-dol-change-of-gender-designation",
     "audience": "minor",
     "language": "es"
   },

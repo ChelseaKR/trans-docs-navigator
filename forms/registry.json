@@ -75,6 +75,21 @@
     }
   },
   {
+    "id": "ar-fee-waiver-ifp",
+    "jurisdiction": "US-AR",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "In Forma Pauperis (Fee Waiver) Petition, Affidavit and Order",
+    "source": {
+      "url": "https://a.arlawhelp.org/ld.php?content_id=77022344",
+      "title": "Arkansas Law Help — In Forma Pauperis Forms",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "az-affidavit-correct-amend-birth",
     "jurisdiction": "US-AZ",
     "document_type": "birth-certificate",
@@ -87,6 +102,37 @@
       "url": "https://www.azdhs.gov/documents/vital-records/manuals/correction-affidavit-correct-amend-birth.pdf?v=20260409",
       "title": "Arizona Department of Health Services, Bureau of Vital Records — Affidavit to Correct or Amend a Birth Certificate",
       "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "az-aocdfgf1f-fee-waiver",
+    "jurisdiction": "US-AZ",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Application for Deferral or Waiver of Court Fees or Costs and Consent to Entry of Judgment (Form No. AOCDFGF1F)",
+    "source": {
+      "url": "https://www.azcourts.gov/courtfilingfees/Fee-Waivers-and-Deferrals/Fee-Waiver-and-Deferral-Forms",
+      "title": "Arizona Judicial Branch — Fee Waiver and Deferral Forms",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ca-fw-001",
+    "jurisdiction": "US-CA",
+    "document_type": "court-order",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Form FW-001 — Request to Waive Court Fees",
+    "source": {
+      "url": "https://selfhelp.courts.ca.gov/fee-waiver",
+      "title": "California Courts Self-Help — Ask for a Fee Waiver (Form FW-001)",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
   },
@@ -132,6 +178,21 @@
       "url": "https://www.cdph.ca.gov/CDPH%20Document%20Library/ControlledForms/VS24B.pdf",
       "title": "California Department of Public Health Form VS 24B",
       "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "co-jdf-205",
+    "jurisdiction": "US-CO",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form JDF 205 — Motion to Waive Fees",
+    "source": {
+      "url": "https://www.coloradojudicial.gov/sites/default/files/2024-05/JDF205.pdf",
+      "title": "Colorado Judicial Branch Form JDF 205 — Motion to Waive Fees",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
   },
@@ -303,6 +364,321 @@
     }
   },
   {
+    "id": "hi-doh-application-amendment-birth-record",
+    "jurisdiction": "US-HI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Affidavit and Application for Amendment of Birth Record",
+    "source": {
+      "url": "https://health.hawaii.gov/vitalrecords/files/2015/07/Application-for-Amendment-to-Birth-Record.pdf",
+      "title": "Hawaii Department of Health, Office of Health Status Monitoring — Application for Amendment to Birth Record",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "hi-doh-physician-affidavit-sex-designation-change",
+    "jurisdiction": "US-HI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Physician's Affidavit for Sex Designation Change",
+    "source": {
+      "url": "https://health.hawaii.gov/vitalrecords/files/2015/07/Physician-Affidavit-for-Sex-Designation-Change.pdf",
+      "title": "Hawaii Department of Health — Physician Affidavit Form for Sex Designation Change",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ia-petition-change-of-name-adult",
+    "jurisdiction": "US-IA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Petition for Change of Name of Adult (no dissolution of marriage)",
+    "source": {
+      "url": "https://www.iowacourts.gov/browse/files/642d2f50936e41a095396f8fd7f2277c/download",
+      "title": "Iowa Judicial Branch — Petition for Change of Name",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ia-petition-change-of-name-minor-child",
+    "jurisdiction": "US-IA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Petition for Change of Name of Minor Child",
+    "source": {
+      "url": "https://www.iowacourts.gov/browse/files/7e131a3beca64fb4bce6f3cb50687cc1/download",
+      "title": "Iowa Judicial Branch — Petition for Change of Name of Minor Child",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-civil-case-information-sheet",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "General Civil Case Information Sheet",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/Civil_Cover_Sheet.pdf",
+      "title": "Idaho Courts Self-Help — General Civil Case Information Sheet",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-nc-1-3",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NC 1-3 — Letter Requesting Publication of Notice",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NC_1-3.pdf",
+      "title": "Idaho Courts Self-Help — Letter Requesting Publication of Notice",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-nc-instruction-1",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NC Instruction 1 — Instructions for Name Change (Adult and Minor)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NC_Instr_1.pdf",
+      "title": "Idaho Courts Self-Help — Instructions — Name Change (Adult and Minor)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-nca-1-1",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NCA 1-1 — Unredacted Petition for Name Change (Adult or Emancipated Minor)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NCA_1-1.pdf",
+      "title": "Idaho Courts Self-Help — Unredacted Petition for Name Change (Adult or Emancipated Minor)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-nca-1-1r",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NCA 1-1R — Redacted Petition for Name Change (Adult or Emancipated Minor)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NCA_1-1R.pdf",
+      "title": "Idaho Courts Self-Help — Redacted Petition for Name Change (Adult or Emancipated Minor)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-nca-1-2",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NCA 1-2 — Notice of Hearing on Petition for Name Change (Adult)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NCA_1-2.pdf",
+      "title": "Idaho Courts Self-Help — Notice of Hearing on Petition for Name Change (Adult)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-nca-8-1",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NCA 8-1 — Judgment for Name Change (Adult)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NCA_8-1.pdf",
+      "title": "Idaho Courts Self-Help — Judgment for Name Change (Adult)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-ncm-1-1",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NCM 1-1 — Unredacted Petition for Name Change (Minor)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NCM_1-1.pdf",
+      "title": "Idaho Courts Self-Help — Unredacted Petition for Name Change (Minor)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-ncm-1-1r",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NCM 1-1R — Redacted Petition for Name Change (Minor)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NCM_1-1R.pdf",
+      "title": "Idaho Courts Self-Help — Redacted Petition for Name Change (Minor)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-ncm-1-2",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NCM 1-2 — Notice of Hearing on Petition for Name Change (Minor)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NCM_1-2.pdf",
+      "title": "Idaho Courts Self-Help — Notice of Hearing on Petition for Name Change (Minor)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-ncm-1-4",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NCM 1-4 — Unredacted Petition for Name Change (Multiple Minors)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NCM_1-4.pdf",
+      "title": "Idaho Courts Self-Help — Unredacted Petition for Name Change (Multiple Minors)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-ncm-1-4r",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NCM 1-4R — Redacted Petition for Name Change (Multiple Minors)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NCM_1-4R.pdf",
+      "title": "Idaho Courts Self-Help — Redacted Petition for Name Change (Multiple Minors)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-ncm-1-5",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NCM 1-5 — Notice of Hearing on Petition for Name Change (Multiple Minors)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NCM_1-5.pdf",
+      "title": "Idaho Courts Self-Help — Notice of Hearing on Petition for Name Change (Multiple Minors)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-ncm-2-1",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NCM 2-1 — Parental Consent to Name Change (Minor)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NCM_2-1.pdf",
+      "title": "Idaho Courts Self-Help — Parental Consent to Name Change (Minor)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-ncm-2-2",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NCM 2-2 — Affidavit of Service on Petition for Name Change and Notice of Hearing (Minor)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NCM_2-2.pdf",
+      "title": "Idaho Courts Self-Help — Affidavit of Service on Petition for Name Change and Notice of Hearing (Minor)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-ncm-8-1",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NCM 8-1 — Judgment for Name Change (Minor)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NCM_8-1.pdf",
+      "title": "Idaho Courts Self-Help — Judgment for Name Change (Minor)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "id-cao-ncm-8-2",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "CAO NCM 8-2 — Judgment for Name Change (Multiple Minors)",
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/docs/forms/CAO_NCM_8-2.pdf",
+      "title": "Idaho Courts Self-Help — Judgment for Name Change (Multiple Minors)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "id-dhw-name-change-instructions",
     "jurisdiction": "US-ID",
     "document_type": "birth-certificate",
@@ -334,6 +710,66 @@
     }
   },
   {
+    "id": "il-fee-waiver-application",
+    "jurisdiction": "US-IL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Application for Waiver of Court Fees",
+    "source": {
+      "url": "https://www.illinoislegalaid.org/legal-information/filing-court-papers-free",
+      "title": "Illinois Legal Aid Online — Filing Court Papers for Free (How-To)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "il-nc-a-order-for-name-change",
+    "jurisdiction": "US-IL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Order for Name Change (Adult Name Change) — Illinois Supreme Court statewide approved form NC-A",
+    "source": {
+      "url": "https://ilcourtsaudio.blob.core.windows.net/antilles-resources/resources/4297bafa-f259-4d32-9a27-585d9bd348f4/NC-A%20Order%20for%20Name%20Change.pdf",
+      "title": "Illinois Courts — Approved Statewide Forms: Name Change — NC-A Order for Name Change",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "il-nc-a-request-for-name-change",
+    "jurisdiction": "US-IL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Request for Name Change (Adult Name Change) — Illinois Supreme Court statewide approved form NC-A",
+    "source": {
+      "url": "https://ilcourtsaudio.blob.core.windows.net/antilles-resources/resources/74f342af-7d93-4f93-b5b7-fbb92635d45a/NC-A%20Request%20for%20Name%20Change.pdf",
+      "title": "Illinois Courts — Approved Statewide Forms: Name Change — NC-A Request for Name Change",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "il-nc-motion-to-impound",
+    "jurisdiction": "US-IL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Motion to Impound (Make Court Records Private) (Name Change) — Illinois Supreme Court statewide approved form NC",
+    "source": {
+      "url": "https://ilcourtsaudio.blob.core.windows.net/antilles-resources/resources/c739a9d8-27a9-47e3-af18-a7ec5cfeef00/NC%20Motion%20to%20Impound.pdf",
+      "title": "Illinois Courts — Approved Statewide Forms: Name Change — NC Motion to Impound",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "in-cca-namechange-adult",
     "jurisdiction": "US-IN",
     "document_type": "court-order",
@@ -345,6 +781,82 @@
       "url": "https://indianalegalhelp.org/wp-content/uploads/2024/09/Adult-Name-Change-Packet-INSTRUCTIONS-202409-Update.pdf",
       "title": "Indiana Legal Help — Adult Name Change Instructions and Forms",
       "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "in-cca-namechange-minor-with-consent",
+    "jurisdiction": "US-IN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Indiana Legal Help / Coalition for Court Access — Child Name Change With Consent Packet (forms)",
+    "source": {
+      "url": "https://indianalegalhelp.org/wp-content/uploads/2024/09/Child-Name-Change-With-Consent-Packet-202409-Update.pdf",
+      "title": "Indiana Legal Help — Child Name Change With Consent From Other Parent or Guardian (forms packet)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "in-cca-namechange-minor-without-consent",
+    "jurisdiction": "US-IN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Indiana Legal Help / Coalition for Court Access — Child Name Change Without Consent Packet (forms)",
+    "source": {
+      "url": "https://indianalegalhelp.org/wp-content/uploads/2024/09/Child-Name-Change-No-Consent-Packet-202506.pdf",
+      "title": "Indiana Legal Help — Child Name Change Without Consent (forms packet)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "in-fee-waiver-form",
+    "jurisdiction": "US-IN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Filing Fee Waiver Form",
+    "source": {
+      "url": "https://indianalegalhelp.org/wp-content/uploads/2023/08/GeneralFeeWaiver0420_FILLABLE-4.21.23.pdf",
+      "title": "Indiana Legal Help — Filing Fee Waiver Form",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "in-idoh-49607",
+    "jurisdiction": "US-IN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "State Form 49607 — Application for Search and Certified Copy of Birth Record",
+    "source": {
+      "url": "https://forms.in.gov/Download.aspx?id=5623",
+      "title": "Indiana Department of Health — State Form 49607, Application for Search and Certified Copy of Birth Record",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ks-kdhe-amendment-request-form",
+    "jurisdiction": "US-KS",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "title": "Amendment Request Form (birth, marriage, or divorce record)",
+    "source": {
+      "url": "https://www.kdhe.ks.gov/DocumentCenter/View/46270",
+      "title": "Kansas Department of Health and Environment, Office of Vital Statistics — Amendment Request Form (PDF)",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
   },
@@ -361,6 +873,21 @@
       "url": "https://www.chfs.ky.gov/agencies/dph/dehp/vsb/Forms/VS2J.pdf",
       "title": "Kentucky Cabinet for Health and Family Services Form VS-2J",
       "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ma-affidavit-of-indigency",
+    "jurisdiction": "US-MA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Affidavit of Indigency",
+    "source": {
+      "url": "https://www.mass.gov/doc/affidavit-of-indigency/download",
+      "title": "Massachusetts Court System — Affidavit of Indigency",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
   },
@@ -469,6 +996,21 @@
       "url": "https://www.maine.gov/dhhs/mecdc/sites/maine.gov.dhhs.mecdc/files/Application%20to%20Correct%20a%20Vital%20Record%20in%20Maine%20%28VS-7%29.pdf",
       "title": "Maine Division of Data, Research and Vital Statistics Form VS-7",
       "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "mi-fee-waiver-request",
+    "jurisdiction": "US-MI",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Fee Waiver Request Form — Michigan One Court of Justice",
+    "source": {
+      "url": "https://courts.michigan.gov/siteassets/forms/scao-approved/mc20.pdf",
+      "title": "Michigan One Court of Justice — Fee Waiver Request Form",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
   },
@@ -658,6 +1200,21 @@
     }
   },
   {
+    "id": "nj-doh-reg-15",
+    "jurisdiction": "US-NJ",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form REG-15 — Application to Amend a New Jersey Vital Record",
+    "source": {
+      "url": "https://www.nj.gov/health/forms/reg-15.pdf",
+      "title": "New Jersey Department of Health Form REG-15",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "nj-doh-reg-l2",
     "jurisdiction": "US-NJ",
     "document_type": "birth-certificate",
@@ -683,21 +1240,6 @@
     "source": {
       "url": "https://www.nj.gov/mvc/pdf/license/genderchange.pdf",
       "title": "New Jersey Motor Vehicle Commission — Declaration of Gender Designation Change (GENDER1, R3/21)",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "nj-doh-reg-15",
-    "jurisdiction": "US-NJ",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "name"
-    ],
-    "title": "Form REG-15 — Application to Amend a New Jersey Vital Record",
-    "source": {
-      "url": "https://www.nj.gov/health/forms/reg-15.pdf",
-      "title": "New Jersey Department of Health Form REG-15",
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -763,6 +1305,37 @@
     }
   },
   {
+    "id": "ny-dmv-mv-44",
+    "jurisdiction": "US-NY",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Form MV-44 — Application for Permit, Driver License or Non-Driver ID Card",
+    "source": {
+      "url": "https://dmv.ny.gov/forms/mv44.pdf",
+      "title": "New York State Department of Motor Vehicles Form MV-44 (4/26)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ny-dmv-mv-44nc",
+    "jurisdiction": "US-NY",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form MV-44NC — Application for Name Change Only on Standard Permit, Driver License or Non-Driver ID Card",
+    "source": {
+      "url": "https://dmv.ny.gov/forms/mv44nc.pdf",
+      "title": "New York State Department of Motor Vehicles Form MV-44NC",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "ny-doh-5303",
     "jurisdiction": "US-NY",
     "document_type": "birth-certificate",
@@ -794,32 +1367,16 @@
     }
   },
   {
-    "id": "ny-dmv-mv-44",
-    "jurisdiction": "US-NY",
-    "document_type": "drivers-license",
-    "change_type": [
-      "name",
-      "gender-marker"
-    ],
-    "title": "Form MV-44 — Application for Permit, Driver License or Non-Driver ID Card",
-    "source": {
-      "url": "https://dmv.ny.gov/forms/mv44.pdf",
-      "title": "New York State Department of Motor Vehicles Form MV-44 (4/26)",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "ny-dmv-mv-44nc",
-    "jurisdiction": "US-NY",
-    "document_type": "drivers-license",
+    "id": "ok-osdh-birth-certificate-request-form",
+    "jurisdiction": "US-OK",
+    "document_type": "birth-certificate",
     "change_type": [
       "name"
     ],
-    "title": "Form MV-44NC — Application for Name Change Only on Standard Permit, Driver License or Non-Driver ID Card",
+    "title": "Birth Certificate Request Form (OSDH Vital Records)",
     "source": {
-      "url": "https://dmv.ny.gov/forms/mv44nc.pdf",
-      "title": "New York State Department of Motor Vehicles Form MV-44NC",
+      "url": "https://oklahoma.gov/content/dam/ok/en/health/health2/aem-documents/vital-records/forms/18008vr-vr-birth-application-eng-eform.pdf",
+      "title": "Oklahoma State Department of Health, Vital Records — Birth Certificate Request Form",
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -918,6 +1475,51 @@
     }
   },
   {
+    "id": "ri-dmv-gender-designation",
+    "jurisdiction": "US-RI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Gender Designation on a License or Identification Card",
+    "source": {
+      "url": "https://dmv.ri.gov/media/41/download",
+      "title": "Rhode Island Division of Motor Vehicles — Gender Designation on a License or Identification Card (rev. 7/20)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "ri-dmv-li-1",
+    "jurisdiction": "US-RI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form LI-1 — Application for License, Identification Card and Permit",
+    "source": {
+      "url": "https://dmv.ri.gov/media/391/download",
+      "title": "Rhode Island Division of Motor Vehicles — Application for License, Identification Card and Permit (LI-1)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "tx-statement-inability-afford",
+    "jurisdiction": "US-TX",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Statement of Inability to Afford Payment of Court Costs or an Appeal Bond",
+    "source": {
+      "url": "https://www.txcourts.gov/media/1456942/statement-of-inability-to-afford-payment-of-court-costs-or-an-appeal-bond-bilingual.pdf",
+      "title": "Texas Judicial Branch — Statement of Inability to Afford Payment of Court Costs or an Appeal Bond (Bilingual)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "tx-vs-170",
     "jurisdiction": "US-TX",
     "document_type": "birth-certificate",
@@ -928,6 +1530,22 @@
     "source": {
       "url": "https://www.dshs.texas.gov/sites/default/files/vs/doc/correcting-birth-certificate-vs-170_1.2026.pdf",
       "title": "Texas DSHS Vital Statistics Form VS-170",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "us-dd-149",
+    "jurisdiction": "US",
+    "document_type": "military-records",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "DD Form 149 — Application for Correction of Military Record",
+    "source": {
+      "url": "https://www.esd.whs.mil/Portals/54/Documents/DD/forms/dd/dd0149.pdf",
+      "title": "Department of Defense DD Form 149, Application for Correction of Military Record",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
@@ -944,6 +1562,52 @@
       "url": "https://eforms.state.gov/Forms/ds82_pdf.PDF",
       "title": "U.S. Department of State Form DS-82",
       "last_verified": "2026-06-16",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "us-i-765",
+    "jurisdiction": "US",
+    "document_type": "ead",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form I-765 — Application for Employment Authorization",
+    "source": {
+      "url": "https://www.uscis.gov/sites/default/files/document/forms/i-765.pdf",
+      "title": "USCIS Form I-765, Application for Employment Authorization",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "us-i-90",
+    "jurisdiction": "US",
+    "document_type": "green-card",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form I-90 — Application to Replace Permanent Resident Card",
+    "source": {
+      "url": "https://www.uscis.gov/sites/default/files/document/forms/i-90.pdf",
+      "title": "USCIS Form I-90, Application to Replace Permanent Resident Card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "us-n-565",
+    "jurisdiction": "US",
+    "document_type": "naturalization-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Form N-565 — Application for Replacement Naturalization/Citizenship Document",
+    "source": {
+      "url": "https://www.uscis.gov/sites/default/files/document/forms/n-565.pdf",
+      "title": "USCIS Form N-565, Application for Replacement Naturalization/Citizenship Document",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
   },
@@ -990,6 +1654,21 @@
       "url": "https://www.vdh.virginia.gov/content/uploads/sites/93/2020/07/VS42_Gender-Designation-Form.pdf",
       "title": "Virginia Department of Health Form VS42 — Changing Sex Designation",
       "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "vt-application-waive-filing-fees",
+    "jurisdiction": "US-VT",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Application to Waive Filing Fees and Service Costs (Form 600-00228)",
+    "source": {
+      "url": "https://www.vtcourts.gov/sites/default/files/documents/600-00228%20%E2%80%93%20Application%20to%20Waive%20Filing%20Fees%20%26%20Service%20Costs_0.pdf",
+      "title": "Vermont Judiciary Form 600-00228 — Application to Waive Filing Fees and Service Costs",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
   },
@@ -1070,6 +1749,21 @@
     }
   },
   {
+    "id": "wa-dol-change-of-gender-designation",
+    "jurisdiction": "US-WA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Change of Gender Designation — Washington DOL request form (driver license, ID card, or instruction permit)",
+    "source": {
+      "url": "https://dol.wa.gov/forms/view/520043/download",
+      "title": "Washington State Department of Licensing — Change of Gender Designation (printed form number DLE-520-043, R/11/19; DOL's forms search also lists Spanish, Russian, and Vietnamese versions of the same form)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "wv-dmv-99-ro-gender-designation",
     "jurisdiction": "US-WV",
     "document_type": "drivers-license",
@@ -1126,264 +1820,6 @@
     "source": {
       "url": "https://health.wyo.gov/wp-content/uploads/2026/07/WDH-VRS-Correction-Form-2026.pdf",
       "title": "Wyoming Department of Health, Vital Records Services — Form to Correct a Wyoming Vital Record",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "us-i-90",
-    "jurisdiction": "US",
-    "document_type": "green-card",
-    "change_type": [
-      "name"
-    ],
-    "title": "Form I-90 — Application to Replace Permanent Resident Card",
-    "source": {
-      "url": "https://www.uscis.gov/sites/default/files/document/forms/i-90.pdf",
-      "title": "USCIS Form I-90, Application to Replace Permanent Resident Card",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "us-n-565",
-    "jurisdiction": "US",
-    "document_type": "naturalization-certificate",
-    "change_type": [
-      "name",
-      "gender-marker"
-    ],
-    "title": "Form N-565 — Application for Replacement Naturalization/Citizenship Document",
-    "source": {
-      "url": "https://www.uscis.gov/sites/default/files/document/forms/n-565.pdf",
-      "title": "USCIS Form N-565, Application for Replacement Naturalization/Citizenship Document",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "us-i-765",
-    "jurisdiction": "US",
-    "document_type": "ead",
-    "change_type": [
-      "name"
-    ],
-    "title": "Form I-765 — Application for Employment Authorization",
-    "source": {
-      "url": "https://www.uscis.gov/sites/default/files/document/forms/i-765.pdf",
-      "title": "USCIS Form I-765, Application for Employment Authorization",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "us-dd-149",
-    "jurisdiction": "US",
-    "document_type": "military-records",
-    "change_type": [
-      "name",
-      "gender-marker"
-    ],
-    "title": "DD Form 149 — Application for Correction of Military Record",
-    "source": {
-      "url": "https://www.esd.whs.mil/Portals/54/Documents/DD/forms/dd/dd0149.pdf",
-      "title": "Department of Defense DD Form 149, Application for Correction of Military Record",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "ca-fw-001",
-    "jurisdiction": "US-CA",
-    "document_type": "court-order",
-    "change_type": [
-      "name",
-      "gender-marker"
-    ],
-    "title": "Form FW-001 — Request to Waive Court Fees",
-    "source": {
-      "url": "https://selfhelp.courts.ca.gov/fee-waiver",
-      "title": "California Courts Self-Help — Ask for a Fee Waiver (Form FW-001)",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "az-aocdfgf1f-fee-waiver",
-    "jurisdiction": "US-AZ",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "title": "Application for Deferral or Waiver of Court Fees or Costs and Consent to Entry of Judgment (Form No. AOCDFGF1F)",
-    "source": {
-      "url": "https://www.azcourts.gov/courtfilingfees/Fee-Waivers-and-Deferrals/Fee-Waiver-and-Deferral-Forms",
-      "title": "Arizona Judicial Branch — Fee Waiver and Deferral Forms",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "co-jdf-205",
-    "jurisdiction": "US-CO",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "title": "Form JDF 205 — Motion to Waive Fees",
-    "source": {
-      "url": "https://www.coloradojudicial.gov/sites/default/files/2024-05/JDF205.pdf",
-      "title": "Colorado Judicial Branch Form JDF 205 — Motion to Waive Fees",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "ar-fee-waiver-ifp",
-    "jurisdiction": "US-AR",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "title": "In Forma Pauperis (Fee Waiver) Petition, Affidavit and Order",
-    "source": {
-      "url": "https://a.arlawhelp.org/ld.php?content_id=77022344",
-      "title": "Arkansas Law Help — In Forma Pauperis Forms",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "il-fee-waiver-application",
-    "jurisdiction": "US-IL",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "title": "Application for Waiver of Court Fees",
-    "source": {
-      "url": "https://www.illinoislegalaid.org/legal-information/filing-court-papers-free",
-      "title": "Illinois Legal Aid Online — Filing Court Papers for Free (How-To)",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "in-fee-waiver-form",
-    "jurisdiction": "US-IN",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "title": "Filing Fee Waiver Form",
-    "source": {
-      "url": "https://indianalegalhelp.org/wp-content/uploads/2023/08/GeneralFeeWaiver0420_FILLABLE-4.21.23.pdf",
-      "title": "Indiana Legal Help — Filing Fee Waiver Form",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "mi-fee-waiver-request",
-    "jurisdiction": "US-MI",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "title": "Fee Waiver Request Form — Michigan One Court of Justice",
-    "source": {
-      "url": "https://courts.michigan.gov/siteassets/forms/scao-approved/mc20.pdf",
-      "title": "Michigan One Court of Justice — Fee Waiver Request Form",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "tx-statement-inability-afford",
-    "jurisdiction": "US-TX",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "title": "Statement of Inability to Afford Payment of Court Costs or an Appeal Bond",
-    "source": {
-      "url": "https://www.txcourts.gov/media/1456942/statement-of-inability-to-afford-payment-of-court-costs-or-an-appeal-bond-bilingual.pdf",
-      "title": "Texas Judicial Branch — Statement of Inability to Afford Payment of Court Costs or an Appeal Bond (Bilingual)",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "ma-affidavit-of-indigency",
-    "jurisdiction": "US-MA",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "title": "Affidavit of Indigency",
-    "source": {
-      "url": "https://www.mass.gov/doc/affidavit-of-indigency/download",
-      "title": "Massachusetts Court System — Affidavit of Indigency",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "vt-application-waive-filing-fees",
-    "jurisdiction": "US-VT",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "title": "Application to Waive Filing Fees and Service Costs (Form 600-00228)",
-    "source": {
-      "url": "https://www.vtcourts.gov/sites/default/files/documents/600-00228%20%E2%80%93%20Application%20to%20Waive%20Filing%20Fees%20%26%20Service%20Costs_0.pdf",
-      "title": "Vermont Judiciary Form 600-00228 — Application to Waive Filing Fees and Service Costs",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "ri-dmv-li-1",
-    "jurisdiction": "US-RI",
-    "document_type": "drivers-license",
-    "change_type": [
-      "name"
-    ],
-    "title": "Form LI-1 — Application for License, Identification Card and Permit",
-    "source": {
-      "url": "https://dmv.ri.gov/media/391/download",
-      "title": "Rhode Island Division of Motor Vehicles — Application for License, Identification Card and Permit (LI-1)",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "ri-dmv-gender-designation",
-    "jurisdiction": "US-RI",
-    "document_type": "drivers-license",
-    "change_type": [
-      "gender-marker"
-    ],
-    "title": "Gender Designation on a License or Identification Card",
-    "source": {
-      "url": "https://dmv.ri.gov/media/41/download",
-      "title": "Rhode Island Division of Motor Vehicles — Gender Designation on a License or Identification Card (rev. 7/20)",
-      "last_verified": "2026-09-05",
-      "verifier": "Pilot Seed Reviewer"
-    }
-  },
-  {
-    "id": "ok-osdh-birth-certificate-request-form",
-    "jurisdiction": "US-OK",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "name"
-    ],
-    "title": "Birth Certificate Request Form (OSDH Vital Records)",
-    "source": {
-      "url": "https://oklahoma.gov/content/dam/ok/en/health/health2/aem-documents/vital-records/forms/18008vr-vr-birth-application-eng-eform.pdf",
-      "title": "Oklahoma State Department of Health, Vital Records — Birth Certificate Request Form",
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }

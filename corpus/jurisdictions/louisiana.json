@@ -93,6 +93,27 @@
     "language": "en"
   },
   {
+    "id": "la.birth-certificate.gender-marker.mistaken-designation-law",
+    "jurisdiction": "US-LA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Louisiana law behind the two-physician sex-designation correction excludes gender reassignment",
+    "statement": "Louisiana Revised Statutes 40:62.1 lets the state registrar issue a new birth certificate with a corrected sex designation, and a changed first or given name, for a child whose sex was erroneously recorded at birth — when a parent, or the person legally responsible for the child, presents affidavits from two or more physicians establishing by medical diagnosis that the error was due to a hereditary genetic defect or hormone deficiency, such as congenital adrenal hyperplasia or a related condition. The statute says this does not apply where the change is due to sexual reassignment or major corrective surgery, which it says is contemplated in R.S. 40:62.",
+    "detail": "When a new certificate is issued under this section, the child's original birth certificate, the affidavits, and the related evidence are sealed and filed in the archives of the vital records registry. This is the statute that matches the Department of Health's two-provider correction process described in the paired agency-guidance record — the process the Department's own page calls 'not applicable for gender reassignment.' The surgery-based path is in R.S. 40:62, covered by a separate record.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=98726",
+      "title": "Louisiana State Legislature — La. R.S. 40:62.1, Issuance of New Birth Certificate for Child With Mistaken Sex Designation on Original Birth Record",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
     "id": "la.birth-certificate.name",
     "jurisdiction": "US-LA",
     "document_type": "birth-certificate",
