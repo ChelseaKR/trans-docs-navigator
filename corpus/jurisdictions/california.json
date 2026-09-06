@@ -12,7 +12,15 @@
     "cost": {
       "amount_usd": null,
       "note": "The filing fee is $435 to $450. If you cannot afford it, you can ask the court to waive it. Publishing in a newspaper has its own fee, which the guide does not state.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "ca-fw-001",
+      "fee_waiver_criteria": "You only need to meet 1 of these to qualify. You don’t have to meet all 3. Option 1: you receive public benefits",
+      "fee_waiver_source": {
+        "url": "https://selfhelp.courts.ca.gov/fee-waiver",
+        "title": "California Courts Self-Help — Ask for a Fee Waiver",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "timeline": {
       "typical": "a judge makes a decision in about 2 to 3 months"
@@ -64,7 +72,15 @@
     "cost": {
       "amount_usd": null,
       "note": "The filing fee is $435–$450. If you cannot afford it, you can ask the court to waive it.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "ca-fw-001",
+      "fee_waiver_criteria": "You only need to meet 1 of these to qualify. You don’t have to meet all 3. Option 1: you receive public benefits",
+      "fee_waiver_source": {
+        "url": "https://selfhelp.courts.ca.gov/fee-waiver",
+        "title": "California Courts Self-Help — Ask for a Fee Waiver",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "timeline": {
       "typical": "about two months; a judge decides in about 1 to 2 months"

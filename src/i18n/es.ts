@@ -98,6 +98,10 @@ export const es: LocaleBundle = {
     stepsLabel: "pasos",
     estimatedCost: "Costo estimado",
     varies: "varía",
+    feeWaiverAvailable: "Esta tarifa se puede exentar.",
+    feeWaiverFormLabel: "Formulario:",
+    feeWaiverCriteriaQuote: (quote: string) => `La corte dice: "${quote}"`,
+    feeWaiverCriteriaUnstated: "La página de la corte nombra esta exención, pero no publica criterios específicos en línea.",
     noStateCoverage:
       "Todavía no tenemos información verificada para este estado, así que los pasos de abajo cubren solo documentos federales. Este no es un plan completo para el lugar donde vive, y no significa que su estado no le pida nada: simplemente no lo hemos verificado. Empiece por el sitio web oficial de su estado, las páginas de autoayuda de sus tribunales, o una organización de asistencia legal para personas trans.",
     noMinorCoverage:
@@ -240,6 +244,8 @@ export const es: LocaleBundle = {
     costUnpriced: (n: number) =>
       `${n} paso(s) no tienen ninguna tarifa indicada en nuestras fuentes. Considere el total como incompleto.`,
     costWaiver: "Hay una exención de tarifa documentada para al menos un paso. Búsquela en el paso más abajo.",
+    costPotentiallyWaivable: (amt: number) =>
+      `De ese mínimo, $${amt} se puede exentar potencialmente — pasos con un proceso de exención de tarifa documentado. "Potencialmente" describe la tarifa, no sus probabilidades; vea cada paso para el formulario y los criterios que publica la corte.`,
     costHonesty:
       "Esto es un mínimo, no un total. Solo sumamos las tarifas que nuestras fuentes indican, y decimos cuándo no podemos calcular un paso en vez de adivinar.",
 

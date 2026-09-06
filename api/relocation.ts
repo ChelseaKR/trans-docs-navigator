@@ -588,6 +588,7 @@ function hazardsFor(steps: RelocationStep[], corpus: CorpusRecord[]): OrderingHa
 export function costModel(steps: RelocationStep[], corpus: CorpusRecord[]): CostModel {
   const lines: CostLine[] = [];
   let knownTotal = 0;
+  let potentiallyWaivable = 0;
   const variable: string[] = [];
   const unpriced: string[] = [];
   const waivers: string[] = [];
@@ -616,7 +617,11 @@ export function costModel(steps: RelocationStep[], corpus: CorpusRecord[]): Cost
       continue;
     }
     if (step.cost.amount_usd === null) variable.push(step.key);
-    else knownTotal += step.cost.amount_usd;
+    else {
+      knownTotal += step.cost.amount_usd;
+      // A subtotal of knownTotal, not money on top of it — see CostModel.potentially_waivable_usd.
+      if (feeWaiver) potentiallyWaivable += step.cost.amount_usd;
+    }
 
     lines.push({
       step_key: step.key,
@@ -635,6 +640,7 @@ export function costModel(steps: RelocationStep[], corpus: CorpusRecord[]): Cost
     variable_step_keys: variable,
     unpriced_step_keys: unpriced,
     fee_waiver_step_keys: waivers,
+    potentially_waivable_usd: potentiallyWaivable,
   };
 }
 

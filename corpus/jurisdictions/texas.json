@@ -12,7 +12,9 @@
     "cost": {
       "amount_usd": null,
       "note": "The court filing fee may be between $150 and $300 depending on where you live — ask the district clerk's office in your county. If you have a low income you can ask the court to waive the filing fee with a Statement of Inability to Afford Payment of Court Costs. You also pay to be fingerprinted, and in some counties for a criminal background check.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "tx-statement-inability-afford",
+      "fee_waiver_criteria": "If you have a low-income, you can ask the court to waive the filing fee by filing a Statement of Inability to Afford Payment of Court Costs form."
     },
     "discretionary": true,
     "prerequisites": [],

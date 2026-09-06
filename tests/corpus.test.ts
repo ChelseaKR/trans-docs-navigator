@@ -177,6 +177,74 @@ test("validateRecord validates optional cost/prerequisites", () => {
   assert.ok(validateRecord({ ...valid, prerequisites: "x" }).some((i) => i.field === "prerequisites"));
 });
 
+test("validateRecord validates cost.fee_waiver_form/fee_waiver_criteria/fee_waiver_source", () => {
+  const withCost = (cost: Record<string, unknown>) => validateRecord({ ...valid, cost });
+
+  // Neither field may ride without cost.fee_waiver: true.
+  assert.ok(
+    withCost({ amount_usd: null, note: "n", fee_waiver_form: "x" }).some((i) => i.field === "cost.fee_waiver_form"),
+  );
+  assert.ok(
+    withCost({ amount_usd: null, note: "n", fee_waiver_criteria: "a real substantive quote" }).some(
+      (i) => i.field === "cost.fee_waiver_criteria",
+    ),
+  );
+
+  // fee_waiver_form must be a non-empty string.
+  assert.ok(
+    withCost({ amount_usd: null, note: "n", fee_waiver: true, fee_waiver_form: "" }).some(
+      (i) => i.field === "cost.fee_waiver_form",
+    ),
+  );
+
+  // fee_waiver_criteria must be substantive (not a stub) and never a prediction about the
+  // reader — GOVERNANCE.md forbids this app from adjudicating eligibility.
+  assert.ok(
+    withCost({ amount_usd: null, note: "n", fee_waiver: true, fee_waiver_criteria: "too short" }).some(
+      (i) => i.field === "cost.fee_waiver_criteria",
+    ),
+  );
+  assert.ok(
+    withCost({
+      amount_usd: null,
+      note: "n",
+      fee_waiver: true,
+      fee_waiver_criteria: "You likely qualify for this waiver based on your situation.",
+    }).some((i) => i.field === "cost.fee_waiver_criteria" && /prediction/.test(i.message)),
+  );
+
+  // A valid, complete fee-waiver block passes clean.
+  assert.deepEqual(
+    validateRecord({
+      ...valid,
+      cost: {
+        amount_usd: null,
+        note: "n",
+        fee_waiver: true,
+        fee_waiver_form: "st-fee-waiver-form",
+        fee_waiver_criteria: "The court can waive the fee if you receive public benefits.",
+        fee_waiver_source: { url: "https://e.gov/fee-waiver", title: "T", last_verified: "2026-05-31", verifier: "A Person" },
+      },
+    }),
+    [],
+  );
+
+  // fee_waiver_source carries the same shape as the primary source.
+  assert.ok(
+    withCost({
+      amount_usd: null,
+      note: "n",
+      fee_waiver: true,
+      fee_waiver_source: { url: "ftp://x", title: "T", last_verified: "2026-05-31", verifier: "A" },
+    }).some((i) => i.field === "cost.fee_waiver_source.url"),
+  );
+  assert.ok(
+    withCost({ amount_usd: null, note: "n", fee_waiver: true, fee_waiver_source: "not an object" }).some(
+      (i) => i.field === "cost.fee_waiver_source",
+    ),
+  );
+});
+
 test("validateCorpus on the real corpus reports zero issues", () => {
   const { records, issues } = validateCorpus();
   assert.ok(records > 5);
@@ -205,6 +273,29 @@ test("verifier roster: unknown verifier fails at corpus load but passes the pure
     writeFileSync(join(dir, "unknown.json"), JSON.stringify(valid)); // verifier "A Person" not in roster
     const { issues } = validateCorpus(dir);
     assert.ok(issues.some((i) => i.field === "source.verifier" && /not in corpus\/VERIFIERS\.json/.test(i.message)));
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("verifier roster: cost.fee_waiver_source.verifier rides the same roster gate as source.verifier", () => {
+  const dir = mkdtempSync(join(tmpdir(), "corpus-roster-waiver-"));
+  try {
+    writeFileSync(
+      join(dir, "waiver.json"),
+      JSON.stringify({
+        ...valid,
+        source: { ...valid.source, verifier: "Pilot Seed Reviewer" },
+        cost: {
+          amount_usd: null,
+          note: "n",
+          fee_waiver: true,
+          fee_waiver_source: { url: "https://e.gov/fee-waiver", title: "T", last_verified: "2026-05-31", verifier: "Nobody Real" },
+        },
+      }),
+    );
+    const { issues } = validateCorpus(dir);
+    assert.ok(issues.some((i) => i.field === "cost.fee_waiver_source.verifier" && /not in corpus\/VERIFIERS\.json/.test(i.message)));
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

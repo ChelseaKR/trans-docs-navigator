@@ -12,7 +12,15 @@
     "cost": {
       "amount_usd": 150,
       "note": "You can ask the court to consider waiving the fee if you can't afford it.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "vt-application-waive-filing-fees",
+      "fee_waiver_criteria": "The court can waive your filing fee and service costs if: you receive any kind of public assistance, or your gross income is at or below 150% of the federal poverty guidelines , or the court finds you can't pay the fee without expending resources needed to support you and your dependents.",
+      "fee_waiver_source": {
+        "url": "https://www.vermontjudiciary.org/self-help/application-waive-filing-fees-and-service-costs",
+        "title": "Vermont Judiciary — Application to Waive Filing Fees and Service Costs",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "discretionary": true,
     "prerequisites": [],
