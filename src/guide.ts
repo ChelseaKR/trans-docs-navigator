@@ -163,7 +163,7 @@ export function renderGuidePage(stateSlug: string, topicSlug: string, lang: Lang
   const cta = `<p class="cta"><a href="/checklist?jurisdiction=${state.id}&change=${topic.change}${langQ}">${escapeHtml(seo.guideCta)} →</a></p>`;
   const reviewedNote = reviewed ? `<p class="meta">${escapeHtml(seo.guideReviewed)} ${escapeHtml(reviewed)}.</p>` : "";
 
-  const breadcrumb = `<nav aria-label="Breadcrumb" class="breadcrumb"><a href="/${lang === "es" ? "?language=es" : ""}">${escapeHtml(seo.breadcrumbHome)}</a> › <a href="/guide${lang === "es" ? "?language=es" : ""}">${escapeHtml(seo.breadcrumbGuides)}</a> › ${escapeHtml(seo.guideHeading(stateName, topicName))}</nav>`;
+  const breadcrumb = `<nav aria-label="${escapeHtml(seo.breadcrumbNav)}" class="breadcrumb"><a href="/${lang === "es" ? "?language=es" : ""}">${escapeHtml(seo.breadcrumbHome)}</a> › <a href="/guide${lang === "es" ? "?language=es" : ""}">${escapeHtml(seo.breadcrumbGuides)}</a> › ${escapeHtml(seo.guideHeading(stateName, topicName))}</nav>`;
 
   const body = [
     breadcrumb,

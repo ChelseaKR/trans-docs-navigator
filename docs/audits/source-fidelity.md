@@ -25,7 +25,7 @@
 - **2209 of 2725 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **825 sentences state a negative** (`you do not need a court order`, `the page no
+- **826 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
 - **314 assertions are necessary-condition only**: the source discusses the topic, which

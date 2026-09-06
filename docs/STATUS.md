@@ -1,7 +1,7 @@
 # Build Status — Trans Docs Navigator
 
 > Snapshot of what the ROADMAP §8 implementation plan has produced.
-> Last updated: 2026-07-13. `make verify` is green (24/24 gates).
+> Last updated: 2026-07-13. `make verify` is green (25/25 gates).
 >
 > **2026-07-13 the SSA records — a blocked host is not an excuse for a stale claim.**
 > Both SSA records cited pages that **no gate could read**: every host under `www.ssa.gov` returns
@@ -161,7 +161,7 @@
 
 | Milestone | Status | Evidence |
 |-----------|--------|----------|
-| **M0 — Scaffold & gates** | ✅ Done | `make verify` runs the 24-stage blocking pipeline; CI in `.github/workflows/ci.yml`; `Dockerfile`; `infra/`. |
+| **M0 — Scaffold & gates** | ✅ Done | `make verify` runs the 25-stage blocking pipeline; CI in `.github/workflows/ci.yml`; `Dockerfile`; `infra/`. |
 | **M1 — Corpus & data model** | ✅ Done (seed) | 78 schema-validated records (6 states + federal; 39 EN + 39 ES); `make content` + `make freshness` + `make fidelity` green. Content is **seed data**, not launch-verified (ADR-3) — the record/verifier counts in the generated launch-gate table below are the machine-derived source of truth. |
 | **M2 — Retrieval-mandatory guidance** | ✅ Done | `api/retrieval.ts` → `api/generator.ts` → `api/citation.enforce()`; groundedness 100%, citation coverage 100% on the gold set. |
 | **M3 — Checklist engine** | ✅ Done | `api/checklist.ts`; ordered, prerequisite-aware, freshness-flagged; matches gold expectations. |
@@ -200,7 +200,7 @@
 
 ## Explicitly OPEN review-gates (not signed — required before any real launch)
 
-This table is **generated** by `scripts/launch-gates.ts` (stage 24 of `make verify`) from the
+This table is **generated** by `scripts/launch-gates.ts` (stage 25 of `make verify`) from the
 repository's own artifacts. It is not a claim anyone typed, and no one can clear a gate here by
 editing this file — `make verify` goes red until the evidence itself changes. Same anti-drift
 discipline as the gate-count check, applied to the disclosures that actually matter.
