@@ -101,11 +101,9 @@ test("empty model output degrades to a refusal, never a fabricated answer", asyn
 });
 
 test("when nothing is current, the model path refuses without calling the model", async () => {
-  // US-AK: genuinely uncovered (see tests/coverage-honesty.test.ts's UNCOVERED) after
-  // this PR's US-AL/MS/LA addition.
   let called = false;
   const gen = new BedrockGenerator(async () => { called = true; return "x"; });
-  const ans = await answerAsync({ jurisdiction: "US-AK", change_types: ["name"], documents: ["court-order"], today }, { generator: gen });
+  const ans = await answerAsync({ jurisdiction: "US-PR", change_types: ["name"], documents: ["court-order"], today }, { generator: gen });
   assert.equal(ans.refused, true);
   assert.equal(called, false); // no retrieved records ⇒ no spend
 });

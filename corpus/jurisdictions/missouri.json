@@ -1,0 +1,171 @@
+[
+  {
+    "id": "mo.court-order.name",
+    "jurisdiction": "US-MO",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Missouri name change petition",
+    "statement": "To legally change your name in Missouri, you present a petition verified by affidavit to the circuit court in the county where you live, stating your full name, the new name you want, and a concise reason for the change. The judge must order the change if satisfied it would be proper and not detrimental to the interests of any other person.",
+    "detail": "Missouri law does not let a person who is required to register under Missouri's sex-offender registration law (sections 589.400 to 589.425) change their name for as long as they must stay registered.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The statute doesn't state a filing fee; contact the circuit court clerk in the county where you'll file for the current amount."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://revisor.mo.gov/main/OneSection.aspx?section=527.270",
+      "title": "Missouri Revisor of Statutes — RSMo § 527.270 (Petition, Where Presented — Contents — Proceedings — Name Change Prohibited, When)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "mo.court-order.publication",
+    "jurisdiction": "US-MO",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Missouri name-change newspaper publication and fee waiver",
+    "statement": "After a Missouri court grants your name-change petition, you must give public notice of the change at least once a week for three consecutive weeks in a newspaper of general circulation in the county where you live, and file proof of that notice with the court clerk within 10 days after the last publication.",
+    "detail": "Missouri's official Judgment for Change of Name form states that this publication step is skipped when the petitioner is the victim of domestic violence, child abuse, or abuse by a family or household member, as those terms are defined in Missouri statute. Missouri's courts say a filing fee applies and that the court may waive it — sometimes called filing \"in forma pauperis\" — for someone who can't afford it. This project could not automatically verify this page's exact current wording: Missouri's courts website blocks automated fetching, so a human read it directly.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.courts.mo.gov/page.jsp?id=3834",
+      "title": "Missouri Courts — Name Change (Represent Yourself)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "mo.drivers-license.name",
+    "jurisdiction": "US-MO",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Missouri driver's license and ID name change",
+    "statement": "To change your name on a Missouri driver's license or ID, you take documents that verify your identity, Social Security number, Missouri residency, and your legal name change to a Missouri license office, then apply and pay for a duplicate license or ID with your new name.",
+    "detail": "Acceptable name-change documents include a certified marriage license, a certified divorce decree, a certified court order, or certified adoption papers — each must show your prior full legal name, your court-ordered legal name, and your date of birth, and be stamped with the official court seal (a date stamp or file stamp isn't enough) — or an original certified amended birth certificate. Photocopies and faxes aren't accepted, and more than one document may be required if you've had more than one name change.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page doesn't state a fee for a duplicate license with a name change; check with the Department of Revenue for the current fee."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dor.mo.gov/driver-license/issuance/id-requirements.html",
+      "title": "Missouri Department of Revenue — Driver License, Nondriver ID, and Instruction Permit Requirements",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "mo.drivers-license.gender-marker",
+    "jurisdiction": "US-MO",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Missouri driver's license gender designation",
+    "statement": "Missouri's Department of Revenue says that additional documents may be required \"to request a change to the gender or date of birth\" on a driver's license or ID, but its own pages don't say what those documents are, don't name a form, and don't describe a process.",
+    "detail": "This project searched Missouri's Department of Revenue site and the Missouri Code of State Regulations for a rule or form specifically about changing the sex or gender field on a license, and found none — the state's driver's-license regulations list sex only as a data field encoded on the card, with no procedure attached. What a Missouri license office currently asks for to change this field is unclear from this project's official sources.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dor.mo.gov/driver-license/issuance/id-requirements.html",
+      "title": "Missouri Department of Revenue — Driver License, Nondriver ID, and Instruction Permit Requirements",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "mo.birth-certificate.name",
+    "jurisdiction": "US-MO",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Missouri birth certificate name change",
+    "statement": "Missouri's health department says some birth-record corrections can be made with a correction affidavit, but a legal name change requires a court order.",
+    "detail": "When you send in a legal-name-change court order, the Bureau of Vital Records wants a certified copy of the court order, the statutorily required processing fee, and a signed cover letter asking that the order be applied to the record.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page says a statutory fee applies to processing a court order but doesn't state the amount here; Missouri's correction-affidavit form separately states current fees for a court-order correction and for a new certified copy."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://health.mo.gov/vital-records-registries/vital-records/correctamend-vital-record",
+      "title": "Missouri Department of Health and Senior Services — Correct/Amend a Vital Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "mo.birth-certificate.gender-marker",
+    "jurisdiction": "US-MO",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Missouri birth certificate sex designation",
+    "statement": "Missouri's vital-records rule requires a court order to change the sex shown on a Missouri birth record when the sex was changed by a surgical procedure, or when both the sex and the registrant's name are being changed and the new name is typically used for the opposite sex.",
+    "detail": "Missouri's own correction-affidavit form repeats the second trigger — changing both the sex and a gendered name — as a reason a court order is required, but its printed public instructions leave out the regulation's \"surgical procedure\" trigger. This project could not find an official Missouri page describing what happens for a sex-designation change that isn't paired with this kind of name change and doesn't involve surgery — Missouri's general vital-records correction page doesn't mention sex or gender at all.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.sos.mo.gov/cmsimages/adrules/csr/current/19csr/19c10-10.pdf",
+      "title": "Missouri Code of State Regulations, 19 CSR 10-10.110 — Amending or Correcting Vital Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "mo.birth-certificate.fees",
+    "jurisdiction": "US-MO",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Missouri birth-record correction fees",
+    "statement": "Missouri's birth-record correction affidavit form states there's no fee to file a correction affidavit alone, but processing a court-order correction costs $15, and a new certified copy of the corrected birth certificate costs $15 more.",
+    "detail": "This form (MO 580-0645, form VS-460) is the Affidavit for Correction of a Birth, Death, or Fetal Death Record; it must be signed in front of a notary.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "There's no fee for a correction affidavit alone; a new certified copy of the birth certificate costs $15 more."
+    },
+    "prerequisites": [],
+    "form_ref": "mo-dhss-580-0645",
+    "source": {
+      "url": "https://health.mo.gov/sites/health/files/media/pdf/2026/04/Aff_for_Correction.pdf",
+      "title": "Missouri Department of Health and Senior Services — Affidavit for Correction of a Birth, Death, or Fetal Death Record (MO 580-0645)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

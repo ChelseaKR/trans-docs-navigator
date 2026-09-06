@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ak.referral.alsc",
+    "jurisdiction": "US-AK",
+    "name": "Alaska Legal Services Corporation",
+    "url": "https://www.alsc-law.org",
+    "note": {
+      "en": "Alaska's statewide civil legal aid provider, which can help income-eligible residents with name-change filings and other civil legal needs.",
+      "es": "Proveedor estatal de ayuda legal civil de Alaska, que puede ayudar a residentes que califican por sus ingresos con solicitudes de cambio de nombre y otras necesidades legales civiles."
+    },
+    "source": {
+      "url": "https://www.alsc-law.org",
+      "title": "Alaska Legal Services Corporation",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ak.referral.aclu-alaska",
+    "jurisdiction": "US-AK",
+    "name": "ACLU of Alaska — LGBTQIA2S+ Rights",
+    "url": "https://www.acluak.org/issues/lgbt-rights/",
+    "note": {
+      "en": "The ACLU of Alaska publishes information and advocacy updates on LGBTQIA2S+ rights in Alaska, including issues affecting transgender residents.",
+      "es": "La ACLU de Alaska publica información y actualizaciones de defensa sobre los derechos LGBTQIA2S+ en Alaska, incluidos asuntos que afectan a residentes transgénero."
+    },
+    "source": {
+      "url": "https://www.acluak.org/issues/lgbt-rights/",
+      "title": "ACLU of Alaska — LGBTQIA2S+ Rights",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

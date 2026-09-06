@@ -1,0 +1,177 @@
+[
+  {
+    "id": "in.court-order.name",
+    "jurisdiction": "US-IN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Indiana adult name change eligibility",
+    "statement": "An adult can ask an Indiana court to legally change their name if they are not in jail or prison, are seventeen years old or older, are not required to register as a sex or violent offender, and are not trying to avoid creditors.",
+    "detail": "Indiana Legal Help, a legal-aid project that partners with the state's courts, publishes the statewide Adult Name Change forms packet used to file this petition with the clerk of the court; a separate packet covers changing a minor child's name.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page doesn't state the court's filing fee; see the paired Indiana filing-fee record for the amount."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://indianalegalhelp.org/legal-topic/name-change/",
+      "title": "Indiana Legal Help (Coalition for Court Access) — Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "in.court-order.publication",
+    "jurisdiction": "US-IN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Indiana name-change newspaper publication and safety exception",
+    "statement": "After filing an Indiana name-change petition, you must publish a Notice of Petition for Change of Name in a local newspaper once a week for three weeks, with the last publication at least thirty days before your hearing date.",
+    "detail": "If publishing your petition would put you at risk — the state's own Adult Name Change packet gives being transgender as an example — Indiana court rules let you ask the judge to waive publication and seal the entire case file instead. The packet includes a Verified Request to Prohibit Public Access and a supporting legal memorandum from Indiana Legal Services' LGBT Law Project, which cites Indiana Court of Appeals decisions recognizing the risk of harm transgender petitioners face if their case is made public: In re Name Change of A.L., 81 N.E.3d 283 (Ind. Ct. App. 2017); In Re M.E.B., 126 N.E.3d 932 (Ind. Ct. App. 2019); and In Re K.H., 127 N.E.3d 257 (Ind. Ct. App. 2019). Sealing requires its own public hearing on the sealing request, held before your name-change hearing.",
+    "prerequisites": [],
+    "form_ref": "in-cca-namechange-adult",
+    "source": {
+      "url": "https://indianalegalhelp.org/wp-content/uploads/2024/09/Adult-Name-Change-Packet-INSTRUCTIONS-202409-Update.pdf",
+      "title": "Indiana Legal Help / Coalition for Court Access — Adult Name Change Instructions and Forms",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "in.court-order.filing-fee",
+    "jurisdiction": "US-IN",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Indiana civil court filing fee",
+    "statement": "Indiana Legal Help directs people filing a name-change petition to its civil-court filing-fee guide, which states that filing a new case in civil court costs $157, or $185 if you also want the sheriff to serve the papers on the other parties.",
+    "detail": "Under Indiana law, you don't have to pay a filing fee if you can't afford it — you can ask the court for a filing fee waiver. A filing fee is only charged when a case is first started, not for each document filed afterward.",
+    "cost": {
+      "amount_usd": 157,
+      "note": "Add sheriff service of process on the other parties and the cost is $185. A fee waiver is available if you can't afford the fee.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://indianalegalhelp.org/filing-fee-frequently-asked-questions/",
+      "title": "Indiana Legal Help — Filing Fee Frequently Asked Questions",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "in.drivers-license.name",
+    "jurisdiction": "US-IN",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Indiana driver's license and ID name change",
+    "statement": "To update the name on an Indiana driver's license or ID card, visit a BMV branch within 30 days of your name change; this can't be done online. You must first update your name with the Social Security Administration, then wait at least one business day before visiting the BMV.",
+    "detail": "Acceptable documents include a marriage license, a divorce decree showing your previous and new name, a court order approving a change of legal name, or an original or certified copy of an amended birth certificate showing the new name. Any change to what's printed on your card means a new photo is taken.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page doesn't state a fee for a name update; check with the BMV for the current fee."
+    },
+    "prerequisites": [
+      "ssa-card"
+    ],
+    "source": {
+      "url": "https://www.in.gov/bmv/licenses-permits-ids/learners-permits-and-drivers-licenses-overview/drivers-license/amending-your-drivers-license-or-identification-card",
+      "title": "Indiana BMV — Amending Your Driver's License or Identification Card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "in.drivers-license.gender-marker",
+    "jurisdiction": "US-IN",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Indiana driver's license gender designation",
+    "statement": "Effective February 12, 2026, Indiana's BMV states it will no longer let a customer change the gender on their Indiana driver's license or ID card using a court-ordered gender change or a physician statement, under Amended Rule 140 of the Indiana Administrative Code, section 7-1.1-3.",
+    "detail": "This is the BMV's own page about amending a license or ID card, and its list of what can be amended doesn't name any other way to change the gender designation on an Indiana credential. Before this rule, the BMV allowed the change using its own Physician's Statement of Gender Change form, for M or F only; a legal-aid guide from Indiana Legal Services' LGBTQ+ Project (revised August 2025) still described that route as available and urged people to act quickly before the rule took effect, which shows how recently this closed.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.in.gov/bmv/licenses-permits-ids/learners-permits-and-drivers-licenses-overview/drivers-license/amending-your-drivers-license-or-identification-card",
+      "title": "Indiana BMV — Amending Your Driver's License or Identification Card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "in.birth-certificate.name",
+    "jurisdiction": "US-IN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Indiana birth certificate name change",
+    "statement": "Indiana's health department states that a court order is needed to change the first, middle, or last name on an Indiana birth record.",
+    "detail": "Call the Indiana Department of Health's Vital Records division at (317) 233-2700 to correct or amend a birth certificate; requirements vary depending on the requested change.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This FAQ page doesn't state a fee for a name correction; a separate fee applies for a certified copy of the updated certificate."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.in.gov/health/vital-records/frequently-asked-questions/amendments-corrections-faqs",
+      "title": "Indiana Department of Health — Amendments & Corrections FAQs",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "in.birth-certificate.gender-marker",
+    "jurisdiction": "US-IN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Indiana birth certificate sex designation",
+    "statement": "Indiana's health department states that a court order is needed to change the sex shown on an Indiana birth record.",
+    "detail": "This FAQ page doesn't explain how to get that court order, and this project could not find an official Indiana form or page describing that process: the state's own statewide name-change petition packet only offers to update the name on a birth certificate, not the sex designation. A separate legal-aid guide from Indiana Legal Services' LGBTQ+ Project lists the Indiana birth certificate as a document whose gender marker cannot be changed at all, which conflicts with the health department's own statement here — this project cannot resolve that conflict from official sources alone.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This FAQ page doesn't state a fee for a sex-designation correction; a separate fee applies for a certified copy of the updated certificate."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.in.gov/health/vital-records/frequently-asked-questions/amendments-corrections-faqs",
+      "title": "Indiana Department of Health — Amendments & Corrections FAQs",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]

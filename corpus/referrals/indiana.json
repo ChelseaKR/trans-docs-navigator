@@ -1,0 +1,38 @@
+[
+  {
+    "id": "in.referral.ils-lgbtq-project",
+    "jurisdiction": "US-IN",
+    "name": "Indiana Legal Services — LGBTQ+ Project",
+    "url": "https://www.indianalegalservices.org/lgbtvap/identity-documents-information/",
+    "note": {
+      "en": "Indiana Legal Services is the state's largest provider of free civil legal aid; its LGBTQ+ Project publishes name- and gender-marker-change guides and can help eligible low-income Hoosiers with a name-change petition.",
+      "es": "Indiana Legal Services es el proveedor más grande de ayuda legal civil gratuita del estado; su Proyecto LGBTQ+ publica guías para cambios de nombre y de marcador de género y puede ayudar a residentes de bajos ingresos de Indiana con una petición de cambio de nombre."
+    },
+    "source": {
+      "url": "https://www.indianalegalservices.org/lgbtvap/identity-documents-information/",
+      "title": "Indiana Legal Services — Name and Gender Marker Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "in.referral.gendernexus",
+    "jurisdiction": "US-IN",
+    "name": "GenderNexus",
+    "url": "https://www.gendernexus.org",
+    "note": {
+      "en": "Indiana-based nonprofit that supports gender-diverse people and their families, including free care coordination for legal name changes and gender-marker updates.",
+      "es": "Organización sin fines de lucro con sede en Indiana que apoya a personas de género diverso y a sus familias, incluida coordinación de cuidados gratuita para cambios legales de nombre y de marcador de género."
+    },
+    "source": {
+      "url": "https://www.gendernexus.org",
+      "title": "GenderNexus",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

@@ -14,12 +14,12 @@
   {
     "id": "base-unsupported-refusal",
     "suite": "refusal",
-    "segment": { "jurisdiction": "US-AK", "language": "en" },
+    "segment": { "jurisdiction": "US-PR", "language": "en" },
     "query": {
-      "jurisdiction": "US-AK",
+      "jurisdiction": "US-PR",
       "change_types": ["name"],
       "documents": ["court-order"],
-      "question": "Alaska name change"
+      "question": "Puerto Rico name change"
     },
     "expect": { "refused": true }
   },

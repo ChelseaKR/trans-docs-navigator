@@ -1,0 +1,38 @@
+[
+  {
+    "id": "nm.referral.tgrcnm",
+    "jurisdiction": "US-NM",
+    "name": "Transgender Resource Center of New Mexico",
+    "url": "https://www.tgrcnm.org",
+    "note": {
+      "en": "New Mexico's statewide transgender-led support organization, offering community resources and support relevant to name and gender-marker changes.",
+      "es": "Organización estatal de apoyo de Nuevo México dirigida por personas transgénero, que ofrece recursos comunitarios y apoyo relevante para cambios de nombre y de marcador de género."
+    },
+    "source": {
+      "url": "https://www.tgrcnm.org",
+      "title": "Transgender Resource Center of New Mexico",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "nm.referral.nm-legal-aid",
+    "jurisdiction": "US-NM",
+    "name": "New Mexico Legal Aid",
+    "url": "https://www.newmexicolegalaid.org",
+    "note": {
+      "en": "Statewide civil legal aid provider that can help income-eligible New Mexico residents with name-change filings and other civil legal needs.",
+      "es": "Proveedor estatal de ayuda legal civil que puede ayudar a residentes de Nuevo México que califican por sus ingresos con solicitudes de cambio de nombre y otras necesidades legales civiles."
+    },
+    "source": {
+      "url": "https://www.newmexicolegalaid.org",
+      "title": "New Mexico Legal Aid",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

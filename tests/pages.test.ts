@@ -147,11 +147,8 @@ test("resume panel is hidden when there is no selection yet (progressive enhance
 });
 
 test("checklist page surfaces gaps for an uncovered jurisdiction", () => {
-  // US-AK: genuinely uncovered (see tests/coverage-honesty.test.ts's UNCOVERED) after
-  // this PR's US-AL/MS/LA addition — this fixture has swapped states before as each
-  // gained corpus coverage.
-  const cl = buildChecklist({ jurisdiction: "US-AK", change_types: ["name"], documents: ["court-order"], language: "en" });
-  const h = renderChecklistPage(cl, corpus, "en", "jurisdiction=US-AK&change=name");
+  const cl = buildChecklist({ jurisdiction: "US-PR", change_types: ["name"], documents: ["court-order"], language: "en" });
+  const h = renderChecklistPage(cl, corpus, "en", "jurisdiction=US-AL&change=name");
   assert.match(h, /Not yet covered/);
 });
 

@@ -8,73 +8,56 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
-- **Alabama, Mississippi, and Louisiana** (M6 — expand jurisdictions): 19 EN + 19 ES
-  corpus records (6 AL + 6 MS + 7 LA) covering court-order name change, driver's-license/
-  ID name and gender-marker, and birth-certificate name and gender-marker, plus 2
-  referrals and 1 forms-registry entry per state, each sourced from an official state
-  legislature, courts, DMV/DPS, or health-department page and fetched into
-  `corpus/snapshots/`. These three are among the most restrictive states in the corpus,
-  and several records say so plainly rather than describing a process that doesn't exist:
-  - **Alabama**: ALEA's driver-license pages and the Department of Public Health's
-    birth-certificate corrections page never mention a sex/gender field at all — recorded
-    as an undocumented absence (`needs_reverification`), not inferred either way. The
-    birth-certificate NAME-change record is similarly hedged: the page's three named
-    amendment categories (error correction, legitimation/paternity, adoption) do not
-    include a post-hoc legal name change, so the record says the page doesn't address it.
-    Alabama's own name-change form (PS-12) names no enabling statute for the process.
-  - **Mississippi**: the vital-records administrative rule (Rev. 2023) DOES let someone
-    amend the sex marker on a birth certificate with a certified court order plus a
-    physician's statement — a real, current path that is not published anywhere on
-    Mississippi's own consumer-facing birth-certificate or FAQ pages. The driver's-license
-    gender-marker record is a documented absence; the court-order record notes a new 2026
-    law (effective July 1, 2026) barring a name change for someone required to register as
-    a sex offender.
-  - **Louisiana**: birth-certificate sex-marker change (La. R.S. 40:62, unchanged since
-    1986) requires actual "sex reassignment or corrective surgery" and a lawsuit against
-    the state registrar — recorded as `needs_reverification` given how contested and
-    surgery-gated this path is. Louisiana's own vital-records page never mentions this
-    statute; its administrative "correct the sex" option is explicitly marked "not
-    applicable for gender reassignment," a gap significant enough to warrant its own
-    record. By contrast, the Office of Motor Vehicles' internal policy (22.01) allows a
-    driver's-license/ID gender-marker change with only a physician's letter and no court
-    order — also marked `needs_reverification`, since it is an unpublished internal policy
-    that has not been revised since 2009, not a statute.
-
-  What I could not fully verify by machine: Alabama's and Mississippi's official code
-  databases (`alison.legislature.state.al.us`, and no equivalent for Mississippi's
-  consolidated Code) are either unreachable JavaScript apps or simply don't exist as a
-  free public resource, so the court-order records cite the best available primary
-  source instead (Alabama's own AOC form; Mississippi's enacted 2026 act). Louisiana's
-  Department of Health page (`ldh.la.gov`) returns HTTP 403 to this project's declared
-  user-agent, so it is recorded as unwatchable (`refuses-our-user-agent`) alongside NY
-  Courts and Michigan, the same honest degradation this repo already applies there.
-
-  All 38 new corpus records (19 EN + 19 ES) carry `"verifier": "Pilot Seed Reviewer"`;
-  none are launch-cleared. Gender-marker and other contested/recently-changed records use
-  `recheck_sla_days: 30`, matching the existing convention for politically volatile topics.
-
-  Adding Alabama moved `tests/coverage-honesty.test.ts`'s dynamically-derived uncovered
-  state to Alaska (`US-AK`) automatically, as designed. Several *other* fixtures across
-  the suite hardcoded `US-AL` as a stand-in "genuinely uncovered" jurisdiction — the same
-  recurring problem that file's own comments describe (previously `US-FL`, then `US-OH`)
-  — and have now been swapped to `US-AK` too: two `eval/gold.ts` items
-  (`tx-unsupported-court`, `adv-injection-no-records`), the `tests/gate-efficacy`
-  eval-poison fixtures, `scripts/disclosure-check.ts`'s refusal cases, and one fixture
-  each in `tests/pages.test.ts`, `tests/retrieval.test.ts`, `tests/checklist.test.ts`,
-  `tests/embedding-retrieval.test.ts`, `tests/guidance.test.ts`, and `tests/bedrock.test.ts`.
-
-  `make verify`: 24/24 gates pass. `make fidelity`: 0 unsupported assertions across the
-  new records (219 uncheckable corpus-wide, up from 219 pre-existing — 5 newly introduced
-  by this PR: 4 unextractable PDFs and Louisiana's 403'd health-department page — none
-  newly unsupported).
-
-  Snapshot discipline: `make source-snapshot` also refreshed ~24 pre-existing snapshots
-  with live drift from this simulated environment's source pages, unrelated to this
-  change. Those refreshes were reverted (`git checkout -- corpus/snapshots/`) rather than
-  adopted blind, per `docs/OPERATIONS.md`'s re-baseline discipline — only the 9 new HTML
-  snapshots and their `corpus/source-hashes.json` baselines were added; the 5 PDF/403
-  sources have no snapshot text to baseline and are recorded as unwatchable instead.
-
+- **Indiana, Iowa, and Missouri** (M6 — expand jurisdictions): 7 + 6 + 7 EN corpus records
+  (20 EN + 20 ES, 40 total), 6 referrals, and 2 forms-registry entries, each sourced from an
+  official state page, a state statute, or a state administrative rule and fetched into
+  `corpus/snapshots/`.
+  - **Indiana** requires publishing a Notice of Petition for Change of Name in a newspaper
+    once a week for three weeks, at least 30 days before the hearing (Ind. Code
+    § 34-28-2-3(a)) — but Indiana's own statewide court-approved forms packet (Coalition
+    for Court Access) lets a petitioner ask a judge to waive publication and seal the case
+    instead, citing Indiana Court of Appeals decisions recognizing the risk transgender
+    petitioners face if their case is public: *In re Name Change of A.L.*, 81 N.E.3d 283
+    (Ind. Ct. App. 2017); *In Re M.E.B.*, 126 N.E.3d 932 (Ind. Ct. App. 2019); *In Re K.H.*,
+    127 N.E.3d 257 (Ind. Ct. App. 2019). Separately, effective February 12, 2026, Indiana's
+    BMV states it will no longer let a customer change the gender on a license or ID by a
+    court-ordered gender change or physician statement (Amended Rule 140, 140 IAC 7-1.1-3) —
+    recorded as a closed path, not a process that no longer works, and marked
+    `needs_reverification`. Indiana's health department states a court order is needed to
+    change the sex on a birth record, but this project could not find an official form or
+    page describing how to get one, and a legal-aid guide (Indiana Legal Services'
+    LGBTQ+ Project) says an Indiana birth certificate's gender marker cannot be changed at
+    all — a conflict this project cannot resolve from official sources alone, so that record
+    is also `needs_reverification`.
+  - **Iowa** requires no newspaper publication for a name change (Iowa Code ch. 674) but
+    does require a 30-day wait after filing, a $195 filing fee, and a certified copy of the
+    petitioner's birth certificate. A 2025 Iowa law (Senate File 418, effective July 1,
+    2025) removed the only path Iowa Code ever had for changing the sex shown on an Iowa
+    birth certificate — a notarized physician's affidavit under the since-repealed
+    § 144.23(3) — and added Iowa Code § 4.1A, which defines "sex" for state purposes as the
+    sex observed or verified at birth. Iowa's DOT publishes no page describing any way to
+    change the sex/gender marker on a license or ID. Both gender-marker records are
+    recorded as closed/undocumented paths, not invented processes, and marked
+    `needs_reverification`.
+  - **Missouri** requires newspaper publication once a week for three consecutive weeks,
+    unless the petitioner is a documented victim of domestic violence, child abuse, or
+    family/household-member abuse (per Missouri's official Judgment for Change of Name
+    form). Missouri's Department of Revenue acknowledges a driver's-license "gender" field
+    exists and may require additional documents to change, but its own pages name no
+    document, form, or process for doing so — recorded as an honest gap, not an invented
+    one, and marked `needs_reverification`. Missouri's vital-records rule (19 CSR
+    10-10.110) requires a court order to change a birth record's sex only when the change
+    was by surgical procedure, or when paired with a name change to one typically used for
+    the opposite sex — and the state's own public correction-affidavit form omits the
+    "surgical procedure" trigger that the full regulation states, a discrepancy this record
+    surfaces rather than resolves. Missouri's courts website (`courts.mo.gov`) refuses this
+    project's declared user-agent domain-wide, so its self-help page on newspaper
+    publication is recorded as `refuses-our-user-agent`, the same honest degradation
+    already applied to NY Courts and the SSA.
+  - Both Iowa and Missouri's gender-marker findings, and Indiana's newspaper-publication
+    safety exception, directly demonstrate this repo's `needs_reverification` /
+    honest-gap discipline on contested and recently-changed law rather than describing a
+    process that does not work (PR #119's standard).
 - **Idaho, Utah, and Wyoming** (M6 — expand jurisdictions): 19 EN + 19 ES corpus records
   (court-order name change, driver's-license name and gender-marker, and birth-certificate
   name and gender-marker) across all three states, 7 referrals, and 3 forms-registry
