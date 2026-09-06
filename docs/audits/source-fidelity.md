@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 676 |
-| Load-bearing assertions found | 1531 |
-| — checked and **supported** by the cited source | 1033 |
+| Records audited | 688 |
+| Load-bearing assertions found | 1571 |
+| — checked and **supported** by the cited source | 1039 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 498 |
-| of the checked: literal (fee / duration / form-id) matches | 701 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 332 |
+| — **UNCHECKABLE** (reported, never passed) | 532 |
+| of the checked: literal (fee / duration / form-id) matches | 705 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 334 |
 
 ## What this gate cannot vouch for
 
-- **2546 of 3122 prose sentences** in the corpus carry no extractable
+- **2632 of 3223 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **993 sentences state a negative** (`you do not need a court order`, `the page no
+- **1014 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **332 assertions are necessary-condition only**: the source discusses the topic, which
+- **334 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **16 cited sources refuse automated fetching entirely**, so no
@@ -57,7 +57,7 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 
 ## Uncheckable assertions (reported, never passed)
 
-**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 268 assertion(s):
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 296 assertion(s):
 
 - `al.court-order.name · this action happens where you live, so the route closes when you move`
 - `al.court-order.name · official form PS12 backs this step (form_ref: al-aoc-ps12)`
@@ -165,11 +165,20 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `nj.court-order.name · states $50`
 - `nj.court-order.name · states "2 week"`
 - `nj.court-order.name · states "45 day"`
+- `ny.drivers-license.gender-marker.form · official form MV44 backs this step (form_ref: ny-dmv-mv-44)`
+- `ny.drivers-license.gender-marker.form · an X sex/gender marker is available`
 - `nc.drivers-license.gender-marker · official form DL300 backs this step (form_ref: nc-dmv-dl-300)`
 - `nc.drivers-license.gender-marker · a court order is required`
 - `nc.birth-certificate.gender-marker · costs $39`
 - `nc.birth-certificate.gender-marker · official form DHHS1578 backs this step (form_ref: nc-dhhs-1578)`
 - `nc.birth-certificate.gender-marker · a notarized signature is required`
+- `nd.drivers-license.gender-marker · form_ref "nd-dot-sfn-61146" (Form SFN 61146 — Gender Designation (Driver License)) carries no form identifier to match on`
+- `ok.birth-certificate.name.form-fee · costs $40`
+- `ok.birth-certificate.name.form-fee · form_ref "ok-osdh-birth-certificate-request-form" (Birth Certificate Request Form (OSDH Vital Records)) carries no form identifier to match on`
+- `ok.birth-certificate.name.form-fee · states $15`
+- `ok.birth-certificate.name.form-fee · states "7 business-day"`
+- `ok.birth-certificate.name.form-fee · states "10 business-day"`
+- `ok.birth-certificate.name.form-fee · states "1 year"`
 - `pa.birth-certificate.gender-marker · costs $20`
 - `pa.birth-certificate.gender-marker · a fee waiver is available (cost.fee_waiver: true)`
 - `pa.birth-certificate.gender-marker · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
@@ -181,6 +190,11 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `pa.birth-certificate.name · a court order is required`
 - `pa.birth-certificate.name · a notarized signature is required`
 - `pa.birth-certificate.name · states "45 day"`
+- `ri.drivers-license.gender-marker.form · form_ref "ri-dmv-gender-designation" (Gender Designation on a License or Identification Card) carries no form identifier to match on`
+- `ri.drivers-license.gender-marker.form · an X sex/gender marker is available`
+- `ri.birth-certificate.gender-marker.procedure · costs $10`
+- `ri.birth-certificate.gender-marker.procedure · states $22`
+- `ri.birth-certificate.gender-marker.procedure · states $25`
 - `ak.court-order.name.es · a fee waiver is available (cost.fee_waiver: true)`
 - `ak.court-order.name.es · official form CIV700 backs this step (form_ref: ak-civ-700-petition-name-change)`
 - `ak.court-order.name.es · states "4 week"`
@@ -271,6 +285,7 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `nc.birth-certificate.gender-marker.es · a notarized signature is required`
 - `nc.drivers-license.gender-marker.es · official form DL300 backs this step (form_ref: nc-dmv-dl-300)`
 - `nc.drivers-license.gender-marker.es · a court order is required`
+- `nd.drivers-license.gender-marker.es · form_ref "nd-dot-sfn-61146" (Form SFN 61146 — Gender Designation (Driver License)) carries no form identifier to match on`
 - `nj.court-order.name.es · costs $250`
 - `nj.court-order.name.es · form_ref "nj-courts-namechg-adult" (How to Ask the Court to Change Your Name — Adults Only (CN 10551)) carries no form identifier to match on`
 - `nj.court-order.name.es · states "20 day"`
@@ -290,6 +305,13 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `nv.birth-certificate.name.es · states $25`
 - `nv.birth-certificate.name.es · states "4 week"`
 - `nv.birth-certificate.name.es · states "6 week"`
+- `ny.drivers-license.gender-marker.form.es · official form MV44 backs this step (form_ref: ny-dmv-mv-44)`
+- `ok.birth-certificate.name.form-fee.es · costs $40`
+- `ok.birth-certificate.name.form-fee.es · form_ref "ok-osdh-birth-certificate-request-form" (Birth Certificate Request Form (OSDH Vital Records)) carries no form identifier to match on`
+- `ok.birth-certificate.name.form-fee.es · states $15`
+- `ok.birth-certificate.name.form-fee.es · states "7 business-day"`
+- `ok.birth-certificate.name.form-fee.es · states "10 business-day"`
+- `ok.birth-certificate.name.form-fee.es · states "1 year"`
 - `pa.birth-certificate.gender-marker.es · costs $20`
 - `pa.birth-certificate.gender-marker.es · a fee waiver is available (cost.fee_waiver: true)`
 - `pa.birth-certificate.gender-marker.es · form_ref "pa-doh-hd002292" (Form HD002292 — Request to Modify an Adult's Birth Record) carries no form identifier to match on`
@@ -301,6 +323,12 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `pa.birth-certificate.name.es · a court order is required`
 - `pa.birth-certificate.name.es · a notarized signature is required`
 - `pa.birth-certificate.name.es · states "45 day"`
+- `ri.birth-certificate.gender-marker.procedure.es · costs $10`
+- `ri.birth-certificate.gender-marker.procedure.es · states "18 year"`
+- `ri.birth-certificate.gender-marker.procedure.es · states $22`
+- `ri.birth-certificate.gender-marker.procedure.es · states $25`
+- `ri.drivers-license.gender-marker.form.es · form_ref "ri-dmv-gender-designation" (Gender Designation on a License or Identification Card) carries no form identifier to match on`
+- `ri.drivers-license.gender-marker.form.es · an X sex/gender marker is available`
 - `tn.birth-certificate.name.es · names form PH1186`
 - `tn.birth-certificate.name.es · states $15`
 - `tn.birth-certificate.name.es · states "18 year"`
@@ -471,7 +499,7 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `us.passport.name.es · names form DS60`
 - `us.passport.name.es · states $60`
 
-**the official form has no identifier to match on** — 80 assertion(s):
+**the official form has no identifier to match on** — 86 assertion(s):
 
 - `az.court-order.fees · cost.fee_waiver_form "az-aocdfgf1f-fee-waiver" (Application for Deferral or Waiver of Court Fees or Costs and Consent to Entry of Judgment (Form No. AOCDFGF1F)) carries no form identifier to match on`
 - `az.birth-certificate.name · form_ref "az-affidavit-correct-amend-birth" (Affidavit to Correct or Amend a Birth Certificate) carries no form identifier to match on`
@@ -501,11 +529,14 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `mn.birth-certificate.gender-marker · form_ref "mn-mdh-birth-record-amendment" (Birth Record Amendment Request) carries no form identifier to match on`
 - `mt.court-order.name · form_ref "mt-adult-name-change-packet" (Changing Your Name as an Adult — instructions and forms packet (Petition for Name Change, Order Setting Hearing, Notice of Hearing, Order Changing Name)) carries no form identifier to match on`
 - `nv.court-order.name · form_ref "nv-petition-adult-name-change" (Petition for Adult Name Change) carries no form identifier to match on`
+- `nj.drivers-license.gender-marker · form_ref "nj-mvc-gender-designation-change" (Declaration of Gender Designation Change for New Jersey Motor Vehicle Commission Driver License or Non-Driver Identification Card) carries no form identifier to match on`
 - `nj.birth-certificate.gender-marker · form_ref "nj-doh-reg-l2" (Form REG-L2 — Request Form and Attestation to Amend Sex Designation to Reflect Gender Identity on a Birth Certificate (Adult)) carries no form identifier to match on`
 - `nm.birth-certificate.gender-marker · form_ref "nm-health-gender-designation-adult-form" (Request to Change Gender Designation on a Birth Certificate: Adult Form) carries no form identifier to match on`
 - `nd.birth-certificate.name · form_ref "nd-dhhs-sfn-60183" (Form SFN 60183 — Birth Record Amendment Application) carries no form identifier to match on`
+- `ok.birth-certificate.name · form_ref "ok-osdh-birth-certificate-request-form" (Birth Certificate Request Form (OSDH Vital Records)) carries no form identifier to match on`
 - `or.court-order.name-and-sex · form_ref "or-courts-name-sex-packet" (Name and Sex Change Packet (Adult)) carries no form identifier to match on`
 - `or.birth-certificate.name · form_ref "or-oha-court-order-name-form" (Request to Change Birth Certificate Based on Court Order of Name Change) carries no form identifier to match on`
+- `ri.drivers-license.gender-marker · form_ref "ri-dmv-gender-designation" (Gender Designation on a License or Identification Card) carries no form identifier to match on`
 - `ar.court-order.name.es · cost.fee_waiver_form "ar-fee-waiver-ifp" (In Forma Pauperis (Fee Waiver) Petition, Affidavit and Order) carries no form identifier to match on`
 - `ar.drivers-license.name.es · form_ref "ar-ds-affidavit-name-change" (Affidavit of Legal Name Change) carries no form identifier to match on`
 - `az.birth-certificate.name.es · form_ref "az-affidavit-correct-amend-birth" (Affidavit to Correct or Amend a Birth Certificate) carries no form identifier to match on`
@@ -532,10 +563,13 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `mt.court-order.name.es · form_ref "mt-adult-name-change-packet" (Changing Your Name as an Adult — instructions and forms packet (Petition for Name Change, Order Setting Hearing, Notice of Hearing, Order Changing Name)) carries no form identifier to match on`
 - `nd.birth-certificate.name.es · form_ref "nd-dhhs-sfn-60183" (Form SFN 60183 — Birth Record Amendment Application) carries no form identifier to match on`
 - `nj.birth-certificate.gender-marker.es · form_ref "nj-doh-reg-l2" (Form REG-L2 — Request Form and Attestation to Amend Sex Designation to Reflect Gender Identity on a Birth Certificate (Adult)) carries no form identifier to match on`
+- `nj.drivers-license.gender-marker.es · form_ref "nj-mvc-gender-designation-change" (Declaration of Gender Designation Change for New Jersey Motor Vehicle Commission Driver License or Non-Driver Identification Card) carries no form identifier to match on`
 - `nm.birth-certificate.gender-marker.es · form_ref "nm-health-gender-designation-adult-form" (Request to Change Gender Designation on a Birth Certificate: Adult Form) carries no form identifier to match on`
 - `nv.court-order.name.es · form_ref "nv-petition-adult-name-change" (Petition for Adult Name Change) carries no form identifier to match on`
+- `ok.birth-certificate.name.es · form_ref "ok-osdh-birth-certificate-request-form" (Birth Certificate Request Form (OSDH Vital Records)) carries no form identifier to match on`
 - `or.birth-certificate.name.es · form_ref "or-oha-court-order-name-form" (Request to Change Birth Certificate Based on Court Order of Name Change) carries no form identifier to match on`
 - `or.court-order.name-and-sex.es · form_ref "or-courts-name-sex-packet" (Name and Sex Change Packet (Adult)) carries no form identifier to match on`
+- `ri.drivers-license.gender-marker.es · form_ref "ri-dmv-gender-designation" (Gender Designation on a License or Identification Card) carries no form identifier to match on`
 - `tx.court-order.name.es · cost.fee_waiver_form "tx-statement-inability-afford" (Statement of Inability to Afford Payment of Court Costs or an Appeal Bond) carries no form identifier to match on`
 - `us.ead.name.es · form_ref "us-i-765" (Form I-765 — Application for Employment Authorization) carries no form identifier to match on`
 - `us.naturalization-certificate.gender-marker.es · form_ref "us-n-565" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on`
@@ -943,8 +977,8 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `nd.birth-certificate.name.es` | es | 3 | 0 | 1 | 2/4 |
 | `nd.court-order.name` | en | 3 | 0 | 0 | 3/5 |
 | `nd.court-order.name.es` | es | 3 | 0 | 0 | 3/5 |
-| `nd.drivers-license.gender-marker` | en | 0 | 0 | 0 | 4/4 |
-| `nd.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 4/4 |
+| `nd.drivers-license.gender-marker` | en | 0 | 0 | 1 | 5/5 |
+| `nd.drivers-license.gender-marker.es` | es | 0 | 0 | 1 | 6/6 |
 | `nd.drivers-license.name` | en | 3 | 0 | 0 | 3/5 |
 | `nd.drivers-license.name.es` | es | 3 | 0 | 0 | 3/5 |
 | `ne.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 3/3 |
@@ -979,8 +1013,8 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `nj.birth-certificate.name.es` | es | 2 | 0 | 0 | 2/4 |
 | `nj.court-order.name` | en | 0 | 0 | 7 | 1/6 |
 | `nj.court-order.name.es` | es | 0 | 0 | 8 | 1/6 |
-| `nj.drivers-license.gender-marker` | en | 1 | 0 | 0 | 4/5 |
-| `nj.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 4/5 |
+| `nj.drivers-license.gender-marker` | en | 1 | 0 | 1 | 4/5 |
+| `nj.drivers-license.gender-marker.es` | es | 1 | 0 | 1 | 4/5 |
 | `nj.drivers-license.name` | en | 0 | 0 | 0 | 6/6 |
 | `nj.drivers-license.name.es` | es | 0 | 0 | 0 | 6/6 |
 | `nm.birth-certificate.gender-marker` | en | 3 | 0 | 1 | 3/5 |
@@ -1015,8 +1049,10 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `ny.court-order.name.es` | es | 0 | 0 | 2 | 3/3 |
 | `ny.court-order.name.minor` | en | 0 | 0 | 2 | 8/9 |
 | `ny.court-order.name.minor.es` | es | 0 | 0 | 2 | 7/8 |
-| `ny.drivers-license.gender-marker` | en | 1 | 0 | 0 | 3/5 |
-| `ny.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 3/5 |
+| `ny.drivers-license.gender-marker` | en | 1 | 0 | 0 | 3/6 |
+| `ny.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 3/6 |
+| `ny.drivers-license.gender-marker.form` | en | 0 | 0 | 2 | 2/3 |
+| `ny.drivers-license.gender-marker.form.es` | es | 0 | 0 | 1 | 3/4 |
 | `ny.drivers-license.name` | en | 6 | 0 | 0 | 2/5 |
 | `ny.drivers-license.name.es` | es | 5 | 0 | 0 | 2/5 |
 | `oh.birth-certificate.gender-marker` | en | 0 | 0 | 1 | 7/7 |
@@ -1035,12 +1071,16 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `oh.drivers-license.name.es` | es | 1 | 0 | 0 | 5/5 |
 | `ok.birth-certificate.gender-marker` | en | 0 | 0 | 0 | 5/5 |
 | `ok.birth-certificate.gender-marker.es` | es | 0 | 0 | 0 | 5/5 |
-| `ok.birth-certificate.name` | en | 4 | 0 | 0 | 1/3 |
-| `ok.birth-certificate.name.es` | es | 3 | 0 | 0 | 1/3 |
+| `ok.birth-certificate.name` | en | 4 | 0 | 1 | 2/5 |
+| `ok.birth-certificate.name.es` | es | 3 | 0 | 1 | 2/5 |
+| `ok.birth-certificate.name.form-fee` | en | 0 | 0 | 6 | 2/5 |
+| `ok.birth-certificate.name.form-fee.es` | es | 0 | 0 | 6 | 2/5 |
 | `ok.court-order.name` | en | 1 | 0 | 0 | 2/3 |
 | `ok.court-order.name.es` | es | 1 | 0 | 0 | 2/3 |
-| `ok.drivers-license.gender-marker` | en | 0 | 0 | 0 | 3/3 |
-| `ok.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 3/3 |
+| `ok.drivers-license.gender-marker` | en | 0 | 0 | 0 | 4/4 |
+| `ok.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 4/4 |
+| `ok.drivers-license.gender-marker.law` | en | 0 | 0 | 0 | 9/9 |
+| `ok.drivers-license.gender-marker.law.es` | es | 0 | 0 | 0 | 10/10 |
 | `ok.drivers-license.name` | en | 1 | 0 | 0 | 3/4 |
 | `ok.drivers-license.name.es` | es | 1 | 0 | 0 | 3/4 |
 | `or.birth-certificate.gender-marker` | en | 9 | 0 | 0 | 4/5 |
@@ -1063,16 +1103,22 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `pa.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 2/3 |
 | `pa.drivers-license.name` | en | 2 | 0 | 0 | 4/5 |
 | `pa.drivers-license.name.es` | es | 2 | 0 | 0 | 4/5 |
+| `ri.birth-certificate.amendment-request` | en | 3 | 0 | 0 | 8/9 |
+| `ri.birth-certificate.amendment-request.es` | es | 3 | 0 | 0 | 8/9 |
 | `ri.birth-certificate.fees` | en | 4 | 0 | 0 | 0/2 |
 | `ri.birth-certificate.fees.es` | es | 4 | 0 | 0 | 0/2 |
-| `ri.birth-certificate.gender-marker` | en | 0 | 0 | 0 | 4/4 |
-| `ri.birth-certificate.gender-marker.es` | es | 0 | 0 | 0 | 4/4 |
+| `ri.birth-certificate.gender-marker` | en | 0 | 0 | 0 | 5/5 |
+| `ri.birth-certificate.gender-marker.es` | es | 0 | 0 | 0 | 5/5 |
+| `ri.birth-certificate.gender-marker.procedure` | en | 0 | 0 | 3 | 9/9 |
+| `ri.birth-certificate.gender-marker.procedure.es` | es | 0 | 0 | 4 | 8/9 |
 | `ri.birth-certificate.name` | en | 3 | 0 | 0 | 2/4 |
 | `ri.birth-certificate.name.es` | es | 3 | 0 | 0 | 2/4 |
 | `ri.court-order.name` | en | 3 | 0 | 0 | 4/4 |
 | `ri.court-order.name.es` | es | 3 | 0 | 0 | 4/4 |
-| `ri.drivers-license.gender-marker` | en | 0 | 0 | 0 | 3/3 |
-| `ri.drivers-license.gender-marker.es` | es | 0 | 0 | 0 | 3/3 |
+| `ri.drivers-license.gender-marker` | en | 0 | 0 | 1 | 4/4 |
+| `ri.drivers-license.gender-marker.es` | es | 0 | 0 | 1 | 4/4 |
+| `ri.drivers-license.gender-marker.form` | en | 0 | 0 | 2 | 7/7 |
+| `ri.drivers-license.gender-marker.form.es` | es | 0 | 0 | 2 | 7/7 |
 | `ri.drivers-license.name` | en | 1 | 0 | 0 | 2/3 |
 | `ri.drivers-license.name.es` | es | 1 | 0 | 0 | 2/3 |
 | `sc.birth-certificate.gender-marker` | en | 2 | 0 | 0 | 4/4 |
