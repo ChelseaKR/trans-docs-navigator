@@ -1,0 +1,38 @@
+[
+  {
+    "id": "al.referral.aclu-alabama",
+    "jurisdiction": "US-AL",
+    "name": "ACLU of Alabama",
+    "url": "https://www.aclualabama.org/en/issues/lgbtq-rights",
+    "note": {
+      "en": "The Alabama affiliate of the American Civil Liberties Union tracks LGBTQ+ policy in the state and publishes know-your-rights information relevant to transgender residents.",
+      "es": "La filial de Alabama de la Unión Estadounidense por las Libertades Civiles (ACLU) da seguimiento a las políticas LGBTQ+ del estado y publica información sobre derechos relevante para residentes transgénero."
+    },
+    "source": {
+      "url": "https://www.aclualabama.org/en/issues/lgbtq-rights",
+      "title": "ACLU of Alabama — LGBTQ Rights",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "al.referral.legal-services-alabama",
+    "jurisdiction": "US-AL",
+    "name": "Legal Services Alabama",
+    "url": "https://www.legalservicesalabama.org",
+    "note": {
+      "en": "A statewide nonprofit that provides free civil legal aid to low-income Alabamians, including help with legal filings such as a name-change petition.",
+      "es": "Una organización estatal sin fines de lucro que brinda ayuda legal civil gratuita a residentes de Alabama de bajos ingresos, incluida ayuda con trámites legales como una petición de cambio de nombre."
+    },
+    "source": {
+      "url": "https://www.legalservicesalabama.org",
+      "title": "Legal Services Alabama",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

@@ -1,11 +1,12 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 534,
-  "supported": 879,
+  "records": 572,
+  "supported": 903,
   "unsupported": 0,
-  "uncheckable": 327,
+  "uncheckable": 367,
   "unfetchable_sources": [
     "https://doa.alaska.gov/dmv/akol/namchg.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
+    "https://ldh.la.gov/vital-records/amendments-to-birth-records → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.michigan.gov/sos/all-services/license-or-id-name-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.michigan.gov/mdhhs/doing-business/vitalrecords/correct-change-a-vital-record-and-legal-name-change → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
@@ -16,9 +17,157 @@
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → HTTP 404: the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 1966,
-  "total_prose_sentences": 2447,
+  "unchecked_prose_sentences": 2084,
+  "total_prose_sentences": 2589,
   "audits": [
+    {
+      "recordId": "al.court-order.name",
+      "language": "en",
+      "url": "https://eforms.alacourt.gov/media/jtzbncuw/request-to-change-name.pdf",
+      "results": [
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "PS12",
+          "label": "official form PS12 backs this step (form_ref: al-aoc-ps12)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "19 year",
+          "label": "states \"19 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "al.court-order.fees",
+      "language": "en",
+      "url": "https://jeffcoprobatecourt.com/judicial/court-costs/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "125",
+          "label": "costs $125",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $125"
+        },
+        {
+          "kind": "money",
+          "key": "27",
+          "label": "states $27",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $27"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "al.drivers-license.name",
+      "language": "en",
+      "url": "https://www.alea.gov/dps/driver-license/driver-license-forms",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "al.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.alea.gov/dps/driver-license/driver-license-forms",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "al.birth-certificate.name",
+      "language": "en",
+      "url": "https://www.alabamapublichealth.gov/vitalrecords/birth-certificate-corrections.html",
+      "results": [
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "costs $20",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        },
+        {
+          "kind": "money",
+          "key": "6",
+          "label": "states $6",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $6"
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $15"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "al.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.alabamapublichealth.gov/vitalrecords/birth-certificate-corrections.html",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
     {
       "recordId": "ak.court-order.name",
       "language": "en",
@@ -2640,6 +2789,172 @@
       "totalSentences": 5
     },
     {
+      "recordId": "la.court-order.name",
+      "language": "en",
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=77843",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "la.court-order.fees",
+      "language": "en",
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=77847",
+      "results": [],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "la.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=98725",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "10 day",
+          "label": "states \"10 day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"10 day\""
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "la.birth-certificate.gender-marker.agency-guidance",
+      "language": "en",
+      "url": "https://ldh.la.gov/vital-records/amendments-to-birth-records",
+      "results": [],
+      "uncheckedProse": 2,
+      "negatedClaims": 2,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "la.birth-certificate.name",
+      "language": "en",
+      "url": "https://ldh.la.gov/vital-records/amendments-to-birth-records",
+      "results": [
+        {
+          "kind": "money",
+          "key": "27.5",
+          "label": "costs $27.5",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "money",
+          "key": "9",
+          "label": "states $9",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "90 day",
+          "label": "states \"90 day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "8 week",
+          "label": "states \"8 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "12 week",
+          "label": "states \"12 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "la.drivers-license.name",
+      "language": "en",
+      "url": "https://expresslane.la.gov/omv/resources/faqs/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "17",
+          "label": "costs $17",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $17"
+        },
+        {
+          "kind": "money",
+          "key": "8",
+          "label": "states $8",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $8"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "la.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://public.powerdms.com/ladpsc/documents/368304",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
       "recordId": "me.court-order.name",
       "language": "en",
       "url": "https://legislature.maine.gov/statutes/18-C/title18-Csec1-701.html",
@@ -3762,6 +4077,155 @@
       "uncheckedProse": 2,
       "negatedClaims": 2,
       "totalSentences": 3
+    },
+    {
+      "recordId": "ms.court-order.name",
+      "language": "en",
+      "url": "https://billstatus.ls.state.ms.us/documents/2026/pdf/SB/2100-2199/SB2126SG.pdf",
+      "results": [
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ms.drivers-license.name",
+      "language": "en",
+      "url": "https://www.driverservicebureau.dps.ms.gov/node/303",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "ms.drivers-license.gender-marker",
+      "language": "en",
+      "url": "https://www.driverservicebureau.dps.ms.gov/node/303",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ms.birth-certificate.name",
+      "language": "en",
+      "url": "https://msdh.ms.gov/phs/VR_rules_2023_new_format.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "28",
+          "label": "costs $28",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "6",
+          "label": "states $6",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "cost.note",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 2,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "ms.birth-certificate.gender-marker",
+      "language": "en",
+      "url": "https://msdh.ms.gov/phs/VR_rules_2023_new_format.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "28",
+          "label": "costs $28",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "6",
+          "label": "states $6",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "ms.birth-certificate.fees",
+      "language": "en",
+      "url": "https://msdh.ms.gov/msdhsite/_static/31,0,109,808.html",
+      "results": [
+        {
+          "kind": "money",
+          "key": "17",
+          "label": "costs $17",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $17"
+        },
+        {
+          "kind": "money",
+          "key": "6",
+          "label": "states $6",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $6"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 0,
+      "totalSentences": 2
     },
     {
       "recordId": "mo.court-order.name",
@@ -6865,6 +7329,154 @@
       "totalSentences": 6
     },
     {
+      "recordId": "al.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.alabamapublichealth.gov/vitalrecords/birth-certificate-corrections.html",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 3,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "al.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://www.alabamapublichealth.gov/vitalrecords/birth-certificate-corrections.html",
+      "results": [
+        {
+          "kind": "money",
+          "key": "20",
+          "label": "costs $20",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $20"
+        },
+        {
+          "kind": "money",
+          "key": "6",
+          "label": "states $6",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $6"
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $15"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "al.court-order.fees.es",
+      "language": "es",
+      "url": "https://jeffcoprobatecourt.com/judicial/court-costs/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "125",
+          "label": "costs $125",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $125"
+        },
+        {
+          "kind": "money",
+          "key": "27",
+          "label": "states $27",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $27"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "al.court-order.name.es",
+      "language": "es",
+      "url": "https://eforms.alacourt.gov/media/jtzbncuw/request-to-change-name.pdf",
+      "results": [
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "form-id",
+          "key": "PS12",
+          "label": "official form PS12 backs this step (form_ref: al-aoc-ps12)",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "duration",
+          "key": "19 year",
+          "label": "states \"19 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "al.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.alea.gov/dps/driver-license/driver-license-forms",
+      "results": [],
+      "uncheckedProse": 4,
+      "negatedClaims": 3,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "al.drivers-license.name.es",
+      "language": "es",
+      "url": "https://www.alea.gov/dps/driver-license/driver-license-forms",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
       "recordId": "ar.birth-certificate.gender-marker.es",
       "language": "es",
       "url": "https://healthy.arkansas.gov/programs-services/certificates-records/change-or-amend-a-birth-or-death-certificate/change-sex-and-name-on-a-birth-record/",
@@ -9179,6 +9791,191 @@
       "totalSentences": 5
     },
     {
+      "recordId": "la.birth-certificate.gender-marker.agency-guidance.es",
+      "language": "es",
+      "url": "https://ldh.la.gov/vital-records/amendments-to-birth-records",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "12 year",
+          "label": "states \"12 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 2,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "la.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=98725",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "10 day",
+          "label": "states \"10 day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"10 day\""
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "la.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://ldh.la.gov/vital-records/amendments-to-birth-records",
+      "results": [
+        {
+          "kind": "money",
+          "key": "27.5",
+          "label": "costs $27.5",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "18 year",
+          "label": "states \"18 year\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "money",
+          "key": "9",
+          "label": "states $9",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "money",
+          "key": "15",
+          "label": "states $15",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "90 day",
+          "label": "states \"90 day\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "8 week",
+          "label": "states \"8 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        },
+        {
+          "kind": "duration",
+          "key": "12 week",
+          "label": "states \"12 week\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
+        }
+      ],
+      "uncheckedProse": 0,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "la.court-order.fees.es",
+      "language": "es",
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=77847",
+      "results": [],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "la.court-order.name.es",
+      "language": "es",
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=77843",
+      "results": [],
+      "uncheckedProse": 5,
+      "negatedClaims": 1,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "la.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://public.powerdms.com/ladpsc/documents/368304",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "la.drivers-license.name.es",
+      "language": "es",
+      "url": "https://expresslane.la.gov/omv/resources/faqs/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "17",
+          "label": "costs $17",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $17"
+        },
+        {
+          "kind": "money",
+          "key": "8",
+          "label": "states $8",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $8"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 0,
+      "totalSentences": 4
+    },
+    {
       "recordId": "ma.birth-certificate.gender-marker.es",
       "language": "es",
       "url": "https://www.mass.gov/how-to/amend-a-birth-certificate-for-sex-of-the-subject",
@@ -10448,6 +11245,155 @@
       "uncheckedProse": 3,
       "negatedClaims": 2,
       "totalSentences": 3
+    },
+    {
+      "recordId": "ms.birth-certificate.fees.es",
+      "language": "es",
+      "url": "https://msdh.ms.gov/msdhsite/_static/31,0,109,808.html",
+      "results": [
+        {
+          "kind": "money",
+          "key": "17",
+          "label": "costs $17",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $17"
+        },
+        {
+          "kind": "money",
+          "key": "6",
+          "label": "states $6",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $6"
+        }
+      ],
+      "uncheckedProse": 1,
+      "negatedClaims": 0,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "ms.birth-certificate.gender-marker.es",
+      "language": "es",
+      "url": "https://msdh.ms.gov/phs/VR_rules_2023_new_format.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "28",
+          "label": "costs $28",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "6",
+          "label": "states $6",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
+      "recordId": "ms.birth-certificate.name.es",
+      "language": "es",
+      "url": "https://msdh.ms.gov/phs/VR_rules_2023_new_format.pdf",
+      "results": [
+        {
+          "kind": "money",
+          "key": "28",
+          "label": "costs $28",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "money",
+          "key": "6",
+          "label": "states $6",
+          "field": "cost.note",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        },
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "cost.note",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 2,
+      "totalSentences": 2
+    },
+    {
+      "recordId": "ms.court-order.name.es",
+      "language": "es",
+      "url": "https://billstatus.ls.state.ms.us/documents/2026/pdf/SB/2100-2199/SB2126SG.pdf",
+      "results": [
+        {
+          "kind": "residency",
+          "key": "residency-bound",
+          "label": "this action happens where you live, so the route closes when you move",
+          "field": "relocation.residency_bound",
+          "strength": "necessary-condition",
+          "verdict": "uncheckable",
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
+      "recordId": "ms.drivers-license.gender-marker.es",
+      "language": "es",
+      "url": "https://www.driverservicebureau.dps.ms.gov/node/303",
+      "results": [],
+      "uncheckedProse": 3,
+      "negatedClaims": 2,
+      "totalSentences": 3
+    },
+    {
+      "recordId": "ms.drivers-license.name.es",
+      "language": "es",
+      "url": "https://www.driverservicebureau.dps.ms.gov/node/303",
+      "results": [
+        {
+          "kind": "requirement",
+          "key": "court-order-required",
+          "label": "a court order is required",
+          "field": "statement",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 2,
+      "negatedClaims": 1,
+      "totalSentences": 2
     },
     {
       "recordId": "mt.birth-certificate.fees.es",

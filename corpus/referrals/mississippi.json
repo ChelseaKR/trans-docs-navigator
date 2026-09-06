@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ms.referral.aclu-mississippi",
+    "jurisdiction": "US-MS",
+    "name": "ACLU of Mississippi",
+    "url": "https://www.aclu-ms.org/issues/lgbtq-rights/",
+    "note": {
+      "en": "The Mississippi affiliate of the American Civil Liberties Union tracks LGBTQ+ policy in the state and offers a legal-help request intake for residents.",
+      "es": "La filial de Mississippi de la Unión Estadounidense por las Libertades Civiles (ACLU) da seguimiento a las políticas LGBTQ+ del estado y ofrece una solicitud de ayuda legal para residentes."
+    },
+    "source": {
+      "url": "https://www.aclu-ms.org/issues/lgbtq-rights/",
+      "title": "ACLU of Mississippi — LGBTQ Rights",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ms.referral.mississippi-center-for-justice",
+    "jurisdiction": "US-MS",
+    "name": "Mississippi Center for Justice",
+    "url": "https://mscenterforjustice.org/",
+    "note": {
+      "en": "A Mississippi nonprofit law firm and advocacy organization that provides free legal help on civil-rights matters to low-income residents.",
+      "es": "Un bufete legal y organización de defensa sin fines de lucro de Mississippi que brinda ayuda legal gratuita en asuntos de derechos civiles a residentes de bajos ingresos."
+    },
+    "source": {
+      "url": "https://mscenterforjustice.org/",
+      "title": "Mississippi Center for Justice",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

@@ -127,6 +127,156 @@
     "language": "es"
   },
   {
+    "id": "al.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-AL",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Alabama",
+    "statement": "La página de correcciones de actas de nacimiento de Alabama no menciona el sexo o género en ninguna parte. No indica ninguna categoría, formulario o proceso para actualizar la designación de sexo en un acta de nacimiento de Alabama.",
+    "detail": "Las únicas tres categorías que nombra la página son corregir un error cometido cuando se preparó el acta por primera vez, agregar el nombre de un padre después de una legitimación o determinación de paternidad, y actualizar un acta después de una adopción. Llame al Centro de Estadísticas de Salud al (334) 206-2637, o lea usted mismo las reglas actuales de estadísticas vitales de Alabama, antes de suponer que existe o no existe esta opción.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.alabamapublichealth.gov/vitalrecords/birth-certificate-corrections.html",
+      "title": "Alabama Department of Public Health — Birth Certificate Corrections/Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "al.birth-certificate.name.es",
+    "jurisdiction": "US-AL",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Alabama",
+    "statement": "La página de correcciones de actas de nacimiento de Alabama describe tres tipos de cambios: corregir información que estaba equivocada cuando se preparó el acta por primera vez, agregar el nombre de un padre después de una legitimación o determinación de paternidad, y actualizar un acta después de una adopción. No menciona una categoría aparte para actualizar un acta de nacimiento después de un cambio de nombre otorgado por un tribunal más adelante en la vida.",
+    "detail": "El formulario general de enmienda de esa misma página, la Solicitud para Cambiar un Acta de Nacimiento o Defunción de Alabama, se envía por correo con una tarifa de $20.00 que incluye una copia certificada del acta enmendada; las copias adicionales cuestan $6.00 cada una, y hay una tarifa de $15.00 para acelerar una solicitud. La página le indica llamar al Centro de Estadísticas de Salud al (334) 206-2637 con preguntas — vale la pena hacerlo aquí, ya que la página no dice si o cómo este formulario general cubre un cambio de nombre hecho oficial después del nacimiento.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "Incluye una copia certificada del acta enmendada. Las copias adicionales cuestan $6.00 cada una. Una solicitud acelerada cuesta $15.00 más."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.alabamapublichealth.gov/vitalrecords/birth-certificate-corrections.html",
+      "title": "Alabama Department of Public Health — Birth Certificate Corrections/Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "al.court-order.fees.es",
+    "jurisdiction": "US-AL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Tarifa de cambio de nombre en el tribunal de sucesiones de Alabama (ejemplo de condado)",
+    "statement": "Los tribunales de sucesiones de Alabama establecen su propia tarifa para un cambio de nombre de un adulto. La lista de costos judiciales del condado de Jefferson indica $125.00, solo en efectivo, para programar una audiencia de cambio de nombre de un adulto — una tarifa diferente y más alta que los $27.00 que se cobran en ventanilla por cambiar el nombre de un menor.",
+    "detail": "Este es el ejemplo de un condado, no una tarifa estatal. Comuníquese con el tribunal de sucesiones del condado donde presentará la solicitud para conocer su monto actual.",
+    "cost": {
+      "amount_usd": 125,
+      "note": "Esta es la tarifa del condado de Jefferson, según una lista vigente desde el 15 de octubre de 2025. Otros condados de Alabama fijan su propia tarifa para esta presentación."
+    },
+    "prerequisites": [],
+    "discretionary": true,
+    "source": {
+      "url": "https://jeffcoprobatecourt.com/judicial/court-costs/",
+      "title": "Jefferson County, Alabama Probate Court — Filing Fees",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "al.court-order.name.es",
+    "jurisdiction": "US-AL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Alabama",
+    "statement": "Para cambiar su nombre como adulto en Alabama, usted completa una Solicitud de Cambio de Nombre (Formulario PS-12) y la presenta en el tribunal de sucesiones (probate court) del condado donde vive. Debe tener al menos 19 años, estar en pleno uso de sus facultades mentales, y firmar el formulario ante un notario.",
+    "detail": "Adjunte una copia certificada de su acta de nacimiento y una copia de su identificación con fotografía. El formulario le pide declarar que no enfrenta cargos penales ni participa en otro caso judicial pendiente, que nunca ha sido condenado por un delito sexual (según lo define la Sección 15-20-21 del Código de Alabama), un delito de vileza moral, o un delito grave, y que no está cambiando su nombre para evadir una deuda o cometer fraude. El formulario no menciona una ley estatal que establezca este proceso, y no describe un requisito de aviso publicado en un periódico.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El formulario estatal no indica una tarifa de presentación — cada tribunal de sucesiones de condado en Alabama establece la suya. Comuníquese con el tribunal de sucesiones del condado donde presentará la solicitud para conocer el monto actual."
+    },
+    "prerequisites": [],
+    "relocation": {
+      "residency_bound": true
+    },
+    "source": {
+      "url": "https://eforms.alacourt.gov/media/jtzbncuw/request-to-change-name.pdf",
+      "title": "Alabama Administrative Office of Courts — Request to Change Name (For An Adult), Form PS-12",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "al-aoc-ps12",
+    "language": "es"
+  },
+  {
+    "id": "al.drivers-license.gender-marker.es",
+    "jurisdiction": "US-AL",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo o género en la licencia de conducir/identificación de Alabama",
+    "statement": "La página de la Agencia de Cumplimiento de la Ley de Alabama (ALEA) que enumera los formularios y requisitos de la licencia de conducir describe cómo actualizar su nombre después de un cambio de nombre legal. No menciona ningún formulario o proceso para cambiar el sexo o género que aparece en una licencia de conducir o identificación.",
+    "detail": "Una lista aparte de ALEA de los documentos aceptados para comprobar su identidad para una licencia o identificación tampoco menciona el sexo o género en ninguna parte. Lea usted mismo las páginas actuales de ALEA, o llame a la División de Licencias de Conducir, antes de suponer que existe o no existe esta opción.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.alea.gov/dps/driver-license/driver-license-forms",
+      "title": "Alabama Law Enforcement Agency — Driver License Forms",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "al.drivers-license.name.es",
+    "jurisdiction": "US-AL",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir/identificación de Alabama",
+    "statement": "Para actualizar el nombre en su licencia de conducir o identificación de Alabama después de un cambio de nombre legal, usted visita una oficina local de sucesiones o de licencias, o una Oficina de Licencias de Conducir de ALEA, para que le emitan una licencia duplicada por la tarifa normal de duplicado. Usted lleva documentos que respalden el cambio de nombre, como un certificado de matrimonio, una sentencia de divorcio, una orden judicial, u otro documento legal de cambio de nombre.",
+    "detail": "ALEA también le pide mostrar prueba de que su nombre ya fue cambiado ante la Administración del Seguro Social. Una lista aparte de ALEA de documentos de identificación aceptables incluye un \"decreto de cambio de nombre\" de un tribunal de registro como uno de los documentos aceptados para un trámite de licencia o identificación.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página no indica una cifra en dólares para esta \"tarifa normal de duplicado\". Comuníquese con una Oficina de Licencias de Conducir de ALEA o con la oficina local de licencias de sucesiones para conocer el monto actual."
+    },
+    "prerequisites": [
+      "ssa-card",
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.alea.gov/dps/driver-license/driver-license-forms",
+      "title": "Alabama Law Enforcement Agency — Driver License Forms",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "ar.birth-certificate.gender-marker.es",
     "jurisdiction": "US-AR",
     "document_type": "birth-certificate",
@@ -2154,6 +2304,177 @@
     "language": "es"
   },
   {
+    "id": "la.birth-certificate.gender-marker.agency-guidance.es",
+    "jurisdiction": "US-LA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "La guía del Departamento de Salud de Luisiana guarda silencio sobre la vía basada en cirugía",
+    "statement": "El Departamento de Salud de Luisiana le permite corregir el sexo indicado en un acta de nacimiento de una persona mayor de 12 años usando declaraciones de dos proveedores médicos con licencia en los Estados Unidos distintos — pero su propia página dice que esta opción \"no aplica para reasignación de género.\"",
+    "detail": "Esa misma página nunca menciona la ley estatal que sí permite cambiar la designación de sexo después de una cirugía (Estatutos Revisados de Luisiana 40:62), ni cómo usarla. Una persona que busque un cambio de designación de sexo en el sitio web del departamento no se enterará de que existe esta vía.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://ldh.la.gov/vital-records/amendments-to-birth-records",
+      "title": "Louisiana Department of Health, Center for Vital Records and Statistics — Amendments to Birth Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "la.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-LA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Luisiana (requisito de cirugía)",
+    "statement": "La ley de Luisiana solo le permite cambiar el sexo indicado en su acta de nacimiento después de haberse sometido a \"una cirugía de reasignación de sexo o correctiva que haya cambiado la estructura anatómica del sexo.\" Luego usted demanda al registrador estatal en el tribunal de distrito de la parroquia donde vive o donde nació.",
+    "detail": "Si está casado, su cónyuge también debe ser incluido como parte necesaria en la demanda; si además pide que el tribunal cambie su nombre en la misma demanda, el fiscal de distrito también debe ser parte necesaria. El tribunal decide con base en \"las pruebas que considere necesarias\" para convencerse de que usted fue diagnosticado correctamente y de que la cirugía cambió su sexo anatómico. Una vez que un tribunal concede la petición, una copia certificada de la petición y la sentencia debe llegar al registrador estatal dentro de los diez días siguientes, y su acta de nacimiento original queda entonces sellada en el archivo de registros vitales — solo puede reabrirse por orden del tribunal, a solicitud suya.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La ley no fija una tarifa para esta demanda; se aplicarían las tarifas judiciales ordinarias. Comuníquese con el secretario del tribunal de distrito donde presentará la solicitud."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=98725",
+      "title": "Louisiana State Legislature — Revised Statutes 40:62, Issuance of New Birth Certificate After Anatomical Change of Sex by Surgery",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "la.birth-certificate.name.es",
+    "jurisdiction": "US-LA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Luisiana",
+    "statement": "Para cambiar el apellido en un acta de nacimiento de Luisiana de una persona de 18 años o más, usted obtiene una sentencia de cambio de nombre ordenada por un tribunal de Luisiana, y luego envía a Registros Vitales una copia certificada de la sentencia, la petición, y la respuesta del fiscal de distrito para que decida si la orden judicial puede usarse para enmendar el acta de nacimiento.",
+    "detail": "A menos que solicite una corrección hospitalaria dentro de los 90 días posteriores a la fecha de registro del acta de nacimiento, enmendar o corregir un acta de nacimiento cuesta $27.50 e incluye una copia certificada del acta enmendada; las copias certificadas adicionales cuestan $9 cada una. Si no puede proporcionar su acta de nacimiento original (incorrecta), se agrega una tarifa de búsqueda de $15. El trámite tarda aproximadamente de 8 a 12 semanas.",
+    "cost": {
+      "amount_usd": 27.5,
+      "note": "Incluye una copia certificada del acta de nacimiento enmendada. Las copias certificadas adicionales cuestan $9 cada una. Si no puede proporcionar su acta de nacimiento original (incorrecta), se agrega una tarifa de búsqueda de $15."
+    },
+    "timeline": {
+      "typical": "aproximadamente de 8 a 12 semanas"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://ldh.la.gov/vital-records/amendments-to-birth-records",
+      "title": "Louisiana Department of Health, Center for Vital Records and Statistics — Amendments to Birth Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "la.court-order.fees.es",
+    "jurisdiction": "US-LA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Tarifa de cambio de nombre en Luisiana",
+    "statement": "La ley de cambio de nombre de Luisiana dice únicamente que \"el solicitante en todos los casos pagará el costo del procedimiento\" — no fija un monto estatal.",
+    "detail": "Comuníquese con el secretario del tribunal de distrito donde presentará la solicitud para conocer la tarifa de presentación actual.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La ley no indica una tarifa de presentación; la fija el tribunal de distrito donde usted presente la solicitud."
+    },
+    "prerequisites": [],
+    "discretionary": true,
+    "source": {
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=77847",
+      "title": "Louisiana State Legislature — Revised Statutes 13:4755, Payment of Cost",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "la.court-order.name.es",
+    "jurisdiction": "US-LA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Luisiana",
+    "statement": "Para cambiar legalmente su nombre como adulto en Luisiana, usted presenta una petición ante el tribunal de distrito de la parroquia donde vive, la parroquia donde nació, o la parroquia que tiene competencia sobre el Registro de Estadísticas Vitales del estado. Si está encarcelado, en cambio presenta la petición ante el tribunal de distrito de la parroquia donde fue sentenciado.",
+    "detail": "Una condena por un delito grave le impide presentar la petición hasta que haya cumplido su sentencia, libertad condicional o libertad supervisada. Una condena por cualquiera de los delitos violentos que la ley de Luisiana enumera como \"delito de violencia\" (R.S. 14:2(B)) le impide presentar una petición de cambio de nombre de forma permanente, sin período de espera.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=77843",
+      "title": "Louisiana State Legislature — Revised Statutes 13:4751, Petition for Name Change; Adults; Minors",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "la.drivers-license.gender-marker.es",
+    "jurisdiction": "US-LA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Política de cambio de género en la licencia de conducir/identificación de Luisiana",
+    "statement": "La política de la Oficina de Vehículos Motorizados de Luisiana le permite cambiar el género que aparece en su licencia de conducir o identificación con una declaración médica, firmada por un médico, que indique que usted se sometió a un \"cambio de género/reasignación exitoso.\" El cambio de género en sí no requiere una orden judicial ni prueba de cirugía.",
+    "detail": "Si además está cambiando su nombre debido al cambio de género, también debe presentar una copia certificada o verdadera de una orden judicial para el cambio de nombre. Esta es una política interna de la agencia (Política 22.01, revisada por última vez el 12 de marzo de 2009), no una ley estatal, y no está publicada en las páginas web públicas de la Oficina de Vehículos Motorizados — las preguntas frecuentes y otras páginas para el público nunca mencionan un campo de género o sexo. Confirme la práctica actual directamente con la Oficina antes de confiar en ella.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://public.powerdms.com/ladpsc/documents/368304",
+      "title": "Louisiana Office of Motor Vehicles Policy 22.01 — Gender Change / Reassignment",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "la.drivers-license.name.es",
+    "jurisdiction": "US-LA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Luisiana",
+    "statement": "Para cambiar el nombre en su licencia de conducir de Luisiana, primero debe registrar el cambio ante la Administración del Seguro Social. Luego va a la Oficina de Vehículos Motorizados con documentación original que respalde el cambio de nombre, como un acta de nacimiento certificada, una licencia de matrimonio certificada por el estado, una sentencia de divorcio, o documentos del tribunal de sucesiones, junto con su licencia actual, comprobante de residencia, y comprobante de seguro de cualquier vehículo que posea. También deberá pasar un examen de la vista.",
+    "detail": "La Oficina de Vehículos Motorizados verifica los cambios de nombre en línea con los registros de la Administración del Seguro Social, así que su nombre ya debe estar actualizado allí primero.",
+    "cost": {
+      "amount_usd": 17,
+      "note": "Esta es la tarifa de una licencia estándar. También puede aplicarse una tarifa local de hasta $8. Un cambio de nombre se trata como una licencia duplicada, así que la fecha de vencimiento de su licencia no cambia."
+    },
+    "prerequisites": [
+      "ssa-card"
+    ],
+    "source": {
+      "url": "https://expresslane.la.gov/omv/resources/faqs/",
+      "title": "Louisiana Office of Motor Vehicles — Frequently Asked Questions",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "ma.birth-certificate.gender-marker.es",
     "jurisdiction": "US-MA",
     "document_type": "birth-certificate",
@@ -3090,6 +3411,156 @@
     "source": {
       "url": "https://dor.mo.gov/driver-license/issuance/id-requirements.html",
       "title": "Missouri Department of Revenue — Driver License, Nondriver ID, and Instruction Permit Requirements",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ms.birth-certificate.fees.es",
+    "jurisdiction": "US-MS",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Tarifas de copias del acta de nacimiento de Mississippi",
+    "statement": "Una copia certificada estándar de un acta de nacimiento de Mississippi cuesta $17, con una tarifa de $6 por cada copia adicional del mismo registro solicitada al mismo tiempo.",
+    "detail": "Esta es la tarifa para pedir una copia de su registro tal como está — es distinta de la tarifa para enmendar o corregir un registro, que el Departamento de Salud indica en otra parte.",
+    "cost": {
+      "amount_usd": 17,
+      "note": "Cada copia certificada adicional del mismo registro solicitada al mismo tiempo cuesta $6 más."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://msdh.ms.gov/msdhsite/_static/31,0,109,808.html",
+      "title": "Mississippi State Department of Health — Birth Certificates",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ms.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-MS",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Mississippi",
+    "statement": "Las reglas de registros vitales de Mississippi le permiten agregar un cambio de designación de sexo a un acta de nacimiento como una nota marginal: usted envía una orden judicial certificada, una declaración médica que certifique la reasignación, y la tarifa requerida.",
+    "detail": "Esto no es una reescritura del registro original — la nota se agrega junto a la entrada original. El Departamento de Salud de Mississippi no ha publicado esta opción en sus páginas web dirigidas al público sobre actas de nacimiento o preguntas frecuentes; aparece únicamente en esta regla. Confirme la práctica actual directamente con el Departamento antes de confiar en ella.",
+    "cost": {
+      "amount_usd": 28,
+      "note": "Esta tarifa es para una enmienda por orden judicial o declaración jurada e incluye una copia certificada del acta enmendada. Las copias certificadas adicionales solicitadas al mismo tiempo cuestan $6.00 cada una."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://msdh.ms.gov/phs/VR_rules_2023_new_format.pdf",
+      "title": "Mississippi State Department of Health — Rules Governing the Registration and Certification of Vital Events (Rev. May 11, 2023)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ms.birth-certificate.name.es",
+    "jurisdiction": "US-MS",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Mississippi",
+    "statement": "Mississippi le permite agregar un cambio de nombre ordenado por un tribunal a un acta de nacimiento como una nota marginal: usted envía una copia certificada de la orden judicial que cambió su nombre, más la tarifa requerida, y el estado anota el cambio sin borrar su nombre de nacimiento.",
+    "detail": "La propia regla de Mississippi advierte que una sentencia de cambio de nombre del tribunal de equidad no le da derecho por sí sola a una enmienda del acta de nacimiento, a menos que la Junta Estatal de Salud haya sido parte del caso — pregunte sobre incluir a la Junta de Salud cuando presente su petición de cambio de nombre si también desea que se actualice su acta de nacimiento.",
+    "cost": {
+      "amount_usd": 28,
+      "note": "Esta tarifa es para una enmienda por orden judicial o declaración jurada e incluye una copia certificada del acta enmendada. Las copias certificadas adicionales solicitadas al mismo tiempo cuestan $6.00 cada una."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://msdh.ms.gov/phs/VR_rules_2023_new_format.pdf",
+      "title": "Mississippi State Department of Health — Rules Governing the Registration and Certification of Vital Events (Rev. May 11, 2023)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ms.court-order.name.es",
+    "jurisdiction": "US-MS",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Mississippi",
+    "statement": "Para cambiar legalmente su nombre como adulto en Mississippi, usted presenta una petición ante el tribunal de equidad (chancery court) del condado donde vive. La ley de Mississippi le otorga a ese tribunal jurisdicción sobre una petición para cambiar el nombre de una persona.",
+    "detail": "A partir del 1 de julio de 2026, la ley de Mississippi convierte en delito grave que una persona obligada a registrarse como delincuente sexual cambie su nombre, a menos que el cambio de nombre se deba a un matrimonio o un divorcio. Esta nueva regla no afecta a la mayoría de las personas que presentan una petición de cambio de nombre, pero importa si usted tiene una obligación de registro como delincuente sexual.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La ley de cambio de nombre de Mississippi no indica una tarifa de presentación — el tribunal de equidad donde usted presente la solicitud fija la suya. Comuníquese con el secretario del tribunal de equidad del condado donde presentará la solicitud para conocer el monto actual."
+    },
+    "prerequisites": [],
+    "relocation": {
+      "residency_bound": true
+    },
+    "source": {
+      "url": "https://billstatus.ls.state.ms.us/documents/2026/pdf/SB/2100-2199/SB2126SG.pdf",
+      "title": "Mississippi Legislature — Senate Bill 2126 (2026 Regular Session), Chapter 419, Laws of 2026, as enacted (amending Miss. Code Ann. Section 93-17-1)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ms.drivers-license.gender-marker.es",
+    "jurisdiction": "US-MS",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo o género en la licencia de conducir/identificación de Mississippi",
+    "statement": "La Oficina de Servicios para Conductores de Mississippi publica su lista completa de documentos requeridos para un cambio de nombre, comprobante de residencia, y comprobante de fecha de nacimiento. Esa lista no menciona el sexo o género en ninguna parte, y la Oficina no indica ningún formulario o proceso para cambiar el sexo o género que aparece en una licencia o identificación.",
+    "detail": "Lea usted mismo las páginas actuales de la Oficina, o llame a una oficina local de Servicios para Conductores, antes de suponer que existe o no existe esta opción.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.driverservicebureau.dps.ms.gov/node/303",
+      "title": "Mississippi Department of Public Safety, Driver Service Bureau — Required Documents",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ms.drivers-license.name.es",
+    "jurisdiction": "US-MS",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir/identificación de Mississippi",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Mississippi, la Oficina de Servicios para Conductores solo acepta uno de cuatro documentos: una licencia de matrimonio, una sentencia de divorcio, una orden de adopción, o una orden judicial.",
+    "detail": "Su tarjeta de Seguro Social no tiene que mostrar su nuevo nombre para este trámite, pero la Oficina recomienda encarecidamente actualizarla ante la Administración del Seguro Social antes de renovar su licencia o identificación.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.driverservicebureau.dps.ms.gov/node/303",
+      "title": "Mississippi Department of Public Safety, Driver Service Bureau — Required Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

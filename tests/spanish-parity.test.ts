@@ -173,6 +173,45 @@ test("Minnesota has full Spanish parity (court-order, drivers-license, birth-cer
   assert.match(mn.body, /estatura, peso y color de ojos/); // mn.drivers-license.gender-marker.es
 });
 
+test("Alabama, Mississippi, and Louisiana have full Spanish parity (court-order, drivers-license, birth-certificate) — no thinner-coverage note", () => {
+  // Every EN record added for these three states ships with an ES twin from the start —
+  // including the ones that describe a restricted or undocumented gender-marker path —
+  // so a Spanish user must never see the honest "not ready yet" gap note for any
+  // document/change-type combination this corpus covers for them.
+  const al = handleRoute(
+    "GET",
+    u(
+      "/checklist?jurisdiction=US-AL&change=name&change=gender-marker&doc=court-order&doc=drivers-license&doc=birth-certificate&language=es",
+    ),
+    today,
+  );
+  assert.doesNotMatch(al.body, /aún no están listos/);
+  assert.match(al.body, /tribunal de sucesiones/); // al.court-order.name.es
+  assert.match(al.body, /ALEA/); // al.drivers-license.name.es / al.drivers-license.gender-marker.es
+
+  const ms = handleRoute(
+    "GET",
+    u(
+      "/checklist?jurisdiction=US-MS&change=name&change=gender-marker&doc=court-order&doc=drivers-license&doc=birth-certificate&language=es",
+    ),
+    today,
+  );
+  assert.doesNotMatch(ms.body, /aún no están listos/);
+  assert.match(ms.body, /tribunal de equidad/); // ms.court-order.name.es
+  assert.match(ms.body, /Oficina de Servicios para Conductores/); // ms.drivers-license.name.es
+
+  const la = handleRoute(
+    "GET",
+    u(
+      "/checklist?jurisdiction=US-LA&change=name&change=gender-marker&doc=court-order&doc=drivers-license&doc=birth-certificate&language=es",
+    ),
+    today,
+  );
+  assert.doesNotMatch(la.body, /aún no están listos/);
+  assert.match(la.body, /tribunal de distrito/); // la.court-order.name.es
+  assert.match(la.body, /Oficina de Vehículos Motorizados/); // la.drivers-license.name.es / .gender-marker.es
+});
+
 test("Alaska has full Spanish parity (court-order, drivers-license, birth-certificate) — no thinner-coverage note", () => {
   // Alaska's five EN records each ship with an ES twin from the start, so a Spanish
   // user must never see the honest "not ready yet" gap note for any Alaska

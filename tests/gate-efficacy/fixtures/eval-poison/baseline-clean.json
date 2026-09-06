@@ -19,7 +19,7 @@
       "jurisdiction": "US-PR",
       "change_types": ["name"],
       "documents": ["court-order"],
-      "question": "Alabama name change"
+      "question": "Puerto Rico name change"
     },
     "expect": { "refused": true }
   },
