@@ -190,6 +190,15 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Arizona: both are PDFs whose text this pipeline cannot extract, so no
     // baseline can be taken — deliberate, with the Arizona corpus.
     "https://superiorcourt.maricopa.gov/media/emucljue/name-gender-change-eng-spa.pdf",
+    // The three passport pages (travel.state.gov) started refusing this project's
+    // declared user-agent with HTTP 403 sometime after 2026-07-13 — they had a committed
+    // snapshot and baseline before this change and do not any more (source-drift triage,
+    // 2026-09-05, docs/audits/source-drift-2026-09.md). This is a host newly blocking us,
+    // not drift in what the pages say; the passport records' claims are unaffected, but
+    // they are UNCHECKABLE by `make fidelity` going forward, same as NY Courts/health.ny.gov.
+    "https://travel.state.gov/content/travel/en/passports/have-passport/change-correct.html",
+    "https://travel.state.gov/en/passports/apply/unique-needs/sex-markers.html",
+    "https://travel.state.gov/es/pasaportes/renovar-o-reemplazar/cambiar-o-corregir.html",
     // North Carolina's Birth Certificate Modification Application (Form DHHS 1578) is
     // a PDF whose text this pipeline cannot extract, so no baseline can be taken —
     // deliberate addition with the North Carolina corpus.

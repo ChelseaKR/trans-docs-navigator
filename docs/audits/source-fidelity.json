@@ -1,12 +1,14 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
   "records": 602,
-  "supported": 929,
+  "supported": 916,
   "unsupported": 0,
-  "uncheckable": 419,
+  "uncheckable": 434,
   "unfetchable_sources": [
     "https://doa.alaska.gov/dmv/akol/namchg.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
+    "https://travel.state.gov/content/travel/en/passports/have-passport/change-correct.html → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
+    "https://travel.state.gov/en/passports/apply/unique-needs/sex-markers.html → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://ldh.la.gov/vital-records/amendments-to-birth-records → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.michigan.gov/sos/all-services/license-or-id-name-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.michigan.gov/sos/all-services/license-or-id-sex-designation-correction → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
@@ -16,9 +18,10 @@
     "https://www.dmv.nh.gov/drivers-licensenon-driver-ids/update-personal-information → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
-    "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → HTTP 404: the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+    "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → unreachable (fetch and curl both failed): the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
+    "https://travel.state.gov/es/pasaportes/renovar-o-reemplazar/cambiar-o-corregir.html → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 2209,
+  "unchecked_prose_sentences": 2207,
   "total_prose_sentences": 2725,
   "audits": [
     {
@@ -1246,7 +1249,7 @@
           "field": "form_ref",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ct.drivers-license.gender-marker."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "requirement",
@@ -1255,7 +1258,7 @@
           "field": "statement",
           "strength": "necessary-condition",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ct.drivers-license.gender-marker."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "requirement",
@@ -1264,7 +1267,7 @@
           "field": "detail",
           "strength": "necessary-condition",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ct.drivers-license.gender-marker."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
       "uncheckedProse": 5,
@@ -1727,8 +1730,8 @@
           "label": "official form DS82 backs this step (form_ref: us-ds-82)",
           "field": "form_ref",
           "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names DS82"
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         },
         {
           "kind": "requirement",
@@ -1736,8 +1739,8 @@
           "label": "a court order is required",
           "field": "statement",
           "strength": "necessary-condition",
-          "verdict": "supported",
-          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         },
         {
           "kind": "duration",
@@ -1745,8 +1748,8 @@
           "label": "states \"1 year\"",
           "field": "detail",
           "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states \"1 year\""
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         },
         {
           "kind": "form-id",
@@ -1754,8 +1757,8 @@
           "label": "names form DS5504",
           "field": "detail",
           "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names DS5504"
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         },
         {
           "kind": "form-id",
@@ -1763,8 +1766,8 @@
           "label": "names form DS11",
           "field": "detail",
           "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names DS11"
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         },
         {
           "kind": "form-id",
@@ -1772,8 +1775,8 @@
           "label": "names form DS60",
           "field": "detail",
           "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names DS60"
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         },
         {
           "kind": "money",
@@ -1781,8 +1784,8 @@
           "label": "states $60",
           "field": "cost.note",
           "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states $60"
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         }
       ],
       "uncheckedProse": 1,
@@ -2041,7 +2044,7 @@
           "field": "cost.amount_usd",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "form-id",
@@ -2050,7 +2053,7 @@
           "field": "form_ref",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "requirement",
@@ -2059,7 +2062,7 @@
           "field": "statement",
           "strength": "necessary-condition",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "money",
@@ -2068,7 +2071,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
       "uncheckedProse": 3,
@@ -5424,7 +5427,7 @@
           "field": "cost.amount_usd",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "form-id",
@@ -5433,7 +5436,7 @@
           "field": "form_ref",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "duration",
@@ -5442,7 +5445,7 @@
           "field": "statement",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "money",
@@ -5451,7 +5454,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "money",
@@ -5460,7 +5463,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "duration",
@@ -5469,7 +5472,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "duration",
@@ -5478,7 +5481,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
       "uncheckedProse": 1,
@@ -6521,7 +6524,7 @@
           "field": "statement",
           "strength": "necessary-condition",
           "verdict": "uncheckable",
-          "why": "the source refuses automated fetching (HTTP 404)"
+          "why": "the source refuses automated fetching (unreachable (fetch and curl both failed))"
         }
       ],
       "uncheckedProse": 7,
@@ -8774,7 +8777,7 @@
           "field": "form_ref",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ct.drivers-license.gender-marker."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "requirement",
@@ -8783,7 +8786,7 @@
           "field": "detail",
           "strength": "necessary-condition",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ct.drivers-license.gender-marker."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
       "uncheckedProse": 5,
@@ -9145,7 +9148,7 @@
           "field": "cost.amount_usd",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "form-id",
@@ -9154,7 +9157,7 @@
           "field": "form_ref",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "requirement",
@@ -9163,7 +9166,7 @@
           "field": "statement",
           "strength": "necessary-condition",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "money",
@@ -9172,7 +9175,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ga.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
       "uncheckedProse": 3,
@@ -12674,7 +12677,7 @@
           "field": "cost.amount_usd",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "form-id",
@@ -12683,7 +12686,7 @@
           "field": "form_ref",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "duration",
@@ -12692,7 +12695,7 @@
           "field": "statement",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "money",
@@ -12701,7 +12704,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "money",
@@ -12710,7 +12713,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "duration",
@@ -12719,7 +12722,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "duration",
@@ -12728,7 +12731,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "duration",
@@ -12737,7 +12740,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source nj.court-order.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
       "uncheckedProse": 1,
@@ -14543,7 +14546,7 @@
           "field": "statement",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "money",
@@ -14552,7 +14555,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "duration",
@@ -14561,7 +14564,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "requirement",
@@ -14570,7 +14573,7 @@
           "field": "detail",
           "strength": "necessary-condition",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
       "uncheckedProse": 1,
@@ -14912,8 +14915,8 @@
           "label": "an X sex/gender marker is available",
           "field": "statement",
           "strength": "necessary-condition",
-          "verdict": "supported",
-          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         }
       ],
       "uncheckedProse": 12,
@@ -14931,8 +14934,8 @@
           "label": "official form DS82 backs this step (form_ref: us-ds-82)",
           "field": "form_ref",
           "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names DS82"
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         },
         {
           "kind": "requirement",
@@ -14940,8 +14943,8 @@
           "label": "a court order is required",
           "field": "statement",
           "strength": "necessary-condition",
-          "verdict": "supported",
-          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         },
         {
           "kind": "duration",
@@ -14949,8 +14952,8 @@
           "label": "states \"1 year\"",
           "field": "detail",
           "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states \"1 year\""
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         },
         {
           "kind": "form-id",
@@ -14958,8 +14961,8 @@
           "label": "names form DS5504",
           "field": "detail",
           "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names DS5504"
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         },
         {
           "kind": "form-id",
@@ -14967,8 +14970,8 @@
           "label": "names form DS11",
           "field": "detail",
           "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names DS11"
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         },
         {
           "kind": "form-id",
@@ -14976,8 +14979,8 @@
           "label": "names form DS60",
           "field": "detail",
           "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names DS60"
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         },
         {
           "kind": "money",
@@ -14985,8 +14988,8 @@
           "label": "states $60",
           "field": "cost.note",
           "strength": "literal",
-          "verdict": "supported",
-          "why": "the source states $60"
+          "verdict": "uncheckable",
+          "why": "the source refuses automated fetching (HTTP 403)"
         }
       ],
       "uncheckedProse": 2,
@@ -15431,7 +15434,7 @@
           "field": "form_ref",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.gender-marker."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "duration",
@@ -15440,7 +15443,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.gender-marker."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
       "uncheckedProse": 5,
@@ -15459,7 +15462,7 @@
           "field": "form_ref",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "duration",
@@ -15468,7 +15471,7 @@
           "field": "statement",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "requirement",
@@ -15477,7 +15480,7 @@
           "field": "statement",
           "strength": "necessary-condition",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
       "uncheckedProse": 3,
@@ -15656,12 +15659,12 @@
         },
         {
           "kind": "duration",
-          "key": "10 month",
-          "label": "states \"10 month\"",
+          "key": "2 month",
+          "label": "states \"2 month\"",
           "field": "detail",
           "strength": "literal",
           "verdict": "supported",
-          "why": "the source states \"10 month\""
+          "why": "the source states \"2 month\""
         }
       ],
       "uncheckedProse": 2,
@@ -15672,8 +15675,18 @@
       "recordId": "wa.court-order.name.es",
       "language": "es",
       "url": "https://www.courts.wa.gov/forms/?fa=forms.static&staticID=13",
-      "results": [],
-      "uncheckedProse": 6,
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "RCW4",
+          "label": "names form RCW4",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names RCW4"
+        }
+      ],
+      "uncheckedProse": 5,
       "negatedClaims": 1,
       "totalSentences": 6
     },
@@ -16633,7 +16646,7 @@
           "field": "statement",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "money",
@@ -16642,7 +16655,7 @@
           "field": "detail",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "requirement",
@@ -16651,7 +16664,7 @@
           "field": "detail",
           "strength": "necessary-condition",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "requirement",
@@ -16660,7 +16673,7 @@
           "field": "detail",
           "strength": "necessary-condition",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source tn.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
       "uncheckedProse": 1,
@@ -17143,7 +17156,7 @@
           "field": "form_ref",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.gender-marker."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "requirement",
@@ -17152,7 +17165,7 @@
           "field": "statement",
           "strength": "necessary-condition",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.gender-marker."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "requirement",
@@ -17161,7 +17174,7 @@
           "field": "statement",
           "strength": "necessary-condition",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.gender-marker."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
       "uncheckedProse": 6,
@@ -17180,7 +17193,7 @@
           "field": "form_ref",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "duration",
@@ -17189,7 +17202,7 @@
           "field": "statement",
           "strength": "literal",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         },
         {
           "kind": "requirement",
@@ -17198,7 +17211,7 @@
           "field": "statement",
           "strength": "necessary-condition",
           "verdict": "uncheckable",
-          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.name."
+          "why": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
         }
       ],
       "uncheckedProse": 3,
@@ -17432,8 +17445,18 @@
       "recordId": "wa.court-order.name",
       "language": "en",
       "url": "https://www.courts.wa.gov/forms/?fa=forms.static&staticID=13",
-      "results": [],
-      "uncheckedProse": 6,
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "RCW4",
+          "label": "names form RCW4",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names RCW4"
+        }
+      ],
+      "uncheckedProse": 5,
       "negatedClaims": 1,
       "totalSentences": 6
     },
@@ -17582,12 +17605,12 @@
         },
         {
           "kind": "duration",
-          "key": "10 month",
-          "label": "states \"10 month\"",
+          "key": "2 month",
+          "label": "states \"2 month\"",
           "field": "detail",
           "strength": "literal",
           "verdict": "supported",
-          "why": "the source states \"10 month\""
+          "why": "the source states \"2 month\""
         }
       ],
       "uncheckedProse": 2,

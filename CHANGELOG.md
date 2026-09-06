@@ -312,6 +312,26 @@ lives under `[Unreleased]`.
 - README standards-conformance table.
 
 ### Fixed
+- **Two Washington records were serving a wrong-direction fact and have been corrected, EN +
+  ES** (source-drift triage, #150 / #192). `wa.court-order.name` said a name-change petition is
+  "usually filed in the district court of the county where you reside"; `courts.wa.gov` now
+  states petitions **may be filed in any district court in the state** (RCW 4.24.130 decides
+  which court for the exceptions) — the record no longer names a residency-bound venue rule its
+  source dropped. `wa.birth-certificate.name` said the DOH "currently take[s] about ten months to
+  process" a court-ordered name change on a birth certificate; `doh.wa.gov` now states a **two (2)
+  month** turnaround — the old figure was wrong in the direction that would make someone give up
+  on a filing that's five times faster than the record claimed. Both facts were independently
+  re-fetched and read (not taken on a prior report's word) before editing. The $25 certified-copy
+  fee is unchanged and unaffected. Re-baselined only these two URLs after correcting the records,
+  per the reviewed procedure in `docs/OPERATIONS.md`.
+- Re-verified and re-baselined the other 22 sources `make source-watch` reported as drifted
+  (`docs/audits/source-drift-2026-09.md`): 2 were substantive rewrites elsewhere on the page that
+  don't touch what the record cites (an Illinois FAQ's civil-rights/passport sections; the DS-82
+  passport-renewal PDF's OMB expiration-date bump), and 20 were cosmetic (rotating banners,
+  nav-menu taxonomy, footer-year/timestamp churn, an emoji/apostrophe encoding artifact) — each
+  read against its live fetch before being cleared, not batch-adopted. The ~82 baseline-coverage
+  gaps left by the M6 jurisdiction-expansion PRs (sources with no reviewed baseline at all) are a
+  separate problem and remain out of scope; see the PR for the current count.
 - **The two SSA records now state the real, bifurcated federal rule, cited to SSA's own policy
   manual.** Every page under `www.ssa.gov` 403s a non-browser client, so both records cited a
   source no gate could read: the sex-marker record said only "policy has changed and is being

@@ -64,7 +64,7 @@ test("Washington now has Spanish parity (court-order + drivers-license) — no t
     today,
   );
   assert.doesNotMatch(wa.body, /aún no están listos/);
-  assert.match(wa.body, /tribunal de distrito del condado donde reside/); // wa.court-order.name.es
+  assert.match(wa.body, /cualquier tribunal de distrito del estado/); // wa.court-order.name.es
   assert.match(wa.body, /no exclusivamente masculino ni femenino/); // wa.drivers-license.gender-marker.es
 
   // California ES is complete for court-order → no note (unchanged).

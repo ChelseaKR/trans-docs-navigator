@@ -6784,7 +6784,7 @@
     ],
     "topic": "Cambio de nombre en el acta de nacimiento de Washington",
     "statement": "Washington solo cambia el nombre en las actas de nacimiento de las personas que nacieron en el estado de Washington. Para cambiar el suyo despu\u00e9s de una orden judicial de cambio de nombre, env\u00ede una copia certificada de la orden con la Solicitud de Cambio de Nombre por Orden Judicial (formulario DOH 422-126).",
-    "detail": "La copia certificada de la orden judicial no se le devuelve, y no se aceptan fotocopias. Una copia certificada del acta nueva cuesta $25. El departamento de salud dice que estas solicitudes tardan unos diez meses en tramitarse.",
+    "detail": "La copia certificada de la orden judicial no se le devuelve, y no se aceptan fotocopias. Una copia certificada del acta nueva cuesta $25. El departamento de salud dice que actualmente el tiempo de trámite es de dos (2) meses.",
     "prerequisites": [
       "court-order"
     ],
@@ -6807,7 +6807,7 @@
       "name"
     ],
     "topic": "Petici\u00f3n de cambio de nombre en Washington",
-    "statement": "En Washington, por lo general usted presenta la petici\u00f3n de cambio de nombre en el tribunal de distrito del condado donde reside. En algunos casos se presenta en el tribunal superior.",
+    "statement": "En Washington usted puede presentar la petici\u00f3n de cambio de nombre en cualquier tribunal de distrito del estado. En algunos casos se presenta en el tribunal superior \u2014 consulte RCW 4.24.130 para saber cu\u00e1l tribunal corresponde a su situaci\u00f3n.",
     "detail": "Por lo general se completan una Petici\u00f3n de Cambio de Nombre y una Orden de Cambio de Nombre. El sitio de los Tribunales de Washington no publica estos formularios. Tiene que comunicarse con el tribunal donde va a presentar la petici\u00f3n para obtenerlos. Cuando la petici\u00f3n est\u00e1 lista, un juez la revisa y la firma.",
     "cost": {
       "amount_usd": null,
