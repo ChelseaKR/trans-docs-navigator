@@ -29,6 +29,7 @@ import { robotsTxt, sitemapXml } from "../src/seo.ts";
 import { asLanguage } from "../src/i18n/index.ts";
 import { serviceWorkerScript } from "../src/offline.ts";
 import { metricMethod, metricRoute, renderPrometheusMetrics } from "./metrics.ts";
+import { buildInfo } from "./version.ts";
 
 /** Input bounds — abuse/DoS resistance + predictable resource use. */
 export const LIMITS = {
@@ -404,6 +405,16 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
       contentType: JSON_CT,
       body: JSON.stringify({ status: "ok", corpus_records: loadCorpus().length }),
     };
+  }
+
+  // Build identity (api/version.ts): which commit produced the image that is answering
+  // this request. The deploy is manual, so the running preview can be far behind main
+  // and nothing else on the wire says so. Reports `commit: null, stamped: false` rather
+  // than a placeholder when the image carries no stamp — see api/version.ts for why an
+  // admitted absence beats a plausible-looking wrong SHA. Not indexable: the sitemap is
+  // generated from indexablePaths(), which this is not in.
+  if (p === "/version") {
+    return { status: 200, contentType: JSON_CT, body: JSON.stringify(buildInfo()) };
   }
 
   if (p === "/metrics") {

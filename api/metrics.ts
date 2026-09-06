@@ -48,6 +48,7 @@ const EXACT_ROUTES = new Set([
   "/sitemap.xml",
   "/sw.js",
   "/terms",
+  "/version",
 ]);
 
 /** Bound every path to a low-cardinality route-template label. */
