@@ -7,7 +7,7 @@
       "name"
     ],
     "topic": "Washington name change petition",
-    "statement": "In Washington you usually file a name change petition in the district court of the county where you reside. In some cases it is filed in superior court instead.",
+    "statement": "In Washington you may file a name change petition in any district court in the state. In some instances it is filed in superior court instead — see RCW 4.24.130 to determine which court applies to your situation.",
     "detail": "Generally you complete a Petition for Name Change and an Order for Name Change. The Washington Courts website does not publish these forms. You have to contact the court you are filing in to get them, and the court directory lists every county court. Once the petition is done, a judge reviews it and signs it.",
     "cost": {
       "amount_usd": null,
@@ -111,7 +111,7 @@
     ],
     "topic": "Washington birth certificate name change",
     "statement": "Washington only changes the names on birth certificates for people who were born in Washington State. To change yours after a court-ordered name change, send a certified copy of the court order with the Court Order Legal Name Change Request (form DOH 422-126).",
-    "detail": "The certified copy of the court order will not be returned to you, and photocopies are not accepted. A certified copy of the new birth certificate costs $25. The health department says these requests currently take about ten months to process.",
+    "detail": "The certified copy of the court order will not be returned to you, and photocopies are not accepted. A certified copy of the new birth certificate costs $25. The health department says it currently has a two (2) month processing turnaround time.",
     "prerequisites": [
       "court-order"
     ],
