@@ -6,12 +6,30 @@
     "url": "https://sclegal.org",
     "note": {
       "en": "South Carolina's statewide legal aid organization; publishes a plain-language brochure on the state's Family Court name-change process alongside broader civil legal help.",
-      "es": "Organización estatal de ayuda legal de Carolina del Sur; publica un folleto en lenguaje sencillo sobre el proceso de cambio de nombre ante el Tribunal de Familia, además de otra ayuda legal civil."
+      "es": "Organizaci\u00f3n estatal de ayuda legal de Carolina del Sur; publica un folleto en lenguaje sencillo sobre el proceso de cambio de nombre ante el Tribunal de Familia, adem\u00e1s de otra ayuda legal civil."
     },
     "source": {
       "url": "https://sclegal.org",
       "title": "South Carolina Legal Services",
       "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "sc.referral.a4te",
+    "jurisdiction": "US-SC",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 South Carolina identity documents guide",
+    "url": "https://transequality.org/documents/south-carolina-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on South Carolina documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Carolina del Sur. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/south-carolina-identity-documents",
+      "title": "A4TE \u2014 South Carolina Identity Documents",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",

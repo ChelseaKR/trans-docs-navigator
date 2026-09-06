@@ -197,13 +197,14 @@ jobs:
     # Sharded one-URL-per-job (2026-09, measured before 33949872350: this job alone was
     # 7.4 of the workflow's 7.5 total wall-clock minutes, 403s of which was the single
     # "Lighthouse CI" step running 6 URLs × numberOfRuns 3 = 18 page loads back to back).
-    # Each matrix leg below overrides ONLY `--collect.url` on the CLI; `.lighthouserc.json`
-    # is untouched — same 6 URLs, same numberOfRuns: 3, same assertion thresholds. Verified
+    # Each matrix leg below overrides ONLY `--collect.url` on the CLI; `.lighthouserc.json`'s
+    # `collect.url` array (same 7 URLs, same numberOfRuns: 3, same assertion thresholds) is
+    # the default a plain local `npx lhci autorun` still runs against unsharded. Verified
     # against this repo's pinned @lhci/cli@0.15.1 that a CLI-provided `--collect.url`
     # replaces (not appends to) the rc file's `collect.url` array, since yargs' `.config()`
     # treats the rc file as defaults that an explicit flag overrides — so each leg still
     # runs the full 3-run median for its one URL against the unweakened gate, just
-    # concurrently with the other 5 instead of serially after them.
+    # concurrently with the other 6 instead of serially after them.
     name: lighthouse (${{ matrix.target.slug }})
     strategy:
       fail-fast: false # surface every failing URL in one run, not just the alphabetically-first
@@ -221,13 +222,17 @@ jobs:
             path: "/terms"
           - slug: guide-ca-name-change
             path: "/guide/california/name-change"
+          - slug: feeds-index
+            path: "/feeds"
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - name: Harden Runner (egress block — SEC-04)
         # Flipped `audit` → `block` (#158). Allowlist is the domain set OBSERVED
-        # across all 6 matrix legs of this job in multiple completed audit-mode
-        # runs (e.g. run 34003436863): GitHub Actions runner infra, the npm
+        # across every matrix leg of this job in multiple completed audit-mode
+        # runs (e.g. run 34003436863, pre-dating the /feeds leg added later — a
+        # static HTML+CSS index page needing no new domain): GitHub Actions
+        # runner infra, the npm
         # registry, and Chrome's own default background calls to Google
         # (account/sync, GCM push, gstatic assets) — Lighthouse launches the
         # runner image's preinstalled Chrome, so unlike `verify`/`smoke-journey`
@@ -274,7 +279,7 @@ jobs:
     # Single stable check name for the sharded stage above. A matrix reports each leg
     # as its own check ("lighthouse (home)", "lighthouse (checklist)", ...) instead of
     # one "lighthouse" — this job exists so that name still exists too, as one check
-    # whose result is the AND of all 6 legs. `lighthouse` is not in branch protection's
+    # whose result is the AND of all 7 legs. `lighthouse` is not in branch protection's
     # required_status_checks today (verify, smoke-journey, a11y-browser, security-sast,
     # container-and-infra are), so nothing there needs to change for this PR — but if
     # `lighthouse` is ever made required, point the rule at this job, not at one leg.
@@ -307,7 +312,7 @@ jobs:
             echo "::error::lighthouse matrix result was '$LH_MATRIX_RESULT' (expected 'success') — at least one URL shard failed, was skipped, or was cancelled."
             exit 1
           fi
-          echo "All 6 lighthouse URL shards passed."
+          echo "All 7 lighthouse URL shards passed."
 
   security-sast:
     runs-on: ubuntu-latest

@@ -42,12 +42,30 @@
     "url": "https://www.wyomingequality.org",
     "note": {
       "en": "A Wyoming LGBTQ+ organization running community, health-access, and support programs.",
-      "es": "Una organización LGBTQ+ de Wyoming que dirige programas comunitarios, de acceso a la salud y de apoyo."
+      "es": "Una organizaci\u00f3n LGBTQ+ de Wyoming que dirige programas comunitarios, de acceso a la salud y de apoyo."
     },
     "source": {
       "url": "https://www.wyomingequality.org",
       "title": "Wyoming Equality",
       "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "wy.referral.a4te",
+    "jurisdiction": "US-WY",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Wyoming identity documents guide",
+    "url": "https://transequality.org/documents/wyoming-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Wyoming documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Wyoming. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/wyoming-identity-documents",
+      "title": "A4TE \u2014 Wyoming Identity Documents",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
