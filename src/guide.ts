@@ -35,6 +35,7 @@ const STATES: StateDef[] = [
   { slug: "florida", id: "US-FL", name: { en: "Florida", es: "Florida" } },
   { slug: "georgia", id: "US-GA", name: { en: "Georgia", es: "Georgia" } },
   { slug: "colorado", id: "US-CO", name: { en: "Colorado", es: "Colorado" } },
+  { slug: "idaho", id: "US-ID", name: { en: "Idaho", es: "Idaho" } },
   { slug: "illinois", id: "US-IL", name: { en: "Illinois", es: "Illinois" } },
   { slug: "louisiana", id: "US-LA", name: { en: "Louisiana", es: "Luisiana" } },
   { slug: "maryland", id: "US-MD", name: { en: "Maryland", es: "Maryland" } },
@@ -53,11 +54,19 @@ const STATES: StateDef[] = [
   { slug: "oregon", id: "US-OR", name: { en: "Oregon", es: "Oregón" } },
   { slug: "south-carolina", id: "US-SC", name: { en: "South Carolina", es: "Carolina del Sur" } },
   { slug: "texas", id: "US-TX", name: { en: "Texas", es: "Texas" } },
+  { slug: "utah", id: "US-UT", name: { en: "Utah", es: "Utah" } },
   { slug: "virginia", id: "US-VA", name: { en: "Virginia", es: "Virginia" } },
   { slug: "washington", id: "US-WA", name: { en: "Washington", es: "Washington" } },
+  { slug: "connecticut", id: "US-CT", name: { en: "Connecticut", es: "Connecticut" } },
+  { slug: "rhode-island", id: "US-RI", name: { en: "Rhode Island", es: "Rhode Island" } },
+  { slug: "vermont", id: "US-VT", name: { en: "Vermont", es: "Vermont" } },
+  { slug: "wisconsin", id: "US-WI", name: { en: "Wisconsin", es: "Wisconsin" } },
+  { slug: "north-dakota", id: "US-ND", name: { en: "North Dakota", es: "Dakota del Norte" } },
+  { slug: "montana", id: "US-MT", name: { en: "Montana", es: "Montana" } },
   { slug: "kansas", id: "US-KS", name: { en: "Kansas", es: "Kansas" } },
   { slug: "nebraska", id: "US-NE", name: { en: "Nebraska", es: "Nebraska" } },
   { slug: "south-dakota", id: "US-SD", name: { en: "South Dakota", es: "Dakota del Sur" } },
+  { slug: "wyoming", id: "US-WY", name: { en: "Wyoming", es: "Wyoming" } },
 ];
 
 const TOPICS: { slug: string; change: ChangeType }[] = [

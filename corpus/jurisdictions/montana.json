@@ -1,0 +1,121 @@
+[
+  {
+    "id": "mt.court-order.name",
+    "jurisdiction": "US-MT",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Montana name change petition",
+    "statement": "Montana law lets a person petition a Montana district court for a name change for any number of reasons, including divorce, safety reasons, a gender change, or simply wanting a new name. The formal process is set out in Title 27, Chapter 31 of the Montana Code Annotated.",
+    "detail": "If your safety is at risk, Montana's courts offer a sealed-record name-change option instead of the standard public process. People who are incarcerated or under the supervision of the Department of Corrections cannot use these self-help forms (Mont. Code Ann. 27-31-201(4)). The court system's page does not list a filing fee; ask the clerk of district court where you plan to file.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page does not list a filing fee. Contact the clerk of district court where you plan to file."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://courts.mt.gov/Forms/namechange",
+      "title": "Montana Judicial Branch — Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "mt.drivers-license.name-and-gender-marker",
+    "jurisdiction": "US-MT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Montana driver's license name and gender-marker change",
+    "statement": "Montana's courts self-help page for name changes links out to the Department of Justice's Motor Vehicle Division for updating a driver license or ID card after a name or gender change.",
+    "detail": "This project could not independently confirm what the Motor Vehicle Division's own page currently requires: it returns an automated bot-verification challenge (a Cloudflare check) to this project's fetcher, so no snapshot of it could be taken and no specific form, fee, or document requirement is asserted here. Check it yourself at https://dojmt.gov/driving/driver-licensing/ (Montana Department of Justice, Motor Vehicle Division), or contact a Montana driver's license office directly.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://courts.mt.gov/Forms/namechange",
+      "title": "Montana Judicial Branch — Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "mt.birth-certificate.name",
+    "jurisdiction": "US-MT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Montana birth certificate name change",
+    "statement": "Montana's Office of Vital Records accepts a certified copy of a court order for a change of name, submitted along with a notarized Affidavit for Correction of a Vital Record, to update the name on a Montana birth record.",
+    "detail": "This is stated only as a cross-reference on the department's Gender Designation Form (\"may be submitted with a court order for change of name if the applicant also wishes to change the name on the birth certificate\"), not on a dedicated name-change page, so confirm the full requirements with the Office of Vital Records before relying on this. See the companion fee-schedule record for what a correction currently costs.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dphhs.mt.gov/assets/Statistics/VitalStats/MTGenderDesignationForm.pdf",
+      "title": "Montana Department of Public Health and Human Services — Gender Designation Form",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "mt-dphhs-affidavit-correction",
+    "language": "en"
+  },
+  {
+    "id": "mt.birth-certificate.gender-marker",
+    "jurisdiction": "US-MT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Montana birth certificate sex designation",
+    "statement": "As of Montana's own published Gender Designation Form, a person who has undergone gender transition or has an intersex condition can have the sex designation on their Montana birth record corrected by submitting this form together with a notarized Affidavit for Correction of a Vital Record — the form does not require a court order for the gender-designation change by itself. A court order is only needed on top of this if the applicant also wants to change their name.",
+    "detail": "Montana's rule for this has changed more than once in recent years amid ongoing litigation, so treat this as a snapshot of what the department's own form currently says rather than a settled rule — confirm directly with the Office of Vital Records before relying on it. The form asks the signer to certify the request isn't for a fraudulent or unlawful purpose, and it can be signed by the registrant, a parent, a guardian, or a legal representative.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dphhs.mt.gov/assets/Statistics/VitalStats/MTGenderDesignationForm.pdf",
+      "title": "Montana Department of Public Health and Human Services — Gender Designation Form",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "mt-dphhs-gender-designation-form",
+    "language": "en"
+  },
+  {
+    "id": "mt.birth-certificate.fees",
+    "jurisdiction": "US-MT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Montana birth certificate amendment fees",
+    "statement": "Montana's vital records fee schedule lists $41 to process an \"adoption (or rescission) and name change\" on a birth record ($25 to process plus $16 for the certified birth certificate); a correction of an error is free if requested within 1 year of when the record was filed, and $41 if requested after that.",
+    "detail": "Each additional certified birth certificate costs $16. The fee schedule does not list a separate line item for a gender-designation change specifically — the closest category is \"process correction of an error,\" since Montana's Gender Designation Form is submitted together with the same Affidavit for Correction of a Vital Record used for other corrections.",
+    "cost": {
+      "amount_usd": 41,
+      "note": "This is the fee for a correction requested more than a year after the record was filed, or for a name-change/adoption-related amendment ($25 to process plus $16 for one certified copy). It is free if requested within 1 year. Each extra certified copy is $16."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dphhs.mt.gov/vitalrecords/Fees",
+      "title": "Montana Department of Public Health and Human Services — Vital Records Fees",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

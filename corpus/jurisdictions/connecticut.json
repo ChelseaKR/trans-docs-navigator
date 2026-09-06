@@ -1,0 +1,132 @@
+[
+  {
+    "id": "ct.court-order.name",
+    "jurisdiction": "US-CT",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Connecticut name change petition",
+    "statement": "To legally change your name in Connecticut, you file a Petition for Change of Name (PC-901) and a Name Change Affidavit (PC-910) with the Probate Court that covers the town you reside in. You submit these along with a certified copy of your long-form birth certificate and two forms of identification, one of which must include a photo. You can file online, in person, or by mail.",
+    "detail": "The court sends notice of your petition to the Department of Emergency Services and Public Protection to check whether you appear on the Sex Offender Registry or the Deadly Weapons Offender Registry. You then attend a hearing, where the judge must be satisfied the name change isn't for an unlawful purpose, such as avoiding pending legal actions or consequences. In most cases the judge decides the petition at the hearing itself.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page doesn't state a dollar amount for the filing fee — it points to the Probate Court's own Fees & Expenses Tool. Contact the Probate Court you're filing in for the current fee."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ctprobate.gov/other-matters/name-changes",
+      "title": "Connecticut Probate Courts — Name Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ct.drivers-license.name",
+    "jurisdiction": "US-CT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Connecticut driver's license name change",
+    "statement": "To change the name on your Connecticut driver's license or non-driver ID, you must first update your name with the Social Security Administration — it may take up to 48 hours for SSA to process that change, and it must be done before the DMV will update your license. Then you make an appointment at a DMV office and bring a completed Change of Name Request (Form E-78), your current license or ID, and certified documentation of the name change, such as a marriage license, civil union certificate, divorce decree, or probate court documents.",
+    "detail": "Only original documents are accepted — photocopies and religious marriage certificates are not. There is a $30 fee to change your name on a driver's license or non-driver ID card, and DMV express locations, including AAA and certain credit union branches, may charge an additional convenience fee of up to $8 per transaction. Your former license or ID must be surrendered when the new one is issued.",
+    "cost": {
+      "amount_usd": 30,
+      "note": "DMV express locations, including AAA and certain credit union branches, may charge an additional convenience fee of up to $8 per transaction."
+    },
+    "prerequisites": [
+      "ssa-card"
+    ],
+    "source": {
+      "url": "https://portal.ct.gov/dmv/licenses-permits-ids/change-driver-license",
+      "title": "Connecticut DMV — Update a Driver's License, Learner's Permit, or Non-Driver ID",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ct.drivers-license.gender-marker",
+    "jurisdiction": "US-CT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Connecticut driver's license gender designation",
+    "statement": "Connecticut lets you choose Female (F), Male (M), or Non-Binary (X) as the gender designation on your driver's license or ID. To change it, you submit a completed Gender Designation form (B-385) at a DMV appointment, surrender your current license or ID, and have a new photograph taken.",
+    "detail": "DMV employees may not ask for medical documentation or any gender-related information beyond what the form itself asks for. If a minor is requesting the change, a parent or guardian must be present and sign the form, or the minor must submit a notarized form along with it. The DMV also says it makes no promise that another agency will recognize the gender you choose if it doesn't match your other identity documents.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The form says only that you pay \"applicable fees for new or updated license or identification card\" — it doesn't give a dollar figure. Check the DMV's fee schedule for the current amount."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://portal.ct.gov/-/media/DMV/20/29/B-385.pdf",
+      "title": "Connecticut DMV — Gender Designation on a License or Identification Card (Form B-385)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "ct-dmv-b-385",
+    "language": "en"
+  },
+  {
+    "id": "ct.birth-certificate.gender-marker",
+    "jurisdiction": "US-CT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Connecticut birth certificate gender change",
+    "statement": "To amend the sex designator on your Connecticut birth certificate, you send the Vital Records Office a photocopy of a valid, government-issued photo ID, a notarized affidavit from you requesting the replacement certificate, and a notarized affidavit from a licensed physician, physician assistant, advanced practice registered nurse, or psychologist stating that you have undergone surgical, hormonal, or other treatment clinically appropriate for gender transition. If you also want your amended certificate to show a new name, you include a certified copy of the court order granting that name change.",
+    "detail": "If the registrant is a minor, a parent completes the personal affidavit instead. There is no processing fee for the amendment itself. A certified copy of the amended birth certificate costs $30, paid by money order made payable to the \"Treasurer, State of Connecticut\" — credit cards and personal checks are not accepted.",
+    "cost": {
+      "amount_usd": null,
+      "note": "There is no processing fee for the amendment itself. A certified copy of the amended birth certificate costs $30, payable only by money order to the \"Treasurer, State of Connecticut.\""
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://portal.ct.gov/dph/vital-records/gender-change",
+      "title": "Connecticut Department of Public Health — Gender Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ct.birth-certificate.name",
+    "jurisdiction": "US-CT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Connecticut birth certificate name change",
+    "statement": "To change the name on a Connecticut birth certificate after a court-ordered name change, you submit an original, certified Legal Name Change court order, a notarized name-change affidavit, and a government-issued photo ID to the town clerk in the town where the birth occurred — in person or by mail. Only the person named on the birth record (if 18 or older) or the parent of a minor can request the change.",
+    "detail": "Connecticut only allows the registrant's own name fields to be changed through this process — a parent's name fields cannot be changed this way. The original court order will be returned to you if you ask for it back.",
+    "cost": {
+      "amount_usd": null,
+      "note": "There is no processing fee for amendments or corrections. This page doesn't separately price a certified copy of the amended certificate — contact the town clerk's Vital Records office where the birth occurred for that fee."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://portal.ct.gov/dph/vital-records/corrections-and-amendments",
+      "title": "Connecticut Department of Public Health — Corrections and Amendments",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

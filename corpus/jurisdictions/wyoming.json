@@ -1,0 +1,127 @@
+[
+  {
+    "id": "wy.court-order.name",
+    "jurisdiction": "US-WY",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Wyoming name change petition",
+    "statement": "In Wyoming, you file the forms for a name change with the District Court in the county where you live. You must have been an actual resident of Wyoming for at least six (6) months before you can ask the court for a name change.",
+    "detail": "Most name-change petitions are public records, and the law generally requires notice of your name change to be printed in a local newspaper. Filing fees depend on the county where you file — the District Court Clerk at your local courthouse can tell you the current amount — and you separately pay the newspaper's cost to publish the notice, which can be substantial (some newspapers charge several hundred dollars). If you are a victim of domestic violence and your safety is in danger, you can ask the court to keep your residence information confidential and skip the newspaper publication.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Filing fees depend on the county; contact the District Court Clerk. Newspaper publication costs extra and can be substantial."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.wyocourts.gov/legal-help-by-topic/adult-name-change/",
+      "title": "Wyoming Judicial Branch — Adult Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "relocation": {
+      "residency_bound": true
+    },
+    "language": "en"
+  },
+  {
+    "id": "wy.drivers-license.name",
+    "jurisdiction": "US-WY",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Wyoming driver's license and ID name change",
+    "statement": "To change the name on your Wyoming driver's license or ID card, you appear in person at a Wyoming driver exam office, surrender your current card, and present legal proof of the name change, such as a court order, a marriage certificate, a divorce decree, or other legal verification of a name change signed by a judge.",
+    "detail": "If you have not already changed your name with the Social Security Administration, you need to do that first — your new name and date of birth must be verified with SSA before WYDOT will issue your revised license or ID. You are re-photographed and asked for a new signature, and you pay the standard renewal fee. The new card is mailed to you in about 4 to 6 weeks.",
+    "timeline": {
+      "typical": "about 4 to 6 weeks for the new card to arrive"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dot.state.wy.us/home/driver_license_records/add_or_change_information.html",
+      "title": "Wyoming Department of Transportation — Add/Change Information",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "wy.drivers-license.gender-marker",
+    "jurisdiction": "US-WY",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Wyoming driver's license and ID sex/gender designation",
+    "statement": "Wyoming's official page on adding or changing information on a driver's license or ID card does not mention a sex or gender designation, or any process for changing one.",
+    "detail": "This project checked WYDOT's page on adding or changing information and found no official page addressing a sex or gender marker on a license or ID card at all. Read WYDOT's current pages yourself before assuming a route exists.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dot.state.wy.us/home/driver_license_records/add_or_change_information.html",
+      "title": "Wyoming Department of Transportation — Add/Change Information",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "wy.birth-certificate.name",
+    "jurisdiction": "US-WY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Wyoming birth certificate name change",
+    "statement": "To change the name on a Wyoming birth certificate after a court order, Wyoming's page on amending a vital record says you send a certified copy of the court order and a photocopy of your current ID, along with an Application for Correction form. The fee for this Court Ordered Amendment is $55.",
+    "detail": "The page notes that some court orders may require additional evidence, and that checks from third parties are not accepted.",
+    "cost": {
+      "amount_usd": 55,
+      "note": "Checks from third parties are not accepted."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://health.wyo.gov/admin/vitalstatistics/amending-a-vital-record/",
+      "title": "Wyoming Department of Health, Vital Records Services — Amending a Vital Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "wy-vrs-correction-form",
+    "language": "en"
+  },
+  {
+    "id": "wy.birth-certificate.gender-marker",
+    "jurisdiction": "US-WY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Wyoming birth certificate sex designation",
+    "statement": "Wyoming's page on amending a vital record describes three ways to change a birth certificate — a Court Ordered Amendment, a Correction Within One Year, and a Correction After One Year — and does not mention a sex or gender designation, gender identity, or any dedicated process for changing the sex marker on a birth certificate.",
+    "detail": "This is a real gap in Wyoming's official documentation, not a confirmed bar on making the change. Wyoming's vital-records statute (W.S. 35-1-424) is also silent on this: it does not use the word \"sex\" anywhere in its correction and amendment provisions. Read the department's current guidance yourself, and confirm with an attorney, before assuming a route exists or does not exist.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.wyo.gov/admin/vitalstatistics/amending-a-vital-record/",
+      "title": "Wyoming Department of Health, Vital Records Services — Amending a Vital Record",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]

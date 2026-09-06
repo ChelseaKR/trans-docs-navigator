@@ -448,6 +448,144 @@ const AUTHORED_GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "md.court-order.name.es", mustContain: ["Tribunal de Circuito", "30 días"] },
   },
   {
+    id: "wi-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WI", language: "en" },
+    query: { jurisdiction: "US-WI", change_types: ["name"], documents: ["court-order"], question: "Wisconsin name change newspaper publication" },
+    // M6: Wisconsin's own self-help page requires newspaper publication of the name-change
+    // notice, waivable only for a confidential filing when a judge finds publication would
+    // endanger the petitioner (Wis. Stat. 786.37(4)).
+    expect: {
+      refused: false,
+      citesRecord: "wi.court-order.name",
+      mustContain: ["newspaper", "three weeks"],
+    },
+  },
+  {
+    id: "wi-marker-dl-restricted",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WI", language: "en" },
+    query: { jurisdiction: "US-WI", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Wisconsin driver's license gender marker change" },
+    // Wisconsin's DMV publishes a name-change process but no analogous page for a sex/gender
+    // designation change (PR #119's standard: say the absence plainly, in the page's own terms).
+    expect: {
+      refused: false,
+      citesRecord: "wi.drivers-license.gender-marker",
+      mustContain: ["does not describe a separate process", "Wisconsin driver license or ID card"],
+    },
+  },
+  {
+    id: "wi-birth-marker",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WI", language: "en" },
+    query: { jurisdiction: "US-WI", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Wisconsin birth certificate sex change" },
+    expect: {
+      refused: false,
+      citesRecord: "wi.birth-certificate.gender-marker",
+      mustContain: ["court order", "$20"],
+    },
+  },
+  {
+    id: "wi-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WI", language: "es" },
+    query: { jurisdiction: "US-WI", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Wisconsin" },
+    expect: { refused: false, citesRecord: "wi.court-order.name.es", mustContain: ["periódico", "tres semanas"] },
+  },
+  {
+    id: "nd-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ND", language: "en" },
+    query: { jurisdiction: "US-ND", change_types: ["name"], documents: ["court-order"], question: "North Dakota name change residency requirement" },
+    expect: {
+      refused: false,
+      citesRecord: "nd.court-order.name",
+      mustContain: ["6 months", "newspaper"],
+    },
+  },
+  {
+    id: "nd-birth-marker-law-restricted",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ND", language: "en" },
+    query: { jurisdiction: "US-ND", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "North Dakota birth certificate sex change law" },
+    // M6: North Dakota Century Code 23-02.1-25.1 forecloses a gender-identity-based
+    // amendment outright, with three narrow, non-transition exceptions. Recorded as a
+    // closed route, not a discretionary or open one -- report what the statute says.
+    expect: {
+      refused: false,
+      citesRecord: "nd.birth-certificate.gender-marker.law",
+      mustContain: ["may not be amended", "gender identity change"],
+    },
+  },
+  {
+    id: "nd-marker-dl-restricted",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ND", language: "en" },
+    query: { jurisdiction: "US-ND", change_types: ["gender-marker"], documents: ["drivers-license"], question: "North Dakota driver's license gender marker change" },
+    expect: {
+      refused: false,
+      citesRecord: "nd.drivers-license.gender-marker",
+      mustContain: ["never says what that documentation is", "names no specific form"],
+    },
+  },
+  {
+    id: "nd-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ND", language: "es" },
+    query: { jurisdiction: "US-ND", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Dakota del Norte" },
+    expect: { refused: false, citesRecord: "nd.court-order.name.es", mustContain: ["6 meses", "periódico"] },
+  },
+  {
+    id: "mt-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MT", language: "en" },
+    query: { jurisdiction: "US-MT", change_types: ["name"], documents: ["court-order"], question: "Montana name change gender reason sealed record" },
+    expect: {
+      refused: false,
+      citesRecord: "mt.court-order.name",
+      mustContain: ["gender change", "sealed-record"],
+    },
+  },
+  {
+    id: "mt-marker-dl-unfetchable",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MT", language: "en" },
+    query: { jurisdiction: "US-MT", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Montana driver's license gender marker change" },
+    // M6: Montana's Motor Vehicle Division page blocks automated review outright (a
+    // Cloudflare challenge), so this pins the honest, sourced disclosure rather than a
+    // guessed process -- the record still cites the courts page it actually points from.
+    expect: {
+      refused: false,
+      citesRecord: "mt.drivers-license.name-and-gender-marker",
+      mustContain: ["Cloudflare check", "Motor Vehicle Division"],
+    },
+  },
+  {
+    id: "mt-birth-marker-restricted-degraded",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MT", language: "en" },
+    query: { jurisdiction: "US-MT", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Montana birth certificate gender marker court order" },
+    // M6: Montana's birth-certificate sex-designation rule has been litigated and enjoined
+    // repeatedly, so mt.birth-certificate.gender-marker is deliberately marked
+    // needs_reverification (corpus/README.md's "freshness demonstration") rather than
+    // asserted as a settled fact -- the runtime must never serve it as current. This pins
+    // the actual degraded behavior: the fee record still answers, and a freshness note
+    // names the withheld rule instead of a wrong confident claim about it.
+    expect: {
+      refused: false,
+      citesRecord: "mt.birth-certificate.fees",
+      hasFreshnessNote: true,
+      mustContain: ["needs reverification"],
+    },
+  },
+  {
+    id: "mt-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MT", language: "es" },
+    query: { jurisdiction: "US-MT", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Montana" },
+    expect: { refused: false, citesRecord: "mt.court-order.name.es", mustContain: ["cambio de género", "expediente sellado"] },
+  },
+  {
     id: "tx-unsupported-court",
     suite: "refusal",
     // A shape-valid but genuinely uncovered state (US-AK, next after this PR's US-AL/
@@ -1129,6 +1267,199 @@ const AUTHORED_GOLD: GoldItem[] = [
     segment: { jurisdiction: "US-ME", language: "es" },
     query: { jurisdiction: "US-ME", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Maine" },
     expect: { refused: false, citesRecord: "me.court-order.name.es", mustContain: ["Tribunal Testamentario", "$75"] },
+  },
+  {
+    id: "ct-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CT", language: "en" },
+    query: { jurisdiction: "US-CT", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in Connecticut" },
+    expect: { refused: false, citesRecord: "ct.court-order.name", mustContain: ["Probate Court", "PC-901"] },
+  },
+  {
+    id: "ct-marker-dmv",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CT", language: "en" },
+    query: { jurisdiction: "US-CT", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Connecticut driver's license gender marker X" },
+    expect: { refused: false, citesRecord: "ct.drivers-license.gender-marker", mustContain: ["Non-Binary (X)"] },
+  },
+  {
+    id: "ct-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CT", language: "es" },
+    query: { jurisdiction: "US-CT", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Connecticut" },
+    expect: { refused: false, citesRecord: "ct.court-order.name.es", mustContain: ["PC-901"] },
+  },
+  {
+    id: "ct-marker-dmv-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CT", language: "es" },
+    query: { jurisdiction: "US-CT", change_types: ["gender-marker"], documents: ["drivers-license"], language: "es", question: "cambio de designación de género en licencia de Connecticut" },
+    expect: { refused: false, citesRecord: "ct.drivers-license.gender-marker.es", mustContain: ["No Binario (X)"] },
+  },
+  {
+    id: "ri-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-RI", language: "en" },
+    query: { jurisdiction: "US-RI", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in Rhode Island" },
+    expect: { refused: false, citesRecord: "ri.court-order.name", mustContain: ["fraudulent purpose"] },
+  },
+  {
+    id: "ri-marker-dmv",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-RI", language: "en" },
+    query: { jurisdiction: "US-RI", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Rhode Island driver's license gender designation" },
+    expect: { refused: false, citesRecord: "ri.drivers-license.gender-marker", mustContain: ["Gender Designation form"] },
+  },
+  {
+    id: "ri-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-RI", language: "es" },
+    query: { jurisdiction: "US-RI", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Rhode Island" },
+    expect: { refused: false, citesRecord: "ri.court-order.name.es", mustContain: ["fines fraudulentos"] },
+  },
+  {
+    id: "ri-marker-dmv-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-RI", language: "es" },
+    query: { jurisdiction: "US-RI", change_types: ["gender-marker"], documents: ["drivers-license"], language: "es", question: "cambio de designación de género en licencia de Rhode Island" },
+    expect: { refused: false, citesRecord: "ri.drivers-license.gender-marker.es", mustContain: ["Designación de Género"] },
+  },
+  {
+    id: "vt-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-VT", language: "en" },
+    query: { jurisdiction: "US-VT", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in Vermont" },
+    expect: { refused: false, citesRecord: "vt.court-order.name", mustContain: ["Petition of Adult to Change Name"] },
+  },
+  {
+    id: "vt-marker-dmv",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-VT", language: "en" },
+    query: { jurisdiction: "US-VT", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Vermont driver's license gender self-designated" },
+    expect: { refused: false, citesRecord: "vt.drivers-license.gender-marker", mustContain: ["Self-Designated Descriptors"] },
+  },
+  {
+    id: "vt-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-VT", language: "es" },
+    query: { jurisdiction: "US-VT", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Vermont" },
+    expect: { refused: false, citesRecord: "vt.court-order.name.es", mustContain: ["Petición de Adulto para Cambiar de Nombre"] },
+  },
+  {
+    id: "vt-marker-dmv-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-VT", language: "es" },
+    query: { jurisdiction: "US-VT", change_types: ["gender-marker"], documents: ["drivers-license"], language: "es", question: "designación de género autodesignada en licencia de Vermont" },
+    expect: { refused: false, citesRecord: "vt.drivers-license.gender-marker.es", mustContain: ["Datos Autodesignados"] },
+  },
+  {
+    id: "id-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ID", language: "en" },
+    query: { jurisdiction: "US-ID", change_types: ["name"], documents: ["court-order"], question: "Idaho name change petition filing fee" },
+    expect: { refused: false, citesRecord: "id.court-order.name", mustContain: ["$166", "four consecutive weeks"] },
+  },
+  {
+    id: "id-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ID", language: "es" },
+    query: { jurisdiction: "US-ID", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Idaho" },
+    expect: { refused: false, citesRecord: "id.court-order.name.es", mustContain: ["$166"] },
+  },
+  {
+    id: "id-birth-cert-name",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ID", language: "en" },
+    query: { jurisdiction: "US-ID", change_types: ["name"], documents: ["birth-certificate"], question: "Idaho birth certificate name change after court order" },
+    expect: { refused: false, citesRecord: "id.birth-certificate.name", mustContain: ["$20.00"] },
+  },
+  {
+    id: "id-marker-dl-silent",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-ID", language: "en" },
+    query: { jurisdiction: "US-ID", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Idaho driver's license gender marker" },
+    // M6: Idaho's ITD required-documents page names no sex/gender field at all, closer to
+    // Tennessee's plain-absence pattern (PR #119) than a discretionary or open route.
+    expect: { refused: false, citesRecord: "id.drivers-license.gender-marker", mustContain: ["does not mention a sex or gender designation"] },
+  },
+  {
+    id: "id-birth-marker-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-ID", language: "en" },
+    query: { jurisdiction: "US-ID", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Idaho birth certificate sex marker change" },
+    // Idaho's sex-marker statute (39-245A) has been through federal litigation and was
+    // amended again in 2024 — recorded needs_reverification rather than a settled fact.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "ut-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-UT", language: "en" },
+    query: { jurisdiction: "US-UT", change_types: ["name"], documents: ["court-order"], question: "Utah name change district court residency" },
+    expect: { refused: false, citesRecord: "ut.court-order.name", mustContain: ["district court", "county where you live"] },
+  },
+  {
+    id: "ut-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-UT", language: "es" },
+    query: { jurisdiction: "US-UT", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Utah" },
+    expect: { refused: false, citesRecord: "ut.court-order.name.es", mustContain: ["condado donde vive"] },
+  },
+  {
+    id: "ut-marker-dl-silent",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-UT", language: "en" },
+    query: { jurisdiction: "US-UT", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Utah driver's license gender marker" },
+    expect: { refused: false, citesRecord: "ut.drivers-license.gender-marker", mustContain: ["do not mention a sex or gender designation"] },
+  },
+  {
+    id: "ut-marker-birth-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-UT", language: "en" },
+    query: { jurisdiction: "US-UT", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Utah birth certificate sex designation change" },
+    // Utah's own current statute (26B-8-111) permits a court-ordered sex-designation
+    // change, but Utah's courts and legislature have sent conflicting signals on this over
+    // time (task brief) and a 2026 bill was reported to target it — needs_reverification,
+    // not a settled fact either way.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "wy-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WY", language: "en" },
+    query: { jurisdiction: "US-WY", change_types: ["name"], documents: ["court-order"], question: "Wyoming name change residency requirement" },
+    expect: { refused: false, citesRecord: "wy.court-order.name", mustContain: ["six (6) months", "county where you live"] },
+  },
+  {
+    id: "wy-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WY", language: "es" },
+    query: { jurisdiction: "US-WY", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Wyoming" },
+    expect: { refused: false, citesRecord: "wy.court-order.name.es", mustContain: ["condado donde vive"] },
+  },
+  {
+    id: "wy-birth-cert-name",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WY", language: "en" },
+    query: { jurisdiction: "US-WY", change_types: ["name"], documents: ["birth-certificate"], question: "Wyoming birth certificate name change after court order" },
+    expect: { refused: false, citesRecord: "wy.birth-certificate.name", mustContain: ["$55"] },
+  },
+  {
+    id: "wy-marker-dl-silent",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WY", language: "en" },
+    query: { jurisdiction: "US-WY", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Wyoming driver's license gender marker" },
+    expect: { refused: false, citesRecord: "wy.drivers-license.gender-marker", mustContain: ["does not mention a sex or gender designation"] },
+  },
+  {
+    id: "wy-marker-birth-volatile",
+    suite: "refusal",
+    segment: { jurisdiction: "US-WY", language: "en" },
+    query: { jurisdiction: "US-WY", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Wyoming birth certificate sex marker change" },
+    // Wyoming's official vital-records pages and statute are silent on a sex-marker
+    // process entirely (task brief: "sparsely documented") — recorded as a genuine gap,
+    // degraded needs_reverification rather than asserted open or closed either way.
+    expect: { refused: true, hasFreshnessNote: true },
   },
 ];
 

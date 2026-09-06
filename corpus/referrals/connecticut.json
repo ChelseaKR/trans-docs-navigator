@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ct.referral.gladlaw",
+    "jurisdiction": "US-CT",
+    "name": "GLAD Law",
+    "url": "https://www.gladlaw.org",
+    "note": {
+      "en": "New England LGBTQ+ legal organization; publishes a Connecticut-specific guide to changing your name and gender marker on ID documents.",
+      "es": "Organización legal LGBTQ+ de Nueva Inglaterra; publica una guía específica de Connecticut sobre cómo cambiar su nombre y marcador de género en documentos de identidad."
+    },
+    "source": {
+      "url": "https://www.gladlaw.org",
+      "title": "GLAD Law",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ct.referral.slsct",
+    "jurisdiction": "US-CT",
+    "name": "Statewide Legal Services of Connecticut",
+    "url": "https://www.slsct.org",
+    "note": {
+      "en": "Statewide legal-aid hotline offering free civil legal help to income-eligible Connecticut residents, including help with legal filings such as a name-change petition.",
+      "es": "Línea estatal de ayuda legal que ofrece asistencia legal civil gratuita a residentes de Connecticut que califican por ingresos, incluida ayuda con trámites legales como una petición de cambio de nombre."
+    },
+    "source": {
+      "url": "https://www.slsct.org",
+      "title": "Statewide Legal Services of Connecticut",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

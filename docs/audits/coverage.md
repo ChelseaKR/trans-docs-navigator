@@ -12,21 +12,28 @@ driver's-license rows are covered and the federal rows are current.
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ✅ | — | ✅ | — | — |
+| US-AL | ✅ | — | ✅ | — | ⚠️ degraded | — |
 | US-AR | ✅ | — | ✅ | — | ✅ | — |
 | US-AZ | ✅ | — | ✅ | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | ✅ | — | — | — | ✅ | — |
+| US-CT | ✅ | — | ✅ | — | ✅ | — |
 | US-DE | ✅ | — | ✅ | — | ✅ | — |
 | US-FL | ✅ | — | ✅ | — | ✅ | — |
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
+| US-ID | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
 | US-KS | ✅ | — | ✅ | — | ✅ | — |
+| US-LA | ✅ | — | ✅ | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
 | US-MD | ✅ | — | ✅ | — | ✅ | — |
 | US-ME | ✅ | — | ✅ | — | ✅ | — |
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-MN | ✅ | — | ✅ | — | ✅ | — |
+| US-MS | ✅ | — | ✅ | — | ✅ | — |
+| US-MT | ✅ | — | ✅ | — | ✅ | — |
 | US-NC | ✅ | — | ✅ | — | ✅ | — |
+| US-ND | ✅ | — | ✅ | — | ✅ | — |
 | US-NE | ✅ | — | ✅ | — | ✅ | — |
 | US-NH | ✅ | — | ✅ | — | ✅ | — |
 | US-NJ | ✅ | — | ✅ | — | ✅ | — |
@@ -36,33 +43,45 @@ driver's-license rows are covered and the federal rows are current.
 | US-OK | ✅ | — | ✅ | — | ✅ | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
+| US-RI | ✅ | — | ✅ | — | ✅ | — |
 | US-SC | ✅ | — | ✅ | — | ✅ | — |
 | US-SD | ✅ | — | ⚠️ degraded | — | ✅ | — |
 | US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
+| US-UT | ✅ | — | ✅ | — | ✅ | — |
 | US-VA | ✅ | — | ✅ | — | ✅ | — |
+| US-VT | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
+| US-WI | ✅ | — | ✅ | — | ✅ | — |
+| US-WY | ✅ | — | ✅ | — | ✅ | — |
 
 ## English · Gender-marker change
 
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ⚠️ degraded | — | ⚠️ degraded | — | — |
+| US-AL | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-AR | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-AZ | — | — | ⚠️ degraded | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | — | — | ✅ | — | ✅ | — |
+| US-CT | — | — | ✅ | — | ✅ | — |
 | US-DE | — | — | ✅ | — | ✅ | — |
 | US-FL | — | — | ✅ | — | ✅ | — |
 | US-GA | — | — | ✅ | — | ✅ | — |
+| US-ID | — | — | ✅ | — | ⚠️ degraded | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
 | US-KS | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-LA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
 | US-MD | — | — | ✅ | — | ✅ | — |
 | US-ME | — | — | ✅ | — | ✅ | — |
 | US-MI | — | — | ✅ | — | ✅ | — |
 | US-MN | — | — | ✅ | — | ✅ | — |
+| US-MS | — | — | ⚠️ degraded | — | ✅ | — |
+| US-MT | — | — | ✅ | — | ✅ | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-ND | — | — | ✅ | — | ✅ | — |
 | US-NE | — | — | ✅ | — | ✅ | — |
 | US-NH | — | — | ✅ | — | ✅ | — |
 | US-NJ | — | — | ✅ | — | ✅ | — |
@@ -72,33 +91,45 @@ driver's-license rows are covered and the federal rows are current.
 | US-OK | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | — | — | ✅ | — | ✅ | — |
+| US-RI | — | — | ✅ | — | ✅ | — |
 | US-SC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-SD | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
+| US-UT | ⚠️ degraded | — | ✅ | — | ⚠️ degraded | — |
 | US-VA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-VT | — | — | ✅ | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
+| US-WI | — | — | ✅ | — | ✅ | — |
+| US-WY | — | — | ✅ | — | ⚠️ degraded | — |
 
 ## Spanish · Name change
 
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ✅ | — | ✅ | — | — |
+| US-AL | ✅ | — | ✅ | — | ⚠️ degraded | — |
 | US-AR | ✅ | — | ✅ | — | ✅ | — |
 | US-AZ | ✅ | — | ✅ | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | ✅ | — | — | — | ✅ | — |
+| US-CT | ✅ | — | ✅ | — | ✅ | — |
 | US-DE | ✅ | — | ✅ | — | ✅ | — |
 | US-FL | ✅ | — | ✅ | — | ✅ | — |
 | US-GA | ✅ | — | ✅ | — | ✅ | — |
+| US-ID | ✅ | — | ✅ | — | ✅ | — |
 | US-IL | ✅ | — | — | — | ✅ | — |
 | US-KS | ✅ | — | ✅ | — | ✅ | — |
+| US-LA | ✅ | — | ✅ | — | ✅ | — |
 | US-MA | ✅ | — | ✅ | — | ✅ | — |
 | US-MD | ✅ | — | ✅ | — | ✅ | — |
 | US-ME | ✅ | — | ✅ | — | ✅ | — |
 | US-MI | ✅ | — | ✅ | — | ✅ | — |
 | US-MN | ✅ | — | ✅ | — | ✅ | — |
+| US-MS | ✅ | — | ✅ | — | ✅ | — |
+| US-MT | ✅ | — | ✅ | — | ✅ | — |
 | US-NC | ✅ | — | ✅ | — | ✅ | — |
+| US-ND | ✅ | — | ✅ | — | ✅ | — |
 | US-NE | ✅ | — | ✅ | — | ✅ | — |
 | US-NH | ✅ | — | ✅ | — | ✅ | — |
 | US-NJ | ✅ | — | ✅ | — | ✅ | — |
@@ -108,33 +139,45 @@ driver's-license rows are covered and the federal rows are current.
 | US-OK | ✅ | — | ✅ | — | ✅ | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | ✅ | — | ✅ | — | ✅ | — |
+| US-RI | ✅ | — | ✅ | — | ✅ | — |
 | US-SC | ✅ | — | ✅ | — | ✅ | — |
 | US-SD | ✅ | — | ⚠️ degraded | — | ✅ | — |
 | US-TN | ✅ | — | ✅ | — | ✅ | — |
 | US-TX | ✅ | — | ✅ | — | ✅ | — |
+| US-UT | ✅ | — | ✅ | — | ✅ | — |
 | US-VA | ✅ | — | ✅ | — | ✅ | — |
+| US-VT | ✅ | — | ✅ | — | ✅ | — |
 | US-WA | ✅ | — | ✅ | — | ✅ | — |
+| US-WI | ✅ | — | ✅ | — | ✅ | — |
+| US-WY | ✅ | — | ✅ | — | ✅ | — |
 
 ## Spanish · Gender-marker change
 
 | Jurisdiction | court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records |
 |---|---|---|---|---|---|---|
 | US | — | ⚠️ degraded | — | ⚠️ degraded | — | — |
+| US-AL | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-AR | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-AZ | — | — | ⚠️ degraded | — | ✅ | — |
 | US-CA | ✅ | — | ✅ | — | ✅ | — |
 | US-CO | — | — | ✅ | — | ✅ | — |
+| US-CT | — | — | ✅ | — | ✅ | — |
 | US-DE | — | — | ✅ | — | ✅ | — |
 | US-FL | — | — | ✅ | — | ✅ | — |
 | US-GA | — | — | ✅ | — | ✅ | — |
+| US-ID | — | — | ✅ | — | ⚠️ degraded | — |
 | US-IL | — | — | ✅ | — | ✅ | — |
 | US-KS | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-LA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-MA | — | — | ✅ | — | ✅ | — |
 | US-MD | — | — | ✅ | — | ✅ | — |
 | US-ME | — | — | ✅ | — | ✅ | — |
 | US-MI | — | — | ✅ | — | ✅ | — |
 | US-MN | — | — | ✅ | — | ✅ | — |
+| US-MS | — | — | ⚠️ degraded | — | ✅ | — |
+| US-MT | — | — | ✅ | — | ✅ | — |
 | US-NC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-ND | — | — | ✅ | — | ✅ | — |
 | US-NE | — | — | ✅ | — | ✅ | — |
 | US-NH | — | — | ✅ | — | ✅ | — |
 | US-NJ | — | — | ✅ | — | ✅ | — |
@@ -144,11 +187,16 @@ driver's-license rows are covered and the federal rows are current.
 | US-OK | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-OR | ✅ | — | ✅ | — | ✅ | — |
 | US-PA | — | — | ✅ | — | ✅ | — |
+| US-RI | — | — | ✅ | — | ✅ | — |
 | US-SC | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-SD | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
 | US-TN | — | — | ✅ | — | ✅ | — |
 | US-TX | — | — | ⚠️ degraded | — | ✅ | — |
+| US-UT | ⚠️ degraded | — | ✅ | — | ⚠️ degraded | — |
 | US-VA | — | — | ⚠️ degraded | — | ⚠️ degraded | — |
+| US-VT | — | — | ✅ | — | ✅ | — |
 | US-WA | — | — | ✅ | — | ✅ | — |
+| US-WI | — | — | ✅ | — | ✅ | — |
+| US-WY | — | — | ✅ | — | ⚠️ degraded | — |
 
-**Totals:** 262 current · 46 degraded · 436 uncovered cells.
+**Totals:** 364 current · 66 degraded · 602 uncovered cells.

@@ -1,0 +1,149 @@
+[
+  {
+    "id": "nd.court-order.name",
+    "jurisdiction": "US-ND",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "North Dakota name change petition",
+    "statement": "An adult can ask a North Dakota state district court to legally change their name by filing a written petition, but only if they've lived in their current North Dakota county for at least the past 6 months, they are a U.S. citizen or a U.S. permanent resident, and the request isn't made to defraud or mislead anyone, injure anyone, or compromise public safety.",
+    "detail": "Before a judge can consider the petition, you must publish notice of it in a newspaper in the North Dakota county where you live; the judge can consider the petition 30 days after that notice is published. A judge can waive the newspaper notice if the requested change is only to your first or middle name, or if you show you're a victim of domestic violence. An in-person hearing isn't required unless the judge decides one is necessary.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page does not list a filing fee or the newspaper's publication charge. Contact the clerk of district court in your county for current amounts."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ndcourts.gov/legal-self-help/name-change-adult",
+      "title": "North Dakota Court System — Adult Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nd.drivers-license.name",
+    "jurisdiction": "US-ND",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "North Dakota driver's license name change",
+    "statement": "To change the name on your North Dakota driver license, bring certified documentation of the name change in person to any ND driver license site: a marriage certificate, a divorce decree, or a certified court order with a seal. If you aren't also renewing your license, you'll pay a $3.00 fee and have a new picture taken.",
+    "detail": "You must visit an ND driver license site to purchase a corrected license within 10 days of your name change. Certified copies of North Dakota marriage or divorce records come from the county where they were issued or decreed; contact the vital records office if you aren't sure which county that is.",
+    "cost": {
+      "amount_usd": 3,
+      "note": "This fee applies if you aren't also renewing your license at the same visit."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.dot.nd.gov/driver/driver-license",
+      "title": "North Dakota Department of Transportation — Driver License: Address and Name Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nd.drivers-license.gender-marker",
+    "jurisdiction": "US-ND",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "North Dakota driver's license gender designation",
+    "statement": "North Dakota's DMV page says that if you've had a gender change, you'll need to present documentation the next time you visit for REAL ID purposes — the same as it says for a name or address change. But unlike its detailed instructions for a name change, the page never says what that documentation is, names no specific form, and states no fee for a gender-marker update.",
+    "detail": "This page does not say whether North Dakota driver licenses or ID cards offer a nonbinary or X option. Confirm the current requirements directly with a North Dakota driver license site before relying on this.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.dot.nd.gov/driver/driver-license",
+      "title": "North Dakota Department of Transportation — Driver License: Address and Name Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "nd.birth-certificate.name",
+    "jurisdiction": "US-ND",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "North Dakota birth certificate name change",
+    "statement": "To update the name on a North Dakota birth record after a court-ordered name change, mail a certified copy of the court order (showing the current name, new name, and date of birth), a completed and notarized Birth Record Amendment Application (SFN 60183), and a $15 amendment fee to North Dakota Vital Records.",
+    "detail": "If the court order doesn't include the current name, new name, and date of birth, you also need a certified copy of the court's confidential information form. The $15 amendment fee doesn't include a certified copy of the updated birth record — that's an additional $15 per copy. A name change from marriage doesn't require updating the birth record at all.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "This is the amendment fee. An updated certified copy of the birth record costs an additional $15 each."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.hhs.nd.gov/vital/court-order-name-change",
+      "title": "North Dakota Health and Human Services — Vital Records: Court Order Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "nd-dhhs-sfn-60183",
+    "language": "en"
+  },
+  {
+    "id": "nd.birth-certificate.gender-marker",
+    "jurisdiction": "US-ND",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "North Dakota birth certificate sex designation",
+    "statement": "North Dakota's vital records office lists sex as one of the items that can be corrected or amended on a birth record, but for a change more than one year after the birth it requires a certified copy of the birth record (a $15 fee) plus additional documentation, and it says the legal requirements for changing your sex on a birth record are set out in North Dakota Century Code 23-02.1-25.1.",
+    "detail": "The office says an amendment takes about 3-5 business days to process once approved, and warns that the amended birth certificate will look different afterward: it carries a note near the bottom explaining what was changed and what document supported the change. If you are a legal guardian or legal representative requesting the amendment, you must include a certified copy of a U.S. court order naming you as the guardian or representative. This page calls sex-designation amendments \"unique to each person\" and recommends emailing the office directly for the most accurate information — read the companion record on North Dakota Century Code 23-02.1-25.1 before assuming a gender-identity-based change is available.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "This is the fee for the certified copy needed to start an amendment request; the office may require more depending on the case."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.hhs.nd.gov/vital/changing-birth-record",
+      "title": "North Dakota Health and Human Services — Vital Records: Correcting a Birth Record",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "nd.birth-certificate.gender-marker.law",
+    "jurisdiction": "US-ND",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "North Dakota's statutory restriction on sex-designation amendments",
+    "statement": "North Dakota law says the sex designation on the birth record of someone born in the state may not be amended because of a gender identity change. It allows a change only in three narrow situations: the original record had a scrivener's or data-entry error; the sex was misidentified at birth and the request comes with chromosomal, molecular, karyotypic, DNA, or genetic test results plus an affidavit from the testing facility; or the person's sex \"was changed with anatomically correct genitalia for the identified sex as certified by a medical provider.\"",
+    "detail": "This statute, North Dakota Century Code 23-02.1-25.1, defines \"sex\" for this purpose as \"the biological state of being male or female, based on an individual's nonambiguous sex organs, chromosomes, or endogenous hormone profiles at birth.\" It is published by the state only as a PDF of the whole vital-records chapter, so this project's automated tools cannot check a live snapshot of it against this claim. Read the current statute directly before relying on this — this is exactly the kind of rule that can change or be challenged in court.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://ndlegis.gov/cencode/t23c02-1.pdf",
+      "title": "North Dakota Legislative Branch — North Dakota Century Code Chapter 23-02.1 (Section 23-02.1-25.1, Birth Records: Amendments and Corrections — Sex Change)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]
