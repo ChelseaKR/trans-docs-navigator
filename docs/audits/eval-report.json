@@ -631,7 +631,7 @@
     },
     {
       "jurisdiction": "US-MS",
-      "records": 12,
+      "records": 14,
       "current_records": 8,
       "gold_items": 2,
       "accuracy": 1,
@@ -641,7 +641,7 @@
     },
     {
       "jurisdiction": "US-MT",
-      "records": 10,
+      "records": 12,
       "current_records": 8,
       "gold_items": 4,
       "accuracy": 1,

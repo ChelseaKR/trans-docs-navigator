@@ -3764,7 +3764,7 @@
     ],
     "topic": "Petición de cambio de nombre en Minnesota",
     "statement": "Para cambiar legalmente su nombre en Minnesota, debe haber vivido en el estado durante al menos seis meses y luego presentar la solicitud ante el tribunal de distrito del condado donde reside. Debe comparecer en persona ante el tribunal y probar su identidad con al menos dos testigos.",
-    "detail": "La ley de cambio de nombre de Minnesota no exige que usted publique un aviso de su petición en un periódico, a diferencia del proceso en muchos otros estados. Cualquier persona que dé información falsa intencionalmente en la solicitud comete un delito menor.",
+    "detail": "La ley de cambio de nombre de Minnesota no exige que usted publique un aviso de su petición en un periódico, a diferencia del proceso en muchos otros estados. Cualquier persona que dé información falsa intencionalmente en la solicitud comete un delito menor. Si usted tiene una condena por delito grave (felony), la sección 259.13 de los Estatutos de Minnesota añade pasos: debe notificar su solicitud a la fiscalía que obtuvo la condena (y al fiscal general si la condena es de otro estado o de un tribunal federal); esa oficina puede oponerse y, si lo hace, usted debe probar que la solicitud se hace de buena fe y no para defraudar ni engañar; solo puede proceder sin pagar las tarifas de presentación si negar el cambio de nombre vulneraría un derecho constitucional.",
     "cost": {
       "amount_usd": null,
       "note": "La ley de cambio de nombre de Minnesota no establece una tarifa de presentación — el tribunal de distrito fija y cobra su propia tarifa. Comuníquese con el tribunal de distrito del condado donde presentará la solicitud para conocer el monto actual."
@@ -4239,6 +4239,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "mt-adult-name-change-packet",
     "language": "es"
   },
   {
@@ -4688,6 +4689,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "ne-dc-6-9-1-name-change-petition",
     "relocation": {
       "residency_bound": true
     },
@@ -5267,6 +5269,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "nv-petition-adult-name-change",
     "language": "es"
   },
   {
@@ -8541,6 +8544,48 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ms.court-order.name.age-of-majority.es",
+    "jurisdiction": "US-MS",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en Mississippi — la mayoría de edad es 21 años, y cómo trata el tribunal la petición de un menor",
+    "statement": "En Mississippi, una persona menor de 21 años es menor de edad para efectos de un cambio de nombre, y la Corte Suprema de Mississippi ha resuelto que el juez de equidad (chancellor) solo puede conceder la petición de cambio de nombre de un menor cuando el cambio es claramente en el mejor interés del menor, incluso si nadie se opone.",
+    "detail": "La mayoría de edad en Mississippi es veintiún años, no dieciocho: la Sección 1-3-27 del Código Anotado de Mississippi define como menor a toda persona menor de 21 años, así que quien tiene 18, 19 o 20 años sigue siendo menor conforme a las leyes de Mississippi. En In re S.M.-B., No. 2023-CA-01379-SCT (decidido el 17 de abril de 2025), la Corte Suprema de Mississippi resolvió que la petición de cambio de nombre de un menor no se concede automáticamente: el juez de equidad solo puede concederla cuando el cambio es claramente en el mejor interés del menor, incluso si nadie se opone y ambos padres están de acuerdo. La corte confirmó que un juez de equidad del condado de Hinds desestimara la petición de una persona de 16 años para adoptar un nombre acorde con su identidad de género, razonando que el menor debía madurar más antes de volver a presentarla. La petición de un menor la presenta en su nombre un padre, una madre, un tutor o un \"next friend\" (representante procesal). Si usted tiene menos de 21 años, pregunte al secretario del tribunal de equidad cómo espera el tribunal que se presente su petición. Este registro transmite una opinión judicial; ninguna página oficial publica el texto de la ley a este proyecto, así que un revisor humano debe confirmarlo.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://courts.ms.gov/images/Opinions/CO182514.pdf",
+      "title": "Mississippi Supreme Court — In re S.M.-B., No. 2023-CA-01379-SCT (Apr. 17, 2025)",
+      "last_verified": "2026-09-06",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "mt.drivers-license.gender-marker.injunction.es",
+    "jurisdiction": "US-MT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en la licencia de conducir de Montana — la orden judicial en Kalarchik v. State",
+    "statement": "En Kalarchik v. State (Corte Suprema de Montana, decidido el 14 de abril de 2026), la corte confirmó una orden preliminar que impide al Estado aplicar una política no publicada de 2024 de la División de Vehículos Motorizados que exigía una orden judicial y un certificado de nacimiento corregido antes de poder modificar la designación de sexo en una licencia de conducir, mientras el caso continúa.",
+    "detail": "La opinión describe una política de 2024 de la División de Vehículos Motorizados, no publicada al público, bajo la cual a una demandante le dijeron que no podía modificar la designación de sexo en su licencia de conducir sin una orden judicial y un certificado de nacimiento corregido. La corte confirmó una resolución del tribunal de distrito que prohíbe preliminarmente al Estado aplicar esa política, el Proyecto de Ley del Senado 458 y la regla de 2022 del Departamento de Salud Pública y Servicios Humanos sobre certificados de nacimiento, en lo que respecta a modificar certificados de nacimiento y licencias de conducir, mientras el caso continúa. Como la política no está publicada y los tribunales han suspendido su aplicación, pregunte directamente en una oficina de licencias de conducir de Montana qué exige actualmente. Este registro transmite una opinión judicial, no una página de la División de Vehículos Motorizados; este proyecto no puede leer las páginas propias de la División.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://juddocumentservice.mt.gov/getDocByCTrackId?DocId=564241",
+      "title": "Montana Supreme Court — Kalarchik v. State, 2026 MT 76 (Apr. 14, 2026)",
+      "last_verified": "2026-09-06",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
     "language": "es"
   }
 ]
