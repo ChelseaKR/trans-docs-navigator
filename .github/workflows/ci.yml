@@ -4,6 +4,15 @@ name: ci
 # pipeline"). A merge to main requires every job green; branch protection enforces it.
 # Action refs are pinned by commit SHA (supply-chain hardening); the tag is in the
 # comment for readability. Dependabot keeps the pins current.
+#
+# Harden Runner (SEC-04, #158): every job here ran in `egress-policy: audit` for a
+# stretch first so the real outbound domain set could be observed rather than
+# guessed; 8 of the 9 jobs are now `egress-policy: block` with an allowlist built
+# from that observed set (see each job's Harden Runner step for its specific list
+# and the run IDs it was mined from). `container-and-infra` stays in `audit` —
+# see its own step comment for the specific, PR-CI-verified reason (a per-pull,
+# non-deterministic CloudFront redirect on the public-ECR pull that no fixed
+# allowlist entry can cover). `release.yml` stays in `audit` too — see its header.
 
 on:
   push:
@@ -22,13 +31,30 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Harden Runner (egress audit — SEC-04)
-        # `audit` logs outbound egress without blocking (P1-3): a first step over
-        # every job here so the actual domain set can be observed before this ever
-        # flips to `block` with an explicit allowlist.
+      - name: Harden Runner (egress block — SEC-04)
+        # Flipped `audit` → `block` (#158). Allowlist is the domain set OBSERVED
+        # across multiple completed audit-mode runs of this job (e.g. runs
+        # 34003436863, 34002744404), not a guess: GitHub Actions runner infra, the
+        # npm registry, and the apt/Microsoft/Google mirrors that
+        # `npx playwright install --with-deps chromium` touches for the G9
+        # pseudolocale-overflow gate inside `make verify`.
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
-          egress-policy: audit
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            *.actions.githubusercontent.com:443
+            *.githubapp.com:443
+            *.blob.core.windows.net:443
+            registry.npmjs.org:443
+            azure.archive.ubuntu.com:80
+            esm.ubuntu.com:443
+            motd.ubuntu.com:443
+            packages.microsoft.com:443
+            dl.google.com:443
+            storage.googleapis.com:443
+            cdn.playwright.dev:443
+            playwright.download.prss.microsoft.com:443
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
@@ -65,13 +91,29 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Harden Runner (egress audit — SEC-04)
-        # `audit` logs outbound egress without blocking (P1-3): a first step over
-        # every job here so the actual domain set can be observed before this ever
-        # flips to `block` with an explicit allowlist.
+      - name: Harden Runner (egress block — SEC-04)
+        # Flipped `audit` → `block` (#158). Allowlist is the domain set OBSERVED
+        # across completed audit-mode runs of this job (e.g. run 34003436863):
+        # GitHub Actions runner infra, the npm registry, and the same
+        # apt/Microsoft/Google mirrors `verify`'s Chromium install touches (this
+        # job installs Chromium too, for the D2 real-browser journey).
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
-          egress-policy: audit
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            *.actions.githubusercontent.com:443
+            *.githubapp.com:443
+            *.blob.core.windows.net:443
+            registry.npmjs.org:443
+            azure.archive.ubuntu.com:80
+            esm.ubuntu.com:443
+            motd.ubuntu.com:443
+            packages.microsoft.com:443
+            dl.google.com:443
+            storage.googleapis.com:443
+            cdn.playwright.dev:443
+            playwright.download.prss.microsoft.com:443
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
@@ -95,13 +137,30 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Harden Runner (egress audit — SEC-04)
-        # `audit` logs outbound egress without blocking (P1-3): a first step over
-        # every job here so the actual domain set can be observed before this ever
-        # flips to `block` with an explicit allowlist.
+      - name: Harden Runner (egress block — SEC-04)
+        # Flipped `audit` → `block` (#158). Allowlist is the domain set OBSERVED
+        # across multiple completed audit-mode runs of this job (e.g. runs
+        # 34003436863, 34002744404): GitHub Actions runner infra, the npm
+        # registry, and pa11y-ci's bundled Puppeteer/Chromium's own default
+        # background calls to Google (autofill, account/sync, GCM push) — this
+        # job never runs `playwright install`, so unlike `verify`/`smoke-journey`
+        # there is no Playwright-CDN or apt-mirror egress here.
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
-          egress-policy: audit
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            *.actions.githubusercontent.com:443
+            *.githubapp.com:443
+            *.blob.core.windows.net:443
+            registry.npmjs.org:443
+            accounts.google.com:443
+            android.clients.google.com:443
+            clients2.google.com:443
+            content-autofill.googleapis.com:443
+            mtalk.google.com:443
+            storage.googleapis.com:443
+            www.google.com:443
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
@@ -165,10 +224,29 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Harden Runner (egress audit — SEC-04)
+      - name: Harden Runner (egress block — SEC-04)
+        # Flipped `audit` → `block` (#158). Allowlist is the domain set OBSERVED
+        # across all 6 matrix legs of this job in multiple completed audit-mode
+        # runs (e.g. run 34003436863): GitHub Actions runner infra, the npm
+        # registry, and Chrome's own default background calls to Google
+        # (account/sync, GCM push, gstatic assets) — Lighthouse launches the
+        # runner image's preinstalled Chrome, so unlike `verify`/`smoke-journey`
+        # there is no Chromium *download* here.
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
-          egress-policy: audit
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            *.actions.githubusercontent.com:443
+            *.githubapp.com:443
+            *.blob.core.windows.net:443
+            registry.npmjs.org:443
+            accounts.google.com:443
+            android.clients.google.com:443
+            clients2.google.com:443
+            mtalk.google.com:443
+            www.google.com:443
+            www.gstatic.com:443
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
@@ -209,10 +287,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Harden Runner (egress audit — SEC-04)
+      - name: Harden Runner (egress block — SEC-04)
+        # Flipped `audit` → `block` (#158). This job does no checkout and makes
+        # no tool calls of its own — it only reads `needs.lighthouse.result` — so
+        # the only OBSERVED egress is GitHub Actions runner infra itself.
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
-          egress-policy: audit
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            *.actions.githubusercontent.com:443
+            *.githubapp.com:443
+            *.blob.core.windows.net:443
       - name: Require every lighthouse URL shard to have passed
         env:
           LH_MATRIX_RESULT: ${{ needs.lighthouse.result }}
@@ -227,13 +313,22 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Harden Runner (egress audit — SEC-04)
-        # `audit` logs outbound egress without blocking (P1-3): a first step over
-        # every job here so the actual domain set can be observed before this ever
-        # flips to `block` with an explicit allowlist.
+      - name: Harden Runner (egress block — SEC-04)
+        # Flipped `audit` → `block` (#158). Allowlist is the domain set OBSERVED
+        # in completed audit-mode runs of this job (e.g. run 34003436863):
+        # GitHub Actions runner infra plus Semgrep's own rule-fetch/telemetry
+        # endpoints (no npm ci in this job).
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
-          egress-policy: audit
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            *.actions.githubusercontent.com:443
+            *.githubapp.com:443
+            *.blob.core.windows.net:443
+            semgrep.dev:443
+            fail-open.prod.semgrep.dev:443
+            metrics.semgrep.dev:443
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
@@ -262,13 +357,21 @@ jobs:
       # is granted anywhere in this job. The failing step is the signal, not a comment.
       pull-requests: read
     steps:
-      - name: Harden Runner (egress audit — SEC-04)
-        # `audit` logs outbound egress without blocking (P1-3): a first step over
-        # every job here so the actual domain set can be observed before this ever
-        # flips to `block` with an explicit allowlist.
+      - name: Harden Runner (egress block — SEC-04)
+        # Flipped `audit` → `block` (#158). Allowlist is the domain set OBSERVED
+        # in completed audit-mode runs of this job (e.g. run 34003436863):
+        # GitHub Actions runner infra plus `api.github.com`, which
+        # gitleaks-action calls to resolve the PR's commit range (see the
+        # `pull-requests: read` comment above).
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
-          egress-policy: audit
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            api.github.com:443
+            *.actions.githubusercontent.com:443
+            *.githubapp.com:443
+            *.blob.core.windows.net:443
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0 # gitleaks needs full history to scan, not just the merge commit
@@ -298,13 +401,20 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Harden Runner (egress audit — SEC-04)
-        # `audit` logs outbound egress without blocking (P1-3): a first step over
-        # every job here so the actual domain set can be observed before this ever
-        # flips to `block` with an explicit allowlist.
+      - name: Harden Runner (egress block — SEC-04)
+        # Flipped `audit` → `block` (#158). Allowlist is the domain set OBSERVED
+        # in completed audit-mode runs of this job (e.g. run 34003436863):
+        # GitHub Actions runner infra plus PyPI, for `pip install zizmor`.
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
-          egress-policy: audit
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            *.actions.githubusercontent.com:443
+            *.githubapp.com:443
+            *.blob.core.windows.net:443
+            pypi.org:443
+            files.pythonhosted.org:443
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
@@ -318,9 +428,24 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
-        # `audit` logs outbound egress without blocking (P1-3): a first step over
-        # every job here so the actual domain set can be observed before this ever
-        # flips to `block` with an explicit allowlist.
+        # STAYS in audit (#158) — the one job in ci.yml this PR did NOT flip, and
+        # this is why. It was flipped to `block` first, with an allowlist built
+        # from every domain OBSERVED across multiple completed audit-mode runs
+        # (Docker Hub for `node:26-slim`; HashiCorp's registry/CDN/checkpoint
+        # endpoints for `terraform`). That allowlist broke this exact PR's own
+        # `block`-mode CI run: `docker build`'s pull of
+        # `public.ecr.aws/awsguru/aws-lambda-adapter:1.0.1` resolves the actual
+        # image bytes through a signed, PER-PULL CloudFront redirect
+        # (`<random-id>.cloudfront.net`, seen once as `d5l0dvt14r5h8.cloudfront.net`)
+        # that never appeared in any prior audit-mode run — almost certainly
+        # because those runs hit a warm BuildKit layer cache that this cache-cold
+        # PR run didn't. That hostname is not observable in advance and isn't
+        # stable across runs, so there is no exact-match allowlist entry to add;
+        # the only way to unblock it would be a blanket `*.cloudfront.net`, which
+        # would defeat the point of an allowlist (CloudFront fronts an enormous
+        # share of the internet) — exactly the "too-broad is theatre" failure
+        # mode #158 warns against. Better an honest `audit` here than a `block`
+        # that is either randomly red or silently wide open.
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit

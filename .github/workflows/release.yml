@@ -17,6 +17,26 @@ name: release
 # Uses only GITHUB_TOKEN + keyless OIDC (Sigstore Fulcio/Rekor) — no long-lived
 # credential, no repo secret to provision.
 #
+# Harden Runner (SEC-04, #158): 8 of `ci.yml`'s 9 jobs are `egress-policy: block`
+# now, with allowlists mined from observed audit-mode runs (see its header) — the
+# 9th, `container-and-infra`, stayed in `audit` for a specific, PR-CI-verified
+# reason (a non-deterministic per-pull CDN redirect), also documented there.
+# Every job below STAYS in `audit` too, and that is deliberate, not an oversight:
+#
+#   * This workflow has NEVER RUN — `git tag -l` is empty (see
+#     docs/audits/scorecard-2026-07.md, "Signed-Releases: N/A"). There is no
+#     completed run to mine an allowlist from; anything written here for cosign/
+#     Sigstore/GHCR/the dataset publish path would be a guess dressed up as
+#     evidence, which is exactly what audit-first is supposed to prevent.
+#   * The failure mode here is the worst-timed one in the repo. This fires on a
+#     pushed tag; a wrongly-blocked endpoint could fail AFTER the tag is public
+#     and possibly mid-publish (an image partially pushed, a GitHub Release half
+#     created). A false red is not a free retry here the way it is on a PR.
+#
+# The order is therefore: cut one real tagged release with these jobs in audit,
+# read the observed endpoints off that run, and flip them to `block` in a
+# follow-up PR. Tracked as the remaining part of #158.
+#
 # The `dataset` job (EXP-08) packages the corpus as a versioned, signed dataset bundle
 # (schema + records + verifier roster + per-jurisdiction labels + hash manifest, see
 # scripts/dataset-build.ts). It publishes the files on the tagged GitHub Release and
@@ -42,6 +62,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
+        # Stays in audit — see the SEC-04 note in this file's header (#158).
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
@@ -65,6 +86,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Harden Runner (egress audit — SEC-04)
+        # Stays in audit — see the SEC-04 note in this file's header (#158).
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
@@ -107,6 +129,7 @@ jobs:
       digest: ${{ steps.push.outputs.digest }}
     steps:
       - name: Harden Runner (egress audit — SEC-04)
+        # Stays in audit — see the SEC-04 note in this file's header (#158).
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
@@ -187,6 +210,7 @@ jobs:
       packages: read
     steps:
       - name: Harden Runner (egress audit — SEC-04)
+        # Stays in audit — see the SEC-04 note in this file's header (#158).
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
@@ -244,6 +268,15 @@ jobs:
       id-token: write
       attestations: write
     steps:
+      - name: Harden Runner (egress audit — SEC-04)
+        # This job was missing a Harden Runner step entirely (found while doing
+        # #158) — a real gap, not a style choice: it is the one job in this
+        # workflow that writes to the repo (`contents: write`, GitHub Release
+        # assets) with zero egress monitoring. Stays in audit for the same
+        # never-run reason as every other job here — see this file's header.
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
