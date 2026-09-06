@@ -8,6 +8,13 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Referrals everywhere** (`src/help.ts`): the "Where to get help" block (the state's A4TE
+  guide + legal-aid referrals from `corpus/referrals/`, state first then federal) now renders
+  on the SEO guide pages (`/guide/<state>/<topic>`) and on the relocation plan (for the
+  *destination* state) — not only on the checklist and printable packet. One shared renderer
+  so the four surfaces cannot drift in ordering, escaping, or the pseudolocale fallback.
+  The plan's block is static per-state links in the same outbound-only class as the
+  checklist's; nothing queries a third party with the plan.
 - **"Which state?" comparison** (`/compare`, `api/compare.ts` + `src/compare.ts`): the
   relocation planner's inverse question. `/move` → `/plan` answers "I'm moving from X to Y,
   what changes"; `/compare` answers "which states have a documented path for what I need,
