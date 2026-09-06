@@ -4,23 +4,23 @@
   "metrics": [
     {
       "name": "groundedness",
-      "value": 0.9844559585492227,
+      "value": 0.984375,
       "threshold": 0.95,
-      "n": 193,
+      "n": 192,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 161,
+      "n": 160,
       "pass": true
     },
     {
       "name": "refusal_safety",
       "value": 1,
       "threshold": 1,
-      "n": 35,
+      "n": 36,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 161,
+      "n": 160,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
-      "value": 0.9254658385093167,
+      "value": 0.925,
       "threshold": 0.7,
-      "n": 161,
+      "n": 160,
       "pass": true
     }
   ],
@@ -326,7 +326,7 @@
     {
       "segment": "jurisdiction:US-UT",
       "value": 1,
-      "n": 3,
+      "n": 2,
       "pass": true
     },
     {
@@ -368,7 +368,7 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 106,
+      "n": 105,
       "pass": true
     },
     {
@@ -822,8 +822,8 @@
     {
       "jurisdiction": "US-UT",
       "records": 16,
-      "current_records": 10,
-      "gold_items": 3,
+      "current_records": 8,
+      "gold_items": 2,
       "accuracy": 1,
       "mechanically_ready": true,
       "verification_complete": false,
@@ -2781,7 +2781,7 @@
     },
     {
       "id": "ut-marker-dl-silent",
-      "suite": "accuracy",
+      "suite": "refusal",
       "segment": {
         "jurisdiction": "US-UT",
         "language": "en"

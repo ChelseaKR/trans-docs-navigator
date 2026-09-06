@@ -63,6 +63,8 @@ export interface UiMessages {
   packetTitle: string;
   packetHeading: string;
   answerHeading: string;
+  /** Accessible name for the `<section>` landmark wrapping a rendered answer (aria-label, not visible text — issue #151). */
+  answerLandmarkLabel: string;
   formPrivacy: string;
   fillDownload: string;
   flatScanIntro: string;
@@ -297,6 +299,8 @@ export interface SeoMessages {
   guideReviewed: string;
   breadcrumbHome: string;
   breadcrumbGuides: string;
+  /** Accessible name for the breadcrumb `<nav>` landmark (aria-label, not visible text — issue #151). */
+  breadcrumbNav: string;
   /** Plain-language meta descriptions for the legal/trust pages. */
   legalDescription: { terms: string; privacy: string; accessibility: string; methodology: string };
   /** Meta description for the /transparency report page. */
