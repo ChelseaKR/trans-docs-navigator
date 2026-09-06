@@ -6394,8 +6394,8 @@
       "gender-marker"
     ],
     "topic": "Designaci\u00f3n de sexo/g\u00e9nero en la licencia de conducir e identificaci\u00f3n de Utah",
-    "statement": "Las p\u00e1ginas de la Divisi\u00f3n de Licencias de Conducir de Utah sobre el cambio de nombre y los documentos requeridos no mencionan una designaci\u00f3n de sexo o g\u00e9nero en una licencia o tarjeta de identificaci\u00f3n, ni ning\u00fan proceso para cambiarla.",
-    "detail": "Este proyecto revis\u00f3 las p\u00e1ginas de cambio de nombre, documentos requeridos y legislaci\u00f3n de la Divisi\u00f3n y no encontr\u00f3 ninguna p\u00e1gina oficial que aborde una designaci\u00f3n de sexo o g\u00e9nero. Lea usted mismo las p\u00e1ginas actuales de la Divisi\u00f3n antes de suponer que existe una v\u00eda.",
+    "statement": "La p\u00e1gina de documentos requeridos de la propia Divisi\u00f3n de Licencias de Conducir de Utah no menciona una designaci\u00f3n de sexo o g\u00e9nero en una licencia o tarjeta de identificaci\u00f3n, ni ning\u00fan proceso para cambiarla.",
+    "detail": "Esa p\u00e1gina es la lista general de lo que debe llevar a cualquier tr\u00e1mite presencial, no un resumen de todo lo que ofrece la Divisi\u00f3n \u2014 lea usted mismo las p\u00e1ginas actuales de la Divisi\u00f3n antes de suponer que existe o no un proceso espec\u00edfico para el marcador. Otro registro de este proyecto sobre la v\u00eda judicial para un cambio de sexo legal muestra que los tribunales de Utah le indican a quien completa ese proceso que luego visite el sitio web de la Divisi\u00f3n de Licencias de Conducir para obtener una nueva licencia o identificaci\u00f3n, por lo que podr\u00eda existir una v\u00eda para actualizar el sexo que aparece en una licencia o identificaci\u00f3n, aunque esta p\u00e1gina nunca describe una.",
     "prerequisites": [],
     "source": {
       "url": "https://dld.utah.gov/required-documents/",
@@ -6403,7 +6403,7 @@
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
-    "verification_status": "verified",
+    "verification_status": "needs_reverification",
     "recheck_sla_days": 30,
     "language": "es"
   },
