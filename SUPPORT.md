@@ -11,8 +11,8 @@ For actual help with your situation, these are the kinds of organisations that d
 
 - **Your state's legal-aid organisation** — many run free name-change clinics.
   The app lists per-jurisdiction referrals it has on file under each checklist.
-- **[National Center for Transgender Equality](https://transequality.org/documents)** —
-  ID-document resources by state.
+- **[Advocates for Trans Equality (A4TE) — ID Documents Center](https://transequality.org/documents)** —
+  human-curated, plain-language guides for every state. Each checklist here links the matching guide.
 - **[Lambda Legal Help Desk](https://www.lambdalegal.org/help)**
 - **[Transgender Law Center](https://transgenderlawcenter.org/help)**
 

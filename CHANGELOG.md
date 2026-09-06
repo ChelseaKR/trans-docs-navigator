@@ -35,6 +35,19 @@ lives under `[Unreleased]`.
   only when selected) and, like every record in this corpus, verified only by the
   placeholder `Pilot Seed Reviewer` — mechanically valid, not launch-cleared.
 
+- **Per-jurisdiction change-alert feeds** (RSS 2.0, no accounts/no PII): `/feeds/<jurisdiction>.xml`
+  (e.g. `/feeds/US-WA.xml`) and an HTML index at `/feeds`. Entries are derived purely from
+  each record's own `source.last_verified` date (grouped per jurisdiction/language) — not
+  from git history or a generated manifest, since the production service runs on AWS Lambda
+  with no git at request time and this needs no build step to stay in sync with the corpus.
+  Every channel description and item description states plainly that the feed reports
+  changes to OUR RECORDS, never that the law changed, and carries the same
+  "information, not legal advice" disclosure as every other page. Surfaced as a plain
+  "Get notified when we update <state>'s records (RSS)" link plus `<link rel="alternate"
+  type="application/rss+xml">` autodiscovery on the checklist page. `/feeds` joins the
+  indexable content surface (sitemap + seo-lint + a11y-lint + Lighthouse); the feed XML
+  itself is discovered via autodiscovery, not the HTML sitemap. New: `api/feed.ts`,
+  `src/feeds.ts`, `tests/feed.test.ts`; EN/ES strings added to `src/i18n/`.
 - **District of Columbia, West Virginia, and Kentucky** (M6 — expand jurisdictions): 15 EN
   + 15 ES corpus records (court-order name change, driver's-license name and
   gender-marker, birth-certificate name and gender-marker), 6 referrals, and 8

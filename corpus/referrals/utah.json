@@ -24,12 +24,30 @@
     "url": "https://www.acluutah.org",
     "note": {
       "en": "ACLU of Utah's Request Help intake page connects Utah residents to its legal and advocacy work, including on transgender rights.",
-      "es": "La página de solicitud de ayuda de la ACLU de Utah conecta a los residentes de Utah con su trabajo legal y de defensa, incluido el relacionado con los derechos de las personas transgénero."
+      "es": "La p\u00e1gina de solicitud de ayuda de la ACLU de Utah conecta a los residentes de Utah con su trabajo legal y de defensa, incluido el relacionado con los derechos de las personas transg\u00e9nero."
     },
     "source": {
       "url": "https://www.acluutah.org",
       "title": "ACLU of Utah",
       "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ut.referral.a4te",
+    "jurisdiction": "US-UT",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Utah identity documents guide",
+    "url": "https://transequality.org/documents/utah-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Utah documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Utah. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/utah-identity-documents",
+      "title": "A4TE \u2014 Utah Identity Documents",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",
