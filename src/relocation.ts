@@ -25,6 +25,7 @@ import type {
 } from "../api/types.ts";
 import { page, uiStrings, escapeHtml, sourceItem, fieldLabel } from "./render.ts";
 import { t as locale } from "./i18n/index.ts";
+import { renderHelpSection } from "./help.ts";
 import { formById } from "../api/forms.ts";
 
 /** The states the planner offers, mirroring the checklist intake's list. */
@@ -372,7 +373,12 @@ export function renderPlanPage(
   const actions = `<p class="no-print"><button type="button" id="print-btn">🖨️ ${escapeHtml(s.print)}</button> <a href="/move">${escapeHtml(s.startOver)}</a></p>
 <script type="module" src="/assets/packet.js"></script>`;
 
-  const body = intro + actions + empty + renderCosts(plan, lang) + sections + gaps;
+  // The destination's referrals (A4TE guide + legal aid): static per-state links, the same
+  // outbound-only class as the checklist's help block — nothing here queries a third party
+  // with the plan (see the rejected care-density flow in api/care-density.ts).
+  const help = renderHelpSection(plan.destination, lang, s);
+
+  const body = intro + actions + empty + renderCosts(plan, lang) + sections + gaps + help;
 
   return page({
     lang,
