@@ -107,6 +107,18 @@ export interface UiMessages {
   estimatedCost: string;
   varies: string;
   /**
+   * Fee-waiver detail on a checklist/packet step (cost.fee_waiver_form/fee_waiver_criteria).
+   * A FACT about the fee — "this fee can be waived" — never a judgement about whether THIS
+   * reader would get it waived. See GOVERNANCE.md: this app does not adjudicate eligibility.
+   */
+  feeWaiverAvailable: string;
+  /** Label preceding the official form's own title/link, e.g. "Form: Request to Waive Court Fees". */
+  feeWaiverFormLabel: string;
+  /** `The court says: "{quote}"` — {quote} is cost.fee_waiver_criteria, the court's own words. */
+  feeWaiverCriteriaQuote(quote: string): string;
+  /** Shown when a waiver form is sourced but its source never states specific criteria. */
+  feeWaiverCriteriaUnstated: string;
+  /**
    * Shown when the corpus holds no record for the requested state, so every step on the
    * page is federal. Says only what is true of US — that we have nothing verified — and
    * asserts nothing about what that state does or does not require.
@@ -235,6 +247,12 @@ export interface RelocationMessages {
   costVariable(n: number): string;
   costUnpriced(n: number): string;
   costWaiver: string;
+  /**
+   * The "potentially waivable" subtotal (CostModel.potentially_waivable_usd) — a slice of
+   * the floor above, not money on top of it. "Potentially" describes the FEE (a waiver
+   * process is documented for it), never a prediction of whether this reader would get it.
+   */
+  costPotentiallyWaivable(amountUsd: number): string;
   costHonesty: string;
 
   gapsHeading: string;

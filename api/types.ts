@@ -53,6 +53,31 @@ export interface Cost {
   note?: string;
   /** True when a documented fee-waiver path exists. */
   fee_waiver?: boolean;
+  /**
+   * Forms-registry id (forms/registry.json) for the official fee-waiver FORM — never a
+   * form this app fills, only one it links to. Only set once a real source names it; a
+   * `fee_waiver: true` record with no confirmed form simply omits this field rather than
+   * guessing. May only be set alongside `fee_waiver: true`.
+   */
+  fee_waiver_form?: string;
+  /**
+   * A short, LITERAL quote of what the court itself publishes as its fee-waiver criteria —
+   * never this app's own eligibility judgement, and never phrased as a prediction about the
+   * reader ("you likely qualify"). `make fidelity` requires this exact text to be locatable
+   * in the source it is checked against (this record's own `source`, or `fee_waiver_source`
+   * below when the waiver lives on a different official page). Where the source states a
+   * waiver exists but never states its criteria, this is left unset — the app says so rather
+   * than guessing. May only be set alongside `fee_waiver: true`.
+   */
+  fee_waiver_criteria?: string;
+  /**
+   * A second citation, used only when `fee_waiver_form`/`fee_waiver_criteria` come from a
+   * DIFFERENT official page than this record's own `source` — a state's general filing-fee
+   * page and its dedicated fee-waiver page are frequently different documents. When absent,
+   * those two fields are checked against this record's own `source` instead. Carries the
+   * same shape and the same verifier-roster requirement as `source`.
+   */
+  fee_waiver_source?: Source;
 }
 
 export interface Timeline {
@@ -376,6 +401,13 @@ export interface CostModel {
   unpriced_step_keys: string[];
   /** Steps whose sources record a fee-waiver path. */
   fee_waiver_step_keys: string[];
+  /**
+   * Sum of the KNOWN amounts (already counted inside `known_total_usd`) for steps whose
+   * source records a fee-waiver path — a subtotal of the floor, not money on top of it. Named
+   * "potentially" because it describes a FACT ABOUT THE FEE (a waiver process exists for it),
+   * never a prediction about whether this particular reader would get it waived.
+   */
+  potentially_waivable_usd: number;
 }
 
 export interface RelocationStep {

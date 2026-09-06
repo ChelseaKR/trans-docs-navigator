@@ -1,9 +1,9 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
   "records": 634,
-  "supported": 920,
+  "supported": 946,
   "unsupported": 0,
-  "uncheckable": 444,
+  "uncheckable": 460,
   "unfetchable_sources": [
     "https://doa.alaska.gov/dmv/akol/namchg.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
@@ -391,6 +391,26 @@
           "why": "the source describes a fee waiver / inability-to-pay route"
         },
         {
+          "kind": "form-id",
+          "key": "unnamed:az-aocdfgf1f-fee-waiver",
+          "label": "cost.fee_waiver_form \"az-aocdfgf1f-fee-waiver\" (Application for Deferral or Waiver of Court Fees or Costs and Consent to Entry of Judgment (Form No. AOCDFGF1F)) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://www.azcourts.gov/courtfilingfees/Fee-Waivers-and-Deferrals",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "if you receive benefits from the federal supplemental security income (ssi) program, and provide supporting documentation when you file the application for deferral or waiver of court fees and costs (form no. aocdfgf1f), the court should grant a waiver.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://www.azcourts.gov/courtfilingfees/Fee-Waivers-and-Deferrals",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
+        },
+        {
           "kind": "money",
           "key": "222",
           "label": "states $222",
@@ -586,6 +606,26 @@
           "why": "the source itself conditions the action on where you live"
         },
         {
+          "kind": "form-id",
+          "key": "unnamed:ar-fee-waiver-ifp",
+          "label": "cost.fee_waiver_form \"ar-fee-waiver-ifp\" (In Forma Pauperis (Fee Waiver) Petition, Affidavit and Order) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://a.arlawhelp.org/self-representation/fee-waiver",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "in forma pauperis (also known as a fee waiver) is used when you cannot afford to pay the court filing fee and costs for filing a court form.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://a.arlawhelp.org/self-representation/fee-waiver",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
+        },
+        {
           "kind": "requirement",
           "key": "notarized",
           "label": "a notarized signature is required",
@@ -735,6 +775,26 @@
           "why": "the source describes a fee waiver / inability-to-pay route"
         },
         {
+          "kind": "form-id",
+          "key": "FW001",
+          "label": "official fee-waiver form FW001 backs this waiver (cost.fee_waiver_form: ca-fw-001)",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://selfhelp.courts.ca.gov/fee-waiver",
+          "verdict": "supported",
+          "why": "the source names FW001"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "you only need to meet 1 of these to qualify. you don’t have to meet all 3. option 1: you receive public benefits",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://selfhelp.courts.ca.gov/fee-waiver",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
+        },
+        {
           "kind": "requirement",
           "key": "court-order-required",
           "label": "a court order is required",
@@ -834,6 +894,26 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "form-id",
+          "key": "FW001",
+          "label": "official fee-waiver form FW001 backs this waiver (cost.fee_waiver_form: ca-fw-001)",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://selfhelp.courts.ca.gov/fee-waiver",
+          "verdict": "supported",
+          "why": "the source names FW001"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "you only need to meet 1 of these to qualify. you don’t have to meet all 3. option 1: you receive public benefits",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://selfhelp.courts.ca.gov/fee-waiver",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
         },
         {
           "kind": "requirement",
@@ -1039,6 +1119,24 @@
           "why": "the source itself conditions the action on where you live"
         },
         {
+          "kind": "form-id",
+          "key": "JDF205",
+          "label": "official fee-waiver form JDF205 backs this waiver (cost.fee_waiver_form: co-jdf-205)",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names JDF205"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "if you do not think you can afford it, you can request a waiver of the filing fee by completing form jdf 205 - motion to file without payment and supporting financial affidavit",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
+        },
+        {
           "kind": "duration",
           "key": "90 day",
           "label": "states \"90 day\"",
@@ -1091,15 +1189,6 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source discusses this topic (necessary condition only — NOT verified)"
-        },
-        {
-          "kind": "form-id",
-          "key": "JDF205",
-          "label": "names form JDF205",
-          "field": "cost.note",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names JDF205"
         }
       ],
       "uncheckedProse": 2,
@@ -2682,6 +2771,26 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:il-fee-waiver-application",
+          "label": "cost.fee_waiver_form \"il-fee-waiver-application\" (Application for Waiver of Court Fees) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://www.illinoislegalaid.org/legal-information/filing-court-papers-free",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "if you cannot afford the fees, you can ask to have them waived.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://www.illinoislegalaid.org/legal-information/filing-court-papers-free",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
         }
       ],
       "uncheckedProse": 5,
@@ -2876,6 +2985,15 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:in-fee-waiver-form",
+          "label": "cost.fee_waiver_form \"in-fee-waiver-form\" (Filing Fee Waiver Form) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
         },
         {
           "kind": "money",
@@ -3916,6 +4034,26 @@
         },
         {
           "kind": "form-id",
+          "key": "unnamed:ma-affidavit-of-indigency",
+          "label": "cost.fee_waiver_form \"ma-affidavit-of-indigency\" (Affidavit of Indigency) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://www.mass.gov/info-details/eligibility-requirements-for-indigency-waiver-of-fees",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "you are eligible for a waiver, substitution or state payment of fees and costs if any one of the following scenarios applies to you: you receive public assistance under one of the following programs: massachusetts transitional aid to families with dependent children; massachusetts emergency aid to elderly, disabled children; federal supplemental security income; massachusetts masshealth (formerly medicaid) or massachusetts veterans benefits; or your income, after taxes, does not exceed 125% of the current federal poverty line.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://www.mass.gov/info-details/eligibility-requirements-for-indigency-waiver-of-fees",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
+        },
+        {
+          "kind": "form-id",
           "key": "CJD400",
           "label": "names form CJD400",
           "field": "detail",
@@ -4217,6 +4355,26 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:mi-fee-waiver-request",
+          "label": "cost.fee_waiver_form \"mi-fee-waiver-request\" (Fee Waiver Request Form — Michigan One Court of Justice) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://michiganlegalhelp.org/resources/going-court/fee-waivers-court-cases",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "the judge must waive your fees if you show that your gross household income is under 125% of the federal poverty level.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://michiganlegalhelp.org/resources/going-court/fee-waivers-court-cases",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
         },
         {
           "kind": "money",
@@ -7284,6 +7442,15 @@
           "why": "the source describes a fee waiver / inability-to-pay route"
         },
         {
+          "kind": "fee-waiver-criteria",
+          "key": "if a petitioner is indigent, or demonstrates a limited or inability to pay, the court costs may be waived or reduced.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
+        },
+        {
           "kind": "requirement",
           "key": "background-check",
           "label": "fingerprints / a criminal-history check are required",
@@ -8133,6 +8300,26 @@
           "why": "the source itself conditions the action on where you live"
         },
         {
+          "kind": "form-id",
+          "key": "unnamed:ar-fee-waiver-ifp",
+          "label": "cost.fee_waiver_form \"ar-fee-waiver-ifp\" (In Forma Pauperis (Fee Waiver) Petition, Affidavit and Order) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://a.arlawhelp.org/self-representation/fee-waiver",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "in forma pauperis (also known as a fee waiver) is used when you cannot afford to pay the court filing fee and costs for filing a court form.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://a.arlawhelp.org/self-representation/fee-waiver",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
+        },
+        {
           "kind": "requirement",
           "key": "notarized",
           "label": "a notarized signature is required",
@@ -8317,6 +8504,26 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:az-aocdfgf1f-fee-waiver",
+          "label": "cost.fee_waiver_form \"az-aocdfgf1f-fee-waiver\" (Application for Deferral or Waiver of Court Fees or Costs and Consent to Entry of Judgment (Form No. AOCDFGF1F)) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://www.azcourts.gov/courtfilingfees/Fee-Waivers-and-Deferrals",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "if you receive benefits from the federal supplemental security income (ssi) program, and provide supporting documentation when you file the application for deferral or waiver of court fees and costs (form no. aocdfgf1f), the court should grant a waiver.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://www.azcourts.gov/courtfilingfees/Fee-Waivers-and-Deferrals",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
         },
         {
           "kind": "money",
@@ -8533,6 +8740,26 @@
           "why": "the source describes a fee waiver / inability-to-pay route"
         },
         {
+          "kind": "form-id",
+          "key": "FW001",
+          "label": "official fee-waiver form FW001 backs this waiver (cost.fee_waiver_form: ca-fw-001)",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://selfhelp.courts.ca.gov/es/exencion-de-cuotas",
+          "verdict": "supported",
+          "why": "the source names FW001"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "solo necesita cumplir 1 de estos requisitos para calificar. no tiene que cumplir los 3. opción 1: recibe beneficios públicos",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://selfhelp.courts.ca.gov/es/exencion-de-cuotas",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
+        },
+        {
           "kind": "money",
           "key": "435",
           "label": "states $435",
@@ -8586,6 +8813,26 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "form-id",
+          "key": "FW001",
+          "label": "official fee-waiver form FW001 backs this waiver (cost.fee_waiver_form: ca-fw-001)",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://selfhelp.courts.ca.gov/es/exencion-de-cuotas",
+          "verdict": "supported",
+          "why": "the source names FW001"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "solo necesita cumplir 1 de estos requisitos para calificar. no tiene que cumplir los 3. opción 1: recibe beneficios públicos",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://selfhelp.courts.ca.gov/es/exencion-de-cuotas",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
         },
         {
           "kind": "money",
@@ -8763,6 +9010,24 @@
           "why": "the source itself conditions the action on where you live"
         },
         {
+          "kind": "form-id",
+          "key": "JDF205",
+          "label": "official fee-waiver form JDF205 backs this waiver (cost.fee_waiver_form: co-jdf-205)",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names JDF205"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "if you do not think you can afford it, you can request a waiver of the filing fee by completing form jdf 205 - motion to file without payment and supporting financial affidavit",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
+        },
+        {
           "kind": "duration",
           "key": "90 day",
           "label": "states \"90 day\"",
@@ -8815,15 +9080,6 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source discusses this topic (necessary condition only — NOT verified)"
-        },
-        {
-          "kind": "form-id",
-          "key": "JDF205",
-          "label": "names form JDF205",
-          "field": "cost.note",
-          "strength": "literal",
-          "verdict": "supported",
-          "why": "the source names JDF205"
         }
       ],
       "uncheckedProse": 2,
@@ -10063,6 +10319,26 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:il-fee-waiver-application",
+          "label": "cost.fee_waiver_form \"il-fee-waiver-application\" (Application for Waiver of Court Fees) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://www.illinoislegalaid.org/legal-information/filing-court-papers-free",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "if you cannot afford the fees, you can ask to have them waived.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://www.illinoislegalaid.org/legal-information/filing-court-papers-free",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
         }
       ],
       "uncheckedProse": 5,
@@ -10148,6 +10424,15 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:in-fee-waiver-form",
+          "label": "cost.fee_waiver_form \"in-fee-waiver-form\" (Filing Fee Waiver Form) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
         },
         {
           "kind": "money",
@@ -10703,6 +10988,26 @@
           "strength": "literal",
           "verdict": "supported",
           "why": "the source names CJP27"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:ma-affidavit-of-indigency",
+          "label": "cost.fee_waiver_form \"ma-affidavit-of-indigency\" (Affidavit of Indigency) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://www.mass.gov/info-details/eligibility-requirements-for-indigency-waiver-of-fees",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "you are eligible for a waiver, substitution or state payment of fees and costs if any one of the following scenarios applies to you: you receive public assistance under one of the following programs: massachusetts transitional aid to families with dependent children; massachusetts emergency aid to elderly, disabled children; federal supplemental security income; massachusetts masshealth (formerly medicaid) or massachusetts veterans benefits; or your income, after taxes, does not exceed 125% of the current federal poverty line.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://www.mass.gov/info-details/eligibility-requirements-for-indigency-waiver-of-fees",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
         },
         {
           "kind": "form-id",
@@ -11366,6 +11671,26 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:mi-fee-waiver-request",
+          "label": "cost.fee_waiver_form \"mi-fee-waiver-request\" (Fee Waiver Request Form — Michigan One Court of Justice) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://michiganlegalhelp.org/resources/going-court/fee-waivers-court-cases",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "the judge must waive your fees if you show that your gross household income is under 125% of the federal poverty level.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://michiganlegalhelp.org/resources/going-court/fee-waivers-court-cases",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
         },
         {
           "kind": "money",
@@ -14403,6 +14728,15 @@
           "why": "the source describes a fee waiver / inability-to-pay route"
         },
         {
+          "kind": "fee-waiver-criteria",
+          "key": "if a petitioner is indigent, or demonstrates a limited or inability to pay, the court costs may be waived or reduced.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
+        },
+        {
           "kind": "requirement",
           "key": "background-check",
           "label": "fingerprints / a criminal-history check are required",
@@ -15028,6 +15362,24 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source itself conditions the action on where you live"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:tx-statement-inability-afford",
+          "label": "cost.fee_waiver_form \"tx-statement-inability-afford\" (Statement of Inability to Afford Payment of Court Costs or an Appeal Bond) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "if you have a low-income, you can ask the court to waive the filing fee by filing a statement of inability to afford payment of court costs form.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
         },
         {
           "kind": "duration",
@@ -15722,6 +16074,26 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:vt-application-waive-filing-fees",
+          "label": "cost.fee_waiver_form \"vt-application-waive-filing-fees\" (Application to Waive Filing Fees and Service Costs (Form 600-00228)) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://www.vermontjudiciary.org/self-help/application-waive-filing-fees-and-service-costs",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "the court can waive your filing fee and service costs if: you receive any kind of public assistance, or your gross income is at or below 150% of the federal poverty guidelines , or the court finds you can't pay the fee without expending resources needed to support you and your dependents.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://www.vermontjudiciary.org/self-help/application-waive-filing-fees-and-service-costs",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
         }
       ],
       "uncheckedProse": 4,
@@ -17130,6 +17502,24 @@
           "why": "the source itself conditions the action on where you live"
         },
         {
+          "kind": "form-id",
+          "key": "unnamed:tx-statement-inability-afford",
+          "label": "cost.fee_waiver_form \"tx-statement-inability-afford\" (Statement of Inability to Afford Payment of Court Costs or an Appeal Bond) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "if you have a low-income, you can ask the court to waive the filing fee by filing a statement of inability to afford payment of court costs form.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
+        },
+        {
           "kind": "duration",
           "key": "18 year",
           "label": "states \"18 year\"",
@@ -17518,6 +17908,26 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source describes a fee waiver / inability-to-pay route"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:vt-application-waive-filing-fees",
+          "label": "cost.fee_waiver_form \"vt-application-waive-filing-fees\" (Application to Waive Filing Fees and Service Costs (Form 600-00228)) carries no form identifier to match on",
+          "field": "cost.fee_waiver_form",
+          "strength": "literal",
+          "sourceUrl": "https://www.vermontjudiciary.org/self-help/application-waive-filing-fees-and-service-costs",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "fee-waiver-criteria",
+          "key": "the court can waive your filing fee and service costs if: you receive any kind of public assistance, or your gross income is at or below 150% of the federal poverty guidelines , or the court finds you can't pay the fee without expending resources needed to support you and your dependents.",
+          "label": "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+          "field": "cost.fee_waiver_criteria",
+          "strength": "literal",
+          "sourceUrl": "https://www.vermontjudiciary.org/self-help/application-waive-filing-fees-and-service-costs",
+          "verdict": "supported",
+          "why": "this exact criteria text appears in the source"
         }
       ],
       "uncheckedProse": 4,

@@ -12,7 +12,15 @@
     "cost": {
       "amount_usd": 175,
       "note": "This is the fee to file your petition. If it is approved, there is a separate $10 fee to enter the order, and a certified copy costs $11 more. If you cannot afford the filing fee, you can ask the judge to waive it.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "mi-fee-waiver-request",
+      "fee_waiver_criteria": "The judge must waive your fees if you show that your gross household income is under 125% of the federal poverty level.",
+      "fee_waiver_source": {
+        "url": "https://michiganlegalhelp.org/resources/going-court/fee-waivers-court-cases",
+        "title": "Michigan Legal Help — Fee Waivers in Court Cases",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "discretionary": true,
     "prerequisites": [],

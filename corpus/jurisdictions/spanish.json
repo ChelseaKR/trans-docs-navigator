@@ -343,7 +343,15 @@
     "cost": {
       "amount_usd": null,
       "note": "El Secretario del Tribunal de Circuito exige una tarifa de presentaci\u00f3n de alrededor de $165, aunque el monto exacto depende del condado. Si no puede pagarla, puede presentar una Petici\u00f3n In Forma Pauperis pidi\u00e9ndole a un juez que exonere la tarifa.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "ar-fee-waiver-ifp",
+      "fee_waiver_criteria": "In forma pauperis (also known as a fee waiver) is used when you cannot afford to pay the court filing fee and costs for filing a court form.",
+      "fee_waiver_source": {
+        "url": "https://a.arlawhelp.org/self-representation/fee-waiver",
+        "title": "Arkansas Law Help \u2014 C\u00f3mo Pedir una Exenci\u00f3n de Tarifas",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "discretionary": true,
     "prerequisites": [],
@@ -492,7 +500,15 @@
     "cost": {
       "amount_usd": 252,
       "note": "Cuota base de $222.00, m\u00e1s una cuota de $15.00 para el fondo de almacenamiento de documentos y una cuota de $15.00 para el fondo de la corte de conciliaci\u00f3n. Existe un proceso de exenci\u00f3n y aplazamiento de cuotas para quienes no pueden pagar.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "az-aocdfgf1f-fee-waiver",
+      "fee_waiver_criteria": "If you receive benefits from the federal Supplemental Security Income (SSI) program, and provide supporting documentation when you file the Application for Deferral or Waiver of Court Fees and Costs (Form No. AOCDFGF1F), the court should grant a waiver.",
+      "fee_waiver_source": {
+        "url": "https://www.azcourts.gov/courtfilingfees/Fee-Waivers-and-Deferrals",
+        "title": "Rama Judicial de Arizona \u2014 Exenci\u00f3n y Aplazamiento de Cuotas",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "prerequisites": [],
     "source": {
@@ -683,7 +699,15 @@
     "cost": {
       "amount_usd": null,
       "note": "La cuota de presentaci\u00f3n es de $435\u2013$450. Si no puede pagarla, puede pedirle a la corte que la exente.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "ca-fw-001",
+      "fee_waiver_criteria": "Solo necesita cumplir 1 de estos requisitos para calificar. No tiene que cumplir los 3. Opci\u00f3n 1: recibe beneficios p\u00fablicos",
+      "fee_waiver_source": {
+        "url": "https://selfhelp.courts.ca.gov/es/exencion-de-cuotas",
+        "title": "Ayuda Legal de las Cortes de California \u2014 Pida una Exenci\u00f3n de Cuotas",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "timeline": {
       "typical": "alrededor de dos meses; un juez decide en aproximadamente 1 a 2 meses"
@@ -712,7 +736,15 @@
     "cost": {
       "amount_usd": null,
       "note": "La cuota de presentaci\u00f3n es de $435 a $450. Si no puede pagarla, puede pedir a la corte que le otorgue una exenci\u00f3n de cuotas. Publicar en un peri\u00f3dico tiene su propia cuota, que la gu\u00eda no indica.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "ca-fw-001",
+      "fee_waiver_criteria": "Solo necesita cumplir 1 de estos requisitos para calificar. No tiene que cumplir los 3. Opci\u00f3n 1: recibe beneficios p\u00fablicos",
+      "fee_waiver_source": {
+        "url": "https://selfhelp.courts.ca.gov/es/exencion-de-cuotas",
+        "title": "Ayuda Legal de las Cortes de California \u2014 Pida una Exenci\u00f3n de Cuotas",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "timeline": {
       "typical": "un juez toma una decisi\u00f3n en aproximadamente 2 a 3 meses"
@@ -871,7 +903,9 @@
     "cost": {
       "amount_usd": null,
       "note": "La p\u00e1gina no indica un monto de tarifa de presentaci\u00f3n \u2014 pregunte al empleado del tribunal en el condado donde presenta su caso. Si no puede pagarla, puede pedir presentar sin pago usando el formulario JDF 205.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "co-jdf-205",
+      "fee_waiver_criteria": "If you do not think you can afford it, you can request a waiver of the filing fee by completing Form JDF 205 - Motion to File Without Payment and Supporting Financial Affidavit"
     },
     "discretionary": true,
     "prerequisites": [],
@@ -1937,7 +1971,15 @@
     "cost": {
       "amount_usd": null,
       "note": "Las tarifas de presentaci\u00f3n cambian de caso a caso y de condado a condado \u2014 pregunte al secretario del tribunal de circuito. Hay una exenci\u00f3n de tarifas disponible si califica.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "il-fee-waiver-application",
+      "fee_waiver_criteria": "If you cannot afford the fees, you can ask to have them waived.",
+      "fee_waiver_source": {
+        "url": "https://www.illinoislegalaid.org/legal-information/filing-court-papers-free",
+        "title": "Illinois Legal Aid Online \u2014 Presentar Documentos Judiciales Gratis (C\u00f3mo Hacerlo)",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "discretionary": true,
     "prerequisites": [],
@@ -2046,7 +2088,8 @@
     "cost": {
       "amount_usd": 157,
       "note": "Agregar la entrega por el alguacil a las otras partes eleva el costo a $185. Existe una exenci\u00f3n de la tarifa si no puede pagarla.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "in-fee-waiver-form"
     },
     "prerequisites": [],
     "source": {
@@ -2562,7 +2605,15 @@
     "cost": {
       "amount_usd": null,
       "note": "La cuota de presentaci\u00f3n en el tribunal es de $150 m\u00e1s una cuota de recargo de $15, para un total de $165. Si el tribunal emite una Orden de Aviso, hay una cuota adicional de $15 por la citaci\u00f3n. Presentar la solicitud en l\u00ednea (eFiling) agrega una cuota aparte de $22 para el caso inicial. Si no puede pagar la cuota, puede pedirle al tribunal que la exima mediante el proceso de Indigencia (exenci\u00f3n de cuotas judiciales), presentando una Declaraci\u00f3n Jurada de Indigencia.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "ma-affidavit-of-indigency",
+      "fee_waiver_criteria": "You are eligible for a waiver, substitution or state payment of fees and costs if any one of the following scenarios applies to you: you receive public assistance under one of the following programs: Massachusetts Transitional Aid to Families with Dependent Children; Massachusetts Emergency Aid to Elderly, Disabled Children; Federal Supplemental Security Income; Massachusetts MassHealth (formerly Medicaid) or Massachusetts Veterans Benefits; or your income, after taxes, does not exceed 125% of the current federal poverty line.",
+      "fee_waiver_source": {
+        "url": "https://www.mass.gov/info-details/eligibility-requirements-for-indigency-waiver-of-fees",
+        "title": "Massachusetts Court System — Requisitos de Elegibilidad para la Exención de Cuotas por Indigencia",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "discretionary": true,
     "prerequisites": [],
@@ -3033,7 +3084,15 @@
     "cost": {
       "amount_usd": 175,
       "note": "Esta es la tarifa para presentar la petici\u00f3n. Si se aprueba, hay una tarifa aparte de $10 para inscribir la orden, y una copia certificada cuesta $11 m\u00e1s. Si no puede pagar la tarifa de presentaci\u00f3n, puede pedirle al juez que la exonere.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "mi-fee-waiver-request",
+      "fee_waiver_criteria": "The judge must waive your fees if you show that your gross household income is under 125% of the federal poverty level.",
+      "fee_waiver_source": {
+        "url": "https://michiganlegalhelp.org/resources/going-court/fee-waivers-court-cases",
+        "title": "Michigan Legal Help \u2014 Exenciones de Cuotas en Casos Judiciales",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "discretionary": true,
     "prerequisites": [],
@@ -5530,7 +5589,8 @@
     "cost": {
       "amount_usd": null,
       "note": "El estatuto no fija un monto espec\u00edfico para la tarifa de presentaci\u00f3n, aunque permite que el tribunal exima o reduzca los costos judiciales para un solicitante indigente o con capacidad de pago limitada. Comun\u00edquese con el tribunal de sucesiones donde presentar\u00e1 su solicitud para conocer la tarifa actual.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_criteria": "If a petitioner is indigent, or demonstrates a limited or inability to pay, the court costs may be waived or reduced."
     },
     "prerequisites": [],
     "source": {
@@ -6084,7 +6144,9 @@
     "cost": {
       "amount_usd": null,
       "note": "La cuota de presentaci\u00f3n puede ser de entre $150 y $300 seg\u00fan d\u00f3nde viva \u2014 pregunte en la oficina del secretario de distrito de su condado. Si tiene bajos ingresos, puede pedir a la corte que le exente la cuota con una Declaraci\u00f3n de Incapacidad para Pagar los Costos de la Corte. Tambi\u00e9n paga por las huellas dactilares y, en algunos condados, por la verificaci\u00f3n de antecedentes penales.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "tx-statement-inability-afford",
+      "fee_waiver_criteria": "If you have a low-income, you can ask the court to waive the filing fee by filing a Statement of Inability to Afford Payment of Court Costs form."
     },
     "discretionary": true,
     "prerequisites": [],
@@ -6688,7 +6750,15 @@
     "cost": {
       "amount_usd": 150,
       "note": "Puede pedirle al tribunal que considere eximir la tarifa si no puede pagarla.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "vt-application-waive-filing-fees",
+      "fee_waiver_criteria": "The court can waive your filing fee and service costs if: you receive any kind of public assistance, or your gross income is at or below 150% of the federal poverty guidelines , or the court finds you can't pay the fee without expending resources needed to support you and your dependents.",
+      "fee_waiver_source": {
+        "url": "https://www.vermontjudiciary.org/self-help/application-waive-filing-fees-and-service-costs",
+        "title": "Vermont Judiciary — Solicitud para Eximir Tarifas de Presentación y Costos de Servicio",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "discretionary": true,
     "prerequisites": [],

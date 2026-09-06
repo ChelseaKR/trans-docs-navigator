@@ -1458,6 +1458,46 @@
       "unextractable": {
         "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
+    },
+    "https://selfhelp.courts.ca.gov/fee-waiver": {
+      "file": "selfhelp-courts-ca-gov-fee-waiver-2fe10af7.txt",
+      "fetched": "2026-09-06",
+      "sha256": "6528bc18fdf12bad7906f6609aca08a826db522d963440628762c5c73c15eeb1"
+    },
+    "https://selfhelp.courts.ca.gov/es/exencion-de-cuotas": {
+      "file": "selfhelp-courts-ca-gov-es-exencion-de-cuotas-75c720b7.txt",
+      "fetched": "2026-09-06",
+      "sha256": "4b18e01e69362b757a649c5ee09ce141f2829b0bb96cb649e55f926e88a04583"
+    },
+    "https://www.azcourts.gov/courtfilingfees/Fee-Waivers-and-Deferrals": {
+      "file": "azcourts-gov-courtfilingfees-fee-waivers-and-deferrals-ddcde23d.txt",
+      "fetched": "2026-09-06",
+      "sha256": "6a07fcb039a6b6a19d46366ca904c602272492f7656ac4b9d9146fedebfe0af3"
+    },
+    "https://a.arlawhelp.org/self-representation/fee-waiver": {
+      "file": "a-arlawhelp-org-self-representation-fee-waiver-04406282.txt",
+      "fetched": "2026-09-06",
+      "sha256": "c169d3820f84fe7cb398a6631e013053f3c6a65f2ab2a71bbc02362f5cfb9b0e"
+    },
+    "https://www.illinoislegalaid.org/legal-information/filing-court-papers-free": {
+      "file": "illinoislegalaid-org-legal-information-filing-court-papers-free-00ba3d61.txt",
+      "fetched": "2026-09-06",
+      "sha256": "8af44e622cb6fb4d1a6824d4d451d5bec923107050564b00301723c2dabbecb2"
+    },
+    "https://michiganlegalhelp.org/resources/going-court/fee-waivers-court-cases": {
+      "file": "michiganlegalhelp-org-resources-going-court-fee-waivers-court-cases-b018a606.txt",
+      "fetched": "2026-09-06",
+      "sha256": "fa402f405c2cf75a216932f92f6a975ed0ab827c49f91deaf4b9d79ff3374977"
+    },
+    "https://www.vermontjudiciary.org/self-help/application-waive-filing-fees-and-service-costs": {
+      "file": "vermontjudiciary-org-self-help-application-waive-filing-fees-and-servi-6124bcf9.txt",
+      "fetched": "2026-09-06",
+      "sha256": "d98809a5e1c0472a6992774fa5d20d62e80dade08e06be5d67545b788d3c0c62"
+    },
+    "https://www.mass.gov/info-details/eligibility-requirements-for-indigency-waiver-of-fees": {
+      "file": "mass-gov-info-details-eligibility-requirements-for-indigency-waiver-of-bc737a19.txt",
+      "fetched": "2026-09-06",
+      "sha256": "ecd2f8d5b790aa5ff872ec8a25262de08eb1da53e728f2db3940f0d681a09e71"
     }
   }
 }

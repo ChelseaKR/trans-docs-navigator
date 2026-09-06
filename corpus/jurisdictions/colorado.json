@@ -12,7 +12,9 @@
     "cost": {
       "amount_usd": null,
       "note": "The page does not state a filing-fee amount — ask the court clerk in the county where you are filing. If you cannot afford it, you can ask to file without payment using form JDF 205.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "co-jdf-205",
+      "fee_waiver_criteria": "If you do not think you can afford it, you can request a waiver of the filing fee by completing Form JDF 205 - Motion to File Without Payment and Supporting Financial Affidavit"
     },
     "discretionary": true,
     "prerequisites": [],

@@ -183,6 +183,127 @@ test("an official form with no identifier at all is UNCHECKABLE, never silently 
   assert.equal(checkAssertion(a, viewOf("send the signed, notarized form")).verdict, "uncheckable");
 });
 
+// ── Fee-waiver form + criteria ──────────────────────────────────────────────────────────
+
+const waiverForm: FormDef = {
+  id: "st-fee-waiver-001",
+  jurisdiction: "US-CA",
+  document_type: "court-order",
+  change_type: ["name"],
+  title: "Form FW-001 — Request to Waive Court Fees",
+  source: { url: "https://e.test/fw001.pdf", title: "FW-001", last_verified: "2026-07-13", verifier: "A" },
+};
+
+test("cost.fee_waiver_form is checked exactly like form_ref, against the record's own source by default", () => {
+  const supportedView = viewOf("fill out the request to waive court fees (form fw-001).");
+  const unsupportedView = viewOf("this page never names a specific fee-waiver form.");
+  const r = rec({ cost: { amount_usd: null, fee_waiver: true, fee_waiver_form: "st-fee-waiver-001" } });
+  const a = extractAssertions(r, [waiverForm]).find((x) => x.kind === "form-id" && x.field === "cost.fee_waiver_form")!;
+  assert.equal(checkAssertion(a, supportedView).verdict, "supported");
+  assert.equal(checkAssertion(a, unsupportedView).verdict, "unsupported");
+});
+
+test("cost.fee_waiver_form referencing an unknown registry id is UNSUPPORTED, not silently dropped", () => {
+  const r = rec({ cost: { amount_usd: null, fee_waiver: true, fee_waiver_form: "does-not-exist" } });
+  const a = extractAssertions(r, []).find((x) => x.kind === "form-id" && x.field === "cost.fee_waiver_form")!;
+  assert.equal(checkAssertion(a, viewOf("anything at all")).verdict, "unsupported");
+});
+
+test("a fee-waiver form with no extractable identifier (e.g. 'Affidavit of Indigency') is UNCHECKABLE", () => {
+  const namedOnly: FormDef = {
+    id: "ma-affidavit-of-indigency",
+    jurisdiction: "US-MA",
+    document_type: "court-order",
+    change_type: ["name"],
+    title: "Affidavit of Indigency",
+    source: { url: "https://e.test/a.pdf", title: "A", last_verified: "2026-07-13", verifier: "A" },
+  };
+  const r = rec({ cost: { amount_usd: null, fee_waiver: true, fee_waiver_form: "ma-affidavit-of-indigency" } });
+  const a = extractAssertions(r, [namedOnly]).find((x) => x.kind === "form-id" && x.field === "cost.fee_waiver_form")!;
+  assert.equal(checkAssertion(a, viewOf("file the affidavit of indigency with the clerk")).verdict, "uncheckable");
+});
+
+test("cost.fee_waiver_criteria requires the EXACT quote, not a paraphrase of the same topic", () => {
+  const r = rec({
+    cost: {
+      amount_usd: null,
+      fee_waiver: true,
+      fee_waiver_criteria: "The court can waive the fee if you receive public benefits.",
+    },
+  });
+  const a = extractAssertions(r, []).find((x) => x.kind === "fee-waiver-criteria")!;
+  assert.equal(
+    checkAssertion(a, viewOf("the court can waive the fee if you receive public benefits.")).verdict,
+    "supported",
+  );
+  // Case-insensitive on the RECORD side: the quote is lower-cased before comparison, so it
+  // still matches a snapshot (which normalize() already lower-cases — viewOf() does not
+  // lower-case its input a second time, matching normalize()'s real output shape).
+  const upperCaseCriteria = extractAssertions(
+    rec({
+      cost: {
+        amount_usd: null,
+        fee_waiver: true,
+        fee_waiver_criteria: "THE COURT CAN WAIVE THE FEE IF YOU RECEIVE PUBLIC BENEFITS.",
+      },
+    }),
+    [],
+  ).find((x) => x.kind === "fee-waiver-criteria")!;
+  assert.equal(
+    checkAssertion(upperCaseCriteria, viewOf("the court can waive the fee if you receive public benefits.")).verdict,
+    "supported",
+  );
+  // … but a same-topic paraphrase is not the court's own words, and must not pass.
+  assert.equal(
+    checkAssertion(a, viewOf("you may qualify for a waiver if you get public assistance")).verdict,
+    "unsupported",
+  );
+});
+
+test("cost.fee_waiver_form/fee_waiver_criteria are checked against cost.fee_waiver_source when present, not the record's primary source", () => {
+  // California's name-change page and its dedicated fee-waiver page are different documents —
+  // this is the exact shape that motivated a second, optional citation.
+  const r = rec({
+    source: { url: "https://e.test/name-change", title: "Name Change", last_verified: "2026-07-13", verifier: "A" },
+    cost: {
+      amount_usd: null,
+      fee_waiver: true,
+      fee_waiver_form: "st-fee-waiver-001",
+      fee_waiver_criteria: "You qualify if you receive public benefits.",
+      fee_waiver_source: { url: "https://e.test/fee-waiver", title: "Fee Waiver", last_verified: "2026-07-13", verifier: "A" },
+    },
+  });
+  const assertions = extractAssertions(r, [waiverForm]);
+  const formAssertion = assertions.find((x) => x.field === "cost.fee_waiver_form")!;
+  const criteriaAssertion = assertions.find((x) => x.field === "cost.fee_waiver_criteria")!;
+  assert.equal(formAssertion.sourceUrl, "https://e.test/fee-waiver");
+  assert.equal(criteriaAssertion.sourceUrl, "https://e.test/fee-waiver");
+
+  const primaryView = viewOf("you change your name by filing papers in court.");
+  const waiverView = viewOf("fill out form fw-001. you qualify if you receive public benefits.");
+
+  // auditRecord routes each assertion to its own sourceUrl's view via `altSource`.
+  const audit = auditRecord(r, primaryView, [waiverForm], "no primary snapshot", {
+    url: "https://e.test/fee-waiver",
+    view: waiverView,
+  });
+  const formResult = audit.results.find((x) => x.field === "cost.fee_waiver_form")!;
+  const criteriaResult = audit.results.find((x) => x.field === "cost.fee_waiver_criteria")!;
+  assert.equal(formResult.verdict, "supported");
+  assert.equal(criteriaResult.verdict, "supported");
+
+  // When the alt source itself has no snapshot, those two assertions — and ONLY those two —
+  // are uncheckable, with the alt source's own reason (not the primary source's).
+  const auditNoAlt = auditRecord(r, primaryView, [waiverForm], "no primary snapshot", {
+    url: "https://e.test/fee-waiver",
+    view: null,
+    uncheckableReason: "the fee-waiver page has no snapshot",
+  });
+  const formNoAlt = auditNoAlt.results.find((x) => x.field === "cost.fee_waiver_form")!;
+  assert.equal(formNoAlt.verdict, "uncheckable");
+  assert.equal(formNoAlt.why, "the fee-waiver page has no snapshot");
+});
+
 // ── Requirements, negation, residency ───────────────────────────────────────────────────
 
 test("a requirement whose topic the source never mentions is UNSUPPORTED", () => {

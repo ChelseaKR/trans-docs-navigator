@@ -209,6 +209,10 @@ async function main(): Promise<void> {
   const corpusByUrl = new Map<string, string[]>();
   for (const r of loadCorpus()) {
     corpusByUrl.set(r.source.url, [...(corpusByUrl.get(r.source.url) ?? []), r.id]);
+    // cost.fee_waiver_source rides the same drift watch as every other cited source — see
+    // scripts/source-snapshot.ts and scripts/source-fidelity.ts for the matching halves.
+    const waiverUrl = r.cost?.fee_waiver_source?.url;
+    if (waiverUrl) corpusByUrl.set(waiverUrl, [...(corpusByUrl.get(waiverUrl) ?? []), `${r.id} (fee waiver)`]);
   }
   const formsByUrl = new Map<string, string[]>();
   for (const f of loadForms()) {

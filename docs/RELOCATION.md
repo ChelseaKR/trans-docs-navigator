@@ -124,8 +124,38 @@ Cost is the #1 barrier, so the model is deliberately **not tidy**:
 - **`fee_waiver_step_keys`** — surfaced prominently. Where a source documents a waiver
   (Texas's Statement of Inability to Afford Payment, California's FW-001), that is often the
   difference between possible and impossible.
+- **`potentially_waivable_usd`** — a *subtotal* of `known_total_usd` (never money on top of
+  it): the sum of known fees for steps whose source also documents a waiver path. "Potentially"
+  describes the FEE — a waiver process is documented for it — never a prediction of whether a
+  given reader would get it. The per-step detail (form + the court's own quoted criteria, when
+  a source states them) renders on the checklist step and the printable packet, not here; this
+  panel only totals what is already sourced per step. See the line this app will not cross,
+  below.
 
 The panel says *"This is a floor, not a total"* in both languages. Nothing is extrapolated.
+
+### The line this app will not cross (fee waivers)
+
+`cost.fee_waiver_form` and `cost.fee_waiver_criteria` (api/types.ts:Cost) surface *what the
+court publishes* — the official form, linked via `forms/registry.json`, and a literal quote of
+the court's own eligibility criteria — never this app's judgement about a specific reader's
+odds. GOVERNANCE.md forbids adjudicating eligibility, so there is no income calculator, no "you
+likely qualify," and no "you probably don't need to pay" anywhere in this feature. Concretely:
+
+- `cost.fee_waiver_criteria`, when present, must be a literal quote locatable in the fetched
+  snapshot (`make fidelity` enforces this — see `scripts/source-fidelity.ts`'s
+  `fee-waiver-criteria` assertion kind) and must not read as a prediction about the reader
+  (`api/corpus.ts`'s `feeWaiverIssues` rejects phrasing like "you likely qualify").
+- Where a source names a waiver and a form but never states criteria (e.g. Indiana), the record
+  carries `fee_waiver_form` only, and the rendered sentence says the criteria aren't published
+  — it does not guess at them.
+- Where a source states criteria but no confirmed statewide form exists (e.g. Rhode Island's
+  probate-court statute), the record carries `fee_waiver_criteria` only; there is no form line.
+- `cost.fee_waiver_form`/`cost.fee_waiver_criteria` are checked against `cost.fee_waiver_source`
+  when a record carries one — a state's general filing-fee page and its dedicated fee-waiver
+  page are frequently different official documents (California, Arizona, Illinois, Michigan,
+  Vermont, and Massachusetts all cite a second page this way). Absent that field, both are
+  checked against the record's own primary `source`, exactly like every other assertion.
 
 ### Known gaps in the cost model
 

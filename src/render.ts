@@ -4,7 +4,7 @@
 // disclosure (guardrail #2). Colour tokens meet AA contrast; focus is always
 // visible; motion respects prefers-reduced-motion.
 
-import type { Checklist, FormDef, GroundedAnswer, CorpusRecord, DocumentType, Language, PreparationItem } from "../api/types.ts";
+import type { Checklist, Cost, FormDef, GroundedAnswer, CorpusRecord, DocumentType, Language, PreparationItem } from "../api/types.ts";
 import type { UiMessages } from "./i18n/index.ts";
 import { t as locale } from "./i18n/index.ts";
 import type { SeoMeta } from "./seo.ts";
@@ -266,6 +266,36 @@ export function preparationList(items: PreparationItem[] | undefined, lang: Lang
   return `<section class="prep" aria-labelledby="prep-h"><h2 id="prep-h">${escapeHtml(t.whatToBringTitle)}</h2><ul>${rows}</ul></section>`;
 }
 
+/**
+ * Fee-waiver detail for a checklist/packet step: the official form (linked via
+ * forms/registry.json, resolved by id — never auto-filled, same as every other form CTA)
+ * and the court's own quoted criteria, when a source states them. Every sentence here is a
+ * FACT about the fee ("this fee can be waived", "the court says X") — never a judgement
+ * about whether THIS reader would get it waived. GOVERNANCE.md forbids this app from
+ * adjudicating eligibility, so there is no "you likely qualify" branch to add, only
+ * branches for what the record does or does not carry:
+ *   - form + criteria sourced → both shown
+ *   - form sourced, criteria not stated by the source → says so, rather than guessing
+ *   - criteria sourced but no confirmed form (e.g. Rhode Island's statute) → criteria only
+ *   - neither structured field present → falls back to nothing here (the plain "fee
+ *     waiver available" note already lives in cost.note prose, unchanged by this feature)
+ */
+function feeWaiverDetail(cost: Cost | undefined, lang: Language, langQ: string): string {
+  if (!cost?.fee_waiver) return "";
+  const t = locale(lang).ui;
+  const form = cost.fee_waiver_form ? formById(cost.fee_waiver_form) : undefined;
+  if (!form && !cost.fee_waiver_criteria) return "";
+  const formLine = form
+    ? ` ${escapeHtml(t.feeWaiverFormLabel)} <a href="/forms/${escapeHtml(form.id)}${langQ}">${escapeHtml(form.title)}</a>.`
+    : "";
+  const criteriaLine = cost.fee_waiver_criteria
+    ? ` ${escapeHtml(t.feeWaiverCriteriaQuote(cost.fee_waiver_criteria))}`
+    : form
+      ? ` ${escapeHtml(t.feeWaiverCriteriaUnstated)}`
+      : "";
+  return `<p class="meta fee-waiver">💸 ${escapeHtml(t.feeWaiverAvailable)}${formLine}${criteriaLine}</p>`;
+}
+
 export function renderChecklist(checklist: Checklist, records: CorpusRecord[], lang: Language): string {
   const t = locale(lang).ui;
   const langQ = lang === "es" ? "?language=es" : "";
@@ -276,6 +306,7 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
       const cost = s.cost
         ? `<p class="meta"><strong>${escapeHtml(t.cost)}:</strong> ${s.cost.amount_usd === null ? escapeHtml(s.cost.note ?? t.varies) : "$" + s.cost.amount_usd}</p>`
         : "";
+      const waiver = feeWaiverDetail(s.cost, lang, langQ);
       const time = s.timeline ? `<p class="meta"><strong>${escapeHtml(t.timeline)}:</strong> ${escapeHtml(s.timeline.typical)}</p>` : "";
       const prereq = s.prerequisites.length
         ? `<p class="meta"><strong>${escapeHtml(t.prereq)}:</strong> ${s.prerequisites.map((d) => escapeHtml(locale(lang).docLabels[d as DocumentType] ?? d)).join(", ")}</p>`
@@ -315,7 +346,7 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
   <label class="done-toggle no-print"><input type="checkbox" data-step-toggle="${escapeHtml(s.key)}"> ${escapeHtml(t.markDone)}</label></div>
   ${done}
   ${claims ? `<ul>${claims}</ul>` : ""}
-  ${cost}${time}${prereq}${disc}${stale}
+  ${cost}${waiver}${time}${prereq}${disc}${stale}
   ${detailBlock}${formCta}
   ${sourceList(stepRecords, lang)}
   ${reportLink}
@@ -343,6 +374,7 @@ export function renderPacket(
       const cost = s.cost
         ? `<p class="meta"><strong>${escapeHtml(t.cost)}:</strong> ${s.cost.amount_usd === null ? escapeHtml(s.cost.note ?? "varies") : "$" + s.cost.amount_usd}</p>`
         : "";
+      const waiver = feeWaiverDetail(s.cost, lang, "");
       const time = s.timeline ? `<p class="meta"><strong>${escapeHtml(t.timeline)}:</strong> ${escapeHtml(s.timeline.typical)}</p>` : "";
       const prereq = s.prerequisites.length
         ? `<p class="meta"><strong>${escapeHtml(t.prereq)}:</strong> ${s.prerequisites.map((d) => escapeHtml(locale(lang).docLabels[d as DocumentType] ?? d)).join(", ")}</p>`
@@ -354,7 +386,7 @@ export function renderPacket(
   <h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
   ${done}
   ${detail ? `<ul>${detail}</ul>` : ""}
-  ${cost}${time}${prereq}${disc}${stale}
+  ${cost}${waiver}${time}${prereq}${disc}${stale}
   ${sourceList(stepRecords, lang)}
 </li>`;
     })

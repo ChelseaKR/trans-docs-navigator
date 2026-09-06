@@ -98,6 +98,10 @@ export const en: LocaleBundle = {
     stepsLabel: "steps",
     estimatedCost: "Estimated cost",
     varies: "varies",
+    feeWaiverAvailable: "This fee can be waived.",
+    feeWaiverFormLabel: "Form:",
+    feeWaiverCriteriaQuote: (quote: string) => `The court says: "${quote}"`,
+    feeWaiverCriteriaUnstated: "The court's page names this waiver but doesn't publish specific criteria for it online.",
     noStateCoverage:
       "We don't have verified information for this state yet, so the steps below cover federal documents only. This is not a complete plan for where you live, and it is not a sign that your state asks nothing of you — we simply have not checked it. Start with your state's official website, its courts' self-help pages, or a trans legal-aid organization.",
     costIncomplete: (n: number) =>
@@ -234,6 +238,8 @@ export const en: LocaleBundle = {
     costVariable: (n: number) => `${n} step(s) have a fee that varies (for example, by county). We do not estimate it.`,
     costUnpriced: (n: number) => `${n} step(s) have no fee listed in our sources at all. Treat the total as incomplete.`,
     costWaiver: "A fee waiver is documented for at least one step. Look for it on the step below.",
+    costPotentiallyWaivable: (amt: number) =>
+      `Of that floor, $${amt} is potentially waivable — steps with a documented fee-waiver path. "Potentially" describes the fee, not your odds; see each step for the form and the court's own criteria.`,
     costHonesty:
       "This is a floor, not a total. We add up only the fees our sources state, and we say when we cannot price a step rather than guessing.",
 

@@ -104,12 +104,21 @@ export function isPlaceholderVerifier(name: string, roster = loadVerifierRoster(
 function verifierIssues(rec: unknown, roster: Map<string, VerifierEntry>): ValidationIssue[] {
   if (!isObj(rec) || !isObj(rec.source)) return [];
   const id = typeof rec.id === "string" ? rec.id : "?";
-  const verifier = rec.source.verifier;
-  if (typeof verifier !== "string" || verifier.length === 0) return []; // schema validator already flags this
-  if (!roster.has(verifier)) {
-    return [{ recordId: id, field: "source.verifier", message: `verifier "${verifier}" is not in corpus/VERIFIERS.json roster` }];
+  const issues: ValidationIssue[] = [];
+  const check = (verifier: unknown, field: string) => {
+    if (typeof verifier !== "string" || verifier.length === 0) return; // schema validator already flags this
+    if (!roster.has(verifier)) {
+      issues.push({ recordId: id, field, message: `verifier "${verifier}" is not in corpus/VERIFIERS.json roster` });
+    }
+  };
+  check(rec.source.verifier, "source.verifier");
+  // cost.fee_waiver_source rides the SAME verifier gate as the primary source — a second
+  // citation is still a citation, and a placeholder-only roster entry would be a false
+  // assurance exactly like it would be on `source`.
+  if (isObj(rec.cost) && isObj(rec.cost.fee_waiver_source)) {
+    check(rec.cost.fee_waiver_source.verifier, "cost.fee_waiver_source.verifier");
   }
-  return [];
+  return issues;
 }
 
 function isObj(v: unknown): v is Record<string, unknown> {
@@ -159,6 +168,60 @@ function relocationIssues(raw: Record<string, unknown>, push: (f: string, m: str
       "asserted true, but the record's own statement/detail never says the action happens where you live — " +
         "the annotation may only restate what the cited source already says",
     );
+  }
+}
+
+/**
+ * Phrases that turn a quoted fact into a legal judgement ABOUT THE READER — the line
+ * GOVERNANCE.md forbids this app from crossing. `fee_waiver_criteria` exists to relay what a
+ * court publishes ("the court can waive fees if you receive public benefits"), never to
+ * predict an outcome for the person reading it ("you likely qualify"). This is a narrow,
+ * mechanical net for the shape of sentence GOVERNANCE.md calls out by name — it cannot prove
+ * a quote is honest, only catch the specific pattern of the app editorializing about odds.
+ */
+const ELIGIBILITY_PREDICTION_RE =
+  /\byou (?:likely|probably|almost certainly|(?:will|would) most likely)\b|\bmost people (?:qualify|do not need|don't need)\b/i;
+
+/**
+ * Validate the optional fee-waiver fields (api/types.ts:Cost). `fee_waiver_form` and
+ * `fee_waiver_criteria` may only ride alongside `fee_waiver: true` — they describe a waiver
+ * that has already been asserted, never introduce one on their own. `fee_waiver_source`, when
+ * present, carries the same shape as the record's primary `source` (its `verifier` is checked
+ * against the roster by `verifierIssues`, not here).
+ */
+function feeWaiverIssues(cost: Record<string, unknown>, push: (f: string, m: string) => void): void {
+  const waiver = cost.fee_waiver === true;
+  if (cost.fee_waiver_form !== undefined) {
+    if (typeof cost.fee_waiver_form !== "string" || cost.fee_waiver_form.length === 0) {
+      push("cost.fee_waiver_form", "must be a non-empty forms-registry id");
+    } else if (!waiver) {
+      push("cost.fee_waiver_form", "may only be set when cost.fee_waiver is true");
+    }
+  }
+  if (cost.fee_waiver_criteria !== undefined) {
+    if (typeof cost.fee_waiver_criteria !== "string" || cost.fee_waiver_criteria.trim().length < 10) {
+      push("cost.fee_waiver_criteria", "must be a substantive, non-empty quote of what the source publishes");
+    } else {
+      if (!waiver) push("cost.fee_waiver_criteria", "may only be set when cost.fee_waiver is true");
+      if (ELIGIBILITY_PREDICTION_RE.test(cost.fee_waiver_criteria)) {
+        push(
+          "cost.fee_waiver_criteria",
+          "reads as a prediction about the reader's odds, not a quote of what the court publishes — " +
+            "this app does not adjudicate eligibility (GOVERNANCE.md)",
+        );
+      }
+    }
+  }
+  if (cost.fee_waiver_source !== undefined) {
+    const fws = cost.fee_waiver_source;
+    if (!isObj(fws)) {
+      push("cost.fee_waiver_source", "must be an object");
+    } else {
+      if (typeof fws.url !== "string" || !/^https?:\/\//.test(fws.url)) push("cost.fee_waiver_source.url", "must be an http(s) URL");
+      if (typeof fws.title !== "string" || fws.title.length === 0) push("cost.fee_waiver_source.title", "missing/empty");
+      if (!isValidIsoDate(fws.last_verified)) push("cost.fee_waiver_source.last_verified", "must be a real ISO calendar date YYYY-MM-DD");
+      if (typeof fws.verifier !== "string" || fws.verifier.length === 0) push("cost.fee_waiver_source.verifier", "missing/empty");
+    }
   }
 }
 
@@ -212,8 +275,11 @@ export function validateRecord(raw: unknown): ValidationIssue[] {
 
   if (raw.cost !== undefined) {
     if (!isObj(raw.cost)) push("cost", "must be an object");
-    else if (raw.cost.amount_usd === null && typeof raw.cost.note !== "string")
-      push("cost.note", "a null amount must carry a note explaining the variability");
+    else {
+      if (raw.cost.amount_usd === null && typeof raw.cost.note !== "string")
+        push("cost.note", "a null amount must carry a note explaining the variability");
+      feeWaiverIssues(raw.cost, push);
+    }
   }
   if (raw.prerequisites !== undefined && !Array.isArray(raw.prerequisites))
     push("prerequisites", "must be an array of ids/step keys");

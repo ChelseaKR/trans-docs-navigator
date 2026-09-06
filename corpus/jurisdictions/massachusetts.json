@@ -12,7 +12,15 @@
     "cost": {
       "amount_usd": null,
       "note": "The court filing fee is $150 plus a $15 surcharge fee, for a $165 total filing fee. If the court issues an Order of Notice, there is an additional $15 citation fee. Filing online (eFiling) adds a separate flat fee of $22 for the initial case. If you cannot afford the fee, you can ask the court to waive it through the Indigency (waiver of court fees) process by filing an Affidavit of Indigency.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "ma-affidavit-of-indigency",
+      "fee_waiver_criteria": "You are eligible for a waiver, substitution or state payment of fees and costs if any one of the following scenarios applies to you: you receive public assistance under one of the following programs: Massachusetts Transitional Aid to Families with Dependent Children; Massachusetts Emergency Aid to Elderly, Disabled Children; Federal Supplemental Security Income; Massachusetts MassHealth (formerly Medicaid) or Massachusetts Veterans Benefits; or your income, after taxes, does not exceed 125% of the current federal poverty line.",
+      "fee_waiver_source": {
+        "url": "https://www.mass.gov/info-details/eligibility-requirements-for-indigency-waiver-of-fees",
+        "title": "Massachusetts Court System — Eligibility Requirements for Indigency (Waiver of Fees)",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "discretionary": true,
     "prerequisites": [],

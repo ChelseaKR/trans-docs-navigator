@@ -12,7 +12,15 @@
     "cost": {
       "amount_usd": null,
       "note": "Filing fees differ from case to case and county to county — ask the circuit clerk. A fee waiver is available if you qualify.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "il-fee-waiver-application",
+      "fee_waiver_criteria": "If you cannot afford the fees, you can ask to have them waived.",
+      "fee_waiver_source": {
+        "url": "https://www.illinoislegalaid.org/legal-information/filing-court-papers-free",
+        "title": "Illinois Legal Aid Online — Filing Court Papers for Free (How-To)",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "discretionary": true,
     "prerequisites": [],
