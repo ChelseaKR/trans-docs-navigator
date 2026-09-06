@@ -11,6 +11,7 @@ import { feedLinkFor } from "./feeds.ts";
 import { toResumeState } from "./secure-resume.ts";
 import { staleAfterDays } from "./offline.ts";
 import { isDriftWatchable } from "../api/watchability.ts";
+import { referralsFor } from "../api/referrals.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-AL", label: "Alabama" },
@@ -221,7 +222,8 @@ export function renderChecklistPage(
 <script type="module" src="/assets/reminders.js"></script>`
     : "";
 
-  const body = intro + summary + actions + feedNotice + noSteps + reminders + more + gaps + renderResumePanel(s, query) + offline + progress;
+  const help = renderHelpSection(checklist.jurisdiction, lang, s);
+  const body = intro + summary + actions + feedNotice + noSteps + reminders + more + gaps + help + renderResumePanel(s, query) + offline + progress;
   return page({
     lang,
     title: s.checklistTitle,
@@ -229,6 +231,30 @@ export function renderChecklistPage(
     body,
     ...(feed ? { feedLinks: [feed] } : {}),
   });
+}
+
+/**
+ * "Where to get help": the jurisdiction's legal-aid and guide referrals (corpus/referrals/),
+ * state entries first, then federal. The referral data, loader, validator and launch-gate
+ * count all existed; this is the first place a user actually sees them. Printable on
+ * purpose — a checklist carried to a clerk should carry the phone-a-friend list too.
+ */
+function renderHelpSection(jurisdiction: Checklist["jurisdiction"], lang: Language, s: ReturnType<typeof uiStrings>): string {
+  const refs = referralsFor(jurisdiction);
+  if (refs.length === 0) return "";
+  const ordered = [...refs.filter((r) => r.jurisdiction !== "US"), ...refs.filter((r) => r.jurisdiction === "US")];
+  // `note` is keyed by the shipping locales only (api/referrals.ts validates both en and es
+  // are present), so this fallback can never fire in production. It exists for the G9
+  // pseudolocale gate, which serves `?language=en-XA`: indexing by a non-shipping tag
+  // yields undefined, escapeHtml(undefined) throws, the route 500s, and the gate times out
+  // waiting for a marker that never renders — the same trap that keeps /guide excluded
+  // from that gate (see tests/e2e/i18n/pseudo-overflow.spec.ts). Corpus-sourced text is
+  // not pseudolocalised anyway, so English is the honest fallback, not a leak.
+  const noteFor = (r: (typeof ordered)[number]): string => r.note[lang] ?? r.note.en;
+  const items = ordered
+    .map((r) => `<li><a href="${escapeHtml(r.url)}" rel="noopener noreferrer">${escapeHtml(r.name)}</a> — ${escapeHtml(noteFor(r))}</li>`)
+    .join("");
+  return `<section class="help" aria-labelledby="help-h"><h2 id="help-h">${escapeHtml(s.helpHeading)}</h2><p class="meta">${escapeHtml(s.helpIntro)}</p><ul>${items}</ul></section>`;
 }
 
 /** JSON island: config data for a static client script. `<` is escaped so markup in a
@@ -298,7 +324,8 @@ export function renderPacketPage(
       ]
     : [];
   const offline = renderOfflinePanel(s, offlineUrls);
-  const body = actions + stateNote + renderPacket(checklist, records, lang, generatedOn) + offline;
+  const help = renderHelpSection(checklist.jurisdiction, lang, s);
+  const body = actions + stateNote + renderPacket(checklist, records, lang, generatedOn) + help + offline;
   return page({ lang, title: s.packetTitle, heading: s.packetHeading, body });
 }
 

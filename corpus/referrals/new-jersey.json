@@ -6,7 +6,7 @@
     "url": "https://www.gardenstateequality.org",
     "note": {
       "en": "Statewide LGBTQ+ advocacy organization; its Name Change Project partners with legal organizations to help transgender New Jersey residents with name-change petitions, driver's license updates, and birth certificate changes.",
-      "es": "Organización estatal de defensa LGBTQ+; su Proyecto de Cambio de Nombre colabora con organizaciones legales para ayudar a residentes transgénero de Nueva Jersey con peticiones de cambio de nombre, actualizaciones de licencia de conducir y cambios en el acta de nacimiento."
+      "es": "Organizaci\u00f3n estatal de defensa LGBTQ+; su Proyecto de Cambio de Nombre colabora con organizaciones legales para ayudar a residentes transg\u00e9nero de Nueva Jersey con peticiones de cambio de nombre, actualizaciones de licencia de conducir y cambios en el acta de nacimiento."
     },
     "source": {
       "url": "https://www.gardenstateequality.org",
@@ -24,11 +24,29 @@
     "url": "https://www.lsnjlaw.org",
     "note": {
       "en": "Free civil legal information and assistance for low-income New Jersey residents, including a statewide legal hotline and self-help guidance on name changes.",
-      "es": "Información y ayuda legal civil gratuita para residentes de bajos ingresos de Nueva Jersey, incluida una línea legal estatal y orientación de autoayuda sobre cambios de nombre."
+      "es": "Informaci\u00f3n y ayuda legal civil gratuita para residentes de bajos ingresos de Nueva Jersey, incluida una l\u00ednea legal estatal y orientaci\u00f3n de autoayuda sobre cambios de nombre."
     },
     "source": {
       "url": "https://www.lsnjlaw.org",
-      "title": "LSNJLAW — Legal Services of New Jersey",
+      "title": "LSNJLAW \u2014 Legal Services of New Jersey",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "nj.referral.a4te",
+    "jurisdiction": "US-NJ",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 New Jersey identity documents guide",
+    "url": "https://transequality.org/documents/new-jersey-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on New Jersey documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Nueva Jersey. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/new-jersey-identity-documents",
+      "title": "A4TE \u2014 New Jersey Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

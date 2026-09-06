@@ -6,7 +6,7 @@
     "url": "https://www.lsnd.org",
     "note": {
       "en": "Statewide nonprofit that provides free civil legal help to income-eligible North Dakotans, including help with court filings such as a name-change petition.",
-      "es": "Organización sin fines de lucro estatal que brinda ayuda legal civil gratuita a residentes de Dakota del Norte que califican por ingresos, incluida ayuda con trámites judiciales como una petición de cambio de nombre."
+      "es": "Organizaci\u00f3n sin fines de lucro estatal que brinda ayuda legal civil gratuita a residentes de Dakota del Norte que califican por ingresos, incluida ayuda con tr\u00e1mites judiciales como una petici\u00f3n de cambio de nombre."
     },
     "source": {
       "url": "https://www.lsnd.org",
@@ -24,11 +24,29 @@
     "url": "https://www.fmpride.org",
     "note": {
       "en": "Volunteer-run LGBTQ+ community and events organization serving the Fargo-Moorhead area, with links to national resources such as Lambda Legal and the Trevor Project. It is not a legal-name-change service on its own.",
-      "es": "Organización comunitaria y de eventos LGBTQ+ dirigida por voluntarios que atiende el área de Fargo-Moorhead, con enlaces a recursos nacionales como Lambda Legal y The Trevor Project. No es, por sí sola, un servicio de cambio legal de nombre."
+      "es": "Organizaci\u00f3n comunitaria y de eventos LGBTQ+ dirigida por voluntarios que atiende el \u00e1rea de Fargo-Moorhead, con enlaces a recursos nacionales como Lambda Legal y The Trevor Project. No es, por s\u00ed sola, un servicio de cambio legal de nombre."
     },
     "source": {
       "url": "https://www.fmpride.org",
       "title": "Fargo-Moorhead Pride",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "nd.referral.a4te",
+    "jurisdiction": "US-ND",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 North Dakota identity documents guide",
+    "url": "https://transequality.org/documents/north-dakota-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on North Dakota documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Dakota del Norte. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/north-dakota-identity-documents",
+      "title": "A4TE \u2014 North Dakota Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

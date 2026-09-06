@@ -1,0 +1,20 @@
+[
+  {
+    "id": "ma.referral.a4te",
+    "jurisdiction": "US-MA",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Massachusetts identity documents guide",
+    "url": "https://transequality.org/documents/massachusetts-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Massachusetts documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Massachusetts. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/massachusetts-identity-documents",
+      "title": "A4TE \u2014 Massachusetts Identity Documents",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]
