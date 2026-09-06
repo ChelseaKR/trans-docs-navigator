@@ -1556,6 +1556,20 @@
       "file": "sccourts-org-courts-trial-courts-family-court-court-fees-df26be08.txt",
       "fetched": "2026-09-05",
       "sha256": "0617aefc8f8d4097fd108a333e0960bb7efd28e3fd8c91146ee9a36377b8435e"
+    },
+    "https://courts.ms.gov/images/Opinions/CO182514.pdf": {
+      "file": null,
+      "fetched": "2026-09-06",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://juddocumentservice.mt.gov/getDocByCTrackId?DocId=564241": {
+      "file": null,
+      "fetched": "2026-09-06",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
     }
   }
 }

@@ -114,6 +114,9 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // this pipeline cannot extract, so no baseline can be taken — deliberate, with the
     // Delaware corpus.
     "https://courts.delaware.gov/forms/download.aspx?id=16858",
+    // Mississippi Supreme Court opinions are published only as PDFs on courts.ms.gov, so no
+    // text baseline can be taken — deliberate, with ms.court-order.name.age-of-majority.
+    "https://courts.ms.gov/images/Opinions/CO182514.pdf",
     "https://dhss.delaware.gov/wp-content/uploads/sites/12/dph/pdf/GenderReassignment.pdf",
     "https://dhss.delaware.gov/wp-content/uploads/sites/12/dph/pdf/RequesterAffidavitSexChange.pdf",
     "https://dmv.de.gov/DriverServices/drivers_license/pdfs/gender_designation_change_procedure.pdf",
@@ -155,6 +158,9 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Indiana's Adult Name Change packet (Coalition for Court Access) is a PDF whose
     // text this pipeline cannot extract — deliberate addition with the Indiana corpus.
     "https://indianalegalhelp.org/wp-content/uploads/2024/09/Adult-Name-Change-Packet-INSTRUCTIONS-202409-Update.pdf",
+    // Montana Supreme Court opinions are served as PDFs by the court's document service, so
+    // no text baseline can be taken — deliberate, with mt.drivers-license.gender-marker.injunction.
+    "https://juddocumentservice.mt.gov/getDocByCTrackId?DocId=564241",
     // Louisiana's Department of Health birth-records amendment page refuses this
     // project's declared user-agent (HTTP 403) — deliberate, with the Louisiana corpus.
     "https://ldh.la.gov/vital-records/amendments-to-birth-records",
