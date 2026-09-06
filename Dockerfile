@@ -33,6 +33,16 @@ COPY public ./public
 # CI's content gate) on, not a tampered image or a corpus mutated after the fact.
 RUN node --experimental-strip-types --no-warnings scripts/corpus-manifest.ts
 
+# Build identity (api/version.ts, served at /version): which commit produced this image.
+# Passed by .github/workflows/deploy-aws-preview.yml as `--build-arg BUILD_COMMIT=<sha>`;
+# a local `docker build` with no args leaves both empty, and /version then answers
+# `commit: null, stamped: false` rather than guessing. Declared AFTER the COPY layers so
+# a new commit does not invalidate the dependency and source layers above it.
+ARG BUILD_COMMIT=""
+ARG BUILD_TIME=""
+ENV BUILD_COMMIT=$BUILD_COMMIT
+ENV BUILD_TIME=$BUILD_TIME
+
 ENV NODE_ENV=production
 ENV PORT=8080
 # Lambda Web Adapter readiness probe → our no-PII health endpoint (ignored off-Lambda).

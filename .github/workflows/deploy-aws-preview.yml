@@ -5,8 +5,26 @@ name: deploy-aws-preview
 # Requires two repo variables (Settings → Secrets and variables → Actions → Variables):
 #   AWS_DEPLOY_ROLE_ARN  — the deploy_role_arn output from `terraform apply`
 #   AWS_REGION           — e.g. us-east-1
-# The job is a no-op if AWS_DEPLOY_ROLE_ARN is unset, so the workflow is safe to ship.
-
+#
+# WHAT "MANUAL" COSTS, AND WHAT PAYS IT BACK
+#
+# Nothing deploys on a push, so the running preview can be arbitrarily far behind
+# `main` and no timestamp anywhere says how far. That used to be unanswerable from
+# outside: the image carried no identity and the service reported none. It is answerable
+# now — the build stamps the commit into the image and `/version` serves it, the step
+# below refuses to call the deploy done until the live URL reports the exact SHA this
+# run deployed, and `docs/OPERATIONS.md` says how a reader checks it for themselves.
+#
+# WHY THE CONFIGURATION CHECK IS ITS OWN JOB
+#
+# The guard used to be a first step that ran `exit 0` when AWS_DEPLOY_ROLE_ARN was
+# unset, with every later step carrying `if: env.configured == 'true'`. With no variable
+# set, that job ran to completion with every real step skipped and reported SUCCESS — a
+# green check beside "deploy-aws-preview" that reads as "the preview deployed" when
+# nothing was built, pushed or updated. davis-bike-hazard-map had the identical shape and
+# fixed it the same way on 2026-08-29. `vars` (unlike `secrets`) is readable from a
+# job-level `if:`, so the gate lives there: an unconfigured run renders `deploy` as
+# SKIPPED and grey, and `announce` states in warning text that nothing shipped.
 on:
   workflow_dispatch:
 
@@ -25,51 +43,138 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  announce:
+    # Runs whether or not the preview is configured, purely so an unconfigured run
+    # carries a visible "nothing was deployed" banner instead of an unqualified green
+    # check. Deploys nothing, checks out nothing, holds nothing.
+    name: Deploy configured?
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
+    steps:
+      - name: Is AWS_DEPLOY_ROLE_ARN set?
+        env:
+          DEPLOY_ROLE_ARN: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+        run: |
+          set -euo pipefail
+          if [ -n "${DEPLOY_ROLE_ARN:-}" ]; then
+            echo "::notice title=Deploy enabled::AWS_DEPLOY_ROLE_ARN is set; the deploy job will run."
+          else
+            echo "::warning title=NOTHING WAS DEPLOYED::AWS_DEPLOY_ROLE_ARN is not set, so the deploy job was skipped and no image was built, pushed or activated. Run infra/preview Terraform first, then set the repo variable (docs/DEPLOY-AWS-PREVIEW.md). This run is green because the configuration check ran, not because anything shipped."
+          fi
+
   deploy:
+    # The gate that makes the skip visible at job level. Without the variable this job
+    # renders as skipped, not as a green deploy.
+    if: vars.AWS_DEPLOY_ROLE_ARN != ''
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
       contents: read
       id-token: write # OIDC — only this job assumes the AWS deploy role
     steps:
-      - name: Guard — require the deploy role to be configured
-        run: |
-          if [ -z "${{ vars.AWS_DEPLOY_ROLE_ARN }}" ]; then
-            echo "AWS_DEPLOY_ROLE_ARN not set — run infra/preview Terraform first, then set the repo variable. Skipping."
-            exit 0
-          fi
-          echo "configured=true" >> "$GITHUB_ENV"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        if: env.configured == 'true'
         with:
           persist-credentials: false
       - name: Configure AWS credentials (OIDC, no long-lived keys)
-        if: env.configured == 'true'
         uses: aws-actions/configure-aws-credentials@e6de054238d6b7531b4efff3b6587d9aade6a06c # v6.2.3
         with:
           role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
       - name: Login to ECR
-        if: env.configured == 'true'
         id: ecr
+        env:
+          AWS_REGION: ${{ vars.AWS_REGION }}
         run: |
+          set -euo pipefail
           acct=$(aws sts get-caller-identity --query Account --output text)
-          registry="$acct.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com"
-          aws ecr get-login-password --region "${{ vars.AWS_REGION }}" | docker login --username AWS --password-stdin "$registry"
-          echo "image=$registry/trans-docs-navigator:${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          registry="$acct.dkr.ecr.${AWS_REGION}.amazonaws.com"
+          aws ecr get-login-password --region "${AWS_REGION}" | docker login --username AWS --password-stdin "$registry"
+          echo "image=$registry/trans-docs-navigator:${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
       - name: Build and push image
-        if: env.configured == 'true'
+        # BUILD_COMMIT is what /version serves and what the post-deploy check below
+        # asserts against, so it must be the full 40-hex SHA: api/version.ts accepts
+        # nothing shorter and would report the image as unstamped.
+        env:
+          IMAGE: ${{ steps.ecr.outputs.image }}
         run: |
-          docker build -t "${{ steps.ecr.outputs.image }}" .
-          docker push "${{ steps.ecr.outputs.image }}"
+          set -euo pipefail
+          docker build \
+            --build-arg "BUILD_COMMIT=${GITHUB_SHA}" \
+            --build-arg "BUILD_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            -t "$IMAGE" .
+          docker push "$IMAGE"
       - name: Update the Lambda and point SITE_ORIGIN at the live URL
-        if: env.configured == 'true'
+        id: activate
+        env:
+          IMAGE: ${{ steps.ecr.outputs.image }}
         run: |
+          set -euo pipefail
           fn=trans-docs-navigator-preview
-          aws lambda update-function-code --function-name "$fn" --image-uri "${{ steps.ecr.outputs.image }}" >/dev/null
+          aws lambda update-function-code --function-name "$fn" --image-uri "$IMAGE" >/dev/null
           aws lambda wait function-updated --function-name "$fn"
           url=$(aws lambda get-function-url-config --function-name "$fn" --query FunctionUrl --output text)
           url="${url%/}"
           aws lambda update-function-configuration --function-name "$fn" \
             --environment "Variables={NODE_ENV=production,AWS_LWA_READINESS_CHECK_PATH=/healthz,SITE_ORIGIN=$url}" >/dev/null
+          aws lambda wait function-updated --function-name "$fn"
+          echo "url=$url" >> "$GITHUB_OUTPUT"
           echo "Deployed → $url"
+      - name: The live preview must name the commit this run deployed
+        # The post-deploy check. Everything above proves the API calls returned; none of
+        # it proves a reader gets the new image — `update-function-code` succeeds long
+        # before the first cold start, an environment update replaces the code update's
+        # settling, and a failed image pull surfaces only on invocation. So this asks the
+        # public URL what it is running and requires the answer to be this exact SHA.
+        # `stamped` is asserted separately from `commit` so an unstamped image (which
+        # reports `commit: null`) fails with that reason rather than a bare mismatch.
+        #
+        # Retries because the function scales to zero: the first request after an update
+        # pays a cold start, which on this image is seconds, not milliseconds.
+        env:
+          URL: ${{ steps.activate.outputs.url }}
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 10); do
+            if curl -fsS --max-time 60 "${URL}/version" -o /tmp/version.json; then
+              commit=$(jq -r '.commit // "null"' /tmp/version.json)
+              stamped=$(jq -r '.stamped' /tmp/version.json)
+              if [ "$stamped" = "true" ] && [ "$commit" = "$GITHUB_SHA" ]; then
+                echo "  ok  ${URL}/version reports ${commit}"
+                jq . /tmp/version.json
+                exit 0
+              fi
+              echo "  ... attempt ${attempt}: stamped=${stamped} commit=${commit}, expected ${GITHUB_SHA}"
+            else
+              echo "  ... attempt ${attempt}: ${URL}/version did not answer"
+            fi
+            sleep 15
+          done
+          echo "::error title=The deployed preview does not name this commit::${URL}/version never reported ${GITHUB_SHA}. The image may not have activated, or it was built without BUILD_COMMIT."
+          cat /tmp/version.json 2>/dev/null || echo "(nothing readable)"
+          exit 1
+      - name: The live preview must be ready to serve
+        # /readyz is fail-closed (503 when no record is serveable-as-current), so this is
+        # the one check that can catch an image that boots and answers but would hand a
+        # reader stale law. `--fail` turns the 503 into a non-zero exit.
+        env:
+          URL: ${{ steps.activate.outputs.url }}
+        run: |
+          set -euo pipefail
+          curl -fsS --max-time 60 "${URL}/readyz" | jq .
+      - name: Summarise
+        if: always()
+        env:
+          URL: ${{ steps.activate.outputs.url }}
+        run: |
+          {
+            echo "### AWS preview deploy"
+            echo ""
+            echo "| | |"
+            echo "|---|---|"
+            echo "| Result | ${{ job.status }} |"
+            echo "| Commit | \`${GITHUB_SHA}\` |"
+            echo "| Live URL | ${URL:-not resolved} |"
+            echo ""
+            echo "Check what is live at any time: \`curl ${URL:-<function-url>}/version\`"
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -10,9 +10,38 @@ A database-free Node server (`api/server.ts`) with bounded process-local render 
 It renders accessible pages and grounded, cited guidance from a version-controlled corpus.
 Direct identity-form fields stay in the browser.
 
+## What deploys, when, and how to tell what is live
+Nothing deploys on a push or on a schedule. The only deploy path is
+`.github/workflows/deploy-aws-preview.yml`, which is `workflow_dispatch` only — a person
+runs it from the Actions tab, deliberately, so nothing bills until someone chooses. That
+is the cost guardrail, and its cost is that **the running preview can be arbitrarily far
+behind `main`**, with no push, tag, or schedule to date it by.
+
+So ask the service:
+
+```sh
+curl -s "$PREVIEW_URL/version" | jq .
+# { "version": "0.1.0", "commit": "<40-hex>", "built_at": "...", "stamped": true, "corpus_hash": "..." }
+```
+
+`commit` is stamped into the image at `docker build` time and is the commit the running
+code was built from — compare it against `git log origin/main` to see how far behind the
+preview is. It is `null` with `stamped: false` when the image carries no stamp; that is
+an honest "this image cannot say", never a placeholder, and the deploy workflow refuses
+to call a deploy successful unless the live URL reports the exact SHA it just deployed.
+`corpus_hash` is the digest `api/server.ts` re-verifies at boot, so an image that is up
+at all has already proved it serves those corpus bytes.
+
+A tag is a different question from a deploy: `release.yml` fires on `v*` and publishes a
+signed, attested image to GHCR. It deploys nothing. "Released" and "live" are two facts
+here, and `/version` is the one that answers "live".
+
 ## Health & rollback
 - **Liveness:** `GET /livez` only proves the process can answer; it never calls a
   dependency. A non-200/crash means restart or replace the container.
+- **What is running:** `GET /version` reports the commit, build time, package version and
+  corpus digest of the image answering the request (see above). This is the first thing
+  to read in any incident — "which code is this?" precedes every other question.
 - **Readiness:** `GET /readyz` checks that the corpus loads and at least one record is
   current. A 503 removes the instance from rotation; do not override it merely to keep
   traffic flowing. `GET /healthz` remains as a legacy inventory-compatible probe.
