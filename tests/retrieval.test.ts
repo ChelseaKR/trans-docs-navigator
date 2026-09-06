@@ -1,9 +1,19 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { retrieve } from "../api/retrieval.ts";
+import { retrieve, selectAudience } from "../api/retrieval.ts";
 import { TEST_TODAY } from "../api/freshness.ts";
+import type { CorpusRecord } from "../api/types.ts";
 
 const today = TEST_TODAY;
+
+function rec(over: Partial<CorpusRecord>): CorpusRecord {
+  return {
+    id: "x", jurisdiction: "US-CA", document_type: "court-order", change_type: ["name"],
+    topic: "t", statement: "A sufficiently long statement.",
+    source: { url: "https://e.gov", title: "T", last_verified: today, verifier: "Pilot Seed Reviewer" },
+    verification_status: "verified", recheck_sla_days: 90, language: "en", ...over,
+  };
+}
 
 test("filters by jurisdiction and includes federal records", () => {
   const r = retrieve({ jurisdiction: "US-CA", change_types: ["name"], today });
@@ -57,4 +67,57 @@ test("unsupported state with a state-only document (court-order) returns nothing
   // There is no federal court-order, so an unsupported state court-order query is a genuine gap.
   const r = retrieve({ jurisdiction: "US-PR", change_types: ["name"], documents: ["court-order"], today });
   assert.equal(r.length, 0);
+});
+
+// ── Minors pilot: audience exclusivity (api/types.ts RecordAudience) ─────────────────
+
+test("selectAudience: a non-minor query never sees a minor-audience record", () => {
+  const records = [rec({ id: "adult" }), rec({ id: "minor", audience: "minor" })];
+  const out = selectAudience(records, false);
+  assert.deepEqual(out.map((r) => r.id), ["adult"]);
+});
+
+test("selectAudience: a minor query sees ONLY the minor record for a cell that has one", () => {
+  const records = [rec({ id: "adult" }), rec({ id: "minor", audience: "minor" })];
+  const out = selectAudience(records, true);
+  assert.deepEqual(out.map((r) => r.id), ["minor"]);
+});
+
+test("selectAudience: a minor query falls through to the adult record where no minor record exists for that cell", () => {
+  const records = [rec({ id: "adult", jurisdiction: "US-TX" })];
+  const out = selectAudience(records, true);
+  assert.deepEqual(out.map((r) => r.id), ["adult"]);
+});
+
+test("selectAudience: exclusivity is scoped to (jurisdiction × document_type) — an unrelated cell's adult record is untouched", () => {
+  const records = [
+    rec({ id: "ca-court-adult", jurisdiction: "US-CA", document_type: "court-order" }),
+    rec({ id: "ca-court-minor", jurisdiction: "US-CA", document_type: "court-order", audience: "minor" }),
+    rec({ id: "ca-dl-adult", jurisdiction: "US-CA", document_type: "drivers-license" }),
+  ];
+  const out = selectAudience(records, true);
+  assert.deepEqual(
+    out.map((r) => r.id).sort(),
+    ["ca-court-minor", "ca-dl-adult"],
+  );
+});
+
+test("retrieve: a minor query in a pilot state (California) returns the minor court-order record, not the adult one", () => {
+  const r = retrieve({ jurisdiction: "US-CA", change_types: ["name"], documents: ["court-order"], for_minor: true, today });
+  const ids = r.map((x) => x.record.id);
+  assert.ok(ids.includes("ca.court-order.name.minor"), ids.join(","));
+  assert.ok(!ids.includes("ca.court-order.name"), ids.join(","));
+});
+
+test("retrieve: an adult query never surfaces California's minor court-order record", () => {
+  const r = retrieve({ jurisdiction: "US-CA", change_types: ["name"], documents: ["court-order"], today });
+  const ids = r.map((x) => x.record.id);
+  assert.ok(ids.includes("ca.court-order.name"), ids.join(","));
+  assert.ok(!ids.includes("ca.court-order.name.minor"), ids.join(","));
+});
+
+test("retrieve: a minor query in a non-pilot state (Florida) falls through to the adult record — not silently empty", () => {
+  const r = retrieve({ jurisdiction: "US-FL", change_types: ["name"], documents: ["court-order"], for_minor: true, today });
+  assert.ok(r.length > 0);
+  assert.ok(r.every((x) => x.record.audience !== "minor"));
 });

@@ -9,7 +9,7 @@ import { retrieve } from "./retrieval.ts";
 import { defaultGenerator } from "./generator.ts";
 import { enforce } from "./citation.ts";
 import { loadCorpus } from "./corpus.ts";
-import { hasNoStateCoverage } from "./checklist.ts";
+import { hasNoStateCoverage, hasNoMinorCoverage } from "./checklist.ts";
 import { t as locale } from "../src/i18n/index.ts";
 
 /**
@@ -27,6 +27,22 @@ import { t as locale } from "../src/i18n/index.ts";
 function withCoverageDisclosure(answer: GroundedAnswer, query: RetrievalQuery, corpus = loadCorpus()): GroundedAnswer {
   if (!hasNoStateCoverage(query.jurisdiction, corpus)) return answer;
   const text = locale(query.language ?? "en").ui.noStateCoverage;
+  return { ...answer, blocks: [{ kind: "uncertainty", citations: [], text }, ...answer.blocks] };
+}
+
+/**
+ * The minors-pilot twin of `withCoverageDisclosure`, one level narrower. A state can be
+ * fully covered for adults (so `withCoverageDisclosure` says nothing) and still have no
+ * minor-audience record at all — every state outside the five-state pilot. Retrieval
+ * (api/retrieval.ts `selectAudience`) already falls through to the adult records for that
+ * jurisdiction rather than returning nothing, so without this the reader could not tell
+ * "we checked minors here" from "we have nothing for minors here and you're reading the
+ * adult rule" — exactly the failure `withCoverageDisclosure` exists to prevent one level up.
+ */
+function withMinorCoverageDisclosure(answer: GroundedAnswer, query: RetrievalQuery, corpus = loadCorpus()): GroundedAnswer {
+  if (!query.for_minor) return answer;
+  if (!hasNoMinorCoverage(query.jurisdiction, corpus)) return answer;
+  const text = locale(query.language ?? "en").ui.noMinorCoverage;
   return { ...answer, blocks: [{ kind: "uncertainty", citations: [], text }, ...answer.blocks] };
 }
 
@@ -56,8 +72,11 @@ function buildInput(query: RetrievalQuery, retriever: Retriever, maxRecords?: nu
 export function answer(query: RetrievalQuery, opts: AnswerOptions = {}): GroundedAnswer {
   const generator = opts.generator ?? defaultGenerator;
   const draft = generator.generate(buildInput(query, opts.retriever ?? retrieve, opts.maxRecords));
+  // Order matters: state coverage (the broader absence) reads first, then the narrower
+  // minor-coverage note, then the cited claims themselves.
+  const disclosed = withCoverageDisclosure(withMinorCoverageDisclosure(draft, query), query);
   // Post-generation enforcement. A refusal carries no claims, so it passes trivially.
-  return enforce(withCoverageDisclosure(draft, query), loadCorpus(), query.today);
+  return enforce(disclosed, loadCorpus(), query.today);
 }
 
 /**
@@ -71,5 +90,6 @@ export async function answerAsync(query: RetrievalQuery, opts: AsyncAnswerOption
   // Untrusted (model) generator: citations must resolve within the RETRIEVED set and each
   // claim's text must be faithful to its cited record — not merely carry a valid id.
   const grounding = input.retrieved.map((r) => r.record);
-  return enforce(withCoverageDisclosure(draft, query), loadCorpus(), query.today, { grounding, requireFaithful: true });
+  const disclosed = withCoverageDisclosure(withMinorCoverageDisclosure(draft, query), query);
+  return enforce(disclosed, loadCorpus(), query.today, { grounding, requireFaithful: true });
 }

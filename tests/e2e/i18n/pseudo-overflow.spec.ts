@@ -42,6 +42,13 @@ const ROUTES = [
   "/terms?language=en-XA",
   "/move?language=en-XA",
   "/plan?origin=US-TX&destination=US-WA&hold=court-order&language=en-XA",
+  // "Which state?" comparison (src/compare.ts): the newest, widest layout in the app —
+  // a 51-row table. The results URL below selects two documents and both change types
+  // (four columns, doc-major headers with the longest column-header shape this page
+  // produces) so the table/card layout is stressed at both breakpoints, not just the
+  // narrowest case.
+  "/compare?language=en-XA",
+  "/compare?doc=drivers-license&doc=birth-certificate&change=name&change=gender-marker&current=US-CA&language=en-XA",
 ];
 
 test.describe("G9 — pseudolocale overflow (en-XA, ~40% expansion)", () => {

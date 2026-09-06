@@ -23,7 +23,7 @@ import type {
   RelocationPhase,
   RelocationStep,
 } from "../api/types.ts";
-import { page, uiStrings, escapeHtml, sourceItem } from "./render.ts";
+import { page, uiStrings, escapeHtml, sourceItem, fieldLabel } from "./render.ts";
 import { t as locale } from "./i18n/index.ts";
 import { formById } from "../api/forms.ts";
 
@@ -111,6 +111,7 @@ export function renderMovePage(lang: Language = "en", error?: "same-state"): str
     .join("");
 
   const errorNote = error === "same-state" ? `<p class="flag" role="alert">${escapeHtml(r.sameStateError)}</p>` : "";
+  const forMinorLabel = fieldLabel(lang, "for_minor");
 
   const body = `
 <p>${escapeHtml(r.moveLead)}</p>
@@ -137,6 +138,10 @@ ${errorNote}
     ${docs}
   </fieldset>
   <fieldset>
+    <legend>${escapeHtml(forMinorLabel)}</legend>
+    <label><input type="checkbox" name="for_minor" value="1"> ${escapeHtml(forMinorLabel)}</label>
+  </fieldset>
+  <fieldset>
     <legend>${escapeHtml(s.languageLegend)}</legend>
     <label for="rl-language">${escapeHtml(s.languageLegend)}</label>
     <select id="rl-language" name="language">
@@ -146,6 +151,7 @@ ${errorNote}
   </fieldset>
   <button type="submit">${escapeHtml(r.submitPlan)}</button>
 </form>
+<p class="no-print"><a href="/compare${lang === "es" ? "?language=es" : ""}">${escapeHtml(locale(lang).compare.cta)}</a></p>
 <p class="no-print"><a href="/">${escapeHtml(s.backToStart)}</a></p>`;
 
   return page({ lang, title: r.moveTitle, heading: r.moveHeading, body });
@@ -321,14 +327,18 @@ export function renderPlanPage(
   plan: RelocationPlan,
   records: CorpusRecord[],
   lang: Language,
-  opts: { thinnerCoverage?: boolean } = {},
+  opts: { thinnerCoverage?: boolean; noMinorCoverage?: boolean } = {},
 ): string {
   const s = uiStrings(lang);
   const r = locale(lang).relocation;
 
   const coverageNote = opts.thinnerCoverage ? `<p class="flag" role="note">${escapeHtml(s.thinnerCoverage)}</p>` : "";
+  // Minors pilot: reuses the SAME ui.noMinorCoverage copy the checklist/packet render —
+  // one string, not a relocation-specific duplicate (see how thinnerCoverage above is
+  // likewise the shared ui string, not a relocation.* one).
+  const minorNote = opts.noMinorCoverage ? `<p class="flag" role="note">${escapeHtml(s.noMinorCoverage)}</p>` : "";
   const intro = `<p>${escapeHtml(r.planIntro)}</p>
-<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${coverageNote}
+<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${minorNote}${coverageNote}
 <p class="meta" role="note">🔒 ${escapeHtml(r.movePrivacy)}</p>`;
 
   const sections = PHASES.map((phase) => {

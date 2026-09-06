@@ -80,6 +80,19 @@ test("robots.txt disallows user-state routes but never the assets crawlers need"
   assert.match(r, /Sitemap: https?:\/\/\S+\/sitemap\.xml/);
 });
 
+// /compare is the one route whose bare form IS indexable but whose results (a query
+// string of selections) are not — unlike /checklist/etc., which disallow the whole
+// path, this needs a query-string-only disallow so the form stays crawlable.
+test("robots.txt disallows /compare results (a query string) but not the bare indexable form", () => {
+  const r = robotsTxt();
+  assert.ok(r.includes("Disallow: /compare?"));
+  assert.doesNotMatch(r, /Disallow:\s*\/compare\s*(\n|$)/);
+});
+
+test("/compare is in the sitemap (the bare form only — indexablePaths never carries a query string)", () => {
+  assert.ok(indexablePaths().includes("/compare"));
+});
+
 test("sitemap lists exactly the indexable paths, each with hreflang, none noindex", () => {
   const paths = indexablePaths();
   const xml = sitemapXml(paths);

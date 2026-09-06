@@ -115,5 +115,81 @@
     "recheck_sla_days": 90,
     "form_ref": "il-affidavit-correction",
     "language": "en"
+  },
+  {
+    "id": "il.court-order.name.minor",
+    "jurisdiction": "US-IL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Illinois name change for a minor: petitioner, notice, and the best-interest standard",
+    "statement": "In Illinois, the parent or guardian who has legal custody of a minor signs the petition to change the minor's name. Before the court can order the change, the law requires actual notice and a chance to be heard for any parent whose parental rights have not been terminated, and for anyone who has been allocated parental responsibilities under the Illinois Marriage and Dissolution of Marriage Act.",
+    "detail": "The court may enter a name-change order for a minor only if it finds, by clear and convincing evidence, that the change is necessary to serve the best interest of the child. The law lists factors the court must consider: the wishes of the child's parents or anyone acting as a parent with physical custody; the wishes of the child and the reasons for them (the court may interview the child, with counsel present); how the child gets along with parents, step-parents, siblings, and step-siblings; and how the child is adjusted to their home, school, and community.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://ilga.gov/Legislation/ILCS/Articles?ActID=2017&ChapterID=56&Chapter=CIVIL%20PROCEDURE&MajorTopic=RIGHTS%20AND%20REMEDIES",
+      "title": "735 ILCS 5, Article XXI — Change of Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "en"
+  },
+  {
+    "id": "il.court-order.name.minor.faq",
+    "jurisdiction": "US-IL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Illinois name change for a minor: consent, publication, and fees",
+    "statement": "Illinois Legal Aid Online says one parent can ask to change a child's name even if the other parent does not agree — the other parent must be legally notified of the case, but the guide does not say the other parent's agreement is required. It also says Illinois law lets a child who is fourteen years of age or older consent to a name change, and that a judge may let a younger \"mature\" child state their preference too.",
+    "detail": "If a parent cannot be found or does not respond, the guide says a judge can require service by publication: a notice published in a newspaper in the county once a week for three weeks in a row, with the first publication at least six weeks before the court date. There may be a fee to publish, and some newspapers will honor a fee waiver order, but the guide says they are not required to. A fee is charged to file the case, and the amount varies by county; a family can file an Application for Waiver of Court Fees to ask the judge to waive it. The guide's newspaper-publication step for a minor's case is different from the adult name-change process, which no longer lists a publication step.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The filing fee varies by county. A fee waiver is available for families who qualify.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.illinoislegalaid.org/legal-information/changing-childs-name",
+      "title": "Illinois Legal Aid Online — Starting a Case to Change a Child's Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "en"
+  },
+  {
+    "id": "il.birth-certificate.gender-marker.minor",
+    "jurisdiction": "US-IL",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Illinois birth certificate sex designation for a minor",
+    "statement": "Illinois uses the same Affidavit and Certificate of Correction Request form to change the sex designation on a birth certificate for a minor as for an adult. The applicant must be of legal age to complete the form, or, if the person is not of legal age, their parent, co-parent, or guardian completes it instead.",
+    "detail": "The form must be signed and notarized either way. If the family also wants a name change at the same time, they must submit a certified copy of the Court Order of Legal Name Change — the health department's page does not say a court order is needed for a gender-designation change by itself, for a minor or an adult.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "The $15 fee includes one certified copy of the new birth certificate. Extra copies are $2 each if ordered at the same time."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dph.illinois.gov/topics-services/birth-death-other-records/birth-records/gender-reassignment.html",
+      "title": "Illinois Department of Public Health — Gender Change on a Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "il-affidavit-correction",
+    "audience": "minor",
+    "language": "en"
   }
 ]

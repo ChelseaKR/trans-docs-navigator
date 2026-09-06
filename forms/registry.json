@@ -979,6 +979,21 @@
     }
   },
   {
+    "id": "wa-doh-422-144",
+    "jurisdiction": "US-WA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Form DOH 422-144 — Request to Change Sex Designation on a Birth Certificate for a Minor",
+    "source": {
+      "url": "https://doh.wa.gov/sites/default/files/legacy/Documents/Pubs/422-144-SexDesignationChangeMinor.pdf",
+      "title": "Washington State Department of Health Form DOH 422-144",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "wv-dmv-99-ro-gender-designation",
     "jurisdiction": "US-WV",
     "document_type": "drivers-license",

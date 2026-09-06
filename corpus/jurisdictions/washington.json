@@ -125,5 +125,72 @@
     "recheck_sla_days": 90,
     "form_ref": "wa-doh-422-126",
     "language": "en"
+  },
+  {
+    "id": "wa.court-order.name.minor",
+    "jurisdiction": "US-WA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Washington name change for a minor child",
+    "statement": "Washington law lets a person ask for a name change for their own child, the same way they can ask for their own name change. RCW 4.24.130 does not use the word \"parent\" for who may ask on a child's behalf — it says any person desiring a change of the person's name or that of the person's child may apply to the court.",
+    "detail": "If the reason for a child's name change is related to gender expression or identity, the law sends the petition to superior court instead of district court, and once the court grants the name change it must seal the file to protect the child's privacy. After that, the file is not open to public inspection except by court order for good cause, or at the request of the person whose name was changed or their guardian. The statute does not say whether both parents must join the petition, does not say a non-petitioning parent must be given notice, and does not set an age at which a child's own consent matters — it is silent on all three. It also does not use a \"best interest of the child\" standard.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=4.24.130",
+      "title": "RCW 4.24.130 — Change of name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "en"
+  },
+  {
+    "id": "wa.birth-certificate.gender-marker.minor",
+    "jurisdiction": "US-WA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Washington birth certificate sex designation for a minor",
+    "statement": "Washington has a separate form for a minor's sex-designation change on a birth certificate: the Request to Change Sex Designation on a Birth Certificate for a Minor (form DOH 422-144). A parent or legal guardian must complete and sign it on behalf of a minor under 18, and it must also be signed by a licensed health care or mental health care provider who determines the change is consistent with the minor's identity.",
+    "detail": "A legal guardian signing on the minor's behalf must include proof of legal guardianship, such as a certified court order, and a copy of their own government-issued photo ID. This is different from the adult path: adults sign for themselves in front of a notary, and no health-care-provider signature is required for an adult. An emancipated minor uses the adult form (DOH 422-143) instead, and must include proof of legal emancipation. If the minor has not legally changed their first and middle names, those can be changed on the same form with the consent of all listed parents; if the minor's name has already been legally changed, a certified court order must be included.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://doh.wa.gov/licenses-permits-and-certificates/vital-records/sex-designation-change-birth-certificate",
+      "title": "Washington State Department of Health — Sex Designation Change on a Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "wa-doh-422-144",
+    "audience": "minor",
+    "language": "en"
+  },
+  {
+    "id": "wa.drivers-license.gender-marker.minor",
+    "jurisdiction": "US-WA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Washington driver's license or permit gender designation for a minor",
+    "statement": "Washington's gender-designation-change process names no different rule for someone under 18. The Department of Licensing page and its Change of Gender Designation request form cover an instruction permit — the credential most minors hold — the same way they cover a full driver's license or ID card.",
+    "detail": "The request form has a single signature line, for the applicant themselves, declaring under penalty of perjury that they are the person named on the form. It does not have a separate line for a parent's or guardian's signature, and neither the department's page nor the form mentions age, being under 18, or any parent/guardian role in this process.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-gender-designation",
+      "title": "Washington DOL — Gender Designation",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "en"
   }
 ]

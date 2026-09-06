@@ -155,5 +155,50 @@
     "recheck_sla_days": 90,
     "form_ref": "ny-doh-5305",
     "language": "en"
+  },
+  {
+    "id": "ny.court-order.name.minor",
+    "jurisdiction": "US-NY",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "New York name change for a child",
+    "statement": "In New York, a child's parent, legal guardian, or \"next friend\" can ask the court to change the child's name. New York's common-law right to use any name you wish does not apply to children — a child's name can be changed only with a court order.",
+    "detail": "If the child has another living biological or adoptive parent or legal guardian, that person must agree in writing to the name change; this is called consent. If that other parent's rights have been terminated, no consent is needed. If you cannot get consent because you do not know where the other parent lives, you must show the judge what you did to try to find them. If you know their address but they will not consent, you must give them a Notice to Non-Petitioning Parent so they can tell the court why they object. Courts require a child who is 14 years or older, but younger than 18, to give their own permission for the name change, signed on a Minor Consent form in front of a notary. The judge decides based on the child's best interest, and considers what the child wants (given the child's age and experience), what the change may do to the child's relationship with each parent, how long the child has used the name, any problems or harassment the current or new name may cause, and the parents' motives.",
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.nycourts.gov/courthelp/NameChange/childNameChange.shtml",
+      "title": "NY CourtHelp — Child Name Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "en"
+  },
+  {
+    "id": "ny.birth-certificate.gender-marker.minor",
+    "jurisdiction": "US-NY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "New York birth certificate gender designation for a minor (16 or younger)",
+    "statement": "For someone 16 years old or younger, New York State lets the parent or legal guardian named on the birth certificate change the gender designation on the child's birth certificate, including an X (non-binary) designation. This uses different forms from the ones an adult (17 or older) uses: a Parent/Legal Guardian Application for Amendment of Certificate of Birth for Gender Designation for a Minor (form DOH-5306), with a Notarized Affidavit of Gender Error for a Person 16 Years of Age or Under (form DOH-5304).",
+    "detail": "The requesting parent's name must be on the birth certificate. If the parent or guardian also wants the minor's name changed on the birth certificate at the same time, they must note this on the application and include a copy of a court order authorizing the name change — a name change cannot be authorized without a court order. When a gender designation is amended, the original birth certificate and the papers behind the change are kept in a sealed file, and only the amended certificate is released for future requests.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
+      "title": "New York State Department of Health — Gender Designation Amendments",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "en"
   }
 ]

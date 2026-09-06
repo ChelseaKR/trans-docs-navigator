@@ -30,6 +30,19 @@ export type ChangeType = "name" | "gender-marker";
 export type Language = "en" | "es";
 
 /**
+ * Who a record's rule is written for. Absent (the default on every pre-existing record)
+ * means the record describes the ADULT process. `"minor"` marks a record that states the
+ * rule for someone under 18 specifically — a different petitioner, a different consent/
+ * notice regime, sometimes a different form, and sometimes no route at all. The minors
+ * pilot (California, Illinois, New York, Texas, Washington) is the only place `"minor"`
+ * records exist today; see docs/audits and tests/coverage-honesty.test.ts for the
+ * every-other-state degradation this field drives (api/retrieval.ts `selectAudience`,
+ * api/checklist.ts `hasNoMinorCoverage`). Never inferred — set only when the record's own
+ * cited source is actually about someone under 18.
+ */
+export type RecordAudience = "adult" | "minor";
+
+/**
  * Verification state of a corpus record.
  * - verified:            a named human confirmed it against the source, within SLA.
  * - needs_reverification: stale or volatile; degraded to "needs reverification", never served as current fact.
@@ -129,6 +142,8 @@ export interface CorpusRecord {
   /** Relocation annotation, supported by this record's OWN cited text (see RelocationTraits). */
   relocation?: RelocationTraits;
   language: Language;
+  /** Who this record's rule is for. Absent = adult (the historical default); see RecordAudience. */
+  audience?: RecordAudience;
 }
 
 /**
@@ -198,6 +213,15 @@ export interface Intake {
   current_legal_name?: string;
   new_legal_name?: string;
   has_court_order?: boolean;
+  /**
+   * True when the person the checklist is for is under 18. Same privacy class as
+   * `change_types`/`has_court_order` — a single selection-only bookkeeping bit, never an
+   * identity field (docs/audits/dpia.md). Read by retrieval (api/retrieval.ts
+   * `selectAudience`) to serve minor-audience records instead of adult ones where the
+   * corpus has them, and by the checklist/answer honesty note (api/checklist.ts
+   * `hasNoMinorCoverage`) where it does not.
+   */
+  for_minor?: boolean;
 }
 
 /** One step in a generated, ordered checklist. */
@@ -280,6 +304,8 @@ export interface RelocationIntake {
   held: DocumentType[];
   change_types: ChangeType[];
   language: Language;
+  /** Same bit as `Intake.for_minor`; see that doc comment. */
+  for_minor?: boolean;
 }
 
 /**
@@ -452,4 +478,49 @@ export interface RelocationPlan {
   costs: CostModel;
   /** Documents we cannot produce a verified destination step for. Shown, never hidden. */
   gaps: { document_type: DocumentType; jurisdiction: JurisdictionId; reason: "no-records" | "all-degraded" }[];
+}
+
+// ── "Which state?" comparison (api/compare.ts) ────────────────────────────────────────
+// The inverse of the relocation planner: instead of "I'm moving from X to Y, what
+// changes", this answers "which states have a documented path for the documents/changes
+// I need, and which don't". Same corpus, same freshness/verification rules — just a
+// table over every covered jurisdiction instead of a delta between two of them.
+
+/**
+ * One (jurisdiction × document × change) cell's status, derived STRICTLY from what the
+ * corpus holds — never a judgement about the jurisdiction. `documented` and
+ * `needs_reverification` both mean "a record describes a path" (the difference is
+ * freshness, exactly like ChecklistStep.needs_reverification); `no_path_documented` and
+ * `not_covered` are BOTH absences, but different ones, and the whole point of this
+ * feature is that they must never be collapsed into each other:
+ *   - `no_path_documented`: we looked, and the record's own text says the official
+ *     source describes no route. A fact about the source, not a guess about the state.
+ *   - `not_covered`: we have no record at all for this cell. An absence of research,
+ *     not a fact about the state — see api/checklist.ts:hasNoStateCoverage for the
+ *     same distinction at the whole-jurisdiction level.
+ */
+export type CoverageStatus = "documented" | "needs_reverification" | "no_path_documented" | "not_covered";
+
+/** One cell of the comparison table. */
+export interface CompareCell {
+  jurisdiction: JurisdictionId;
+  document_type: DocumentType;
+  change_type: ChangeType;
+  status: CoverageStatus;
+  /** Backing record ids, in the language actually used to classify (English; see
+   *  api/compare.ts). Empty only when status is `not_covered`. */
+  record_ids: string[];
+}
+
+/** One row of the table: a single jurisdiction's cell for every requested (doc × change). */
+export interface CompareRow {
+  jurisdiction: JurisdictionId;
+  cells: CompareCell[];
+}
+
+export interface CompareTable {
+  documents: DocumentType[];
+  change_types: ChangeType[];
+  /** One row per covered jurisdiction, in the order queried (sorting is a render concern). */
+  rows: CompareRow[];
 }
