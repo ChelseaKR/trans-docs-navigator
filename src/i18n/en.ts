@@ -433,5 +433,23 @@ export const en: LocaleBundle = {
     },
     transparencyDescription:
       "Dated quarterly entries on what Trans Docs Navigator could and could not produce under legal compulsion. No warrant canary yet — counsel review is pending.",
+
+    feedIndexTitle: "Get notified when a state's records change (RSS)",
+    feedIndexDescription:
+      "Subscribe by RSS or Atom to updates for any state's name and gender-marker change records. No account, no email address, no tracking.",
+    feedIndexLead:
+      "Pick a state to get its feed link. Each feed tells you when we update our own records for that state — never a claim that the law itself changed.",
+    feedIndexAllHeading: "All state feeds",
+    feedLinkLabel: (state: string) => `Get notified when we update ${state}'s records (RSS)`,
+    feedChannelTitle: (state: string) => `${state}: records updated`,
+    feedChannelDescription: (state: string) =>
+      `Notifications when Trans Docs Navigator updates its own cited records for ${state} — never a notification that the law itself changed. Subscribe with any RSS or Atom reader. No account, no email address, and nothing about you is collected to deliver this feed.`,
+    feedEntryTitle: (count: number, state: string, date: string) =>
+      `${count} record${count === 1 ? "" : "s"} for ${state} updated on ${date}`,
+    feedEntryDescription: (count: number, state: string, date: string, docTypes: string) =>
+      `We (re)verified ${count} record${count === 1 ? "" : "s"} for ${state} on ${date}, covering: ${docTypes}. This means our records changed — not necessarily the law. Always confirm with the official source linked on each step.`,
+    feedEntryDegradedNote:
+      "At least one of these records currently needs reverification and is not shown as current elsewhere on the site.",
+    feedEmptyNote: "We don't have any dated records for this jurisdiction in this language yet.",
   },
 };

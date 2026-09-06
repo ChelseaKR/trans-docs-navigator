@@ -34,6 +34,8 @@ const EXACT_ROUTES = new Set([
   "/answer",
   "/assets/app.css",
   "/checklist",
+  "/feeds",
+  "/feeds/",
   "/guide",
   "/healthz",
   "/livez",
@@ -52,6 +54,7 @@ const EXACT_ROUTES = new Set([
 export function metricRoute(path: string): string {
   if (EXACT_ROUTES.has(path)) return path;
   if (path.startsWith("/assets/")) return "/assets/:asset";
+  if (path.startsWith("/feeds/") && path.endsWith(".xml")) return "/feeds/:jurisdiction.xml";
   if (path.startsWith("/forms/fixtures/")) return "/forms/fixtures/:file";
   if (path.startsWith("/forms/")) return "/forms/:form";
   if (path.startsWith("/guide/")) return "/guide/:state/:topic";
