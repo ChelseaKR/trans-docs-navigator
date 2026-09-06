@@ -25,6 +25,7 @@ interface SarifResult {
 interface SarifRule {
   id: string;
   properties: Record<string, string>;
+  defaultConfiguration?: { level: string };
 }
 
 const sarif = (results: SarifResult[], rules: SarifRule[] = []): unknown => ({
@@ -150,5 +151,130 @@ describe("gate verdicts", () => {
     await mkdir(nested, { recursive: true });
     await writeSarif(nested, "results.sarif", sarif([{ ruleId: "x/y", level: "error", message: { text: "boom" } }]));
     assert.equal(await runGate([dir]), 1);
+  });
+});
+
+// ---------------------------------------------------------------------------------------------
+// security-severity: CodeQL's SECOND severity axis, which this gate used to ignore entirely.
+//
+// `problem.severity` (error/warning/recommendation) and `security-severity` (a CVSS-style
+// 0.0-10.0 score) are independent. Every security finding this repo has actually seen sits at
+// `problem.severity: warning` AND high `security-severity` — so the log said "9 warning", which
+// reads as nine style nits, for nine findings GitHub bands as HIGH (measured 2026-09-06 on the
+// live codeql run). The exit code deliberately does NOT change here: raising the floor is the
+// repo owner's policy call. What these tests lock in is that the log can no longer be misread.
+// ---------------------------------------------------------------------------------------------
+
+/** Run the gate while capturing the lines it prints to stdout. */
+const runGateCapturing = async (paths: string[]): Promise<{ code: number; out: string }> => {
+  const lines: string[] = [];
+  const previous = console.log;
+  console.log = ((...args: unknown[]) => {
+    lines.push(args.map(String).join(" "));
+    return true;
+  }) as typeof console.log;
+  try {
+    const code = await runGate(paths);
+    return { code, out: lines.join("\n") };
+  } finally {
+    console.log = previous;
+  }
+};
+
+/** A finding whose rule is a warning by problem.severity but scores `score` on security-severity. */
+const securityFinding = (ruleId: string, score: string): unknown =>
+  sarif(
+    [{ ruleId, message: { text: "found" } }],
+    [
+      {
+        id: ruleId,
+        defaultConfiguration: { level: "warning" },
+        properties: { "problem.severity": "warning", "security-severity": score },
+      },
+    ],
+  );
+
+describe("security-severity is read, banded, and reported", () => {
+  test("a high-scoring warning is banded high and named as ungated — the live 2026-09-06 shape", async () => {
+    await writeSarif(dir, "results.sarif", securityFinding("js/incomplete-multi-character-sanitization", "7.8"));
+    const { code, out } = await runGateCapturing([dir]);
+
+    // The floor is unchanged: this still passes. That is the point being documented, not hidden.
+    assert.equal(code, 0);
+    assert.match(out, /security-severity \(GitHub banding\): 1 high/);
+    assert.match(out, /1 finding\(s\) at HIGH or CRITICAL security severity are NOT gated/);
+    assert.match(out, /js\/incomplete-multi-character-sanitization/);
+  });
+
+  test("bands follow GitHub's own thresholds", async () => {
+    const cases: Array<[string, string]> = [
+      ["9.1", "critical"],
+      ["9.0", "critical"],
+      ["8.9", "high"],
+      ["7.0", "high"],
+      ["6.9", "medium"],
+      ["4.0", "medium"],
+      ["3.9", "low"],
+      ["0.1", "low"],
+    ];
+    for (const [score, band] of cases) {
+      await rm(join(dir, "results.sarif"), { force: true });
+      await writeSarif(dir, "results.sarif", securityFinding("x/y", score));
+      const { out } = await runGateCapturing([dir]);
+      assert.match(out, new RegExp(`security-severity \\(GitHub banding\\): 1 ${band}`), `score ${score}`);
+    }
+  });
+
+  test("only critical and high are called out as ungated; medium and low are not", async () => {
+    await writeSarif(dir, "results.sarif", securityFinding("x/y", "5.0"));
+    const { code, out } = await runGateCapturing([dir]);
+    assert.equal(code, 0);
+    assert.match(out, /security-severity \(GitHub banding\): 1 medium/);
+    assert.doesNotMatch(out, /at HIGH or CRITICAL security severity are NOT gated/);
+  });
+
+  test("a rule with no security-severity is absent from the banding, not scored zero", async () => {
+    await writeSarif(
+      dir,
+      "results.sarif",
+      sarif(
+        [{ ruleId: "js/unused-local-variable", level: "note", message: { text: "fyi" } }],
+        [{ id: "js/unused-local-variable", properties: { "problem.severity": "recommendation" } }],
+      ),
+    );
+    const { code, out } = await runGateCapturing([dir]);
+    assert.equal(code, 0);
+    // "no score" must not become "low" — absence is not a measurement of zero.
+    assert.match(out, /no findings carried a security-severity score/);
+    assert.doesNotMatch(out, /banding/);
+  });
+
+  test("an unparseable security-severity is treated as absent, never coerced to zero/low", async () => {
+    await writeSarif(dir, "results.sarif", securityFinding("x/y", "not-a-number"));
+    const { code, out } = await runGateCapturing([dir]);
+    assert.equal(code, 0);
+    assert.match(out, /no findings carried a security-severity score/);
+    assert.doesNotMatch(out, /low/);
+  });
+
+  test("a high-scoring finding that IS gated is not also counted as slipping through", async () => {
+    await writeSarif(
+      dir,
+      "results.sarif",
+      sarif(
+        [{ ruleId: "js/sqli", message: { text: "injection" } }],
+        [
+          {
+            id: "js/sqli",
+            defaultConfiguration: { level: "error" },
+            properties: { "problem.severity": "error", "security-severity": "9.8" },
+          },
+        ],
+      ),
+    );
+    const { code, out } = await runGateCapturing([dir]);
+    assert.equal(code, 1); // error-severity still fails the build
+    assert.match(out, /security-severity \(GitHub banding\): 1 critical/);
+    assert.doesNotMatch(out, /at HIGH or CRITICAL security severity are NOT gated/);
   });
 });
