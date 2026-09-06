@@ -118,7 +118,11 @@ per `STANDARDS/README.md`'s "silent omission" rule).
 
 ## Contributing and conduct
 
-See [`CONTRIBUTING.md`](./CONTRIBUTING.md) and [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md). Accessibility barriers are treated as bugs.
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md), [`GOVERNANCE.md`](./GOVERNANCE.md) (how decisions get made, and which ones are not up for debate), [`SUPPORT.md`](./SUPPORT.md), and [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md). Accessibility barriers are treated as bugs.
+
+**The most valuable contribution is [verifying a record](../../issues/new?template=verify-a-record.md).** Launch gate 1 is *"named-human verification of every record"*, and it currently reads **0 of 768** — every record carries a `Pilot Seed Reviewer` placeholder. That gate is the reason this is a demonstration rather than a service, and it is the one thing no amount of code can close. You do not need to be a lawyer: you need to have read the official source and be willing to be named for it.
+
+Also wanted, and useful without any legal expertise: [reporting that a law or page changed](../../issues/new?template=law-changed.md), [accessibility barriers](../../issues/new?template=accessibility-barrier.md) (especially screen-reader, keyboard and 200%-zoom findings — that walkthrough is itself an open gate, scripted in [`docs/a11y-walkthrough.md`](./docs/a11y-walkthrough.md)), and Spanish review — EN/ES parity is enforced mechanically, but no native speaker has reviewed the translations.
 
 ## Provenance
 
