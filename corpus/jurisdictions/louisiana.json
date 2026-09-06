@@ -1,0 +1,173 @@
+[
+  {
+    "id": "la.court-order.name",
+    "jurisdiction": "US-LA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Louisiana name change petition",
+    "statement": "To legally change your name as an adult in Louisiana, you file a petition in the district court of the parish where you live, the parish where you were born, or the parish that has venue over the state's Vital Records Registry. If you are incarcerated, you instead file in the district court of the parish where you were sentenced.",
+    "detail": "A felony conviction blocks you from filing until your sentence, probation, or parole is complete. A conviction for any of the violent felonies Louisiana law lists as a \"crime of violence\" (R.S. 14:2(B)) blocks you from filing a name-change petition permanently, with no waiting period.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=77843",
+      "title": "Louisiana State Legislature — Revised Statutes 13:4751, Petition for Name Change; Adults; Minors",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "la.court-order.fees",
+    "jurisdiction": "US-LA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Louisiana name-change filing fee",
+    "statement": "Louisiana's name-change law says only that \"the applicant in all cases shall pay the cost of the proceedings\" — it sets no statewide dollar amount.",
+    "detail": "Contact the clerk of the district court where you'll file for the current filing fee.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The law does not name a filing fee; it is set by the district court where you file."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=77847",
+      "title": "Louisiana State Legislature — Revised Statutes 13:4755, Payment of Cost",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "la.birth-certificate.gender-marker",
+    "jurisdiction": "US-LA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Louisiana birth certificate sex designation (surgery requirement)",
+    "statement": "Louisiana law only lets you change the sex shown on your birth certificate after you have had \"sex reassignment or corrective surgery which has changed the anatomical structure of the sex.\" You then sue the state registrar in the district court of the parish where you live or where you were born.",
+    "detail": "If you're married, your spouse must also be made a party to the suit; if you're also asking the court to change your name in the same suit, the district attorney must be made a party too. The court decides based on \"such proof as it deems necessary\" that you were properly diagnosed and that surgery changed your anatomical sex. Once a court grants the petition, a certified copy of the petition and judgment must reach the state registrar within ten days, and your original birth certificate is then sealed in the vital-records archive — it can be reopened only by order of the court, at your own request.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The statute doesn't set a fee for this lawsuit; ordinary court filing fees would apply. Contact the district court clerk where you'll file."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=98725",
+      "title": "Louisiana State Legislature — Revised Statutes 40:62, Issuance of New Birth Certificate After Anatomical Change of Sex by Surgery",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "la.birth-certificate.gender-marker.agency-guidance",
+    "jurisdiction": "US-LA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Louisiana Department of Health guidance is silent on the surgery-based sex-marker path",
+    "statement": "Louisiana's Department of Health lets you correct the sex shown on a birth certificate for someone over 12 using statements from two different U.S.-licensed medical providers — but its own page says this option is \"not applicable for gender reassignment.\"",
+    "detail": "The same page never mentions the state law that does let you change your sex designation after surgery (Louisiana Revised Statutes 40:62), or how to use it. A person looking for a sex-marker change on the department's own website will not be told this path exists.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://ldh.la.gov/vital-records/amendments-to-birth-records",
+      "title": "Louisiana Department of Health, Center for Vital Records and Statistics — Amendments to Birth Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "la.birth-certificate.name",
+    "jurisdiction": "US-LA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Louisiana birth certificate name change",
+    "statement": "To change the last name on a Louisiana birth certificate for someone 18 or older, you get a Louisiana court-ordered name-change judgment, then send Vital Records a certified copy of the judgment, the petition, and the district attorney's answer so it can decide whether the court order can be used to amend the birth certificate.",
+    "detail": "Unless you're requesting a hospital correction within 90 days of the birth certificate's file date, amending or correcting a birth certificate costs $27.50 and includes one certified copy of the amended record; additional certified copies cost $9 each. If you can't provide your original (incorrect) birth certificate, add a $15 search fee. Processing takes about 8 to 12 weeks.",
+    "cost": {
+      "amount_usd": 27.5,
+      "note": "Includes one certified copy of the amended birth certificate. Additional certified copies cost $9 each. If you cannot provide your original (incorrect) birth certificate, add a $15 search fee."
+    },
+    "timeline": {
+      "typical": "about 8 to 12 weeks"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://ldh.la.gov/vital-records/amendments-to-birth-records",
+      "title": "Louisiana Department of Health, Center for Vital Records and Statistics — Amendments to Birth Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "la.drivers-license.name",
+    "jurisdiction": "US-LA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Louisiana driver's license name change",
+    "statement": "To change the name on your Louisiana driver's license, you must first record the change with the Social Security Administration. Then you go to the Office of Motor Vehicles with original documentation that supports the name change, such as a certified birth certificate, a state-certified marriage license, a divorce decree, or probate court documents, along with your current license, proof of residency, and proof of insurance for any vehicle you own. You'll also need to pass a vision test.",
+    "detail": "The Office of Motor Vehicles checks name changes against Social Security Administration records online, so your name must already be updated there first.",
+    "cost": {
+      "amount_usd": 17,
+      "note": "This is the fee for a standard license. A local fee of up to $8 may also apply. A name change is treated as a duplicate license, so your license's expiration date doesn't change."
+    },
+    "prerequisites": [
+      "ssa-card"
+    ],
+    "source": {
+      "url": "https://expresslane.la.gov/omv/resources/faqs/",
+      "title": "Louisiana Office of Motor Vehicles — Frequently Asked Questions",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "la.drivers-license.gender-marker",
+    "jurisdiction": "US-LA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Louisiana driver's license/ID gender change policy",
+    "statement": "Louisiana's Office of Motor Vehicles policy lets you change the gender shown on your driver's license or ID card with a medical statement, signed by a physician, saying you have undergone a \"successful gender change/reassignment.\" The gender change itself does not require a court order or proof of surgery.",
+    "detail": "If you are also changing your name because of the gender change, you must also present a certified or true copy of a court order for the name change. This is an internal agency policy (Policy 22.01, last revised March 12, 2009), not a state law, and it is not published on OMV's public-facing web pages — the FAQ and other consumer pages never mention a gender or sex field. Confirm current practice directly with OMV before relying on it.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://public.powerdms.com/ladpsc/documents/368304",
+      "title": "Louisiana Office of Motor Vehicles Policy 22.01 — Gender Change / Reassignment",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]

@@ -25,6 +25,7 @@ interface StateDef {
 // The states we currently cover. Federal steps (SSA, passport) are woven into each
 // guide by the checklist builder, so they need no separate page.
 const STATES: StateDef[] = [
+  { slug: "alabama", id: "US-AL", name: { en: "Alabama", es: "Alabama" } },
   { slug: "arkansas", id: "US-AR", name: { en: "Arkansas", es: "Arkansas" } },
   { slug: "arizona", id: "US-AZ", name: { en: "Arizona", es: "Arizona" } },
   { slug: "california", id: "US-CA", name: { en: "California", es: "California" } },
@@ -35,10 +36,12 @@ const STATES: StateDef[] = [
   { slug: "georgia", id: "US-GA", name: { en: "Georgia", es: "Georgia" } },
   { slug: "colorado", id: "US-CO", name: { en: "Colorado", es: "Colorado" } },
   { slug: "illinois", id: "US-IL", name: { en: "Illinois", es: "Illinois" } },
+  { slug: "louisiana", id: "US-LA", name: { en: "Louisiana", es: "Luisiana" } },
   { slug: "maryland", id: "US-MD", name: { en: "Maryland", es: "Maryland" } },
   { slug: "massachusetts", id: "US-MA", name: { en: "Massachusetts", es: "Massachusetts" } },
   { slug: "michigan", id: "US-MI", name: { en: "Michigan", es: "Michigan" } },
   { slug: "minnesota", id: "US-MN", name: { en: "Minnesota", es: "Minnesota" } },
+  { slug: "mississippi", id: "US-MS", name: { en: "Mississippi", es: "Misisipi" } },
   { slug: "north-carolina", id: "US-NC", name: { en: "North Carolina", es: "Carolina del Norte" } },
   { slug: "nevada", id: "US-NV", name: { en: "Nevada", es: "Nevada" } },
   { slug: "new-jersey", id: "US-NJ", name: { en: "New Jersey", es: "Nueva Jersey" } },

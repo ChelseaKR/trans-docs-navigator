@@ -1,5 +1,20 @@
 [
   {
+    "id": "al-aoc-ps12",
+    "jurisdiction": "US-AL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form PS-12 — Request to Change Name (For An Adult)",
+    "source": {
+      "url": "https://eforms.alacourt.gov/media/jtzbncuw/request-to-change-name.pdf",
+      "title": "Alabama Administrative Office of Courts — Request to Change Name (For An Adult), Form PS-12",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "ar-ds-affidavit-name-change",
     "jurisdiction": "US-AR",
     "document_type": "drivers-license",

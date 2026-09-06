@@ -104,6 +104,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
   // silent change to either has to be deliberate.
   const urls = [...loadCorpus().map((r) => r.source.url), ...loadForms().map((f) => f.source.url)];
   assert.deepEqual(unwatchableAmong(urls), [
+    // Mississippi's enacted 2026 name-change act (SB 2126) is only published as a PDF
+    // on the Legislature's own bill-document site, so no baseline can be taken —
+    // deliberate, with the Mississippi corpus.
+    "https://billstatus.ls.state.ms.us/documents/2026/pdf/SB/2100-2199/SB2126SG.pdf",
     // Delaware: the Court of Common Pleas name-change petition packet, the DMV's gender-
     // designation procedure and its Form MV2020, and the Division of Public Health's
     // Gender Reassignment instructions and Requester's Affidavit are all PDFs whose text
@@ -118,9 +122,23 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // pipeline cannot extract, so no baseline can be taken — deliberate addition
     // with the Georgia corpus, not a silent drift in the watch set.
     "https://dph.georgia.gov/document/document/affidavit-amendment-form-3977-revisedpdf/download",
+    // Alabama's Request to Change Name (Form PS-12) is a PDF whose text this pipeline
+    // cannot extract, so no baseline can be taken — deliberate, with the Alabama corpus.
+    "https://eforms.alacourt.gov/media/jtzbncuw/request-to-change-name.pdf",
+    // Louisiana's Department of Health birth-records amendment page refuses this
+    // project's declared user-agent (HTTP 403) — deliberate, with the Louisiana corpus.
+    "https://ldh.la.gov/vital-records/amendments-to-birth-records",
+    // Mississippi's Vital Records rules (birth-certificate name and sex-designation
+    // amendment) are only published as a PDF, so no baseline can be taken —
+    // deliberate, with the Mississippi corpus.
+    "https://msdh.ms.gov/phs/VR_rules_2023_new_format.pdf",
     // Ohio's vital-records page refuses this project's declared user-agent
     // domain-wide, so no baseline can be taken — deliberate, with the Ohio corpus.
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record",
+    // Louisiana's OMV internal gender-change policy (Policy 22.01) is a PDF whose text
+    // this pipeline cannot extract, so no baseline can be taken — deliberate, with the
+    // Louisiana corpus.
+    "https://public.powerdms.com/ladpsc/documents/368304",
     // Arizona: both are PDFs whose text this pipeline cannot extract, so no
     // baseline can be taken — deliberate, with the Arizona corpus.
     "https://superiorcourt.maricopa.gov/media/emucljue/name-gender-change-eng-spa.pdf",

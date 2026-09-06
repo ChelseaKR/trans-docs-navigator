@@ -850,6 +850,87 @@
         "status": "HTTP 403",
         "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
       }
+    },
+    "https://billstatus.ls.state.ms.us/documents/2026/pdf/SB/2100-2199/SB2126SG.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://eforms.alacourt.gov/media/jtzbncuw/request-to-change-name.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://expresslane.la.gov/omv/resources/faqs/": {
+      "file": "expresslane-la-gov-omv-resources-faqs-9eb81d9b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "b02f4147dc958f2b2c4b53f77d39ffeaf25b0f0d73ef8f4af9f872905a625460"
+    },
+    "https://jeffcoprobatecourt.com/judicial/court-costs/": {
+      "file": "jeffcoprobatecourt-com-judicial-court-costs-d756ce53.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d573188da5ec0cefec2a0aa2108c9c1d5c82b21be254ae1fc00caac1a8f490d2"
+    },
+    "https://ldh.la.gov/vital-records/amendments-to-birth-records": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://msdh.ms.gov/msdhsite/_static/31,0,109,808.html": {
+      "file": "msdh-ms-gov-msdhsite-static-31-0-109-808-html-9d4cc439.txt",
+      "fetched": "2026-09-05",
+      "sha256": "aac3383830de492a192369b1f3f4ba6881ee163bf9079f0042bf38394f394a38"
+    },
+    "https://msdh.ms.gov/phs/VR_rules_2023_new_format.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://public.powerdms.com/ladpsc/documents/368304": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.alabamapublichealth.gov/vitalrecords/birth-certificate-corrections.html": {
+      "file": "alabamapublichealth-gov-vitalrecords-birth-certificate-corrections-htm-a1cbede7.txt",
+      "fetched": "2026-09-05",
+      "sha256": "7f85653f1721a5d832909cfafea73de4e1da565edd2afbc219f6d8720686721a"
+    },
+    "https://www.alea.gov/dps/driver-license/driver-license-forms": {
+      "file": "alea-gov-dps-driver-license-driver-license-forms-c5352255.txt",
+      "fetched": "2026-09-05",
+      "sha256": "1c3b9927c18a9486113e8cf7ab9d74e381325cb510f6a55bb9c939e03aced2a4"
+    },
+    "https://www.driverservicebureau.dps.ms.gov/node/303": {
+      "file": "driverservicebureau-dps-ms-gov-node-303-9f31deeb.txt",
+      "fetched": "2026-09-05",
+      "sha256": "cf52f4775499634277d78d1f939c79fe6a2ba97a855f6d1561b4e5cb284201b2"
+    },
+    "https://www.legis.la.gov/Legis/Law.aspx?d=77843": {
+      "file": "legis-la-gov-legis-law-aspx-9bd40bc8.txt",
+      "fetched": "2026-09-05",
+      "sha256": "ce91be0615e8a322d85d4218348513b9690e3694255e779229e1a4b5a6c40324"
+    },
+    "https://www.legis.la.gov/Legis/Law.aspx?d=77847": {
+      "file": "legis-la-gov-legis-law-aspx-bbab921b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "fc0e5fb8585e10ee5733ef9fa916610ad49f4e93c00ecca66077960288dd46c2"
+    },
+    "https://www.legis.la.gov/Legis/Law.aspx?d=98725": {
+      "file": "legis-la-gov-legis-law-aspx-354feb41.txt",
+      "fetched": "2026-09-05",
+      "sha256": "1bb9cd7cfb46208e7e386427824250a6dfc53b54d1b8da429dca6b83d7bd8d0e"
     }
   }
 }

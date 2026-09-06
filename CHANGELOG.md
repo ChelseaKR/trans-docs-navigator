@@ -8,6 +8,73 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Alabama, Mississippi, and Louisiana** (M6 — expand jurisdictions): 19 EN + 19 ES
+  corpus records (6 AL + 6 MS + 7 LA) covering court-order name change, driver's-license/
+  ID name and gender-marker, and birth-certificate name and gender-marker, plus 2
+  referrals and 1 forms-registry entry per state, each sourced from an official state
+  legislature, courts, DMV/DPS, or health-department page and fetched into
+  `corpus/snapshots/`. These three are among the most restrictive states in the corpus,
+  and several records say so plainly rather than describing a process that doesn't exist:
+  - **Alabama**: ALEA's driver-license pages and the Department of Public Health's
+    birth-certificate corrections page never mention a sex/gender field at all — recorded
+    as an undocumented absence (`needs_reverification`), not inferred either way. The
+    birth-certificate NAME-change record is similarly hedged: the page's three named
+    amendment categories (error correction, legitimation/paternity, adoption) do not
+    include a post-hoc legal name change, so the record says the page doesn't address it.
+    Alabama's own name-change form (PS-12) names no enabling statute for the process.
+  - **Mississippi**: the vital-records administrative rule (Rev. 2023) DOES let someone
+    amend the sex marker on a birth certificate with a certified court order plus a
+    physician's statement — a real, current path that is not published anywhere on
+    Mississippi's own consumer-facing birth-certificate or FAQ pages. The driver's-license
+    gender-marker record is a documented absence; the court-order record notes a new 2026
+    law (effective July 1, 2026) barring a name change for someone required to register as
+    a sex offender.
+  - **Louisiana**: birth-certificate sex-marker change (La. R.S. 40:62, unchanged since
+    1986) requires actual "sex reassignment or corrective surgery" and a lawsuit against
+    the state registrar — recorded as `needs_reverification` given how contested and
+    surgery-gated this path is. Louisiana's own vital-records page never mentions this
+    statute; its administrative "correct the sex" option is explicitly marked "not
+    applicable for gender reassignment," a gap significant enough to warrant its own
+    record. By contrast, the Office of Motor Vehicles' internal policy (22.01) allows a
+    driver's-license/ID gender-marker change with only a physician's letter and no court
+    order — also marked `needs_reverification`, since it is an unpublished internal policy
+    that has not been revised since 2009, not a statute.
+
+  What I could not fully verify by machine: Alabama's and Mississippi's official code
+  databases (`alison.legislature.state.al.us`, and no equivalent for Mississippi's
+  consolidated Code) are either unreachable JavaScript apps or simply don't exist as a
+  free public resource, so the court-order records cite the best available primary
+  source instead (Alabama's own AOC form; Mississippi's enacted 2026 act). Louisiana's
+  Department of Health page (`ldh.la.gov`) returns HTTP 403 to this project's declared
+  user-agent, so it is recorded as unwatchable (`refuses-our-user-agent`) alongside NY
+  Courts and Michigan, the same honest degradation this repo already applies there.
+
+  All 38 new corpus records (19 EN + 19 ES) carry `"verifier": "Pilot Seed Reviewer"`;
+  none are launch-cleared. Gender-marker and other contested/recently-changed records use
+  `recheck_sla_days: 30`, matching the existing convention for politically volatile topics.
+
+  Adding Alabama moved `tests/coverage-honesty.test.ts`'s dynamically-derived uncovered
+  state to Alaska (`US-AK`) automatically, as designed. Several *other* fixtures across
+  the suite hardcoded `US-AL` as a stand-in "genuinely uncovered" jurisdiction — the same
+  recurring problem that file's own comments describe (previously `US-FL`, then `US-OH`)
+  — and have now been swapped to `US-AK` too: two `eval/gold.ts` items
+  (`tx-unsupported-court`, `adv-injection-no-records`), the `tests/gate-efficacy`
+  eval-poison fixtures, `scripts/disclosure-check.ts`'s refusal cases, and one fixture
+  each in `tests/pages.test.ts`, `tests/retrieval.test.ts`, `tests/checklist.test.ts`,
+  `tests/embedding-retrieval.test.ts`, `tests/guidance.test.ts`, and `tests/bedrock.test.ts`.
+
+  `make verify`: 24/24 gates pass. `make fidelity`: 0 unsupported assertions across the
+  new records (219 uncheckable corpus-wide, up from 219 pre-existing — 5 newly introduced
+  by this PR: 4 unextractable PDFs and Louisiana's 403'd health-department page — none
+  newly unsupported).
+
+  Snapshot discipline: `make source-snapshot` also refreshed ~24 pre-existing snapshots
+  with live drift from this simulated environment's source pages, unrelated to this
+  change. Those refreshes were reverted (`git checkout -- corpus/snapshots/`) rather than
+  adopted blind, per `docs/OPERATIONS.md`'s re-baseline discipline — only the 9 new HTML
+  snapshots and their `corpus/source-hashes.json` baselines were added; the 5 PDF/403
+  sources have no snapshot text to baseline and are recorded as unwatchable instead.
+
 - **Delaware, New Hampshire, and Maine** (M6 — expand jurisdictions): 20 EN + 20 ES corpus
   records (court-order name change, driver's-license name and gender-marker, and
   birth-certificate name and gender-marker for all three states), 6 referrals, and 5

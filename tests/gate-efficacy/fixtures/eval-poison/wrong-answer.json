@@ -28,18 +28,18 @@
     "id": "base-unsupported-refusal",
     "suite": "refusal",
     "segment": {
-      "jurisdiction": "US-AL",
+      "jurisdiction": "US-AK",
       "language": "en"
     },
     "query": {
-      "jurisdiction": "US-AL",
+      "jurisdiction": "US-AK",
       "change_types": [
         "name"
       ],
       "documents": [
         "court-order"
       ],
-      "question": "Alabama name change"
+      "question": "Alaska name change"
     },
     "expect": {
       "refused": true

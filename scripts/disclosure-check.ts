@@ -102,8 +102,11 @@ for (const lang of ["en", "es"] as Language[]) {
 const answerCases: { name: string; query: Parameters<typeof answer>[0] }[] = [
   { name: "grounded-en", query: { jurisdiction: "US-CA", change_types: ["name"] } },
   { name: "grounded-es", query: { jurisdiction: "US-CA", change_types: ["name"], language: "es" } },
-  { name: "refusal-en", query: { jurisdiction: "US-AL", change_types: ["name"] } },
-  { name: "refusal-es", query: { jurisdiction: "US-AL", change_types: ["name"], language: "es" } },
+  // US-AK: genuinely uncovered (see tests/coverage-honesty.test.ts's UNCOVERED) after
+  // this PR's US-AL/MS/LA addition — these two cases have swapped states before as each
+  // gained corpus coverage.
+  { name: "refusal-en", query: { jurisdiction: "US-AK", change_types: ["name"] } },
+  { name: "refusal-es", query: { jurisdiction: "US-AK", change_types: ["name"], language: "es" } },
 ];
 for (const c of answerCases) {
   const ans = answer(c.query);

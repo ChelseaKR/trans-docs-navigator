@@ -49,8 +49,11 @@ test("empty document selection uses the recommended standard set", () => {
 });
 
 test("records a gap for an unsupported jurisdiction/document", () => {
+  // US-AK: genuinely uncovered (see tests/coverage-honesty.test.ts's UNCOVERED) after
+  // this PR's US-AL/MS/LA addition — this fixture has swapped states before as each
+  // gained corpus coverage.
   const cl = buildChecklist(
-    { jurisdiction: "US-AL", change_types: ["name"], documents: ["court-order"], language: "en" },
+    { jurisdiction: "US-AK", change_types: ["name"], documents: ["court-order"], language: "en" },
     today,
   );
   assert.equal(cl.steps.length, 0);

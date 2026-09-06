@@ -45,8 +45,10 @@ test("the embedding retriever is drop-in: guidance produces a grounded, cited an
 });
 
 test("unsupported jurisdiction still refuses under the embedding retriever", () => {
+  // US-AK: genuinely uncovered (see tests/coverage-honesty.test.ts's UNCOVERED) after
+  // this PR's US-AL/MS/LA addition.
   const ans = answer(
-    { jurisdiction: "US-AL", change_types: ["name"], documents: ["court-order"], today },
+    { jurisdiction: "US-AK", change_types: ["name"], documents: ["court-order"], today },
     { retriever: embeddingRetrieve },
   );
   assert.equal(ans.refused, true);
