@@ -17,9 +17,11 @@ name: release
 # Uses only GITHUB_TOKEN + keyless OIDC (Sigstore Fulcio/Rekor) — no long-lived
 # credential, no repo secret to provision.
 #
-# Harden Runner (SEC-04, #158): `ci.yml`'s 9 jobs are all `egress-policy: block`
-# now, with allowlists mined from observed audit-mode runs (see its header). Every
-# job below STAYS in `audit`, and that is deliberate, not an oversight:
+# Harden Runner (SEC-04, #158): 8 of `ci.yml`'s 9 jobs are `egress-policy: block`
+# now, with allowlists mined from observed audit-mode runs (see its header) — the
+# 9th, `container-and-infra`, stayed in `audit` for a specific, PR-CI-verified
+# reason (a non-deterministic per-pull CDN redirect), also documented there.
+# Every job below STAYS in `audit` too, and that is deliberate, not an oversight:
 #
 #   * This workflow has NEVER RUN — `git tag -l` is empty (see
 #     docs/audits/scorecard-2026-07.md, "Signed-Releases: N/A"). There is no
