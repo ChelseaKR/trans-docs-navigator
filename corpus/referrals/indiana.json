@@ -2,15 +2,15 @@
   {
     "id": "in.referral.ils-lgbtq-project",
     "jurisdiction": "US-IN",
-    "name": "Indiana Legal Services — LGBTQ+ Project",
+    "name": "Indiana Legal Services \u2014 LGBTQ+ Project",
     "url": "https://www.indianalegalservices.org/lgbtvap/identity-documents-information/",
     "note": {
       "en": "Indiana Legal Services is the state's largest provider of free civil legal aid; its LGBTQ+ Project publishes name- and gender-marker-change guides and can help eligible low-income Hoosiers with a name-change petition.",
-      "es": "Indiana Legal Services es el proveedor más grande de ayuda legal civil gratuita del estado; su Proyecto LGBTQ+ publica guías para cambios de nombre y de marcador de género y puede ayudar a residentes de bajos ingresos de Indiana con una petición de cambio de nombre."
+      "es": "Indiana Legal Services es el proveedor m\u00e1s grande de ayuda legal civil gratuita del estado; su Proyecto LGBTQ+ publica gu\u00edas para cambios de nombre y de marcador de g\u00e9nero y puede ayudar a residentes de bajos ingresos de Indiana con una petici\u00f3n de cambio de nombre."
     },
     "source": {
       "url": "https://www.indianalegalservices.org/lgbtvap/identity-documents-information/",
-      "title": "Indiana Legal Services — Name and Gender Marker Changes",
+      "title": "Indiana Legal Services \u2014 Name and Gender Marker Changes",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
@@ -24,11 +24,29 @@
     "url": "https://www.gendernexus.org",
     "note": {
       "en": "Indiana-based nonprofit that supports gender-diverse people and their families, including free care coordination for legal name changes and gender-marker updates.",
-      "es": "Organización sin fines de lucro con sede en Indiana que apoya a personas de género diverso y a sus familias, incluida coordinación de cuidados gratuita para cambios legales de nombre y de marcador de género."
+      "es": "Organizaci\u00f3n sin fines de lucro con sede en Indiana que apoya a personas de g\u00e9nero diverso y a sus familias, incluida coordinaci\u00f3n de cuidados gratuita para cambios legales de nombre y de marcador de g\u00e9nero."
     },
     "source": {
       "url": "https://www.gendernexus.org",
       "title": "GenderNexus",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "in.referral.a4te",
+    "jurisdiction": "US-IN",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Indiana identity documents guide",
+    "url": "https://transequality.org/documents/indiana-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Indiana documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Indiana. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/indiana-identity-documents",
+      "title": "A4TE \u2014 Indiana Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

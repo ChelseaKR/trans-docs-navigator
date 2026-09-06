@@ -6,7 +6,7 @@
     "url": "https://www.palegalaid.net",
     "note": {
       "en": "Pennsylvania's statewide network of nonprofit legal aid programs, which can help connect low-income residents to free legal help for a name-change petition.",
-      "es": "Red estatal de programas de ayuda legal sin fines de lucro de Pensilvania, que puede ayudar a conectar a residentes de bajos ingresos con ayuda legal gratuita para una petición de cambio de nombre."
+      "es": "Red estatal de programas de ayuda legal sin fines de lucro de Pensilvania, que puede ayudar a conectar a residentes de bajos ingresos con ayuda legal gratuita para una petici\u00f3n de cambio de nombre."
     },
     "source": {
       "url": "https://www.palegalaid.net",
@@ -24,11 +24,29 @@
     "url": "https://www.mazzonicenter.org",
     "note": {
       "en": "Philadelphia-based LGBTQ health and legal services organization that has run legal clinics helping Pennsylvanians with name and gender-marker changes.",
-      "es": "Organización de servicios de salud y legales LGBTQ con sede en Filadelfia que ha realizado clínicas legales para ayudar a personas de Pensilvania con cambios de nombre y de marcador de género."
+      "es": "Organizaci\u00f3n de servicios de salud y legales LGBTQ con sede en Filadelfia que ha realizado cl\u00ednicas legales para ayudar a personas de Pensilvania con cambios de nombre y de marcador de g\u00e9nero."
     },
     "source": {
       "url": "https://www.mazzonicenter.org",
       "title": "Mazzoni Center",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "pa.referral.a4te",
+    "jurisdiction": "US-PA",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Pennsylvania identity documents guide",
+    "url": "https://transequality.org/documents/pennsylvania-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Pennsylvania documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Pensilvania. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/pennsylvania-identity-documents",
+      "title": "A4TE \u2014 Pennsylvania Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

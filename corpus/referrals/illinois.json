@@ -6,7 +6,7 @@
     "url": "https://www.centeronhalsted.org",
     "note": {
       "en": "Chicago's LGBTQ+ community center; hosts legal-name-change clinics and can refer to attorneys familiar with Illinois gender-marker petitions.",
-      "es": "Centro comunitario LGBTQ+ de Chicago; organiza clínicas de cambio legal de nombre y puede referir a abogados familiarizados con peticiones de marcador de género en Illinois."
+      "es": "Centro comunitario LGBTQ+ de Chicago; organiza cl\u00ednicas de cambio legal de nombre y puede referir a abogados familiarizados con peticiones de marcador de g\u00e9nero en Illinois."
     },
     "source": {
       "url": "https://www.centeronhalsted.org",
@@ -24,12 +24,30 @@
     "url": "https://www.illinoislegalaid.org",
     "note": {
       "en": "Statewide nonprofit legal-information hub with self-help articles and a directory to connect Illinois residents with free or low-cost legal aid.",
-      "es": "Centro estatal sin fines de lucro de información legal con artículos de autoayuda y un directorio para conectar a residentes de Illinois con ayuda legal gratuita o de bajo costo."
+      "es": "Centro estatal sin fines de lucro de informaci\u00f3n legal con art\u00edculos de autoayuda y un directorio para conectar a residentes de Illinois con ayuda legal gratuita o de bajo costo."
     },
     "source": {
       "url": "https://www.illinoislegalaid.org",
       "title": "Illinois Legal Aid Online",
       "last_verified": "2026-06-01",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "il.referral.a4te",
+    "jurisdiction": "US-IL",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Illinois identity documents guide",
+    "url": "https://transequality.org/documents/illinois-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Illinois documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Illinois. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/illinois-identity-documents",
+      "title": "A4TE \u2014 Illinois Identity Documents",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",

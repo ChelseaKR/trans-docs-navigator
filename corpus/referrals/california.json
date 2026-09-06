@@ -6,7 +6,7 @@
     "url": "https://transgenderlawcenter.org",
     "note": {
       "en": "Trans-led legal organization headquartered in Oakland; offers know-your-rights resources and can connect Californians with legal help for name and gender-marker changes.",
-      "es": "Organización legal liderada por personas trans con sede en Oakland; ofrece recursos sobre sus derechos y puede conectar a residentes de California con ayuda legal para cambios de nombre y de marcador de género."
+      "es": "Organizaci\u00f3n legal liderada por personas trans con sede en Oakland; ofrece recursos sobre sus derechos y puede conectar a residentes de California con ayuda legal para cambios de nombre y de marcador de g\u00e9nero."
     },
     "source": {
       "url": "https://transgenderlawcenter.org",
@@ -20,16 +20,34 @@
   {
     "id": "ca.referral.la-lgbt-center",
     "jurisdiction": "US-CA",
-    "name": "Los Angeles LGBT Center — Legal Services",
+    "name": "Los Angeles LGBT Center \u2014 Legal Services",
     "url": "https://lalgbtcenter.org",
     "note": {
       "en": "Free legal services program, including help with court petitions for legal name and gender-marker changes for Los Angeles-area residents.",
-      "es": "Programa de servicios legales gratuitos, incluida ayuda con peticiones judiciales para cambios legales de nombre y de marcador de género para residentes del área de Los Ángeles."
+      "es": "Programa de servicios legales gratuitos, incluida ayuda con peticiones judiciales para cambios legales de nombre y de marcador de g\u00e9nero para residentes del \u00e1rea de Los \u00c1ngeles."
     },
     "source": {
       "url": "https://lalgbtcenter.org",
       "title": "Los Angeles LGBT Center",
       "last_verified": "2026-06-01",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ca.referral.a4te",
+    "jurisdiction": "US-CA",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 California identity documents guide",
+    "url": "https://transequality.org/documents/california-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on California documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de California. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/california-identity-documents",
+      "title": "A4TE \u2014 California Identity Documents",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",

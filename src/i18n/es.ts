@@ -104,6 +104,8 @@ export const es: LocaleBundle = {
       `${n} paso(s) no tienen ninguna tarifa indicada en nuestras fuentes, así que esto es un mínimo, no un costo completo. No estimamos lo que una fuente no indica.`,
     moreHeading: "Más información",
     seeDetailedAnswer: "Vea en detalle lo que dicen las fuentes",
+    helpHeading: "Dónde obtener ayuda",
+    helpIntro: "Estas organizaciones publican sus propias guías o pueden ayudarle directamente.",
     officialFormIntro: "Este es un formulario oficial del gobierno. Descárguelo desde la fuente a continuación y complételo usted mismo: no lo llenamos por usted, así que siempre trabaja con la versión oficial.",
     whatToBringTitle: "Qué traer",
     copyTitle: "Sus datos, listos para copiar",
