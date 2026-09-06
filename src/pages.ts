@@ -64,7 +64,21 @@ const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-WI", label: "Wisconsin" },
   { id: "US-WY", label: "Wyoming" },
 ];
-const DOCUMENT_IDS: DocumentType[] = ["court-order", "ssa-card", "drivers-license", "passport", "birth-certificate", "financial-records"];
+const DOCUMENT_IDS: DocumentType[] = [
+  "court-order",
+  "ssa-card",
+  "drivers-license",
+  "passport",
+  "birth-certificate",
+  "financial-records",
+  "green-card",
+  "naturalization-certificate",
+  "ead",
+  "selective-service",
+  "military-records",
+  "trusted-traveler",
+  "federal-employment-records",
+];
 
 export function renderIntakePage(lang: Language = "en"): string {
   const s = uiStrings(lang);

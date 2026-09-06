@@ -12,20 +12,20 @@
 
 | | Count |
 |---|---|
-| Records audited | 602 |
-| Load-bearing assertions found | 1350 |
-| — checked and **supported** by the cited source | 916 |
+| Records audited | 634 |
+| Load-bearing assertions found | 1364 |
+| — checked and **supported** by the cited source | 920 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 434 |
-| of the checked: literal (fee / duration / form-id) matches | 605 |
+| — **UNCHECKABLE** (reported, never passed) | 444 |
+| of the checked: literal (fee / duration / form-id) matches | 609 |
 | of the checked: necessary-condition only (topic present, wording NOT verified) | 311 |
 
 ## What this gate cannot vouch for
 
-- **2207 of 2725 prose sentences** in the corpus carry no extractable
+- **2306 of 2830 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **826 sentences state a negative** (`you do not need a court order`, `the page no
+- **877 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
 - **311 assertions are necessary-condition only**: the source discusses the topic, which
@@ -56,7 +56,7 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 
 ## Uncheckable assertions (reported, never passed)
 
-**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 260 assertion(s):
+**the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked** — 264 assertion(s):
 
 - `al.court-order.name · this action happens where you live, so the route closes when you move`
 - `al.court-order.name · official form PS12 backs this step (form_ref: al-aoc-ps12)`
@@ -95,6 +95,8 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `dc.birth-certificate.gender-marker · states $23`
 - `dc.birth-certificate.gender-marker · states $51`
 - `dc.birth-certificate.gender-marker · states "3 business-day"`
+- `us.green-card.name · form_ref "us-i-90" (Form I-90 — Application to Replace Permanent Resident Card) carries no form identifier to match on`
+- `us.green-card.name · a court order is required`
 - `ga.birth-certificate.name · costs $10`
 - `ga.birth-certificate.name · official form DPH3977 backs this step (form_ref: ga-dph-3977)`
 - `ga.birth-certificate.name · a court order is required`
@@ -307,6 +309,8 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `ky.birth-certificate.gender-marker.es · costs $10`
 - `ky.birth-certificate.gender-marker.es · official form VS2J backs this step (form_ref: ky-vs-2j)`
 - `ky.birth-certificate.gender-marker.es · a court order is required`
+- `us.green-card.name.es · form_ref "us-i-90" (Form I-90 — Application to Replace Permanent Resident Card) carries no form identifier to match on`
+- `us.green-card.name.es · a court order is required`
 - `tn.birth-certificate.name · names form PH1186`
 - `tn.birth-certificate.name · states $15`
 - `tn.birth-certificate.name · a court order is required`
@@ -448,10 +452,13 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `dc.court-order.name.es · costs $60`
 - `dc.court-order.name.es · form_ref "dc-name-change-adult" (Application for Change of Name of an Adult (DC Superior Court)) carries no form identifier to match on`
 
-**the official form has no identifier to match on** — 38 assertion(s):
+**the official form has no identifier to match on** — 44 assertion(s):
 
 - `az.birth-certificate.name · form_ref "az-affidavit-correct-amend-birth" (Affidavit to Correct or Amend a Birth Certificate) carries no form identifier to match on`
 - `ar.drivers-license.name · form_ref "ar-ds-affidavit-name-change" (Affidavit of Legal Name Change) carries no form identifier to match on`
+- `us.naturalization-certificate.name · form_ref "us-n-565" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on`
+- `us.naturalization-certificate.gender-marker · form_ref "us-n-565" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on`
+- `us.ead.name · form_ref "us-i-765" (Form I-765 — Application for Employment Authorization) carries no form identifier to match on`
 - `hi.drivers-license.name · form_ref "hi-dl-application" (State of Hawaii Driver's License Application) carries no form identifier to match on`
 - `il.birth-certificate.gender-marker · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
 - `il.birth-certificate.name · form_ref "il-affidavit-correction" (Affidavit and Certificate of Correction Request) carries no form identifier to match on`
@@ -485,6 +492,9 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `wy.birth-certificate.name.es · form_ref "wy-vrs-correction-form" (Form to Correct a Wyoming Vital Record) carries no form identifier to match on`
 - `wv.birth-certificate.name.es · form_ref "wv-hsc-affidavit-correct-birth" (West Virginia Health Statistics Center — Affidavit to Correct Birth (Adult)) carries no form identifier to match on`
 - `wv.birth-certificate.gender-marker.es · form_ref "wv-hsc-sex-designation" (West Virginia Health Statistics Center — Sex Designation Form) carries no form identifier to match on`
+- `us.naturalization-certificate.name.es · form_ref "us-n-565" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on`
+- `us.naturalization-certificate.gender-marker.es · form_ref "us-n-565" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on`
+- `us.ead.name.es · form_ref "us-i-765" (Form I-765 — Application for Employment Authorization) carries no form identifier to match on`
 - `wv.birth-certificate.name · form_ref "wv-hsc-affidavit-correct-birth" (West Virginia Health Statistics Center — Affidavit to Correct Birth (Adult)) carries no form identifier to match on`
 - `wv.birth-certificate.gender-marker · form_ref "wv-hsc-sex-designation" (West Virginia Health Statistics Center — Sex Designation Form) carries no form identifier to match on`
 - `wy.birth-certificate.name · form_ref "wy-vrs-correction-form" (Form to Correct a Wyoming Vital Record) carries no form identifier to match on`
@@ -1024,14 +1034,46 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `tx.drivers-license.gender-marker.es` | es | 2 | 0 | 0 | 3/5 |
 | `tx.drivers-license.name` | en | 1 | 0 | 0 | 1/1 |
 | `tx.drivers-license.name.es` | es | 1 | 0 | 0 | 1/1 |
+| `us.ead.gender-marker` | en | 0 | 0 | 0 | 3/3 |
+| `us.ead.gender-marker.es` | es | 0 | 0 | 0 | 3/3 |
+| `us.ead.name` | en | 0 | 0 | 1 | 4/4 |
+| `us.ead.name.es` | es | 0 | 0 | 1 | 4/4 |
+| `us.federal-employment-records.gender-marker` | en | 0 | 0 | 0 | 3/3 |
+| `us.federal-employment-records.gender-marker.es` | es | 0 | 0 | 0 | 3/3 |
+| `us.federal-employment-records.name` | en | 0 | 0 | 0 | 4/4 |
+| `us.federal-employment-records.name.es` | es | 0 | 0 | 0 | 4/4 |
+| `us.green-card.gender-marker` | en | 0 | 0 | 0 | 4/4 |
+| `us.green-card.gender-marker.es` | es | 0 | 0 | 0 | 4/4 |
+| `us.green-card.name` | en | 0 | 0 | 2 | 4/4 |
+| `us.green-card.name.es` | es | 0 | 0 | 2 | 6/6 |
+| `us.military-records.correction` | en | 1 | 0 | 0 | 2/3 |
+| `us.military-records.correction.es` | es | 1 | 0 | 0 | 2/3 |
+| `us.military-records.va-name-change` | en | 0 | 0 | 0 | 3/3 |
+| `us.military-records.va-name-change.es` | es | 0 | 0 | 0 | 3/3 |
+| `us.naturalization-certificate.gender-marker` | en | 0 | 0 | 1 | 4/4 |
+| `us.naturalization-certificate.gender-marker.es` | es | 0 | 0 | 1 | 4/4 |
+| `us.naturalization-certificate.name` | en | 0 | 0 | 1 | 2/2 |
+| `us.naturalization-certificate.name.es` | es | 0 | 0 | 1 | 2/2 |
 | `us.passport.gender-marker` | en | 0 | 0 | 0 | 6/6 |
 | `us.passport.gender-marker.es` | es | 0 | 0 | 1 | 12/12 |
 | `us.passport.name` | en | 0 | 0 | 7 | 1/4 |
 | `us.passport.name.es` | es | 0 | 0 | 7 | 2/5 |
+| `us.selective-service.gender-marker` | en | 0 | 0 | 0 | 3/3 |
+| `us.selective-service.gender-marker.es` | es | 0 | 0 | 0 | 5/5 |
+| `us.selective-service.name` | en | 0 | 0 | 0 | 3/3 |
+| `us.selective-service.name.es` | es | 0 | 0 | 0 | 3/3 |
 | `us.ssa-card.gender-marker` | en | 0 | 0 | 0 | 6/6 |
 | `us.ssa-card.gender-marker.es` | es | 0 | 0 | 0 | 6/6 |
 | `us.ssa-card.name` | en | 2 | 0 | 0 | 4/5 |
 | `us.ssa-card.name.es` | es | 2 | 0 | 0 | 4/5 |
+| `us.trusted-traveler.gender-marker-global-entry` | en | 0 | 0 | 0 | 3/3 |
+| `us.trusted-traveler.gender-marker-global-entry.es` | es | 0 | 0 | 0 | 3/3 |
+| `us.trusted-traveler.gender-marker-tsa-precheck` | en | 0 | 0 | 0 | 3/3 |
+| `us.trusted-traveler.gender-marker-tsa-precheck.es` | es | 0 | 0 | 0 | 3/3 |
+| `us.trusted-traveler.name-global-entry` | en | 0 | 0 | 0 | 2/2 |
+| `us.trusted-traveler.name-global-entry.es` | es | 0 | 0 | 0 | 3/3 |
+| `us.trusted-traveler.name-tsa-precheck` | en | 1 | 0 | 0 | 0/2 |
+| `us.trusted-traveler.name-tsa-precheck.es` | es | 1 | 0 | 0 | 0/2 |
 | `ut.birth-certificate.fees` | en | 4 | 0 | 0 | 0/3 |
 | `ut.birth-certificate.fees.es` | es | 4 | 0 | 0 | 0/3 |
 | `ut.birth-certificate.gender-marker` | en | 1 | 0 | 0 | 6/6 |

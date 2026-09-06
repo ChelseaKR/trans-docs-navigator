@@ -1,33 +1,33 @@
 {
   "today": "2026-07-13",
-  "total": 204,
+  "total": 216,
   "metrics": [
     {
       "name": "groundedness",
-      "value": 0.984375,
+      "value": 0.9851485148514851,
       "threshold": 0.95,
-      "n": 192,
+      "n": 202,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 160,
+      "n": 169,
       "pass": true
     },
     {
       "name": "refusal_safety",
       "value": 1,
       "threshold": 1,
-      "n": 36,
+      "n": 39,
       "pass": true
     },
     {
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 204,
+      "n": 216,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 160,
+      "n": 169,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
-      "value": 0.925,
+      "value": 0.9289940828402367,
       "threshold": 0.7,
-      "n": 160,
+      "n": 169,
       "pass": true
     }
   ],
@@ -56,7 +56,7 @@
     {
       "segment": "jurisdiction:US",
       "value": 1,
-      "n": 2,
+      "n": 11,
       "pass": true
     },
     {
@@ -368,13 +368,13 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 105,
+      "n": 111,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 55,
+      "n": 58,
       "pass": true
     }
   ],
@@ -2938,6 +2938,126 @@
       },
       "passed": true,
       "notes": []
+    },
+    {
+      "id": "green-card-name",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "green-card-name-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "naturalization-certificate-name",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "naturalization-certificate-name-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ead-name",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "selective-service-name",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "selective-service-name-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "selective-service-marker-silent",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "military-records-marker-silent",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "trusted-traveler-name-tsa",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "federal-employment-records-name",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "federal-employment-records-marker-silent",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
     }
   ],
   "metamorphic": [
@@ -2975,13 +3095,13 @@
       "name": "filter-monotonicity:ca-name-documents-filter",
       "retrieverName": "retrieve",
       "passed": true,
-      "detail": "filtered {ca.court-order.name, ca.court-order.name.form} ⊆ unfiltered {ca.birth-certificate.fees, ca.birth-certificate.name, ca.court-order.name, ca.court-order.name.form, ca.drivers-license.name, us.passport.name, us.ssa-card.name}"
+      "detail": "filtered {ca.court-order.name, ca.court-order.name.form} ⊆ unfiltered {ca.birth-certificate.fees, ca.birth-certificate.name, ca.court-order.name, ca.court-order.name.form, ca.drivers-license.name, us.ead.name, us.federal-employment-records.name, us.green-card.name}"
     },
     {
       "name": "filter-monotonicity:ny-name-documents-filter",
       "retrieverName": "retrieve",
       "passed": true,
-      "detail": "filtered {ny.court-order.name} ⊆ unfiltered {ny.birth-certificate.name, ny.court-order.name, ny.drivers-license.name, us.passport.name, us.ssa-card.name}"
+      "detail": "filtered {ny.court-order.name} ⊆ unfiltered {ny.birth-certificate.name, ny.court-order.name, ny.drivers-license.name, us.ead.name, us.federal-employment-records.name, us.green-card.name, us.military-records.va-name-change, us.trusted-traveler.name-tsa-precheck}"
     },
     {
       "name": "language-consistency:ca-name-court",
@@ -3029,13 +3149,13 @@
       "name": "filter-monotonicity:ca-name-documents-filter",
       "retrieverName": "embeddingRetrieve",
       "passed": true,
-      "detail": "filtered {ca.court-order.name, ca.court-order.name.form} ⊆ unfiltered {ca.birth-certificate.fees, ca.birth-certificate.name, ca.court-order.name, ca.court-order.name.form, ca.drivers-license.name, us.passport.name, us.ssa-card.name}"
+      "detail": "filtered {ca.court-order.name, ca.court-order.name.form} ⊆ unfiltered {ca.birth-certificate.fees, ca.birth-certificate.name, ca.court-order.name, ca.court-order.name.form, ca.drivers-license.name, us.ead.name, us.federal-employment-records.name, us.green-card.name}"
     },
     {
       "name": "filter-monotonicity:ny-name-documents-filter",
       "retrieverName": "embeddingRetrieve",
       "passed": true,
-      "detail": "filtered {ny.court-order.name} ⊆ unfiltered {ny.birth-certificate.name, ny.court-order.name, ny.drivers-license.name, us.passport.name, us.ssa-card.name}"
+      "detail": "filtered {ny.court-order.name} ⊆ unfiltered {ny.birth-certificate.name, ny.court-order.name, ny.drivers-license.name, us.federal-employment-records.name, us.military-records.va-name-change, us.passport.name, us.ssa-card.name, us.trusted-traveler.name-tsa-precheck}"
     },
     {
       "name": "language-consistency:ca-name-court",

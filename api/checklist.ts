@@ -20,6 +20,18 @@ import { t } from "../src/i18n/index.ts";
 const CANONICAL_ORDER: DocumentType[] = [
   "court-order",
   "ssa-card",
+  // Federal immigration/military/employment records (M7) — opt-in only (not in
+  // STANDARD_SET below), so they render only when a person selects them. Placed after
+  // ssa-card so a declared "court-order" prerequisite is always earlier in this order,
+  // and before drivers-license/passport/birth-certificate/financial-records so those
+  // five keep their original relative order.
+  "green-card",
+  "naturalization-certificate",
+  "ead",
+  "selective-service",
+  "military-records",
+  "trusted-traveler",
+  "federal-employment-records",
   "drivers-license",
   "passport",
   "birth-certificate",

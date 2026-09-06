@@ -42,6 +42,13 @@ const DOCUMENT_TYPES: readonly DocumentType[] = [
   "passport",
   "birth-certificate",
   "financial-records",
+  "green-card",
+  "naturalization-certificate",
+  "ead",
+  "selective-service",
+  "military-records",
+  "trusted-traveler",
+  "federal-employment-records",
 ];
 const JURISDICTION_RE = /^US(-[A-Z]{2})?$/;
 

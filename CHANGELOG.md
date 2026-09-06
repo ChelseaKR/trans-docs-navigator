@@ -8,6 +8,33 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **Federal immigration/military/employment layer**: expands the federal layer (`jurisdiction:
+  "US"`) beyond SSA and passport with 7 new document types — `green-card` (Form I-90),
+  `naturalization-certificate` (Form N-565), `ead` (Form I-765), `selective-service`,
+  `military-records` (DD-214 correction via DD Form 149 + a VA name-change record),
+  `trusted-traveler` (TSA PreCheck + Global Entry), and `federal-employment-records`
+  (OPM). 16 EN + 16 ES corpus records, 4 forms-registry entries, and 12 new eval/gold
+  items (EN + ES). Sourced from uscis.gov (including the Policy Manual's April 2025
+  "biological sexes" update, cited by name for the green-card and EAD gender-marker
+  records, and its N-565 chapter for the naturalization-certificate records),
+  sss.gov, archives.gov, va.gov, tsa.gov, and cbp.gov.
+
+  Every gender-marker record either states the sourced policy or says plainly that the
+  official page never addresses a gender-marker change at all (Selective Service,
+  military records, TSA PreCheck, Global Entry, OPM) — an uncovered path renders as a
+  disclosed gap, never a guessed process. OPM's federal-employment-records
+  gender-marker record is backed by a full-text search of the entire Guide to
+  Processing Personnel Actions (17,000+ lines): zero mentions of sex or gender.
+  `federal-employment-records` and `military-records` (DD Form 149, the DD-149 PDF
+  form entries, and the OPM guide PDF) cite unextractable-PDF or no-baseline sources
+  and are UNCHECKABLE by `make fidelity`/drift-watch, never silently passed — added to
+  `tests/watchability.test.ts`'s sorted pin. This is a schema change (`api/types.ts`
+  `DocumentType`, `api/relocation.ts` `PORTABILITY` — all seven are federally
+  portable — `api/checklist.ts` `CANONICAL_ORDER`, `src/pages.ts` `DOCUMENT_IDS`, and
+  EN/ES `docTitles`/`docLabels`), opt-in only (not in `STANDARD_SET`, so they render
+  only when selected) and, like every record in this corpus, verified only by the
+  placeholder `Pilot Seed Reviewer` — mechanically valid, not launch-cleared.
+
 - **District of Columbia, West Virginia, and Kentucky** (M6 — expand jurisdictions): 15 EN
   + 15 ES corpus records (court-order name change, driver's-license name and
   gender-marker, birth-certificate name and gender-marker), 6 referrals, and 8

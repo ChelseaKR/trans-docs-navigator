@@ -7526,5 +7526,317 @@
     "recheck_sla_days": 30,
     "form_ref": "ky-vs-2j",
     "language": "es"
+  },
+  {
+    "id": "us.green-card.name.es",
+    "jurisdiction": "US",
+    "document_type": "green-card",
+    "change_type": ["name"],
+    "topic": "Reemplazo de la tarjeta verde después de un cambio de nombre legal",
+    "statement": "Si su nombre ha cambiado legalmente desde que se emitió su Tarjeta de Residente Permanente (tarjeta verde), los Servicios de Ciudadanía e Inmigración de EE. UU. dicen que debe obtener una tarjeta nueva — presenta el Formulario I-90, Solicitud para Reemplazar la Tarjeta de Residente Permanente.",
+    "detail": "Las instrucciones del Formulario I-90 dicen que si su nombre ha cambiado legalmente, debe presentar documentos legales que prueben el cambio — por ejemplo una orden judicial registrada, un certificado de matrimonio, un decreto de divorcio o un decreto de adopción — y que esos documentos deben haberse registrado ante la autoridad civil correspondiente. Los materiales del Formulario I-90 no indican una tarifa exacta en dólares; USCIS remite a los solicitantes a su Tabla de Tarifas por separado para conocer el monto actual.",
+    "cost": { "amount_usd": null, "note": "Los materiales del Formulario I-90 no indican una tarifa exacta en dólares; USCIS remite a los solicitantes a su Tabla de Tarifas (Formulario G-1055) para conocer el monto actual." },
+    "prerequisites": ["court-order"],
+    "source": {
+      "url": "https://www.uscis.gov/sites/default/files/document/forms/i-90instr.pdf",
+      "title": "USCIS — Instrucciones para el Formulario I-90, Solicitud para Reemplazar la Tarjeta de Residente Permanente",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "us-i-90",
+    "language": "es"
+  },
+  {
+    "id": "us.green-card.gender-marker.es",
+    "jurisdiction": "US",
+    "document_type": "green-card",
+    "change_type": ["gender-marker"],
+    "topic": "Política del marcador de sexo en los documentos emitidos por USCIS, incluida la tarjeta verde",
+    "statement": "El Manual de Políticas de USCIS dice que reconoce solo dos sexos biológicos, masculino o femenino, para los documentos que emite, incluida la Tarjeta de Residente Permanente. USCIS no deja en blanco el campo de sexo en estos documentos, y su manual ya no describe una opción de marcador de sexo X.",
+    "detail": "El Manual de Políticas cita una actualización del 2 de abril de 2025: \"USCIS reconoce los dos sexos biológicos, masculino o femenino, para efectos de revisar solicitudes de beneficios y los documentos emitidos por USCIS.\" El capítulo no describe un proceso para que un titular de tarjeta verde cambie el sexo que aparece en su tarjeta para que coincida con su identidad de género en lugar de su sexo al nacer. Esta es una política reciente y puede cambiar — lea el capítulo oficial del Manual de Políticas antes de confiar en ella.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.uscis.gov/policy-manual/volume-11-part-a-chapter-2",
+      "title": "Manual de Políticas de USCIS, Volumen 11, Parte A, Capítulo 2 — Documentos Seguros de Identidad Emitidos por USCIS",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "us.naturalization-certificate.name.es",
+    "jurisdiction": "US",
+    "document_type": "naturalization-certificate",
+    "change_type": ["name"],
+    "topic": "Reemplazo de un certificado de naturalización después de un cambio de nombre",
+    "statement": "El Manual de Políticas de USCIS dice que puede presentar el Formulario N-565 para actualizar el nombre en un certificado de naturalización de reemplazo, basado en un cambio de nombre ordenado por un tribunal estatal, por efecto de la ley, o como resultado de un matrimonio o divorcio.",
+    "detail": "Las palabras del manual: \"Los solicitantes pueden presentar el Formulario N-565 para actualizar su nombre en un Certificado de Naturalización de reemplazo, basado en un cambio de nombre ordenado por un tribunal estatal con jurisdicción, o por efecto de la ley, incluido un cambio de nombre de derecho consuetudinario evidenciado por una identificación emitida por el estado, o un cambio de nombre resultante de un matrimonio o divorcio.\" La página del Formulario N-565 enumera por separado la evidencia de su cambio de nombre legal entre los documentos a presentar, y remite a la Tabla de Tarifas de USCIS para la tarifa actual en lugar de indicar un monto en dólares.",
+    "cost": { "amount_usd": null, "note": "Los materiales del Formulario N-565 no indican una tarifa exacta en dólares; USCIS remite a los solicitantes a su Tabla de Tarifas (Formulario G-1055) para conocer el monto actual." },
+    "prerequisites": ["court-order"],
+    "source": {
+      "url": "https://www.uscis.gov/policy-manual/volume-12-part-k-chapter-4",
+      "title": "Manual de Políticas de USCIS, Volumen 12, Parte K, Capítulo 4 — Solicitud de Reemplazo del Documento de Naturalización/Ciudadanía (Formulario N-565)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "us-n-565",
+    "language": "es"
+  },
+  {
+    "id": "us.naturalization-certificate.gender-marker.es",
+    "jurisdiction": "US",
+    "document_type": "naturalization-certificate",
+    "change_type": ["gender-marker"],
+    "topic": "Marcador de sexo en un certificado de naturalización o ciudadanía",
+    "statement": "El Manual de Políticas de USCIS dice que cuando el sexo en un certificado se registró incorrectamente por un error administrativo de USCIS, la agencia lo corrige para que coincida con el sexo registrado al nacer. Una actualización de política de abril de 2025 dice que USCIS ahora reconoce solo dos sexos biológicos, masculino o femenino, para los documentos que emite.",
+    "detail": "Las palabras del manual sobre una corrección administrativa: \"Si el sexo de un solicitante aparece incorrectamente en el certificado o declaración, USCIS actualiza el certificado o declaración para que sea consistente con el sexo al nacer, según lo evidencia generalmente el certificado de nacimiento emitido al momento del nacimiento o el más cercano a esa fecha.\" Este capítulo no describe un proceso separado para actualizar el sexo que aparece en su certificado para que coincida con su identidad de género en lugar de su sexo al nacer. Esta es una política reciente y puede cambiar — lea el capítulo oficial del Manual de Políticas antes de confiar en ella.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.uscis.gov/policy-manual/volume-12-part-k-chapter-4",
+      "title": "Manual de Políticas de USCIS, Volumen 12, Parte K, Capítulo 4 — Solicitud de Reemplazo del Documento de Naturalización/Ciudadanía (Formulario N-565)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "us-n-565",
+    "language": "es"
+  },
+  {
+    "id": "us.ead.name.es",
+    "jurisdiction": "US",
+    "document_type": "ead",
+    "change_type": ["name"],
+    "topic": "Reemplazo de un permiso de trabajo (EAD) después de un cambio de nombre legal",
+    "statement": "Si su Documento de Autorización de Empleo (EAD) muestra el nombre equivocado debido a un cambio de nombre legal, USCIS lo trata como un error no causado por USCIS, así que debe presentar un nuevo Formulario I-765 con la tarifa de presentación para obtener una tarjeta corregida.",
+    "detail": "La página del Formulario I-765 de USCIS describe esto bajo \"Reemplazo de una Tarjeta que Contiene Información Incorrecta\": \"Si la tarjeta que le emitimos contiene información incorrecta que no se debe a nuestro error, debe usar los lugares de presentación del Formulario I-765 asociados con su categoría de elegibilidad para enviar su formulario y la tarifa de presentación.\" En cambio, si la información incorrecta se debe a un error de USCIS, no se requiere un nuevo formulario ni tarifa. La página no indica una tarifa exacta en dólares; la tarifa depende de su categoría de elegibilidad y de la Tabla de Tarifas de USCIS.",
+    "cost": { "amount_usd": null, "note": "La página del Formulario I-765 no indica una tarifa exacta en dólares; la tarifa depende de su categoría de elegibilidad y de la Tabla de Tarifas de USCIS (Formulario G-1055)." },
+    "prerequisites": ["court-order"],
+    "source": {
+      "url": "https://www.uscis.gov/i-765",
+      "title": "USCIS — Formulario I-765, Solicitud de Autorización de Empleo",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "us-i-765",
+    "language": "es"
+  },
+  {
+    "id": "us.ead.gender-marker.es",
+    "jurisdiction": "US",
+    "document_type": "ead",
+    "change_type": ["gender-marker"],
+    "topic": "Marcador de sexo en un Documento de Autorización de Empleo",
+    "statement": "El capítulo del Manual de Políticas de USCIS sobre sus documentos seguros de identidad — que incluye el Documento de Autorización de Empleo — dice que USCIS no deja en blanco el campo de sexo y que, desde una actualización de política de abril de 2025, reconoce solo dos sexos biológicos, masculino o femenino.",
+    "detail": "Las palabras del capítulo: \"USCIS emite ciertos documentos que indican el sexo del solicitante del beneficio\" y \"USCIS no deja en blanco el sexo del solicitante del beneficio en dichos documentos.\" Su actualización del 2 de abril de 2025 añade: \"USCIS reconoce los dos sexos biológicos, masculino o femenino, para efectos de revisar solicitudes de beneficios y los documentos emitidos por USCIS.\" El capítulo no describe un proceso para actualizar el sexo que aparece en un EAD para que coincida con su identidad de género en lugar de su sexo al nacer. Esta es una política reciente y puede cambiar — lea el capítulo oficial del Manual de Políticas antes de confiar en ella.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.uscis.gov/policy-manual/volume-11-part-a-chapter-2",
+      "title": "Manual de Políticas de USCIS, Volumen 11, Parte A, Capítulo 2 — Documentos Seguros de Identidad Emitidos por USCIS",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "us.selective-service.name.es",
+    "jurisdiction": "US",
+    "document_type": "selective-service",
+    "change_type": ["name"],
+    "topic": "Cómo corregir su nombre en el Servicio Selectivo",
+    "statement": "Si su nombre legal ha cambiado, el Sistema de Servicio Selectivo dice que lo corrige por teléfono en lugar de en línea — en sus propias palabras: \"Llámenos para todos los demás cambios de información, incluyendo: corregir un nombre mal escrito en el registro, cambios de nombre legal.\"",
+    "detail": "La herramienta en línea \"Actualice su Información\" del Servicio Selectivo solo maneja un cambio de dirección; pide su número de Servicio Selectivo, su número de Seguro Social y su fecha de nacimiento para buscar su registro. El sitio no dice qué documentación, si acaso, necesita tener lista cuando llame por un cambio de nombre legal.",
+    "prerequisites": ["court-order"],
+    "source": {
+      "url": "https://www.sss.gov/verify/update-info/",
+      "title": "Sistema de Servicio Selectivo — Actualice su Información",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "us.selective-service.gender-marker.es",
+    "jurisdiction": "US",
+    "document_type": "selective-service",
+    "change_type": ["gender-marker"],
+    "topic": "El registro del Servicio Selectivo está ligado al sexo, y el sitio no describe cómo cambiarlo",
+    "statement": "El Sistema de Servicio Selectivo dice que solo se exige registrarse a los hombres — en sus propias palabras, \"la ley exige que solo los hombres se registren con el Sistema de Servicio Selectivo,\" y describe el requisito como aplicable a \"casi todos los ciudadanos varones de EE. UU. y los inmigrantes varones.\" Ni su página principal ni su página Actualice su Información describen ningún proceso para cambiar el sexo asociado con un registro.",
+    "detail": "Este proyecto revisó las páginas públicas del Servicio Selectivo buscando una forma de actualizar el sexo que aparece en un registro y no encontró ninguna — la página de actualización solo ofrece un cambio de dirección en línea y un número de teléfono para \"todos los demás cambios de información,\" sin mencionar el sexo o el género entre ellos. Lo que hace el Servicio Selectivo para una persona cuyo sexo o género ha cambiado no está claro a partir de sus páginas oficiales.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.sss.gov",
+      "title": "Sistema de Servicio Selectivo — página principal",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "us.military-records.correction.es",
+    "jurisdiction": "US",
+    "document_type": "military-records",
+    "change_type": ["name", "gender-marker"],
+    "topic": "Cómo corregir un registro de servicio militar como el DD-214",
+    "statement": "Los Archivos Nacionales dicen que usted corrige un error en un registro de servicio militar — incluido un DD-214 — presentando una solicitud a la junta de revisión de su rama militar, usando el DD Form 149, la Solicitud para Corregir un Registro Militar.",
+    "detail": "Cada rama tiene su propia junta: la Agencia de Juntas de Revisión del Ejército (que acepta solicitudes en línea a través de ACTSOnline), la Agencia de Juntas de Revisión de la Fuerza Aérea, la Junta para la Corrección de Registros Navales (Marina y Cuerpo de Marines), y la Junta para la Corrección de Registros Militares de la Guardia Costera. La página de los Archivos Nacionales no dice si un cambio de nombre legal o un cambio en el marcador de sexo que aparece en su registro califica para este proceso, ni qué documentación requeriría cada uno — confirme directamente con la junta de su rama antes de confiar en esto.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.archives.gov/veterans/military-service-records/correct-service-records.html",
+      "title": "Archivos Nacionales — Corrección de Registros de Servicio",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "us.military-records.va-name-change.es",
+    "jurisdiction": "US",
+    "document_type": "military-records",
+    "change_type": ["name"],
+    "topic": "Cómo actualizar su nombre con VA",
+    "statement": "Si su nombre legal cambia, VA dice que debe comunicarse por separado con varias oficinas para actualizarlo — su centro médico de VA, cada oficina de programas de VA que le paga beneficios directos, y la oficina de apoyo del Sistema de Reportes de Elegibilidad de Inscripción de Defensa (DEERS), ya que un cambio de nombre en el registro de VA no actualiza DEERS automáticamente.",
+    "detail": "Para la atención médica de VA, VA pide una carta solicitando la actualización más una copia de su identificación con fotografía vigente emitida por el gobierno que muestre su fecha de nacimiento y su nuevo nombre legal. Para un cambio en sus pagos de beneficios de VA, VA pide esa misma carta e identificación, más otros documentos según el motivo: una copia de su certificado de matrimonio o de su decreto de divorcio o anulación para un cambio relacionado con el estado civil, o de lo contrario \"una copia de su tarjeta de Seguro Social con su nuevo nombre legal, o una copia de una orden judicial que muestre su cambio de nombre.\" La página de VA no menciona una actualización de marcador de género o designación de sexo, y no indica ninguna tarifa.",
+    "prerequisites": ["court-order"],
+    "source": {
+      "url": "https://www.va.gov/resources/how-to-change-your-legal-name-on-file-with-va/",
+      "title": "Departamento de Asuntos de Veteranos de EE. UU. — Cómo Cambiar su Nombre Legal en el Registro de VA",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "us.trusted-traveler.name-tsa-precheck.es",
+    "jurisdiction": "US",
+    "document_type": "trusted-traveler",
+    "change_type": ["name"],
+    "topic": "Cómo actualizar su nombre con TSA PreCheck",
+    "statement": "TSA dice que si su información personal cambia, usted se comunica con el proveedor de inscripción con el que solicitó para actualizarla — en sus propias palabras, \"si usted es miembro del Programa de Solicitud de TSA PreCheck®, comuníquese con el proveedor de inscripción con el que solicitó.\" TSA advierte que un cambio de nombre puede tardar hasta 45 días en completarse.",
+    "detail": "Las palabras de TSA: \"Los cambios de nombre pueden tardar hasta 45 días en completarse y el tiempo de procesamiento varía según la persona.\" TSA también advierte que \"si usted cambia su nombre y no actualiza su membresía de TSA PreCheck para que coincida con los nuevos datos, no podrá usar los beneficios de TSA PreCheck al viajar hasta que se complete el proceso de cambio de nombre.\" Si no recuerda qué proveedor de inscripción usó, el sitio de TSA ofrece una herramienta de búsqueda por Número de Viajero Confiable para ayudarle a encontrarlo.",
+    "timeline": { "typical": "hasta 45 días" },
+    "prerequisites": ["court-order"],
+    "source": {
+      "url": "https://www.tsa.gov/precheck/faq",
+      "title": "TSA — Preguntas Frecuentes de TSA PreCheck®",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "us.trusted-traveler.name-global-entry.es",
+    "jurisdiction": "US",
+    "document_type": "trusted-traveler",
+    "change_type": ["name"],
+    "topic": "Cómo actualizar su nombre con Global Entry",
+    "statement": "CBP dice que un miembro de Global Entry actualiza la información de su pasaporte — incluso después de un cambio de nombre — a través de su cuenta de Programas de Viajero Confiable (TTP), pero un cambio de nombre requiere específicamente una visita en persona: \"si la actualización del pasaporte implica un cambio de nombre, debe visitar un centro de inscripción de Global Entry para actualizar su información.\"",
+    "detail": "Las palabras completas de CBP: \"Todos los miembros de Global Entry pueden actualizar la información de su pasaporte a través de su cuenta de TTP. Haga clic en 'Update Documents'. Si la actualización del pasaporte implica un cambio de nombre, debe visitar un centro de inscripción de Global Entry para actualizar su información.\" La página de preguntas frecuentes de CBP no dice qué documentos llevar a esa visita.",
+    "prerequisites": ["court-order"],
+    "source": {
+      "url": "https://www.cbp.gov/travel/trusted-traveler-programs/global-entry/frequently-asked-questions",
+      "title": "Oficina de Aduanas y Protección Fronteriza de EE. UU. — Preguntas Frecuentes de Global Entry",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "us.trusted-traveler.gender-marker-tsa-precheck.es",
+    "jurisdiction": "US",
+    "document_type": "trusted-traveler",
+    "change_type": ["gender-marker"],
+    "topic": "Las preguntas frecuentes de TSA PreCheck no abordan un cambio de marcador de género",
+    "statement": "La página de preguntas frecuentes de TSA PreCheck describe cómo actualizar su nombre después de que cambia, pero no menciona el sexo ni el género en ninguna parte, y no describe ningún proceso separado para actualizar un marcador de género en una membresía de PreCheck.",
+    "detail": "Este proyecto revisó la página de preguntas frecuentes de TSA PreCheck buscando orientación sobre cómo cambiar un marcador de género y no encontró ninguna — solo el proceso de contactar al proveedor de inscripción descrito para un cambio de nombre. Lo que hace TSA, si acaso, para una persona cuyo marcador de género ha cambiado no está claro a partir de sus páginas oficiales.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.tsa.gov/precheck/faq",
+      "title": "TSA — Preguntas Frecuentes de TSA PreCheck®",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "us.trusted-traveler.gender-marker-global-entry.es",
+    "jurisdiction": "US",
+    "document_type": "trusted-traveler",
+    "change_type": ["gender-marker"],
+    "topic": "Las preguntas frecuentes de Global Entry de CBP no abordan un cambio de marcador de género",
+    "statement": "La página de preguntas frecuentes de Global Entry de CBP describe cómo actualizar la información de su pasaporte, incluido un cambio de nombre, pero no menciona el sexo ni el género en ninguna parte, y no describe ningún proceso separado para actualizar un marcador de género en una membresía de Global Entry.",
+    "detail": "Este proyecto revisó la página de preguntas frecuentes de Global Entry de CBP buscando orientación sobre cómo cambiar un marcador de género y no encontró ninguna — solo el proceso de pasaporte y cambio de nombre descrito arriba. Lo que hace CBP, si acaso, para una persona cuyo marcador de género ha cambiado no está claro a partir de sus páginas oficiales.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.cbp.gov/travel/trusted-traveler-programs/global-entry/frequently-asked-questions",
+      "title": "Oficina de Aduanas y Protección Fronteriza de EE. UU. — Preguntas Frecuentes de Global Entry",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "us.federal-employment-records.name.es",
+    "jurisdiction": "US",
+    "document_type": "federal-employment-records",
+    "change_type": ["name"],
+    "topic": "Cómo cambiar su nombre en los registros de personal federal",
+    "statement": "La Guía para Procesar Acciones de Personal de OPM dice que su agencia federal debe procesar un cambio de nombre en sus registros de personal cuando resulta de un matrimonio o de una acción judicial como un divorcio o un cambio de nombre legal.",
+    "detail": "Las palabras de la guía: \"La agencia empleadora debe aceptar y procesar la solicitud de un empleado para una acción de cambio de nombre cuando el cambio ocurre debido a: matrimonio; o una acción judicial (por ejemplo, divorcio o cambio de nombre legal).\" Para otros cambios de nombre, la agencia puede aceptar la solicitud si la ley estatal no exige una acción judicial, no hay razón para creer que sea fraudulenta, y usted planea usar el nuevo nombre en todos sus registros de empleo, incluido el Seguro Social. La guía también dice que la agencia debe confirmar que usted ha reportado el cambio al Seguro Social antes de procesarlo, y no menciona ninguna tarifa.",
+    "prerequisites": ["court-order"],
+    "source": {
+      "url": "https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf",
+      "title": "Oficina de Administración de Personal de EE. UU. — Guía para Procesar Acciones de Personal, Capítulo 20: Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "us.federal-employment-records.gender-marker.es",
+    "jurisdiction": "US",
+    "document_type": "federal-employment-records",
+    "change_type": ["gender-marker"],
+    "topic": "La guía de acciones de personal federal de OPM no menciona el sexo ni el género",
+    "statement": "La Guía para Procesar Acciones de Personal de OPM — el manual del propio gobierno federal para procesar acciones como un cambio de nombre en su registro de personal — no menciona el sexo ni el género en ninguna parte de su texto.",
+    "detail": "Este proyecto buscó en toda la guía, incluido su capítulo sobre cambios de nombre, cualquier mención de cómo actualizar un marcador de sexo o género en los registros de personal federal, y no encontró ninguna. Lo que un empleado federal debería hacer para actualizar un marcador de género en sus registros de personal no está claro a partir de esta fuente oficial.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf",
+      "title": "Oficina de Administración de Personal de EE. UU. — Guía para Procesar Acciones de Personal",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
   }
 ]
