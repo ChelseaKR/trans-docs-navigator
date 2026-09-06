@@ -521,14 +521,13 @@ const AUTHORED_GOLD: GoldItem[] = [
   },
   {
     id: "nd-marker-dl-restricted",
-    suite: "accuracy",
+    suite: "refusal",
     segment: { jurisdiction: "US-ND", language: "en" },
     query: { jurisdiction: "US-ND", change_types: ["gender-marker"], documents: ["drivers-license"], question: "North Dakota driver's license gender marker change" },
-    expect: {
-      refused: false,
-      citesRecord: "nd.drivers-license.gender-marker",
-      mustContain: ["never says what that documentation is", "names no specific form"],
-    },
+    // The record now relays NDDOT's Gender Designation form (SFN 61146) — a medically gated
+    // route read by a placeholder reviewer after the frozen as-of date — so it is served as
+    // needs-reverification until a named human re-reads the form, same as Oklahoma's marker items.
+    expect: { refused: true, hasFreshnessNote: true },
   },
   {
     id: "nd-name-court-es",

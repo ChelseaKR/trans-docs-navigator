@@ -1532,15 +1532,52 @@
       "fetched": "2026-09-06",
       "sha256": "ecd2f8d5b790aa5ff872ec8a25262de08eb1da53e728f2db3940f0d681a09e71"
     },
-    "https://courts.alaska.gov/shc/courtfees.htm": {
-      "file": "courts-alaska-gov-shc-courtfees-htm-a38bfbe4.txt",
+    "https://dmv.ny.gov/forms/mv44.pdf": {
+      "file": null,
       "fetched": "2026-09-05",
-      "sha256": "d1b1bd491319d79df35cc23fd6223450244f0c89dd4458fe10889ecea7da8dab"
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
     },
-    "https://dmv.dc.gov/book/dmv-fees/driver-license-fees": {
-      "file": "dmv-dc-gov-book-dmv-fees-driver-license-fees-31a781cc.txt",
+    "https://dmv.ri.gov/media/41/download": {
+      "file": null,
       "fetched": "2026-09-05",
-      "sha256": "988db3de90da9ea08ab9ad08660a8391511eafeb4153b4354a02aeb27cb078f6"
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://health.ri.gov/sites/g/files/xkgbur1006/files/2025-01/RI-Vital-Records-Correction-and-Amendment-Requirements.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://health.ri.gov/vital-records/changes-birth-death-or-marriage-records": {
+      "file": "health-ri-gov-vital-records-changes-birth-death-or-marriage-records-7cda08f5.txt",
+      "fetched": "2026-09-05",
+      "sha256": "7860ff56f89fb763d6fe0a3fd16157c3c8672b4d92341941ccb98aa42fc2fa5f"
+    },
+    "https://oklahoma.gov/content/dam/ok/en/health/health2/aem-documents/vital-records/forms/18008vr-vr-birth-application-eng-eform.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.dot.nd.gov/forms/sfn61146.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.sos.ok.gov/documents/executive/2079.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
     },
     "https://ilga.gov/Documents/legislation/ilcs/documents/073500050K21-101.htm": {
       "file": "ilga-gov-documents-legislation-ilcs-documents-073500050k21-101-htm-defc29fc.txt",
@@ -1580,6 +1617,16 @@
       "unextractable": {
         "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
+    },
+    "https://courts.alaska.gov/shc/courtfees.htm": {
+      "file": "courts-alaska-gov-shc-courtfees-htm-a38bfbe4.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d1b1bd491319d79df35cc23fd6223450244f0c89dd4458fe10889ecea7da8dab"
+    },
+    "https://dmv.dc.gov/book/dmv-fees/driver-license-fees": {
+      "file": "dmv-dc-gov-book-dmv-fees-driver-license-fees-31a781cc.txt",
+      "fetched": "2026-09-05",
+      "sha256": "988db3de90da9ea08ab9ad08660a8391511eafeb4153b4354a02aeb27cb078f6"
     }
   }
 }

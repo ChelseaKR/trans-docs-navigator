@@ -38,16 +38,39 @@
     ],
     "topic": "New York driver's license sex designation",
     "statement": "New York lets you change the sex/gender designation on your DMV photo document. The DMV says you can make the change online with your personal information, or by completing the Application for Permit, Driver License or Non-Driver ID Card (form MV-44) and visiting a DMV office.",
-    "detail": "This record is flagged for re-verification. The DMV page describes the online and MV-44 routes but does not state which sex designations are available, whether an X designation can be chosen, or what the change costs. Ask the DMV directly before you rely on a specific designation.",
+    "detail": "This record is flagged for re-verification. The DMV page describes the online route (using your personal information, or by logging into your MyDMV profile with NY.gov) and the MV-44 route, but does not state which sex designations are available or what the change costs. The MV-44 form itself is covered in a companion record. Ask the DMV directly before you rely on a specific designation.",
     "prerequisites": [],
     "source": {
       "url": "https://dmv.ny.gov/driver-license/change-information-on-dmv-photo-documents",
       "title": "NY DMV — Change Information on DMV Photo Documents",
-      "last_verified": "2026-07-13",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",
     "recheck_sla_days": 90,
+    "form_ref": "ny-dmv-mv-44",
+    "language": "en"
+  },
+  {
+    "id": "ny.drivers-license.gender-marker.form",
+    "jurisdiction": "US-NY",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "New York DMV form MV-44 sex field",
+    "statement": "The New York DMV's Application for Permit, Driver License or Non-Driver ID Card (form MV-44, revision 4/26) has a SEX field with three boxes to choose from: M, F, and X.",
+    "detail": "The form is used for a new, renewed, updated, or replacement license, permit, or non-driver ID card, and its 'Purpose for Application' choices include 'Update Info.' The DMV's photo-documents page says this is the form to complete when you change your gender designation at a DMV office. The form is an application, not a statement of DMV policy — confirm with the DMV before you rely on a specific designation.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.ny.gov/forms/mv44.pdf",
+      "title": "New York State DMV — Form MV-44, Application for Permit, Driver License or Non-Driver ID Card (4/26)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 90,
+    "form_ref": "ny-dmv-mv-44",
     "language": "en"
   },
   {
@@ -78,6 +101,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "ny-dmv-mv-44nc",
     "language": "en"
   },
   {

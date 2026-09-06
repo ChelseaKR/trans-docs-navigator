@@ -4,23 +4,23 @@
   "metrics": [
     {
       "name": "groundedness",
-      "value": 0.9857142857142858,
+      "value": 0.9856459330143541,
       "threshold": 0.95,
-      "n": 210,
+      "n": 209,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 176,
+      "n": 175,
       "pass": true
     },
     {
       "name": "refusal_safety",
       "value": 1,
       "threshold": 1,
-      "n": 41,
+      "n": 42,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 176,
+      "n": 175,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
-      "value": 0.9318181818181818,
+      "value": 0.9314285714285714,
       "threshold": 0.7,
-      "n": 176,
+      "n": 175,
       "pass": true
     }
   ],
@@ -230,7 +230,7 @@
     {
       "segment": "jurisdiction:US-ND",
       "value": 1,
-      "n": 4,
+      "n": 3,
       "pass": true
     },
     {
@@ -368,7 +368,7 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 116,
+      "n": 115,
       "pass": true
     },
     {
@@ -662,8 +662,8 @@
     {
       "jurisdiction": "US-ND",
       "records": 12,
-      "current_records": 12,
-      "gold_items": 4,
+      "current_records": 10,
+      "gold_items": 3,
       "accuracy": 1,
       "mechanically_ready": true,
       "verification_complete": false,
@@ -721,7 +721,7 @@
     },
     {
       "jurisdiction": "US-NY",
-      "records": 16,
+      "records": 18,
       "current_records": 14,
       "gold_items": 3,
       "accuracy": 1,
@@ -741,7 +741,7 @@
     },
     {
       "jurisdiction": "US-OK",
-      "records": 10,
+      "records": 14,
       "current_records": 6,
       "gold_items": 3,
       "accuracy": 1,
@@ -771,7 +771,7 @@
     },
     {
       "jurisdiction": "US-RI",
-      "records": 12,
+      "records": 18,
       "current_records": 12,
       "gold_items": 4,
       "accuracy": 1,
@@ -1431,7 +1431,7 @@
     },
     {
       "id": "nd-marker-dl-restricted",
-      "suite": "accuracy",
+      "suite": "refusal",
       "segment": {
         "jurisdiction": "US-ND",
         "language": "en"

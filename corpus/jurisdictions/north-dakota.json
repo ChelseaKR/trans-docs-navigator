@@ -59,17 +59,18 @@
       "gender-marker"
     ],
     "topic": "North Dakota driver's license gender designation",
-    "statement": "North Dakota's DMV page says that if you've had a gender change, you'll need to present documentation the next time you visit for REAL ID purposes — the same as it says for a name or address change. But unlike its detailed instructions for a name change, the page never says what that documentation is, names no specific form, and states no fee for a gender-marker update.",
-    "detail": "This page does not say whether North Dakota driver licenses or ID cards offer a nonbinary or X option. Confirm the current requirements directly with a North Dakota driver license site before relying on this.",
+    "statement": "To change the gender designation on a North Dakota driver license or ID card, North Dakota DOT uses a Gender Designation form (SFN 61146). You complete Part 1 — choosing Male or Female, and certifying under penalty of perjury that the request is to make your identity document reflect your gender identity and is not for fraudulent or other unlawful purposes. Part 2 must be completed by a health care provider licensed in the United States as a physician, physician assistant, advanced practice nurse, psychologist, or psychiatrist, who certifies that they have treated you and that, in their professional opinion, \"a gender role transition has been completed and is permanent.\"",
+    "detail": "The form offers only Male and Female — it has no X or nonbinary option — and it states no fee. NDDOT's driver-license web page separately says that if you've had a gender change you must present documentation at your next visit to a driver license site, without naming a form. Confirm current requirements with a North Dakota driver license site before relying on this.",
     "prerequisites": [],
     "source": {
-      "url": "https://www.dot.nd.gov/driver/driver-license",
-      "title": "North Dakota Department of Transportation — Driver License: Address and Name Changes",
-      "last_verified": "2026-07-13",
+      "url": "https://www.dot.nd.gov/forms/sfn61146.pdf",
+      "title": "North Dakota Department of Transportation — Gender Designation Form (SFN 61146, rev. 4-2026)",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     },
-    "verification_status": "verified",
+    "verification_status": "needs_reverification",
     "recheck_sla_days": 30,
+    "form_ref": "nd-dot-sfn-61146",
     "language": "en"
   },
   {

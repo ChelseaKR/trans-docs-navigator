@@ -4636,17 +4636,18 @@
       "gender-marker"
     ],
     "topic": "Designación de género en la licencia de Dakota del Norte",
-    "statement": "La página del DMV de Dakota del Norte dice que si ha tenido un cambio de género, deberá presentar documentación en su próxima visita para fines de REAL ID — lo mismo que dice para un cambio de nombre o de domicilio. Pero a diferencia de sus instrucciones detalladas para un cambio de nombre, la página nunca dice cuál es esa documentación, no nombra ningún formulario específico, y no indica ninguna tarifa para una actualización del marcador de género.",
-    "detail": "Esta página no dice si las licencias de conducir o identificaciones de Dakota del Norte ofrecen una opción no binaria o X. Confirme los requisitos actuales directamente con una sede de licencias de conducir de Dakota del Norte antes de confiar en esto.",
+    "statement": "Para cambiar la designación de género en una licencia de conducir o identificación de Dakota del Norte, el Departamento de Transporte de Dakota del Norte usa un formulario de Designación de Género (SFN 61146). Usted completa la Parte 1 — eligiendo Masculino o Femenino, y certificando bajo pena de perjurio que la solicitud es para que su documento de identidad refleje su identidad de género y no tiene fines fraudulentos ni ilícitos. La Parte 2 debe completarla un proveedor de atención médica con licencia en los Estados Unidos como médico, asistente médico, enfermero de práctica avanzada, psicólogo o psiquiatra, quien certifica que lo ha tratado y que, en su opinión profesional, \"se ha completado una transición de rol de género y es permanente\".",
+    "detail": "El formulario solo ofrece Masculino y Femenino — no tiene opción X ni no binaria — y no indica ninguna tarifa. La página web de licencias de conducir del NDDOT dice por separado que si ha tenido un cambio de género debe presentar documentación en su próxima visita a una sede de licencias de conducir, sin nombrar un formulario. Confirme los requisitos actuales directamente con una sede de licencias de conducir de Dakota del Norte antes de confiar en esto.",
     "prerequisites": [],
     "source": {
-      "url": "https://www.dot.nd.gov/driver/driver-license",
-      "title": "Departamento de Transporte de Dakota del Norte — Licencia de Conducir: Cambios de Domicilio y Nombre",
-      "last_verified": "2026-07-13",
+      "url": "https://www.dot.nd.gov/forms/sfn61146.pdf",
+      "title": "Departamento de Transporte de Dakota del Norte — Formulario de Designación de Género (SFN 61146, rev. 4-2026)",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     },
-    "verification_status": "verified",
+    "verification_status": "needs_reverification",
     "recheck_sla_days": 30,
+    "form_ref": "nd-dot-sfn-61146",
     "language": "es"
   },
   {
@@ -5099,6 +5100,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 30,
+    "form_ref": "nj-mvc-gender-designation-change",
     "language": "es"
   },
   {
@@ -5548,16 +5550,39 @@
     ],
     "topic": "Designación de sexo en la licencia de Nueva York",
     "statement": "Nueva York le permite cambiar la designación de sexo/género en su documento con foto del DMV. El DMV dice que puede hacer el cambio en línea con su información personal, o completando la Solicitud de Permiso, Licencia de Conducir o Identificación de No Conductor (formulario MV-44) y yendo a una oficina del DMV.",
-    "detail": "Este registro está marcado para reverificación. La página del DMV describe las vías en línea y con el formulario MV-44, pero no dice qué designaciones de sexo están disponibles, si se puede elegir una designación X, ni cuánto cuesta el cambio. Pregunte directamente al DMV antes de contar con una designación específica.",
+    "detail": "Este registro está marcado para reverificación. La página del DMV describe la vía en línea (con su información personal, o iniciando sesión en su perfil MyDMV con NY.gov) y la vía con el formulario MV-44, pero no dice qué designaciones de sexo están disponibles ni cuánto cuesta el cambio. El propio formulario MV-44 se cubre en un registro complementario. Pregunte directamente al DMV antes de contar con una designación específica.",
     "prerequisites": [],
     "source": {
       "url": "https://dmv.ny.gov/driver-license/change-information-on-dmv-photo-documents",
       "title": "DMV de NY — Cambiar Información en los Documentos con Foto del DMV",
-      "last_verified": "2026-07-13",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",
     "recheck_sla_days": 90,
+    "form_ref": "ny-dmv-mv-44",
+    "language": "es"
+  },
+  {
+    "id": "ny.drivers-license.gender-marker.form.es",
+    "jurisdiction": "US-NY",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Campo de sexo del formulario MV-44 del DMV de Nueva York",
+    "statement": "La Solicitud de Permiso, Licencia de Conducir o Identificación de No Conductor del DMV de Nueva York (formulario MV-44, revisión 4/26) tiene un campo SEXO con tres casillas para elegir: M, F y X.",
+    "detail": "El formulario se usa para una licencia, permiso o identificación de no conductor nueva, renovada, actualizada o de reemplazo, y sus opciones de 'Propósito de la solicitud' incluyen 'Actualizar información'. La página de documentos con foto del DMV dice que este es el formulario que se completa al cambiar la designación de género en una oficina del DMV. El formulario es una solicitud, no una declaración de política del DMV — confirme con el DMV antes de contar con una designación específica.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.ny.gov/forms/mv44.pdf",
+      "title": "DMV del Estado de Nueva York — Formulario MV-44, Solicitud de Permiso, Licencia de Conducir o Identificación de No Conductor (4/26)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 90,
+    "form_ref": "ny-dmv-mv-44",
     "language": "es"
   },
   {
@@ -5588,6 +5613,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "ny-dmv-mv-44nc",
     "language": "es"
   },
   {
@@ -5779,10 +5805,10 @@
     ],
     "topic": "Cambio de nombre en el acta de nacimiento de Oklahoma",
     "statement": "Un cambio legal de nombre en un registro de nacimiento de Oklahoma no se trata como una corrección menor — el Departamento Estatal de Salud de Oklahoma dice que se requiere una orden del Tribunal de Distrito, y debe comunicarse con el secretario de su tribunal local o con un abogado para obtener ayuda.",
-    "detail": "Los errores menores, como un nombre mal escrito, pueden tramitarse con una solicitud de $15 más una tarifa de enmienda de $25, con una orden administrativa o una orden del tribunal de distrito. Pero un cambio legal de nombre real, una adopción o una actualización de paternidad requieren primero una orden del Tribunal de Distrito, y este proceso puede tardar hasta 4 meses.",
+    "detail": "Los errores menores, como un nombre mal escrito, se tramitan en cambio mediante el propio proceso de enmienda de la página: usted envía la solicitud de enmienda (el enlace 'Order by Mail' de la página lleva al Formulario de Solicitud de Acta de Nacimiento del OSDH), una tarifa de $15, una copia de una identificación válida y una breve declaración que explique el error; luego obtiene una orden administrativa del Tribunal de Derecho Administrativo del OSDH o una orden del tribunal de distrito; y después, una vez que Registros Vitales tiene la orden, paga una tarifa de enmienda de $25 y se emite el acta enmendada. Un cambio legal de nombre real, una adopción o una actualización de paternidad no son correcciones menores — requieren primero una orden del Tribunal de Distrito — y la página dice que todos los cambios legales a un registro pueden tardar hasta 4 meses.",
     "cost": {
       "amount_usd": null,
-      "note": "La página no indica una tarifa para el trámite de orden del Tribunal de Distrito en sí; la solicitud de $15 y la tarifa de enmienda de $25 que menciona corresponden al proceso separado de corrección menor."
+      "note": "La página no indica una tarifa separada para el trámite de orden del Tribunal de Distrito; la tarifa de solicitud de $15 y la tarifa de enmienda de $25 que menciona son los dos pagos de su propio proceso de enmienda. El propio formulario de solicitud del OSDH imprime una única tarifa de enmienda combinada — vea el registro complementario."
     },
     "timeline": {
       "typical": "hasta 4 meses",
@@ -5799,6 +5825,38 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "ok-osdh-birth-certificate-request-form",
+    "language": "es"
+  },
+  {
+    "id": "ok.birth-certificate.name.form-fee.es",
+    "jurisdiction": "US-OK",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Tarifa de enmienda del acta de nacimiento de Oklahoma en el formulario de solicitud del OSDH",
+    "statement": "El Formulario de Solicitud de Acta de Nacimiento (Birth Certificate Request Form) del Departamento Estatal de Salud de Oklahoma indica una única tarifa inicial de $40.00, que se paga una sola vez, para \"solicitudes de registro tardío, enmienda, paternidad, adopción o legitimación\", y que incluye una copia certificada del registro.",
+    "detail": "El mismo formulario indica una copia certificada estándar a $15 cada una (una tarifa de búsqueda de registro no reembolsable ni transferible que incluye una copia certificada si se encuentra el registro; las copias adicionales cuestan $15 cada una), dice que el tiempo de procesamiento puede ser de 7-10 días hábiles, que todas las tarifas vencen un año después de la fecha de pago, y que puede enviar un máximo de cinco solicitudes por pedido o sobre. El formulario debe estar completamente lleno y firmado, con una fotocopia de una identificación con foto vigente y válida, el pago completo y prueba de elegibilidad, o no se procesará. La página web de enmiendas del OSDH describe el mismo costo de enmienda como dos pagos — vea el registro complementario.",
+    "cost": {
+      "amount_usd": 40,
+      "note": "Tarifa inicial única por una solicitud de enmienda, que incluye una copia certificada; las copias certificadas adicionales cuestan $15 cada una."
+    },
+    "timeline": {
+      "typical": "el tiempo de procesamiento puede ser de 7-10 días hábiles"
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://oklahoma.gov/content/dam/ok/en/health/health2/aem-documents/vital-records/forms/18008vr-vr-birth-application-eng-eform.pdf",
+      "title": "Departamento Estatal de Salud de Oklahoma, Registros Vitales — Birth Certificate Request Form",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 90,
+    "form_ref": "ok-osdh-birth-certificate-request-form",
     "language": "es"
   },
   {
@@ -5835,11 +5893,32 @@
     ],
     "topic": "Designación de sexo/género en la licencia de conducir e identificación de Oklahoma",
     "statement": "La propia lista de servicios de licencia de conducir e identificación de Service Oklahoma no incluye una manera de cambiar el marcador de sexo o género en una licencia o identificación.",
-    "detail": "Esta página enumera todos los servicios estándar de licencia de conducir e identificación que ofrece Service Oklahoma — una licencia nueva, renovaciones, REAL ID, actualizaciones de dirección y más — y ninguno se describe como un cambio de designación de sexo o género. Lea usted mismo la página oficial actual y no suponga que existe una vía que no aparece allí.",
+    "detail": "Esta página enumera todos los servicios estándar de licencia de conducir e identificación que ofrece Service Oklahoma — una licencia nueva, renovaciones, REAL ID, actualizaciones de dirección y más — y ninguno se describe como un cambio de designación de sexo o género. Lea usted mismo la página oficial actual y no suponga que existe una vía que no aparece allí. Un registro complementario cubre la Orden Ejecutiva 2023-20, la orden del gobernador de 2023 sobre cómo las agencias estatales deben definir el sexo.",
     "prerequisites": [],
     "source": {
       "url": "https://oklahoma.gov/service/all-services/driving-and-automobiles.html",
       "title": "Service Oklahoma — Conducción y Automóviles",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ok.drivers-license.gender-marker.law.es",
+    "jurisdiction": "US-OK",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Orden Ejecutiva 2023-20 de Oklahoma sobre la definición de sexo",
+    "statement": "La Orden Ejecutiva 2023-20 es una orden del gobernador de Oklahoma, J. Kevin Stitt. Se presentó ante el Secretario de Estado el 1 de agosto de 2023. Le dice a cada agencia, junta y comisión estatal cómo definir \"sexo\" al escribir reglas, hacer cumplir decisiones o resolver disputas: el \"sexo biológico, masculino o femenino al nacer\" de una persona natural. También define \"female\", \"male\", \"woman\", \"girl\", \"man\", \"boy\", \"mother\" y \"father\" según el sistema reproductivo del cuerpo.",
+    "detail": "La orden también dice que toda agencia estatal que recopile estadísticas vitales — para leyes antidiscriminación, o para datos de salud, delincuencia, economía u otros — debe registrar a cada persona como masculino o femenino según los define la orden. Permite a las agencias ofrecer servicios en entornos de un solo sexo donde la ley lo permita. La orden no menciona por su nombre las licencias de conducir, las tarjetas de identificación ni a Service Oklahoma. Un registro complementario cubre lo que dice la propia lista de servicios de Service Oklahoma. Confirme la posición actual con Service Oklahoma antes de confiar en cualquiera de los dos.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.sos.ok.gov/documents/executive/2079.pdf",
+      "title": "Secretario de Estado de Oklahoma — Orden Ejecutiva 2023-20 (presentada el 1 de agosto de 2023)",
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     },
@@ -6172,7 +6251,7 @@
     ],
     "topic": "Designación de sexo en el acta de nacimiento de Rhode Island",
     "statement": "Para corregir el sexo indicado en un acta de nacimiento de Rhode Island de modo que difiera del sexo en el registro original, la norma de registros vitales de Rhode Island exige solo un affidávit — ejecutado por usted si es mayor de edad, o por su padre, madre, tutor legal o representante legal si no lo es. El Registrador Estatal entonces cambia el acta para reflejar la nueva designación de sexo sin indicar que se hizo un cambio.",
-    "detail": "Si su solicitud de corrección de sexo también incluye una solicitud de cambio legal de nombre, el acta se marcará como \"Enmendada\" solo respecto al cambio de nombre — la corrección de sexo en sí no deja esa marca. La norma no describe un requisito separado de orden judicial o declaración médica para cambiar solo el marcador de sexo.",
+    "detail": "Si su solicitud de corrección de sexo también incluye una solicitud de cambio legal de nombre, el acta se marcará como \"Enmendada\" solo respecto al cambio de nombre — la corrección de sexo en sí no deja esa marca. La norma no describe un requisito separado de orden judicial o declaración médica para cambiar solo el marcador de sexo. La propia hoja de requisitos del Departamento de Salud y su página web añaden pasos de procedimiento que la norma en sí no detalla — lea los registros complementarios antes de acudir.",
     "prerequisites": [],
     "source": {
       "url": "https://rules.sos.ri.gov/regulations/part/216-10-10-1",
@@ -6182,6 +6261,56 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ri.birth-certificate.gender-marker.procedure.es",
+    "jurisdiction": "US-RI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Cambio del campo de sexo en el acta de nacimiento de Rhode Island: requisitos del RIDOH",
+    "statement": "La propia hoja de requisitos del Departamento de Salud de Rhode Island dice que, desde el 1 de octubre de 2019, el campo de sexo de un acta de nacimiento de Rhode Island puede cambiarse para reflejar su sexo o identidad de género. La persona cuya acta va a cambiar debe acudir en persona a la Oficina de Registros Vitales para autoatestiguar, de modo que el personal cree un affidávit que esa persona firma; si la persona es menor de 18 años, lo firma su padre, madre, tutor legal o representante legal. La hoja dice que las personas pueden cambiar el campo de sexo de M a F o de F a M mediante el affidávit, y que las personas nacidas en Rhode Island que se identifican como no binarias o ni masculinas ni femeninas pueden cambiarlo a X.",
+    "detail": "Lleve una identificación con foto emitida por el gobierno (licencia de conducir, pasaporte, identificación militar, Certificado de Naturalización o Tarjeta de Registro de Extranjero). Personas de cualquier edad pueden hacer este cambio, pero los menores necesitan el consentimiento de un padre, madre o tutor. La hoja también dice que una vez que un dato ha sido enmendado en un registro vital no puede cambiarse de nuevo a menos que el Registrador Estatal reciba una orden judicial. Esta es la guía de procedimiento del departamento; la norma de registros vitales subyacente se cubre en un registro complementario.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Los $10 son para hacer el cambio en el acta de nacimiento. Una copia del acta cambiada cuesta $22 para clientes en persona o $25 por correo."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.ri.gov/sites/g/files/xkgbur1006/files/2025-01/RI-Vital-Records-Correction-and-Amendment-Requirements.pdf",
+      "title": "Departamento de Salud de Rhode Island, Oficina de Registros Vitales — Requirements and Fees for Changes to Birth, Marriage, or Death Records",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ri.birth-certificate.amendment-request.es",
+    "jurisdiction": "US-RI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Enmienda del acta de nacimiento de Rhode Island: quién puede solicitarla, identificación y tiempo de trámite",
+    "statement": "El Departamento de Salud de Rhode Island dice que tarda 3 - 4 semanas en procesar una solicitud de enmienda de un acta de nacimiento, defunción o matrimonio. Para hacer un cambio debe presentar una identificación con foto válida emitida por el gobierno para demostrar que tiene derecho a hacer la solicitud — licencia de conducir, pasaporte, identificación militar, Certificado de Naturalización o Tarjeta de Registro de Extranjero — y si solicita el cambio por correo debe incluir una copia legible de una de ellas.",
+    "detail": "Los registros vitales son confidenciales, por lo que solo pueden solicitar cambios: usted; su madre, padre, hijo, hermano, tutor o agente autorizado; abogados, examinadores de títulos o miembros de sociedades genealógicas legalmente constituidas en el ejercicio de sus funciones oficiales; una persona que necesite la información para determinar o proteger derechos personales o de propiedad; o una persona con una orden judicial que instruya al registrador a cambiar el documento. El Centro de Registros Vitales está en 6 Harrington Rd., Cranston, y la página dice que se sugiere hacer cita. Para los requisitos específicos de un cambio de nombre o de sexo, la página remite al propio documento de requisitos del departamento, cubierto en registros complementarios.",
+    "timeline": {
+      "typical": "3 - 4 semanas para procesar una solicitud de enmienda"
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.ri.gov/vital-records/changes-birth-death-or-marriage-records",
+      "title": "Departamento de Salud de Rhode Island — Changes To Birth, Death Or Marriage Records",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 90,
     "language": "es"
   },
   {
@@ -6243,7 +6372,7 @@
     ],
     "topic": "Designación de género en la licencia de conducir de Rhode Island",
     "statement": "Para cambiar la designación de género en su licencia de conducir o identificación de Rhode Island, usted entrega su licencia o identificación estatal actual, presenta un formulario de Designación de Género completo, paga la tarifa aplicable por una tarjeta nueva o actualizada, y se le toma una nueva fotografía. Los empleados del DMV no pueden pedirle información relacionada con el género más allá de lo que exige el propio formulario, ni preguntarle sobre su historial médico privado.",
-    "detail": "El cambio de nombre que acompaña a un cambio de género se hace por separado, mediante los documentos judiciales correspondientes, y también debe reflejarse en su tarjeta del Seguro Social.",
+    "detail": "El cambio de nombre que acompaña a un cambio de género se hace por separado, mediante los documentos judiciales correspondientes, y también debe reflejarse en su tarjeta del Seguro Social. El propio formulario de Designación de Género del DMV se cubre en un registro complementario — léalo para saber qué pide el formulario en sí.",
     "cost": {
       "amount_usd": null,
       "note": "La página no indica un monto en dólares para este trámite — remite a la propia Tabla de Tarifas del DMV. Comuníquese con el DMV para conocer la tarifa actual."
@@ -6257,6 +6386,33 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 30,
+    "form_ref": "ri-dmv-gender-designation",
+    "language": "es"
+  },
+  {
+    "id": "ri.drivers-license.gender-marker.form.es",
+    "jurisdiction": "US-RI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Formulario de Designación de Género del DMV de Rhode Island",
+    "statement": "El formulario de Designación de Género del DMV de Rhode Island (\"Gender Designation on a License or Identification Card\") le pide marcar la designación que desea que aparezca en su licencia de conducir o tarjeta de identificación: M, F o X. Usted declara bajo pena de perjurio que las declaraciones de la solicitud son verdaderas y completas.",
+    "detail": "El formulario repite el procedimiento del DMV: entregar cualquier licencia o identificación estatal vigente, presentar el formulario completo, pagar las tarifas aplicables por una tarjeta nueva o actualizada y tomarse una nueva fotografía. Indica que los empleados del DMV no deben pedir información adicional relacionada con el género más allá de lo que exige el formulario ni preguntar sobre su historial médico privado, y que el formulario contiene información médica privada que se mantiene confidencial bajo la ley federal Driver's Privacy Protection Act. Los cambios de nombre relacionados con el género se hacen mediante documentos judiciales y también deben reflejarse en su tarjeta del Seguro Social. El formulario lleva la marca rev. 7/20.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El formulario dice que se pagan las tarifas aplicables por una licencia o identificación nueva o actualizada sin indicar un monto. Comuníquese con el DMV para conocer la tarifa actual."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.ri.gov/media/41/download",
+      "title": "División de Vehículos Motorizados de Rhode Island — Gender Designation on a License or Identification Card (formulario, rev. 7/20)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "ri-dmv-gender-designation",
     "language": "es"
   },
   {
@@ -6284,6 +6440,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "ri-dmv-li-1",
     "language": "es"
   },
   {
