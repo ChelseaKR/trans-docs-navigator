@@ -60,6 +60,7 @@ export const en: LocaleBundle = {
     packetTitle: "Your packet",
     packetHeading: "Your name & gender-marker change packet",
     answerHeading: "What the sources say",
+    answerLandmarkLabel: "Answer",
     formPrivacy: "What you type here stays in your browser and is not transmitted by this form helper.",
     fillDownload: "Fill & download",
     flatScanIntro: "This official form is a flat scan that can't be auto-filled. Download the blank form and complete it by hand:",
@@ -423,6 +424,7 @@ export const en: LocaleBundle = {
     guideReviewed: "Last reviewed",
     breadcrumbHome: "Home",
     breadcrumbGuides: "Guides",
+    breadcrumbNav: "Breadcrumb",
     legalDescription: {
       terms: "The terms for using Trans Docs Navigator: general information, not legal advice, with no warranty. Verify every requirement against the official source.",
       privacy: "How Trans Docs Navigator handles server-rendered choices and questions, keeps identity form data on-device, and limits application logs and retention.",
