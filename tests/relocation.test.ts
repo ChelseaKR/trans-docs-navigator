@@ -609,3 +609,61 @@ test("the move intake and plan render in Spanish", () => {
   assert.match(html, /Mudanza de Texas a California/);
   assert.match(html, /Antes de mudarse/);
 });
+
+// ── Minors pilot: audience exclusivity in the relocation planner ─────────────────────
+// The default intake() here is Texas → Washington — both minors-pilot states — so a
+// for_minor plan has real minor records to prefer over the adult ones on both ends.
+
+test("a minor plan's court-order step cites the DESTINATION'S minor record, not the adult one", () => {
+  const plan = buildRelocationPlan(intake({ for_minor: true }), TODAY, corpus);
+  const courtOrder = plan.steps.find((s) => s.key === "court-order")!;
+  assert.equal(courtOrder.jurisdiction, "US-WA");
+  assert.ok(courtOrder.record_ids.includes("wa.court-order.name.minor"), courtOrder.record_ids.join(","));
+  assert.ok(!courtOrder.record_ids.includes("wa.court-order.name"), courtOrder.record_ids.join(","));
+});
+
+test("the SAME origin/destination pair without for_minor cites the adult record instead", () => {
+  const plan = buildRelocationPlan(intake(), TODAY, corpus);
+  const courtOrder = plan.steps.find((s) => s.key === "court-order")!;
+  assert.ok(courtOrder.record_ids.includes("wa.court-order.name"));
+  assert.ok(!courtOrder.record_ids.includes("wa.court-order.name.minor"));
+});
+
+test("a minor plan never has an origin-window step for a record with no residency_bound annotation", () => {
+  // The adult Texas court-order record is residency_bound (relocation.residency_bound:
+  // true), so an adult plan gets an origin:court-order step warning that door closes when
+  // you move. The minor Texas record makes no such claim — the corpus content gate would
+  // reject it if it did, since the minor record's own prose never says "where you live",
+  // only "where the child lives" — so a minor plan must not invent that hazard either.
+  const adultPlan = buildRelocationPlan(intake(), TODAY, corpus);
+  const minorPlan = buildRelocationPlan(intake({ for_minor: true }), TODAY, corpus);
+  assert.ok(adultPlan.steps.some((s) => s.key === "origin:court-order"), "adult plan precondition");
+  assert.ok(!minorPlan.steps.some((s) => s.key === "origin:court-order"), "minor plan must not invent the hazard");
+  assert.ok(!minorPlan.hazards.some((h) => h.kind === "origin-window-closes" && h.step_key.startsWith("origin:court-order")));
+});
+
+test("a minor relocation plan still passes the identical citation gate as an adult one", () => {
+  const ans = relocationAnswer(intake({ for_minor: true }), TODAY, corpus);
+  const report = checkCoverage(ans, corpus, TODAY);
+  assert.equal(report.coverage, 1, "every claim in a minor plan must resolve to a current, cited record");
+  assert.equal(report.violations.length, 0);
+});
+
+test("/plan discloses no-minor-coverage when either side of the move lacks minor records", () => {
+  // Florida is fully covered for adults but outside the five-state minors pilot.
+  const html = handleRoute(
+    "GET",
+    new URL("http://localhost:8080/plan?origin=US-FL&destination=US-WA&for_minor=1"),
+    TODAY,
+  ).body;
+  assert.match(html, /for adults/i);
+});
+
+test("/plan shows no no-minor-coverage note for a pilot-to-pilot move", () => {
+  const html = handleRoute(
+    "GET",
+    new URL("http://localhost:8080/plan?origin=US-TX&destination=US-WA&for_minor=1"),
+    TODAY,
+  ).body;
+  assert.doesNotMatch(html, /for adults/i);
+});

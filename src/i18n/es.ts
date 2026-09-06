@@ -100,6 +100,8 @@ export const es: LocaleBundle = {
     varies: "varía",
     noStateCoverage:
       "Todavía no tenemos información verificada para este estado, así que los pasos de abajo cubren solo documentos federales. Este no es un plan completo para el lugar donde vive, y no significa que su estado no le pida nada: simplemente no lo hemos verificado. Empiece por el sitio web oficial de su estado, las páginas de autoayuda de sus tribunales, o una organización de asistencia legal para personas trans.",
+    noMinorCoverage:
+      "Todavía no tenemos información verificada sobre el cambio de nombre o de marcador de género para menores (personas de menos de 18 años) en este estado. Los pasos de abajo están escritos para adultos y pueden no aplicar al caso de un menor. Quién puede pedir el cambio, qué debe consentir o saber un padre o madre, la edad en que importa el propio consentimiento del menor, y el criterio del tribunal pueden ser diferentes. Consulte con el tribunal de su condado o con una organización de asistencia legal para personas trans antes de basarse en estos pasos.",
     costIncomplete: (n: number) =>
       `${n} paso(s) no tienen ninguna tarifa indicada en nuestras fuentes, así que esto es un mínimo, no un costo completo. No estimamos lo que una fuente no indica.`,
     moreHeading: "Más información",
@@ -154,6 +156,7 @@ export const es: LocaleBundle = {
     new_legal_name: "Nuevo nombre legal",
     current_legal_name: "Nombre legal actual",
     has_court_order: "Tengo una orden judicial",
+    for_minor: "¿Es esto para alguien menor de 18 años?",
   },
 
   // Planificador de mudanza. Solo etiquetas estructurales y advertencias — vea RelocationMessages.

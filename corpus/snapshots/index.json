@@ -6,6 +6,11 @@
       "fetched": "2026-09-05",
       "sha256": "1c7c8a5b20daad87db4aaa1a2d3d1787b23af83618e6dfa5cedc72aa18f097ec"
     },
+    "https://app.leg.wa.gov/rcw/default.aspx?cite=4.24.130": {
+      "file": "app-leg-wa-gov-rcw-default-aspx-1daeaf5d.txt",
+      "fetched": "2026-09-06",
+      "sha256": "203a647e45c2ea462e81db8fc2effe11c98a9c9ec29f2b8acb28c5001abbeb83"
+    },
     "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=41791": {
       "file": null,
       "fetched": "2026-09-06",
@@ -335,6 +340,11 @@
       "fetched": "2026-09-05",
       "sha256": "5cd407c4a172a63ba843f3a15eb84a9836b0674075f9b3cdb73e3cf889877c64"
     },
+    "https://ilga.gov/Legislation/ILCS/Articles?ActID=2017&ChapterID=56&Chapter=CIVIL%20PROCEDURE&MajorTopic=RIGHTS%20AND%20REMEDIES": {
+      "file": "ilga-gov-legislation-ilcs-articles-20c6c2c6.txt",
+      "fetched": "2026-09-06",
+      "sha256": "a3a8c5e8681a72bf23bfdafec7164edfe3e2c7dede6b3103d2b28b70d73ca18e"
+    },
     "https://indianalegalhelp.org/filing-fee-frequently-asked-questions/": {
       "file": "indianalegalhelp-org-filing-fee-frequently-asked-questions-507cd18e.txt",
       "fetched": "2026-09-05",
@@ -624,6 +634,11 @@
         "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
+    "https://texaslawhelp.org/guide/i-want-to-change-my-childs-name": {
+      "file": "texaslawhelp-org-guide-i-want-to-change-my-childs-name-4c3cff73.txt",
+      "fetched": "2026-09-06",
+      "sha256": "7f4c99b43da45d91b51fb94f27768ccc6db878fa4a3385067853f84941f11dcf"
+    },
     "https://texaslawhelp.org/guide/i-want-to-change-my-name": {
       "file": "texaslawhelp-org-guide-i-want-to-change-my-name-1cde92b3.txt",
       "fetched": "2026-09-06",
@@ -758,6 +773,11 @@
       "file": "cdph-ca-gov-programs-chsi-pages-amending-a-california-birth-record-asp-2d85b264.txt",
       "fetched": "2026-09-06",
       "sha256": "e5a92ffa077a38cc3e52b28c62e506bf08e77e072d1a7cfd481f60b00b429915"
+    },
+    "https://www.cdph.ca.gov/Programs/CHSI/Pages/Assembly-Bill-(AB)-218.aspx": {
+      "file": "cdph-ca-gov-programs-chsi-pages-assembly-bill-ab-218-aspx-19cbfc0a.txt",
+      "fetched": "2026-09-06",
+      "sha256": "2b015de9c445aae5bed43c755fd18322a2dd5cbd4eb3d9c713989f55c764fcf3"
     },
     "https://www.cdph.ca.gov/Programs/CHSI/Pages/Vital-Records-Fees.aspx": {
       "file": "cdph-ca-gov-programs-chsi-pages-vital-records-fees-aspx-d354351b.txt",
@@ -990,6 +1010,11 @@
       "file": "honolulu-gov-csd-drivers-license-procedures-831ec952.txt",
       "fetched": "2026-09-05",
       "sha256": "4d3bbebc566b29da9f67899efa9b9a712238ca8da862cc70fe93b3611dcd6a7b"
+    },
+    "https://www.illinoislegalaid.org/legal-information/changing-childs-name": {
+      "file": "illinoislegalaid-org-legal-information-changing-childs-name-e0ff3d83.txt",
+      "fetched": "2026-09-06",
+      "sha256": "a2f2aaecca64a9eddb2fcc0665fd4ec6345d680133bdebe88b27351a4ce2294c"
     },
     "https://www.illinoislegalaid.org/legal-information/changing-your-name": {
       "file": "illinoislegalaid-org-legal-information-changing-your-name-0473d245.txt",
@@ -1243,6 +1268,14 @@
       "sha256": "534b064c3421224cd08925b9fd4513f8663c0e8d2dbb587e8817f4fc91823a39"
     },
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml": {
+      "file": null,
+      "fetched": "2026-09-06",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://www.nycourts.gov/courthelp/NameChange/childNameChange.shtml": {
       "file": null,
       "fetched": "2026-09-06",
       "unfetchable": {

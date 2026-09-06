@@ -7526,5 +7526,299 @@
     "recheck_sla_days": 30,
     "form_ref": "ky-vs-2j",
     "language": "es"
+  },
+  {
+    "id": "ca.court-order.name.minor.es",
+    "jurisdiction": "US-CA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre de un hijo menor de edad en California",
+    "statement": "En California, un padre, madre, tutor o pariente cercano puede pedirle a un tribunal que cambie el nombre de un hijo menor de edad. La guía de autoayuda de los Tribunales de California dice que los formularios y los pasos para cambiar el nombre de un menor son diferentes a los de un adulto.",
+    "detail": "Si usted es un padre o madre que solicita el cambio de nombre de su hijo sin el otro padre o madre, debe entregarle (notificarle formalmente) una copia de los formularios a esa otra persona. La guía no dice que el otro padre o madre deba estar de acuerdo con el cambio de nombre, solo que debe recibir notificación de este. Un cambio de nombre no cambia quién es el padre o madre legal de un menor: cambiar el nombre de un hijo no agrega a nadie al acta de nacimiento ni otorga la paternidad o maternidad legal. Antes de que un juez pueda decidir, la solicitud normalmente debe publicarse en un periódico durante un mes, pero la guía dice que no es necesario publicarla si el cambio de nombre es para que coincida con la identidad de género o se presenta junto con una solicitud de reconocimiento de cambio de género — la guía indica esta excepción para los cambios de nombre en general, no solo para adultos. La guía no menciona una edad a partir de la cual se requiera el consentimiento u objeción del propio menor, y sus instrucciones no usan un criterio de \"interés superior del menor\".",
+    "cost": {
+      "amount_usd": null,
+      "note": "La guía indica la misma tarifa de presentación de $435 a $450 para los cambios de nombre en general, con la opción de exención si usted no puede pagarla. No menciona una tarifa distinta para el caso de un menor.",
+      "fee_waiver": true
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://selfhelp.courts.ca.gov/name-change",
+      "title": "Tribunales de California, Autoayuda — Cambie Su Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "es"
+  },
+  {
+    "id": "ca.court-order.gender-marker.minor.es",
+    "jurisdiction": "US-CA",
+    "document_type": "court-order",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Petición en California para reconocer el cambio de género de un hijo menor de edad",
+    "statement": "En California, un padre, madre o tutor puede pedirle a un tribunal una orden que reconozca el cambio de género de su hijo, y puede pedir un cambio de nombre en los mismos formularios. La guía dice que un menor no necesita haber recibido ninguna atención de afirmación de género para obtener esta orden, y no se requiere ninguna documentación médica.",
+    "detail": "Si usted es un padre o madre que pide una orden judicial que reconozca el cambio de género de su hijo sin el otro padre o madre, es posible que deba entregarle (notificarle formalmente) una copia de los formularios a esa otra persona. La guía no dice que el otro padre o madre deba estar de acuerdo, solo que debe recibir notificación del caso. La guía no menciona una edad a partir de la cual se requiera el consentimiento u objeción del propio menor, y sus instrucciones no usan un criterio de \"interés superior del menor\".",
+    "cost": {
+      "amount_usd": null,
+      "note": "La guía indica la misma tarifa de presentación de $435 a $450 para esta orden judicial. Si ninguno de los padres puede pagar la tarifa, pueden pedirle al tribunal que la exima.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://selfhelp.courts.ca.gov/gender-recognition",
+      "title": "Tribunales de California, Autoayuda — Cambie Su Género Legal",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "es"
+  },
+  {
+    "id": "ca.birth-certificate.gender-marker.minor.es",
+    "jurisdiction": "US-CA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Campo de sexo en el acta de nacimiento de California para un hijo menor de edad",
+    "statement": "La Ley de la Asamblea 218 (AB 218) de California permite que un padre, madre o tutor obtenga una enmienda al acta de nacimiento de su hijo menor o adulto para reflejar la identidad de género del hijo. Desde el 1 de enero de 2023, este proceso no requiere una orden judicial si la familia envía la documentación de respaldo requerida.",
+    "detail": "El mismo formulario que usa un adulto, el VS 24B (Solicitud para Enmendar un Acta de Nacimiento), también sirve para cambiar el campo de sexo en el acta de nacimiento de un hijo y para actualizar la propia designación de un padre o madre para reflejar su identidad de género.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Assembly-Bill-(AB)-218.aspx",
+      "title": "Departamento de Salud Pública de California — Ley de la Asamblea (AB) 218",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ca-vs-24b",
+    "audience": "minor",
+    "language": "es"
+  },
+  {
+    "id": "wa.court-order.name.minor.es",
+    "jurisdiction": "US-WA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre de un hijo menor de edad en Washington",
+    "statement": "La ley de Washington permite que una persona pida un cambio de nombre para su propio hijo, de la misma manera que puede pedir su propio cambio de nombre. El RCW 4.24.130 no usa la palabra \"padre\" para indicar quién puede solicitarlo en nombre de un menor: dice que cualquier persona que desee un cambio de su propio nombre o del nombre de su hijo puede presentar la solicitud al tribunal.",
+    "detail": "Si el motivo del cambio de nombre de un menor está relacionado con la expresión o identidad de género, la ley envía la petición al tribunal superior en lugar del tribunal de distrito, y una vez que el tribunal aprueba el cambio de nombre debe sellar el expediente para proteger la privacidad del menor. Después de eso, el expediente no está abierto a inspección pública, salvo por orden judicial por causa justificada, o a solicitud de la persona cuyo nombre se cambió o de su tutor. La ley no dice si ambos padres deben unirse a la petición, no dice que se deba notificar al padre o madre que no presenta la petición, y no establece una edad a partir de la cual importe el propio consentimiento del menor: guarda silencio sobre los tres puntos. Tampoco usa un criterio de \"interés superior del menor\".",
+    "prerequisites": [],
+    "source": {
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=4.24.130",
+      "title": "RCW 4.24.130 — Cambio de nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "es"
+  },
+  {
+    "id": "wa.birth-certificate.gender-marker.minor.es",
+    "jurisdiction": "US-WA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Washington para un menor de edad",
+    "statement": "Washington tiene un formulario aparte para cambiar la designación de sexo en el acta de nacimiento de un menor de edad: la Solicitud para Cambiar la Designación de Sexo en un Acta de Nacimiento para un Menor (formulario DOH 422-144). Un padre, madre o tutor legal debe completarlo y firmarlo en nombre de un menor de 18 años, y también debe firmarlo un proveedor de atención médica o de salud mental con licencia que determine que el cambio es congruente con la identidad del menor.",
+    "detail": "Un tutor legal que firme en nombre del menor debe incluir prueba de la tutela legal, como una orden judicial certificada, y una copia de su propia identificación oficial con fotografía. Esto es diferente del trámite para adultos: los adultos firman por sí mismos ante un notario, y no se requiere la firma de un proveedor de atención médica para un adulto. Un menor emancipado usa el formulario para adultos (DOH 422-143) en su lugar, y debe incluir prueba de la emancipación legal. Si el menor no ha cambiado legalmente su primer nombre y segundo nombre, estos pueden cambiarse en el mismo formulario con el consentimiento de todos los padres que figuran en el acta; si el nombre del menor ya se cambió legalmente, se debe incluir una orden judicial certificada.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://doh.wa.gov/licenses-permits-and-certificates/vital-records/sex-designation-change-birth-certificate",
+      "title": "Departamento de Salud del Estado de Washington — Cambio de Designación de Sexo en el Acta de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "wa-doh-422-144",
+    "audience": "minor",
+    "language": "es"
+  },
+  {
+    "id": "wa.drivers-license.gender-marker.minor.es",
+    "jurisdiction": "US-WA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia o el permiso de Washington para un menor de edad",
+    "statement": "El proceso de Washington para cambiar la designación de género no menciona ninguna regla distinta para una persona menor de edad. La página del Departamento de Licencias y su formulario de Solicitud de Cambio de Designación de Género cubren el permiso de instrucción — la credencial que tiene la mayoría de los menores — de la misma manera que cubren una licencia de conducir o tarjeta de identificación completa.",
+    "detail": "El formulario de solicitud tiene una sola línea de firma, para el propio solicitante, que declara bajo pena de perjurio que es la persona nombrada en el formulario. No tiene una línea aparte para la firma de un padre, madre o tutor, y ni la página del departamento ni el formulario mencionan la edad, ser menor de edad, ni ningún papel de un padre, madre o tutor en este proceso.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-gender-designation",
+      "title": "DOL de Washington — Designación de Género",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "es"
+  },
+  {
+    "id": "il.court-order.name.minor.es",
+    "jurisdiction": "US-IL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre de un menor en Illinois: quién solicita, notificación y el criterio de interés superior",
+    "statement": "En Illinois, el padre, madre o tutor que tiene la custodia legal de un menor firma la petición para cambiar el nombre del menor. Antes de que el tribunal pueda ordenar el cambio, la ley exige notificación real y la oportunidad de ser escuchado para cualquier padre o madre cuyos derechos parentales no hayan sido terminados, y para cualquier persona a quien se le hayan asignado responsabilidades parentales bajo la Ley de Matrimonio y Disolución de Matrimonio de Illinois.",
+    "detail": "El tribunal solo puede dictar una orden de cambio de nombre para un menor si determina, con evidencia clara y convincente, que el cambio es necesario para servir el interés superior del menor. La ley enumera los factores que el tribunal debe considerar: los deseos de los padres del menor o de cualquier persona que actúe como padre y tenga la custodia física del menor; los deseos del menor y las razones de esos deseos (el tribunal puede entrevistar al menor, con un abogado presente); la relación del menor con sus padres, padrastros, hermanos y hermanastros; y cómo se ha adaptado el menor a su hogar, escuela y comunidad.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://ilga.gov/Legislation/ILCS/Articles?ActID=2017&ChapterID=56&Chapter=CIVIL%20PROCEDURE&MajorTopic=RIGHTS%20AND%20REMEDIES",
+      "title": "735 ILCS 5, Artículo XXI — Cambio de Nombre",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "es"
+  },
+  {
+    "id": "il.court-order.name.minor.faq.es",
+    "jurisdiction": "US-IL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre de un menor en Illinois: consentimiento, publicación y tarifas",
+    "statement": "Illinois Legal Aid Online dice que un padre o madre puede pedir el cambio de nombre de un hijo aunque el otro padre o madre no esté de acuerdo — a ese otro padre o madre se le debe notificar legalmente el caso, pero la guía no dice que se requiera su consentimiento. También dice que la ley de Illinois permite que un menor de catorce años o más consienta a un cambio de nombre, y que un juez puede permitir que un menor \"maduro\" de menos edad también exprese su preferencia.",
+    "detail": "Si no se puede localizar a un padre o madre, o esa persona no responde, la guía dice que un juez puede exigir la notificación por publicación: un aviso publicado en un periódico del condado una vez por semana durante tres semanas seguidas, con la primera publicación al menos seis semanas antes de la fecha de la audiencia. Puede haber una tarifa por publicar el aviso, y algunos periódicos honran una orden de exención de tarifas, pero la guía dice que no están obligados a hacerlo. Se cobra una tarifa para presentar el caso, y el monto varía según el condado; una familia puede presentar una Solicitud de Exención de Tarifas Judiciales para pedirle al juez que la exima. El paso de publicación en un periódico para el caso de un menor es diferente del proceso de cambio de nombre para adultos, que ya no incluye un paso de publicación.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La tarifa de presentación varía según el condado. Hay una exención de tarifas disponible para las familias que califiquen.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.illinoislegalaid.org/legal-information/changing-childs-name",
+      "title": "Illinois Legal Aid Online — Cómo Iniciar un Caso para Cambiar el Nombre de un Menor",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "es"
+  },
+  {
+    "id": "il.birth-certificate.gender-marker.minor.es",
+    "jurisdiction": "US-IL",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Illinois para un menor de edad",
+    "statement": "Illinois usa el mismo formulario de Declaración Jurada y Solicitud de Corrección para cambiar la designación de sexo en un acta de nacimiento tanto para un menor como para un adulto. El solicitante debe tener la mayoría de edad para completar el formulario, o, si la persona no tiene la mayoría de edad, su padre, madre, copadre o tutor lo completa en su lugar.",
+    "detail": "El formulario debe firmarse y notariarse en ambos casos. Si la familia también quiere un cambio de nombre al mismo tiempo, debe presentar una copia certificada de la Orden Judicial de Cambio Legal de Nombre — la página del departamento de salud no dice que se necesite una orden judicial para un cambio de designación de género por sí solo, ni para un menor ni para un adulto.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "La tarifa de $15 incluye una copia certificada de la nueva acta de nacimiento. Las copias adicionales cuestan $2 cada una si se piden al mismo tiempo."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dph.illinois.gov/topics-services/birth-death-other-records/birth-records/gender-reassignment.html",
+      "title": "Departamento de Salud Pública de Illinois — Cambio de Género en un Acta de Nacimiento",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "il-affidavit-correction",
+    "audience": "minor",
+    "language": "es"
+  },
+  {
+    "id": "tx.court-order.name.minor.es",
+    "jurisdiction": "US-TX",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre de un hijo en Texas",
+    "statement": "TexasLawHelp dice que el caso de cambio de nombre de un hijo puede presentarlo el padre o la madre del menor, el conservador administrador o el tutor legal. Si su hijo tiene 10 años de edad o más, usted no puede cambiar el nombre de su hijo sin su consentimiento.",
+    "detail": "Debe informar al otro padre o madre sobre el caso, incluso si esa persona no figura en el acta de nacimiento de su hijo, a menos que sus derechos parentales hayan sido terminados. Si el otro padre o madre no está de acuerdo, debe hacer que le entreguen la notificación legal un alguacil, un agente del orden o un notificador judicial privado, y debe fijar una audiencia final impugnada con al menos 45 días de aviso a esa persona. Si no puede localizar al otro padre o madre después de buscar exhaustivamente, debe notificarle por publicación en un periódico local, en el sitio web de información pública del estado, o en ambos, y debe contratar a un abogado para que actúe como su representante legal (attorney ad litem). Esté preparado para decirle al juez por qué el cambio de nombre conviene al interés superior del menor.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Comuníquese con la oficina del secretario del tribunal de distrito del condado donde vive el menor para conocer la tarifa de presentación. Un padre o madre de bajos ingresos puede pedirle al tribunal que la exima con una Declaración de Incapacidad para Pagar los Costos Judiciales.",
+      "fee_waiver": true
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://texaslawhelp.org/guide/i-want-to-change-my-childs-name",
+      "title": "TexasLawHelp — Quiero Cambiar el Nombre de Mi Hijo",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "es"
+  },
+  {
+    "id": "ny.court-order.name.minor.es",
+    "jurisdiction": "US-NY",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre de un hijo en Nueva York",
+    "statement": "En Nueva York, el padre o la madre de un menor, su tutor legal o un \"amigo cercano\" (next friend) puede pedirle al tribunal que cambie el nombre del menor. El derecho de common law de usar el nombre que uno quiera no se aplica a los menores: el nombre de un menor solo puede cambiarse con una orden judicial.",
+    "detail": "Si el menor tiene otro padre o madre biológico o adoptivo, o un tutor legal, con vida, esa persona debe dar su consentimiento por escrito al cambio de nombre. Si los derechos de esa otra persona han sido terminados, no se necesita su consentimiento. Si no puede obtener el consentimiento porque no sabe dónde vive el otro padre o madre, debe mostrarle al juez lo que hizo para tratar de localizarlo. Si sabe la dirección de esa persona pero no da su consentimiento, debe entregarle un Aviso al Padre No Peticionario (Notice to Non-Petitioning Parent) para que pueda decirle al tribunal por qué se opone. Los tribunales exigen que un menor de 14 años o más, pero menor de 18, dé su propio permiso para el cambio de nombre, firmado en un formulario de Consentimiento del Menor ante un notario. El juez decide según el interés superior del menor, y considera lo que el menor quiere (según su edad y experiencia), lo que el cambio puede hacerle a la relación del menor con cada padre, cuánto tiempo ha usado el nombre, cualquier problema o acoso que pueda causar el nombre actual o el nuevo, y los motivos de los padres.",
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.nycourts.gov/courthelp/NameChange/childNameChange.shtml",
+      "title": "NY CourtHelp — Cambios de Nombre de Menores",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "es"
+  },
+  {
+    "id": "ny.birth-certificate.gender-marker.minor.es",
+    "jurisdiction": "US-NY",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en el acta de nacimiento de Nueva York para un menor (16 años o menos)",
+    "statement": "Para alguien de 16 años o menos, el estado de Nueva York permite que el padre, madre o tutor legal que figura en el acta de nacimiento cambie la designación de género en el acta de nacimiento del menor, incluida una designación X (no binario). Esto usa formularios distintos a los que usa un adulto (17 años o más): una Solicitud del Padre/Madre o Tutor Legal para Enmendar el Acta de Nacimiento por Designación de Género para un Menor (formulario DOH-5306), junto con un Affidávit Notariado de Error de Género para una Persona de 16 Años o Menos (formulario DOH-5304).",
+    "detail": "El nombre del padre o madre que hace la solicitud debe figurar en el acta de nacimiento. Si el padre, madre o tutor también quiere que se cambie el nombre del menor en el acta de nacimiento al mismo tiempo, debe indicarlo en la solicitud e incluir una copia de una orden judicial que autorice el cambio de nombre — un cambio de nombre no puede autorizarse sin una orden judicial. Cuando se enmienda una designación de género, el acta de nacimiento original y los documentos relacionados con el cambio se conservan en un archivo sellado, y solo se entrega el acta enmendada en futuras solicitudes.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
+      "title": "Departamento de Salud del Estado de Nueva York — Enmiendas de Designación de Género",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "es"
   }
 ]

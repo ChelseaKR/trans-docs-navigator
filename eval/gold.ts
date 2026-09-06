@@ -20,6 +20,8 @@ export interface GoldItem {
     documents?: DocumentType[];
     question?: string;
     language?: Language;
+    /** Minors pilot: true when this gold case is asking about someone under 18. */
+    for_minor?: boolean;
   };
   expect: {
     refused?: boolean;
@@ -1712,6 +1714,83 @@ const AUTHORED_GOLD: GoldItem[] = [
     segment: { jurisdiction: "US-MO", language: "es" },
     query: { jurisdiction: "US-MO", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Missouri" },
     expect: { refused: false, citesRecord: "mo.court-order.name.es", mustContain: ["tribunal de circuito"] },
+  },
+
+  // ── Minors pilot (California, Illinois, New York, Texas, Washington) ────────────────
+  // One accuracy item per pilot state pins retrieval to the MINOR record, not the adult
+  // one that also matches this (jurisdiction × document × change) cell — the same
+  // guarantee tests/retrieval.test.ts and tests/minors-coverage-honesty.test.ts pin at
+  // the unit level, exercised here through the full retrieval→generation→citation path.
+  {
+    id: "ca-name-court-minor",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CA", language: "en" },
+    query: { jurisdiction: "US-CA", change_types: ["name"], documents: ["court-order"], for_minor: true, question: "how do I change my child's name in California" },
+    expect: { refused: false, citesRecord: "ca.court-order.name.minor", mustContain: ["near relative", "$435"] },
+  },
+  {
+    id: "ca-name-court-minor-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-CA", language: "es" },
+    query: { jurisdiction: "US-CA", change_types: ["name"], documents: ["court-order"], language: "es", for_minor: true, question: "cómo cambio el nombre de mi hijo en California" },
+    expect: { refused: false, citesRecord: "ca.court-order.name.minor.es", mustContain: ["pariente cercano", "$435"] },
+  },
+  {
+    id: "il-name-court-minor",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-IL", language: "en" },
+    query: { jurisdiction: "US-IL", change_types: ["name"], documents: ["court-order"], for_minor: true, question: "how do I change my child's name in Illinois" },
+    expect: { refused: false, citesRecord: "il.court-order.name.minor", mustContain: ["clear and convincing", "best interest"] },
+  },
+  {
+    id: "ny-name-court-minor",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NY", language: "en" },
+    query: { jurisdiction: "US-NY", change_types: ["name"], documents: ["court-order"], for_minor: true, question: "how do I change my child's name in New York" },
+    expect: { refused: false, citesRecord: "ny.court-order.name.minor", mustContain: ["14 years", "Minor Consent"] },
+  },
+  {
+    id: "tx-name-court-minor",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-TX", language: "en" },
+    query: { jurisdiction: "US-TX", change_types: ["name"], documents: ["court-order"], for_minor: true, question: "how do I change my child's name in Texas" },
+    expect: { refused: false, citesRecord: "tx.court-order.name.minor", mustContain: ["10 years old", "consent"] },
+  },
+  {
+    id: "wa-name-court-minor",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WA", language: "en" },
+    query: { jurisdiction: "US-WA", change_types: ["name"], documents: ["court-order"], for_minor: true, question: "how do I change my child's name in Washington" },
+    expect: { refused: false, citesRecord: "wa.court-order.name.minor", mustContain: ["RCW 4.24.130", "seal"] },
+  },
+  {
+    id: "wa-name-court-minor-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-WA", language: "es" },
+    query: { jurisdiction: "US-WA", change_types: ["name"], documents: ["court-order"], language: "es", for_minor: true, question: "cómo cambio el nombre de mi hijo en Washington" },
+    expect: { refused: false, citesRecord: "wa.court-order.name.minor.es", mustContain: ["RCW 4.24.130", "sellar"] },
+  },
+
+  // The honesty rule itself: a NON-PILOT state (Florida — fully covered for adults, but
+  // outside the five-state pilot) must degrade, not refuse and not silently serve the
+  // adult rule as if it were checked for a minor. `refused: false` is deliberate here —
+  // unlike this file's other "refusal" items (all `refused: true`, a stale/absent
+  // record) — this is a disclosed DEGRADATION: the adult record is still served, cited,
+  // and true, with the no-minor-coverage note required to come first. See
+  // tests/minors-coverage-honesty.test.ts for the unit-level pin of this same guarantee.
+  {
+    id: "fl-minor-degrades",
+    suite: "refusal",
+    segment: { jurisdiction: "US-FL", language: "en" },
+    query: { jurisdiction: "US-FL", change_types: ["name"], documents: ["court-order"], for_minor: true, question: "how do I change my child's name in Florida" },
+    expect: { refused: false, citesRecord: "fl.court-order.name", mustContain: ["for adults"] },
+  },
+  {
+    id: "fl-minor-degrades-es",
+    suite: "refusal",
+    segment: { jurisdiction: "US-FL", language: "es" },
+    query: { jurisdiction: "US-FL", change_types: ["name"], documents: ["court-order"], language: "es", for_minor: true, question: "cómo cambio el nombre de mi hijo en Florida" },
+    expect: { refused: false, citesRecord: "fl.court-order.name.es", mustContain: ["para adultos"] },
   },
 ];
 

@@ -41,6 +41,7 @@ import type {
 } from "./types.ts";
 import { loadCorpus } from "./corpus.ts";
 import { isCurrent } from "./freshness.ts";
+import { selectAudience } from "./retrieval.ts";
 import { enforce } from "./citation.ts";
 import { t } from "../src/i18n/index.ts";
 
@@ -105,14 +106,19 @@ function cell(
   doc: DocumentType,
   changes: ChangeType[],
   language: RelocationIntake["language"],
+  forMinor: boolean,
 ): CorpusRecord[] {
-  return corpus.filter(
+  const structural = corpus.filter(
     (r) =>
       r.jurisdiction === jurisdiction &&
       r.document_type === doc &&
       r.change_type.some((c) => changes.includes(c)) &&
       r.language === language,
   );
+  // Same audience exclusivity as the checklist/retrieval surfaces (api/retrieval.ts
+  // selectAudience): a minor plan sees only a minor-audience record where this single
+  // (jurisdiction × doc) cell has one, and falls through to the adult record otherwise.
+  return selectAudience(structural, forMinor);
 }
 
 /**
@@ -173,7 +179,7 @@ function resolve(
   intake: RelocationIntake,
   today: string | undefined,
 ): Resolved {
-  const matching = cell(corpus, jurisdiction, doc, intake.change_types, intake.language);
+  const matching = cell(corpus, jurisdiction, doc, intake.change_types, intake.language, intake.for_minor === true);
   return {
     current: matching.filter((r) => isCurrent(r, today)),
     degraded: matching.filter((r) => !isCurrent(r, today)),

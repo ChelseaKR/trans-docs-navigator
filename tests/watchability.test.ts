@@ -125,6 +125,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Deliberate, with the Alaska corpus.
     "https://doa.alaska.gov/dmv/akol/namchg.htm",
     "https://doa.alaska.gov/dmv/forms/pdfs/427.pdf",
+    // Washington's Request to Change Sex Designation on a Birth Certificate for a Minor
+    // (Form DOH 422-144) is a PDF whose text this pipeline cannot extract, so no baseline
+    // can be taken — deliberate, with the minors-pilot addition to the Washington corpus.
+    "https://doh.wa.gov/sites/default/files/legacy/Documents/Pubs/422-144-SexDesignationChangeMinor.pdf",
     // Georgia's Affidavit for Amendment (Form 3977) is a PDF whose text this
     // pipeline cannot extract, so no baseline can be taken — deliberate addition
     // with the Georgia corpus, not a silent drift in the watch set.
@@ -281,6 +285,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Form) has no drift baseline recorded — deliberate, with the New Mexico corpus.
     "https://www.nmhealth.org/publication/view/form/5429/",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml",
+    // New York Courts refuses this project's declared user-agent domain-wide (same as the
+    // existing nameChange.shtml citation above) — deliberate, with the minors-pilot
+    // addition to the New York corpus (the Child Name Changes page).
+    "https://www.nycourts.gov/courthelp/NameChange/childNameChange.shtml",
     // The Sixth Circuit's Gore v. Lee opinion (the source for Tennessee's birth-certificate
     // gender-marker bar) is only published as a PDF on the court's own site, so no baseline
     // can be taken — deliberate, with the Tennessee corpus.

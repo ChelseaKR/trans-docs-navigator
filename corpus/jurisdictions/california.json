@@ -227,5 +227,83 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "language": "en"
+  },
+  {
+    "id": "ca.court-order.name.minor",
+    "jurisdiction": "US-CA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "California name change for a minor child",
+    "statement": "In California, a parent, guardian, or near relative can ask a court to change a minor child's name. The California Courts self-help guide says the forms and steps for a child's name change are different from an adult's.",
+    "detail": "If you are a parent filing to change your child's name without the other parent, you must serve (officially deliver) that other parent a copy of the forms. The guide does not say the other parent must agree to the name change, only that they must be served with notice of it. A name change does not change who a child's legal parent is: changing a child's name does not add anyone to the birth certificate or grant legal parentage. Before a judge can decide, the request must usually be published in a newspaper for one month, but the guide says you do not have to publish if the name change is to match gender identity or is filed together with a request for gender change recognition — the guide states this exception for name changes in general, not only for adults. The guide does not name an age at which the child's own consent or objection is required, and its instructions do not use a \"best interest of the child\" standard.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The guide states the same $435 to $450 filing fee for name changes in general, with a waiver available if you cannot afford it. It does not name a separate fee for a child's case.",
+      "fee_waiver": true
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://selfhelp.courts.ca.gov/name-change",
+      "title": "California Courts Self-Help — Change Your Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "en"
+  },
+  {
+    "id": "ca.court-order.gender-marker.minor",
+    "jurisdiction": "US-CA",
+    "document_type": "court-order",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "California petition to recognize a minor child's gender change",
+    "statement": "In California, a parent or guardian can ask a court for an order recognizing their child's gender change, and can ask for a name change in the same forms. The guide says a child does not need to have had any gender-affirming care to get this order, and no medical documentation is required.",
+    "detail": "If you are a parent asking for a court order recognizing your child's gender change without the other parent, you may have to serve (officially deliver) the other parent a copy of the forms. The guide does not say the other parent must agree, only that they must be served with notice of the case. The guide does not name an age at which the child's own consent or objection is required, and its instructions do not use a \"best interest of the child\" standard.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The guide states the same $435 to $450 filing fee for this court order. If none of the parents can afford the fee, they can ask the court to waive it.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://selfhelp.courts.ca.gov/gender-recognition",
+      "title": "California Courts Self-Help — Change Your Legal Gender",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "en"
+  },
+  {
+    "id": "ca.birth-certificate.gender-marker.minor",
+    "jurisdiction": "US-CA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "California birth certificate sex field for a minor child",
+    "statement": "California's Assembly Bill 218 lets a parent or guardian get an amendment to a birth certificate for their minor or adult child to reflect the child's gender identity. Since January 1, 2023, this process does not require a court order if the family sends in the required supporting documentation.",
+    "detail": "The same form used for an adult, VS 24B (Application to Amend a Birth Record), also covers changing the sex field on a child's birth certificate and updating a parent's own designation to reflect the parent's gender identity.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/Assembly-Bill-(AB)-218.aspx",
+      "title": "California Department of Public Health — Assembly Bill (AB) 218",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ca-vs-24b",
+    "audience": "minor",
+    "language": "en"
   }
 ]

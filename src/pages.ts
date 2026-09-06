@@ -83,6 +83,10 @@ export function renderIntakePage(lang: Language = "en"): string {
   // as already done and prune it from dependents' prerequisite lists; it is bookkeeping,
   // never individualized guidance, so the copy stays neutral.
   const courtOrderLabel = fieldLabel(lang, "has_court_order");
+  // Minors pilot (docs/audits): same selection-only bookkeeping class as has_court_order —
+  // read by retrieval to prefer a minor-audience record where the corpus has one, and by
+  // the checklist/answer honesty note where it doesn't (api/checklist.ts hasNoMinorCoverage).
+  const forMinorLabel = fieldLabel(lang, "for_minor");
 
   const body = `
 <p>${escapeHtml(s.intakeLead)}</p>
@@ -104,6 +108,10 @@ export function renderIntakePage(lang: Language = "en"): string {
   <fieldset>
     <legend>${escapeHtml(courtOrderLabel)}</legend>
     <label><input type="checkbox" name="court_order" value="1"> ${escapeHtml(courtOrderLabel)}</label>
+  </fieldset>
+  <fieldset>
+    <legend>${escapeHtml(forMinorLabel)}</legend>
+    <label><input type="checkbox" name="for_minor" value="1"> ${escapeHtml(forMinorLabel)}</label>
   </fieldset>
   <fieldset>
     <legend>${escapeHtml(s.languageLegend)}</legend>
@@ -130,15 +138,20 @@ export function renderChecklistPage(
   records: CorpusRecord[],
   lang: Language,
   query = "",
-  opts: { thinnerCoverage?: boolean; noStateCoverage?: boolean } = {},
+  opts: { thinnerCoverage?: boolean; noStateCoverage?: boolean; noMinorCoverage?: boolean } = {},
 ): string {
   const s = uiStrings(lang);
   const coverageNote = opts.thinnerCoverage ? `<p class="flag" role="note">${escapeHtml(s.thinnerCoverage)}</p>` : "";
   // The state itself is absent from the corpus: every step below is federal. Said BEFORE
   // the steps, because after them the page already reads as a finished plan.
   const stateNote = opts.noStateCoverage ? `<p class="flag" role="note">${escapeHtml(s.noStateCoverage)}</p>` : "";
+  // Minors pilot: the state IS covered, but not for a minor's situation specifically —
+  // the steps below are the adult ones. Same placement logic as stateNote (before the
+  // steps, not after), and it can legitimately stack with stateNote (a wholly uncovered
+  // territory has no minor coverage either; both statements stay true and distinct).
+  const minorNote = opts.noMinorCoverage ? `<p class="flag" role="note">${escapeHtml(s.noMinorCoverage)}</p>` : "";
   const intro = `<p>${escapeHtml(s.checklistIntro)}</p>
-<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${stateNote}${coverageNote}`;
+<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${stateNote}${minorNote}${coverageNote}`;
   const q = query ? `?${query}` : "";
   const actions = `<p class="no-print"><a href="/packet${q}">📄 ${escapeHtml(s.print)}</a> · <a href="/">${escapeHtml(s.startOver)}</a></p>`;
   const gaps = checklist.gaps.length
@@ -268,14 +281,16 @@ export function renderPacketPage(
   lang: Language,
   generatedOn: string,
   intakeQuery = "",
-  opts: { noStateCoverage?: boolean } = {},
+  opts: { noStateCoverage?: boolean; noMinorCoverage?: boolean } = {},
 ): string {
   const s = uiStrings(lang);
   const actions = `<p class="no-print"><button type="button" id="print-btn">🖨️ ${escapeHtml(s.print)}</button> <a href="/">${escapeHtml(s.startOver)}</a></p>
 <script type="module" src="/assets/packet.js"></script>`;
   // The packet is the artifact people print and carry to a clerk, so the "these are
-  // federal steps only" caveat has to survive onto paper — not be a screen-only note.
+  // federal steps only" / "these are adult steps only" caveats have to survive onto
+  // paper — not be a screen-only note.
   const stateNote = opts.noStateCoverage ? `<p class="flag" role="note">${escapeHtml(s.noStateCoverage)}</p>` : "";
+  const minorNote = opts.noMinorCoverage ? `<p class="flag" role="note">${escapeHtml(s.noMinorCoverage)}</p>` : "";
   // Offline saving: the packet itself, plus the checklist to go back to.
   const offlineUrls = intakeQuery
     ? [
@@ -284,7 +299,7 @@ export function renderPacketPage(
       ]
     : [];
   const offline = renderOfflinePanel(s, offlineUrls);
-  const body = actions + stateNote + renderPacket(checklist, records, lang, generatedOn) + offline;
+  const body = actions + stateNote + minorNote + renderPacket(checklist, records, lang, generatedOn) + offline;
   return page({ lang, title: s.packetTitle, heading: s.packetHeading, body });
 }
 

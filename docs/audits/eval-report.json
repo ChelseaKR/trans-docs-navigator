@@ -1,33 +1,33 @@
 {
   "today": "2026-07-13",
-  "total": 204,
+  "total": 213,
   "metrics": [
     {
       "name": "groundedness",
-      "value": 0.984375,
+      "value": 0.985,
       "threshold": 0.95,
-      "n": 192,
+      "n": 200,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 160,
+      "n": 167,
       "pass": true
     },
     {
       "name": "refusal_safety",
       "value": 1,
       "threshold": 1,
-      "n": 36,
+      "n": 38,
       "pass": true
     },
     {
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 204,
+      "n": 213,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 160,
+      "n": 167,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
-      "value": 0.925,
+      "value": 0.9281437125748503,
       "threshold": 0.7,
-      "n": 160,
+      "n": 167,
       "pass": true
     }
   ],
@@ -86,7 +86,7 @@
     {
       "segment": "jurisdiction:US-CA",
       "value": 1,
-      "n": 4,
+      "n": 6,
       "pass": true
     },
     {
@@ -146,7 +146,7 @@
     {
       "segment": "jurisdiction:US-IL",
       "value": 1,
-      "n": 1,
+      "n": 2,
       "pass": true
     },
     {
@@ -266,7 +266,7 @@
     {
       "segment": "jurisdiction:US-NY",
       "value": 1,
-      "n": 2,
+      "n": 3,
       "pass": true
     },
     {
@@ -320,7 +320,7 @@
     {
       "segment": "jurisdiction:US-TX",
       "value": 1,
-      "n": 1,
+      "n": 2,
       "pass": true
     },
     {
@@ -344,7 +344,7 @@
     {
       "segment": "jurisdiction:US-WA",
       "value": 1,
-      "n": 2,
+      "n": 4,
       "pass": true
     },
     {
@@ -368,13 +368,13 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 105,
+      "n": 110,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 55,
+      "n": 57,
       "pass": true
     }
   ],
@@ -421,9 +421,9 @@
     },
     {
       "jurisdiction": "US-CA",
-      "records": 18,
-      "current_records": 18,
-      "gold_items": 4,
+      "records": 24,
+      "current_records": 24,
+      "gold_items": 6,
       "accuracy": 1,
       "mechanically_ready": true,
       "verification_complete": false,
@@ -521,9 +521,9 @@
     },
     {
       "jurisdiction": "US-IL",
-      "records": 8,
-      "current_records": 8,
-      "gold_items": 1,
+      "records": 14,
+      "current_records": 14,
+      "gold_items": 2,
       "accuracy": 1,
       "mechanically_ready": true,
       "verification_complete": false,
@@ -721,9 +721,9 @@
     },
     {
       "jurisdiction": "US-NY",
-      "records": 12,
-      "current_records": 10,
-      "gold_items": 2,
+      "records": 16,
+      "current_records": 14,
+      "gold_items": 3,
       "accuracy": 1,
       "mechanically_ready": true,
       "verification_complete": false,
@@ -811,9 +811,9 @@
     },
     {
       "jurisdiction": "US-TX",
-      "records": 14,
-      "current_records": 12,
-      "gold_items": 1,
+      "records": 16,
+      "current_records": 14,
+      "gold_items": 2,
       "accuracy": 1,
       "mechanically_ready": true,
       "verification_complete": false,
@@ -851,9 +851,9 @@
     },
     {
       "jurisdiction": "US-WA",
-      "records": 10,
-      "current_records": 10,
-      "gold_items": 2,
+      "records": 16,
+      "current_records": 16,
+      "gold_items": 4,
       "accuracy": 1,
       "mechanically_ready": true,
       "verification_complete": false,
@@ -2934,6 +2934,96 @@
       "suite": "accuracy",
       "segment": {
         "jurisdiction": "US-MO",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ca-name-court-minor",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-CA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ca-name-court-minor-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-CA",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "il-name-court-minor",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-IL",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ny-name-court-minor",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-NY",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "tx-name-court-minor",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-TX",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "wa-name-court-minor",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-WA",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "wa-name-court-minor-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-WA",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "fl-minor-degrades",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-FL",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "fl-minor-degrades-es",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-FL",
         "language": "es"
       },
       "passed": true,
