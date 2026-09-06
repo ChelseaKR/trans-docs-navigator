@@ -1,9 +1,15 @@
 // Tests for scripts/codeql-gate.mjs — especially that it does NOT fail open.
 //
 // The "no SARIF" cases are the point of this file. A gate that returns success when it finds no
-// SARIF reports a clean scan for an analysis that never ran, and with no code-scanning dashboard
-// on this private repo nothing else would notice. That is exactly the failure mode the codeql
-// workflow was in before 2026-08-01, when the whole job skipped and the skip read as green.
+// SARIF reports a clean scan for an analysis that never ran. That is exactly the failure mode the
+// codeql workflow was in before 2026-08-01, when the whole job skipped and the skip read as green.
+//
+// Code scanning is enabled again as of 2026-09-06 (this repo is public; the "private repo, no
+// dashboard" premise this comment used to carry was false). The dashboard does NOT make these
+// cases redundant — it is the weaker detector of the two here. A run that produces no SARIF
+// uploads nothing, so the Security tab simply keeps displaying the PREVIOUS analysis and stays
+// green; that is how a June snapshot passed for current state for three months. Only a gate that
+// fails closed on a missing SARIF turns that silence into a red check.
 
 import { test, describe, beforeEach, afterEach } from "node:test";
 import assert from "node:assert/strict";

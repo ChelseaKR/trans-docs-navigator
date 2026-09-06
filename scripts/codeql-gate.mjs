@@ -2,15 +2,21 @@
 /**
  * CodeQL SARIF gate — fails the build on any error-severity finding.
  *
- * Code scanning is not enabled on this private repo (no GitHub Advanced Security), so
- * `codeql-action/analyze` cannot upload its SARIF and would otherwise fail the job outright with
- * "Code scanning is not enabled for this repository". The workflow therefore runs the analysis
- * with `upload: never` and writes the SARIF locally; this script reads it and fails on any result
- * whose rule carries `problem.severity: error` (or whose own `level` is `error`).
+ * `codeql-action/analyze` writes its SARIF locally (`output:`) as well as uploading it to code
+ * scanning; this script reads the local copy and fails on any result whose rule carries
+ * `problem.severity: error` (or whose own `level` is `error`).
  *
- * There is no code-scanning dashboard to review the findings in, so this gate IS the enforcement.
- * It fails closed: finding no .sarif at all exits 1 rather than reporting a pass, because a
- * missing SARIF means the analysis did not run, not that the code is clean.
+ * This header used to say "code scanning is not enabled on this private repo (no GitHub Advanced
+ * Security), so analyze cannot upload its SARIF". That was false in both halves: the repo is
+ * PUBLIC, and code scanning is available on public repos without Advanced Security. Believing it
+ * cost three months of stale alerts shown as current state. Upload was re-enabled 2026-09-06.
+ *
+ * That does NOT make this gate redundant, and it is the reason the gate stayed. The dashboard
+ * cannot tell you the analysis failed to produce anything — a run that emits no SARIF simply
+ * leaves the last upload in place, so the Security tab keeps showing old findings and nothing
+ * goes red. This gate fails closed on exactly that: finding no .sarif at all exits 1 rather than
+ * reporting a pass, because a missing SARIF means the analysis did not run, not that the code is
+ * clean. Dashboard and gate answer different questions; keep both.
  *
  * CodeQL emits its rule metadata under `runs[].tool.extensions[].rules`, NOT under
  * `runs[].tool.driver.rules` (which it leaves empty), and it does not put a `level` on individual
