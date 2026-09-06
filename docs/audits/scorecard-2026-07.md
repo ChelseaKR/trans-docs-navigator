@@ -149,8 +149,11 @@ its place"). Both halves of that promise are now discharged.
 
 **The CI automation is confirmed fixed, by a run, not by inspection.** `scorecard.yml` ran
 green on `main` on 2026-09-06T02:04:38Z (run `34005526933`, `workflow_dispatch`, 44s) — the
-first successful run since 2026-07-06, after three consecutive failures (07-06, 07-09,
-08-11) at `Run analysis`. Its SARIF also reached GitHub code scanning at 2026-09-06T02:05:15Z
+workflow's **first successful run on record**. All four earlier runs failed: three on `main`
+at `Run analysis` (2026-07-06, 07-09, 08-11), plus one branch dispatch on 2026-09-06T01:45:38Z
+that fails by design, because `scorecard-action` only analyzes the default branch. Stated
+precisely because "first success since 2026-07-06" would wrongly imply 07-06 itself passed;
+it did not. Its SARIF also reached GitHub code scanning at 2026-09-06T02:05:15Z
 (3 analyses, 6 findings, now visible as `Scorecard`-tool alerts), so the upload path works
 too.
 
@@ -220,11 +223,13 @@ here for the same reason it did in July: no releases exist (`git tag -l` is stil
   a real signal now rather than an age artifact.
 - **Contributors 0 → 3.** Still a single-maintainer repo; Scorecard now resolves one
   contributing organization. Structurally capped, not a gap that further work closes.
-- **Packaging N/A → 10.** `release.yml`'s rewrite (job-scoped `packages`/`id-token`/
-  `attestations`, dataset publish) is now recognized as a packaging workflow. Note this is
-  detection of the *workflow*, not evidence a release has ever run — `release.yml` still has
-  never executed, and `Signed-Releases` remains N/A for that reason. Do not read
-  `Packaging 10/10` as "releases are signed".
+- **Packaging N/A → 10.** Most likely `release.yml`'s rewrite landing: the 2026-07-05 baseline
+  says in its own header that it snapshots `main` *before* that remediation pass was pushed, so
+  the rewritten workflow did not exist in the data behind the N/A. Recorded as the probable
+  cause rather than a proven one — Scorecard reports only "packaging workflow detected", not
+  which file convinced it. Either way this is detection of the *workflow*, not evidence a
+  release has ever run: `release.yml` still has never executed, and `Signed-Releases` remains
+  N/A for that reason. Do not read `Packaging 10/10` as "releases are signed".
 - **SAST 8 → 7.** A drop, and worth naming rather than burying: the reason string is
   unchanged ("SAST tool detected but not run on all commits"), so this is the same
   commit-sampling behaviour the baseline already diagnosed as a normalization artifact,
