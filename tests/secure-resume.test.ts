@@ -54,3 +54,10 @@ test("toResumeState keeps court_order (FIX-07: same privacy class as change/doc,
   assert.equal(safe.get("court_order"), "1");
   assert.equal(safe.get("current_legal_name"), null);
 });
+
+test("toResumeState keeps for_minor (minors pilot: same privacy class as change/doc/court_order)", () => {
+  const params = new URLSearchParams("jurisdiction=US-CA&for_minor=1&current_legal_name=Alex");
+  const safe = toResumeState(params);
+  assert.equal(safe.get("for_minor"), "1");
+  assert.equal(safe.get("current_legal_name"), null);
+});

@@ -11,6 +11,7 @@ import type {
   CorpusRecord,
   DocumentType,
   ChangeType,
+  RecordAudience,
   VerificationStatus,
   Language,
 } from "./types.ts";
@@ -37,6 +38,7 @@ const DOCUMENT_TYPES: readonly DocumentType[] = [
   "federal-employment-records",
 ];
 const CHANGE_TYPES: readonly ChangeType[] = ["name", "gender-marker"];
+const RECORD_AUDIENCES: readonly RecordAudience[] = ["adult", "minor"];
 const VERIFICATION_STATUSES: readonly VerificationStatus[] = [
   "verified",
   "needs_reverification",
@@ -217,6 +219,9 @@ export function validateRecord(raw: unknown): ValidationIssue[] {
   }
   if (raw.prerequisites !== undefined && !Array.isArray(raw.prerequisites))
     push("prerequisites", "must be an array of ids/step keys");
+
+  if (raw.audience !== undefined && !RECORD_AUDIENCES.includes(raw.audience as RecordAudience))
+    push("audience", `must be one of ${RECORD_AUDIENCES.join(", ")} when present`);
 
   relocationIssues(raw, push);
 

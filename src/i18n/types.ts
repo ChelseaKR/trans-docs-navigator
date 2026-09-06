@@ -113,6 +113,15 @@ export interface UiMessages {
    */
   noStateCoverage: string;
   /**
+   * Shown when the intake said "this is for someone under 18" and the corpus holds no
+   * minor-audience record for the requested state (every state outside the five-state
+   * minors pilot — California, Illinois, New York, Texas, Washington — today). Says only
+   * that WE have not checked minors here, and that the steps rendered below are the adult
+   * ones and may not apply — never that the state itself requires or permits nothing for
+   * a minor. See api/checklist.ts `hasNoMinorCoverage`.
+   */
+  noMinorCoverage: string;
+  /**
    * Shown when some steps carry no fee in any cited source, so the summary total is a
    * floor rather than a cost. Mirrors the relocation planner's `costUnpriced`/`costHonesty`.
    */

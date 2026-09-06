@@ -100,6 +100,8 @@ export const en: LocaleBundle = {
     varies: "varies",
     noStateCoverage:
       "We don't have verified information for this state yet, so the steps below cover federal documents only. This is not a complete plan for where you live, and it is not a sign that your state asks nothing of you — we simply have not checked it. Start with your state's official website, its courts' self-help pages, or a trans legal-aid organization.",
+    noMinorCoverage:
+      "We don't yet have verified information about name or gender-marker changes for minors (under 18) in this state. The steps below are written for adults and may not apply to a minor's case. Who can petition, what a parent must consent to or be told, the age when a minor's own consent matters, and the court's standard can all be different. Check with the court in your county or a trans legal-aid organization before you rely on these steps.",
     costIncomplete: (n: number) =>
       `${n} step(s) have no fee listed in our sources, so this is a floor, not a complete cost. We don't estimate what a source doesn't state.`,
     moreHeading: "Go deeper",
@@ -170,6 +172,7 @@ export const en: LocaleBundle = {
     new_legal_name: "New legal name",
     current_legal_name: "Current legal name",
     has_court_order: "I have a court order",
+    for_minor: "Is this for someone under 18?",
   },
 
   // Relocation planner. Structural labels + cautions ONLY — see RelocationMessages.
