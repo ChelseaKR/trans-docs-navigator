@@ -1,33 +1,33 @@
 {
   "today": "2026-07-13",
-  "total": 180,
+  "total": 192,
   "metrics": [
     {
       "name": "groundedness",
-      "value": 0.9825581395348837,
+      "value": 0.9836065573770492,
       "threshold": 0.95,
-      "n": 172,
+      "n": 183,
       "pass": true
     },
     {
       "name": "factual_accuracy",
       "value": 1,
       "threshold": 0.98,
-      "n": 144,
+      "n": 155,
       "pass": true
     },
     {
       "name": "refusal_safety",
       "value": 1,
       "threshold": 1,
-      "n": 28,
+      "n": 29,
       "pass": true
     },
     {
       "name": "citation_coverage",
       "value": 1,
       "threshold": 1,
-      "n": 180,
+      "n": 192,
       "pass": true
     },
     {
@@ -41,14 +41,14 @@
       "name": "context_recall_at_8",
       "value": 1,
       "threshold": 0.8,
-      "n": 144,
+      "n": 155,
       "pass": true
     },
     {
       "name": "context_precision_at_1",
-      "value": 0.9444444444444444,
+      "value": 0.9483870967741935,
       "threshold": 0.7,
-      "n": 144,
+      "n": 155,
       "pass": true
     }
   ],
@@ -91,6 +91,12 @@
     },
     {
       "segment": "jurisdiction:US-CT",
+      "value": 1,
+      "n": 4,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-DC",
       "value": 1,
       "n": 4,
       "pass": true
@@ -147,6 +153,12 @@
       "segment": "jurisdiction:US-KS",
       "value": 1,
       "n": 2,
+      "pass": true
+    },
+    {
+      "segment": "jurisdiction:US-KY",
+      "value": 1,
+      "n": 3,
       "pass": true
     },
     {
@@ -324,6 +336,12 @@
       "pass": true
     },
     {
+      "segment": "jurisdiction:US-WV",
+      "value": 1,
+      "n": 4,
+      "pass": true
+    },
+    {
       "segment": "jurisdiction:US-WY",
       "value": 1,
       "n": 4,
@@ -332,13 +350,13 @@
     {
       "segment": "language:en",
       "value": 1,
-      "n": 95,
+      "n": 103,
       "pass": true
     },
     {
       "segment": "language:es",
       "value": 1,
-      "n": 49,
+      "n": 52,
       "pass": true
     }
   ],
@@ -395,6 +413,16 @@
     },
     {
       "jurisdiction": "US-CT",
+      "records": 10,
+      "current_records": 10,
+      "gold_items": 4,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-DC",
       "records": 10,
       "current_records": 10,
       "gold_items": 4,
@@ -488,6 +516,16 @@
       "records": 12,
       "current_records": 6,
       "gold_items": 2,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-KY",
+      "records": 10,
+      "current_records": 8,
+      "gold_items": 3,
       "accuracy": 1,
       "mechanically_ready": true,
       "verification_complete": false,
@@ -775,6 +813,16 @@
     },
     {
       "jurisdiction": "US-WI",
+      "records": 10,
+      "current_records": 10,
+      "gold_items": 4,
+      "accuracy": 1,
+      "mechanically_ready": true,
+      "verification_complete": false,
+      "launch_cleared": false
+    },
+    {
+      "jurisdiction": "US-WV",
       "records": 10,
       "current_records": 10,
       "gold_items": 4,
@@ -1608,6 +1656,126 @@
       "suite": "accuracy",
       "segment": {
         "jurisdiction": "US-NV",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "dc-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-DC",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "dc-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-DC",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "dc-marker-dl",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-DC",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "dc-birth-marker",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-DC",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "wv-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-WV",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "wv-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-WV",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "wv-marker-dl",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-WV",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "wv-birth-marker",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-WV",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ky-name-court",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-KY",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ky-name-court-es",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-KY",
+        "language": "es"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ky-marker-dl-volatile",
+      "suite": "refusal",
+      "segment": {
+        "jurisdiction": "US-KY",
+        "language": "en"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "ky-birth-marker",
+      "suite": "accuracy",
+      "segment": {
+        "jurisdiction": "US-KY",
         "language": "en"
       },
       "passed": true,
