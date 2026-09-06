@@ -38,7 +38,15 @@
     "cost": {
       "amount_usd": 252,
       "note": "$222.00 base fee, plus a $15.00 document-storage-fund fee and a $15.00 conciliation-court-fund fee. A fee waiver and deferral process exists for people who cannot pay.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "az-aocdfgf1f-fee-waiver",
+      "fee_waiver_criteria": "If you receive benefits from the federal Supplemental Security Income (SSI) program, and provide supporting documentation when you file the Application for Deferral or Waiver of Court Fees and Costs (Form No. AOCDFGF1F), the court should grant a waiver.",
+      "fee_waiver_source": {
+        "url": "https://www.azcourts.gov/courtfilingfees/Fee-Waivers-and-Deferrals",
+        "title": "Arizona Judicial Branch — Fee Waiver and Deferral",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "prerequisites": [],
     "source": {

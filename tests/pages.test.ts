@@ -86,6 +86,18 @@ test("printable packet renders full steps, sources, prepared date, and print con
   assert.match(STYLE, /\.no-print/);
 });
 
+test("checklist and packet both surface California's sourced fee-waiver form + criteria", () => {
+  // ca.court-order.name/gender-marker carry cost.fee_waiver_form (ca-fw-001) and a literal
+  // quote of the court's own criteria — real corpus data, not a synthetic fixture.
+  const checklistHtml = renderChecklistPage(clEn, corpus, "en", "jurisdiction=US-CA&change=name");
+  const packetHtml = renderPacketPage(clEn, corpus, "en", "2026-05-31");
+  for (const h of [checklistHtml, packetHtml]) {
+    assert.match(h, /This fee can be waived\./);
+    assert.match(h, /href="\/forms\/ca-fw-001[^"]*">Form FW-001/);
+    assert.match(h, /The court says: &quot;/);
+  }
+});
+
 test("Spanish pages render in Spanish", () => {
   const intake = renderIntakePage("es");
   assert.match(intake, /<html lang="es">/);

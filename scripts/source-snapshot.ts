@@ -98,7 +98,14 @@ async function main(): Promise<void> {
 
   const corpus = loadCorpus();
   const byUrl = new Map<string, string[]>();
-  for (const r of corpus) byUrl.set(r.source.url, [...(byUrl.get(r.source.url) ?? []), r.id]);
+  for (const r of corpus) {
+    byUrl.set(r.source.url, [...(byUrl.get(r.source.url) ?? []), r.id]);
+    // cost.fee_waiver_source: a second citation, used when the fee-waiver form/criteria live
+    // on a different official page than the record's primary source (scripts/source-fidelity.ts
+    // checks it with the same rigor). It needs a snapshot exactly like any other cited URL.
+    const waiverUrl = r.cost?.fee_waiver_source?.url;
+    if (waiverUrl) byUrl.set(waiverUrl, [...(byUrl.get(waiverUrl) ?? []), `${r.id} (fee waiver)`]);
+  }
 
   const previous = loadSnapshotIndex();
   const next: SnapshotIndex = {

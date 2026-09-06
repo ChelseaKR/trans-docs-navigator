@@ -394,6 +394,7 @@ export type AssertionKind =
   | "form-id"
   | "requirement"
   | "fee-waiver"
+  | "fee-waiver-criteria"
   | "residency";
 export type Verdict = "supported" | "unsupported" | "uncheckable";
 /** literal: an extracted token must occur in the source. necessary-condition: topic presence only. */
@@ -408,6 +409,14 @@ export interface Assertion {
   /** Which record field it was asserted in. */
   field: string;
   strength: Strength;
+  /**
+   * The URL this assertion must be checked against, when it differs from the record's own
+   * `source.url` — set for `cost.fee_waiver_form`/`cost.fee_waiver_criteria` when the record
+   * carries a `cost.fee_waiver_source` (a state's general filing-fee page and its dedicated
+   * fee-waiver page are frequently different documents). Undefined means "check against the
+   * record's own source", exactly as every other assertion already does.
+   */
+  sourceUrl?: string;
 }
 
 export interface AssertionResult extends Assertion {
@@ -518,6 +527,62 @@ export function extractAssertions(rec: CorpusRecord, forms: FormDef[]): Assertio
     }
   }
 
+  // Fee-waiver form + criteria (issue: fee-waiver forms should put money in pockets, not just
+  // flag that a waiver exists). Checked against `cost.fee_waiver_source` when the record
+  // carries one (a state's filing-fee page and its dedicated fee-waiver page are frequently
+  // different documents) — otherwise against this record's own `source`, exactly like every
+  // other assertion. Same "unnamed form" escape hatch as form_ref: a form with no extractable
+  // identifier (e.g. Massachusetts' "Affidavit of Indigency") is reported UNCHECKABLE, never
+  // silently passed as a literal match it cannot actually make.
+  const waiverUrl = rec.cost?.fee_waiver_source?.url;
+  if (rec.cost?.fee_waiver_form) {
+    const formId = rec.cost.fee_waiver_form;
+    const form = forms.find((f) => f.id === formId);
+    const candidates = form ? formIdCandidates(form) : [];
+    if (!form) {
+      add({
+        kind: "form-id",
+        key: `${formId.toUpperCase()}:cost.fee_waiver_form`,
+        label: `cost.fee_waiver_form "${formId}" is not in the forms registry`,
+        field: "cost.fee_waiver_form",
+        strength: "literal",
+        ...(waiverUrl ? { sourceUrl: waiverUrl } : {}),
+      });
+    } else if (candidates.length === 0) {
+      add({
+        kind: "form-id",
+        key: `unnamed:${form.id}`,
+        label: `cost.fee_waiver_form "${form.id}" (${form.title}) carries no form identifier to match on`,
+        field: "cost.fee_waiver_form",
+        strength: "literal",
+        ...(waiverUrl ? { sourceUrl: waiverUrl } : {}),
+      });
+    } else {
+      for (const id of candidates) {
+        add({
+          kind: "form-id",
+          key: id,
+          label: `official fee-waiver form ${id} backs this waiver (cost.fee_waiver_form: ${form.id})`,
+          field: "cost.fee_waiver_form",
+          strength: "literal",
+          ...(waiverUrl ? { sourceUrl: waiverUrl } : {}),
+        });
+      }
+    }
+  }
+  if (rec.cost?.fee_waiver_criteria) {
+    add({
+      kind: "fee-waiver-criteria",
+      // Lower-cased to compare against the snapshot text, which normalize() already
+      // lower-cases — see checkAssertion's "fee-waiver-criteria" case.
+      key: rec.cost.fee_waiver_criteria.toLowerCase(),
+      label: "quotes the court's own fee-waiver criteria (cost.fee_waiver_criteria)",
+      field: "cost.fee_waiver_criteria",
+      strength: "literal",
+      ...(waiverUrl ? { sourceUrl: waiverUrl } : {}),
+    });
+  }
+
   // Prose literals + requirement topics.
   for (const { field, text } of proseFields(rec)) {
     for (const amount of extractMoney(text)) {
@@ -602,6 +667,15 @@ export function checkAssertion(a: Assertion, view: SourceView): AssertionResult 
       )
         ? supported("the source describes a fee waiver / inability-to-pay route")
         : unsupported("the record claims a fee waiver; the source never mentions one");
+    case "fee-waiver-criteria":
+      // Literal substring check: `a.key` is the record's OWN quote, lower-cased in
+      // extractAssertions() to match normalize()'s lower-casing of the snapshot text. This is
+      // intentionally stricter than the token-based checks above — a "short quote of what the
+      // court publishes" (per the task) is only honest if it is the court's actual words, not
+      // a paraphrase that merely discusses the same topic.
+      return view.text.includes(a.key)
+        ? supported("this exact criteria text appears in the source")
+        : unsupported("this exact criteria text does not appear anywhere in the source — quote it verbatim");
     case "residency":
       return RESIDENCY_EVIDENCE.test(view.flatText)
         ? supported("the source itself conditions the action on where you live")
@@ -621,17 +695,30 @@ export function checkAssertion(a: Assertion, view: SourceView): AssertionResult 
   }
 }
 
-/** Audit one record against its source snapshot. `view === null` means no snapshot exists. */
+/**
+ * Audit one record against its source snapshot. `view === null` means no snapshot exists.
+ *
+ * `altSource` backs assertions carrying their own `sourceUrl` — today, only
+ * `cost.fee_waiver_form`/`cost.fee_waiver_criteria` when the record declares a
+ * `cost.fee_waiver_source` distinct from its primary `source`. Every other assertion is
+ * checked against `view`/`uncheckableReason`, exactly as before this existed.
+ */
 export function auditRecord(
   rec: CorpusRecord,
   view: SourceView | null,
   forms: FormDef[],
   uncheckableReason = "the cited source has no snapshot",
+  altSource?: { url: string; view: SourceView | null; uncheckableReason?: string },
 ): RecordAudit {
   const assertions = extractAssertions(rec, forms);
-  const results: AssertionResult[] = view
-    ? assertions.map((a) => checkAssertion(a, view))
-    : assertions.map((a) => ({ ...a, verdict: "uncheckable" as const, why: uncheckableReason }));
+  const results: AssertionResult[] = assertions.map((a) => {
+    if (altSource && a.sourceUrl === altSource.url) {
+      return altSource.view
+        ? checkAssertion(a, altSource.view)
+        : { ...a, verdict: "uncheckable" as const, why: altSource.uncheckableReason ?? "the cited source has no snapshot" };
+    }
+    return view ? checkAssertion(a, view) : { ...a, verdict: "uncheckable" as const, why: uncheckableReason };
+  });
 
   const prose = sentences(`${rec.statement} ${rec.detail ?? ""}`);
   let unchecked = 0;
@@ -689,7 +776,15 @@ export function auditCorpus(
   const unbaselined: string[] = [];
   const unfetchable: string[] = [];
 
-  const citedUrls = [...new Set(corpus.map((r) => r.source.url))];
+  // Every URL a record cites — its primary `source.url` AND, when present, its
+  // `cost.fee_waiver_source.url`. Both get the identical snapshot/baseline rigor below: a
+  // second citation is still a citation, not a lesser one.
+  const citedUrls = [
+    ...new Set([
+      ...corpus.map((r) => r.source.url),
+      ...corpus.map((r) => r.cost?.fee_waiver_source?.url).filter((u): u is string => !!u),
+    ]),
+  ];
   for (const url of citedUrls) {
     const entry = index.snapshots[url];
     if (!entry) {
@@ -736,9 +831,18 @@ export function auditCorpus(
     views.set(url, viewOf(text));
   }
 
-  const audits = corpus.map((rec) =>
-    auditRecord(rec, views.get(rec.source.url) ?? null, forms, reasons.get(rec.source.url) ?? "no snapshot"),
-  );
+  const audits = corpus.map((rec) => {
+    const waiverUrl = rec.cost?.fee_waiver_source?.url;
+    return auditRecord(
+      rec,
+      views.get(rec.source.url) ?? null,
+      forms,
+      reasons.get(rec.source.url) ?? "no snapshot",
+      waiverUrl
+        ? { url: waiverUrl, view: views.get(waiverUrl) ?? null, uncheckableReason: reasons.get(waiverUrl) ?? "no snapshot" }
+        : undefined,
+    );
+  });
 
   let supported = 0;
   let unsupported = 0;

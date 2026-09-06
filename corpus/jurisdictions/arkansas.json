@@ -12,7 +12,15 @@
     "cost": {
       "amount_usd": null,
       "note": "The Circuit Clerk requires a filing fee of around $165, though the exact amount depends on the county. If you cannot afford it, you can file an In Forma Pauperis petition asking a judge to waive the fee.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "ar-fee-waiver-ifp",
+      "fee_waiver_criteria": "In forma pauperis (also known as a fee waiver) is used when you cannot afford to pay the court filing fee and costs for filing a court form.",
+      "fee_waiver_source": {
+        "url": "https://a.arlawhelp.org/self-representation/fee-waiver",
+        "title": "Arkansas Law Help — Filing for a Fee Waiver",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "discretionary": true,
     "prerequisites": [],

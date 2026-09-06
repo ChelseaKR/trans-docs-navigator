@@ -59,7 +59,8 @@
     "cost": {
       "amount_usd": 157,
       "note": "Add sheriff service of process on the other parties and the cost is $185. A fee waiver is available if you can't afford the fee.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_form": "in-fee-waiver-form"
     },
     "prerequisites": [],
     "source": {

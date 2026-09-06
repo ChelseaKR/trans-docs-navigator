@@ -12,7 +12,8 @@
     "cost": {
       "amount_usd": null,
       "note": "The statute doesn't set a specific filing-fee amount, though it allows the court to waive or reduce court costs for a petitioner who is indigent or has a limited ability to pay. Contact the probate court where you're filing for the current fee.",
-      "fee_waiver": true
+      "fee_waiver": true,
+      "fee_waiver_criteria": "If a petitioner is indigent, or demonstrates a limited or inability to pay, the court costs may be waived or reduced."
     },
     "prerequisites": [],
     "source": {

@@ -316,6 +316,8 @@ function renderCosts(plan: RelocationPlan, lang: Language): string {
   if (c.variable_step_keys.length > 0) parts.push(`<p class="flag">${escapeHtml(r.costVariable(c.variable_step_keys.length))}</p>`);
   if (c.unpriced_step_keys.length > 0) parts.push(`<p class="flag">${escapeHtml(r.costUnpriced(c.unpriced_step_keys.length))}</p>`);
   if (c.fee_waiver_step_keys.length > 0) parts.push(`<p class="meta">💸 ${escapeHtml(r.costWaiver)}</p>`);
+  // A subtotal of known_total_usd above, not money on top of it — see CostModel.potentially_waivable_usd.
+  if (c.potentially_waivable_usd > 0) parts.push(`<p class="meta">${escapeHtml(r.costPotentiallyWaivable(c.potentially_waivable_usd))}</p>`);
   parts.push(`<p class="meta">${escapeHtml(r.costHonesty)}</p>`);
 
   return `<section class="more" aria-labelledby="cost-h"><h2 id="cost-h">${escapeHtml(r.costHeading)}</h2>${parts.join("")}</section>`;

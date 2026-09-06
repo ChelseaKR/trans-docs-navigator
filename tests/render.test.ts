@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { escapeHtml, page, renderChecklist, renderAnswer, uiStrings, PALETTE, reportErrorHref, reportErrorLinksEnabled } from "../src/render.ts";
-import type { Checklist, GroundedAnswer, CorpusRecord } from "../api/types.ts";
+import type { Checklist, Cost, GroundedAnswer, CorpusRecord } from "../api/types.ts";
 
 test("escapeHtml neutralizes every HTML-significant character", () => {
   assert.equal(escapeHtml(`<script>&"'`), "&lt;script&gt;&amp;&quot;&#39;");
@@ -50,6 +50,134 @@ test("renderChecklist escapes record statements and lists sources", () => {
   assert.match(h, /&lt;b&gt;this&lt;\/b&gt;/); // escaped, not rendered
   assert.match(h, /CA Courts/);
   assert.match(h, /rel="noopener noreferrer"/);
+});
+
+// ── Fee-waiver detail on a checklist step ───────────────────────────────────────────────
+// GOVERNANCE.md: this app surfaces what the court publishes — the form, the court's own
+// words — and never adjudicates eligibility. These tests pin the four honest shapes: form +
+// criteria, form only (criteria not stated by the source), criteria only (no confirmed
+// form), and neither (no waiver detail rendered at all).
+
+function waiverChecklist(cost: Cost): { checklist: Checklist; records: CorpusRecord[] } {
+  const records = [rec({ cost })];
+  const checklist: Checklist = {
+    jurisdiction: "US-CA",
+    change_types: ["name"],
+    language: "en",
+    steps: [
+      {
+        key: "court-order",
+        order: 1,
+        document_type: "court-order",
+        title: "Court order",
+        record_ids: ["ca.court-order.name"],
+        prerequisites: [],
+        cost,
+        discretionary: false,
+        needs_reverification: false,
+      },
+    ],
+    gaps: [],
+  };
+  return { checklist, records };
+}
+
+test("fee-waiver detail: form + criteria both render, with a live link to the official form", () => {
+  const { checklist, records } = waiverChecklist({
+    amount_usd: null,
+    fee_waiver: true,
+    fee_waiver_form: "ca-fw-001",
+    fee_waiver_criteria: "You only need to meet 1 of these to qualify.",
+  });
+  const h = renderChecklist(checklist, records, "en");
+  assert.match(h, /This fee can be waived\./);
+  assert.match(h, /<a href="\/forms\/ca-fw-001">Form FW-001 — Request to Waive Court Fees<\/a>/);
+  assert.match(h, /The court says: &quot;You only need to meet 1 of these to qualify\.&quot;/);
+});
+
+test("fee-waiver detail: form sourced, criteria not stated — says so, never guesses", () => {
+  const { checklist, records } = waiverChecklist({
+    amount_usd: null,
+    fee_waiver: true,
+    fee_waiver_form: "ca-fw-001",
+  });
+  const h = renderChecklist(checklist, records, "en");
+  assert.match(h, /This fee can be waived\./);
+  assert.match(h, /Form FW-001/);
+  assert.match(h, /publish specific criteria/);
+});
+
+test("fee-waiver detail: criteria sourced but no confirmed form (e.g. Rhode Island) — criteria only, no form line", () => {
+  const { checklist, records } = waiverChecklist({
+    amount_usd: null,
+    fee_waiver: true,
+    fee_waiver_criteria: "The court costs may be waived or reduced for an indigent petitioner.",
+  });
+  const h = renderChecklist(checklist, records, "en");
+  assert.match(h, /This fee can be waived\./);
+  assert.match(h, /The court says:/);
+  assert.doesNotMatch(h, /Form:/);
+});
+
+test("fee-waiver detail: neither form nor criteria sourced — no waiver detail line at all", () => {
+  const { checklist, records } = waiverChecklist({
+    amount_usd: null,
+    note: "A fee waiver is available if you qualify.",
+    fee_waiver: true,
+  });
+  const h = renderChecklist(checklist, records, "en");
+  assert.doesNotMatch(h, /This fee can be waived/);
+});
+
+test("fee-waiver detail: never renders for a step with no fee_waiver at all", () => {
+  const { checklist, records } = waiverChecklist({ amount_usd: 100 });
+  const h = renderChecklist(checklist, records, "en");
+  assert.doesNotMatch(h, /This fee can be waived/);
+  assert.doesNotMatch(h, /fee-waiver/);
+});
+
+test("fee-waiver detail never renders an eligibility prediction — the line this app is forbidden to cross", () => {
+  const { checklist, records } = waiverChecklist({
+    amount_usd: null,
+    fee_waiver: true,
+    fee_waiver_form: "ca-fw-001",
+    fee_waiver_criteria: "You only need to meet 1 of these to qualify.",
+  });
+  const h = renderChecklist(checklist, records, "en");
+  assert.doesNotMatch(h, /you (likely|probably) qualify/i);
+  assert.doesNotMatch(h, /you (likely|probably) (do not|don't) need to pay/i);
+});
+
+test("fee-waiver detail renders fully in Spanish too (parity)", () => {
+  const records = [rec({ language: "es" })];
+  const checklist: Checklist = {
+    jurisdiction: "US-CA",
+    change_types: ["name"],
+    language: "es",
+    steps: [
+      {
+        key: "court-order",
+        order: 1,
+        document_type: "court-order",
+        title: "Court order",
+        record_ids: ["ca.court-order.name"],
+        prerequisites: [],
+        cost: {
+          amount_usd: null,
+          fee_waiver: true,
+          fee_waiver_form: "ca-fw-001",
+          fee_waiver_criteria: "Solo necesita cumplir 1 de estos requisitos para calificar.",
+        },
+        discretionary: false,
+        needs_reverification: false,
+      },
+    ],
+    gaps: [],
+  };
+  const h = renderChecklist(checklist, records, "es");
+  assert.match(h, /Esta tarifa se puede exentar\./);
+  assert.match(h, /Formulario: <a href="\/forms\/ca-fw-001\?language=es">/);
+  assert.match(h, /La corte dice: &quot;Solo necesita cumplir 1 de estos requisitos para calificar\.&quot;/);
 });
 
 test("renderAnswer marks freshness/uncertainty as flags and lists cited sources", () => {

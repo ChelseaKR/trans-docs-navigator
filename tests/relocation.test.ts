@@ -390,6 +390,105 @@ test("fee waivers are surfaced, because cost is the barrier", () => {
   assert.match(html, /fee waiver is documented/i);
 });
 
+test("potentially_waivable_usd is a SUBTOTAL of the known floor, never money added on top", () => {
+  // Synthetic fixture: one step with a KNOWN, fee-waiver-documented amount, and one step
+  // with a known amount but NO waiver — isolating the arithmetic from which real corpus
+  // records happen to disagree on a figure (see costModel's own "varies" merge elsewhere).
+  const waivedRecord = {
+    id: "synthetic.waived",
+    jurisdiction: "US-ZZ",
+    document_type: "court-order" as const,
+    change_type: ["name"] as ChangeType[],
+    topic: "t",
+    statement: "s",
+    cost: { amount_usd: 252, fee_waiver: true as const },
+    source: { url: "https://e.test", title: "T", last_verified: "2026-07-13", verifier: "A" },
+    verification_status: "verified" as const,
+    recheck_sla_days: 90,
+    language: "en" as const,
+  };
+  const unwaivedRecord = {
+    ...waivedRecord,
+    id: "synthetic.unwaived",
+    document_type: "drivers-license" as const,
+    cost: { amount_usd: 30 },
+  };
+  const steps = [
+    {
+      key: "court-order",
+      order: 1,
+      document_type: "court-order" as const,
+      jurisdiction: "US-ZZ",
+      portability: "state-of-residence" as const,
+      step_class: "redo-in-destination" as const,
+      phase: "either" as const,
+      title: "Court order",
+      record_ids: [waivedRecord.id],
+      prerequisites: [] as string[],
+      cost: waivedRecord.cost,
+      discretionary: false,
+      needs_reverification: false,
+      held: false,
+    },
+    {
+      key: "drivers-license",
+      order: 2,
+      document_type: "drivers-license" as const,
+      jurisdiction: "US-ZZ",
+      portability: "state-of-residence" as const,
+      step_class: "redo-in-destination" as const,
+      phase: "either" as const,
+      title: "License",
+      record_ids: [unwaivedRecord.id],
+      prerequisites: [] as string[],
+      cost: unwaivedRecord.cost,
+      discretionary: false,
+      needs_reverification: false,
+      held: false,
+    },
+  ];
+  const model = costModel(steps, [waivedRecord, unwaivedRecord]);
+  assert.equal(model.known_total_usd, 282, "the floor sums BOTH known amounts");
+  assert.equal(model.potentially_waivable_usd, 252, "the subtotal counts only the fee-waiver-documented amount");
+  assert.ok(
+    model.potentially_waivable_usd <= model.known_total_usd,
+    "the subtotal can never exceed the floor it is a slice of",
+  );
+
+  // Rendered on a real plan page, clearly labelled as a fact about the fee, not the reader's
+  // odds (California's name-change AND gender-marker records both carry a known-shaped cost
+  // note but an unstated amount, so use a real move where the corpus states one instead).
+  const plan = buildRelocationPlan(intake({ origin: "US-CA", destination: "US-MI", held: [] }), TODAY, corpus);
+  assert.ok(plan.costs.potentially_waivable_usd > 0, "Michigan's $175 court-order fee is both known and waivable");
+  const html = renderPlanPage(plan, corpus, "en");
+  assert.match(html, /potentially waivable/i);
+});
+
+test("potentially_waivable_usd is 0 when no priced step documents a waiver", () => {
+  // A move with no fee-waiver-documented step at all (or only variable/unpriced ones) must
+  // not report a nonzero subtotal — there is nothing to be a slice of.
+  const noWaiverSteps = [
+    {
+      key: "ssa-card",
+      order: 1,
+      document_type: "ssa-card" as const,
+      jurisdiction: "US" as const,
+      portability: "federal" as const,
+      step_class: "carries-over" as const,
+      phase: "either" as const,
+      title: "SSA",
+      record_ids: [] as string[],
+      prerequisites: [] as string[],
+      cost: { amount_usd: 0 },
+      discretionary: false,
+      needs_reverification: false,
+      held: false,
+    },
+  ];
+  const model = costModel(noWaiverSteps, corpus);
+  assert.equal(model.potentially_waivable_usd, 0);
+});
+
 test("the cost panel states its own incompleteness", () => {
   const plan = buildRelocationPlan(intake(), TODAY, corpus);
   const html = renderPlanPage(plan, corpus, "en");
