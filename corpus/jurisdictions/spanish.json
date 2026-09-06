@@ -3669,7 +3669,7 @@
     ],
     "topic": "Petición de cambio de nombre en Minnesota",
     "statement": "Para cambiar legalmente su nombre en Minnesota, debe haber vivido en el estado durante al menos seis meses y luego presentar la solicitud ante el tribunal de distrito del condado donde reside. Debe comparecer en persona ante el tribunal y probar su identidad con al menos dos testigos.",
-    "detail": "La ley de cambio de nombre de Minnesota no exige que usted publique un aviso de su petición en un periódico, a diferencia del proceso en muchos otros estados. Cualquier persona que dé información falsa intencionalmente en la solicitud comete un delito menor.",
+    "detail": "La ley de cambio de nombre de Minnesota no exige que usted publique un aviso de su petición en un periódico, a diferencia del proceso en muchos otros estados. Cualquier persona que dé información falsa intencionalmente en la solicitud comete un delito menor. Si usted tiene una condena por delito grave (felony), la sección 259.13 de los Estatutos de Minnesota añade pasos: debe notificar su solicitud a la fiscalía que obtuvo la condena (y al fiscal general si la condena es de otro estado o de un tribunal federal); esa oficina puede oponerse y, si lo hace, usted debe probar que la solicitud se hace de buena fe y no para defraudar ni engañar; solo puede proceder sin pagar las tarifas de presentación si negar el cambio de nombre vulneraría un derecho constitucional.",
     "cost": {
       "amount_usd": null,
       "note": "La ley de cambio de nombre de Minnesota no establece una tarifa de presentación — el tribunal de distrito fija y cobra su propia tarifa. Comuníquese con el tribunal de distrito del condado donde presentará la solicitud para conocer el monto actual."
@@ -3986,7 +3986,7 @@
     ],
     "topic": "Petición de cambio de nombre en Mississippi",
     "statement": "Para cambiar legalmente su nombre como adulto en Mississippi, usted presenta una petición ante el tribunal de equidad (chancery court) del condado donde vive. La ley de Mississippi le otorga a ese tribunal jurisdicción sobre una petición para cambiar el nombre de una persona.",
-    "detail": "A partir del 1 de julio de 2026, la ley de Mississippi convierte en delito grave que una persona obligada a registrarse como delincuente sexual cambie su nombre, a menos que el cambio de nombre se deba a un matrimonio o un divorcio. Esta nueva regla no afecta a la mayoría de las personas que presentan una petición de cambio de nombre, pero importa si usted tiene una obligación de registro como delincuente sexual.",
+    "detail": "La mayoría de edad en Mississippi es veintiún años, no dieciocho: la Sección 1-3-27 del Código Anotado de Mississippi define como menor a toda persona menor de 21 años, así que quien tiene 18, 19 o 20 años sigue siendo menor conforme a las leyes de Mississippi. Esto importa porque la Corte Suprema de Mississippi ha resuelto que la petición de cambio de nombre de un menor no se concede automáticamente: el juez de equidad (chancellor) solo puede concederla cuando el cambio es claramente en el mejor interés del menor, incluso si nadie se opone y ambos padres están de acuerdo (In re S.M.-B., No. 2023-CA-01379-SCT, decidido el 17 de abril de 2025, https://courts.ms.gov/images/Opinions/CO182514.pdf). En ese caso, la corte confirmó que un juez de equidad del condado de Hinds desestimara la petición de una persona de 16 años para adoptar un nombre acorde con su identidad de género, razonando que el menor debía madurar más antes de volver a presentarla. La petición de un menor la presenta en su nombre un padre, una madre, un tutor o un \"next friend\" (representante procesal). Si usted tiene menos de 21 años, pregunte al secretario del tribunal de equidad cómo espera el tribunal que se presente su petición. Por separado, a partir del 1 de julio de 2026, la ley de Mississippi convierte en delito grave que una persona obligada a registrarse como delincuente sexual cambie su nombre, a menos que el cambio de nombre se deba a un matrimonio o un divorcio. Esta regla no afecta a la mayoría de las personas que presentan una petición de cambio de nombre, pero importa si usted tiene una obligación de registro como delincuente sexual.",
     "cost": {
       "amount_usd": null,
       "note": "La ley de cambio de nombre de Mississippi no indica una tarifa de presentación — el tribunal de equidad donde usted presente la solicitud fija la suya. Comuníquese con el secretario del tribunal de equidad del condado donde presentará la solicitud para conocer el monto actual."
@@ -4144,6 +4144,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "mt-adult-name-change-packet",
     "language": "es"
   },
   {
@@ -4156,7 +4157,7 @@
     ],
     "topic": "Cambio de nombre y marcador de género en la licencia de Montana",
     "statement": "La página de autoayuda de cambio de nombre de los tribunales de Montana enlaza a la División de Vehículos Motorizados del Departamento de Justicia para actualizar una licencia de conducir o identificación después de un cambio de nombre o de género.",
-    "detail": "Este proyecto no pudo confirmar de forma independiente qué exige actualmente la propia página de la División de Vehículos Motorizados: devuelve un desafío automático de verificación de robots (una comprobación de Cloudflare) que el rastreador de este proyecto no puede superar, así que no se pudo tomar ninguna instantánea de ella y aquí no se afirma ningún formulario, tarifa o requisito de documento específico. Revísela usted mismo en https://dojmt.gov/driving/driver-licensing/ (Departamento de Justicia de Montana, División de Vehículos Motorizados), o comuníquese directamente con una oficina de licencias de conducir de Montana.",
+    "detail": "Este proyecto sigue sin poder leer las páginas propias de la División de Vehículos Motorizados: tanto https://dojmt.gov/driving/driver-licensing/ como la más nueva https://mvdmt.gov/ devuelven un desafío automático de verificación de robots (una comprobación de Cloudflare) al rastreador de este proyecto, así que no se puede tomar ninguna instantánea de ellas y aquí no se afirma ninguna tarifa ni formulario. Lo que sí dice una fuente oficial: en Kalarchik v. State (Corte Suprema de Montana, decidido el 14 de abril de 2026, https://juddocumentservice.mt.gov/getDocByCTrackId?DocId=564241), la corte describió una política de 2024 de la División de Vehículos Motorizados, no publicada al público, bajo la cual a una demandante le dijeron que no podía modificar la designación de sexo en su licencia de conducir sin una orden judicial y un certificado de nacimiento corregido. La corte confirmó una resolución del tribunal de distrito que prohíbe preliminarmente al Estado aplicar esa política, el Proyecto de Ley del Senado 458 y la regla de 2022 del Departamento de Salud Pública y Servicios Humanos sobre certificados de nacimiento, en lo que respecta a modificar certificados de nacimiento y licencias de conducir, mientras el caso continúa. Como la política no está publicada y los tribunales han suspendido su aplicación, pregunte directamente en una oficina de licencias de conducir de Montana qué exige actualmente.",
     "prerequisites": [],
     "source": {
       "url": "https://courts.mt.gov/Forms/namechange",
@@ -4592,6 +4593,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "ne-dc-6-9-1-name-change-petition",
     "relocation": {
       "residency_bound": true
     },
@@ -5170,6 +5172,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "nv-petition-adult-name-change",
     "language": "es"
   },
   {
