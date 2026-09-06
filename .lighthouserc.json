@@ -7,7 +7,8 @@
         "http://localhost:8080/checklist?jurisdiction=US-CA&change=name&change=gender-marker",
         "http://localhost:8080/packet?jurisdiction=US-CA&change=name",
         "http://localhost:8080/terms",
-        "http://localhost:8080/guide/california/name-change"
+        "http://localhost:8080/guide/california/name-change",
+        "http://localhost:8080/feeds"
       ],
       "numberOfRuns": 3,
       "settings": {

@@ -6,7 +6,7 @@
     "url": "https://www.tgrcnm.org",
     "note": {
       "en": "New Mexico's statewide transgender-led support organization, offering community resources and support relevant to name and gender-marker changes.",
-      "es": "Organización estatal de apoyo de Nuevo México dirigida por personas transgénero, que ofrece recursos comunitarios y apoyo relevante para cambios de nombre y de marcador de género."
+      "es": "Organizaci\u00f3n estatal de apoyo de Nuevo M\u00e9xico dirigida por personas transg\u00e9nero, que ofrece recursos comunitarios y apoyo relevante para cambios de nombre y de marcador de g\u00e9nero."
     },
     "source": {
       "url": "https://www.tgrcnm.org",
@@ -24,11 +24,29 @@
     "url": "https://www.newmexicolegalaid.org",
     "note": {
       "en": "Statewide civil legal aid provider that can help income-eligible New Mexico residents with name-change filings and other civil legal needs.",
-      "es": "Proveedor estatal de ayuda legal civil que puede ayudar a residentes de Nuevo México que califican por sus ingresos con solicitudes de cambio de nombre y otras necesidades legales civiles."
+      "es": "Proveedor estatal de ayuda legal civil que puede ayudar a residentes de Nuevo M\u00e9xico que califican por sus ingresos con solicitudes de cambio de nombre y otras necesidades legales civiles."
     },
     "source": {
       "url": "https://www.newmexicolegalaid.org",
       "title": "New Mexico Legal Aid",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "nm.referral.a4te",
+    "jurisdiction": "US-NM",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 New Mexico identity documents guide",
+    "url": "https://transequality.org/documents/new-mexico-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on New Mexico documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Nuevo M\u00e9xico. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/new-mexico-identity-documents",
+      "title": "A4TE \u2014 New Mexico Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

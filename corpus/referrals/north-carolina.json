@@ -6,7 +6,7 @@
     "url": "https://equalitync.org",
     "note": {
       "en": "Statewide LGBTQ+ advocacy organization that tracks North Carolina policy and publishes know-your-rights information relevant to transgender residents.",
-      "es": "Organización estatal de defensa LGBTQ+ que da seguimiento a las políticas de Carolina del Norte y publica información sobre derechos relevante para residentes transgénero."
+      "es": "Organizaci\u00f3n estatal de defensa LGBTQ+ que da seguimiento a las pol\u00edticas de Carolina del Norte y publica informaci\u00f3n sobre derechos relevante para residentes transg\u00e9nero."
     },
     "source": {
       "url": "https://equalitync.org",
@@ -24,11 +24,29 @@
     "url": "https://legalaidnc.org",
     "note": {
       "en": "Statewide nonprofit law firm offering free civil legal help to low-income North Carolinians, including help with legal filings such as a name-change application.",
-      "es": "Firma legal estatal sin fines de lucro que ofrece ayuda legal civil gratuita a residentes de bajos ingresos de Carolina del Norte, incluida ayuda con trámites legales como una solicitud de cambio de nombre."
+      "es": "Firma legal estatal sin fines de lucro que ofrece ayuda legal civil gratuita a residentes de bajos ingresos de Carolina del Norte, incluida ayuda con tr\u00e1mites legales como una solicitud de cambio de nombre."
     },
     "source": {
       "url": "https://legalaidnc.org",
       "title": "Legal Aid of North Carolina",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "nc.referral.a4te",
+    "jurisdiction": "US-NC",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 North Carolina identity documents guide",
+    "url": "https://transequality.org/documents/north-carolina-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on North Carolina documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Carolina del Norte. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/north-carolina-identity-documents",
+      "title": "A4TE \u2014 North Carolina Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

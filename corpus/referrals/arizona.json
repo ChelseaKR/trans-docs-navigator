@@ -6,7 +6,7 @@
     "url": "https://azlawhelp.org",
     "note": {
       "en": "A collaborative civil legal-aid portal run by Community Legal Services, DNA People's Legal Services, Southern Arizona Legal Aid, and other Arizona legal-aid organizations. It screens for free or reduced-fee legal help for people who qualify.",
-      "es": "Un portal colaborativo de ayuda legal civil administrado por Community Legal Services, DNA People's Legal Services, Southern Arizona Legal Aid y otras organizaciones de ayuda legal de Arizona. Evalúa si usted califica para ayuda legal gratuita o de costo reducido."
+      "es": "Un portal colaborativo de ayuda legal civil administrado por Community Legal Services, DNA People's Legal Services, Southern Arizona Legal Aid y otras organizaciones de ayuda legal de Arizona. Eval\u00faa si usted califica para ayuda legal gratuita o de costo reducido."
     },
     "source": {
       "url": "https://azlawhelp.org",
@@ -24,11 +24,29 @@
     "url": "https://sagatucson.org",
     "note": {
       "en": "A supportive LGBTQ+ community and education resource based in Tucson, publishing self-help guides on practical topics such as updating identity documents in Arizona.",
-      "es": "Un recurso comunitario y educativo de apoyo LGBTQ+ con sede en Tucson, que publica guías de autoayuda sobre temas prácticos como la actualización de documentos de identidad en Arizona."
+      "es": "Un recurso comunitario y educativo de apoyo LGBTQ+ con sede en Tucson, que publica gu\u00edas de autoayuda sobre temas pr\u00e1cticos como la actualizaci\u00f3n de documentos de identidad en Arizona."
     },
     "source": {
       "url": "https://sagatucson.org",
       "title": "Southern Arizona Gender Alliance (SAGA)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "az.referral.a4te",
+    "jurisdiction": "US-AZ",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Arizona identity documents guide",
+    "url": "https://transequality.org/documents/arizona-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Arizona documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Arizona. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/arizona-identity-documents",
+      "title": "A4TE \u2014 Arizona Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

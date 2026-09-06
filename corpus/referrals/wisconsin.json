@@ -6,7 +6,7 @@
     "url": "https://fairwisconsin.com",
     "note": {
       "en": "Statewide LGBTQ+ advocacy organization that tracks Wisconsin policy and legislation, including anti-transgender bills, and publishes know-your-rights information.",
-      "es": "Organización estatal de defensa LGBTQ+ que da seguimiento a las políticas y leyes de Wisconsin, incluidos los proyectos de ley contra personas transgénero, y publica información sobre derechos."
+      "es": "Organizaci\u00f3n estatal de defensa LGBTQ+ que da seguimiento a las pol\u00edticas y leyes de Wisconsin, incluidos los proyectos de ley contra personas transg\u00e9nero, y publica informaci\u00f3n sobre derechos."
     },
     "source": {
       "url": "https://fairwisconsin.com",
@@ -24,11 +24,29 @@
     "url": "https://www.legalaction.org",
     "note": {
       "en": "Wisconsin's largest statewide civil legal aid organization (following its 2026 merger with Judicare Legal Aid), offering free legal help to income-eligible residents, including family-law matters such as a name change.",
-      "es": "La organización de ayuda legal civil estatal más grande de Wisconsin (tras su fusión en 2026 con Judicare Legal Aid), que ofrece ayuda legal gratuita a residentes que califican por ingresos, incluidos asuntos de derecho familiar como un cambio de nombre."
+      "es": "La organizaci\u00f3n de ayuda legal civil estatal m\u00e1s grande de Wisconsin (tras su fusi\u00f3n en 2026 con Judicare Legal Aid), que ofrece ayuda legal gratuita a residentes que califican por ingresos, incluidos asuntos de derecho familiar como un cambio de nombre."
     },
     "source": {
       "url": "https://www.legalaction.org",
       "title": "Legal Action of Wisconsin",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "wi.referral.a4te",
+    "jurisdiction": "US-WI",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Wisconsin identity documents guide",
+    "url": "https://transequality.org/documents/wisconsin-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Wisconsin documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Wisconsin. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/wisconsin-identity-documents",
+      "title": "A4TE \u2014 Wisconsin Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

@@ -13,6 +13,7 @@ import { answer } from "./guidance.ts";
 import { loadCorpus } from "./corpus.ts";
 import { isCurrent } from "./freshness.ts";
 import { formById } from "./forms.ts";
+import { isKnownJurisdiction } from "./feed.ts";
 import { memoize } from "./cache.ts";
 import type { ChangeType, CorpusRecord, DocumentType, Intake, Language, RelocationIntake } from "./types.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
@@ -20,7 +21,8 @@ import { renderMovePage, renderPlanPage } from "../src/relocation.ts";
 import { renderAnswer, page, uiStrings, escapeHtml, STYLE } from "../src/render.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderTransparencyPage } from "../src/transparency.ts";
-import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.ts";
+import { renderGuideIndex, renderGuidePage, indexablePaths, stateNameFor } from "../src/guide.ts";
+import { renderFeedsIndex, renderJurisdictionFeedXml } from "../src/feeds.ts";
 import { robotsTxt, sitemapXml } from "../src/seo.ts";
 import { asLanguage } from "../src/i18n/index.ts";
 import { serviceWorkerScript } from "../src/offline.ts";
@@ -404,6 +406,28 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
       contentType: HTML,
       body: html,
       log: { event: "guide", fields: { state: stateSlug, topic: topicSlug, language: lang, status: 200 } },
+    };
+  }
+
+  // ── Per-jurisdiction change-alert feeds (RSS 2.0; no accounts, no PII) ────────────
+  // /feeds/ is the HTML index of every covered jurisdiction; /feeds/<id>.xml is one
+  // jurisdiction's feed. `id` is validated against the CORPUS itself (isKnownJurisdiction),
+  // not merely the US/US-XX shape — anything not actually covered 404s with no reflection
+  // of the input (notFound() never echoes the path). See api/feed.ts + src/feeds.ts.
+  if (p === "/feeds" || p === "/feeds/") {
+    return { status: 200, contentType: HTML, body: renderFeedsIndex(lang) };
+  }
+  if (p.startsWith("/feeds/") && p.endsWith(".xml")) {
+    const jurisdiction = p.slice("/feeds/".length, -".xml".length);
+    if (!isKnownJurisdiction(jurisdiction)) return notFound(lang);
+    // Fallback to the raw id when there's no display name (federal "US" today) — same
+    // convention as src/relocation.ts's jurisdictionName().
+    const stateName = stateNameFor(jurisdiction, lang) ?? jurisdiction;
+    return {
+      status: 200,
+      contentType: "application/rss+xml; charset=utf-8",
+      body: renderJurisdictionFeedXml(jurisdiction, stateName, lang, today),
+      log: { event: "feed", fields: { jurisdiction, language: lang, status: 200 } },
     };
   }
 

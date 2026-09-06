@@ -24,11 +24,29 @@
     "url": "https://equalitymi.org",
     "note": {
       "en": "Michigan's statewide LGBTQ advocacy organization. Contact them to find current local name-change and gender-marker clinics and legal referrals in your area.",
-      "es": "Organización estatal de defensa LGBTQ de Michigan. Comuníquese con ellos para encontrar clínicas locales actuales de cambio de nombre y de marcador de género, y remisiones legales en su área."
+      "es": "Organizaci\u00f3n estatal de defensa LGBTQ de Michigan. Comun\u00edquese con ellos para encontrar cl\u00ednicas locales actuales de cambio de nombre y de marcador de g\u00e9nero, y remisiones legales en su \u00e1rea."
     },
     "source": {
       "url": "https://equalitymi.org",
       "title": "Equality Michigan",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "mi.referral.a4te",
+    "jurisdiction": "US-MI",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Michigan identity documents guide",
+    "url": "https://transequality.org/documents/michigan-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Michigan documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Michigan. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/michigan-identity-documents",
+      "title": "A4TE \u2014 Michigan Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

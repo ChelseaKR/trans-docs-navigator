@@ -6,11 +6,11 @@
     "url": "https://www.aclualabama.org/en/issues/lgbtq-rights",
     "note": {
       "en": "The Alabama affiliate of the American Civil Liberties Union tracks LGBTQ+ policy in the state and publishes know-your-rights information relevant to transgender residents.",
-      "es": "La filial de Alabama de la Unión Estadounidense por las Libertades Civiles (ACLU) da seguimiento a las políticas LGBTQ+ del estado y publica información sobre derechos relevante para residentes transgénero."
+      "es": "La filial de Alabama de la Uni\u00f3n Estadounidense por las Libertades Civiles (ACLU) da seguimiento a las pol\u00edticas LGBTQ+ del estado y publica informaci\u00f3n sobre derechos relevante para residentes transg\u00e9nero."
     },
     "source": {
       "url": "https://www.aclualabama.org/en/issues/lgbtq-rights",
-      "title": "ACLU of Alabama — LGBTQ Rights",
+      "title": "ACLU of Alabama \u2014 LGBTQ Rights",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
@@ -24,11 +24,29 @@
     "url": "https://www.legalservicesalabama.org",
     "note": {
       "en": "A statewide nonprofit that provides free civil legal aid to low-income Alabamians, including help with legal filings such as a name-change petition.",
-      "es": "Una organización estatal sin fines de lucro que brinda ayuda legal civil gratuita a residentes de Alabama de bajos ingresos, incluida ayuda con trámites legales como una petición de cambio de nombre."
+      "es": "Una organizaci\u00f3n estatal sin fines de lucro que brinda ayuda legal civil gratuita a residentes de Alabama de bajos ingresos, incluida ayuda con tr\u00e1mites legales como una petici\u00f3n de cambio de nombre."
     },
     "source": {
       "url": "https://www.legalservicesalabama.org",
       "title": "Legal Services Alabama",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "al.referral.a4te",
+    "jurisdiction": "US-AL",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Alabama identity documents guide",
+    "url": "https://transequality.org/documents/alabama-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Alabama documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Alabama. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/alabama-identity-documents",
+      "title": "A4TE \u2014 Alabama Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

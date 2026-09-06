@@ -1,16 +1,16 @@
 [
   {
-    "id": "us.referral.ncte",
+    "id": "us.referral.a4te",
     "jurisdiction": "US",
-    "name": "National Center for Transgender Equality",
+    "name": "Advocates for Trans Equality (A4TE)",
     "url": "https://transequality.org",
     "note": {
-      "en": "National advocacy organization with plain-language guides to updating federal identity documents (Social Security, passport) after a name or gender-marker change.",
-      "es": "Organización nacional de defensa con guías en lenguaje sencillo para actualizar documentos de identidad federales (Seguro Social, pasaporte) tras un cambio de nombre o de marcador de género."
+      "en": "National advocacy organization (formerly the National Center for Transgender Equality) with plain-language guides to updating federal identity documents (Social Security, passport) after a name or gender-marker change.",
+      "es": "Organizaci\u00f3n nacional de defensa (antes National Center for Transgender Equality) con gu\u00edas en lenguaje sencillo para actualizar documentos de identidad federales (Seguro Social, pasaporte) tras un cambio de nombre o de marcador de g\u00e9nero."
     },
     "source": {
       "url": "https://transequality.org",
-      "title": "National Center for Transgender Equality",
+      "title": "Advocates for Trans Equality (A4TE)",
       "last_verified": "2026-06-01",
       "verifier": "Pilot Seed Reviewer"
     },
@@ -24,7 +24,7 @@
     "url": "https://lambdalegal.org",
     "note": {
       "en": "National LGBTQ+ legal organization offering a free legal help desk for questions about discrimination and legal name/gender-marker changes.",
-      "es": "Organización legal LGBTQ+ nacional que ofrece una línea de ayuda legal gratuita para preguntas sobre discriminación y cambios legales de nombre o marcador de género."
+      "es": "Organizaci\u00f3n legal LGBTQ+ nacional que ofrece una l\u00ednea de ayuda legal gratuita para preguntas sobre discriminaci\u00f3n y cambios legales de nombre o marcador de g\u00e9nero."
     },
     "source": {
       "url": "https://lambdalegal.org",

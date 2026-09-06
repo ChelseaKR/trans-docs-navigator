@@ -6,7 +6,7 @@
     "url": "https://www.gladlaw.org",
     "note": {
       "en": "New England LGBTQ+ legal organization; publishes a Connecticut-specific guide to changing your name and gender marker on ID documents.",
-      "es": "Organización legal LGBTQ+ de Nueva Inglaterra; publica una guía específica de Connecticut sobre cómo cambiar su nombre y marcador de género en documentos de identidad."
+      "es": "Organizaci\u00f3n legal LGBTQ+ de Nueva Inglaterra; publica una gu\u00eda espec\u00edfica de Connecticut sobre c\u00f3mo cambiar su nombre y marcador de g\u00e9nero en documentos de identidad."
     },
     "source": {
       "url": "https://www.gladlaw.org",
@@ -24,11 +24,29 @@
     "url": "https://www.slsct.org",
     "note": {
       "en": "Statewide legal-aid hotline offering free civil legal help to income-eligible Connecticut residents, including help with legal filings such as a name-change petition.",
-      "es": "Línea estatal de ayuda legal que ofrece asistencia legal civil gratuita a residentes de Connecticut que califican por ingresos, incluida ayuda con trámites legales como una petición de cambio de nombre."
+      "es": "L\u00ednea estatal de ayuda legal que ofrece asistencia legal civil gratuita a residentes de Connecticut que califican por ingresos, incluida ayuda con tr\u00e1mites legales como una petici\u00f3n de cambio de nombre."
     },
     "source": {
       "url": "https://www.slsct.org",
       "title": "Statewide Legal Services of Connecticut",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ct.referral.a4te",
+    "jurisdiction": "US-CT",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Connecticut identity documents guide",
+    "url": "https://transequality.org/documents/connecticut-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Connecticut documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Connecticut. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/connecticut-identity-documents",
+      "title": "A4TE \u2014 Connecticut Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
