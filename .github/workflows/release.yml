@@ -105,7 +105,7 @@ jobs:
           # Flagged High by zizmor's cache-poisoning audit (workflow-sast, blocking).
           package-manager-cache: false
       - run: npm ci
-      # make verify's last step (G9 pseudolocale overflow) drives a real browser.
+      # make verify's G9 pseudolocale overflow gate drives a real browser.
       - name: Install Playwright Chromium (G9 pseudolocale overflow gate)
         run: npx playwright install --with-deps chromium
       # The exact same 25-stage blocking pipeline that guards every merge to main —

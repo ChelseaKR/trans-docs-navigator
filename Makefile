@@ -9,14 +9,16 @@ SHELL := /bin/bash
 # `make verify` parallelism. Every one of the 25 gates is an independent,
 # read-only check (none consumes another gate's output — the sole exception,
 # i18n-css-extract → stylelint, is two commands inside i18n-logical-css's own
-# recipe below, never a cross-target dependency). `gate-count` is the one
-# real ordering requirement (see its own target: it must fail fast before the
-# rest run), and it is wired as an explicit prerequisite of every other gate
-# below so that dependency holds even under -j. With that edge in place, the
-# remaining 24 gates have no ordering constraints between them, so building
-# them as parallel `make` prerequisites is safe: same corpus reads, disjoint
-# writes (only `fidelity`, `eval`, and `i18n-logical-css` write files, and
-# each writes to a path nothing else in `verify` reads).
+# recipe below, never a cross-target dependency). `gate-count` is one real
+# ordering requirement (see its own target: it must fail fast before the rest
+# run), and it is wired as an explicit prerequisite of every other gate below
+# so that dependency holds even under -j. `loadtest` is the other (#153): see
+# LOADTEST_ISOLATE just below and the `loadtest:` target for why. With those
+# two edges in place, the remaining 22 gates have no ordering constraints
+# between them, so building them as parallel `make` prerequisites is safe:
+# same corpus reads, disjoint writes (only `fidelity`, `eval`, and
+# `i18n-logical-css` write files, and each writes to a path nothing else in
+# `verify` reads).
 #
 # This sets -j on every invocation, not just `verify` — harmless for a lone
 # `make lint` (no sibling prerequisites to overlap) and exactly what we want
@@ -194,7 +196,33 @@ i18n-overflow: gate-count
 # The network-level p95-first-token target remains a *separate*, opt-in check:
 # `BASE=http://localhost:8080 k6 run loadtest/p95.k6.js` against a live instance
 # (needs k6 + a running server, so it is not part of this merge-blocking target).
-loadtest: gate-count
+#
+# #153: this is the ONE gate in `verify` with an explicit ordering constraint beyond
+# gate-count. #148 parallelised this suite with -j4, which means this gate used to run
+# concurrently with up to three others in the same `make verify` — including a
+# real-browser Playwright pass (i18n-overflow) and the coverage-gated test suite (by
+# far the two longest-running gates, ~1-2 minutes each; see the NPROC comment above) —
+# and partly created the contention it then measured and failed on: p95/max blew out
+# 10-20x on a loaded box while p50 (what a real regression moves) stayed flat.
+#
+# LOADTEST_ISOLATE below lists every OTHER gate as a prerequisite, but ONLY when the
+# invocation goal is exactly `verify` ($(MAKECMDGOALS), a builtin listing the targets
+# named on the command line) — so `make verify` (the pre-push hook and CI's only
+# invocation, per .github/workflows/ci.yml and release.yml) gets a fully serial,
+# uncontended window for this gate, keeping #148's speedup for the other 22 (still
+# fully parallel among themselves), while a standalone `make loadtest` — a developer's
+# fast local check, "no server needed" per `make help` — stays exactly as fast as
+# before and doesn't drag in the whole suite. This intentionally does NOT touch
+# `verify:`'s own prerequisite list above, so `gate-count` (which derives the stage
+# count from that exact line) needed no change for this fix.
+#
+# scripts/latency-bench.ts additionally runs its own same-run calibration control, for
+# contention this ordering can't reach (a busy laptop, a shared CI runner) — see that
+# file's header for the full mechanism.
+ifeq ($(MAKECMDGOALS),verify)
+LOADTEST_ISOLATE := lint typecheck test security content forms citation fidelity privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-hardcoded a11y seo eval i18n-overflow slo launch-gates
+endif
+loadtest: gate-count $(LOADTEST_ISOLATE)
 	@echo "── [23/25] request-path latency benchmark (in-process p95 guard) ─"
 	@$(NODE) scripts/latency-bench.ts
 
