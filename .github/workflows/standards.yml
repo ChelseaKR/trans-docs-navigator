@@ -4,6 +4,16 @@
 #
 # Requires the repo secret STANDARDS_DEPLOY_KEY (the read-only deploy key's
 # private half). Installed by automation/ci-fetch/install.sh.
+#
+# GitHub withholds normal Actions secrets from a run whose actor cannot read
+# them — most commonly dependabot[bot] on a Dependabot-authored PR (see #155).
+# That leaves STANDARDS_DEPLOY_KEY empty, and an empty ssh-key makes the
+# fetch step below die with an opaque `git` exit 128. The "Verify standards
+# deploy key is available" step turns that into an explicit, readable failure
+# instead: a gate that cannot run must not read as passed, so this fails the
+# job (not skip-to-green) with a message naming the cause and the fix. It is
+# not a substitute for #155 option 1 (adding the key to Dependabot secrets
+# too) — see that issue for the access tradeoff that implies.
 name: standards
 
 on:
@@ -29,7 +39,34 @@ jobs:
         with:
           persist-credentials: false
 
+      # See #155: a run whose actor cannot read Actions secrets (dependabot[bot]
+      # on a Dependabot PR, or any run without secret access) gets an empty
+      # STANDARDS_DEPLOY_KEY. Re-running does NOT help — a re-run keeps the
+      # original actor. Fail here, explicitly and readably, instead of letting
+      # the next step die on a bare `git` exit 128.
+      - name: Verify standards deploy key is available
+        id: standards-key
+        env:
+          KEY_PRESENT: ${{ secrets.STANDARDS_DEPLOY_KEY != '' }}
+          RUN_ACTOR: ${{ github.actor }}
+        run: |
+          if [ "$KEY_PRESENT" != "true" ]; then
+            {
+              echo "::error::standards gate cannot run: STANDARDS_DEPLOY_KEY was not available to this workflow run (actor: $RUN_ACTOR)."
+              echo "::error::GitHub withholds normal Actions secrets from runs whose actor can't read them -- most commonly dependabot[bot] on a Dependabot-authored PR. This is not a standards violation, and re-running this run will NOT help: a re-run keeps the same actor."
+              echo "::error::To clear it on this PR: push a commit or use the PR's 'Update branch' button, which re-triggers the workflow with a human actor. To fix it for all Dependabot PRs: add STANDARDS_DEPLOY_KEY to the repository's Dependabot secrets (Settings > Secrets and variables > Dependabot) in addition to Actions secrets -- see issue #155 for the access tradeoff that implies."
+              echo "::error::Reporting this as a failed gate, not a passed one: the standards freshness gate did not run for this commit."
+            } >&2
+            if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
+              echo "### standards gate: could not run" >> "$GITHUB_STEP_SUMMARY"
+              echo "STANDARDS_DEPLOY_KEY was not available to actor \`$RUN_ACTOR\` (see #155). The freshness gate below was skipped; this check is reported as **failed**, not passed." >> "$GITHUB_STEP_SUMMARY"
+            fi
+            exit 1
+          fi
+          echo "available=true" >> "$GITHUB_OUTPUT"
+
       - name: Fetch pinned standards (private, read-only deploy key)
+        if: steps.standards-key.outputs.available == 'true'
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: ChelseaKR/portfolio-standards
@@ -39,9 +76,11 @@ jobs:
           persist-credentials: false
 
       - name: Set up Python
+        if: steps.standards-key.outputs.available == 'true'
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.x'
 
       - name: Standards freshness gate
+        if: steps.standards-key.outputs.available == 'true'
         run: python3 .standards/automation/check_staleness.py --standards-dir .standards
