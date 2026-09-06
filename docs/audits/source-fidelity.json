@@ -1,9 +1,9 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 658,
-  "supported": 991,
+  "records": 666,
+  "supported": 1009,
   "unsupported": 0,
-  "uncheckable": 476,
+  "uncheckable": 486,
   "unfetchable_sources": [
     "https://doa.alaska.gov/dmv/akol/namchg.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
@@ -22,8 +22,8 @@
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → unreachable (fetch and curl both failed): the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://travel.state.gov/es/pasaportes/renovar-o-reemplazar/cambiar-o-corregir.html → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 2421,
-  "total_prose_sentences": 2969,
+  "unchecked_prose_sentences": 2479,
+  "total_prose_sentences": 3039,
   "audits": [
     {
       "recordId": "al.court-order.name",
@@ -2442,9 +2442,9 @@
           "why": "the source states \"7 year\""
         }
       ],
-      "uncheckedProse": 3,
-      "negatedClaims": 1,
-      "totalSentences": 4
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 6
     },
     {
       "recordId": "ga.birth-certificate.name",
@@ -2682,6 +2682,15 @@
           "why": "the source states $3"
         },
         {
+          "kind": "form-id",
+          "key": "unnamed:hi-doh-application-amendment-birth-record",
+          "label": "form_ref \"hi-doh-application-amendment-birth-record\" (Affidavit and Application for Amendment of Birth Record) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
           "kind": "requirement",
           "key": "notarized",
           "label": "a notarized signature is required",
@@ -2857,9 +2866,37 @@
           "why": "the source discusses this topic (necessary condition only — NOT verified)"
         }
       ],
-      "uncheckedProse": 5,
+      "uncheckedProse": 6,
       "negatedClaims": 1,
-      "totalSentences": 6
+      "totalSentences": 7
+    },
+    {
+      "recordId": "id.birth-certificate.gender-marker.injunction",
+      "language": "en",
+      "url": "https://www.ag.idaho.gov/newsroom/attorney-general-labrador-secures-court-order-ending-yearslong-block-on-idahos-birth-certificate-law/",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 8,
+      "negatedClaims": 1,
+      "totalSentences": 10
     },
     {
       "recordId": "id.birth-certificate.gender-marker.law",
@@ -2886,6 +2923,15 @@
         },
         {
           "kind": "form-id",
+          "key": "unnamed:il-nc-a-request-for-name-change",
+          "label": "form_ref \"il-nc-a-request-for-name-change\" (Request for Name Change (Adult Name Change) — Illinois Supreme Court statewide approved form NC-A) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "form-id",
           "key": "unnamed:il-fee-waiver-application",
           "label": "cost.fee_waiver_form \"il-fee-waiver-application\" (Application for Waiver of Court Fees) carries no form identifier to match on",
           "field": "cost.fee_waiver_form",
@@ -2905,9 +2951,46 @@
           "why": "this exact criteria text appears in the source"
         }
       ],
-      "uncheckedProse": 5,
+      "uncheckedProse": 6,
       "negatedClaims": 1,
-      "totalSentences": 5
+      "totalSentences": 6
+    },
+    {
+      "recordId": "il.court-order.name.eligibility",
+      "language": "en",
+      "url": "https://ilga.gov/Documents/legislation/ilcs/documents/073500050K21-101.htm",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "3 month",
+          "label": "states \"3 month\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"3 month\""
+        },
+        {
+          "kind": "form-id",
+          "key": "ILCS5",
+          "label": "names form ILCS5",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names ILCS5"
+        },
+        {
+          "kind": "duration",
+          "key": "6 month",
+          "label": "states \"6 month\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"6 month\""
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 3,
+      "totalSentences": 8
     },
     {
       "recordId": "il.drivers-license.gender-marker",
@@ -3298,6 +3381,52 @@
       "totalSentences": 3
     },
     {
+      "recordId": "in.birth-certificate.fees",
+      "language": "en",
+      "url": "https://www.in.gov/health/vital-records/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "8",
+          "label": "costs $8",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $8"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:in-idoh-49607",
+          "label": "form_ref \"in-idoh-49607\" (State Form 49607 — Application for Search and Certified Copy of Birth Record) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "states $10",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        },
+        {
+          "kind": "money",
+          "key": "4",
+          "label": "states $4",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $4"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 4
+    },
+    {
       "recordId": "ia.court-order.name",
       "language": "en",
       "url": "https://www.iowacourts.gov/for-the-public/representing-yourself/name-change/",
@@ -3310,6 +3439,15 @@
           "strength": "literal",
           "verdict": "supported",
           "why": "the source states $195"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:ia-petition-change-of-name-adult",
+          "label": "form_ref \"ia-petition-change-of-name-adult\" (Petition for Change of Name of Adult (no dissolution of marriage)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
         }
       ],
       "uncheckedProse": 5,
@@ -3443,6 +3581,15 @@
           "why": "the source states $20"
         },
         {
+          "kind": "form-id",
+          "key": "unnamed:ks-kdhe-amendment-request-form",
+          "label": "form_ref \"ks-kdhe-amendment-request-form\" (Amendment Request Form (birth, marriage, or divorce record)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
           "kind": "requirement",
           "key": "court-order-required",
           "label": "a court order is required",
@@ -3450,11 +3597,20 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
         }
       ],
-      "uncheckedProse": 3,
+      "uncheckedProse": 4,
       "negatedClaims": 1,
-      "totalSentences": 4
+      "totalSentences": 5
     },
     {
       "recordId": "ks.court-order.name",
@@ -3723,6 +3879,15 @@
       "uncheckedProse": 2,
       "negatedClaims": 2,
       "totalSentences": 2
+    },
+    {
+      "recordId": "la.birth-certificate.gender-marker.mistaken-designation-law",
+      "language": "en",
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=98726",
+      "results": [],
+      "uncheckedProse": 6,
+      "negatedClaims": 2,
+      "totalSentences": 6
     },
     {
       "recordId": "la.birth-certificate.name",
@@ -10193,9 +10358,9 @@
           "why": "the source states \"7 year\""
         }
       ],
-      "uncheckedProse": 3,
-      "negatedClaims": 1,
-      "totalSentences": 4
+      "uncheckedProse": 5,
+      "negatedClaims": 2,
+      "totalSentences": 6
     },
     {
       "recordId": "ga.birth-certificate.name.es",
@@ -10367,6 +10532,15 @@
           "strength": "literal",
           "verdict": "supported",
           "why": "the source states $3"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:hi-doh-application-amendment-birth-record",
+          "label": "form_ref \"hi-doh-application-amendment-birth-record\" (Affidavit and Application for Amendment of Birth Record) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
         },
         {
           "kind": "requirement",
@@ -10589,6 +10763,15 @@
           "strength": "literal",
           "verdict": "supported",
           "why": "the source states $195"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:ia-petition-change-of-name-adult",
+          "label": "form_ref \"ia-petition-change-of-name-adult\" (Petition for Change of Name of Adult (no dissolution of marriage)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
         }
       ],
       "uncheckedProse": 5,
@@ -10656,9 +10839,37 @@
           "why": "the source discusses this topic (necessary condition only — NOT verified)"
         }
       ],
-      "uncheckedProse": 5,
+      "uncheckedProse": 6,
       "negatedClaims": 1,
-      "totalSentences": 6
+      "totalSentences": 7
+    },
+    {
+      "recordId": "id.birth-certificate.gender-marker.injunction.es",
+      "language": "es",
+      "url": "https://www.ag.idaho.gov/newsroom/attorney-general-labrador-secures-court-order-ending-yearslong-block-on-idahos-birth-certificate-law/",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "1 year",
+          "label": "states \"1 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"1 year\""
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        }
+      ],
+      "uncheckedProse": 12,
+      "negatedClaims": 1,
+      "totalSentences": 14
     },
     {
       "recordId": "id.birth-certificate.gender-marker.law.es",
@@ -10951,6 +11162,15 @@
         },
         {
           "kind": "form-id",
+          "key": "unnamed:il-nc-a-request-for-name-change",
+          "label": "form_ref \"il-nc-a-request-for-name-change\" (Request for Name Change (Adult Name Change) — Illinois Supreme Court statewide approved form NC-A) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "form-id",
           "key": "unnamed:il-fee-waiver-application",
           "label": "cost.fee_waiver_form \"il-fee-waiver-application\" (Application for Waiver of Court Fees) carries no form identifier to match on",
           "field": "cost.fee_waiver_form",
@@ -10970,9 +11190,46 @@
           "why": "this exact criteria text appears in the source"
         }
       ],
-      "uncheckedProse": 5,
+      "uncheckedProse": 6,
       "negatedClaims": 1,
-      "totalSentences": 5
+      "totalSentences": 6
+    },
+    {
+      "recordId": "il.court-order.name.eligibility.es",
+      "language": "es",
+      "url": "https://ilga.gov/Documents/legislation/ilcs/documents/073500050K21-101.htm",
+      "results": [
+        {
+          "kind": "duration",
+          "key": "3 month",
+          "label": "states \"3 month\"",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"3 month\""
+        },
+        {
+          "kind": "form-id",
+          "key": "ILCS5",
+          "label": "names form ILCS5",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source names ILCS5"
+        },
+        {
+          "kind": "duration",
+          "key": "6 month",
+          "label": "states \"6 month\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"6 month\""
+        }
+      ],
+      "uncheckedProse": 5,
+      "negatedClaims": 3,
+      "totalSentences": 8
     },
     {
       "recordId": "il.court-order.name.minor.es",
@@ -11057,6 +11314,52 @@
       "uncheckedProse": 3,
       "negatedClaims": 2,
       "totalSentences": 3
+    },
+    {
+      "recordId": "in.birth-certificate.fees.es",
+      "language": "es",
+      "url": "https://www.in.gov/health/vital-records/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "8",
+          "label": "costs $8",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $8"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:in-idoh-49607",
+          "label": "form_ref \"in-idoh-49607\" (State Form 49607 — Application for Search and Certified Copy of Birth Record) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
+          "kind": "money",
+          "key": "10",
+          "label": "states $10",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $10"
+        },
+        {
+          "kind": "money",
+          "key": "4",
+          "label": "states $4",
+          "field": "statement",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $4"
+        }
+      ],
+      "uncheckedProse": 3,
+      "negatedClaims": 1,
+      "totalSentences": 4
     },
     {
       "recordId": "in.birth-certificate.name.es",
@@ -11249,6 +11552,15 @@
           "why": "the source states $20"
         },
         {
+          "kind": "form-id",
+          "key": "unnamed:ks-kdhe-amendment-request-form",
+          "label": "form_ref \"ks-kdhe-amendment-request-form\" (Amendment Request Form (birth, marriage, or divorce record)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        },
+        {
           "kind": "requirement",
           "key": "court-order-required",
           "label": "a court order is required",
@@ -11256,11 +11568,20 @@
           "strength": "necessary-condition",
           "verdict": "supported",
           "why": "the source discusses this topic (necessary condition only — NOT verified)"
+        },
+        {
+          "kind": "requirement",
+          "key": "notarized",
+          "label": "a notarized signature is required",
+          "field": "detail",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source discusses this topic (necessary condition only — NOT verified)"
         }
       ],
-      "uncheckedProse": 3,
+      "uncheckedProse": 4,
       "negatedClaims": 1,
-      "totalSentences": 4
+      "totalSentences": 5
     },
     {
       "recordId": "ks.court-order.name.es",
@@ -11502,6 +11823,15 @@
       "uncheckedProse": 1,
       "negatedClaims": 2,
       "totalSentences": 2
+    },
+    {
+      "recordId": "la.birth-certificate.gender-marker.mistaken-designation-law.es",
+      "language": "es",
+      "url": "https://www.legis.la.gov/Legis/Law.aspx?d=98726",
+      "results": [],
+      "uncheckedProse": 6,
+      "negatedClaims": 2,
+      "totalSentences": 6
     },
     {
       "recordId": "la.birth-certificate.gender-marker.es",

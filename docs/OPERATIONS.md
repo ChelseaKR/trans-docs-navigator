@@ -86,7 +86,10 @@ structured events emitted by `api/log.ts`'s `safeLog`. Alarm notifications requi
   birth-certificate records — have claims that no gate can verify.** They are counted as
   UNCHECKABLE in `docs/audits/source-fidelity.md` and surfaced in the launch-gate table. A human
   reading those pages in a browser is the only verification available; that is exactly what the
-  named-human review gate is for.
+  named-human review gate is for. The same applies to `ldh.la.gov` (Louisiana vital-records amendments, HTTP 403,
+  pinned in `tests/watchability.test.ts`) and — A4TE cross-check follow-up, 2026-09 — to three official hosts no
+  record cites but a human must read directly: `kjc.ks.gov` (Kansas Judicial Council forms, 403), `ilsos.gov`
+  (Illinois Secretary of State, times out for this user-agent), and `iga.in.gov` (Indiana Code, a JavaScript shell).
 - **The SSA records used to be in that list, and are not any more — the fix was to cite the
   authority, not to defeat the block.** Every page under `www.ssa.gov` (and `faq.ssa.gov`,
   `blog.ssa.gov`) 403s a non-browser client, so the two SSA records cited sources no gate could

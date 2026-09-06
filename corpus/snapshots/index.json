@@ -1531,6 +1531,26 @@
       "file": "mass-gov-info-details-eligibility-requirements-for-indigency-waiver-of-bc737a19.txt",
       "fetched": "2026-09-06",
       "sha256": "ecd2f8d5b790aa5ff872ec8a25262de08eb1da53e728f2db3940f0d681a09e71"
+    },
+    "https://ilga.gov/Documents/legislation/ilcs/documents/073500050K21-101.htm": {
+      "file": "ilga-gov-documents-legislation-ilcs-documents-073500050k21-101-htm-defc29fc.txt",
+      "fetched": "2026-09-05",
+      "sha256": "8a4569f37cdad84bd3e210662f17b943b5cdb91cd1c31ac0b6d9bb7e1770e9d7"
+    },
+    "https://www.in.gov/health/vital-records/": {
+      "file": "in-gov-health-vital-records-89ba5214.txt",
+      "fetched": "2026-09-05",
+      "sha256": "be15a664f1a5d0ce99f7944c61f9347cd934642bfb291753c464a888a22b5ca7"
+    },
+    "https://www.legis.la.gov/Legis/Law.aspx?d=98726": {
+      "file": "legis-la-gov-legis-law-aspx-e4a6a796.txt",
+      "fetched": "2026-09-05",
+      "sha256": "9500839dede5edbce54cf710f3aac287417ff7e39036aa4d2dc122e20a98a1c7"
+    },
+    "https://www.ag.idaho.gov/newsroom/attorney-general-labrador-secures-court-order-ending-yearslong-block-on-idahos-birth-certificate-law/": {
+      "file": "ag-idaho-gov-newsroom-attorney-general-labrador-secures-court-order-en-b82ff90c.txt",
+      "fetched": "2026-09-05",
+      "sha256": "718b0440812ad0489b52d81c8e7a654bfccd11b06344e8d853140573009af759"
     }
   }
 }
