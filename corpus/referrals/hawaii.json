@@ -6,7 +6,7 @@
     "url": "https://www.legalaidhawaii.org",
     "note": {
       "en": "Hawaii's public-interest civil legal aid law firm, which can help income-eligible residents with name-change and other civil legal filings.",
-      "es": "Bufete de interés público de ayuda legal civil de Hawái, que puede ayudar a residentes que califican por sus ingresos con solicitudes de cambio de nombre y otros trámites legales civiles."
+      "es": "Bufete de inter\u00e9s p\u00fablico de ayuda legal civil de Haw\u00e1i, que puede ayudar a residentes que califican por sus ingresos con solicitudes de cambio de nombre y otros tr\u00e1mites legales civiles."
     },
     "source": {
       "url": "https://www.legalaidhawaii.org",
@@ -20,15 +20,33 @@
   {
     "id": "hi.referral.aclu-hawaii",
     "jurisdiction": "US-HI",
-    "name": "ACLU of Hawaii — LGBTQ+ Rights",
+    "name": "ACLU of Hawaii \u2014 LGBTQ+ Rights",
     "url": "https://www.acluhawaii.org/en/issues/lgbtq-rights",
     "note": {
       "en": "The ACLU of Hawaii publishes information and advocacy updates on LGBTQ+ rights in Hawaii, including issues affecting transgender residents.",
-      "es": "La ACLU de Hawái publica información y actualizaciones de defensa sobre los derechos LGBTQ+ en Hawái, incluidos asuntos que afectan a residentes transgénero."
+      "es": "La ACLU de Haw\u00e1i publica informaci\u00f3n y actualizaciones de defensa sobre los derechos LGBTQ+ en Haw\u00e1i, incluidos asuntos que afectan a residentes transg\u00e9nero."
     },
     "source": {
       "url": "https://www.acluhawaii.org/en/issues/lgbtq-rights",
-      "title": "ACLU of Hawaii — LGBTQ+ Rights",
+      "title": "ACLU of Hawaii \u2014 LGBTQ+ Rights",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "hi.referral.a4te",
+    "jurisdiction": "US-HI",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Hawaii identity documents guide",
+    "url": "https://transequality.org/documents/hawaii-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Hawaii documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Haw\u00e1i. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/hawaii-identity-documents",
+      "title": "A4TE \u2014 Hawaii Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

@@ -24,11 +24,29 @@
     "url": "https://www.one-colorado.org",
     "note": {
       "en": "Colorado's statewide LGBTQ advocacy organization, which publishes a guide to updating identity documents and connects people to the Colorado Name Change Project.",
-      "es": "Organización estatal de defensa LGBTQ de Colorado, que publica una guía para actualizar documentos de identidad y conecta a las personas con el Colorado Name Change Project."
+      "es": "Organizaci\u00f3n estatal de defensa LGBTQ de Colorado, que publica una gu\u00eda para actualizar documentos de identidad y conecta a las personas con el Colorado Name Change Project."
     },
     "source": {
       "url": "https://www.one-colorado.org",
       "title": "One Colorado",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "co.referral.a4te",
+    "jurisdiction": "US-CO",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Colorado identity documents guide",
+    "url": "https://transequality.org/documents/colorado-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Colorado documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Colorado. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/colorado-identity-documents",
+      "title": "A4TE \u2014 Colorado Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

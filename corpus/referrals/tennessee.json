@@ -6,7 +6,7 @@
     "url": "https://www.tnep.org",
     "note": {
       "en": "Statewide LGBTQ+ advocacy organization that tracks Tennessee policy and legislation and publishes know-your-rights information relevant to transgender residents.",
-      "es": "Organización estatal de defensa LGBTQ+ que da seguimiento a las políticas y leyes de Tennessee y publica información sobre derechos relevante para residentes transgénero."
+      "es": "Organizaci\u00f3n estatal de defensa LGBTQ+ que da seguimiento a las pol\u00edticas y leyes de Tennessee y publica informaci\u00f3n sobre derechos relevante para residentes transg\u00e9nero."
     },
     "source": {
       "url": "https://www.tnep.org",
@@ -24,11 +24,29 @@
     "url": "https://www.help4tn.org",
     "note": {
       "en": "Statewide nonprofit that connects Tennesseans with free or low-cost civil legal help, including a free legal-information helpline and referrals to legal aid and pro bono attorneys, covering all 95 counties.",
-      "es": "Organización estatal sin fines de lucro que conecta a los habitantes de Tennessee con ayuda legal civil gratuita o de bajo costo, incluida una línea de ayuda con información legal gratuita y remisiones a asistencia legal y abogados pro bono, en los 95 condados del estado."
+      "es": "Organizaci\u00f3n estatal sin fines de lucro que conecta a los habitantes de Tennessee con ayuda legal civil gratuita o de bajo costo, incluida una l\u00ednea de ayuda con informaci\u00f3n legal gratuita y remisiones a asistencia legal y abogados pro bono, en los 95 condados del estado."
     },
     "source": {
       "url": "https://www.tals.org",
       "title": "Tennessee Alliance for Legal Services",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "tn.referral.a4te",
+    "jurisdiction": "US-TN",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Tennessee identity documents guide",
+    "url": "https://transequality.org/documents/tennessee-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Tennessee documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Tennessee. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/tennessee-identity-documents",
+      "title": "A4TE \u2014 Tennessee Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

@@ -6,7 +6,7 @@
     "url": "https://www.gladlaw.org",
     "note": {
       "en": "A New England regional LGBTQ+ legal organization that runs a free legal information line and publishes guidance on name changes and gender-marker corrections for people living in New Hampshire.",
-      "es": "Una organización legal LGBTQ+ regional de Nueva Inglaterra que opera una línea gratuita de información legal y publica orientación sobre cambios de nombre y correcciones de marcador de género para personas que viven en New Hampshire."
+      "es": "Una organizaci\u00f3n legal LGBTQ+ regional de Nueva Inglaterra que opera una l\u00ednea gratuita de informaci\u00f3n legal y publica orientaci\u00f3n sobre cambios de nombre y correcciones de marcador de g\u00e9nero para personas que viven en New Hampshire."
     },
     "source": {
       "url": "https://www.gladlaw.org",
@@ -24,11 +24,29 @@
     "url": "https://www.603legalaid.org",
     "note": {
       "en": "New Hampshire's statewide legal-aid organization, offering free legal advice and help navigating the name-change process and updating identity documents.",
-      "es": "La organización estatal de ayuda legal de New Hampshire, que ofrece asesoría legal gratuita y ayuda para navegar el proceso de cambio de nombre y actualizar documentos de identidad."
+      "es": "La organizaci\u00f3n estatal de ayuda legal de New Hampshire, que ofrece asesor\u00eda legal gratuita y ayuda para navegar el proceso de cambio de nombre y actualizar documentos de identidad."
     },
     "source": {
       "url": "https://www.603legalaid.org",
       "title": "603 Legal Aid",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "nh.referral.a4te",
+    "jurisdiction": "US-NH",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 New Hampshire identity documents guide",
+    "url": "https://transequality.org/documents/new-hampshire-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on New Hampshire documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Nuevo Hampshire. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/new-hampshire-identity-documents",
+      "title": "A4TE \u2014 New Hampshire Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

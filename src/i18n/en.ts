@@ -104,6 +104,8 @@ export const en: LocaleBundle = {
       `${n} step(s) have no fee listed in our sources, so this is a floor, not a complete cost. We don't estimate what a source doesn't state.`,
     moreHeading: "Go deeper",
     seeDetailedAnswer: "See what the sources say in detail",
+    helpHeading: "Where to get help",
+    helpIntro: "These organizations publish their own guides or can help you directly.",
     officialFormIntro: "This is an official government form. Download it from the source below and complete it yourself — we don't fill it in for you, so you always work from the authoritative version.",
     whatToBringTitle: "What to bring",
     copyTitle: "Your details, ready to copy in",
