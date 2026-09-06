@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ne.referral.legalaidofnebraska",
+    "jurisdiction": "US-NE",
+    "name": "Legal Aid of Nebraska",
+    "url": "https://www.legalaidofnebraska.org",
+    "note": {
+      "en": "Nonprofit civil legal aid organization serving all 93 Nebraska counties from seven offices, offering information, referrals, self-help services, and representation to qualifying low-income residents.",
+      "es": "Organización sin fines de lucro de ayuda legal civil que atiende los 93 condados de Nebraska desde siete oficinas, ofreciendo información, referencias, servicios de autoayuda y representación a residentes de bajos ingresos que califiquen."
+    },
+    "source": {
+      "url": "https://www.legalaidofnebraska.org",
+      "title": "Legal Aid of Nebraska",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ne.referral.aclunebraska",
+    "jurisdiction": "US-NE",
+    "name": "ACLU of Nebraska",
+    "url": "https://www.aclunebraska.org",
+    "note": {
+      "en": "Statewide civil-rights organization that advocates for transgender Nebraskans' access to accurate identity documents and can be contacted about discrimination and legal-process questions.",
+      "es": "Organización estatal de derechos civiles que aboga por el acceso de las personas transgénero de Nebraska a documentos de identidad precisos, y a la que se puede contactar sobre preguntas de discriminación y trámites legales."
+    },
+    "source": {
+      "url": "https://www.aclunebraska.org",
+      "title": "ACLU of Nebraska",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

@@ -1,0 +1,150 @@
+[
+  {
+    "id": "ri.court-order.name",
+    "jurisdiction": "US-RI",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Rhode Island name change petition",
+    "statement": "To legally change your name in Rhode Island, you petition the probate court in the town or city where you live. Rhode Island law says a name change must be granted unless it is sought for a fraudulent purpose, and the court may not require you to publish public notice of the change before approving it.",
+    "detail": "If you are indigent or show a limited ability to pay, the court may waive or reduce the court costs. The court may also require you to undergo a criminal history record check as part of the petition.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The statute doesn't set a specific filing-fee amount, though it allows the court to waive or reduce court costs for a petitioner who is indigent or has a limited ability to pay. Contact the probate court where you're filing for the current fee.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://webserver.rilegislature.gov/Statutes/TITLE33/33-22/33-22-28.htm",
+      "title": "Rhode Island General Laws § 33-22-28 — Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ri.drivers-license.name",
+    "jurisdiction": "US-RI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Rhode Island driver's license name change",
+    "statement": "To change the name on your Rhode Island driver's license or ID, you bring your current license to any DMV branch location (or an AAA branch office if you're a member) and complete the License/ID/Permit Application (LI-1 Form) along with one document showing your correct name. You must update your name with Social Security first — it takes 24 hours for a Social Security change to become effective before the DMV can process your transaction.",
+    "detail": "The costs for this transaction are listed in the DMV's own Fee Table.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page doesn't state a dollar amount directly — it points to the DMV's own Fee Table. Contact the DMV for the current fee."
+    },
+    "prerequisites": [
+      "ssa-card"
+    ],
+    "source": {
+      "url": "https://dmv.ri.gov/licenses-permits-ids/drivers-licenses/name-address-change",
+      "title": "Rhode Island DMV — Name & Address Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ri.drivers-license.gender-marker",
+    "jurisdiction": "US-RI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Rhode Island driver's license gender designation",
+    "statement": "To change the gender designation on your Rhode Island driver's license or ID, you surrender your current state-issued license or ID, submit a completed Gender Designation form, pay the applicable fee for a new or updated card, and have a new photograph taken. DMV employees may not ask for gender-related information beyond what the form itself requires, or ask about your private medical history or records.",
+    "detail": "Changing the name that goes with a gender change is done separately, through appropriate court documents, and must also be reflected on your Social Security card.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page doesn't state a dollar amount for this transaction — it points to the DMV's own Fee Table. Contact the DMV for the current fee."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.ri.gov/licenses-permits-ids/drivers-licenses/name-address-change",
+      "title": "Rhode Island DMV — Name & Address Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ri.birth-certificate.name",
+    "jurisdiction": "US-RI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Rhode Island birth certificate name change",
+    "statement": "Rhode Island's vital-records rule lets you amend the given name on a birth certificate with an affidavit from the registrant (if of legal age) or their parent, guardian, or legal representative, plus one evidentiary document. But once more than 30 days have passed since the birth was registered, a change that reflects a genuinely new given name — rather than a spelling fix or clerical correction — can only be made after you submit a court order directing it.",
+    "detail": "This is the same evidentiary-documentation rule the State Registrar applies to any correction of a vital record: an affidavit plus at least one original supporting document (or a certified copy) established within seven years of the fact it supports. If the Registrar finds the evidence unsatisfactory, the record will not be amended unless a court of competent jurisdiction orders it.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://rules.sos.ri.gov/regulations/part/216-10-10-1",
+      "title": "Rhode Island Code of Regulations 216-RICR-10-10-1 § 1.37 — Requirements to Amend Vital Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ri.birth-certificate.gender-marker",
+    "jurisdiction": "US-RI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Rhode Island birth certificate sex designation",
+    "statement": "To correct the sex shown on a Rhode Island birth certificate so it differs from the sex on the original record, Rhode Island's vital-records rule requires only an affidavit — executed by you if you're of legal age, or by your parent, legal guardian, or legal representative if you're not. The State Registrar then changes the certificate to reflect the new sex designation without indicating that a change was made.",
+    "detail": "If your correction request for sex also includes a request for a legal name change, the certificate will be marked \"Amended\" only with respect to the name change — the sex correction itself leaves no such mark. The rule describes no separate requirement for a court order or a physician's statement to change the sex marker alone.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://rules.sos.ri.gov/regulations/part/216-10-10-1",
+      "title": "Rhode Island Code of Regulations 216-RICR-10-10-1 § 1.37 — Requirements to Amend Vital Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ri.birth-certificate.fees",
+    "jurisdiction": "US-RI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Rhode Island birth certificate amendment fees",
+    "statement": "Rhode Island's fee schedule for the Department of Health lists $10.00 for an authorized correction, alteration, or addition to a vital record, and $22.00 for a certified copy of a vital record.",
+    "detail": "Each duplicate certified copy ordered at the same time costs $18.00, and expedited service adds a $7.00 handling fee to the basic fee.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "A certified copy of the amended birth certificate costs $22.00 more; each additional duplicate ordered at the same time costs $18.00."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://rules.sos.ri.gov/regulations/part/216-10-05-2",
+      "title": "Rhode Island Code of Regulations 216-RICR-10-05-2 § 2.17 — Vital Records Fees",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]

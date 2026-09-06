@@ -676,6 +676,461 @@
       "file": "selfrepresentation-nmcourts-gov-name-change-5aecca21.txt",
       "fetched": "2026-09-05",
       "sha256": "c8a7e567bd24dc7bf00798b6aa733f9fff9066c7745a951cdfc4464836ab8cf2"
+    },
+    "https://delcode.delaware.gov/title10/c059/index.html": {
+      "file": "delcode-delaware-gov-title10-c059-index-html-0f43e855.txt",
+      "fetched": "2026-07-13",
+      "sha256": "08f7214b0304698e5946562540d18d722fc8f136e03f5bfd95f2ab26f917abc1"
+    },
+    "https://dmv.de.gov/DriverServices/other/index.shtml?dc=dr_oth_change": {
+      "file": "dmv-de-gov-driverservices-other-index-shtml-33c09291.txt",
+      "fetched": "2026-07-13",
+      "sha256": "49eb31cba2f90bbf8e8c5fbe6ac377a1391f617ad9ad8f1123ec93971fc90545"
+    },
+    "https://legislature.maine.gov/statutes/18-C/title18-Csec1-701.html": {
+      "file": "legislature-maine-gov-statutes-18-c-title18-csec1-701-html-a5ef3fcc.txt",
+      "fetched": "2026-07-13",
+      "sha256": "2bd82e895ebf03261a1e343d2badbe5dc5762465427c45c878ac6e066d94718c"
+    },
+    "https://www.gencourt.state.nh.us/rsa/html/I/5-C/5-C-10.htm": {
+      "file": "gencourt-state-nh-us-rsa-html-i-5-c-5-c-10-htm-737eceac.txt",
+      "fetched": "2026-07-13",
+      "sha256": "5505e44a550f08efadca3de5998ffdfd295b78a4b3aac947600fd2fc0828f42f"
+    },
+    "https://www.gencourt.state.nh.us/rsa/html/I/5-C/5-C-87.htm": {
+      "file": "gencourt-state-nh-us-rsa-html-i-5-c-5-c-87-htm-129e21b9.txt",
+      "fetched": "2026-07-13",
+      "sha256": "c878deace570520817eaf71e67a101a0ea335133036827db89cabe8532a30df7"
+    },
+    "https://www.gencourt.state.nh.us/rsa/html/LVI/547/547-3-i.htm": {
+      "file": "gencourt-state-nh-us-rsa-html-lvi-547-547-3-i-htm-ae72305c.txt",
+      "fetched": "2026-07-13",
+      "sha256": "56bb0b8725dedb2482f4aa3b3525896631d577f80ef5c3c4d7fe160ea476d880"
+    },
+    "https://www.gencourt.state.nh.us/rsa/html/LVI/550/550-4.htm": {
+      "file": "gencourt-state-nh-us-rsa-html-lvi-550-550-4-htm-1c21182d.txt",
+      "fetched": "2026-07-13",
+      "sha256": "25f7c96e310c081bf52fcec053f25dce0e41979df6e14617d1d9300ca07bb78f"
+    },
+    "https://www.law.cornell.edu/regulations/delaware/16-Del-Admin-Code-SS-4205-10.0": {
+      "file": "law-cornell-edu-regulations-delaware-16-del-admin-code-ss-4205-10-0-982ee98b.txt",
+      "fetched": "2026-07-13",
+      "sha256": "5236e0689ba25933f0d7f78774048bddccded02137b3a4c2610bca3777efba77"
+    },
+    "https://www.maine.gov/dhhs/mecdc/vital-records/amend-correct-or-complete-vital-records/change-the-gender-marker-on-your-birth-record": {
+      "file": "maine-gov-dhhs-mecdc-vital-records-amend-correct-or-complete-vital-rec-2358b1ca.txt",
+      "fetched": "2026-07-13",
+      "sha256": "eb3b1f944859a6b8e53fb819c99fc3ced47f89c25bb8d876899481bad390975b"
+    },
+    "https://www.maine.gov/dhhs/mecdc/vital-records/amend-correct-or-complete-vital-records/court-records": {
+      "file": "maine-gov-dhhs-mecdc-vital-records-amend-correct-or-complete-vital-rec-cdd20a18.txt",
+      "fetched": "2026-07-13",
+      "sha256": "cd609a7bd39d612ef7ee61a80a292a9ec98c14a0715b83ece21b090e1fcf895c"
+    },
+    "https://www.maine.gov/sos/bmv/driver-licenses-and-ids/car-license/how-to-obtain-a-license": {
+      "file": "maine-gov-sos-bmv-driver-licenses-and-ids-car-license-how-to-obtain-a--fd0511ce.txt",
+      "fetched": "2026-07-13",
+      "sha256": "1340e128b31a646c1fc2d597aa784a008c3f783a2fb334e40d6afe8d3cdd8ede"
+    },
+    "https://courts.delaware.gov/forms/download.aspx?id=16858": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://dmv.de.gov/DriverServices/drivers_license/pdfs/gender_designation_change_procedure.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://dhss.delaware.gov/wp-content/uploads/sites/12/dph/pdf/GenderReassignment.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/GENDER%20DESIGNATION%20FORM2019.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/Guidance%20about%20Gender%20Designations%20on%20Maine%20Drivers%20Licenses_1.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://www.courts.nh.gov/sites/g/files/ehbemt471/files/documents/2021-06/filing_fees.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://www.dmv.nh.gov/drivers-licensenon-driver-ids/update-personal-information": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
+    "https://www.ctprobate.gov/other-matters/name-changes": {
+      "file": "ctprobate-gov-other-matters-name-changes-be4ee3a1.txt",
+      "fetched": "2026-09-05",
+      "sha256": "1bbf7feb78eaa94eff504e063455d495b3852085ebe583e8fa5d4232e7fb540a"
+    },
+    "https://portal.ct.gov/dmv/licenses-permits-ids/change-driver-license": {
+      "file": "portal-ct-gov-dmv-licenses-permits-ids-change-driver-license-8a10bca8.txt",
+      "fetched": "2026-09-05",
+      "sha256": "1996bc34c4495158462c15454236ded06acc8e78f3bc1d5c9803253b6c2be663"
+    },
+    "https://portal.ct.gov/dph/vital-records/gender-change": {
+      "file": "portal-ct-gov-dph-vital-records-gender-change-31168aab.txt",
+      "fetched": "2026-09-05",
+      "sha256": "3e0fd61df3bfceeed6982dba2dc137e73aabb5b8f3b5ca1e67d3fb5e69d5a06d"
+    },
+    "https://portal.ct.gov/dph/vital-records/corrections-and-amendments": {
+      "file": "portal-ct-gov-dph-vital-records-corrections-and-amendments-d8aa31f5.txt",
+      "fetched": "2026-09-05",
+      "sha256": "1b12ac51d6e19bcfbde9620c7f4cad70b78f1d6c4acd0c108e3ddc1892ca7929"
+    },
+    "https://webserver.rilegislature.gov/Statutes/TITLE33/33-22/33-22-28.htm": {
+      "file": "webserver-rilegislature-gov-statutes-title33-33-22-33-22-28-htm-00820245.txt",
+      "fetched": "2026-09-05",
+      "sha256": "516a247f293dd4b01180d4a3e2040357344ea7da90cfe64f6b009ef242844c88"
+    },
+    "https://dmv.ri.gov/licenses-permits-ids/drivers-licenses/name-address-change": {
+      "file": "dmv-ri-gov-licenses-permits-ids-drivers-licenses-name-address-change-b2346007.txt",
+      "fetched": "2026-09-05",
+      "sha256": "518217a0b1760345cd230e37a2c76c70223f1b4dc60405cc8515a10e750f29be"
+    },
+    "https://rules.sos.ri.gov/regulations/part/216-10-10-1": {
+      "file": "rules-sos-ri-gov-regulations-part-216-10-10-1-e3b39346.txt",
+      "fetched": "2026-09-05",
+      "sha256": "44f0ce0f81a597eef192fe421e551eba5309448d0631f5734d5360d75b680505"
+    },
+    "https://rules.sos.ri.gov/regulations/part/216-10-05-2": {
+      "file": "rules-sos-ri-gov-regulations-part-216-10-05-2-d56e1ad2.txt",
+      "fetched": "2026-09-05",
+      "sha256": "737b14f8bc9e11ef2be28ea43a6ad545ef9d44d7017828514ab76b1c9dfaa529"
+    },
+    "https://www.vtcourts.gov/probate/name-changes": {
+      "file": "vtcourts-gov-probate-name-changes-427b2660.txt",
+      "fetched": "2026-09-05",
+      "sha256": "89044a01c2a83b891ff13130a71a4ae51fc8226bed5a362cc06fc158f39264e2"
+    },
+    "https://dmv.vermont.gov/licenses/name-change": {
+      "file": "dmv-vermont-gov-licenses-name-change-165c4797.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c816321c29e1eb3c107a5a2454fbac13ab0bc63d4c33b21d59aeb52b98bf014a"
+    },
+    "https://dmv.vermont.gov/licenses/identity-documents": {
+      "file": "dmv-vermont-gov-licenses-identity-documents-d05626c2.txt",
+      "fetched": "2026-09-05",
+      "sha256": "929b8a5c211c3a452c79fe1b4139db4970ce5d2292eb579c428967b1e0003d77"
+    },
+    "https://www.healthvermont.gov/stats/vital-records/order-vital-records": {
+      "file": "healthvermont-gov-stats-vital-records-order-vital-records-28cbc502.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c3e4d0f96987f38bbccec7c80bb094a9e427cc4a33fca25a94d7cb7e8820df6f"
+    },
+    "https://portal.ct.gov/-/media/DMV/20/29/B-385.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source ct.drivers-license.gender-marker."
+      }
+    },
+    "https://www.healthvermont.gov/sites/default/files/document/hsi-vr-gender-affidavit.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.gender-marker."
+      }
+    },
+    "https://www.healthvermont.gov/sites/default/files/documents/pdf/HS_VR_BC_Correct_Amend.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked automatically. A human read the PDF directly (see the PR description) to source vt.birth-certificate.name."
+      }
+    },
+    "https://courts.mt.gov/Forms/namechange": {
+      "file": "courts-mt-gov-forms-namechange-ead35491.txt",
+      "fetched": "2026-07-13",
+      "sha256": "2c9f786229e0262bf8d46601cb57cb3983cea2c08ca08e62a8459cb4aa5032e8"
+    },
+    "https://dphhs.mt.gov/vitalrecords/Fees": {
+      "file": "dphhs-mt-gov-vitalrecords-fees-2eac2fc0.txt",
+      "fetched": "2026-07-13",
+      "sha256": "36070f124f8fd339e37409fd5deb32271bee0dd6b587cbbf060bb2b56e3494f2"
+    },
+    "https://wisconsindot.gov/Pages/dmv/license-drvs/rnew-and-chge/name-change.aspx": {
+      "file": "wisconsindot-gov-pages-dmv-license-drvs-rnew-and-chge-name-change-aspx-9fa15f8f.txt",
+      "fetched": "2026-07-13",
+      "sha256": "1ed9408861726bcaf297af549cb1a1453990622077e2bd18d62dac03e84af05a"
+    },
+    "https://wisconsindot.gov/Pages/dmv/license-drvs/rnew-and-chge/proof-name-change.aspx": {
+      "file": "wisconsindot-gov-pages-dmv-license-drvs-rnew-and-chge-proof-name-chang-7fc6ce05.txt",
+      "fetched": "2026-07-13",
+      "sha256": "c5192c2d5d5874aed9f1526d9c3c0683bf9cfc135c4f190880f44414bfe4f3cf"
+    },
+    "https://www.dhs.wisconsin.gov/vitalrecords/amendments.htm": {
+      "file": "dhs-wisconsin-gov-vitalrecords-amendments-htm-f64be9ca.txt",
+      "fetched": "2026-07-13",
+      "sha256": "5e9d2eef9f0b823f29a0e18b9ccc1f33f01e4c5de201d1d1ea063dcdfc66542d"
+    },
+    "https://www.dot.nd.gov/driver/driver-license": {
+      "file": "dot-nd-gov-driver-driver-license-187115b7.txt",
+      "fetched": "2026-07-13",
+      "sha256": "f686d0aaf6e4ab827ebfa2caf3e38b5f55ea11bf904c08edf3bdce1067d51e2f"
+    },
+    "https://www.hhs.nd.gov/vital/changing-birth-record": {
+      "file": "hhs-nd-gov-vital-changing-birth-record-17740a64.txt",
+      "fetched": "2026-07-13",
+      "sha256": "a8ee3d04296133398dae30b765c9a9ae4822f322659783c22fff4db6a43f9179"
+    },
+    "https://www.hhs.nd.gov/vital/court-order-name-change": {
+      "file": "hhs-nd-gov-vital-court-order-name-change-48bcd9d9.txt",
+      "fetched": "2026-07-13",
+      "sha256": "d1a92716d678b1fc4ad13debb3ad9a51bc5deaf0daed232dce4c425a9fc983c1"
+    },
+    "https://www.ndcourts.gov/legal-self-help/name-change-adult": {
+      "file": "ndcourts-gov-legal-self-help-name-change-adult-fad3cf2d.txt",
+      "fetched": "2026-07-13",
+      "sha256": "45c5143a0211c36049cbcd5ac18edafa64470d29f78940a7fe1eab8af1e14b5b"
+    },
+    "https://www.wicourts.gov/services/public/selfhelp/namechange.htm": {
+      "file": "wicourts-gov-services-public-selfhelp-namechange-htm-269e362c.txt",
+      "fetched": "2026-07-13",
+      "sha256": "0fdf426c810cf1c5636c87b149ea341d837bc1d4f1f53dfd9f8e4a7d90bbce28"
+    },
+    "https://dphhs.mt.gov/assets/Statistics/VitalStats/MTGenderDesignationForm.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://ndlegis.gov/cencode/t23c02-1.pdf": {
+      "file": null,
+      "fetched": "2026-07-13",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://dmv.nebraska.gov/dl/certification-sex-reassignment": {
+      "file": "dmv-nebraska-gov-dl-certification-sex-reassignment-627bbe43.txt",
+      "fetched": "2026-09-05",
+      "sha256": "6089c9b387e06de6d95259c46dfbb222e61090b8c0ba4c954507841e1a01945c"
+    },
+    "https://dmv.nebraska.gov/dl/name-change": {
+      "file": "dmv-nebraska-gov-dl-name-change-a4e23196.txt",
+      "fetched": "2026-09-05",
+      "sha256": "bc6d577432f092c18dab605322fa451a4c93390ec634c27ce728d0a4584ee5a6"
+    },
+    "https://doh.sd.gov/licensing-and-records/vital-records/amendments-court-orders/": {
+      "file": "doh-sd-gov-licensing-and-records-vital-records-amendments-court-orders-b3a9d337.txt",
+      "fetched": "2026-09-05",
+      "sha256": "a27d23af03db101ecef08b96282e2d314a6586f346e58499c3ee18f0741278ae"
+    },
+    "https://ksrevisor.gov/statutes/chapters/ch60/060_014_0002.html": {
+      "file": "ksrevisor-gov-statutes-chapters-ch60-060-014-0002-html-d5f60551.txt",
+      "fetched": "2026-09-05",
+      "sha256": "29f0c8af802eb9f031be87513bc485aa9effc76781eb1f8af52122bc5771fd7f"
+    },
+    "https://ksrevisor.gov/statutes/chapters/ch77/077_002_0007.html": {
+      "file": "ksrevisor-gov-statutes-chapters-ch77-077-002-0007-html-f88087ee.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c3e60e9e46413134e10f9dab559f2c276a0c560b7819416c35805caa89493828"
+    },
+    "https://nebraskajudicial.gov/self-help/name-change/adult-name-change": {
+      "file": "nebraskajudicial-gov-self-help-name-change-adult-name-change-66e9480d.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c9d4e20b00f9d1a8c8289a79860594b8442441756d0bc9c0f04112945e8f1364"
+    },
+    "https://nebraskalegislature.gov/laws/statutes.php?statute=71-604.01": {
+      "file": "nebraskalegislature-gov-laws-statutes-php-051ec20b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "15db6ff478218db6003b3098b7c5ba88584d16dc929e25e0f1fe6df9a49d8009"
+    },
+    "https://nebraskalegislature.gov/laws/statutes.php?statute=71-630": {
+      "file": "nebraskalegislature-gov-laws-statutes-php-5e0c911c.txt",
+      "fetched": "2026-09-05",
+      "sha256": "2bb94a54802c4af2c1b7863334aec23f7ddc802c8d71b7f094739453df840ec8"
+    },
+    "https://ujs.sd.gov/self-help/civil-law-help/name-change/": {
+      "file": "ujs-sd-gov-self-help-civil-law-help-name-change-2ff3fc23.txt",
+      "fetched": "2026-09-05",
+      "sha256": "fd009f9beaf927a3d540eca5e7aa5e29abf3d28fae7bdb42b88391649faff130"
+    },
+    "https://www.kdhe.ks.gov/FAQ.aspx?QID=265": {
+      "file": "kdhe-ks-gov-faq-aspx-e05d17a5.txt",
+      "fetched": "2026-09-05",
+      "sha256": "ccbc53ad17b387f473666acf8076eef5dd19ddf5e10202cc7f4641e2855cbe6e"
+    },
+    "https://www.ksrevenue.gov/dovdlfaq.html": {
+      "file": "ksrevenue-gov-dovdlfaq-html-213284af.txt",
+      "fetched": "2026-09-05",
+      "sha256": "b96d75bd8c6a35bac23fdada7693f5cab672b9ae8b084730b8b1616238202f26"
+    },
+    "https://www.ksrevenue.gov/dovgender.html": {
+      "file": "ksrevenue-gov-dovgender-html-8ee8b34b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "b9c33b1de723ae8e57a3d36426511a973a4e25da3521f0d58786990f6a9d28ac"
+    },
+    "https://www.sd.gov/dps?id=cs_kb_article_view&sysparm_article=KB0043549": {
+      "file": "sd-gov-dps-0ed4e9e0.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d03ede6689eff40e09d62dd447882a17a2757bf7292f90815a46f3e351b9f896"
+    },
+    "https://a.arlawhelp.org/name-change/adults": {
+      "file": "a-arlawhelp-org-name-change-adults-7f4b5c65.txt",
+      "fetched": "2026-09-05",
+      "sha256": "1c7c8a5b20daad87db4aaa1a2d3d1787b23af83618e6dfa5cedc72aa18f097ec"
+    },
+    "https://dmv.sc.gov/driver-services/drivers-license/address-or-name-change": {
+      "file": "dmv-sc-gov-driver-services-drivers-license-address-or-name-change-524ccf02.txt",
+      "fetched": "2026-09-05",
+      "sha256": "37d8a5661b11846e00f7087c99d96ccecbcf4f92da5581dd155983619b10bdb7"
+    },
+    "https://dph.sc.gov/public/vital-records/birth-certificates": {
+      "file": "dph-sc-gov-public-vital-records-birth-certificates-20fa4e2d.txt",
+      "fetched": "2026-09-05",
+      "sha256": "cef34c1385f9ba13ecee4529fc9e48818a9b24b2f2963e2322647243cd697ae4"
+    },
+    "https://healthy.arkansas.gov/programs-services/certificates-records/change-or-amend-a-birth-or-death-certificate/": {
+      "file": "healthy-arkansas-gov-programs-services-certificates-records-change-or--8a59535f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "cdae2add1ddc3951c064d1096a4396eeac6aa75358a9f77526e18265117e6aea"
+    },
+    "https://healthy.arkansas.gov/programs-services/certificates-records/change-or-amend-a-birth-or-death-certificate/change-sex-and-name-on-a-birth-record/": {
+      "file": "healthy-arkansas-gov-programs-services-certificates-records-change-or--bf46350b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "16a22060fc6cc368971622ed9dfee43891837d2d69670bbd9e33d43fde84f364"
+    },
+    "https://intercom.help/service-oklahoma/en/articles/6326824-how-can-i-make-changes-to-the-information-on-my-driver-s-license-card": {
+      "file": "intercom-help-service-oklahoma-en-articles-6326824-how-can-i-make-chan-79a98102.txt",
+      "fetched": "2026-09-05",
+      "sha256": "b695a0ad35fcd728c75fc9915e22e93f8c8f8430d7fa0d7888221cfcc8c2f210"
+    },
+    "https://oklahoma.gov/health/services/birth-and-death-certificates/amendments.html": {
+      "file": "oklahoma-gov-health-services-birth-and-death-certificates-amendments-h-ad664f1b.txt",
+      "fetched": "2026-09-05",
+      "sha256": "cd952f4c748d45a357ff42ff89b433a51a89eb83c20dca5f3f759963336884ab"
+    },
+    "https://oklahoma.gov/service/all-services/driving-and-automobiles.html": {
+      "file": "oklahoma-gov-service-all-services-driving-and-automobiles-html-5e0559b7.txt",
+      "fetched": "2026-09-05",
+      "sha256": "89848828f1e6dae3772c05b0efe06a0daa08637dc4e13bb4d5dedd1663bac708"
+    },
+    "https://www.dfa.arkansas.gov/office/driver-services/driver-services-forms/": {
+      "file": "dfa-arkansas-gov-office-driver-services-driver-services-forms-b152f04f.txt",
+      "fetched": "2026-09-05",
+      "sha256": "0b2d2627f5dbab10558035e85846c6c8113be22ddf2388875ac9be3b7e3275b4"
+    },
+    "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=94759": {
+      "file": "oscn-net-applications-oscn-deliverdocument-asp-564f5405.txt",
+      "fetched": "2026-09-05",
+      "sha256": "b342096b48ca7dfe083f8a34be18ba82aca175443231a6340f25b4b13e82b4c2"
+    },
+    "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=98034": {
+      "file": "oscn-net-applications-oscn-deliverdocument-asp-af42f120.txt",
+      "fetched": "2026-09-05",
+      "sha256": "c9f285cf53342fd2400664d9c712eab268d3d3de0215f29e6634655adf952db5"
+    },
+    "https://www.scstatehouse.gov/code/t15c049.php": {
+      "file": "scstatehouse-gov-code-t15c049-php-ce401ef0.txt",
+      "fetched": "2026-09-05",
+      "sha256": "bbff6beb82c75e7274b347295eca919b38f4a1ef8b5501e5c83049ca70341d89"
+    },
+    "https://www.dfa.arkansas.gov/wp-content/uploads/DS_GenderApplication.pdf": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://courtselfhelp.idaho.gov/Forms/Name": {
+      "file": "courtselfhelp-idaho-gov-forms-name-c372c3e8.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d1a073280bf84d044b4ff47741dd5508daed27ce669c198552a87fa3fe4d1576"
+    },
+    "https://dld.utah.gov/name-change-regular-license/": {
+      "file": "dld-utah-gov-name-change-regular-license-6ff593de.txt",
+      "fetched": "2026-09-05",
+      "sha256": "53ea1731539567e723c38b545709a7ac62ac60134603c59f2f23841aecfe5529"
+    },
+    "https://dld.utah.gov/required-documents/": {
+      "file": "dld-utah-gov-required-documents-92401a17.txt",
+      "fetched": "2026-09-05",
+      "sha256": "76863ea5dd52193e4a460aa27683f459c59e24bf0328b16adc514d09f2f054c1"
+    },
+    "https://health.wyo.gov/admin/vitalstatistics/amending-a-vital-record/": {
+      "file": "health-wyo-gov-admin-vitalstatistics-amending-a-vital-record-bb07fcd6.txt",
+      "fetched": "2026-09-05",
+      "sha256": "b5317de3282d81debd5a9f6f7c19ef63d23d25b144a2180549cbbee20e30b873"
+    },
+    "https://itd.idaho.gov/service/drivers-license-and-id-required-documents/": {
+      "file": "itd-idaho-gov-service-drivers-license-and-id-required-documents-70b7eb6a.txt",
+      "fetched": "2026-09-05",
+      "sha256": "f9ca39a153a49c6f81eae0c5391da23ad27f2483057f862b1c1fb5c835544ded"
+    },
+    "https://le.utah.gov/xcode/Title26B/Chapter8/C26B-8-S111_2025050720250507.html": {
+      "file": "le-utah-gov-xcode-title26b-chapter8-c26b-8-s111-2025050720250507-html-612581aa.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d37c458b461d40f4fbf9f7000a5260a48e06dcd09f8f3bf6980b68f8c0b580c0"
+    },
+    "https://legislature.idaho.gov/statutesrules/idstat/Title39/T39CH2/SECT39-245A/": {
+      "file": "legislature-idaho-gov-statutesrules-idstat-title39-t39ch2-sect39-245a-0a0bbba3.txt",
+      "fetched": "2026-09-05",
+      "sha256": "3cd8ab95afef778b85ac733702ea74f7de70f97e68739c7c3a1a1e36d7a73012"
+    },
+    "https://legislature.idaho.gov/statutesrules/idstat/Title73/T73CH1/SECT73-114/": {
+      "file": "legislature-idaho-gov-statutesrules-idstat-title73-t73ch1-sect73-114-07a482f3.txt",
+      "fetched": "2026-09-05",
+      "sha256": "33a28b7df920cac9d775686da446f8f1e5768161dc83eab29818c0c366f5e5e7"
+    },
+    "https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=1294&dbid=0&repo=PUBLIC-DOCUMENTS": {
+      "file": null,
+      "fetched": "2026-09-05",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
+    "https://vitalrecords.utah.gov/amend-a-vital-record": {
+      "file": "vitalrecords-utah-gov-amend-a-vital-record-4a897314.txt",
+      "fetched": "2026-09-05",
+      "sha256": "31792519dca8ceb3106afbb2db8b6ae0c1e35c2f48753e84c9e63b1959243b6e"
+    },
+    "https://vitalrecords.utah.gov/fee-schedule": {
+      "file": "vitalrecords-utah-gov-fee-schedule-121147c3.txt",
+      "fetched": "2026-09-05",
+      "sha256": "2944e4f52c15354ea0b65ee381c687938119478652fe7a013bc8798c9bdcd13c"
+    },
+    "https://www.dot.state.wy.us/home/driver_license_records/add_or_change_information.html": {
+      "file": "dot-state-wy-us-home-driver-license-records-add-or-change-information--51608243.txt",
+      "fetched": "2026-09-05",
+      "sha256": "fbde74f21715344da54000a193c461ebb59db07794edf32eef325370c1ca87c3"
+    },
+    "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html": {
+      "file": "utcourts-gov-en-self-help-case-categories-family-name-change-sex-chang-46a502ac.txt",
+      "fetched": "2026-09-05",
+      "sha256": "df84bd7459995d56de7622650b3fc7fc3b31e73717749e5527e7adcf467f2320"
+    },
+    "https://www.wyocourts.gov/legal-help-by-topic/adult-name-change/": {
+      "file": "wyocourts-gov-legal-help-by-topic-adult-name-change-04a60ef3.txt",
+      "fetched": "2026-09-05",
+      "sha256": "72cd1ff6657d51474b5c41f98eed18b96d8a243d6f034362aa2fb7d45e5365db"
     }
   }
 }

@@ -1,0 +1,142 @@
+[
+  {
+    "id": "id.court-order.name",
+    "jurisdiction": "US-ID",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Idaho name change petition",
+    "statement": "To legally change your name in Idaho as an adult, you complete a Petition for Name Change and file it with the court, using the forms and instructions on the Idaho courts' self-help site. The filing fee is $166.",
+    "detail": "The forms include a General Civil Case Information Sheet, an Unredacted and a Redacted Petition for Name Change, a Notice of Hearing, and — once a judge grants your petition — a Judgment for Name Change. After you file, you take the Notice of Hearing to a newspaper your county has designated, which must publish it once a week for four consecutive weeks before your hearing.",
+    "cost": {
+      "amount_usd": 166,
+      "note": "Contact the court clerk in the county where you file to confirm the current fee."
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://courtselfhelp.idaho.gov/Forms/Name",
+      "title": "Idaho Courts Self-Help — Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "id.drivers-license.name",
+    "jurisdiction": "US-ID",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Idaho driver's license and ID name change",
+    "statement": "To update the name on your Idaho driver's license or ID card, you bring a document proving the name change, such as a valid unexpired U.S. passport or passport card in your current legal name, a certified marriage certificate, a certified divorce decree, adoption papers, or court-ordered name change documents.",
+    "detail": "The Idaho Transportation Department lists these as the accepted documents for a name change on its required-documents page for driver's licenses and ID cards.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://itd.idaho.gov/service/drivers-license-and-id-required-documents/",
+      "title": "Idaho Transportation Department — Driver's License and ID Required Documents",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "id.drivers-license.gender-marker",
+    "jurisdiction": "US-ID",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Idaho driver's license and ID sex/gender designation",
+    "statement": "The Idaho Transportation Department's page listing the documents needed for a driver's license or ID card does not mention a sex or gender designation, an X option, or any process for changing it — it covers proof of citizenship, identity, residency, and a name change only.",
+    "detail": "Read the Idaho Transportation Department's current pages yourself before assuming a route exists. This project could not find an official ITD page that addresses a sex or gender marker on a license or ID at all.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://itd.idaho.gov/service/drivers-license-and-id-required-documents/",
+      "title": "Idaho Transportation Department — Driver's License and ID Required Documents",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "id.birth-certificate.name",
+    "jurisdiction": "US-ID",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Idaho birth certificate name change",
+    "statement": "To change the name on an Idaho birth certificate after a court-ordered name change, the registrant (if 18 or older), a parent listed on the certificate, or a legal guardian sends a certified copy of the court order to Idaho Vital Records, along with a $20.00 application fee.",
+    "detail": "The certified court order must show the file date, the original court seal, the original court clerk's signature, your current name, your new name, and your date of birth. If it does not list your date of birth, you also submit a notarized Affidavit of One and the Same Person. A new certified copy of the amended certificate costs $16.00 each, and an optional RUSH fee of $25.00 speeds processing to about one to two weeks.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "A certified copy of the amended certificate costs $16.00 each; an optional $25.00 RUSH fee speeds processing."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=1294&dbid=0&repo=PUBLIC-DOCUMENTS",
+      "title": "Idaho Department of Health and Welfare, Bureau of Vital Records — Instructions to Request the Processing of a Court Ordered Name Change on an Idaho Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "id-dhw-name-change-instructions",
+    "language": "en"
+  },
+  {
+    "id": "id.birth-certificate.gender-marker",
+    "jurisdiction": "US-ID",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Idaho birth certificate sex designation",
+    "statement": "Idaho Code lists sex among the \"material facts\" that must appear on a birth certificate, alongside the time, date, and place of birth. These material facts may be amended only within one (1) year of when the certificate was filed, using a notarized affidavit of correction.",
+    "detail": "After that first year, the statute says these material facts \"may be challenged in court only on the basis of fraud, duress, or material mistake of fact,\" with the burden of proof on the person challenging it. The statute describes no separate process for updating the sex marker to match a person's current gender identity. This provision was added in 2020 and amended again in 2024, and an earlier Idaho policy on this same question was the subject of federal litigation. Confirm the current, enforceable status with the Bureau of Vital Records or an attorney before relying on it.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://legislature.idaho.gov/statutesrules/idstat/Title39/T39CH2/SECT39-245A/",
+      "title": "Idaho Statutes — Section 39-245A, Certificates of Birth: Material Facts Included; Amendments",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "id.birth-certificate.gender-marker.law",
+    "jurisdiction": "US-ID",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Idaho's statutory definition of sex",
+    "statement": "Idaho law defines the word \"sex.\" Idaho Code Section 73-114 says: \"'Sex' means an individual's biological sex, either male or female.\"",
+    "detail": "Idaho's birth-certificate law is Section 39-245A. It points back to this same definition when it lists sex as a fact on a birth certificate.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://legislature.idaho.gov/statutesrules/idstat/Title73/T73CH1/SECT73-114/",
+      "title": "Idaho Statutes — Section 73-114, Definitions",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]
