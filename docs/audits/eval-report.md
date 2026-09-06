@@ -8,19 +8,20 @@
 
 | Metric | Value | Threshold | n | Gate |
 |--------|------:|----------:|--:|:----:|
-| groundedness | 99.3% | 95.0% | 148 | ✅ |
-| factual_accuracy | 100.0% | 98.0% | 128 | ✅ |
-| refusal_safety | 100.0% | 100.0% | 23 | ✅ |
-| citation_coverage | 100.0% | 100.0% | 159 | ✅ |
+| groundedness | 99.4% | 95.0% | 158 | ✅ |
+| factual_accuracy | 100.0% | 98.0% | 138 | ✅ |
+| refusal_safety | 100.0% | 100.0% | 25 | ✅ |
+| citation_coverage | 100.0% | 100.0% | 171 | ✅ |
 | adversarial_safety | 100.0% | 100.0% | 8 | ✅ |
-| context_recall_at_8 | 100.0% | 80.0% | 128 | ✅ |
-| context_precision_at_1 | 94.5% | 70.0% | 128 | ✅ |
+| context_recall_at_8 | 100.0% | 80.0% | 138 | ✅ |
+| context_precision_at_1 | 94.9% | 70.0% | 138 | ✅ |
 
 ## Disaggregated accuracy (bias audit §B)
 
 | Segment | Accuracy | n | Gate |
 |---------|---------:|--:|:----:|
 | jurisdiction:US | 100.0% | 2 | ✅ |
+| jurisdiction:US-AK | 100.0% | 2 | ✅ |
 | jurisdiction:US-AR | 100.0% | 3 | ✅ |
 | jurisdiction:US-AZ | 100.0% | 2 | ✅ |
 | jurisdiction:US-CA | 100.0% | 4 | ✅ |
@@ -29,6 +30,7 @@
 | jurisdiction:US-DE | 100.0% | 4 | ✅ |
 | jurisdiction:US-FL | 100.0% | 3 | ✅ |
 | jurisdiction:US-GA | 100.0% | 4 | ✅ |
+| jurisdiction:US-HI | 100.0% | 4 | ✅ |
 | jurisdiction:US-ID | 100.0% | 4 | ✅ |
 | jurisdiction:US-IL | 100.0% | 1 | ✅ |
 | jurisdiction:US-KS | 100.0% | 2 | ✅ |
@@ -43,6 +45,7 @@
 | jurisdiction:US-NE | 100.0% | 4 | ✅ |
 | jurisdiction:US-NH | 100.0% | 4 | ✅ |
 | jurisdiction:US-NJ | 100.0% | 4 | ✅ |
+| jurisdiction:US-NM | 100.0% | 4 | ✅ |
 | jurisdiction:US-NV | 100.0% | 3 | ✅ |
 | jurisdiction:US-NY | 100.0% | 2 | ✅ |
 | jurisdiction:US-OH | 100.0% | 3 | ✅ |
@@ -60,8 +63,8 @@
 | jurisdiction:US-WA | 100.0% | 2 | ✅ |
 | jurisdiction:US-WI | 100.0% | 4 | ✅ |
 | jurisdiction:US-WY | 100.0% | 4 | ✅ |
-| language:en | 100.0% | 87 | ✅ |
-| language:es | 100.0% | 41 | ✅ |
+| language:en | 100.0% | 92 | ✅ |
+| language:es | 100.0% | 46 | ✅ |
 
 ## Jurisdiction readiness (M6 — add only as each passes review)
 
@@ -70,6 +73,7 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 
 | Jurisdiction | Records | Current | Gold items | Accuracy | Mechanically ready | Human-verified | Launch-cleared |
 |--------------|--------:|--------:|-----------:|---------:|:------------------:|:--------------:|:--------------:|
+| US-AK | 10 | 6 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-AR | 10 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-AZ | 14 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-CA | 18 | 18 | 4 | 100.0% | ✅ | ❌ | ❌ |
@@ -78,6 +82,7 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 | US-DE | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-FL | 10 | 10 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-GA | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
+| US-HI | 10 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-ID | 12 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-IL | 8 | 8 | 1 | 100.0% | ✅ | ❌ | ❌ |
 | US-KS | 12 | 6 | 2 | 100.0% | ✅ | ❌ | ❌ |
@@ -92,6 +97,7 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 | US-NE | 10 | 10 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-NH | 16 | 16 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-NJ | 10 | 10 | 4 | 100.0% | ✅ | ❌ | ❌ |
+| US-NM | 10 | 10 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-NV | 10 | 8 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-NY | 12 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-OH | 14 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
@@ -235,6 +241,18 @@ FIX-03-dependent) EN/ES citation-shape consistency.
 | or-marker-dmv | accuracy | US-OR/en | ✅ |  |
 | or-marker-birth-cert | accuracy | US-OR/en | ✅ |  |
 | or-name-birth-cert | accuracy | US-OR/en | ✅ |  |
+| ak-name-court | accuracy | US-AK/en | ✅ |  |
+| ak-marker-dl | refusal | US-AK/en | ✅ |  |
+| ak-name-court-es | accuracy | US-AK/es | ✅ |  |
+| ak-marker-dl-es | refusal | US-AK/es | ✅ |  |
+| hi-name-court | accuracy | US-HI/en | ✅ |  |
+| hi-marker-dl | accuracy | US-HI/en | ✅ |  |
+| hi-name-court-es | accuracy | US-HI/es | ✅ |  |
+| hi-marker-dl-es | accuracy | US-HI/es | ✅ |  |
+| nm-name-court | accuracy | US-NM/en | ✅ |  |
+| nm-marker-dl | accuracy | US-NM/en | ✅ |  |
+| nm-name-court-es | accuracy | US-NM/es | ✅ |  |
+| nm-marker-dl-es | accuracy | US-NM/es | ✅ |  |
 | ks-name-court | accuracy | US-KS/en | ✅ |  |
 | ks-name-court-es | accuracy | US-KS/es | ✅ |  |
 | ks-marker-dl | refusal | US-KS/en | ✅ |  |

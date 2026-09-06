@@ -29,6 +29,7 @@ import { formById } from "../api/forms.ts";
 
 /** The states the planner offers, mirroring the checklist intake's list. */
 export const RELOCATION_JURISDICTIONS: { id: string; label: string }[] = [
+  { id: "US-AK", label: "Alaska" },
   { id: "US-AR", label: "Arkansas" },
   { id: "US-AZ", label: "Arizona" },
   { id: "US-CA", label: "California" },
@@ -38,6 +39,7 @@ export const RELOCATION_JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-FL", label: "Florida" },
   { id: "US-GA", label: "Georgia" },
   { id: "US-CO", label: "Colorado" },
+  { id: "US-HI", label: "Hawaii" },
   { id: "US-ID", label: "Idaho" },
   { id: "US-IL", label: "Illinois" },
   { id: "US-MD", label: "Maryland" },
@@ -46,6 +48,7 @@ export const RELOCATION_JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-NC", label: "North Carolina" },
   { id: "US-NV", label: "Nevada" },
   { id: "US-NJ", label: "New Jersey" },
+  { id: "US-NM", label: "New Mexico" },
   { id: "US-NY", label: "New York" },
   { id: "US-PA", label: "Pennsylvania" },
   { id: "US-OK", label: "Oklahoma" },

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "hi.referral.legal-aid-hawaii",
+    "jurisdiction": "US-HI",
+    "name": "Legal Aid Society of Hawaii",
+    "url": "https://www.legalaidhawaii.org",
+    "note": {
+      "en": "Hawaii's public-interest civil legal aid law firm, which can help income-eligible residents with name-change and other civil legal filings.",
+      "es": "Bufete de interés público de ayuda legal civil de Hawái, que puede ayudar a residentes que califican por sus ingresos con solicitudes de cambio de nombre y otros trámites legales civiles."
+    },
+    "source": {
+      "url": "https://www.legalaidhawaii.org",
+      "title": "Legal Aid Society of Hawaii",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "hi.referral.aclu-hawaii",
+    "jurisdiction": "US-HI",
+    "name": "ACLU of Hawaii — LGBTQ+ Rights",
+    "url": "https://www.acluhawaii.org/en/issues/lgbtq-rights",
+    "note": {
+      "en": "The ACLU of Hawaii publishes information and advocacy updates on LGBTQ+ rights in Hawaii, including issues affecting transgender residents.",
+      "es": "La ACLU de Hawái publica información y actualizaciones de defensa sobre los derechos LGBTQ+ en Hawái, incluidos asuntos que afectan a residentes transgénero."
+    },
+    "source": {
+      "url": "https://www.acluhawaii.org/en/issues/lgbtq-rights",
+      "title": "ACLU of Hawaii — LGBTQ+ Rights",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  }
+]

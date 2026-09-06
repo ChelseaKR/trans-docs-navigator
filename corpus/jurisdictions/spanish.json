@@ -1,5 +1,132 @@
 [
   {
+    "id": "ak.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-AK",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Alaska",
+    "statement": "La página de registros vitales de Alaska dice que los cambios y correcciones a un acta de nacimiento — lo cual incluiría un cambio de designación de sexo — los maneja su Unidad de Servicios Especiales a solicitud, pero la página no publica qué documentos o evidencia específicos exige para un cambio de designación de sexo.",
+    "detail": "La política de Alaska sobre los cambios de designación de sexo en actas de nacimiento ha sido objeto de litigios en el pasado, y esta página no describe el estándar que aplica actualmente. Antes de confiar en esto, comuníquese directamente con Servicios Especiales (BVSSpecialServices@alaska.gov o (907) 465-3162) o con una organización local de apoyo a personas trans o un abogado para conocer los requisitos actuales de Alaska.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página indica una tarifa de $60 para un \"Cambio de Nombre Legal/Enmienda del Registro\", pero no nombra una tarifa específica para una enmienda solo de designación de sexo. Confirme la tarifa actual con Servicios Especiales."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.alaska.gov/en/services/vital-records-orders/",
+      "title": "Departamento de Salud de Alaska — Pedidos de Registros Vitales",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ak.birth-certificate.name.es",
+    "jurisdiction": "US-AK",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Alaska",
+    "statement": "Para cambiar el nombre en un acta de nacimiento de Alaska, se comunica por correo electrónico con la Unidad de Servicios Especiales de Registros Vitales de Alaska, y le enviarán los formularios e instrucciones para su situación. Alaska cobra $60 por un cambio de nombre legal/enmienda del registro, lo cual incluye una copia certificada del acta enmendada.",
+    "detail": "Servicios Especiales necesita un original o una copia certificada de su orden judicial — un documento con solo una firma enviada por fax o correo electrónico no puede aceptarse. El procesamiento actualmente toma cerca de 16 semanas una vez recibidos sus documentos, sin contar el tiempo de envío. Las copias certificadas adicionales cuestan $25 cada una.",
+    "cost": {
+      "amount_usd": 60,
+      "note": "Esta es la tarifa por un cambio de nombre legal/enmienda del registro, que incluye una copia certificada. Las copias certificadas adicionales cuestan $25 cada una."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://health.alaska.gov/en/services/vital-records-orders/",
+      "title": "Departamento de Salud de Alaska — Pedidos de Registros Vitales",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ak.court-order.name.es",
+    "jurisdiction": "US-AK",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Alaska",
+    "statement": "Para cambiar legalmente su nombre como adulto en Alaska, presenta una Petición de Cambio de Nombre (formulario CIV-700) ante el tribunal superior, y un juez decide si la concede. El tribunal normalmente publica un aviso de su petición en el sitio web público de avisos legales del Sistema Judicial de Alaska durante cuatro semanas consecutivas antes de su audiencia.",
+    "detail": "Si tiene inquietudes de seguridad personal sobre esa publicación pública, puede pedirle al juez que la exima, y también puede pedir que su caso se mantenga confidencial o que su nombre no aparezca en el índice público CourtView — usando el formulario de Solicitud para Eximir la Publicación (CIV-708). Su audiencia debe programarse al menos 40 días después de la orden de programación del tribunal, y su nuevo nombre no es oficial hasta al menos 30 días después de que se distribuya la sentencia. En algunas situaciones el tribunal también puede ordenar aviso adicional, incluida la publicación en un periódico impreso — por ejemplo, si usted está encarcelado, en libertad condicional o bajo palabra, o debe registrarse en el registro de delincuentes sexuales o secuestradores de menores. Las instrucciones propias de Alaska para este proceso no indican un período mínimo de residencia.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La tarifa de presentación la fija la Regla Administrativa 9(b) del Sistema Judicial de Alaska y no se indica en dólares en el formulario de instrucciones. Comuníquese con el tribunal donde presentará su solicitud, o consulte la tabla de tarifas del propio sistema judicial, para conocer el monto actual. Puede pedir que se exima la tarifa si no puede pagarla (formulario TF-920)."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://public.courts.alaska.gov/web/forms/docs/civ-699.pdf",
+      "title": "Sistema Judicial de Alaska — Instrucciones para el Cambio de Nombre de un Adulto (Formulario CIV-699)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ak-civ-700-petition-name-change",
+    "language": "es"
+  },
+  {
+    "id": "ak.drivers-license.gender-marker.es",
+    "jurisdiction": "US-AK",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en la licencia de conducir o identificación de Alaska",
+    "statement": "Para cambiar el sexo indicado en su licencia de conducir o identificación de Alaska, presenta una Certificación de Cambio de Sexo (Formulario 427) completada y certificada por un médico con licencia, un asistente médico, un enfermero practicante avanzado, un psicólogo, un consejero profesional o un trabajador social.",
+    "detail": "Esto aparece en la misma página del DMV de Alaska que las instrucciones de cambio de nombre, en una versión fechada por última vez en junio de 2023. Este proyecto no pudo volver a consultar esa página en vivo de forma independiente para confirmarla: el sitio web del DMV bloquea las solicitudes automatizadas en todo el dominio, incluido — lo confirmamos directamente — el propio rastreador web del Internet Archive, que ha recibido el mismo bloqueo desde alrededor de octubre de 2023. Así que esto refleja la versión más reciente de la página que este proyecto pudo leer, no una reconfirmación reciente. Comuníquese con una oficina del DMV de Alaska o con una organización local de apoyo a personas trans para confirmar que esto sigue vigente antes de confiar en ello.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://doa.alaska.gov/dmv/akol/namchg.htm",
+      "title": "División de Vehículos Motorizados de Alaska — Cambio de Datos de Identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "ak-dmv-427-cert-change-of-sex",
+    "language": "es"
+  },
+  {
+    "id": "ak.drivers-license.name.es",
+    "jurisdiction": "US-AK",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir o identificación de Alaska",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Alaska, presente en persona una Solicitud de Licencia de Conducir, Permiso o Identificación Estatal (Formulario D1), presente un documento original certificado que compruebe el cambio de nombre — como una orden judicial, un certificado de matrimonio o una sentencia de divorcio — apruebe un examen de la vista, y pague la tarifa vigente de la licencia.",
+    "detail": "No se aceptan fotocopias ni copias enviadas por fax; el DMV necesita un original o una copia certificada. Si ha tenido más de un cambio de nombre, es posible que necesite documentos adicionales juntos (por ejemplo, un certificado de matrimonio y una sentencia de divorcio) para mostrar el vínculo entre un nombre anterior y su nombre actual. La ley de Alaska exige que notifique al DMV de un cambio de nombre dentro de 30 días (AS 28.05.071); no hacerlo puede llevar a una citación o multa.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica el monto de la tarifa de la licencia o identificación — dice que se pague la tarifa vigente al momento de su visita."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://doa.alaska.gov/dmv/akol/namchg.htm",
+      "title": "División de Vehículos Motorizados de Alaska — Cambio de Datos de Identificación",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "ar.birth-certificate.gender-marker.es",
     "jurisdiction": "US-AR",
     "document_type": "birth-certificate",
@@ -637,6 +764,136 @@
     "language": "es"
   },
   {
+    "id": "ct.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-CT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Cambio de género en el acta de nacimiento de Connecticut",
+    "statement": "Para enmendar el designador de sexo en su acta de nacimiento de Connecticut, usted envía a la Oficina de Registros Vitales una fotocopia de una identificación con fotografía válida emitida por el gobierno, un affidávit notariado de usted solicitando el acta de reemplazo, y un affidávit notariado de un médico con licencia, asistente médico con licencia, enfermero(a) de práctica avanzada con licencia, o psicólogo con licencia, que indique que usted se ha sometido a tratamiento quirúrgico, hormonal u otro tratamiento clínicamente apropiado para la transición de género. Si además desea que su acta enmendada muestre un nuevo nombre, incluye una copia certificada de la orden judicial que otorgó ese cambio de nombre.",
+    "detail": "Si el registrante es menor de edad, un padre o madre completa el affidávit personal en su lugar. No hay tarifa de procesamiento por la enmienda en sí. Una copia certificada del acta de nacimiento enmendada cuesta $30, pagaderos con giro postal a nombre del \"Treasurer, State of Connecticut\" — no se aceptan tarjetas de crédito ni cheques personales.",
+    "cost": {
+      "amount_usd": null,
+      "note": "No hay tarifa de procesamiento por la enmienda en sí. Una copia certificada del acta de nacimiento enmendada cuesta $30, pagaderos únicamente con giro postal a nombre del \"Treasurer, State of Connecticut\"."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://portal.ct.gov/dph/vital-records/gender-change",
+      "title": "Connecticut Department of Public Health — Gender Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ct.birth-certificate.name.es",
+    "jurisdiction": "US-CT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Connecticut",
+    "statement": "Para cambiar el nombre en un acta de nacimiento de Connecticut después de un cambio de nombre ordenado por un tribunal, usted presenta una orden judicial de Cambio Legal de Nombre original y certificada, un affidávit notariado de cambio de nombre, y una identificación con fotografía emitida por el gobierno, ante el secretario del pueblo donde ocurrió el nacimiento — en persona o por correo. Solo la persona registrada en el acta (si tiene 18 años o más) o el padre/madre de un menor puede solicitar el cambio.",
+    "detail": "Connecticut solo permite cambiar los campos del propio nombre del registrante mediante este proceso — los campos del nombre de un padre o madre no pueden cambiarse de esta manera. La orden judicial original le será devuelta si la solicita.",
+    "cost": {
+      "amount_usd": null,
+      "note": "No hay tarifa de procesamiento por enmiendas o correcciones. Esta página no indica por separado el costo de una copia certificada del acta enmendada — comuníquese con la oficina de Registros Vitales del secretario del pueblo donde ocurrió el nacimiento para esa tarifa."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://portal.ct.gov/dph/vital-records/corrections-and-amendments",
+      "title": "Connecticut Department of Public Health — Corrections and Amendments",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ct.court-order.name.es",
+    "jurisdiction": "US-CT",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Connecticut",
+    "statement": "Para cambiar legalmente su nombre en Connecticut, usted presenta una Petición de Cambio de Nombre (PC-901) y un Affidávit de Cambio de Nombre (PC-910) ante el Tribunal de Sucesiones (Probate Court) que cubre la ciudad donde reside. Los presenta junto con una copia certificada de su acta de nacimiento en formato extendido y dos formas de identificación, una de las cuales debe incluir foto. Puede presentarlos en línea, en persona o por correo.",
+    "detail": "El tribunal envía notificación de su petición al Departamento de Servicios de Emergencia y Protección Pública para verificar si usted aparece en el Registro de Delincuentes Sexuales o en el Registro de Delincuentes con Armas Mortales. Luego usted asiste a una audiencia, donde el juez debe estar convencido de que el cambio de nombre no tiene un propósito ilegal, como evitar acciones legales pendientes o sus consecuencias. En la mayoría de los casos, el juez decide la petición en la misma audiencia.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página no indica un monto en dólares para la tarifa de presentación — remite a la propia Herramienta de Tarifas y Gastos del Tribunal de Sucesiones. Comuníquese con el Tribunal de Sucesiones donde presentará su solicitud para conocer la tarifa actual."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ctprobate.gov/other-matters/name-changes",
+      "title": "Connecticut Probate Courts — Name Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ct.drivers-license.gender-marker.es",
+    "jurisdiction": "US-CT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de conducir de Connecticut",
+    "statement": "Connecticut le permite elegir Femenino (F), Masculino (M) o No Binario (X) como designación de género en su licencia de conducir o identificación. Para cambiarla, presenta un formulario de Designación de Género completo (B-385) en una cita del DMV, entrega su licencia o identificación actual, y se le toma una nueva fotografía.",
+    "detail": "Los empleados del DMV no pueden pedirle documentación médica ni información relacionada con el género más allá de lo que pide el propio formulario. Si un menor solicita el cambio, un padre, madre o tutor debe estar presente y firmar el formulario, o el menor debe presentar un formulario notariado junto con él. El DMV también indica que no garantiza que otra agencia reconozca el género que usted elija si no coincide con sus otros documentos de identidad.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El formulario solo indica que usted paga \"las tarifas aplicables para una licencia o tarjeta de identificación nueva o actualizada\" — no da una cifra en dólares. Consulte el cuadro de tarifas del DMV para conocer el monto actual."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://portal.ct.gov/-/media/DMV/20/29/B-385.pdf",
+      "title": "Connecticut DMV — Gender Designation on a License or Identification Card (Form B-385)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "ct-dmv-b-385",
+    "language": "es"
+  },
+  {
+    "id": "ct.drivers-license.name.es",
+    "jurisdiction": "US-CT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Connecticut",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de no conductor de Connecticut, primero debe actualizar su nombre con la Administración del Seguro Social — el Seguro Social puede tardar hasta 48 horas en procesar el cambio, y esto debe hacerse antes de que el DMV actualice su licencia. Luego programa una cita en una oficina del DMV y lleva una Solicitud de Cambio de Nombre completa (Formulario E-78), su licencia o identificación actual, y documentación certificada del cambio de nombre, como un certificado de matrimonio, un certificado de unión civil, una sentencia de divorcio o documentos del tribunal de sucesiones.",
+    "detail": "Solo se aceptan documentos originales — no se aceptan fotocopias ni certificados de matrimonio religiosos. Hay una tarifa de $30 para cambiar su nombre en una licencia de conducir o identificación de no conductor, y las oficinas expresas del DMV, incluidas AAA y ciertas sucursales de cooperativas de crédito, pueden cobrar una tarifa de conveniencia adicional de hasta $8 por transacción. Debe entregar su licencia o identificación anterior cuando se emita la nueva.",
+    "cost": {
+      "amount_usd": 30,
+      "note": "Las oficinas expresas del DMV, incluidas AAA y ciertas sucursales de cooperativas de crédito, pueden cobrar una tarifa de conveniencia adicional de hasta $8 por transacción."
+    },
+    "prerequisites": [
+      "ssa-card"
+    ],
+    "source": {
+      "url": "https://portal.ct.gov/dmv/licenses-permits-ids/change-driver-license",
+      "title": "Connecticut DMV — Update a Driver's License, Learner's Permit, or Non-Driver ID",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "de.birth-certificate.gender-marker.es",
     "jurisdiction": "US-DE",
     "document_type": "birth-certificate",
@@ -1060,6 +1317,127 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "hi.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-HI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Hawái",
+    "statement": "Para obtener una nueva acta de nacimiento de Hawái con una designación de sexo diferente, la ley de Hawái (HRS sección 338-17.7) exige una declaración jurada notariada de un médico con licencia en Estados Unidos que indique que el médico tiene una relación médico-paciente establecida con usted, ha evaluado su historial médico, y confirma que usted ha completado el tratamiento clínico apropiado para la transición de género.",
+    "detail": "Usted completa una Solicitud de Enmienda al Acta de Nacimiento y un Formulario de Declaración Jurada del Médico para el Cambio de Designación de Sexo; un doctor en naturopatía no puede servir como el médico certificador conforme a la ley de Hawái. La tarifa es de $3 por cada dato enmendado en el acta. La nueva acta sustituye a la original, que queda sellada y solo puede reabrirse por orden judicial o a solicitud de la persona registrada. Si también desea que se refleje su nombre legal actual, debe haber completado ya un cambio de nombre legal antes de solicitar esto.",
+    "cost": {
+      "amount_usd": 3,
+      "note": "Se cobra una tarifa de $3 por cada dato enmendado en el acta."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.hawaii.gov/vitalrecords/amendments/new-birth-certificate-for-sex-designation-change/",
+      "title": "Departamento de Salud de Hawái — Nueva Acta de Nacimiento por Cambio de Designación de Sexo",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "hi.birth-certificate.name.es",
+    "jurisdiction": "US-HI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Hawái",
+    "statement": "El Departamento de Salud de Hawái no describe un proceso general para actualizar el nombre en un acta de nacimiento solo porque usted obtuvo un cambio de nombre ordenado por un tribunal. Su lista publicada de enmiendas al acta de nacimiento cubre cinco situaciones específicas: adopción, una nueva acta de nacimiento por un cambio de designación de sexo, una determinación legal de que un padre indicado no es el padre, una corrección al apellido o a la información de paternidad hecha conforme a la ley, y una adopción en el extranjero finalizada en Hawái.",
+    "detail": "Si su situación no es una de estas cinco, comuníquese directamente con la Sección de Correcciones del Departamento de Salud al (808) 586-4541 para preguntar si es posible una enmienda — esta página no lo dice de una forma u otra. No suponga que un acta de nacimiento de Hawái mostrará un nombre nuevo después de un cambio de nombre judicial ordinario.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.hawaii.gov/vitalrecords/amendments-2/amended-certificate-of-birth",
+      "title": "Departamento de Salud de Hawái — Acta de Nacimiento Enmendada",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "hi.court-order.name.es",
+    "jurisdiction": "US-HI",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Solicitud de cambio de nombre en Hawái",
+    "statement": "En Hawái, el cambio de nombre de un adulto lo concede la Oficina del Vicegobernador y no un tribunal. Solo las personas que residen actualmente en Hawái son elegibles para un cambio de nombre concedido de esta manera.",
+    "detail": "Usted paga una tarifa de presentación de $50.00, una tarifa de archivo de $1.00 y una tarifa de servicio de $5.00 — todas no reembolsables — más una tarifa aparte de publicación en el periódico (que comienza alrededor de $204.19) y una tarifa de registro de $41 para inscribir su orden en la Oficina de Registros de Bienes Raíces (Bureau of Conveyances). El proceso para cambiar su nombre puede tomar de 8 a 12 semanas. No es necesario un cambio de nombre si usted reside en Hawái, se casó en Hawái y declaró el apellido de su cónyuge en su certificado de matrimonio, o si está divorciado y su sentencia de divorcio dispone que retome un apellido de soltero(a) o un nombre anterior.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Se aplican varias tarifas por separado: $50 de presentación, $1 de archivo y $5 de servicio (pagadas a la Oficina del Vicegobernador), más una tarifa de publicación en el periódico que comienza alrededor de $204.19 y una tarifa de registro de $41 ante la Oficina de Registros de Bienes Raíces. No se publica un total combinado único."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://namechange.ehawaii.gov/public/welcome.html",
+      "title": "Estado de Hawái — Solicitud de Cambio de Nombre en Línea (Oficina del Vicegobernador)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "hi.drivers-license.gender-marker.es",
+    "jurisdiction": "US-HI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de conducir o identificación estatal de Hawái",
+    "statement": "Los formularios de solicitud de licencia de conducir e identificación estatal de Hawái le permiten elegir usted mismo su designación de género — Masculino, Femenino, o No Especificado — como una de las casillas que marca en la solicitud. El formulario no pide ningún documento de respaldo para esa elección.",
+    "detail": "Este mismo campo de tres opciones aparece tanto en la Solicitud de Licencia de Conducir del Estado de Hawái como en la Solicitud de Tarjeta de Identificación del Estado de Hawái. Lleve su solicitud completada a una cita en un Centro de Licencias de Conducir para presentarla.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www4.honolulu.gov/docushare/dsweb/Get/Document-325980/State%20of%20Hawaii%20Driver_s%20License%20Application.pdf",
+      "title": "Solicitud de Licencia de Conducir del Estado de Hawái",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "hi-dl-application",
+    "language": "es"
+  },
+  {
+    "id": "hi.drivers-license.name.es",
+    "jurisdiction": "US-HI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir o identificación estatal de Hawái",
+    "statement": "Para cambiar su nombre en una licencia de conducir o identificación estatal de Hawái, haga una cita AlohaQ en un Centro de Licencias de Conducir, complete el Formulario de Solicitud de Licencia de Conducir, y presente prueba de su cambio de nombre.",
+    "detail": "En su cita también le harán un examen de la vista y le tomarán las huellas dactilares, luego usted paga la tarifa requerida y le toman la foto. La página del condado enlaza a un documento descargable aparte que indica qué documentos acepta como prueba del cambio de nombre; lea ese documento antes de su cita para confirmar qué debe llevar.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Esta página no indica el monto de la tarifa para un trámite de cambio de nombre."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.honolulu.gov/csd/drivers-license-procedures/",
+      "title": "Ciudad y Condado de Honolulú, Departamento de Servicios al Cliente — Trámites de Licencia de Conducir",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "hi-dl-application",
     "language": "es"
   },
   {
@@ -3148,6 +3526,134 @@
     "language": "es"
   },
   {
+    "id": "nm.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-NM",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en el acta de nacimiento de Nuevo México",
+    "statement": "Conforme a una ley de 2019 (Proyecto de Ley del Senado 20, vigente desde el 29 de octubre de 2019), una persona nacida en Nuevo México puede solicitar una nueva acta de nacimiento que muestre Masculino, Femenino, o X como su designación de género completando un formulario notariado de Solicitud de Cambio de Designación de Género en un Acta de Nacimiento — no se requiere una carta médica ni cirugía.",
+    "detail": "Si su nombre legal actual es diferente del nombre en su acta de nacimiento, también debe presentar una copia certificada de su orden judicial de cambio de nombre. La tarifa es de $20.00, la cual incluye su nueva acta de nacimiento; las copias adicionales cuestan $10.00 cada una. El departamento de salud de Nuevo México advierte que no está seguro de si otras agencias, como la oficina de pasaportes, aceptarán estas actas enmendadas, y que nada en el nuevo registro muestra que se hizo un cambio — así que todavía podría necesitarse una orden judicial para usar su nuevo nombre y designación de género en otros lugares.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "Incluye una nueva acta de nacimiento; las copias adicionales cuestan $10.00 cada una."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.nmhealth.org/about/erd/bvrhs/vrp/gdc/",
+      "title": "Departamento de Salud de Nuevo México — Cambio de Designación de Género (Registros Vitales)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "nm-health-gender-designation-adult-form",
+    "language": "es"
+  },
+  {
+    "id": "nm.birth-certificate.name.es",
+    "jurisdiction": "US-NM",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Nuevo México",
+    "statement": "Si tiene una orden judicial de Nuevo México que cambia su nombre, puede presentarla al Departamento de Registros Vitales y Estadísticas de Salud de Nuevo México para solicitar un acta de nacimiento enmendada. Usted presenta un formulario de solicitud del acta de nacimiento junto con una copia certificada del cambio de nombre ordenado por el tribunal.",
+    "detail": "Los tribunales de Nuevo México citan $20.00 como el costo de un acta de nacimiento enmendada entre los costos generales de un caso de cambio de nombre.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "Esta es la tarifa que los tribunales de Nuevo México citan para un acta de nacimiento enmendada; confirme la tarifa actual directamente con Registros Vitales."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://selfrepresentation.nmcourts.gov/name-change/",
+      "title": "Tribunales de Nuevo México — Cambio de Nombre (Autorrepresentación)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nm.court-order.name.es",
+    "jurisdiction": "US-NM",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Nuevo México",
+    "statement": "Para cambiar legalmente su nombre en Nuevo México, debe ser residente de Nuevo México y presentar una Petición de Cambio de Nombre ante el tribunal de distrito conforme a las Secciones 40-8-1 a 40-8-3 NMSA 1978. Si tiene 14 años o más puede presentarla usted mismo; si tiene 13 años o menos, su padre, madre o tutor legal debe presentarla por usted.",
+    "detail": "La tarifa de presentación es de $132.00. Como parte del proceso estándar, también prepara una Orden para Sellar la Orden Final de Cambio de Nombre para que el juez la firme junto con su orden de cambio de nombre. Las instrucciones de autoayuda de los tribunales de Nuevo México para el cambio de nombre propio de un adulto no describen un paso de publicación en periódico; la publicación se describe únicamente como una forma de notificar a un padre o madre ausente en un caso de cambio de nombre de un menor.",
+    "cost": {
+      "amount_usd": 132,
+      "note": "Esta es la tarifa de presentación del tribunal de distrito. Las copias certificadas cuestan $1.50 cada una, y registrar su orden ante el secretario del condado cuesta $25.00."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://selfrepresentation.nmcourts.gov/name-change/",
+      "title": "Tribunales de Nuevo México — Cambio de Nombre (Autorrepresentación)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "nm.drivers-license.gender-marker.es",
+    "jurisdiction": "US-NM",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de conducir o identificación de Nuevo México",
+    "statement": "Para cambiar la designación de sexo en una licencia de conducir o identificación de Nuevo México, completa una Solicitud de Cambio de Designación de Sexo (Formulario MVD-10237), la hace notariar, y elige Masculino (M), Femenino (F), o (X), jurando bajo pena de perjurio que la solicitud es para que su tarjeta refleje con exactitud su identidad de sexo.",
+    "detail": "El formulario pide una orden judicial, un certificado de matrimonio o una sentencia de divorcio solo si también está cambiando su nombre al mismo tiempo — no pide ningún documento médico o judicial para cambiar la designación de sexo por sí sola. Presente el formulario notariado en un Centro de Servicio de la División de Vehículos Motorizados de Nuevo México.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://realfile.tax.newmexico.gov/mvd10237.pdf",
+      "title": "Departamento de Impuestos e Ingresos de Nuevo México, División de Vehículos Motorizados — Solicitud de Cambio de Designación de Sexo (Formulario MVD-10237)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "nm-mvd-10237-gender-designation",
+    "language": "es"
+  },
+  {
+    "id": "nm.drivers-license.name.es",
+    "jurisdiction": "US-NM",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir o identificación de Nuevo México",
+    "statement": "Para actualizar el nombre en su licencia de conducir o identificación de Nuevo México, lleve su licencia o identificación actual, una copia certificada de su Orden judicial de Cambio de Nombre, y ya sea su nueva tarjeta de Seguro Social o un comprobante impreso de la SSA que muestre su nuevo nombre a la División de Vehículos Motorizados.",
+    "detail": "Si su licencia o identificación no muestra ya su dirección actual, lleve también un comprobante de dirección. El MVD envía su nueva tarjeta por correo a la dirección registrada. La tarifa es de $18 o $34, según el plazo de vigencia de la licencia que elija; a las personas de 75 años o más no se les cobra por renovar.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La tarifa depende del plazo de vigencia de la licencia que elija: $18 u $34. La renovación es gratuita para personas de 75 años o más."
+    },
+    "prerequisites": [
+      "ssa-card",
+      "court-order"
+    ],
+    "source": {
+      "url": "https://selfrepresentation.nmcourts.gov/name-change/",
+      "title": "Tribunales de Nuevo México — Cambio de Nombre (Autorrepresentación)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "nv.birth-certificate.gender-marker.es",
     "jurisdiction": "US-NV",
     "document_type": "birth-certificate",
@@ -3984,6 +4490,154 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "form_ref": "pa-dl-80",
+    "language": "es"
+  },
+  {
+    "id": "ri.birth-certificate.fees.es",
+    "jurisdiction": "US-RI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Tarifas de enmienda del acta de nacimiento de Rhode Island",
+    "statement": "El cuadro de tarifas del Departamento de Salud de Rhode Island indica $10.00 por una corrección, alteración o adición autorizada a un registro vital, y $22.00 por una copia certificada de un registro vital.",
+    "detail": "Cada copia certificada duplicada solicitada al mismo tiempo cuesta $18.00, y el servicio expedito agrega una tarifa de gestión de $7.00 a la tarifa básica.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Una copia certificada del acta de nacimiento enmendada cuesta $22.00 adicionales; cada copia duplicada adicional solicitada al mismo tiempo cuesta $18.00."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://rules.sos.ri.gov/regulations/part/216-10-05-2",
+      "title": "Rhode Island Code of Regulations 216-RICR-10-05-2 § 2.17 — Vital Records Fees",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ri.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-RI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Rhode Island",
+    "statement": "Para corregir el sexo indicado en un acta de nacimiento de Rhode Island de modo que difiera del sexo en el registro original, la norma de registros vitales de Rhode Island exige solo un affidávit — ejecutado por usted si es mayor de edad, o por su padre, madre, tutor legal o representante legal si no lo es. El Registrador Estatal entonces cambia el acta para reflejar la nueva designación de sexo sin indicar que se hizo un cambio.",
+    "detail": "Si su solicitud de corrección de sexo también incluye una solicitud de cambio legal de nombre, el acta se marcará como \"Enmendada\" solo respecto al cambio de nombre — la corrección de sexo en sí no deja esa marca. La norma no describe un requisito separado de orden judicial o declaración médica para cambiar solo el marcador de sexo.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://rules.sos.ri.gov/regulations/part/216-10-10-1",
+      "title": "Rhode Island Code of Regulations 216-RICR-10-10-1 § 1.37 — Requirements to Amend Vital Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ri.birth-certificate.name.es",
+    "jurisdiction": "US-RI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Rhode Island",
+    "statement": "La norma de registros vitales de Rhode Island le permite enmendar el nombre de pila en un acta de nacimiento con un affidávit del registrante (si es mayor de edad) o de su padre, madre, tutor o representante legal, más un documento probatorio. Pero una vez que han pasado más de 30 días desde que se registró el nacimiento, un cambio que refleje un nombre de pila genuinamente nuevo — en lugar de una corrección ortográfica o de un error administrativo — solo puede hacerse después de presentar una orden judicial que lo indique.",
+    "detail": "Esta es la misma norma de documentación probatoria que el Registrador Estatal aplica a cualquier corrección de un registro vital: un affidávit más al menos un documento de respaldo original (o una copia certificada) establecido dentro de los siete años posteriores al hecho que sustenta. Si el Registrador considera que la evidencia no es satisfactoria, el registro no se enmendará a menos que lo ordene un tribunal de jurisdicción competente.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://rules.sos.ri.gov/regulations/part/216-10-10-1",
+      "title": "Rhode Island Code of Regulations 216-RICR-10-10-1 § 1.37 — Requirements to Amend Vital Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ri.court-order.name.es",
+    "jurisdiction": "US-RI",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Rhode Island",
+    "statement": "Para cambiar legalmente su nombre en Rhode Island, usted presenta una petición ante el tribunal de sucesiones (probate court) del pueblo o ciudad donde vive. La ley de Rhode Island indica que un cambio de nombre debe concederse a menos que se busque con fines fraudulentos, y el tribunal no puede exigirle que publique un aviso público del cambio antes de aprobarlo.",
+    "detail": "Si usted es indigente o demuestra una capacidad de pago limitada, el tribunal puede eximir o reducir los costos judiciales. El tribunal también puede exigirle que se someta a una verificación de antecedentes penales como parte de la petición.",
+    "cost": {
+      "amount_usd": null,
+      "note": "El estatuto no fija un monto específico para la tarifa de presentación, aunque permite que el tribunal exima o reduzca los costos judiciales para un solicitante indigente o con capacidad de pago limitada. Comuníquese con el tribunal de sucesiones donde presentará su solicitud para conocer la tarifa actual.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://webserver.rilegislature.gov/Statutes/TITLE33/33-22/33-22-28.htm",
+      "title": "Rhode Island General Laws § 33-22-28 — Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "ri.drivers-license.gender-marker.es",
+    "jurisdiction": "US-RI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de conducir de Rhode Island",
+    "statement": "Para cambiar la designación de género en su licencia de conducir o identificación de Rhode Island, usted entrega su licencia o identificación estatal actual, presenta un formulario de Designación de Género completo, paga la tarifa aplicable por una tarjeta nueva o actualizada, y se le toma una nueva fotografía. Los empleados del DMV no pueden pedirle información relacionada con el género más allá de lo que exige el propio formulario, ni preguntarle sobre su historial médico privado.",
+    "detail": "El cambio de nombre que acompaña a un cambio de género se hace por separado, mediante los documentos judiciales correspondientes, y también debe reflejarse en su tarjeta del Seguro Social.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página no indica un monto en dólares para este trámite — remite a la propia Tabla de Tarifas del DMV. Comuníquese con el DMV para conocer la tarifa actual."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.ri.gov/licenses-permits-ids/drivers-licenses/name-address-change",
+      "title": "Rhode Island DMV — Name & Address Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "ri.drivers-license.name.es",
+    "jurisdiction": "US-RI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Rhode Island",
+    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Rhode Island, usted lleva su licencia actual a cualquier sucursal del DMV (o a una oficina de AAA si es miembro) y completa la Solicitud de Licencia/Identificación/Permiso (Formulario LI-1) junto con un documento que muestre su nombre correcto. Debe actualizar su nombre con el Seguro Social primero — toma 24 horas para que un cambio del Seguro Social entre en vigor antes de que el DMV pueda procesar su trámite.",
+    "detail": "Los costos de este trámite figuran en la propia Tabla de Tarifas del DMV.",
+    "cost": {
+      "amount_usd": null,
+      "note": "La página no indica un monto en dólares directamente — remite a la propia Tabla de Tarifas del DMV. Comuníquese con el DMV para conocer la tarifa actual."
+    },
+    "prerequisites": [
+      "ssa-card"
+    ],
+    "source": {
+      "url": "https://dmv.ri.gov/licenses-permits-ids/drivers-licenses/name-address-change",
+      "title": "Rhode Island DMV — Name & Address Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
     "language": "es"
   },
   {
@@ -4995,6 +5649,149 @@
     "language": "es"
   },
   {
+    "id": "vt.birth-certificate.fees.es",
+    "jurisdiction": "US-VT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Tarifas de copias del acta de nacimiento de Vermont",
+    "statement": "Una copia certificada de un acta de nacimiento de Vermont, impresa en papel de seguridad grabado del Estado con sello en relieve, cuesta $10 por certificado, más una tarifa de procesamiento de $2 si la solicita en línea.",
+    "detail": "Las copias no certificadas, impresas en papel simple con una marca de agua de \"copia no certificada\", están disponibles sin costo. Los registros vitales también pueden solicitarse a través del secretario de su pueblo o ciudad de Vermont, lo que el Departamento de Salud llama la opción más rápida y económica.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "Agregue una tarifa de procesamiento de $2 si solicita en línea. Las copias no certificadas son gratuitas."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.healthvermont.gov/stats/vital-records/order-vital-records",
+      "title": "Vermont Department of Health — Order Vital Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "vt.birth-certificate.gender-marker.es",
+    "jurisdiction": "US-VT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de sexo en el acta de nacimiento de Vermont",
+    "statement": "El Affidávit de Identidad de Género de Vermont le permite solicitar un cambio al sexo indicado en su acta de nacimiento de Vermont — Masculino, Femenino, o X (No binario) — firmando el affidávit ante un notario público y enviándolo por correo o entregándolo a la Oficina de Registros Vitales. El formulario indica que la solicitud tiene el propósito de afirmar su identidad de género, que difiere del sexo indicado en su acta de nacimiento actual, y no pide una orden judicial ni una declaración médica o de un médico.",
+    "detail": "Si el registrante es menor de 16 años, un padre, madre o tutor legal completa el formulario en su lugar. Obtener una copia certificada del acta de nacimiento enmendada después requiere una solicitud aparte y su propia tarifa. Debido a que este formulario solo se publica en PDF, las herramientas de este proyecto no pudieron verificar automáticamente la redacción de este registro contra él; una persona debe volver a leer el formulario directamente antes de confiar en él.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.healthvermont.gov/sites/default/files/document/hsi-vr-gender-affidavit.pdf",
+      "title": "Vermont Department of Health — Affidavit of Gender Identity",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "form_ref": "vt-vdh-gender-affidavit",
+    "language": "es"
+  },
+  {
+    "id": "vt.birth-certificate.name.es",
+    "jurisdiction": "US-VT",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en el acta de nacimiento de Vermont",
+    "statement": "Para cambiar el nombre en un acta de nacimiento de Vermont más de 6 meses después de la fecha de nacimiento — lo que cubre esencialmente todo cambio de nombre de un adulto ordenado por un tribunal — la Solicitud de Vermont para Corregir o Enmendar un Acta de Nacimiento de Vermont exige una copia certificada de una orden judicial como evidencia de respaldo, enviada por correo junto con la solicitud a la Oficina de Registros Vitales.",
+    "detail": "La solicitud cita esto como la vía de enmienda según 18 V.S.A. § 5075(a), y le pide seleccionar si está corrigiendo un acta dentro de los 6 meses posteriores al nacimiento o enmendando una después de 6 meses, y luego enumerar la evidencia que proporciona. Debido a que este formulario solo se publica en PDF, las herramientas de este proyecto no pudieron verificar automáticamente la redacción de este registro contra él; una persona debe volver a leer el formulario directamente antes de confiar en él.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.healthvermont.gov/sites/default/files/documents/pdf/HS_VR_BC_Correct_Amend.pdf",
+      "title": "Vermont Department of Health — Application to Correct or Amend a Vermont Birth Certificate",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "vt-vdh-bc-correct-amend",
+    "language": "es"
+  },
+  {
+    "id": "vt.court-order.name.es",
+    "jurisdiction": "US-VT",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Petición de cambio de nombre en Vermont",
+    "statement": "Para cambiar legalmente su nombre en Vermont, completa una Petición de Adulto para Cambiar de Nombre (formulario 700-00122) y la presenta ante la división de sucesiones (probate) del Tribunal Superior del condado donde vive — en persona, por correo o por correo electrónico. Hay una tarifa de $150 para presentar la petición; si no puede pagarla, puede pedirle al tribunal que considere eximirla.",
+    "detail": "También puede requerírsele presentar una copia certificada de su acta de nacimiento y una copia de una identificación con fotografía — consulte con el tribunal donde presenta su solicitud para conocer sus requisitos exactos. El tribunal programará una audiencia con un juez y le notificará la fecha por correo.",
+    "cost": {
+      "amount_usd": 150,
+      "note": "Puede pedirle al tribunal que considere eximir la tarifa si no puede pagarla.",
+      "fee_waiver": true
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.vtcourts.gov/probate/name-changes",
+      "title": "Vermont Judiciary — Name Changes",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
+    "id": "vt.drivers-license.gender-marker.es",
+    "jurisdiction": "US-VT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Designación de género en la licencia de conducir de Vermont",
+    "statement": "El DMV de Vermont trata el género de la misma manera que trata su estatura, peso y color de ojos: es uno de los \"Datos Autodesignados\" que usted proporciona para su credencial, junto con esos otros datos. Vermont indica que los solicitantes no están obligados, por ley estatal ni federal, a presentar documentación que confirme ninguno de estos datos autodesignados.",
+    "detail": "Puede solicitar el cambio en línea en mydmv.vermont.gov, en persona en una oficina del DMV de Vermont, o por correo — de la misma manera que actualizaría cualquier otro dato autodesignado en su credencial.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.vermont.gov/licenses/identity-documents",
+      "title": "Vermont DMV — Identity Documents",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
+    "id": "vt.drivers-license.name.es",
+    "jurisdiction": "US-VT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Cambio de nombre en la licencia de conducir de Vermont",
+    "statement": "La ley de Vermont le exige notificar al DMV dentro de los 30 días posteriores a cualquier cambio de nombre. Para cambiar el nombre en su licencia o identificación de no conductor, debe solicitarlo en persona y presentar un documento original o una copia certificada que establezca su nuevo nombre — una licencia o certificado de matrimonio, un certificado de unión civil, o una orden judicial que indique claramente su nuevo nombre — junto con un Formulario de Cambio de Nombre/Dirección completo (formulario VL-021).",
+    "detail": "Si su licencia o identificación cumple con Real ID, el DMV debe verificar su nombre y fecha de nacimiento mediante la Verificación en Línea del Seguro Social, por lo que sus registros con la Administración del Seguro Social deben actualizarse antes de que el DMV pueda emitir una licencia o identificación con su nuevo nombre.",
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://dmv.vermont.gov/licenses/name-change",
+      "title": "Vermont DMV — Driver's License, Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "es"
+  },
+  {
     "id": "wa.birth-certificate.gender-marker.es",
     "jurisdiction": "US-WA",
     "document_type": "birth-certificate",
@@ -5367,427 +6164,6 @@
     "source": {
       "url": "https://www.dot.state.wy.us/home/driver_license_records/add_or_change_information.html",
       "title": "Departamento de Transporte de Wyoming — Agregar/Cambiar Información",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "language": "es"
-  },
-  {
-    "id": "ct.court-order.name.es",
-    "jurisdiction": "US-CT",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "topic": "Petición de cambio de nombre en Connecticut",
-    "statement": "Para cambiar legalmente su nombre en Connecticut, usted presenta una Petición de Cambio de Nombre (PC-901) y un Affidávit de Cambio de Nombre (PC-910) ante el Tribunal de Sucesiones (Probate Court) que cubre la ciudad donde reside. Los presenta junto con una copia certificada de su acta de nacimiento en formato extendido y dos formas de identificación, una de las cuales debe incluir foto. Puede presentarlos en línea, en persona o por correo.",
-    "detail": "El tribunal envía notificación de su petición al Departamento de Servicios de Emergencia y Protección Pública para verificar si usted aparece en el Registro de Delincuentes Sexuales o en el Registro de Delincuentes con Armas Mortales. Luego usted asiste a una audiencia, donde el juez debe estar convencido de que el cambio de nombre no tiene un propósito ilegal, como evitar acciones legales pendientes o sus consecuencias. En la mayoría de los casos, el juez decide la petición en la misma audiencia.",
-    "cost": {
-      "amount_usd": null,
-      "note": "La página no indica un monto en dólares para la tarifa de presentación — remite a la propia Herramienta de Tarifas y Gastos del Tribunal de Sucesiones. Comuníquese con el Tribunal de Sucesiones donde presentará su solicitud para conocer la tarifa actual."
-    },
-    "prerequisites": [],
-    "source": {
-      "url": "https://www.ctprobate.gov/other-matters/name-changes",
-      "title": "Connecticut Probate Courts — Name Changes",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "language": "es"
-  },
-  {
-    "id": "ct.drivers-license.name.es",
-    "jurisdiction": "US-CT",
-    "document_type": "drivers-license",
-    "change_type": [
-      "name"
-    ],
-    "topic": "Cambio de nombre en la licencia de conducir de Connecticut",
-    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de no conductor de Connecticut, primero debe actualizar su nombre con la Administración del Seguro Social — el Seguro Social puede tardar hasta 48 horas en procesar el cambio, y esto debe hacerse antes de que el DMV actualice su licencia. Luego programa una cita en una oficina del DMV y lleva una Solicitud de Cambio de Nombre completa (Formulario E-78), su licencia o identificación actual, y documentación certificada del cambio de nombre, como un certificado de matrimonio, un certificado de unión civil, una sentencia de divorcio o documentos del tribunal de sucesiones.",
-    "detail": "Solo se aceptan documentos originales — no se aceptan fotocopias ni certificados de matrimonio religiosos. Hay una tarifa de $30 para cambiar su nombre en una licencia de conducir o identificación de no conductor, y las oficinas expresas del DMV, incluidas AAA y ciertas sucursales de cooperativas de crédito, pueden cobrar una tarifa de conveniencia adicional de hasta $8 por transacción. Debe entregar su licencia o identificación anterior cuando se emita la nueva.",
-    "cost": {
-      "amount_usd": 30,
-      "note": "Las oficinas expresas del DMV, incluidas AAA y ciertas sucursales de cooperativas de crédito, pueden cobrar una tarifa de conveniencia adicional de hasta $8 por transacción."
-    },
-    "prerequisites": [
-      "ssa-card"
-    ],
-    "source": {
-      "url": "https://portal.ct.gov/dmv/licenses-permits-ids/change-driver-license",
-      "title": "Connecticut DMV — Update a Driver's License, Learner's Permit, or Non-Driver ID",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "language": "es"
-  },
-  {
-    "id": "ct.drivers-license.gender-marker.es",
-    "jurisdiction": "US-CT",
-    "document_type": "drivers-license",
-    "change_type": [
-      "gender-marker"
-    ],
-    "topic": "Designación de género en la licencia de conducir de Connecticut",
-    "statement": "Connecticut le permite elegir Femenino (F), Masculino (M) o No Binario (X) como designación de género en su licencia de conducir o identificación. Para cambiarla, presenta un formulario de Designación de Género completo (B-385) en una cita del DMV, entrega su licencia o identificación actual, y se le toma una nueva fotografía.",
-    "detail": "Los empleados del DMV no pueden pedirle documentación médica ni información relacionada con el género más allá de lo que pide el propio formulario. Si un menor solicita el cambio, un padre, madre o tutor debe estar presente y firmar el formulario, o el menor debe presentar un formulario notariado junto con él. El DMV también indica que no garantiza que otra agencia reconozca el género que usted elija si no coincide con sus otros documentos de identidad.",
-    "cost": {
-      "amount_usd": null,
-      "note": "El formulario solo indica que usted paga \"las tarifas aplicables para una licencia o tarjeta de identificación nueva o actualizada\" — no da una cifra en dólares. Consulte el cuadro de tarifas del DMV para conocer el monto actual."
-    },
-    "prerequisites": [],
-    "source": {
-      "url": "https://portal.ct.gov/-/media/DMV/20/29/B-385.pdf",
-      "title": "Connecticut DMV — Gender Designation on a License or Identification Card (Form B-385)",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 30,
-    "form_ref": "ct-dmv-b-385",
-    "language": "es"
-  },
-  {
-    "id": "ct.birth-certificate.gender-marker.es",
-    "jurisdiction": "US-CT",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "gender-marker"
-    ],
-    "topic": "Cambio de género en el acta de nacimiento de Connecticut",
-    "statement": "Para enmendar el designador de sexo en su acta de nacimiento de Connecticut, usted envía a la Oficina de Registros Vitales una fotocopia de una identificación con fotografía válida emitida por el gobierno, un affidávit notariado de usted solicitando el acta de reemplazo, y un affidávit notariado de un médico con licencia, asistente médico con licencia, enfermero(a) de práctica avanzada con licencia, o psicólogo con licencia, que indique que usted se ha sometido a tratamiento quirúrgico, hormonal u otro tratamiento clínicamente apropiado para la transición de género. Si además desea que su acta enmendada muestre un nuevo nombre, incluye una copia certificada de la orden judicial que otorgó ese cambio de nombre.",
-    "detail": "Si el registrante es menor de edad, un padre o madre completa el affidávit personal en su lugar. No hay tarifa de procesamiento por la enmienda en sí. Una copia certificada del acta de nacimiento enmendada cuesta $30, pagaderos con giro postal a nombre del \"Treasurer, State of Connecticut\" — no se aceptan tarjetas de crédito ni cheques personales.",
-    "cost": {
-      "amount_usd": null,
-      "note": "No hay tarifa de procesamiento por la enmienda en sí. Una copia certificada del acta de nacimiento enmendada cuesta $30, pagaderos únicamente con giro postal a nombre del \"Treasurer, State of Connecticut\"."
-    },
-    "prerequisites": [],
-    "source": {
-      "url": "https://portal.ct.gov/dph/vital-records/gender-change",
-      "title": "Connecticut Department of Public Health — Gender Change",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 30,
-    "language": "es"
-  },
-  {
-    "id": "ct.birth-certificate.name.es",
-    "jurisdiction": "US-CT",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "name"
-    ],
-    "topic": "Cambio de nombre en el acta de nacimiento de Connecticut",
-    "statement": "Para cambiar el nombre en un acta de nacimiento de Connecticut después de un cambio de nombre ordenado por un tribunal, usted presenta una orden judicial de Cambio Legal de Nombre original y certificada, un affidávit notariado de cambio de nombre, y una identificación con fotografía emitida por el gobierno, ante el secretario del pueblo donde ocurrió el nacimiento — en persona o por correo. Solo la persona registrada en el acta (si tiene 18 años o más) o el padre/madre de un menor puede solicitar el cambio.",
-    "detail": "Connecticut solo permite cambiar los campos del propio nombre del registrante mediante este proceso — los campos del nombre de un padre o madre no pueden cambiarse de esta manera. La orden judicial original le será devuelta si la solicita.",
-    "cost": {
-      "amount_usd": null,
-      "note": "No hay tarifa de procesamiento por enmiendas o correcciones. Esta página no indica por separado el costo de una copia certificada del acta enmendada — comuníquese con la oficina de Registros Vitales del secretario del pueblo donde ocurrió el nacimiento para esa tarifa."
-    },
-    "prerequisites": [
-      "court-order"
-    ],
-    "source": {
-      "url": "https://portal.ct.gov/dph/vital-records/corrections-and-amendments",
-      "title": "Connecticut Department of Public Health — Corrections and Amendments",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "language": "es"
-  },
-  {
-    "id": "ri.court-order.name.es",
-    "jurisdiction": "US-RI",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "topic": "Petición de cambio de nombre en Rhode Island",
-    "statement": "Para cambiar legalmente su nombre en Rhode Island, usted presenta una petición ante el tribunal de sucesiones (probate court) del pueblo o ciudad donde vive. La ley de Rhode Island indica que un cambio de nombre debe concederse a menos que se busque con fines fraudulentos, y el tribunal no puede exigirle que publique un aviso público del cambio antes de aprobarlo.",
-    "detail": "Si usted es indigente o demuestra una capacidad de pago limitada, el tribunal puede eximir o reducir los costos judiciales. El tribunal también puede exigirle que se someta a una verificación de antecedentes penales como parte de la petición.",
-    "cost": {
-      "amount_usd": null,
-      "note": "El estatuto no fija un monto específico para la tarifa de presentación, aunque permite que el tribunal exima o reduzca los costos judiciales para un solicitante indigente o con capacidad de pago limitada. Comuníquese con el tribunal de sucesiones donde presentará su solicitud para conocer la tarifa actual.",
-      "fee_waiver": true
-    },
-    "prerequisites": [],
-    "source": {
-      "url": "https://webserver.rilegislature.gov/Statutes/TITLE33/33-22/33-22-28.htm",
-      "title": "Rhode Island General Laws § 33-22-28 — Name Change",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "language": "es"
-  },
-  {
-    "id": "ri.drivers-license.name.es",
-    "jurisdiction": "US-RI",
-    "document_type": "drivers-license",
-    "change_type": [
-      "name"
-    ],
-    "topic": "Cambio de nombre en la licencia de conducir de Rhode Island",
-    "statement": "Para cambiar el nombre en su licencia de conducir o identificación de Rhode Island, usted lleva su licencia actual a cualquier sucursal del DMV (o a una oficina de AAA si es miembro) y completa la Solicitud de Licencia/Identificación/Permiso (Formulario LI-1) junto con un documento que muestre su nombre correcto. Debe actualizar su nombre con el Seguro Social primero — toma 24 horas para que un cambio del Seguro Social entre en vigor antes de que el DMV pueda procesar su trámite.",
-    "detail": "Los costos de este trámite figuran en la propia Tabla de Tarifas del DMV.",
-    "cost": {
-      "amount_usd": null,
-      "note": "La página no indica un monto en dólares directamente — remite a la propia Tabla de Tarifas del DMV. Comuníquese con el DMV para conocer la tarifa actual."
-    },
-    "prerequisites": [
-      "ssa-card"
-    ],
-    "source": {
-      "url": "https://dmv.ri.gov/licenses-permits-ids/drivers-licenses/name-address-change",
-      "title": "Rhode Island DMV — Name & Address Change",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "language": "es"
-  },
-  {
-    "id": "ri.drivers-license.gender-marker.es",
-    "jurisdiction": "US-RI",
-    "document_type": "drivers-license",
-    "change_type": [
-      "gender-marker"
-    ],
-    "topic": "Designación de género en la licencia de conducir de Rhode Island",
-    "statement": "Para cambiar la designación de género en su licencia de conducir o identificación de Rhode Island, usted entrega su licencia o identificación estatal actual, presenta un formulario de Designación de Género completo, paga la tarifa aplicable por una tarjeta nueva o actualizada, y se le toma una nueva fotografía. Los empleados del DMV no pueden pedirle información relacionada con el género más allá de lo que exige el propio formulario, ni preguntarle sobre su historial médico privado.",
-    "detail": "El cambio de nombre que acompaña a un cambio de género se hace por separado, mediante los documentos judiciales correspondientes, y también debe reflejarse en su tarjeta del Seguro Social.",
-    "cost": {
-      "amount_usd": null,
-      "note": "La página no indica un monto en dólares para este trámite — remite a la propia Tabla de Tarifas del DMV. Comuníquese con el DMV para conocer la tarifa actual."
-    },
-    "prerequisites": [],
-    "source": {
-      "url": "https://dmv.ri.gov/licenses-permits-ids/drivers-licenses/name-address-change",
-      "title": "Rhode Island DMV — Name & Address Change",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 30,
-    "language": "es"
-  },
-  {
-    "id": "ri.birth-certificate.name.es",
-    "jurisdiction": "US-RI",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "name"
-    ],
-    "topic": "Cambio de nombre en el acta de nacimiento de Rhode Island",
-    "statement": "La norma de registros vitales de Rhode Island le permite enmendar el nombre de pila en un acta de nacimiento con un affidávit del registrante (si es mayor de edad) o de su padre, madre, tutor o representante legal, más un documento probatorio. Pero una vez que han pasado más de 30 días desde que se registró el nacimiento, un cambio que refleje un nombre de pila genuinamente nuevo — en lugar de una corrección ortográfica o de un error administrativo — solo puede hacerse después de presentar una orden judicial que lo indique.",
-    "detail": "Esta es la misma norma de documentación probatoria que el Registrador Estatal aplica a cualquier corrección de un registro vital: un affidávit más al menos un documento de respaldo original (o una copia certificada) establecido dentro de los siete años posteriores al hecho que sustenta. Si el Registrador considera que la evidencia no es satisfactoria, el registro no se enmendará a menos que lo ordene un tribunal de jurisdicción competente.",
-    "prerequisites": [
-      "court-order"
-    ],
-    "source": {
-      "url": "https://rules.sos.ri.gov/regulations/part/216-10-10-1",
-      "title": "Rhode Island Code of Regulations 216-RICR-10-10-1 § 1.37 — Requirements to Amend Vital Records",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "language": "es"
-  },
-  {
-    "id": "ri.birth-certificate.gender-marker.es",
-    "jurisdiction": "US-RI",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "gender-marker"
-    ],
-    "topic": "Designación de sexo en el acta de nacimiento de Rhode Island",
-    "statement": "Para corregir el sexo indicado en un acta de nacimiento de Rhode Island de modo que difiera del sexo en el registro original, la norma de registros vitales de Rhode Island exige solo un affidávit — ejecutado por usted si es mayor de edad, o por su padre, madre, tutor legal o representante legal si no lo es. El Registrador Estatal entonces cambia el acta para reflejar la nueva designación de sexo sin indicar que se hizo un cambio.",
-    "detail": "Si su solicitud de corrección de sexo también incluye una solicitud de cambio legal de nombre, el acta se marcará como \"Enmendada\" solo respecto al cambio de nombre — la corrección de sexo en sí no deja esa marca. La norma no describe un requisito separado de orden judicial o declaración médica para cambiar solo el marcador de sexo.",
-    "prerequisites": [],
-    "source": {
-      "url": "https://rules.sos.ri.gov/regulations/part/216-10-10-1",
-      "title": "Rhode Island Code of Regulations 216-RICR-10-10-1 § 1.37 — Requirements to Amend Vital Records",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 30,
-    "language": "es"
-  },
-  {
-    "id": "ri.birth-certificate.fees.es",
-    "jurisdiction": "US-RI",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "name",
-      "gender-marker"
-    ],
-    "topic": "Tarifas de enmienda del acta de nacimiento de Rhode Island",
-    "statement": "El cuadro de tarifas del Departamento de Salud de Rhode Island indica $10.00 por una corrección, alteración o adición autorizada a un registro vital, y $22.00 por una copia certificada de un registro vital.",
-    "detail": "Cada copia certificada duplicada solicitada al mismo tiempo cuesta $18.00, y el servicio expedito agrega una tarifa de gestión de $7.00 a la tarifa básica.",
-    "cost": {
-      "amount_usd": 10,
-      "note": "Una copia certificada del acta de nacimiento enmendada cuesta $22.00 adicionales; cada copia duplicada adicional solicitada al mismo tiempo cuesta $18.00."
-    },
-    "prerequisites": [],
-    "source": {
-      "url": "https://rules.sos.ri.gov/regulations/part/216-10-05-2",
-      "title": "Rhode Island Code of Regulations 216-RICR-10-05-2 § 2.17 — Vital Records Fees",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "language": "es"
-  },
-  {
-    "id": "vt.court-order.name.es",
-    "jurisdiction": "US-VT",
-    "document_type": "court-order",
-    "change_type": [
-      "name"
-    ],
-    "topic": "Petición de cambio de nombre en Vermont",
-    "statement": "Para cambiar legalmente su nombre en Vermont, completa una Petición de Adulto para Cambiar de Nombre (formulario 700-00122) y la presenta ante la división de sucesiones (probate) del Tribunal Superior del condado donde vive — en persona, por correo o por correo electrónico. Hay una tarifa de $150 para presentar la petición; si no puede pagarla, puede pedirle al tribunal que considere eximirla.",
-    "detail": "También puede requerírsele presentar una copia certificada de su acta de nacimiento y una copia de una identificación con fotografía — consulte con el tribunal donde presenta su solicitud para conocer sus requisitos exactos. El tribunal programará una audiencia con un juez y le notificará la fecha por correo.",
-    "cost": {
-      "amount_usd": 150,
-      "note": "Puede pedirle al tribunal que considere eximir la tarifa si no puede pagarla.",
-      "fee_waiver": true
-    },
-    "discretionary": true,
-    "prerequisites": [],
-    "source": {
-      "url": "https://www.vtcourts.gov/probate/name-changes",
-      "title": "Vermont Judiciary — Name Changes",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "language": "es"
-  },
-  {
-    "id": "vt.drivers-license.name.es",
-    "jurisdiction": "US-VT",
-    "document_type": "drivers-license",
-    "change_type": [
-      "name"
-    ],
-    "topic": "Cambio de nombre en la licencia de conducir de Vermont",
-    "statement": "La ley de Vermont le exige notificar al DMV dentro de los 30 días posteriores a cualquier cambio de nombre. Para cambiar el nombre en su licencia o identificación de no conductor, debe solicitarlo en persona y presentar un documento original o una copia certificada que establezca su nuevo nombre — una licencia o certificado de matrimonio, un certificado de unión civil, o una orden judicial que indique claramente su nuevo nombre — junto con un Formulario de Cambio de Nombre/Dirección completo (formulario VL-021).",
-    "detail": "Si su licencia o identificación cumple con Real ID, el DMV debe verificar su nombre y fecha de nacimiento mediante la Verificación en Línea del Seguro Social, por lo que sus registros con la Administración del Seguro Social deben actualizarse antes de que el DMV pueda emitir una licencia o identificación con su nuevo nombre.",
-    "prerequisites": [
-      "court-order"
-    ],
-    "source": {
-      "url": "https://dmv.vermont.gov/licenses/name-change",
-      "title": "Vermont DMV — Driver's License, Name Change",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "language": "es"
-  },
-  {
-    "id": "vt.drivers-license.gender-marker.es",
-    "jurisdiction": "US-VT",
-    "document_type": "drivers-license",
-    "change_type": [
-      "gender-marker"
-    ],
-    "topic": "Designación de género en la licencia de conducir de Vermont",
-    "statement": "El DMV de Vermont trata el género de la misma manera que trata su estatura, peso y color de ojos: es uno de los \"Datos Autodesignados\" que usted proporciona para su credencial, junto con esos otros datos. Vermont indica que los solicitantes no están obligados, por ley estatal ni federal, a presentar documentación que confirme ninguno de estos datos autodesignados.",
-    "detail": "Puede solicitar el cambio en línea en mydmv.vermont.gov, en persona en una oficina del DMV de Vermont, o por correo — de la misma manera que actualizaría cualquier otro dato autodesignado en su credencial.",
-    "prerequisites": [],
-    "source": {
-      "url": "https://dmv.vermont.gov/licenses/identity-documents",
-      "title": "Vermont DMV — Identity Documents",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 30,
-    "language": "es"
-  },
-  {
-    "id": "vt.birth-certificate.gender-marker.es",
-    "jurisdiction": "US-VT",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "gender-marker"
-    ],
-    "topic": "Designación de sexo en el acta de nacimiento de Vermont",
-    "statement": "El Affidávit de Identidad de Género de Vermont le permite solicitar un cambio al sexo indicado en su acta de nacimiento de Vermont — Masculino, Femenino, o X (No binario) — firmando el affidávit ante un notario público y enviándolo por correo o entregándolo a la Oficina de Registros Vitales. El formulario indica que la solicitud tiene el propósito de afirmar su identidad de género, que difiere del sexo indicado en su acta de nacimiento actual, y no pide una orden judicial ni una declaración médica o de un médico.",
-    "detail": "Si el registrante es menor de 16 años, un padre, madre o tutor legal completa el formulario en su lugar. Obtener una copia certificada del acta de nacimiento enmendada después requiere una solicitud aparte y su propia tarifa. Debido a que este formulario solo se publica en PDF, las herramientas de este proyecto no pudieron verificar automáticamente la redacción de este registro contra él; una persona debe volver a leer el formulario directamente antes de confiar en él.",
-    "prerequisites": [],
-    "source": {
-      "url": "https://www.healthvermont.gov/sites/default/files/document/hsi-vr-gender-affidavit.pdf",
-      "title": "Vermont Department of Health — Affidavit of Gender Identity",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 30,
-    "form_ref": "vt-vdh-gender-affidavit",
-    "language": "es"
-  },
-  {
-    "id": "vt.birth-certificate.name.es",
-    "jurisdiction": "US-VT",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "name"
-    ],
-    "topic": "Cambio de nombre en el acta de nacimiento de Vermont",
-    "statement": "Para cambiar el nombre en un acta de nacimiento de Vermont más de 6 meses después de la fecha de nacimiento — lo que cubre esencialmente todo cambio de nombre de un adulto ordenado por un tribunal — la Solicitud de Vermont para Corregir o Enmendar un Acta de Nacimiento de Vermont exige una copia certificada de una orden judicial como evidencia de respaldo, enviada por correo junto con la solicitud a la Oficina de Registros Vitales.",
-    "detail": "La solicitud cita esto como la vía de enmienda según 18 V.S.A. § 5075(a), y le pide seleccionar si está corrigiendo un acta dentro de los 6 meses posteriores al nacimiento o enmendando una después de 6 meses, y luego enumerar la evidencia que proporciona. Debido a que este formulario solo se publica en PDF, las herramientas de este proyecto no pudieron verificar automáticamente la redacción de este registro contra él; una persona debe volver a leer el formulario directamente antes de confiar en él.",
-    "prerequisites": [
-      "court-order"
-    ],
-    "source": {
-      "url": "https://www.healthvermont.gov/sites/default/files/documents/pdf/HS_VR_BC_Correct_Amend.pdf",
-      "title": "Vermont Department of Health — Application to Correct or Amend a Vermont Birth Certificate",
-      "last_verified": "2026-07-13",
-      "verifier": "Pilot Seed Reviewer"
-    },
-    "verification_status": "verified",
-    "recheck_sla_days": 90,
-    "form_ref": "vt-vdh-bc-correct-amend",
-    "language": "es"
-  },
-  {
-    "id": "vt.birth-certificate.fees.es",
-    "jurisdiction": "US-VT",
-    "document_type": "birth-certificate",
-    "change_type": [
-      "name",
-      "gender-marker"
-    ],
-    "topic": "Tarifas de copias del acta de nacimiento de Vermont",
-    "statement": "Una copia certificada de un acta de nacimiento de Vermont, impresa en papel de seguridad grabado del Estado con sello en relieve, cuesta $10 por certificado, más una tarifa de procesamiento de $2 si la solicita en línea.",
-    "detail": "Las copias no certificadas, impresas en papel simple con una marca de agua de \"copia no certificada\", están disponibles sin costo. Los registros vitales también pueden solicitarse a través del secretario de su pueblo o ciudad de Vermont, lo que el Departamento de Salud llama la opción más rápida y económica.",
-    "cost": {
-      "amount_usd": 10,
-      "note": "Agregue una tarifa de procesamiento de $2 si solicita en línea. Las copias no certificadas son gratuitas."
-    },
-    "prerequisites": [],
-    "source": {
-      "url": "https://www.healthvermont.gov/stats/vital-records/order-vital-records",
-      "title": "Vermont Department of Health — Order Vital Records",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

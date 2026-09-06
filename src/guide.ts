@@ -25,6 +25,7 @@ interface StateDef {
 // The states we currently cover. Federal steps (SSA, passport) are woven into each
 // guide by the checklist builder, so they need no separate page.
 const STATES: StateDef[] = [
+  { slug: "alaska", id: "US-AK", name: { en: "Alaska", es: "Alaska" } },
   { slug: "arkansas", id: "US-AR", name: { en: "Arkansas", es: "Arkansas" } },
   { slug: "arizona", id: "US-AZ", name: { en: "Arizona", es: "Arizona" } },
   { slug: "california", id: "US-CA", name: { en: "California", es: "California" } },
@@ -34,6 +35,7 @@ const STATES: StateDef[] = [
   { slug: "florida", id: "US-FL", name: { en: "Florida", es: "Florida" } },
   { slug: "georgia", id: "US-GA", name: { en: "Georgia", es: "Georgia" } },
   { slug: "colorado", id: "US-CO", name: { en: "Colorado", es: "Colorado" } },
+  { slug: "hawaii", id: "US-HI", name: { en: "Hawaii", es: "Hawái" } },
   { slug: "idaho", id: "US-ID", name: { en: "Idaho", es: "Idaho" } },
   { slug: "illinois", id: "US-IL", name: { en: "Illinois", es: "Illinois" } },
   { slug: "maryland", id: "US-MD", name: { en: "Maryland", es: "Maryland" } },
@@ -43,6 +45,7 @@ const STATES: StateDef[] = [
   { slug: "north-carolina", id: "US-NC", name: { en: "North Carolina", es: "Carolina del Norte" } },
   { slug: "nevada", id: "US-NV", name: { en: "Nevada", es: "Nevada" } },
   { slug: "new-jersey", id: "US-NJ", name: { en: "New Jersey", es: "Nueva Jersey" } },
+  { slug: "new-mexico", id: "US-NM", name: { en: "New Mexico", es: "Nuevo México" } },
   { slug: "new-york", id: "US-NY", name: { en: "New York", es: "Nueva York" } },
   { slug: "pennsylvania", id: "US-PA", name: { en: "Pennsylvania", es: "Pensilvania" } },
   { slug: "ohio", id: "US-OH", name: { en: "Ohio", es: "Ohio" } },

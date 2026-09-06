@@ -1,0 +1,123 @@
+[
+  {
+    "id": "hi.court-order.name",
+    "jurisdiction": "US-HI",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Hawaii name change application",
+    "statement": "In Hawaii, an adult name change is granted by the Office of the Lieutenant Governor rather than by a court. Only current Hawaii residents are eligible for a name change granted this way.",
+    "detail": "You pay a $50.00 filing fee, a $1.00 archive fee, and a $5.00 service fee — all non-refundable — plus a separate newspaper publication fee (starting around $204.19) and a $41 registration fee to record your order at the Bureau of Conveyances. The process to change your name may take 8 to 12 weeks. A name change isn't necessary if you're a Hawaii resident who was married in Hawaii and declared your spouse's name on your marriage certificate, or if you're divorced and your divorce decree stipulates resuming a maiden name or previous name.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Several separate fees apply: $50 filing, $1 archive, and $5 service (paid to the Lieutenant Governor's office), plus a newspaper publication fee starting around $204.19 and a $41 Bureau of Conveyances registration fee. No single combined total is published."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://namechange.ehawaii.gov/public/welcome.html",
+      "title": "State of Hawaii — Online Name Change Application (Office of the Lieutenant Governor)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "hi.drivers-license.name",
+    "jurisdiction": "US-HI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Hawaii driver's license or state ID name change",
+    "statement": "To change your name on a Hawaii driver's license or state ID card, make an AlohaQ appointment at a Driver Licensing Center, complete the Driver's License Application Form, and submit proof of your name change.",
+    "detail": "At your appointment you'll also take a vision test and be fingerprinted, then pay the required fee and have your photo taken. The county's page links to a separate downloadable document listing which proof-of-name-change documents it accepts; read that document before your appointment to confirm what to bring.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page does not state the fee amount for a name-change transaction."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://www.honolulu.gov/csd/drivers-license-procedures/",
+      "title": "City and County of Honolulu, Department of Customer Services — Driver's License Procedures",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "hi-dl-application",
+    "language": "en"
+  },
+  {
+    "id": "hi.drivers-license.gender-marker",
+    "jurisdiction": "US-HI",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Hawaii driver's license or state ID gender designation",
+    "statement": "Hawaii's driver's license and state ID application forms let you select your own gender designation — Male, Female, or Not Specified — as one of the boxes you check on the application. The form does not ask for any supporting document to back up that choice.",
+    "detail": "This same three-option field appears on both the State of Hawaii Driver's License Application and the State of Hawaii Identification Card Application. Bring your completed application to an appointment at a Driver Licensing Center to submit it.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www4.honolulu.gov/docushare/dsweb/Get/Document-325980/State%20of%20Hawaii%20Driver_s%20License%20Application.pdf",
+      "title": "State of Hawaii Driver's License Application",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "hi-dl-application",
+    "language": "en"
+  },
+  {
+    "id": "hi.birth-certificate.name",
+    "jurisdiction": "US-HI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Hawaii birth certificate name change",
+    "statement": "Hawaii's Department of Health does not describe a general process for updating the name on a birth certificate just because you obtained a court-ordered legal name change. Its published list of birth-certificate amendments covers five specific situations: adoption, a new birth certificate for a sex-designation change, a legal determination that a listed parent is not the parent, a correction to surname or paternity information made under law, and a foreign adoption finalized in Hawaii.",
+    "detail": "If your situation is not one of these five, contact the Department of Health's Corrections Section directly at (808) 586-4541 to ask whether an amendment is possible — this page does not say either way. Do not assume a Hawaii birth certificate will show a new name after an ordinary court name change.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.hawaii.gov/vitalrecords/amendments-2/amended-certificate-of-birth",
+      "title": "Hawaii Department of Health — Amended Certificate of Birth",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "hi.birth-certificate.gender-marker",
+    "jurisdiction": "US-HI",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Hawaii birth certificate sex designation",
+    "statement": "To get a new Hawaii birth certificate with a different sex designation, Hawaii law (HRS section 338-17.7) requires a notarized affidavit from a U.S.-licensed physician stating that the physician has an established relationship with you, has evaluated your medical history, and confirms that you have completed appropriate clinical treatment for gender transition.",
+    "detail": "You complete an Application for Amendment to Birth Record and a Physician Affidavit Form for Sex Designation Change; a doctor of naturopathy cannot serve as the certifying physician under Hawaii law. The fee is $3 for each amended item on the certificate. The new certificate substitutes for the original, which is sealed and can only be reopened by a court order or at the birth registrant's own request. If you also want your current legal name reflected, you must have already completed a legal name change before applying.",
+    "cost": {
+      "amount_usd": 3,
+      "note": "A fee of $3 is charged for each amendment of an item on the certificate."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.hawaii.gov/vitalrecords/amendments/new-birth-certificate-for-sex-designation-change/",
+      "title": "Hawaii Department of Health — New Birth Certificate for Sex Designation Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  }
+]
