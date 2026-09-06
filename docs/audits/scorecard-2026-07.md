@@ -61,3 +61,79 @@ or let `.github/workflows/scorecard.yml` do it on the weekly schedule / next pus
 `main`, and publish its SARIF to the Security tab (public repo; no Advanced Security
 purchase needed). Append a new `## YYYY-MM` section below on each re-run — don't
 overwrite this baseline.
+
+## 2026-09: triage of the gap (#159) — CI diagnosis, not a new scored run
+
+This section is deliberately **not** a new `## 2026-09` score table. `scorecard.yml`
+itself was silently broken the entire time the 5.8/10 baseline above sat uncorrected —
+every scheduled/push run since 2026-07-06 (three consecutive: 07-06, 07-09, 08-11) failed
+at the `Run analysis` step with:
+
+```
+scorecard had an error: internal error: ListCommits: ... Resource not accessible by integration
+```
+
+This is documented upstream behavior (`ossf/scorecard-action` README, "Additional
+permissions for private repositories"): on a **private** repo, the default `GITHUB_TOKEN`
+needs job-level `issues: read`, `pull-requests: read`, and `checks: read` in addition to
+`contents: read`/`security-events: write`, or Scorecard's GraphQL commit/SAST-detection
+queries 403. No PAT needed — it's a permissions fix, not a repo-settings one. **Fixed** in
+`scorecard.yml` as part of this PR.
+
+This means the number this repo has been citing (5.8/10) was a single hand-run CLI
+snapshot from 2026-07-05, not a freshness-checked, continuously-reconfirmed score — the
+automation meant to keep it current had silently stopped running two months before this
+was ever verified, one more instance of the failure mode this repo's history keeps
+surfacing (a control that exists on paper but doesn't actually run).
+
+**Could not confirm the fix with a fresh number in this same PR**: `scorecard-action`
+refuses to analyze anything but the repository's default branch (`Only the default
+branch main is supported`), so a `workflow_dispatch` run against this PR's branch fails
+immediately, by design, regardless of the permissions fix. **Next step, immediately after
+this PR merges:** `gh workflow run scorecard.yml --ref main`, then append a real
+`## 2026-09` (or later) scored section here from that run's `results.sarif` — don't hand-
+wave a number in its place.
+
+One data point worth flagging for whoever reads that fresh run: the **Maintained** 0/10
+reason recorded above ("created within the last 90 days") was accurate on 2026-07-05 (the
+repo was created 2026-06-05, so it was ~30 days old) but is no longer true — the repo
+passed the 90-day mark around 2026-09-03. That doesn't guarantee a higher score (Scorecard
+also weighs actual commit/issue activity, which this repo has plenty of), but the specific
+reason given for the 0 in the table above has expired; don't assume it still applies
+without checking the fresh run.
+
+### Also fixed in this pass (Token-Permissions, workflow-level write scopes)
+
+Two more workflow-level (not job-level) write-scope grants, the same anti-pattern the
+Token-Permissions row above already covers for `codeql.yml`/`release.yml`:
+`content-watch.yml`'s `issues: write` and `deploy-aws-preview.yml`'s `id-token: write`
+were both declared at workflow level (applying to every job by default, even though each
+file has exactly one job that needs the grant). Both moved to job level. Re-verified by
+grep that every `uses:` across `.github/workflows/` is still SHA-pinned (Pinned-Dependencies
+row above) — no regressions introduced.
+
+### Not fixed, and why (triaged, not silently dropped)
+
+- **Branch-Protection (3/10) / Code-Review (0/10)** — unchanged. Both need a live
+  repo-settings decision (a review-count policy, `enforce_admins`) that
+  `branch-protection-2026-07-05.md` already correctly frames as the repo owner's call, not
+  a code change; nothing here overrides that. The one purely mechanical item it also names
+  — the required-status-checks list being stale (missing `secret-scan`/`workflow-sast`) —
+  is a live GitHub API mutation outside this PR's diff, so it's named here rather than
+  applied silently: `gh api -X PATCH repos/ChelseaKR/trans-docs-navigator/branches/main/protection/required_status_checks -f strict=true -f 'contexts[]=verify' -f 'contexts[]=smoke-journey' -f 'contexts[]=a11y-browser' -f 'contexts[]=security-sast' -f 'contexts[]=container-and-infra' -f 'contexts[]=secret-scan' -f 'contexts[]=workflow-sast'` is additive-only (widens required checks, changes no review/admin policy) and is the repo owner's to run.
+- **Contributors (0/10)** — single-maintainer repo; structurally unmovable, not a real gap.
+- **CII-Best-Practices (0/10)** — not pursued; a prior, explicit, low-priority call for
+  this repo, restated rather than silently revisited.
+- **Fuzzing (0/10)** — out of scope for this app shape (server-rendered HTML, no
+  binary/parser attack surface); same prior call, restated.
+- **SAST (8/10) / Pinned-Dependencies (9/10)** — both already investigated as likely
+  normalization artifacts of how Scorecard samples commits / distinguishes npm integrity
+  hashes from Actions SHA pins, not real gaps; re-confirmed here (every `uses:` under
+  `.github/workflows/` is still SHA-pinned) rather than re-litigated.
+- **Packaging / Signed-Releases (N/A)** — no releases exist yet; genuinely not
+  attainable until a tag is cut, which is outside this PR's scope.
+
+Not chased: no check here was "fixed" by loosening a control, muting a scanner, or
+adding a suppression to move a number. Every change above is either a real permissions
+bug (scorecard.yml, content-watch.yml, deploy-aws-preview.yml) or a documentation of why
+a check stays where it is.

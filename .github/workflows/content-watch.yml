@@ -17,9 +17,14 @@ on:
     - cron: "17 6 * * 1" # Mondays 06:17 UTC
   workflow_dispatch:
 
+# Least privilege at workflow level (#159, Scorecard Token-Permissions): only
+# `contents: read` by default. `issues: write` moves to job level below — same
+# pattern codeql.yml already uses, and for the same reason (Scorecard's
+# Token-Permissions check prefers job-scoped write grants even in a
+# single-job workflow, since it's the pattern that stays minimal if a second
+# job is ever added here).
 permissions:
   contents: read
-  issues: write
 
 concurrency:
   group: content-watch
@@ -29,6 +34,9 @@ jobs:
   content-watch:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: write # only this job opens/comments on the weekly drift issue
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

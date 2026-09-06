@@ -60,6 +60,7 @@ export const es: LocaleBundle = {
     packetTitle: "Su paquete",
     packetHeading: "Su paquete de cambio de nombre y marcador de género",
     answerHeading: "Lo que dicen las fuentes",
+    answerLandmarkLabel: "Respuesta",
     formPrivacy: "Lo que escribe aquí permanece en su navegador y esta herramienta de formularios no lo transmite.",
     fillDownload: "Llenar y descargar",
     flatScanIntro: "Este formulario oficial es una imagen escaneada que no se puede llenar automáticamente. Descargue el formulario en blanco y complételo a mano:",
@@ -430,6 +431,7 @@ export const es: LocaleBundle = {
     guideReviewed: "Última revisión",
     breadcrumbHome: "Inicio",
     breadcrumbGuides: "Guías",
+    breadcrumbNav: "Ruta de navegación",
     legalDescription: {
       terms: "Los términos para usar Trans Docs Navigator: información general, no asesoramiento legal, sin garantía. Verifique cada requisito con la fuente oficial.",
       privacy: "Cómo Trans Docs Navigator procesa selecciones y preguntas en el servidor, mantiene los datos de formularios en el dispositivo y limita sus registros.",
