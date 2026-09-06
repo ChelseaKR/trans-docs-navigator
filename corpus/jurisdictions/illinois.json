@@ -8,7 +8,7 @@
     ],
     "topic": "Illinois name change petition",
     "statement": "In Illinois you change your legal name by filing a Request for Name Change with the circuit clerk, and a judge signs an Order for Name Change granting it.",
-    "detail": "You fill out a Request for Name Change and an Order for Name Change, file them with the circuit clerk (usually by electronic filing), get a hearing date, and go in front of a judge. If having your court file open to the public would harm your health or safety, you can also file a Motion to Impound. The guide says the laws on adult name change were updated beginning January 1, 2024, and again on March 1, 2025. The guide no longer lists a newspaper publication step.",
+    "detail": "You fill out a Request for Name Change and an Order for Name Change, file them with the circuit clerk (usually by electronic filing), get a hearing date, and go in front of a judge. If having your court file open to the public would harm your health or safety, you can also file a Motion to Impound. The guide says the laws on adult name change were updated beginning January 1, 2024, and again on March 1, 2025. The guide no longer lists a newspaper publication step. Illinois law also sets a residency requirement and restricts who may file after certain criminal convictions — see the paired eligibility record, which cites the statute itself.",
     "cost": {
       "amount_usd": null,
       "note": "Filing fees differ from case to case and county to county — ask the circuit clerk. A fee waiver is available if you qualify.",
@@ -32,6 +32,29 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "language": "en",
+    "form_ref": "il-nc-a-request-for-name-change"
+  },
+  {
+    "id": "il.court-order.name.eligibility",
+    "jurisdiction": "US-IL",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Illinois name change: residency requirement and who may file",
+    "statement": "Illinois law (735 ILCS 5/21-101, as amended effective March 1, 2025) lets a resident of Illinois file a petition to change their name in the circuit court of the county where they reside. The petitioner must have resided in Illinois for 3 months at the time of the name-change hearing or the entry of the order granting the change.",
+    "detail": "The statute page displays two earlier versions of this section, effective July 1, 2024, that required 6 months of residency before filing; the March 1, 2025 version is the latest. The same section restricts who may file. A person convicted of an offense that requires registration under the Sex Offender Registration Act, the Murderer and Violent Offender Against Youth Registration Act, or the Arsonist Registration Act, who has not been pardoned, may not file a name-change petition during the registration period unless they verify under oath that the petition is due to marriage, religious beliefs, status as a victim of trafficking, or gender-related identity as defined by the Illinois Human Rights Act — and a judge may grant or deny that request. A person convicted of a felony whose sentence has not been completed, terminated, or discharged may not file unless pardoned. If the court grants a name change to someone with an unpardoned conviction, a pending charge, or an arrest without a filed charge, a copy of the order goes to the Illinois State Police, which updates its records to show both the new and the former name.",
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://ilga.gov/Documents/legislation/ilcs/documents/073500050K21-101.htm",
+      "title": "Illinois General Assembly — 735 ILCS 5/21-101, Change of Name: Proceedings; Parties",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
     "language": "en"
   },
   {

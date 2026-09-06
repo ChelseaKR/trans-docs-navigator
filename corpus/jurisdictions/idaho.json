@@ -106,11 +106,32 @@
     ],
     "topic": "Idaho birth certificate sex designation",
     "statement": "Idaho Code lists sex among the \"material facts\" that must appear on a birth certificate, alongside the time, date, and place of birth. These material facts may be amended only within one (1) year of when the certificate was filed, using a notarized affidavit of correction.",
-    "detail": "After that first year, the statute says these material facts \"may be challenged in court only on the basis of fraud, duress, or material mistake of fact,\" with the burden of proof on the person challenging it. The statute describes no separate process for updating the sex marker to match a person's current gender identity. This provision was added in 2020 and amended again in 2024, and an earlier Idaho policy on this same question was the subject of federal litigation. Confirm the current, enforceable status with the Bureau of Vital Records or an attorney before relying on it.",
+    "detail": "After that first year, the statute says these material facts \"may be challenged in court only on the basis of fraud, duress, or material mistake of fact,\" with the burden of proof on the person challenging it. The statute describes no separate process for updating the sex marker to match a person's current gender identity. This provision was added in 2020 and amended again in 2024, and an earlier Idaho policy on this same question was the subject of federal litigation. For what the State says about enforcing this section now that the injunction from that litigation has been dissolved, see the paired record citing the Idaho Attorney General's January 2026 announcement. Confirm the current, enforceable status with the Bureau of Vital Records or an attorney before relying on it.",
     "prerequisites": [],
     "source": {
       "url": "https://legislature.idaho.gov/statutesrules/idstat/Title39/T39CH2/SECT39-245A/",
       "title": "Idaho Statutes — Section 39-245A, Certificates of Birth: Material Facts Included; Amendments",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "id.birth-certificate.gender-marker.injunction",
+    "jurisdiction": "US-ID",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Idaho birth certificate sex designation: the 2018 federal injunction was dissolved in January 2026",
+    "statement": "The Idaho Attorney General announced that on January 8, 2026, Chief U.S. Magistrate Judge Raymond E. Patricco dissolved the 2018 federal injunction that had blocked Idaho from enforcing its law requiring birth certificates to reflect biological sex at birth. The announcement says the Idaho Department of Health and Welfare can now enforce that law for the first time since 2018, and that the 2018 injunction had forced Idaho to process applications to change sex markers based on gender identity.",
+    "detail": "According to the announcement, the parties filed a joint stipulation agreeing to dissolve the injunction after the Attorney General moved to dissolve it in October 2025, citing two 2025 U.S. Supreme Court decisions (Trump v. CASA and United States v. Skrmetti). The Attorney General describes the amendment process that now applies to everyone: within one year of the record, a notarized affidavit declaring the information was incorrectly recorded; after one year, a court proceeding demonstrating fraud, duress, or material mistake of fact. This is the Attorney General's description of the state's position, not a Department of Health and Welfare procedure page. Confirm the current, enforceable status with the Bureau of Vital Records or an attorney before relying on it.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.ag.idaho.gov/newsroom/attorney-general-labrador-secures-court-order-ending-yearslong-block-on-idahos-birth-certificate-law/",
+      "title": "Idaho Office of the Attorney General — Attorney General Labrador Secures Court Order Ending Yearslong Block on Idaho's Birth Certificate Law (press release)",
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     },
