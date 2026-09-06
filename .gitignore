@@ -41,3 +41,9 @@ corpus.manifest.json
 # scanning. A scan artifact, never committed. (This said "`upload: never` on this private repo"
 # until 2026-09-06; the repo is public and the upload is back on. See #239.)
 sarif-results/
+
+# Verifier workbench (scripts/verify-record.ts) local working state — per-jurisdiction
+# progress so a session is resumable, and the reviewer's free-text rejection notes. Local
+# to one verifier's machine by design: notes are NOT corpus content and must never reach
+# rendered output. See docs/VERIFIER-WORKBENCH.md.
+.verifier-workbench/
