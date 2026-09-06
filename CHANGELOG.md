@@ -8,6 +8,26 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **`GET /version` — what the running image was built from** (`api/version.ts`): the AWS
+  preview deploys only on a manual `workflow_dispatch`, so the live service can be
+  arbitrarily far behind `main`, and nothing on the wire said which commit it was
+  running. The image now carries `BUILD_COMMIT`/`BUILD_TIME` build args (Dockerfile) and
+  `/version` serves them alongside the package version and the corpus digest already
+  verified at boot. It never invents an answer: a stamp that is not exactly 40 lowercase
+  hex — unset, empty, an abbreviated SHA, a branch name, the literal `unknown` — is
+  reported as `commit: null, stamped: false`, because a plausible-looking wrong commit is
+  worse than an admitted absence (`tests/version.test.ts` drives every one of those
+  inputs). `deploy-aws-preview.yml` now refuses to report success unless the live URL
+  reports the exact SHA the run deployed, and then that `/readyz` answers 200.
+- **The preview deploy no longer reports success when it deployed nothing**
+  (`.github/workflows/deploy-aws-preview.yml`): the configuration guard was a first step
+  that ran `exit 0` when `AWS_DEPLOY_ROLE_ARN` was unset, with every later step carrying
+  `if: env.configured == 'true'`. Unconfigured, the job ran to completion with every real
+  step skipped and reported **success** — a green check beside "deploy-aws-preview" that
+  reads as "the preview deployed" when nothing was built, pushed, or activated. `vars`
+  (unlike `secrets`) is readable from a job-level `if:`, so the gate moved there: an
+  unconfigured run now renders the deploy job as *skipped*, and a companion job states in
+  warning text that nothing shipped.
 - **Referrals everywhere** (`src/help.ts`): the "Where to get help" block (the state's A4TE
   guide + legal-aid referrals from `corpus/referrals/`, state first then federal) now renders
   on the SEO guide pages (`/guide/<state>/<topic>`) and on the relocation plan (for the
