@@ -8,7 +8,7 @@
     ],
     "topic": "Mississippi name change petition",
     "statement": "To legally change your name as an adult in Mississippi, you petition the chancery court of the county where you live. Mississippi law gives that court jurisdiction over a petition to change a person's name.",
-    "detail": "Mississippi's age of majority is twenty-one, not eighteen: Miss. Code Ann. Section 1-3-27 defines a minor as a person under 21, so a petitioner who is 18, 19, or 20 is still a minor under Mississippi's statutes. That matters because the Mississippi Supreme Court has held that a minor's name-change petition is not granted as a matter of course: a chancellor may grant it only where the change is clearly in the child's best interest, even when nobody objects and both parents agree (In re S.M.-B., No. 2023-CA-01379-SCT, decided April 17, 2025, https://courts.ms.gov/images/Opinions/CO182514.pdf). In that case the court upheld a Hinds County chancellor's dismissal of a 16-year-old's petition for a name matching their gender identity, reasoning that the child should mature more before refiling. A minor's petition is brought on the minor's behalf by a parent, guardian, or next friend. If you are under 21, ask the chancery clerk how the court expects your petition to be filed. Separately, as of July 1, 2026, Mississippi law makes it a felony for a person required to register as a sex offender to change their name, unless the name changed because of a marriage or a divorce. This rule does not affect most people filing a name-change petition, but it matters if you have a sex-offender registration requirement.",
+    "detail": "As of July 1, 2026, Mississippi law makes it a felony for a person required to register as a sex offender to change their name, unless the name changed because of a marriage or a divorce. This new rule does not affect most people filing a name-change petition, but it matters if you have a sex-offender registration requirement.",
     "cost": {
       "amount_usd": null,
       "note": "Mississippi's name-change law does not state a filing fee — the chancery court where you file sets its own. Contact the chancery clerk in the county where you'll file for the current amount."
@@ -147,6 +147,27 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ms.court-order.name.age-of-majority",
+    "jurisdiction": "US-MS",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Mississippi name change — age of majority is 21, and how the court treats a minor's petition",
+    "statement": "In Mississippi a person under 21 is a minor for name-change purposes, and the Mississippi Supreme Court has held that a chancellor may grant a minor's name-change petition only where the change is clearly in the child's best interest, even when nobody objects.",
+    "detail": "Mississippi's age of majority is twenty-one, not eighteen: Miss. Code Ann. Section 1-3-27 defines a minor as a person under 21, so a petitioner who is 18, 19, or 20 is still a minor under Mississippi's statutes. In In re S.M.-B., No. 2023-CA-01379-SCT (decided April 17, 2025), the Mississippi Supreme Court held that a minor's name-change petition is not granted as a matter of course: a chancellor may grant it only where the change is clearly in the child's best interest, even when nobody objects and both parents agree. The court upheld a Hinds County chancellor's dismissal of a 16-year-old's petition for a name matching their gender identity, reasoning that the child should mature more before refiling. A minor's petition is brought on the minor's behalf by a parent, guardian, or next friend. If you are under 21, ask the chancery clerk how the court expects your petition to be filed. This record relays a court opinion; no official page publishes the statute's text to this project, so a human reviewer should confirm it.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://courts.ms.gov/images/Opinions/CO182514.pdf",
+      "title": "Mississippi Supreme Court — In re S.M.-B., No. 2023-CA-01379-SCT (Apr. 17, 2025)",
+      "last_verified": "2026-09-06",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
     "language": "en"
   }
 ]

@@ -35,7 +35,7 @@
     ],
     "topic": "Montana driver's license name and gender-marker change",
     "statement": "Montana's courts self-help page for name changes links out to the Department of Justice's Motor Vehicle Division for updating a driver license or ID card after a name or gender change.",
-    "detail": "This project still cannot read the Motor Vehicle Division's own pages: https://dojmt.gov/driving/driver-licensing/ and the newer https://mvdmt.gov/ both return an automated bot-verification challenge (a Cloudflare check) to this project's fetcher, so no snapshot of them can be taken and no fee or form is asserted here. What an official source does say: in Kalarchik v. State (Montana Supreme Court, decided April 14, 2026, https://juddocumentservice.mt.gov/getDocByCTrackId?DocId=564241), the court described a 2024 Motor Vehicle Division policy, not published to the public, under which a plaintiff was told she could not amend the sex designation on her driver's license without a court order and a corrected birth certificate. The court affirmed a district-court ruling that preliminarily enjoins the State from enforcing that policy, Senate Bill 458, and the Department of Public Health and Human Services' 2022 birth-certificate rule as they pertain to amending birth certificates and driver's licenses, while the case continues. Because the policy is unpublished and its enforcement is enjoined, ask a Montana driver's license office directly what it currently requires.",
+    "detail": "This project could not independently confirm what the Motor Vehicle Division's own page currently requires: it returns an automated bot-verification challenge (a Cloudflare check) to this project's fetcher, so no snapshot of it could be taken and no specific form, fee, or document requirement is asserted here. Check it yourself at https://dojmt.gov/driving/driver-licensing/ (Montana Department of Justice, Motor Vehicle Division), or contact a Montana driver's license office directly.",
     "prerequisites": [],
     "source": {
       "url": "https://courts.mt.gov/Forms/namechange",
@@ -117,6 +117,27 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "mt.drivers-license.gender-marker.injunction",
+    "jurisdiction": "US-MT",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Montana driver's license sex designation — the Kalarchik v. State injunction",
+    "statement": "In Kalarchik v. State (Montana Supreme Court, decided April 14, 2026), the court affirmed a preliminary injunction that stops the State from enforcing an unpublished 2024 Motor Vehicle Division policy requiring a court order and a corrected birth certificate before the sex designation on a driver's license can be amended, while the case continues.",
+    "detail": "The opinion describes a 2024 Motor Vehicle Division policy, not published to the public, under which a plaintiff was told she could not amend the sex designation on her driver's license without a court order and a corrected birth certificate. The court affirmed a district-court ruling that preliminarily enjoins the State from enforcing that policy, Senate Bill 458, and the Department of Public Health and Human Services' 2022 birth-certificate rule as they pertain to amending birth certificates and driver's licenses, while the case continues. Because the policy is unpublished and its enforcement is enjoined, ask a Montana driver's license office directly what it currently requires. This record relays a court opinion, not a Motor Vehicle Division page; the Division's own pages cannot be read by this project.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://juddocumentservice.mt.gov/getDocByCTrackId?DocId=564241",
+      "title": "Montana Supreme Court — Kalarchik v. State, 2026 MT 76 (Apr. 14, 2026)",
+      "last_verified": "2026-09-06",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
     "language": "en"
   }
 ]
