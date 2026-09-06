@@ -63,7 +63,16 @@
     "detail": "Si tiene inquietudes de seguridad personal sobre esa publicación pública, puede pedirle al juez que la exima, y también puede pedir que su caso se mantenga confidencial o que su nombre no aparezca en el índice público CourtView — usando el formulario de Solicitud para Eximir la Publicación (CIV-708). Su audiencia debe programarse al menos 40 días después de la orden de programación del tribunal, y su nuevo nombre no es oficial hasta al menos 30 días después de que se distribuya la sentencia. En algunas situaciones el tribunal también puede ordenar aviso adicional, incluida la publicación en un periódico impreso — por ejemplo, si usted está encarcelado, en libertad condicional o bajo palabra, o debe registrarse en el registro de delincuentes sexuales o secuestradores de menores. Las instrucciones propias de Alaska para este proceso no indican un período mínimo de residencia.",
     "cost": {
       "amount_usd": null,
-      "note": "La tarifa de presentación la fija la Regla Administrativa 9(b) del Sistema Judicial de Alaska y no se indica en dólares en el formulario de instrucciones. Comuníquese con el tribunal donde presentará su solicitud, o consulte la tabla de tarifas del propio sistema judicial, para conocer el monto actual. Puede pedir que se exima la tarifa si no puede pagarla (formulario TF-920)."
+      "note": "La tarifa de presentación la fija la Regla Administrativa 9(b) del Sistema Judicial de Alaska y no se indica en dólares en el formulario de instrucciones. Comuníquese con el tribunal donde presentará su solicitud, o consulte la tabla de tarifas del propio sistema judicial, para conocer el monto actual. Puede pedir que se exima la tarifa si no puede pagarla (formulario TF-920). La tabla de tarifas del propio sistema judicial se cubre en el registro de tarifas judiciales de Alaska correspondiente.",
+      "fee_waiver": true,
+      "fee_waiver_form": "ak-tf-920",
+      "fee_waiver_criteria": "To request waiver of the filing fee for your case, submit the following form when you file your case: TF-920 - Request for Exemption from Payment of Fees",
+      "fee_waiver_source": {
+        "url": "https://courts.alaska.gov/shc/courtfees.htm",
+        "title": "Sistema Judicial de Alaska — Tarifas de Presentación y Exención de Tarifas",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "prerequisites": [],
     "source": {
@@ -75,6 +84,35 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "form_ref": "ak-civ-700-petition-name-change",
+    "language": "es"
+  },
+  {
+    "id": "ak.court-order.fees.es",
+    "jurisdiction": "US-AK",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Tarifa de presentación para el cambio de nombre en Alaska",
+    "statement": "La tabla de tarifas del Sistema Judicial de Alaska indica una tarifa de presentación de $200 para un cambio de nombre, ya sea de un menor o de un adulto. La Regla Administrativa 9 fija la tarifa, y los montos de la página del tribunal están vigentes desde el 1 de mayo de 2023.",
+    "detail": "La página del tribunal dice que en un caso como este no hay tarifas judiciales adicionales una vez abierto, a menos que usted solicite copias. Sus instrucciones de exención de tarifas dicen que, para solicitar la exención de la tarifa de presentación de su caso, usted presenta una Solicitud de Exención del Pago de Tarifas (formulario TF-920) al presentar su caso; el tribunal retiene su presentación hasta que el juez decida sobre la solicitud, y la página dice que estas solicitudes normalmente se resuelven en unos pocos días.",
+    "cost": {
+      "amount_usd": 200,
+      "note": "Esta es la tarifa estatal de presentación para un caso de cambio de nombre conforme a la Regla Administrativa 9. Puede pedirle al tribunal que la exima presentando el formulario TF-920 con su caso.",
+      "fee_waiver": true,
+      "fee_waiver_form": "ak-tf-920",
+      "fee_waiver_criteria": "To request waiver of the filing fee for your case, submit the following form when you file your case: TF-920 - Request for Exemption from Payment of Fees"
+    },
+    "form_ref": null,
+    "prerequisites": [],
+    "source": {
+      "url": "https://courts.alaska.gov/shc/courtfees.htm",
+      "title": "Sistema Judicial de Alaska — Tarifas de Presentación y Exención de Tarifas",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
     "language": "es"
   },
   {
@@ -236,12 +274,12 @@
     ],
     "topic": "Designación de sexo o género en la licencia de conducir/identificación de Alabama",
     "statement": "La página de la Agencia de Cumplimiento de la Ley de Alabama (ALEA) que enumera los formularios y requisitos de la licencia de conducir describe cómo actualizar su nombre después de un cambio de nombre legal. No menciona ningún formulario o proceso para cambiar el sexo o género que aparece en una licencia de conducir o identificación.",
-    "detail": "Una lista aparte de ALEA de los documentos aceptados para comprobar su identidad para una licencia o identificación tampoco menciona el sexo o género en ninguna parte. Lea usted mismo las páginas actuales de ALEA, o llame a la División de Licencias de Conducir, antes de suponer que existe o no existe esta opción.",
+    "detail": "La página aparte de ALEA sobre Requisitos de Documentos y Tarifas menciona el sexo solo cuando describe un certificado de nacimiento certificado de EE. UU. como un documento que muestra la fecha de nacimiento, el nombre completo y el sexo de una persona; ni esa página ni la lista de documentos de STAR ID de ALEA describen alguna manera de cambiar el sexo que aparece en una licencia o tarjeta de identificación. Este proyecto volvió a leer las páginas de licencias de conducir de ALEA el 5 de septiembre de 2026 y no encontró nada nuevo al respecto. Lea usted mismo las páginas actuales de ALEA, o llame a la División de Licencias de Conducir, antes de suponer que existe o no existe esta opción.",
     "prerequisites": [],
     "source": {
       "url": "https://www.alea.gov/dps/driver-license/driver-license-forms",
       "title": "Alabama Law Enforcement Agency — Driver License Forms",
-      "last_verified": "2026-07-13",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",
@@ -468,7 +506,7 @@
     ],
     "topic": "Cambio de nombre en el acta de nacimiento de Arizona",
     "statement": "Para cambiar el nombre en un acta de nacimiento de Arizona un año o más después del nacimiento, la Oficina de Registros Vitales de Arizona pide una copia certificada del cambio de nombre ordenado por la corte, una Declaración Jurada (Affidavit) completa firmada ante un notario, una solicitud de copia del acta de nacimiento, y una copia de su identificación oficial con fotografía.",
-    "detail": "Las solicitudes presentadas menos de un año después del nacimiento pueden usar evidencia distinta en lugar de una orden judicial. Incluya un sobre con su propia dirección y franqueo pagado junto con su solicitud enviada por correo. La mayoría de los condados de Arizona pueden procesar actas de nacimiento de 1997 al presente; la Oficina de Registros Vitales atiende por correo las actas más antiguas, las de nacidos en el extranjero y las tardías.",
+    "detail": "Las solicitudes presentadas menos de un año después del nacimiento pueden usar evidencia distinta en lugar de una orden judicial. Incluya un sobre con su propia dirección y franqueo pagado junto con su solicitud enviada por correo. La mayoría de los condados de Arizona pueden procesar actas de nacimiento de 1997 al presente; la Oficina de Registros Vitales atiende por correo las actas más antiguas, las de nacidos en el extranjero y las tardías. La página de la Oficina cita los Estatutos Revisados de Arizona §§ 36-323 y 36-337 y el Código Administrativo de Arizona R9-19-208 como las leyes que permiten cambiar el nombre de un registrante después del nacimiento.",
     "cost": {
       "amount_usd": null,
       "note": "Esta página no indica el monto de la cuota; véase el registro de cuotas de actas de nacimiento de Arizona correspondiente para la cifra actual."
@@ -530,7 +568,7 @@
     ],
     "topic": "Solicitud de cambio de nombre en Arizona",
     "statement": "En Arizona usted presenta una solicitud de cambio de nombre en la corte superior del condado donde vive, indicando el nombre que desea y sus razones para quererlo. Un juez decide si sustituye su nombre original por el nuevo.",
-    "detail": "Una vez que la corte concede el cambio, usted entrega la orden judicial firmada a la oficina de registros vitales del estado donde nació, para que ese estado actualice su acta de nacimiento. La cuota estatal de presentación de esta corte para esta petición se establece en un formulario de cuotas aparte (véase el registro de cuotas de Arizona correspondiente).",
+    "detail": "Una vez que la corte concede el cambio, usted entrega la orden judicial firmada a la oficina de registros vitales del estado donde nació, para que ese estado actualice su acta de nacimiento. La cuota estatal de presentación de esta corte para esta petición se establece en un formulario de cuotas aparte (véase el registro de cuotas de Arizona correspondiente). En \"Recursos\", la página enlaza a los formularios de cambio de nombre y a los Estatutos Revisados de Arizona, Título 12 (Tribunales y Procedimientos Civiles), § 12-601.",
     "cost": {
       "amount_usd": null,
       "note": "Esta página no indica el monto de la cuota. Las cortes superiores de Arizona publican un formulario de cuotas estatal para una petición de cambio de nombre; véase el registro de cuotas de la corte de Arizona correspondiente para la cifra actual."
@@ -998,7 +1036,8 @@
     "relocation": {
       "residency_bound": true
     },
-    "language": "es"
+    "language": "es",
+    "form_ref": "co-jdf-433"
   },
   {
     "id": "co.drivers-license.gender-marker.es",
@@ -1059,7 +1098,7 @@
     ],
     "topic": "Cambio de nombre en el acta de nacimiento de Connecticut",
     "statement": "Para cambiar el nombre en un acta de nacimiento de Connecticut después de un cambio de nombre ordenado por un tribunal, usted presenta una orden judicial de Cambio Legal de Nombre original y certificada, un affidávit notariado de cambio de nombre, y una identificación con fotografía emitida por el gobierno, ante el secretario del pueblo donde ocurrió el nacimiento — en persona o por correo. Solo la persona registrada en el acta (si tiene 18 años o más) o el padre/madre de un menor puede solicitar el cambio.",
-    "detail": "Connecticut solo permite cambiar los campos del propio nombre del registrante mediante este proceso — los campos del nombre de un padre o madre no pueden cambiarse de esta manera. La orden judicial original le será devuelta si la solicita.",
+    "detail": "Connecticut solo permite cambiar los campos del propio nombre del registrante mediante este proceso — los campos del nombre de un padre o madre no pueden cambiarse de esta manera. La orden judicial original le será devuelta si la solicita. La página cita los Estatutos Generales de Connecticut § 19a-42 y los Reglamentos de las Agencias Estatales de Connecticut §§ 19a-41-5 a 19a-41-11 como la ley que rige las correcciones y enmiendas de los registros vitales.",
     "cost": {
       "amount_usd": null,
       "note": "No hay tarifa de procesamiento por enmiendas o correcciones. Esta página no indica por separado el costo de una copia certificada del acta enmendada — comuníquese con la oficina de Registros Vitales del secretario del pueblo donde ocurrió el nacimiento para esa tarifa."
@@ -1262,6 +1301,33 @@
     "verification_status": "verified",
     "recheck_sla_days": 30,
     "form_ref": "dc-dmv-gender-self-designation",
+    "language": "es"
+  },
+  {
+    "id": "dc.drivers-license.fees.es",
+    "jurisdiction": "US-DC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Tarifas de la licencia de conducir y la tarjeta de identificación del Distrito de Columbia",
+    "statement": "La tabla de tarifas de licencias de conducir del DMV de DC indica $47 por una licencia de conducir nueva o renovada, válida por 8 años, y $20 por una tarjeta de identificación de no conductor nueva o renovada. Un duplicado de la licencia de conducir o de la tarjeta de identificación de no conductor cuesta $20.",
+    "detail": "Estas son las tarifas que la página del DMV de DC indica por la tarjeta en sí; la página no menciona una tarifa aparte por un cambio de nombre o de marcador de género. La misma página dice que, desde el 15 de diciembre de 2025, se agrega un cargo por servicio del 2.5% a todas las transacciones con tarjeta de débito o crédito realizadas en línea, por la aplicación móvil y en persona.",
+    "cost": {
+      "amount_usd": null,
+      "note": "$47 es la tarifa por una licencia de conducir y $20 por una tarjeta de identificación de no conductor, nueva o renovada; un duplicado de cualquiera de las dos cuesta $20. El DMV de DC agrega un cargo por servicio del 2.5% a los pagos con tarjeta de débito o crédito."
+    },
+    "form_ref": null,
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.dc.gov/book/dmv-fees/driver-license-fees",
+      "title": "DMV de DC — Tarifas de Licencias de Conducir",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
     "language": "es"
   },
   {
@@ -7327,7 +7393,7 @@
     "source": {
       "url": "https://secure.ssa.gov/poms.nsf/lnx/0110212200",
       "title": "Manual de Operaciones del Seguro Social (POMS) RM 10212.200 — Cambios de datos del NUMIDENT por razones distintas al cambio de nombre",
-      "last_verified": "2026-07-13",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",

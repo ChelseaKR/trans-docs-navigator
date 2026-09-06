@@ -381,7 +381,7 @@
   "jurisdiction_readiness": [
     {
       "jurisdiction": "US-AK",
-      "records": 10,
+      "records": 12,
       "current_records": 6,
       "gold_items": 2,
       "accuracy": 1,
@@ -451,7 +451,7 @@
     },
     {
       "jurisdiction": "US-DC",
-      "records": 10,
+      "records": 12,
       "current_records": 10,
       "gold_items": 4,
       "accuracy": 1,

@@ -79,6 +79,33 @@
     "language": "en"
   },
   {
+    "id": "dc.drivers-license.fees",
+    "jurisdiction": "US-DC",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "District of Columbia driver's license and ID card fees",
+    "statement": "DC DMV's driver license fee schedule lists $47 for a first-time or renewal driver license, valid for 8 years, and $20 for a first-time or renewal non-driver ID card. A duplicate driver license or a duplicate non-driver ID card costs $20.",
+    "detail": "These are the fees DC DMV's page lists for the card itself; the page does not name a separate fee for a name or gender-marker change. The same page says that since December 15, 2025, a 2.5% service fee is added to all debit and credit card transactions completed online, through the mobile app, and in person.",
+    "cost": {
+      "amount_usd": null,
+      "note": "$47 is the fee for a driver license and $20 for a non-driver ID card, first-time or renewal; a duplicate of either is $20. DC DMV adds a 2.5% service fee to debit and credit card payments."
+    },
+    "form_ref": null,
+    "prerequisites": [],
+    "source": {
+      "url": "https://dmv.dc.gov/book/dmv-fees/driver-license-fees",
+      "title": "DC DMV — Driver License Fees",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
     "id": "dc.birth-certificate.name",
     "jurisdiction": "US-DC",
     "document_type": "birth-certificate",

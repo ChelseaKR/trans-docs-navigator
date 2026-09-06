@@ -11,7 +11,16 @@
     "detail": "If you have personal safety concerns about that public posting, you can ask the judge to waive it, and you can also ask the court to keep your case confidential or to withhold your name from the public CourtView index — using the Request to Waive Posting form (CIV-708). Your hearing must be scheduled at least 40 days after the court's scheduling order, and your new name isn't official until at least 30 days after the judgment is distributed. In some situations the court can also order additional notice, including publication in a print newspaper — for example, if you are incarcerated, on probation or parole, or must register on the sex offender or child kidnapper registry. Alaska's own instructions for this process do not state a minimum residency period.",
     "cost": {
       "amount_usd": null,
-      "note": "The filing fee is set by the Alaska Court System's Administrative Rule 9(b) and is not stated in dollars on the instructions form. Contact the court you're filing in, or check the court system's own fee schedule, for the current amount. You can ask to have the fee waived if you can't afford it (form TF-920)."
+      "note": "The filing fee is set by the Alaska Court System's Administrative Rule 9(b) and is not stated in dollars on the instructions form. Contact the court you're filing in, or check the court system's own fee schedule, for the current amount. You can ask to have the fee waived if you can't afford it (form TF-920). The court system's own fee schedule is covered in the paired Alaska court-fee record.",
+      "fee_waiver": true,
+      "fee_waiver_form": "ak-tf-920",
+      "fee_waiver_criteria": "To request waiver of the filing fee for your case, submit the following form when you file your case: TF-920 - Request for Exemption from Payment of Fees",
+      "fee_waiver_source": {
+        "url": "https://courts.alaska.gov/shc/courtfees.htm",
+        "title": "Alaska Court System — Filing Fees & Fee Waiver",
+        "last_verified": "2026-09-05",
+        "verifier": "Pilot Seed Reviewer"
+      }
     },
     "prerequisites": [],
     "source": {
@@ -23,6 +32,35 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "form_ref": "ak-civ-700-petition-name-change",
+    "language": "en"
+  },
+  {
+    "id": "ak.court-order.fees",
+    "jurisdiction": "US-AK",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Alaska name-change filing fee",
+    "statement": "The Alaska Court System's fee schedule lists a $200 filing fee for a change of name, for a child or an adult. Administrative Rule 9 sets the fee, and the amounts on the court's page have been in effect since May 1, 2023.",
+    "detail": "The court's page says that in a case like this there are no additional court fees once you have opened it unless you request copies. Its fee-waiver instructions say that to request a waiver of the filing fee for your case, you submit a Request for Exemption from Payment of Fees (form TF-920) when you file your case; the court holds on to your filing until the judge rules on the request, and the page says these requests are usually ruled on within a few days.",
+    "cost": {
+      "amount_usd": 200,
+      "note": "This is the statewide filing fee for a change-of-name case under Administrative Rule 9. You can ask the court to waive it by filing form TF-920 with your case.",
+      "fee_waiver": true,
+      "fee_waiver_form": "ak-tf-920",
+      "fee_waiver_criteria": "To request waiver of the filing fee for your case, submit the following form when you file your case: TF-920 - Request for Exemption from Payment of Fees"
+    },
+    "form_ref": null,
+    "prerequisites": [],
+    "source": {
+      "url": "https://courts.alaska.gov/shc/courtfees.htm",
+      "title": "Alaska Court System — Filing Fees & Fee Waiver",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
     "language": "en"
   },
   {

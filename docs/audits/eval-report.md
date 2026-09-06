@@ -82,14 +82,14 @@ Mechanically-ready = has current corpus + gold coverage + meets the accuracy bar
 
 | Jurisdiction | Records | Current | Gold items | Accuracy | Mechanically ready | Human-verified | Launch-cleared |
 |--------------|--------:|--------:|-----------:|---------:|:------------------:|:--------------:|:--------------:|
-| US-AK | 10 | 6 | 2 | 100.0% | ✅ | ❌ | ❌ |
+| US-AK | 12 | 6 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-AL | 12 | 6 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-AR | 10 | 6 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-AZ | 14 | 10 | 2 | 100.0% | ✅ | ❌ | ❌ |
 | US-CA | 24 | 24 | 6 | 100.0% | ✅ | ❌ | ❌ |
 | US-CO | 8 | 8 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-CT | 10 | 10 | 4 | 100.0% | ✅ | ❌ | ❌ |
-| US-DC | 10 | 10 | 4 | 100.0% | ✅ | ❌ | ❌ |
+| US-DC | 12 | 10 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-DE | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |
 | US-FL | 10 | 10 | 3 | 100.0% | ✅ | ❌ | ❌ |
 | US-GA | 12 | 12 | 4 | 100.0% | ✅ | ❌ | ❌ |

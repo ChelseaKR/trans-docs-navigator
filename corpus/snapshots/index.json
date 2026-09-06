@@ -1617,6 +1617,16 @@
       "unextractable": {
         "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
+    },
+    "https://courts.alaska.gov/shc/courtfees.htm": {
+      "file": "courts-alaska-gov-shc-courtfees-htm-a38bfbe4.txt",
+      "fetched": "2026-09-05",
+      "sha256": "d1b1bd491319d79df35cc23fd6223450244f0c89dd4458fe10889ecea7da8dab"
+    },
+    "https://dmv.dc.gov/book/dmv-fees/driver-license-fees": {
+      "file": "dmv-dc-gov-book-dmv-fees-driver-license-fees-31a781cc.txt",
+      "fetched": "2026-09-05",
+      "sha256": "988db3de90da9ea08ab9ad08660a8391511eafeb4153b4354a02aeb27cb078f6"
     }
   }
 }
