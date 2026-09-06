@@ -16,6 +16,8 @@ import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
 import { renderMovePage, renderPlanPage } from "../src/relocation.ts";
 import { buildRelocationPlan } from "../api/relocation.ts";
+import { renderCompareFormPage, renderCompareResultsPage } from "../src/compare.ts";
+import { buildCompareTable } from "../api/compare.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderTransparencyPage } from "../src/transparency.ts";
 import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.ts";
@@ -61,6 +63,12 @@ const indexable: Indexable[] = [
   { name: "methodology (en)", path: "/methodology", html: renderMethodologyPage("en") },
   { name: "transparency (en)", path: "/transparency", html: renderTransparencyPage("en") },
   { name: "transparency (es)", path: "/transparency", html: renderTransparencyPage("es") },
+  // /compare's bare FORM is indexable, like /move's form arguably should be but isn't —
+  // this route carries no origin→destination pair, so it gets the guide/legal-page
+  // posture instead of the relocation planner's stricter one. Only the form; a result
+  // (a query string) is noindex, in the block below.
+  { name: "compare-form (en)", path: "/compare", html: renderCompareFormPage("en") },
+  { name: "compare-form (es)", path: "/compare", html: renderCompareFormPage("es") },
 ];
 
 for (const p of indexable) {
@@ -104,6 +112,10 @@ const noindex: { name: string; html: string }[] = [
       "en",
     ),
   },
+  {
+    name: "compare-results",
+    html: renderCompareResultsPage(buildCompareTable({ documents: ["drivers-license"], change_types: ["name"] }), corpus, "en"),
+  },
 ];
 for (const p of noindex) {
   note(/content="noindex,follow"/.test(p.html), `${p.name}: must be noindex,follow`);
@@ -114,9 +126,11 @@ for (const p of noindex) {
 // ── robots.txt + sitemap.xml ───────────────────────────────────────────────────
 const robots = robotsTxt();
 note(/Sitemap: https?:\/\/\S+\/sitemap\.xml/.test(robots), "robots.txt: missing Sitemap line");
-for (const d of ["/checklist", "/packet", "/answer", "/forms/", "/move", "/plan"]) {
+for (const d of ["/checklist", "/packet", "/answer", "/forms/", "/move", "/plan", "/compare?"]) {
   note(robots.includes(`Disallow: ${d}`), `robots.txt: should disallow ${d}`);
 }
+// The bare form must NOT be disallowed — only "/compare?" (a query string) may be.
+note(!/Disallow:\s*\/compare\s*($|\n)/.test(robots), "robots.txt: must not disallow the bare (indexable) /compare form");
 note(!/Disallow:\s*\/assets/.test(robots) && !/Disallow:\s*\/vendor/.test(robots), "robots.txt: must NOT block CSS/JS (crawlers need them to render)");
 
 const paths = indexablePaths();

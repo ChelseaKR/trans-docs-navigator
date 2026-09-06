@@ -253,6 +253,58 @@ export interface RelocationMessages {
 }
 
 /**
+ * Strings for the "which state?" comparison table (api/compare.ts) — the inverse of the
+ * relocation planner: not "I'm moving from X to Y", but "which states have a documented
+ * path for what I need, and which don't".
+ *
+ * READ THIS BEFORE ADDING ONE. This is the single most politically exposed surface in
+ * the app: it must never rank, score, or characterize a state ("safe", "friendly",
+ * "hostile", "better") — see docs/RELOCATION.md's sibling discipline for
+ * RelocationMessages. Every string here is either UI chrome (form labels, a sort
+ * toggle), a STRUCTURAL status label naming what the corpus holds (`documented`, `needs
+ * reverification`, `no path documented`, `not covered`), or a plain-language definition
+ * of those four labels. If a string you're about to add would let a reader rank states
+ * against each other, it does not belong here — delete it instead.
+ */
+export interface CompareMessages {
+  formTitle: string;
+  formHeading: string;
+  formLead: string;
+  currentLegend: string;
+  currentBlankOption: string;
+  submit: string;
+  /** Link text from /move and the intake page to this tool. */
+  cta: string;
+
+  resultsTitle: string;
+  resultsHeading: string;
+  resultsIntro: string;
+  /** Table <caption> — what the table shows, never a value judgement about it. */
+  caption: string;
+  columnState: string;
+  /** Appended to the row header of the jurisdiction matching the optional "current state". */
+  currentMarker: string;
+
+  // The four statuses. Short badge text (the table cell) + a plain-language definition
+  // of what it means (the legend above the table). See CoverageStatus (api/types.ts).
+  statusDocumented: string;
+  statusNeedsReverification: string;
+  statusNoPath: string;
+  statusNotCovered: string;
+  legendHeading: string;
+  legendDocumented: string;
+  legendNeedsReverification: string;
+  legendNoPath: string;
+  legendNotCovered: string;
+
+  // Sort — a count of records, never a ranking. Exactly the neutral label the count is
+  // named by; see api/compare.ts:documentedPathCount.
+  sortLabel: string;
+  sortAlpha: string;
+  sortCount: string;
+}
+
+/**
  * Scaffolding sentences the answer composer writes around record statements
  * (which are already in the record's own language).
  */
@@ -296,6 +348,9 @@ export interface SeoMessages {
   /** Keyword-shaped homepage <title> (brand is appended by the renderer). */
   homeTitle: string;
   homeDescription: string;
+  /** Meta description for the /compare form — shorter than CompareMessages.formLead,
+   *  which is the on-page paragraph and runs well past the SERP length budget. */
+  compareDescription: string;
   guideIndexTitle: string;
   guideIndexDescription: string;
   guideIndexLead: string;
@@ -356,6 +411,9 @@ export interface LocaleBundle {
   fieldLabels: Record<string, string>;
   /** Relocation-planner chrome. Structural labels and cautions only — never a legal claim. */
   relocation: RelocationMessages;
+  /** "Which state?" comparison table chrome. Structural labels + plain-language status
+   *  definitions only — see CompareMessages for why nothing here may rank a state. */
+  compare: CompareMessages;
   generator: GeneratorMessages;
   legal: LegalMessages;
   /**

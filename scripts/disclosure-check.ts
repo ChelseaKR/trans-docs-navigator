@@ -12,6 +12,8 @@ import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
 import { renderMovePage, renderPlanPage } from "../src/relocation.ts";
 import { buildRelocationPlan } from "../api/relocation.ts";
+import { renderCompareFormPage, renderCompareResultsPage } from "../src/compare.ts";
+import { buildCompareTable } from "../api/compare.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderTransparencyPage } from "../src/transparency.ts";
 import { renderJurisdictionFeedXml } from "../src/feeds.ts";
@@ -85,6 +87,8 @@ for (const lang of ["en", "es"] as Language[]) {
     ["packet", renderPacketPage(cl, corpus, lang, "2026-05-31")],
     ["move", renderMovePage(lang)],
     ["plan", renderPlanPage(plan, corpus, lang)],
+    ["compare-form", renderCompareFormPage(lang)],
+    ["compare-results", renderCompareResultsPage(buildCompareTable({ documents: [], change_types: [] }), corpus, lang)],
     ["form-fill", renderFormFillPage(formById("us-ss-5")!, lang)],
     ["answer-page", page({ lang, title: "A", heading: "A", body: renderAnswer(answer({ jurisdiction: "US-CA", change_types: ["name"], language: lang }), lang) })],
     ["terms", renderTermsPage(lang)],

@@ -251,6 +251,45 @@ export const es: LocaleBundle = {
     planCta: "Planifique una mudanza a otro estado",
   },
 
+  // Tabla de comparación "¿Qué estado?". Solo etiquetas estructurales de estado +
+  // definiciones en lenguaje sencillo — vea CompareMessages sobre por qué nada aquí
+  // puede clasificar un estado.
+  compare: {
+    formTitle: "Comparar estados",
+    formHeading: "¿Qué estados tienen una vía documentada?",
+    formLead:
+      "Elija lo que necesita actualizar y le mostraremos, para cada estado, si una fuente oficial describe una manera de hacerlo, si esa fuente dice que no hay manera, o si todavía no lo hemos verificado.",
+    currentLegend: "Su estado actual (opcional)",
+    currentBlankOption: "No especificado",
+    submit: "Comparar estados",
+    cta: "Comparar estados uno al lado del otro",
+
+    resultsTitle: "Comparación de estados",
+    resultsHeading: "¿Qué estados tienen una vía documentada?",
+    resultsIntro:
+      "Para cada estado abajo, cada columna muestra lo que dicen nuestras fuentes sobre el documento y el cambio indicados en su encabezado. Lea «Cómo leer esta tabla» antes de confiar en cualquier celda — los cuatro estados significan cosas distintas, y dos de ellos son ausencias que es fácil confundir entre sí.",
+    caption: "Vías documentadas por estado para los documentos y cambios seleccionados arriba.",
+    columnState: "Estado",
+    currentMarker: "su estado actual",
+
+    statusDocumented: "Documentado",
+    statusNeedsReverification: "Documentado, necesita reverificación",
+    statusNoPath: "Ninguna vía documentada",
+    statusNotCovered: "No verificado",
+    legendHeading: "Cómo leer esta tabla",
+    legendDocumented: "Documentado: una fuente oficial que citamos describe una manera de hacer esto.",
+    legendNeedsReverification:
+      "Documentado, necesita reverificación: una fuente oficial describe una manera de hacer esto, pero nuestra verificación está vencida, así que no la mostramos como vigente hasta volver a verificarla.",
+    legendNoPath:
+      "Ninguna vía documentada: una fuente oficial que citamos dice que no describe ninguna manera de hacer esto. Eso es un hecho sobre la fuente, no una prueba de que no exista ninguna manera en ningún lugar — lea la fuente usted mismo antes de confiar en ella.",
+    legendNotCovered:
+      "No verificado: todavía no hemos revisado una fuente oficial para esto. Esto no es una señal de que el estado no le exija nada — simplemente no lo hemos revisado.",
+
+    sortLabel: "Ordenar:",
+    sortAlpha: "Alfabético",
+    sortCount: "Número de vías documentadas",
+  },
+
   generator: {
     costVaries: (note?: string) => (note ? ` El costo varía: ${note}` : " El costo varía."),
     costAbout: (amt: number, waiver: boolean) =>
@@ -433,6 +472,8 @@ export const es: LocaleBundle = {
     homeTitle: "Guía de cambio de nombre y marcador de género, por estado",
     homeDescription:
       "Pasos claros y citados para cambiar su nombre legal y marcador de género en EE. UU., con los formularios y fuentes oficiales de su estado. No es asesoramiento legal.",
+    compareDescription:
+      "Vea, estado por estado, si una fuente oficial describe una manera de actualizar su nombre o marcador de género, dice que no hay manera, o si no se ha revisado.",
     guideIndexTitle: "Guías de cambio de nombre y marcador de género por estado",
     guideIndexDescription:
       "Guías citadas y actuales para cambiar su nombre legal y marcador de género en cada estado que cubrimos: orden judicial, Seguro Social, DMV y pasaporte.",

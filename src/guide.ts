@@ -110,7 +110,7 @@ export function guidePaths(): string[] {
  *  themselves are NOT listed here (they are discovered via `<link rel="alternate">`
  *  autodiscovery, not the HTML sitemap — see src/feeds.ts). */
 export function indexablePaths(): string[] {
-  return ["/", ...guidePaths(), "/terms", "/privacy", "/accessibility", "/methodology", "/transparency", "/feeds"];
+  return ["/", "/compare", ...guidePaths(), "/terms", "/privacy", "/accessibility", "/methodology", "/transparency", "/feeds"];
 }
 
 /** Bilingual display name for a covered state id, or undefined (e.g. for federal "US",

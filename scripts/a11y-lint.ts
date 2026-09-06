@@ -15,6 +15,8 @@ import { formById } from "../api/forms.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
 import { renderMovePage, renderPlanPage } from "../src/relocation.ts";
 import { buildRelocationPlan } from "../api/relocation.ts";
+import { renderCompareFormPage, renderCompareResultsPage } from "../src/compare.ts";
+import { buildCompareTable } from "../api/compare.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderGuideIndex, renderGuidePage } from "../src/guide.ts";
 import { renderFeedsIndex } from "../src/feeds.ts";
@@ -110,6 +112,33 @@ const pages: Page[] = [
   { name: "plan", html: renderPlanPage(relocationPlan("en", []), corpus, "en") },
   { name: "plan-es", html: renderPlanPage(relocationPlan("es", []), corpus, "es") },
   { name: "plan-held", html: renderPlanPage(relocationPlan("en", ["court-order"]), corpus, "en") },
+  // "Which state?" comparison (api/compare.ts): a new table-based surface joins the gate
+  // at the same time as the feature. The results variant deliberately selects
+  // financial-records (never documented anywhere, exercising `not_covered`) alongside
+  // birth-certificate/drivers-license gender-marker changes (which include known
+  // no-path-documented and needs-reverification records) plus multiple change types
+  // (multi-part column headers) and a `current` marker — every distinct cell/branch
+  // this page renders, in one pass.
+  { name: "compare-form", html: renderCompareFormPage("en") },
+  { name: "compare-form-es", html: renderCompareFormPage("es") },
+  {
+    name: "compare-results",
+    html: renderCompareResultsPage(
+      buildCompareTable({ documents: ["drivers-license", "birth-certificate", "financial-records"], change_types: ["name", "gender-marker"] }),
+      corpus,
+      "en",
+      { current: "US-CA" },
+    ),
+  },
+  {
+    name: "compare-results-es-sorted",
+    html: renderCompareResultsPage(
+      buildCompareTable({ documents: ["birth-certificate"], change_types: ["gender-marker"] }, undefined, corpus),
+      corpus,
+      "es",
+      { sort: "count" },
+    ),
+  },
 ];
 
 function checkPage(p: Page): string[] {

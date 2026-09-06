@@ -447,3 +447,48 @@ export interface RelocationPlan {
   /** Documents we cannot produce a verified destination step for. Shown, never hidden. */
   gaps: { document_type: DocumentType; jurisdiction: JurisdictionId; reason: "no-records" | "all-degraded" }[];
 }
+
+// ── "Which state?" comparison (api/compare.ts) ────────────────────────────────────────
+// The inverse of the relocation planner: instead of "I'm moving from X to Y, what
+// changes", this answers "which states have a documented path for the documents/changes
+// I need, and which don't". Same corpus, same freshness/verification rules — just a
+// table over every covered jurisdiction instead of a delta between two of them.
+
+/**
+ * One (jurisdiction × document × change) cell's status, derived STRICTLY from what the
+ * corpus holds — never a judgement about the jurisdiction. `documented` and
+ * `needs_reverification` both mean "a record describes a path" (the difference is
+ * freshness, exactly like ChecklistStep.needs_reverification); `no_path_documented` and
+ * `not_covered` are BOTH absences, but different ones, and the whole point of this
+ * feature is that they must never be collapsed into each other:
+ *   - `no_path_documented`: we looked, and the record's own text says the official
+ *     source describes no route. A fact about the source, not a guess about the state.
+ *   - `not_covered`: we have no record at all for this cell. An absence of research,
+ *     not a fact about the state — see api/checklist.ts:hasNoStateCoverage for the
+ *     same distinction at the whole-jurisdiction level.
+ */
+export type CoverageStatus = "documented" | "needs_reverification" | "no_path_documented" | "not_covered";
+
+/** One cell of the comparison table. */
+export interface CompareCell {
+  jurisdiction: JurisdictionId;
+  document_type: DocumentType;
+  change_type: ChangeType;
+  status: CoverageStatus;
+  /** Backing record ids, in the language actually used to classify (English; see
+   *  api/compare.ts). Empty only when status is `not_covered`. */
+  record_ids: string[];
+}
+
+/** One row of the table: a single jurisdiction's cell for every requested (doc × change). */
+export interface CompareRow {
+  jurisdiction: JurisdictionId;
+  cells: CompareCell[];
+}
+
+export interface CompareTable {
+  documents: DocumentType[];
+  change_types: ChangeType[];
+  /** One row per covered jurisdiction, in the order queried (sorting is a render concern). */
+  rows: CompareRow[];
+}

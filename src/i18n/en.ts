@@ -246,6 +246,44 @@ export const en: LocaleBundle = {
     planCta: "Plan a move to another state",
   },
 
+  // "Which state?" comparison table. Structural status labels + plain-language
+  // definitions ONLY — see CompareMessages for why nothing here may rank a state.
+  compare: {
+    formTitle: "Compare states",
+    formHeading: "Which states have a documented path?",
+    formLead:
+      "Pick what you need to update and we will show you, for every state, whether an official source describes a way to do it, whether that source says there is no way, or whether we have not checked yet.",
+    currentLegend: "Your current state (optional)",
+    currentBlankOption: "Not specified",
+    submit: "Compare states",
+    cta: "Compare states side by side",
+
+    resultsTitle: "State comparison",
+    resultsHeading: "Which states have a documented path?",
+    resultsIntro:
+      "For each state below, each column shows what our sources say about the document and change named in its heading. Read “How to read this table” before you rely on any cell — the four statuses mean different things, and two of them are both absences that are easy to mistake for each other.",
+    caption: "Documented paths by state for the documents and changes selected above.",
+    columnState: "State",
+    currentMarker: "your current state",
+
+    statusDocumented: "Documented",
+    statusNeedsReverification: "Documented, needs reverification",
+    statusNoPath: "No path documented",
+    statusNotCovered: "Not covered",
+    legendHeading: "How to read this table",
+    legendDocumented: "Documented: an official source we cite describes a way to do this.",
+    legendNeedsReverification:
+      "Documented, needs reverification: an official source describes a way to do this, but our check on it is out of date, so we do not show it as current until we recheck it.",
+    legendNoPath:
+      "No path documented: an official source we cite says it describes no way to do this. That is a fact about the source, not proof that no way exists anywhere — read the source yourself before relying on it.",
+    legendNotCovered:
+      "Not covered: we have not checked an official source for this yet. This is not a sign that the state asks nothing of you — we simply have not checked it.",
+
+    sortLabel: "Sort:",
+    sortAlpha: "Alphabetical",
+    sortCount: "Number of documented paths",
+  },
+
   generator: {
     costVaries: (note?: string) => (note ? ` Cost varies: ${note}` : " Cost varies."),
     costAbout: (amt: number, waiver: boolean) =>
@@ -426,6 +464,8 @@ export const en: LocaleBundle = {
     homeTitle: "Legal name & gender-marker change guide, by state",
     homeDescription:
       "Plain-language, cited steps to change your legal name and gender marker in the US, with the right forms and official sources for your state. Not legal advice.",
+    compareDescription:
+      "See, state by state, whether an official source describes a way to update your legal name or gender marker, says there is no way, or has not been checked yet.",
     guideIndexTitle: "State-by-state name & gender-marker change guides",
     guideIndexDescription:
       "Cited, current guides to changing your legal name and gender marker in each state we cover, from court order through SSA, DMV, and passport.",

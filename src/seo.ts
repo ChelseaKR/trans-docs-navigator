@@ -114,6 +114,12 @@ export function robotsTxt(): string {
     // crawler's logs. (`page()` already renders both noindex; this is the second lock.)
     "Disallow: /move",
     "Disallow: /plan",
+    // /compare is the inverse of /move+/plan: the bare form IS indexable (allowed above),
+    // but a result carries the user's document/change selections (and optionally their
+    // current state) in its query string, so only URLs WITH a query string are blocked —
+    // the trailing "?" makes this a query-string-only disallow, unlike the whole-path
+    // disallows above.
+    "Disallow: /compare?",
     "Disallow: /forms/",
     "Disallow: /healthz",
     "",

@@ -133,6 +133,28 @@ footer{max-width:60rem;margin:0 auto;padding:1.5rem 1rem;color:var(--muted);bord
 .hazards li{border-inline-start:.25rem solid var(--warn);padding-inline-start:.6rem;margin:.4rem 0}
 .hazards li.meta{border-inline-start-color:var(--line)}
 .alt-route{border-inline-start:.25rem solid var(--accent);padding-inline-start:.6rem}
+/* "Which state?" comparison table (src/compare.ts). .table-scroll gives the table its
+   OWN horizontal scroll box, so an expanded locale or a narrow viewport widens the
+   table, never the page — see docs/I18N.md G9. Under 640px the table becomes a
+   per-row card list instead (data-label content, generated per cell) so nobody has to
+   scroll a 51-row table sideways on a phone. */
+.table-scroll{overflow-x:auto;margin:1rem 0}
+.compare-table{width:100%;border-collapse:collapse}
+.compare-table caption{text-align:start;color:var(--muted);padding-block-end:.5rem}
+.compare-table th,.compare-table td{border:1px solid var(--line);padding:.5rem .75rem;text-align:start;vertical-align:top}
+.compare-table thead th{background:var(--card)}
+.cell-status{font-weight:600}
+.status-needs-reverification,.status-no-path{color:var(--warn)}
+.status-not-covered{color:var(--muted);font-weight:400}
+@media (max-width: 640px){
+  .compare-table,.compare-table tbody,.compare-table tr,.compare-table th,.compare-table td{display:block;width:100%}
+  .compare-table thead{display:none}
+  .compare-table tr{border:1px solid var(--line);border-radius:.5rem;margin-block-end:.75rem;padding:.5rem}
+  .compare-table td{border:0;border-block-end:1px solid var(--line)}
+  .compare-table td:last-child{border-block-end:0}
+  .compare-table td::before{content:attr(data-label);display:block;font-weight:600;color:var(--muted);margin-block-end:.2rem}
+  .compare-table th[scope=row]{border:0;font-size:1.05rem;border-block-end:2px solid var(--line);margin-block-end:.4rem}
+}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media print{
   :root{--bg:${PALETTE.print.bg};--fg:${PALETTE.print.fg};--muted:${PALETTE.print.muted};--accent:${PALETTE.print.accent};--card:${PALETTE.print.card};--warn:${PALETTE.print.warn};--line:${PALETTE.print.line}}

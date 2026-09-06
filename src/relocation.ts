@@ -151,6 +151,7 @@ ${errorNote}
   </fieldset>
   <button type="submit">${escapeHtml(r.submitPlan)}</button>
 </form>
+<p class="no-print"><a href="/compare${lang === "es" ? "?language=es" : ""}">${escapeHtml(locale(lang).compare.cta)}</a></p>
 <p class="no-print"><a href="/">${escapeHtml(s.backToStart)}</a></p>`;
 
   return page({ lang, title: r.moveTitle, heading: r.moveHeading, body });

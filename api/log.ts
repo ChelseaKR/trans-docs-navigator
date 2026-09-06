@@ -35,6 +35,11 @@ const ALLOWED_FIELDS = new Set([
   "change_types",
   "documents",
   "language",
+  // /compare (api/compare.ts): the optional "current state" marker is the same
+  // sensitivity class as `jurisdiction` above (a single bounded state id); `sort` is a
+  // UI preference (alphabetical/count) with no sensitivity at all.
+  "current",
+  "sort",
   "duration_ms",
   "refused",
   "claims",
