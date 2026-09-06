@@ -16,6 +16,7 @@ import { renderCompareFormPage, renderCompareResultsPage } from "../src/compare.
 import { buildCompareTable } from "../api/compare.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderTransparencyPage } from "../src/transparency.ts";
+import { renderJurisdictionFeedXml } from "../src/feeds.ts";
 import { renderAnswer, page } from "../src/render.ts";
 import type { Language } from "../api/types.ts";
 import { pass, fail } from "./util.ts";
@@ -118,5 +119,27 @@ for (const c of answerCases) {
   }
 }
 
+// Per-jurisdiction change-alert feeds (RSS): the channel description AND every item
+// description must carry the disclosure too — a feed reader never sees the HTML banner,
+// so the XML text is the only place this audience gets the "information, not legal
+// advice" / "AI-assisted" disclosure on this surface.
+for (const lang of ["en", "es"] as Language[]) {
+  const expect = lang === "es" ? "Información, no asesoramiento legal" : DISCLOSURE.notLegalAdvice;
+  const xml = renderJurisdictionFeedXml("US-WA", "Washington", lang, "2026-07-13");
+  const channelDescription = /<channel>[\s\S]*?<description>([\s\S]*?)<\/description>/.exec(xml)?.[1] ?? "";
+  if (!channelDescription.includes(expect)) {
+    problems.push(`feed channel (${lang}): channel <description> missing legal-advice disclaimer`);
+  }
+  const itemDescriptions = [...xml.matchAll(/<item>[\s\S]*?<description>([\s\S]*?)<\/description>[\s\S]*?<\/item>/g)].map(
+    (m) => m[1] ?? "",
+  );
+  if (itemDescriptions.length === 0) {
+    problems.push(`feed item (${lang}): expected at least one <item> to check (fixture US-WA has records)`);
+  }
+  itemDescriptions.forEach((desc, i) => {
+    if (!desc.includes(expect)) problems.push(`feed item ${i} (${lang}): <description> missing legal-advice disclaimer`);
+  });
+}
+
 if (problems.length > 0) fail("disclosure", `${problems.length} missing/invisible disclosure(s)`, problems);
-pass("disclosure", "info-not-advice + AI-assisted disclosures visible in the banner on every page/lang, and trailing on every answer");
+pass("disclosure", "info-not-advice + AI-assisted disclosures visible in the banner on every page/lang, trailing on every answer, and in every feed channel/item description");

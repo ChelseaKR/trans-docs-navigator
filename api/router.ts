@@ -7,13 +7,14 @@
 // rendering. Checklist selections and optional question text are server inputs; direct
 // identity-form fields are not read. See the Privacy Notice for cache/log boundaries.
 
-import { buildChecklist, hasThinnerLanguageCoverage, hasNoStateCoverage } from "./checklist.ts";
+import { buildChecklist, hasThinnerLanguageCoverage, hasNoStateCoverage, hasNoMinorCoverage } from "./checklist.ts";
 import { buildRelocationPlan } from "./relocation.ts";
 import { buildCompareTable, COMPARE_JURISDICTIONS } from "./compare.ts";
 import { answer } from "./guidance.ts";
 import { loadCorpus } from "./corpus.ts";
 import { isCurrent } from "./freshness.ts";
 import { formById } from "./forms.ts";
+import { isKnownJurisdiction } from "./feed.ts";
 import { memoize } from "./cache.ts";
 import type { ChangeType, CorpusRecord, DocumentType, Intake, JurisdictionId, Language, RelocationIntake } from "./types.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
@@ -22,7 +23,8 @@ import { renderCompareFormPage, renderCompareResultsPage, type CompareSort } fro
 import { renderAnswer, page, uiStrings, escapeHtml, STYLE } from "../src/render.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderTransparencyPage } from "../src/transparency.ts";
-import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.ts";
+import { renderGuideIndex, renderGuidePage, indexablePaths, stateNameFor } from "../src/guide.ts";
+import { renderFeedsIndex, renderJurisdictionFeedXml } from "../src/feeds.ts";
 import { robotsTxt, sitemapXml } from "../src/seo.ts";
 import { asLanguage } from "../src/i18n/index.ts";
 import { serviceWorkerScript } from "../src/offline.ts";
@@ -44,6 +46,13 @@ const DOCUMENT_TYPES: readonly DocumentType[] = [
   "passport",
   "birth-certificate",
   "financial-records",
+  "green-card",
+  "naturalization-certificate",
+  "ead",
+  "selective-service",
+  "military-records",
+  "trusted-traveler",
+  "federal-employment-records",
 ];
 const JURISDICTION_RE = /^US(-[A-Z]{2})?$/;
 
@@ -110,6 +119,7 @@ export function intakeQuery(intake: Intake): string {
   for (const d of intake.documents) sp.append("doc", d);
   if (intake.language !== "en") sp.set("language", intake.language);
   if (intake.has_court_order) sp.set("court_order", "1");
+  if (intake.for_minor) sp.set("for_minor", "1");
   return sp.toString();
 }
 
@@ -132,12 +142,14 @@ export function parseRelocationIntake(url: URL): RelocationIntake | null | "same
     .filter((d) => DOCUMENT_TYPES.includes(d))
     .slice(0, LIMITS.maxArrayItems);
   const ct = changeTypes(url);
+  const forMinor = url.searchParams.get("for_minor") === "1";
   return {
     origin,
     destination,
     held,
     change_types: ct.length > 0 ? ct : ["name", "gender-marker"],
     language: asLanguage(languageParam(url)),
+    ...(forMinor ? { for_minor: true } : {}),
   };
 }
 
@@ -149,12 +161,17 @@ export function parseIntake(url: URL): Intake | null {
   // Same privacy class as change_types (a single selection-only bit; see docs/audits/dpia.md) —
   // bookkeeping only, used to annotate the court-order step done and prune it as a prerequisite.
   const hasCourtOrder = url.searchParams.get("court_order") === "1";
+  // Minors pilot: same privacy class again — a single selection-only bit, read by
+  // retrieval (api/retrieval.ts selectAudience) and the coverage-honesty note
+  // (api/checklist.ts hasNoMinorCoverage), never an identity field.
+  const forMinor = url.searchParams.get("for_minor") === "1";
   return {
     jurisdiction,
     change_types: ct.length > 0 ? ct : ["name", "gender-marker"],
     documents: documents(url),
     language: asLanguage(languageParam(url)),
     ...(hasCourtOrder ? { has_court_order: true } : {}),
+    ...(forMinor ? { for_minor: true } : {}),
   };
 }
 
@@ -263,6 +280,10 @@ const cachedChecklistPage = memoize<ChecklistCacheKey, string>(
     renderChecklistPage(buildChecklist(k.intake, k.today), loadCorpus(), k.intake.language, intakeQuery(k.intake), {
       thinnerCoverage: k.thinnerCoverage,
       noStateCoverage: hasNoStateCoverage(k.intake.jurisdiction),
+      // Pure function of (jurisdiction, for_minor) — both already inside intakeQuery(k.intake),
+      // which is part of the cache key, so no separate key field is needed (same reasoning
+      // as noStateCoverage just above).
+      noMinorCoverage: k.intake.for_minor === true && hasNoMinorCoverage(k.intake.jurisdiction),
     }),
   { keyOf: checklistCacheKeyOf },
 );
@@ -273,6 +294,7 @@ interface AnswerKey {
   documents: DocumentType[];
   language: Language;
   today: string | undefined;
+  for_minor: boolean;
 }
 
 interface AnswerCacheValue {
@@ -291,6 +313,7 @@ function answerCacheKeyOf(k: AnswerKey): string {
   for (const d of [...k.documents].sort()) sp.append("doc", d);
   sp.set("language", k.language);
   sp.set("today", k.today ?? "");
+  sp.set("for_minor", String(k.for_minor));
   return sp.toString();
 }
 
@@ -303,14 +326,15 @@ function buildAnswerValue(
   language: Language,
   today: string | undefined,
   question: string | undefined,
+  for_minor: boolean,
 ): AnswerCacheValue {
   const t = uiStrings(language);
-  const result = answer({ jurisdiction, change_types, documents, question, language, today });
+  const result = answer({ jurisdiction, change_types, documents, question, language, today, for_minor });
   const claims = result.blocks.filter((b) => b.kind === "claim").length;
   const degraded = result.blocks.some((b) => b.kind === "freshness");
   // Always give a way forward (no dead-end): back to the checklist for the same query,
   // or start over. Preserves the canonical selection query so the user lands back where they were.
-  const back = intakeQuery({ jurisdiction, change_types, documents, language });
+  const back = intakeQuery({ jurisdiction, change_types, documents, language, ...(for_minor ? { for_minor: true } : {}) });
   const actions = `<p class="no-print"><a href="/checklist?${back}">← ${escapeHtml(t.backToChecklist)}</a> · <a href="/">${escapeHtml(t.backToStart)}</a></p>`;
   const body = page({ lang: language, title: t.answerHeading, heading: t.answerHeading, body: renderAnswer(result, language) + actions });
   return { body, refused: result.refused, claims, degraded };
@@ -319,7 +343,7 @@ function buildAnswerValue(
 // Only cache the free-text-free "common (jurisdiction × change-type)" combos the roadmap
 // item names — a `q` present means we skip the cache entirely (see the /answer route).
 const cachedAnswer = memoize<AnswerKey, AnswerCacheValue>(
-  (k) => buildAnswerValue(k.jurisdiction, k.change_types, k.documents, k.language, k.today, undefined),
+  (k) => buildAnswerValue(k.jurisdiction, k.change_types, k.documents, k.language, k.today, undefined, k.for_minor),
   { keyOf: answerCacheKeyOf },
 );
 
@@ -442,6 +466,28 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     };
   }
 
+  // ── Per-jurisdiction change-alert feeds (RSS 2.0; no accounts, no PII) ────────────
+  // /feeds/ is the HTML index of every covered jurisdiction; /feeds/<id>.xml is one
+  // jurisdiction's feed. `id` is validated against the CORPUS itself (isKnownJurisdiction),
+  // not merely the US/US-XX shape — anything not actually covered 404s with no reflection
+  // of the input (notFound() never echoes the path). See api/feed.ts + src/feeds.ts.
+  if (p === "/feeds" || p === "/feeds/") {
+    return { status: 200, contentType: HTML, body: renderFeedsIndex(lang) };
+  }
+  if (p.startsWith("/feeds/") && p.endsWith(".xml")) {
+    const jurisdiction = p.slice("/feeds/".length, -".xml".length);
+    if (!isKnownJurisdiction(jurisdiction)) return notFound(lang);
+    // Fallback to the raw id when there's no display name (federal "US" today) — same
+    // convention as src/relocation.ts's jurisdictionName().
+    const stateName = stateNameFor(jurisdiction, lang) ?? jurisdiction;
+    return {
+      status: 200,
+      contentType: "application/rss+xml; charset=utf-8",
+      body: renderJurisdictionFeedXml(jurisdiction, stateName, lang, today),
+      log: { event: "feed", fields: { jurisdiction, language: lang, status: 200 } },
+    };
+  }
+
   if (p === "/checklist") {
     const intake = parseIntake(url);
     if (!intake) return badRequest(lang);
@@ -468,6 +514,7 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
       contentType: HTML,
       body: renderPacketPage(checklist, loadCorpus(), intake.language, generatedOn, intakeQuery(intake), {
         noStateCoverage: hasNoStateCoverage(intake.jurisdiction),
+        noMinorCoverage: intake.for_minor === true && hasNoMinorCoverage(intake.jurisdiction),
       }),
       log: { event: "packet", fields: { jurisdiction: intake.jurisdiction, language: intake.language, status: 200 } },
     };
@@ -503,11 +550,15 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
       { jurisdiction: intake.destination, change_types: intake.change_types, documents: [], language: intake.language },
       today,
     );
+    // Minors pilot: a move touches BOTH states' rules (the origin's while you still live
+    // there, the destination's once you arrive), so the honest disclosure fires if EITHER
+    // side of the move has no minor-audience record — never only the destination.
+    const noMinor = intake.for_minor === true && (hasNoMinorCoverage(intake.origin) || hasNoMinorCoverage(intake.destination));
     const plan = buildRelocationPlan(intake, today);
     return {
       status: 200,
       contentType: HTML,
-      body: renderPlanPage(plan, loadCorpus(), intake.language, { thinnerCoverage: thinner }),
+      body: renderPlanPage(plan, loadCorpus(), intake.language, { thinnerCoverage: thinner, noMinorCoverage: noMinor }),
     };
   }
 
@@ -572,14 +623,15 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     const change_types = ct.length > 0 ? ct : [...CHANGE_TYPES];
     const docs = documents(url);
     const question = sanitizeQuestion(url.searchParams.get("q"));
+    const forMinor = url.searchParams.get("for_minor") === "1";
     // Cached (IP §5.2) only for the common (jurisdiction × change-type) set the roadmap
     // item names: a free-text question bypasses the cache entirely (never mixed into the
     // key), so cache keys stay jurisdiction/enum/language/date only — no direct identity
     // fields and no free text.
     const value =
       question === undefined
-        ? cachedAnswer({ jurisdiction, change_types, documents: docs, language: lang, today })
-        : buildAnswerValue(jurisdiction, change_types, docs, lang, today, question);
+        ? cachedAnswer({ jurisdiction, change_types, documents: docs, language: lang, today, for_minor: forMinor })
+        : buildAnswerValue(jurisdiction, change_types, docs, lang, today, question, forMinor);
     // Content-free observability counters (OPERATIONS alarms): how many claims were served,
     // and whether any stale/volatile record was surfaced as "needs reverification".
     // Stored alongside the cached body (not recomputed) so counters stay accurate on hits.

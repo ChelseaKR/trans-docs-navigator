@@ -1,4 +1,6 @@
-node_modules/
+# no trailing slash: `node_modules/` matches only a directory, so a symlink named
+# node_modules (a dev-worktree shortcut) slipped into a commit via `git add -A`.
+node_modules
 .claude/
 *.log
 .DS_Store

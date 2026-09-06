@@ -162,5 +162,33 @@
     "verification_status": "verified",
     "recheck_sla_days": 90,
     "language": "en"
+  },
+  {
+    "id": "tx.court-order.name.minor",
+    "jurisdiction": "US-TX",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Texas name change for a child",
+    "statement": "TexasLawHelp says a child's name-change case can be filed by the child's parent, managing conservator, or legal guardian. If your child is 10 years old or older, you cannot change your child's name without their consent.",
+    "detail": "You must tell the other parent about the case, even if that parent is not listed on your child's birth certificate, unless their parental rights have been terminated. If the other parent does not agree, you must have them served with legal notice by a constable, sheriff, or private process server, and you must set a contested final hearing with at least 45 days' notice to that parent. If you cannot find the other parent after looking really hard, you must serve them by publication in a local newspaper, the state's public information website, or both, and you must hire a lawyer to serve as their attorney ad litem. Be prepared to tell the judge why the name change is in the child's best interest.",
+    "cost": {
+      "amount_usd": null,
+      "note": "Contact the district clerk's office in the county where the child lives for the filing fee. A low-income parent can ask the court to waive it with a Statement of Inability to Afford Payment of Court Costs.",
+      "fee_waiver": true
+    },
+    "discretionary": true,
+    "prerequisites": [],
+    "source": {
+      "url": "https://texaslawhelp.org/guide/i-want-to-change-my-childs-name",
+      "title": "TexasLawHelp — I Want to Change My Child's Name",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "audience": "minor",
+    "language": "en"
   }
 ]

@@ -6,7 +6,7 @@
     "url": "https://promomissouri.org",
     "note": {
       "en": "Missouri's statewide LGBTQ+ public-policy and advocacy organization, based in St. Louis, with a Transgender Justice program area.",
-      "es": "Organización estatal de política pública y defensa LGBTQ+ de Missouri, con sede en St. Louis, que incluye un área de trabajo dedicada a la justicia para personas transgénero."
+      "es": "Organizaci\u00f3n estatal de pol\u00edtica p\u00fablica y defensa LGBTQ+ de Missouri, con sede en St. Louis, que incluye un \u00e1rea de trabajo dedicada a la justicia para personas transg\u00e9nero."
     },
     "source": {
       "url": "https://promomissouri.org",
@@ -29,6 +29,24 @@
     "source": {
       "url": "https://www.lsem.org",
       "title": "Legal Services of Eastern Missouri",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "mo.referral.a4te",
+    "jurisdiction": "US-MO",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Missouri identity documents guide",
+    "url": "https://transequality.org/documents/missouri-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Missouri documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Misuri. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/missouri-identity-documents",
+      "title": "A4TE \u2014 Missouri Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

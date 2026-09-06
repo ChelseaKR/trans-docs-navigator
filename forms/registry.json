@@ -979,6 +979,21 @@
     }
   },
   {
+    "id": "wa-doh-422-144",
+    "jurisdiction": "US-WA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Form DOH 422-144 — Request to Change Sex Designation on a Birth Certificate for a Minor",
+    "source": {
+      "url": "https://doh.wa.gov/sites/default/files/legacy/Documents/Pubs/422-144-SexDesignationChangeMinor.pdf",
+      "title": "Washington State Department of Health Form DOH 422-144",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
     "id": "wv-dmv-99-ro-gender-designation",
     "jurisdiction": "US-WV",
     "document_type": "drivers-license",
@@ -1036,6 +1051,68 @@
       "url": "https://health.wyo.gov/wp-content/uploads/2026/07/WDH-VRS-Correction-Form-2026.pdf",
       "title": "Wyoming Department of Health, Vital Records Services — Form to Correct a Wyoming Vital Record",
       "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "us-i-90",
+    "jurisdiction": "US",
+    "document_type": "green-card",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form I-90 — Application to Replace Permanent Resident Card",
+    "source": {
+      "url": "https://www.uscis.gov/sites/default/files/document/forms/i-90.pdf",
+      "title": "USCIS Form I-90, Application to Replace Permanent Resident Card",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "us-n-565",
+    "jurisdiction": "US",
+    "document_type": "naturalization-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "Form N-565 — Application for Replacement Naturalization/Citizenship Document",
+    "source": {
+      "url": "https://www.uscis.gov/sites/default/files/document/forms/n-565.pdf",
+      "title": "USCIS Form N-565, Application for Replacement Naturalization/Citizenship Document",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "us-i-765",
+    "jurisdiction": "US",
+    "document_type": "ead",
+    "change_type": [
+      "name"
+    ],
+    "title": "Form I-765 — Application for Employment Authorization",
+    "source": {
+      "url": "https://www.uscis.gov/sites/default/files/document/forms/i-765.pdf",
+      "title": "USCIS Form I-765, Application for Employment Authorization",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    }
+  },
+  {
+    "id": "us-dd-149",
+    "jurisdiction": "US",
+    "document_type": "military-records",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "title": "DD Form 149 — Application for Correction of Military Record",
+    "source": {
+      "url": "https://www.esd.whs.mil/Portals/54/Documents/DD/forms/dd/dd0149.pdf",
+      "title": "Department of Defense DD Form 149, Application for Correction of Military Record",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     }
   }

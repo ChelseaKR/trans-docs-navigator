@@ -14,12 +14,25 @@ import type {
 } from "./types.ts";
 import { loadCorpus } from "./corpus.ts";
 import { isCurrent } from "./freshness.ts";
+import { selectAudience } from "./retrieval.ts";
 import { t } from "../src/i18n/index.ts";
 
 /** Canonical ordering of documents. Index = order; also the dependency backbone. */
 const CANONICAL_ORDER: DocumentType[] = [
   "court-order",
   "ssa-card",
+  // Federal immigration/military/employment records (M7) — opt-in only (not in
+  // STANDARD_SET below), so they render only when a person selects them. Placed after
+  // ssa-card so a declared "court-order" prerequisite is always earlier in this order,
+  // and before drivers-license/passport/birth-certificate/financial-records so those
+  // five keep their original relative order.
+  "green-card",
+  "naturalization-certificate",
+  "ead",
+  "selective-service",
+  "military-records",
+  "trusted-traveler",
+  "federal-employment-records",
   "drivers-license",
   "passport",
   "birth-certificate",
@@ -102,6 +115,26 @@ export function hasNoStateCoverage(jurisdiction: JurisdictionId, corpus = loadCo
   return !corpus.some((r) => r.jurisdiction === jurisdiction);
 }
 
+/**
+ * True when the corpus holds NO minor-audience record (api/types.ts `RecordAudience`) for
+ * this jurisdiction — i.e. every state outside the minors pilot (California, Illinois, New
+ * York, Texas, Washington today). Mirrors `hasNoStateCoverage` exactly, one level narrower:
+ * a state can be fully covered for adults (`hasNoStateCoverage` false) and still have no
+ * minor guidance at all, and the two absences must stay distinguishable — "we haven't
+ * checked this state" is a different, and differently dangerous, gap from "we have adult
+ * steps for this state, but nothing that says whether they apply to a minor."
+ *
+ * Deliberately per-JURISDICTION, not per-document-type: the disclosure this predicate
+ * drives (`ui.noMinorCoverage`) says "the steps below are for adults and may not apply",
+ * which stays true even where the pilot state happens to cover one document (e.g. a minor
+ * court-order name change) but not another (e.g. a passport, which this app never asks a
+ * state-specific record for anyway) — the caller still needs to say the caveat once.
+ */
+export function hasNoMinorCoverage(jurisdiction: JurisdictionId, corpus = loadCorpus()): boolean {
+  if (jurisdiction === "US") return false;
+  return !corpus.some((r) => r.jurisdiction === jurisdiction && r.audience === "minor");
+}
+
 export function buildChecklist(intake: Intake, today?: string, corpus = loadCorpus()): Checklist {
   const wanted = intake.documents.length > 0 ? intake.documents : STANDARD_SET;
   const orderedDocs = CANONICAL_ORDER.filter((d) => wanted.includes(d));
@@ -111,13 +144,18 @@ export function buildChecklist(intake: Intake, today?: string, corpus = loadCorp
   let order = 1;
 
   for (const doc of orderedDocs) {
-    const matching = corpus.filter(
+    const structural = corpus.filter(
       (r) =>
         r.document_type === doc &&
         (r.jurisdiction === intake.jurisdiction || r.jurisdiction === "US") &&
         r.change_type.some((c) => intake.change_types.includes(c)) &&
         r.language === intake.language,
     );
+    // Audience exclusivity (api/retrieval.ts `selectAudience`): a minor query sees ONLY
+    // the minor record where one exists for this (jurisdiction × document) cell, never
+    // both; everywhere else it falls through to the same adult records a non-minor query
+    // sees, disclosed by `hasNoMinorCoverage` rather than hidden.
+    const matching = selectAudience(structural, intake.for_minor === true);
 
     const currentRecords = matching.filter((r) => isCurrent(r, today));
     const degraded = matching.filter((r) => !isCurrent(r, today));

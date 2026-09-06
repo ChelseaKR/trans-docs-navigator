@@ -6,6 +6,11 @@
       "fetched": "2026-09-05",
       "sha256": "1c7c8a5b20daad87db4aaa1a2d3d1787b23af83618e6dfa5cedc72aa18f097ec"
     },
+    "https://app.leg.wa.gov/rcw/default.aspx?cite=4.24.130": {
+      "file": "app-leg-wa-gov-rcw-default-aspx-1daeaf5d.txt",
+      "fetched": "2026-09-06",
+      "sha256": "203a647e45c2ea462e81db8fc2effe11c98a9c9ec29f2b8acb28c5001abbeb83"
+    },
     "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=41791": {
       "file": null,
       "fetched": "2026-09-06",
@@ -335,6 +340,11 @@
       "fetched": "2026-09-05",
       "sha256": "5cd407c4a172a63ba843f3a15eb84a9836b0674075f9b3cdb73e3cf889877c64"
     },
+    "https://ilga.gov/Legislation/ILCS/Articles?ActID=2017&ChapterID=56&Chapter=CIVIL%20PROCEDURE&MajorTopic=RIGHTS%20AND%20REMEDIES": {
+      "file": "ilga-gov-legislation-ilcs-articles-20c6c2c6.txt",
+      "fetched": "2026-09-06",
+      "sha256": "a3a8c5e8681a72bf23bfdafec7164edfe3e2c7dede6b3103d2b28b70d73ca18e"
+    },
     "https://indianalegalhelp.org/filing-fee-frequently-asked-questions/": {
       "file": "indianalegalhelp-org-filing-fee-frequently-asked-questions-507cd18e.txt",
       "fetched": "2026-09-05",
@@ -624,6 +634,11 @@
         "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
+    "https://texaslawhelp.org/guide/i-want-to-change-my-childs-name": {
+      "file": "texaslawhelp-org-guide-i-want-to-change-my-childs-name-4c3cff73.txt",
+      "fetched": "2026-09-06",
+      "sha256": "7f4c99b43da45d91b51fb94f27768ccc6db878fa4a3385067853f84941f11dcf"
+    },
     "https://texaslawhelp.org/guide/i-want-to-change-my-name": {
       "file": "texaslawhelp-org-guide-i-want-to-change-my-name-1cde92b3.txt",
       "fetched": "2026-09-06",
@@ -717,6 +732,11 @@
       "fetched": "2026-09-05",
       "sha256": "1c3b9927c18a9486113e8cf7ab9d74e381325cb510f6a55bb9c939e03aced2a4"
     },
+    "https://www.archives.gov/veterans/military-service-records/correct-service-records.html": {
+      "file": "archives-gov-veterans-military-service-records-correct-service-records-637db133.txt",
+      "fetched": "2026-09-06",
+      "sha256": "a3f0c20d4e1a7c3e45aac1acbe50e64b2542f1e94303f18500bf8ed15b0ad087"
+    },
     "https://www.azcourts.gov/courtfilingfees/Superior-Court-Filing-Fees": {
       "file": "azcourts-gov-courtfilingfees-superior-court-filing-fees-3f08103c.txt",
       "fetched": "2026-09-05",
@@ -754,10 +774,20 @@
         "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
+    "https://www.cbp.gov/travel/trusted-traveler-programs/global-entry/frequently-asked-questions": {
+      "file": "cbp-gov-travel-trusted-traveler-programs-global-entry-frequently-asked-077a22ef.txt",
+      "fetched": "2026-09-06",
+      "sha256": "039ff83650f5524d3c997b7600a9f80683b7871accfbbd874cdfc9f104114296"
+    },
     "https://www.cdph.ca.gov/Programs/CHSI/Pages/Amending-a-California-Birth-Record.aspx": {
       "file": "cdph-ca-gov-programs-chsi-pages-amending-a-california-birth-record-asp-2d85b264.txt",
       "fetched": "2026-09-06",
       "sha256": "e5a92ffa077a38cc3e52b28c62e506bf08e77e072d1a7cfd481f60b00b429915"
+    },
+    "https://www.cdph.ca.gov/Programs/CHSI/Pages/Assembly-Bill-(AB)-218.aspx": {
+      "file": "cdph-ca-gov-programs-chsi-pages-assembly-bill-ab-218-aspx-19cbfc0a.txt",
+      "fetched": "2026-09-06",
+      "sha256": "2b015de9c445aae5bed43c755fd18322a2dd5cbd4eb3d9c713989f55c764fcf3"
     },
     "https://www.cdph.ca.gov/Programs/CHSI/Pages/Vital-Records-Fees.aspx": {
       "file": "cdph-ca-gov-programs-chsi-pages-vital-records-fees-aspx-d354351b.txt",
@@ -990,6 +1020,11 @@
       "file": "honolulu-gov-csd-drivers-license-procedures-831ec952.txt",
       "fetched": "2026-09-05",
       "sha256": "4d3bbebc566b29da9f67899efa9b9a712238ca8da862cc70fe93b3611dcd6a7b"
+    },
+    "https://www.illinoislegalaid.org/legal-information/changing-childs-name": {
+      "file": "illinoislegalaid-org-legal-information-changing-childs-name-e0ff3d83.txt",
+      "fetched": "2026-09-06",
+      "sha256": "a2f2aaecca64a9eddb2fcc0665fd4ec6345d680133bdebe88b27351a4ce2294c"
     },
     "https://www.illinoislegalaid.org/legal-information/changing-your-name": {
       "file": "illinoislegalaid-org-legal-information-changing-your-name-0473d245.txt",
@@ -1250,10 +1285,25 @@
         "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
       }
     },
+    "https://www.nycourts.gov/courthelp/NameChange/childNameChange.shtml": {
+      "file": null,
+      "fetched": "2026-09-06",
+      "unfetchable": {
+        "status": "HTTP 403",
+        "note": "the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
+      }
+    },
     "https://www.ohiolegalhelp.org/topic/name-change": {
       "file": "ohiolegalhelp-org-topic-name-change-91c1ef43.txt",
       "fetched": "2026-09-04",
       "sha256": "41697d89c5b30ce8b9f16885e73d747ae475381d9c031b88c28147cc865e66a6"
+    },
+    "https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf": {
+      "file": null,
+      "fetched": "2026-09-06",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
     },
     "https://www.opn.ca6.uscourts.gov/opinions.pdf/24a0151p-06.pdf": {
       "file": null,
@@ -1346,6 +1396,16 @@
         "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
       }
     },
+    "https://www.sss.gov": {
+      "file": "sss-gov-e5b83ce5.txt",
+      "fetched": "2026-09-06",
+      "sha256": "6b7255f0832764cfaee4f02e922032e88256908a3b17c8bd24ff35335b4cd206"
+    },
+    "https://www.sss.gov/verify/update-info/": {
+      "file": "sss-gov-verify-update-info-84b96d65.txt",
+      "fetched": "2026-09-06",
+      "sha256": "159482554d29198b45f39e5e032cb5b56888cb367766c94b36fc75c98347cda5"
+    },
     "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf": {
       "file": null,
       "fetched": "2026-09-06",
@@ -1363,10 +1423,42 @@
       "fetched": "2026-09-05",
       "sha256": "7504cb18ce3ea6b8f1d39cb8adbba4b49981b05c7ebc19729a89965985b9b1ce"
     },
+    "https://www.tsa.gov/precheck/faq": {
+      "file": "tsa-gov-precheck-faq-0840e7c7.txt",
+      "fetched": "2026-09-06",
+      "sha256": "d6c4a209e406b5093f7c3be15f0d292fbddb9e832fcd68e7739df6d9ba5a0f8d"
+    },
+    "https://www.uscis.gov/i-765": {
+      "file": "uscis-gov-i-765-e9c0da03.txt",
+      "fetched": "2026-09-06",
+      "sha256": "1b0303e39f67c90c81397077d69cf14cce6d6b1867d4104c6017afc005729831"
+    },
+    "https://www.uscis.gov/policy-manual/volume-11-part-a-chapter-2": {
+      "file": "uscis-gov-policy-manual-volume-11-part-a-chapter-2-ebafc863.txt",
+      "fetched": "2026-09-06",
+      "sha256": "2595fd0ea3354afe62e4a36b243fb34245ec3e1f028b9e90e0d86ebe6f44d944"
+    },
+    "https://www.uscis.gov/policy-manual/volume-12-part-k-chapter-4": {
+      "file": "uscis-gov-policy-manual-volume-12-part-k-chapter-4-3a8c4937.txt",
+      "fetched": "2026-09-06",
+      "sha256": "3792c493fbdf15a8bcb666925fb472bbaf8b1d123b27396412559fb9d591f1bd"
+    },
+    "https://www.uscis.gov/sites/default/files/document/forms/i-90instr.pdf": {
+      "file": null,
+      "fetched": "2026-09-06",
+      "unextractable": {
+        "reason": "the source is application/pdf — this gate extracts text from HTML only, so nothing in it can be checked"
+      }
+    },
     "https://www.utcourts.gov/en/self-help/case-categories/family/name-change/sex-change.html": {
       "file": "utcourts-gov-en-self-help-case-categories-family-name-change-sex-chang-46a502ac.txt",
       "fetched": "2026-09-05",
       "sha256": "df84bd7459995d56de7622650b3fc7fc3b31e73717749e5527e7adcf467f2320"
+    },
+    "https://www.va.gov/resources/how-to-change-your-legal-name-on-file-with-va/": {
+      "file": "va-gov-resources-how-to-change-your-legal-name-on-file-with-va-34b5b287.txt",
+      "fetched": "2026-09-06",
+      "sha256": "01350e863edf19a23f92db40db7e05c198139a043a521bd39d24c580e5036c51"
     },
     "https://www.vdh.virginia.gov/vital-records/how-to-request-an-amendment-to-a-birth-certificate/": {
       "file": "vdh-virginia-gov-vital-records-how-to-request-an-amendment-to-a-birth--69499030.txt",

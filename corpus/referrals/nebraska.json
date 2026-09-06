@@ -6,7 +6,7 @@
     "url": "https://www.legalaidofnebraska.org",
     "note": {
       "en": "Nonprofit civil legal aid organization serving all 93 Nebraska counties from seven offices, offering information, referrals, self-help services, and representation to qualifying low-income residents.",
-      "es": "Organización sin fines de lucro de ayuda legal civil que atiende los 93 condados de Nebraska desde siete oficinas, ofreciendo información, referencias, servicios de autoayuda y representación a residentes de bajos ingresos que califiquen."
+      "es": "Organizaci\u00f3n sin fines de lucro de ayuda legal civil que atiende los 93 condados de Nebraska desde siete oficinas, ofreciendo informaci\u00f3n, referencias, servicios de autoayuda y representaci\u00f3n a residentes de bajos ingresos que califiquen."
     },
     "source": {
       "url": "https://www.legalaidofnebraska.org",
@@ -24,11 +24,29 @@
     "url": "https://www.aclunebraska.org",
     "note": {
       "en": "Statewide civil-rights organization that advocates for transgender Nebraskans' access to accurate identity documents and can be contacted about discrimination and legal-process questions.",
-      "es": "Organización estatal de derechos civiles que aboga por el acceso de las personas transgénero de Nebraska a documentos de identidad precisos, y a la que se puede contactar sobre preguntas de discriminación y trámites legales."
+      "es": "Organizaci\u00f3n estatal de derechos civiles que aboga por el acceso de las personas transg\u00e9nero de Nebraska a documentos de identidad precisos, y a la que se puede contactar sobre preguntas de discriminaci\u00f3n y tr\u00e1mites legales."
     },
     "source": {
       "url": "https://www.aclunebraska.org",
       "title": "ACLU of Nebraska",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ne.referral.a4te",
+    "jurisdiction": "US-NE",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Nebraska identity documents guide",
+    "url": "https://transequality.org/documents/nebraska-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Nebraska documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Nebraska. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/nebraska-identity-documents",
+      "title": "A4TE \u2014 Nebraska Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

@@ -41,6 +41,7 @@ import type {
 } from "./types.ts";
 import { loadCorpus } from "./corpus.ts";
 import { isCurrent } from "./freshness.ts";
+import { selectAudience } from "./retrieval.ts";
 import { enforce } from "./citation.ts";
 import { t } from "../src/i18n/index.ts";
 
@@ -60,6 +61,18 @@ export const PORTABILITY: Record<DocumentType, Portability> = {
   // destination the power to re-issue it. That asymmetry is the whole reason this class exists.
   "birth-certificate": "state-of-birth",
   "financial-records": "non-government",
+  // Federal immigration/military/employment records (M7). All are federal authority —
+  // the same records govern wherever the person lives, exactly like the SSA card and
+  // passport above. None of these are asked about on the relocation intake today (they
+  // are not in CANONICAL_ORDER/DEFAULT_SET below), so this entry exists only to satisfy
+  // this map's exhaustive typing over DocumentType — it never changes a rendered plan.
+  "green-card": "federal",
+  "naturalization-certificate": "federal",
+  ead: "federal",
+  "selective-service": "federal",
+  "military-records": "federal",
+  "trusted-traveler": "federal",
+  "federal-employment-records": "federal",
 };
 
 /** Canonical order, shared with the checklist engine: the dependency backbone. */
@@ -105,14 +118,19 @@ function cell(
   doc: DocumentType,
   changes: ChangeType[],
   language: RelocationIntake["language"],
+  forMinor: boolean,
 ): CorpusRecord[] {
-  return corpus.filter(
+  const structural = corpus.filter(
     (r) =>
       r.jurisdiction === jurisdiction &&
       r.document_type === doc &&
       r.change_type.some((c) => changes.includes(c)) &&
       r.language === language,
   );
+  // Same audience exclusivity as the checklist/retrieval surfaces (api/retrieval.ts
+  // selectAudience): a minor plan sees only a minor-audience record where this single
+  // (jurisdiction × doc) cell has one, and falls through to the adult record otherwise.
+  return selectAudience(structural, forMinor);
 }
 
 /**
@@ -173,7 +191,7 @@ function resolve(
   intake: RelocationIntake,
   today: string | undefined,
 ): Resolved {
-  const matching = cell(corpus, jurisdiction, doc, intake.change_types, intake.language);
+  const matching = cell(corpus, jurisdiction, doc, intake.change_types, intake.language, intake.for_minor === true);
   return {
     current: matching.filter((r) => isCurrent(r, today)),
     degraded: matching.filter((r) => !isCurrent(r, today)),

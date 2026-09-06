@@ -173,6 +173,12 @@ export function uiStrings(lang: Language): UiMessages {
   return locale(lang).ui;
 }
 
+/** A feed-autodiscovery `<link rel="alternate" type="application/rss+xml">` in `<head>`. */
+export interface FeedLink {
+  href: string;
+  title: string;
+}
+
 export function page(opts: {
   lang: Language;
   title: string;
@@ -184,11 +190,20 @@ export function page(opts: {
    * content surfaces the indexing contract allows (home, guides, legal).
    */
   seo?: SeoMeta;
+  /** RSS/Atom autodiscovery links for this page (src/feeds.ts). Empty by default — a
+   *  page opts in explicitly, the same fail-safe direction as `seo`. */
+  feedLinks?: FeedLink[];
 }): string {
   const t = locale(opts.lang).ui;
   const langQ = opts.lang === "es" ? "?language=es" : ""; // preserve language on footer links
   const fullTitle = titleTag(opts.title);
   const seo: SeoMeta = opts.seo ?? { path: "", description: "", index: false };
+  const feedTags = (opts.feedLinks ?? [])
+    .map(
+      (f) =>
+        `<link rel="alternate" type="application/rss+xml" title="${escapeHtml(f.title)}" href="${escapeHtml(f.href)}">`,
+    )
+    .join("\n");
   return `<!doctype html>
 <html lang="${opts.lang}">
 <head>
@@ -196,6 +211,7 @@ export function page(opts: {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escapeHtml(fullTitle)}</title>
 ${headTags(fullTitle, opts.lang, seo)}
+${feedTags}
 <link rel="stylesheet" href="/assets/app.css">
 </head>
 <body>

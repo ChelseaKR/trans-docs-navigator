@@ -125,6 +125,10 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Deliberate, with the Alaska corpus.
     "https://doa.alaska.gov/dmv/akol/namchg.htm",
     "https://doa.alaska.gov/dmv/forms/pdfs/427.pdf",
+    // Washington's Request to Change Sex Designation on a Birth Certificate for a Minor
+    // (Form DOH 422-144) is a PDF whose text this pipeline cannot extract, so no baseline
+    // can be taken — deliberate, with the minors-pilot addition to the Washington corpus.
+    "https://doh.wa.gov/sites/default/files/legacy/Documents/Pubs/422-144-SexDesignationChangeMinor.pdf",
     // Georgia's Affidavit for Amendment (Form 3977) is a PDF whose text this
     // pipeline cannot extract, so no baseline can be taken — deliberate addition
     // with the Georgia corpus, not a silent drift in the watch set.
@@ -238,6 +242,12 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     "https://www.dpbh.nv.gov/siteassets/programs/birthdeath/dta/forms/Court_Ordered_Change_ONLY.pdf",
     "https://www.dpbh.nv.gov/siteassets/programs/pco/Changing_Your_Gender_In_Nevada_Guide_08.24.2018_1.pdf",
     "https://www.dpbh.nv.gov/uploadedFiles/dpbh.nv.gov/content/Programs/BirthDeath/dta/Forms/Corrections%20-%20Birth.pdf",
+    // DD Form 149 (Application for Correction of Military Record) — registered in
+    // forms/registry.json (form_ref for the federal military-records document type) but
+    // never fetched via `make source-baseline`, so it has no drift baseline — deliberate,
+    // with the federal immigration/military/employment layer. The host also refuses this
+    // project's declared user-agent outright (confirmed with curl sending the same UA).
+    "https://www.esd.whs.mil/Portals/54/Documents/DD/forms/dd/dd0149.pdf",
     "https://www.health.ny.gov/vital_records/gender_designation_corrections.htm",
     // Vermont: both the Affidavit of Gender Identity and the Application to Correct or
     // Amend a Vermont Birth Certificate are PDFs whose text this pipeline cannot
@@ -281,6 +291,15 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Form) has no drift baseline recorded — deliberate, with the New Mexico corpus.
     "https://www.nmhealth.org/publication/view/form/5429/",
     "https://www.nycourts.gov/courthelp/Family/nameChange.shtml",
+    // New York Courts refuses this project's declared user-agent domain-wide (same as the
+    // existing nameChange.shtml citation above) — deliberate, with the minors-pilot
+    // addition to the New York corpus (the Child Name Changes page).
+    "https://www.nycourts.gov/courthelp/NameChange/childNameChange.shtml",
+    // OPM's Guide to Processing Personnel Actions (the federal-employment-records name and
+    // gender-marker records' own source) is a PDF whose text this pipeline cannot extract,
+    // so no baseline can be taken — deliberate, with the federal immigration/military/
+    // employment layer.
+    "https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf",
     // The Sixth Circuit's Gore v. Lee opinion (the source for Tennessee's birth-certificate
     // gender-marker bar) is only published as a PDF on the court's own site, so no baseline
     // can be taken — deliberate, with the Tennessee corpus.
@@ -293,6 +312,15 @@ test("the live corpus + forms report exactly the sources the launch-gate row nam
     // Tennessee's general vital-records amendment form (PH-1186) is only published as a
     // PDF, so no baseline can be taken — deliberate, with the Tennessee corpus.
     "https://www.tn.gov/content/dam/tn/health/documents/vital-records/PH-1186-Application-to-Amend-A-Tennessee-Birth-Record.pdf",
+    // USCIS's own downloadable PDFs — the I-765 and I-90 forms, the I-90 instructions (the
+    // green-card name record's own source), and the N-565 form — are registered in
+    // forms/registry.json (or, for the I-90 instructions, cited directly by a record) but
+    // never fetched via `make source-baseline`, so none has a drift baseline — deliberate,
+    // with the federal immigration/military/employment layer.
+    "https://www.uscis.gov/sites/default/files/document/forms/i-765.pdf",
+    "https://www.uscis.gov/sites/default/files/document/forms/i-90.pdf",
+    "https://www.uscis.gov/sites/default/files/document/forms/i-90instr.pdf",
+    "https://www.uscis.gov/sites/default/files/document/forms/n-565.pdf",
     // Virginia's VS42 (Changing Sex Designation) form is a PDF whose text this pipeline
     // cannot extract, so no baseline can be taken — deliberate, with the Virginia corpus.
     "https://www.vdh.virginia.gov/content/uploads/sites/93/2020/07/VS42_Gender-Designation-Form.pdf",

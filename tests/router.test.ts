@@ -95,6 +95,20 @@ test("parseIntake omits has_court_order when the flag is absent or not '1'", () 
   assert.equal(intakeQuery(parseIntake(u("/checklist?jurisdiction=US-CA"))!).includes("court_order"), false);
 });
 
+test("parseIntake/intakeQuery round-trip for_minor=1 (minors pilot)", () => {
+  const intake = parseIntake(u("/checklist?jurisdiction=US-CA&for_minor=1"))!;
+  assert.equal(intake.for_minor, true);
+  const q = intakeQuery(intake);
+  assert.match(q, /(^|&)for_minor=1(&|$)/);
+  assert.equal(parseIntake(u(`/checklist?${q}`))!.for_minor, true);
+});
+
+test("parseIntake omits for_minor when the flag is absent or not '1'", () => {
+  assert.equal(parseIntake(u("/checklist?jurisdiction=US-CA"))!.for_minor, undefined);
+  assert.equal(parseIntake(u("/checklist?jurisdiction=US-CA&for_minor=0"))!.for_minor, undefined);
+  assert.equal(intakeQuery(parseIntake(u("/checklist?jurisdiction=US-CA"))!).includes("for_minor"), false);
+});
+
 test("GET / renders the intake page", () => {
   const r = handleRoute("GET", u("/"));
   assert.equal(r.status, 200);

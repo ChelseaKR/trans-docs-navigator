@@ -39,6 +39,13 @@ const DOCUMENT_TYPES = [
   "passport",
   "birth-certificate",
   "financial-records",
+  "green-card",
+  "naturalization-certificate",
+  "ead",
+  "selective-service",
+  "military-records",
+  "trusted-traveler",
+  "federal-employment-records",
 ] as const;
 const CHANGE_TYPES = ["name", "gender-marker"] as const;
 const VERIFICATION_STATUSES = ["verified", "needs_reverification", "unverified"] as const;

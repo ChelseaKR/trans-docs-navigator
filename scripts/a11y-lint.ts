@@ -19,6 +19,7 @@ import { renderCompareFormPage, renderCompareResultsPage } from "../src/compare.
 import { buildCompareTable } from "../api/compare.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderGuideIndex, renderGuidePage } from "../src/guide.ts";
+import { renderFeedsIndex } from "../src/feeds.ts";
 import { PALETTE, STYLE } from "../src/render.ts";
 import type { DocumentType } from "../api/types.ts";
 import { pass, fail } from "./util.ts";
@@ -93,6 +94,8 @@ const pages: Page[] = [
   { name: "methodology-es", html: renderMethodologyPage("es") },
   { name: "guide-index", html: renderGuideIndex("en") },
   { name: "guide-index-es", html: renderGuideIndex("es") },
+  { name: "feeds-index", html: renderFeedsIndex("en") },
+  { name: "feeds-index-es", html: renderFeedsIndex("es") },
   { name: "guide-page", html: renderGuidePage("california", "name-change", "en")! },
   { name: "guide-page-es", html: renderGuidePage("texas", "gender-marker", "es")! },
   // Added 2026-07-05 (P1-5): the offline-shell notice page (EXP-01, merged 2026-07-01)

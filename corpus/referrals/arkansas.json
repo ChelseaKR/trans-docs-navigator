@@ -6,12 +6,30 @@
     "url": "https://www.arlawhelp.org",
     "note": {
       "en": "Arkansas's statewide civil legal aid self-help site; its guide walks adults through the circuit-court name-change petition step by step.",
-      "es": "Sitio estatal de autoayuda legal civil de Arkansas; su guía explica paso a paso la petición de cambio de nombre ante el tribunal de circuito para adultos."
+      "es": "Sitio estatal de autoayuda legal civil de Arkansas; su gu\u00eda explica paso a paso la petici\u00f3n de cambio de nombre ante el tribunal de circuito para adultos."
     },
     "source": {
       "url": "https://www.arlawhelp.org",
       "title": "Arkansas Law Help",
       "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ar.referral.a4te",
+    "jurisdiction": "US-AR",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Arkansas identity documents guide",
+    "url": "https://transequality.org/documents/arkansas-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Arkansas documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Arkansas. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/arkansas-identity-documents",
+      "title": "A4TE \u2014 Arkansas Identity Documents",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",

@@ -100,10 +100,14 @@ export const en: LocaleBundle = {
     varies: "varies",
     noStateCoverage:
       "We don't have verified information for this state yet, so the steps below cover federal documents only. This is not a complete plan for where you live, and it is not a sign that your state asks nothing of you — we simply have not checked it. Start with your state's official website, its courts' self-help pages, or a trans legal-aid organization.",
+    noMinorCoverage:
+      "We don't yet have verified information about name or gender-marker changes for minors (under 18) in this state. The steps below are written for adults and may not apply to a minor's case. Who can petition, what a parent must consent to or be told, the age when a minor's own consent matters, and the court's standard can all be different. Check with the court in your county or a trans legal-aid organization before you rely on these steps.",
     costIncomplete: (n: number) =>
       `${n} step(s) have no fee listed in our sources, so this is a floor, not a complete cost. We don't estimate what a source doesn't state.`,
     moreHeading: "Go deeper",
     seeDetailedAnswer: "See what the sources say in detail",
+    helpHeading: "Where to get help",
+    helpIntro: "These organizations publish their own guides or can help you directly.",
     officialFormIntro: "This is an official government form. Download it from the source below and complete it yourself — we don't fill it in for you, so you always work from the authoritative version.",
     whatToBringTitle: "What to bring",
     copyTitle: "Your details, ready to copy in",
@@ -139,6 +143,13 @@ export const en: LocaleBundle = {
     passport: "Update your U.S. passport",
     "birth-certificate": "Amend your birth certificate",
     "financial-records": "Update financial and other records",
+    "green-card": "Update your green card (Form I-90)",
+    "naturalization-certificate": "Update your naturalization certificate (Form N-565)",
+    ead: "Update your work permit (Employment Authorization Document)",
+    "selective-service": "Update your Selective Service registration",
+    "military-records": "Correct your military service record (DD-214)",
+    "trusted-traveler": "Update your TSA PreCheck or Global Entry membership",
+    "federal-employment-records": "Update your federal employment records",
   },
 
   docLabels: {
@@ -148,12 +159,20 @@ export const en: LocaleBundle = {
     passport: "U.S. passport",
     "birth-certificate": "Birth certificate",
     "financial-records": "Financial & other records",
+    "green-card": "Green card (Form I-90)",
+    "naturalization-certificate": "Naturalization certificate (Form N-565)",
+    ead: "Work permit (EAD)",
+    "selective-service": "Selective Service registration",
+    "military-records": "Military service record (DD-214)",
+    "trusted-traveler": "TSA PreCheck / Global Entry",
+    "federal-employment-records": "Federal employment records",
   },
 
   fieldLabels: {
     new_legal_name: "New legal name",
     current_legal_name: "Current legal name",
     has_court_order: "I have a court order",
+    for_minor: "Is this for someone under 18?",
   },
 
   // Relocation planner. Structural labels + cautions ONLY — see RelocationMessages.
@@ -473,5 +492,23 @@ export const en: LocaleBundle = {
     },
     transparencyDescription:
       "Dated quarterly entries on what Trans Docs Navigator could and could not produce under legal compulsion. No warrant canary yet — counsel review is pending.",
+
+    feedIndexTitle: "Get notified when a state's records change (RSS)",
+    feedIndexDescription:
+      "Subscribe by RSS or Atom to updates for any state's name and gender-marker change records. No account, no email address, no tracking.",
+    feedIndexLead:
+      "Pick a state to get its feed link. Each feed tells you when we update our own records for that state — never a claim that the law itself changed.",
+    feedIndexAllHeading: "All state feeds",
+    feedLinkLabel: (state: string) => `Get notified when we update ${state}'s records (RSS)`,
+    feedChannelTitle: (state: string) => `${state}: records updated`,
+    feedChannelDescription: (state: string) =>
+      `Notifications when Trans Docs Navigator updates its own cited records for ${state} — never a notification that the law itself changed. Subscribe with any RSS or Atom reader. No account, no email address, and nothing about you is collected to deliver this feed.`,
+    feedEntryTitle: (count: number, state: string, date: string) =>
+      `${count} record${count === 1 ? "" : "s"} for ${state} updated on ${date}`,
+    feedEntryDescription: (count: number, state: string, date: string, docTypes: string) =>
+      `We (re)verified ${count} record${count === 1 ? "" : "s"} for ${state} on ${date}, covering: ${docTypes}. This means our records changed — not necessarily the law. Always confirm with the official source linked on each step.`,
+    feedEntryDegradedNote:
+      "At least one of these records currently needs reverification and is not shown as current elsewhere on the site.",
+    feedEmptyNote: "We don't have any dated records for this jurisdiction in this language yet.",
   },
 };

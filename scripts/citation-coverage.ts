@@ -45,6 +45,7 @@ const languages: Language[] = ["en", "es"];
 
 const failures: string[] = [];
 let checked = 0;
+let minorChecked = 0;
 
 for (const jurisdiction of jurisdictions) {
   for (const ct of changeTypes) {
@@ -63,6 +64,34 @@ for (const jurisdiction of jurisdictions) {
     if (report.coverage < 1) {
       failures.push(
         `${jurisdiction}/${ct}: coverage ${(report.coverage * 100).toFixed(1)}% (${report.cited}/${report.claims})`,
+      );
+    }
+  }
+}
+
+// Minors pilot (docs/audits): the SAME sweep with for_minor:true, across every
+// jurisdiction — the five pilot states (whose minor-audience records now back the
+// claim) AND every non-pilot state (whose uncited `noMinorCoverage` disclosure block
+// must still leave the answer at 100% coverage, since it is `kind: "uncertainty"` and
+// asserts no rule — see api/guidance.ts withMinorCoverageDisclosure). Proves the
+// honesty degradation holds everywhere, not just on the one state the unit tests pin.
+for (const jurisdiction of jurisdictions) {
+  for (const ct of changeTypes) {
+    let result;
+    try {
+      result = answer(
+        { jurisdiction, change_types: [ct], for_minor: true },
+        poisonGenerator ? { generator: poisonGenerator } : {},
+      );
+    } catch (e) {
+      failures.push(`${jurisdiction}/${ct}/for_minor: enforce() rejected — ${(e as Error).message}`);
+      continue;
+    }
+    minorChecked++;
+    const report = checkCoverage(result, corpus);
+    if (report.coverage < 1) {
+      failures.push(
+        `${jurisdiction}/${ct}/for_minor: coverage ${(report.coverage * 100).toFixed(1)}% (${report.cited}/${report.claims})`,
       );
     }
   }
@@ -115,5 +144,5 @@ for (const origin of jurisdictions) {
 if (failures.length > 0) fail("citation", `${failures.length} path(s) below 100% coverage`, failures);
 pass(
   "citation",
-  `100% citation coverage across ${checked} jurisdiction×change-type paths and ${relocationChecked} relocation (origin×destination×language×held) plans`,
+  `100% citation coverage across ${checked} jurisdiction×change-type paths, ${minorChecked} for_minor paths, and ${relocationChecked} relocation (origin×destination×language×held) plans`,
 );

@@ -12,7 +12,10 @@ const today = new Date().toISOString().slice(0, 10);
 const skeleton = {
   id: "xx.document-type.change-type",
   jurisdiction: "US-XX",
-  document_type: "court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records",
+  document_type:
+    "court-order | ssa-card | drivers-license | passport | birth-certificate | financial-records | " +
+    "green-card | naturalization-certificate | ead | selective-service | military-records | " +
+    "trusted-traveler | federal-employment-records",
   change_type: ["name | gender-marker"],
   topic: "Short human-readable topic",
   statement: "One plain-language sentence a user will read, derived only from the official source.",

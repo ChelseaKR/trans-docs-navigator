@@ -16,15 +16,27 @@ import { page, renderChecklist, escapeHtml } from "./render.ts";
 import { t as locale } from "./i18n/index.ts";
 import { absoluteUrl, jsonLd } from "./seo.ts";
 
-interface StateDef {
+export interface StateDef {
   slug: string;
   id: string;
   name: Record<Language, string>;
 }
 
 // The states we currently cover. Federal steps (SSA, passport) are woven into each
-// guide by the checklist builder, so they need no separate page.
-const STATES: StateDef[] = [
+// guide by the checklist builder, so they need no separate page. Exported: this is also
+// the single bilingual state-name source for src/feeds.ts, so a feed's display name
+// never drifts from a guide's.
+/**
+ * A state's display name for `lang`. STATES[].name is keyed by the shipping Language union, so
+ * a non-shipping tag — the G9 pseudolocale, `?language=en-XA` — indexes to undefined and
+ * rendered "Name change in undefined" in the checklist's Go-deeper links. Falls back to
+ * English; can only fire for a registered test locale (see src/i18n/index.ts asLanguage).
+ */
+function stateDisplayName(state: StateDef, lang: Language): string {
+  return state.name[lang] ?? state.name.en;
+}
+
+export const STATES: StateDef[] = [
   { slug: "alabama", id: "US-AL", name: { en: "Alabama", es: "Alabama" } },
   { slug: "alaska", id: "US-AK", name: { en: "Alaska", es: "Alaska" } },
   { slug: "arizona", id: "US-AZ", name: { en: "Arizona", es: "Arizona" } },
@@ -93,10 +105,19 @@ export function guidePaths(): string[] {
   return paths;
 }
 
-/** The full set of indexable paths (home + guides + legal) — single source for the
- *  sitemap and the seo-lint gate. */
+/** The full set of indexable paths (home + guides + legal + the feed index) — single
+ *  source for the sitemap and the seo-lint gate. The per-jurisdiction feed XML files
+ *  themselves are NOT listed here (they are discovered via `<link rel="alternate">`
+ *  autodiscovery, not the HTML sitemap — see src/feeds.ts). */
 export function indexablePaths(): string[] {
-  return ["/", "/compare", ...guidePaths(), "/terms", "/privacy", "/accessibility", "/methodology", "/transparency"];
+  return ["/", "/compare", ...guidePaths(), "/terms", "/privacy", "/accessibility", "/methodology", "/transparency", "/feeds"];
+}
+
+/** Bilingual display name for a covered state id, or undefined (e.g. for federal "US",
+ *  which — like the guide pages above — has no per-jurisdiction page of its own). */
+export function stateNameFor(jurisdiction: string, lang: Language): string | undefined {
+  const state = STATES.find((s) => s.id === jurisdiction);
+  return state ? stateDisplayName(state, lang) : undefined;
 }
 
 /** Guide links matching a checklist's jurisdiction × change types (empty if none cover it). */
@@ -110,7 +131,7 @@ export function guideLinksFor(jurisdiction: string, changeTypes: ChangeType[], l
     if (!topic) continue;
     out.push({
       path: `/guide/${state.slug}/${topic.slug}${lang === "es" ? "?language=es" : ""}`,
-      label: seo.guideHeading(state.name[lang], seo.topicName[c]),
+      label: seo.guideHeading(stateDisplayName(state, lang), seo.topicName[c]),
     });
   }
   return out;
@@ -123,7 +144,7 @@ export function renderGuideIndex(lang: Language): string {
     const links = TOPICS.map(
       (t) => `<li><a href="/guide/${s.slug}/${t.slug}${lang === "es" ? "?language=es" : ""}">${escapeHtml(seo.topicName[t.change])}</a></li>`,
     ).join("");
-    return `<section><h2>${escapeHtml(s.name[lang])}</h2><ul>${links}</ul></section>`;
+    return `<section><h2>${escapeHtml(stateDisplayName(s, lang))}</h2><ul>${links}</ul></section>`;
   }).join("\n");
   const body = `<p>${escapeHtml(seo.guideIndexLead)}</p><h2 class="sr-only">${escapeHtml(seo.guideIndexAllHeading)}</h2>${items}`;
   return page({
@@ -143,7 +164,7 @@ export function renderGuidePage(stateSlug: string, topicSlug: string, lang: Lang
 
   const seo = locale(lang).seo;
   const ui = locale(lang).ui;
-  const stateName = state.name[lang];
+  const stateName = stateDisplayName(state, lang);
   const topicName = seo.topicName[topic.change];
   const path = `/guide/${state.slug}/${topic.slug}`;
 
@@ -194,7 +215,7 @@ function structuredData(
   byId: Map<string, CorpusRecord>,
 ): string {
   const seo = locale(lang).seo;
-  const stateName = state.name[lang];
+  const stateName = stateDisplayName(state, lang);
   const topicName = seo.topicName[topic.change];
   const path = `/guide/${state.slug}/${topic.slug}`;
 

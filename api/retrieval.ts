@@ -51,6 +51,8 @@ export interface RetrievalQuery {
   /** Language to serve; defaults to English. */
   language?: Language;
   today?: string | undefined;
+  /** True when the query is about someone under 18 (minors pilot). See `selectAudience`. */
+  for_minor?: boolean;
 }
 
 export interface Retrieved {
@@ -72,19 +74,47 @@ function jurisdictionMatches(rec: CorpusRecord, j: JurisdictionId): boolean {
 }
 
 /**
+ * Audience exclusivity (minors pilot, api/types.ts `RecordAudience`). Within a
+ * (jurisdiction × document_type) pair, a minor query must see ONLY the minor-audience
+ * record when one exists — never the adult record alongside or instead of it, which is
+ * the "adult records must not be retrieved for a minor query where a minor record exists"
+ * guarantee — and a non-minor query must never see a minor-audience record at all.
+ *
+ * When `forMinor` is true and NO minor record exists for a given jurisdiction × document
+ * pair (every state outside the five-state pilot, and every document type this pilot does
+ * not yet cover even inside it), the adult/general record is returned UNCHANGED — this is
+ * the deliberate, disclosed fallback ("the steps below are for adults and may not apply"),
+ * not a silent one. The disclosure itself is api/checklist.ts `hasNoMinorCoverage` +
+ * the `ui.noMinorCoverage` copy, rendered by the caller; this function only decides which
+ * records are eligible to be shown at all.
+ */
+export function selectAudience(records: CorpusRecord[], forMinor: boolean): CorpusRecord[] {
+  if (!forMinor) return records.filter((r) => r.audience !== "minor");
+  const minorCells = new Set(
+    records.filter((r) => r.audience === "minor").map((r) => `${r.jurisdiction}|${r.document_type}`),
+  );
+  return records.filter((r) => {
+    const cell = `${r.jurisdiction}|${r.document_type}`;
+    return minorCells.has(cell) ? r.audience === "minor" : r.audience !== "minor";
+  });
+}
+
+/**
  * The mandatory STRUCTURED filter every retriever must apply first: jurisdiction (+ federal),
- * change type, document, language. Scoring/ranking is what differs between retrievers; this
- * gate is shared so no retriever can widen the candidate set beyond what's permitted.
+ * change type, document, language, audience. Scoring/ranking is what differs between
+ * retrievers; this gate is shared so no retriever can widen the candidate set beyond what's
+ * permitted.
  */
 export function filterByQuery(query: RetrievalQuery, corpus: CorpusRecord[]): CorpusRecord[] {
   const language: Language = query.language ?? "en";
-  return corpus.filter((rec) => {
+  const structural = corpus.filter((rec) => {
     if (rec.language !== language) return false;
     if (!jurisdictionMatches(rec, query.jurisdiction)) return false;
     if (!rec.change_type.some((c) => query.change_types.includes(c))) return false;
     if (query.documents && query.documents.length > 0 && !query.documents.includes(rec.document_type)) return false;
     return true;
   });
+  return selectAudience(structural, query.for_minor === true);
 }
 
 /** Tokenize externally (language-aware) — reused by alternate retrievers. */

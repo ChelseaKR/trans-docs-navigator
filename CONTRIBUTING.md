@@ -18,6 +18,13 @@ The CI content gate rejects any record whose verifier is not in that roster.
 
 ## Adding or correcting a jurisdiction record
 
+**Start from A4TE's state guide, then cite the government page.** Advocates for Trans Equality
+keeps a human-curated guide for every state at `https://transequality.org/documents/<state>-identity-documents`.
+Use it as a *map*: it tells you which agencies, official pages, and form ids matter for that state.
+Then fetch and cite the official `.gov` page — never A4TE's page — because the fidelity gate must be
+able to locate every claim in a primary source, and drift-watch must watch the law, not a summary of
+it. **Do not copy their text.** Their prose is copyrighted; facts and pointers are what you take.
+
 1. Edit the relevant file under `corpus/jurisdictions/`.
 2. Provide a primary, official `source` (a `.gov`/court/agency URL — not a blog or forum).
 3. Set `last_verified` to the date **you** checked the claim against that source, and add

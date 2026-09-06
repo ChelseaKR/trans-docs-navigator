@@ -7,9 +7,11 @@ import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from ".
 import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel, preparationList, verificationCaption } from "./render.ts";
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
+import { feedLinkFor } from "./feeds.ts";
 import { toResumeState } from "./secure-resume.ts";
 import { staleAfterDays } from "./offline.ts";
 import { isDriftWatchable } from "../api/watchability.ts";
+import { referralsFor } from "../api/referrals.ts";
 
 const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-AL", label: "Alabama" },
@@ -64,7 +66,21 @@ const JURISDICTIONS: { id: string; label: string }[] = [
   { id: "US-WI", label: "Wisconsin" },
   { id: "US-WY", label: "Wyoming" },
 ];
-const DOCUMENT_IDS: DocumentType[] = ["court-order", "ssa-card", "drivers-license", "passport", "birth-certificate", "financial-records"];
+const DOCUMENT_IDS: DocumentType[] = [
+  "court-order",
+  "ssa-card",
+  "drivers-license",
+  "passport",
+  "birth-certificate",
+  "financial-records",
+  "green-card",
+  "naturalization-certificate",
+  "ead",
+  "selective-service",
+  "military-records",
+  "trusted-traveler",
+  "federal-employment-records",
+];
 
 export function renderIntakePage(lang: Language = "en"): string {
   const s = uiStrings(lang);
@@ -83,6 +99,10 @@ export function renderIntakePage(lang: Language = "en"): string {
   // as already done and prune it from dependents' prerequisite lists; it is bookkeeping,
   // never individualized guidance, so the copy stays neutral.
   const courtOrderLabel = fieldLabel(lang, "has_court_order");
+  // Minors pilot (docs/audits): same selection-only bookkeeping class as has_court_order —
+  // read by retrieval to prefer a minor-audience record where the corpus has one, and by
+  // the checklist/answer honesty note where it doesn't (api/checklist.ts hasNoMinorCoverage).
+  const forMinorLabel = fieldLabel(lang, "for_minor");
 
   const body = `
 <p>${escapeHtml(s.intakeLead)}</p>
@@ -104,6 +124,10 @@ export function renderIntakePage(lang: Language = "en"): string {
   <fieldset>
     <legend>${escapeHtml(courtOrderLabel)}</legend>
     <label><input type="checkbox" name="court_order" value="1"> ${escapeHtml(courtOrderLabel)}</label>
+  </fieldset>
+  <fieldset>
+    <legend>${escapeHtml(forMinorLabel)}</legend>
+    <label><input type="checkbox" name="for_minor" value="1"> ${escapeHtml(forMinorLabel)}</label>
   </fieldset>
   <fieldset>
     <legend>${escapeHtml(s.languageLegend)}</legend>
@@ -131,17 +155,29 @@ export function renderChecklistPage(
   records: CorpusRecord[],
   lang: Language,
   query = "",
-  opts: { thinnerCoverage?: boolean; noStateCoverage?: boolean } = {},
+  opts: { thinnerCoverage?: boolean; noStateCoverage?: boolean; noMinorCoverage?: boolean } = {},
 ): string {
   const s = uiStrings(lang);
   const coverageNote = opts.thinnerCoverage ? `<p class="flag" role="note">${escapeHtml(s.thinnerCoverage)}</p>` : "";
   // The state itself is absent from the corpus: every step below is federal. Said BEFORE
   // the steps, because after them the page already reads as a finished plan.
   const stateNote = opts.noStateCoverage ? `<p class="flag" role="note">${escapeHtml(s.noStateCoverage)}</p>` : "";
+  // Minors pilot: the state IS covered, but not for a minor's situation specifically —
+  // the steps below are the adult ones. Same placement logic as stateNote (before the
+  // steps, not after), and it can legitimately stack with stateNote (a wholly uncovered
+  // territory has no minor coverage either; both statements stay true and distinct).
+  const minorNote = opts.noMinorCoverage ? `<p class="flag" role="note">${escapeHtml(s.noMinorCoverage)}</p>` : "";
   const intro = `<p>${escapeHtml(s.checklistIntro)}</p>
-<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${stateNote}${coverageNote}`;
+<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${stateNote}${minorNote}${coverageNote}`;
   const q = query ? `?${query}` : "";
   const actions = `<p class="no-print"><a href="/packet${q}">📄 ${escapeHtml(s.print)}</a> · <a href="/">${escapeHtml(s.startOver)}</a></p>`;
+  // Per-jurisdiction change-alert feed (RSS/Atom, no accounts, no PII — src/feeds.ts).
+  // `undefined` for a state with no corpus coverage: pointing at a feed for a state we
+  // say nothing about would be a subscription to silence, not a signal.
+  const feed = opts.noStateCoverage ? undefined : feedLinkFor(checklist.jurisdiction, lang);
+  const feedNotice = feed
+    ? `<p class="no-print"><a href="${escapeHtml(feed.href)}">📡 ${escapeHtml(locale(lang).seo.feedLinkLabel(feed.stateName))}</a></p>`
+    : "";
   const gaps = checklist.gaps.length
     ? `<section aria-label="${escapeHtml(s.notCovered)}"><h2>${escapeHtml(s.notCovered)}</h2><ul>${checklist.gaps
         .map((g) => `<li class="flag">${escapeHtml(locale(lang).docLabels[g.document_type])}: ${escapeHtml(gapReason(lang, g.reason))}</li>`)
@@ -214,8 +250,39 @@ export function renderChecklistPage(
 <script type="module" src="/assets/reminders.js"></script>`
     : "";
 
-  const body = intro + summary + actions + noSteps + reminders + more + gaps + renderResumePanel(s, query) + offline + progress;
-  return page({ lang, title: s.checklistTitle, heading: s.checklistHeading, body });
+  const help = renderHelpSection(checklist.jurisdiction, lang, s);
+  const body = intro + summary + actions + feedNotice + noSteps + reminders + more + gaps + help + renderResumePanel(s, query) + offline + progress;
+  return page({
+    lang,
+    title: s.checklistTitle,
+    heading: s.checklistHeading,
+    body,
+    ...(feed ? { feedLinks: [feed] } : {}),
+  });
+}
+
+/**
+ * "Where to get help": the jurisdiction's legal-aid and guide referrals (corpus/referrals/),
+ * state entries first, then federal. The referral data, loader, validator and launch-gate
+ * count all existed; this is the first place a user actually sees them. Printable on
+ * purpose — a checklist carried to a clerk should carry the phone-a-friend list too.
+ */
+function renderHelpSection(jurisdiction: Checklist["jurisdiction"], lang: Language, s: ReturnType<typeof uiStrings>): string {
+  const refs = referralsFor(jurisdiction);
+  if (refs.length === 0) return "";
+  const ordered = [...refs.filter((r) => r.jurisdiction !== "US"), ...refs.filter((r) => r.jurisdiction === "US")];
+  // `note` is keyed by the shipping locales only (api/referrals.ts validates both en and es
+  // are present), so this fallback can never fire in production. It exists for the G9
+  // pseudolocale gate, which serves `?language=en-XA`: indexing by a non-shipping tag
+  // yields undefined, escapeHtml(undefined) throws, the route 500s, and the gate times out
+  // waiting for a marker that never renders — the same trap that keeps /guide excluded
+  // from that gate (see tests/e2e/i18n/pseudo-overflow.spec.ts). Corpus-sourced text is
+  // not pseudolocalised anyway, so English is the honest fallback, not a leak.
+  const noteFor = (r: (typeof ordered)[number]): string => r.note[lang] ?? r.note.en;
+  const items = ordered
+    .map((r) => `<li><a href="${escapeHtml(r.url)}" rel="noopener noreferrer">${escapeHtml(r.name)}</a> — ${escapeHtml(noteFor(r))}</li>`)
+    .join("");
+  return `<section class="help" aria-labelledby="help-h"><h2 id="help-h">${escapeHtml(s.helpHeading)}</h2><p class="meta">${escapeHtml(s.helpIntro)}</p><ul>${items}</ul></section>`;
 }
 
 /** JSON island: config data for a static client script. `<` is escaped so markup in a
@@ -269,14 +336,16 @@ export function renderPacketPage(
   lang: Language,
   generatedOn: string,
   intakeQuery = "",
-  opts: { noStateCoverage?: boolean } = {},
+  opts: { noStateCoverage?: boolean; noMinorCoverage?: boolean } = {},
 ): string {
   const s = uiStrings(lang);
   const actions = `<p class="no-print"><button type="button" id="print-btn">🖨️ ${escapeHtml(s.print)}</button> <a href="/">${escapeHtml(s.startOver)}</a></p>
 <script type="module" src="/assets/packet.js"></script>`;
   // The packet is the artifact people print and carry to a clerk, so the "these are
-  // federal steps only" caveat has to survive onto paper — not be a screen-only note.
+  // federal steps only" / "these are adult steps only" caveats have to survive onto
+  // paper — not be a screen-only note.
   const stateNote = opts.noStateCoverage ? `<p class="flag" role="note">${escapeHtml(s.noStateCoverage)}</p>` : "";
+  const minorNote = opts.noMinorCoverage ? `<p class="flag" role="note">${escapeHtml(s.noMinorCoverage)}</p>` : "";
   // Offline saving: the packet itself, plus the checklist to go back to.
   const offlineUrls = intakeQuery
     ? [
@@ -285,7 +354,8 @@ export function renderPacketPage(
       ]
     : [];
   const offline = renderOfflinePanel(s, offlineUrls);
-  const body = actions + stateNote + renderPacket(checklist, records, lang, generatedOn) + offline;
+  const help = renderHelpSection(checklist.jurisdiction, lang, s);
+  const body = actions + stateNote + minorNote + renderPacket(checklist, records, lang, generatedOn) + help + offline;
   return page({ lang, title: s.packetTitle, heading: s.packetHeading, body });
 }
 
