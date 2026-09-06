@@ -1,9 +1,9 @@
 {
   "generated_by": "scripts/source-fidelity.ts",
-  "records": 658,
-  "supported": 991,
+  "records": 660,
+  "supported": 997,
   "unsupported": 0,
-  "uncheckable": 476,
+  "uncheckable": 480,
   "unfetchable_sources": [
     "https://doa.alaska.gov/dmv/akol/namchg.htm → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://www.dccourts.gov/sites/default/files/2024-01/Name_Change_Application_Full_Fillable.pdf → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
@@ -22,8 +22,8 @@
     "https://odh.ohio.gov/know-our-programs/vital-statistics/changing-correcting-birth-record → unreachable (fetch and curl both failed): the host's edge/WAF returns a 404 error page to this project's declared user-agent on every odh.ohio.gov path (confirmed on the root domain too), while a browser user-agent gets 200; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page.",
     "https://travel.state.gov/es/pasaportes/renovar-o-reemplazar/cambiar-o-corregir.html → HTTP 403: the host refuses this project's declared user-agent; we do not spoof a browser UA. Records citing it can only be verified by a human reading the page."
   ],
-  "unchecked_prose_sentences": 2421,
-  "total_prose_sentences": 2969,
+  "unchecked_prose_sentences": 2431,
+  "total_prose_sentences": 2983,
   "audits": [
     {
       "recordId": "al.court-order.name",
@@ -7898,6 +7898,34 @@
       "uncheckedProse": 2,
       "negatedClaims": 0,
       "totalSentences": 3
+    },
+    {
+      "recordId": "sc.court-order.fees",
+      "language": "en",
+      "url": "https://www.sccourts.org/courts/trial-courts/family-court/court-fees/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "150",
+          "label": "costs $150",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $150"
+        },
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 5
     },
     {
       "recordId": "sc.drivers-license.name",
@@ -15795,6 +15823,34 @@
       "totalSentences": 5
     },
     {
+      "recordId": "sc.court-order.fees.es",
+      "language": "es",
+      "url": "https://www.sccourts.org/courts/trial-courts/family-court/court-fees/",
+      "results": [
+        {
+          "kind": "money",
+          "key": "150",
+          "label": "costs $150",
+          "field": "cost.amount_usd",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states $150"
+        },
+        {
+          "kind": "fee-waiver",
+          "key": "fee-waiver",
+          "label": "a fee waiver is available (cost.fee_waiver: true)",
+          "field": "cost.fee_waiver",
+          "strength": "necessary-condition",
+          "verdict": "supported",
+          "why": "the source describes a fee waiver / inability-to-pay route"
+        }
+      ],
+      "uncheckedProse": 4,
+      "negatedClaims": 2,
+      "totalSentences": 5
+    },
+    {
       "recordId": "sc.court-order.name.es",
       "language": "es",
       "url": "https://www.scstatehouse.gov/code/t15c049.php",
@@ -16315,6 +16371,15 @@
           "why": "the source states \"18 year\""
         },
         {
+          "kind": "duration",
+          "key": "2 year",
+          "label": "states \"2 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"2 year\""
+        },
+        {
           "kind": "requirement",
           "key": "background-check",
           "label": "fingerprints / a criminal-history check are required",
@@ -16342,9 +16407,9 @@
           "why": "the source states $300"
         }
       ],
-      "uncheckedProse": 5,
-      "negatedClaims": 0,
-      "totalSentences": 6
+      "uncheckedProse": 6,
+      "negatedClaims": 1,
+      "totalSentences": 8
     },
     {
       "recordId": "tx.court-order.name.minor.es",
@@ -17527,6 +17592,15 @@
           "strength": "literal",
           "verdict": "supported",
           "why": "the source states there is no fee"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:wa-dol-change-of-gender-designation",
+          "label": "form_ref \"wa-dol-change-of-gender-designation\" (Change of Gender Designation — Washington DOL request form (driver license, ID card, or instruction permit)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
         }
       ],
       "uncheckedProse": 6,
@@ -17537,7 +17611,17 @@
       "recordId": "wa.drivers-license.gender-marker.minor.es",
       "language": "es",
       "url": "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-gender-designation",
-      "results": [],
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:wa-dol-change-of-gender-designation",
+          "label": "form_ref \"wa-dol-change-of-gender-designation\" (Change of Gender Designation — Washington DOL request form (driver license, ID card, or instruction permit)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
       "uncheckedProse": 4,
       "negatedClaims": 2,
       "totalSentences": 4
@@ -18213,6 +18297,15 @@
           "why": "the source states \"18 year\""
         },
         {
+          "kind": "duration",
+          "key": "2 year",
+          "label": "states \"2 year\"",
+          "field": "detail",
+          "strength": "literal",
+          "verdict": "supported",
+          "why": "the source states \"2 year\""
+        },
+        {
           "kind": "requirement",
           "key": "background-check",
           "label": "fingerprints / a criminal-history check are required",
@@ -18240,9 +18333,9 @@
           "why": "the source states $300"
         }
       ],
-      "uncheckedProse": 5,
-      "negatedClaims": 0,
-      "totalSentences": 6
+      "uncheckedProse": 6,
+      "negatedClaims": 1,
+      "totalSentences": 8
     },
     {
       "recordId": "tx.drivers-license.name",
@@ -19049,6 +19142,15 @@
           "strength": "literal",
           "verdict": "supported",
           "why": "the source states there is no fee"
+        },
+        {
+          "kind": "form-id",
+          "key": "unnamed:wa-dol-change-of-gender-designation",
+          "label": "form_ref \"wa-dol-change-of-gender-designation\" (Change of Gender Designation — Washington DOL request form (driver license, ID card, or instruction permit)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
         }
       ],
       "uncheckedProse": 6,
@@ -19234,7 +19336,17 @@
       "recordId": "wa.drivers-license.gender-marker.minor",
       "language": "en",
       "url": "https://dol.wa.gov/driver-licenses-and-permits/update-driver-license-information/change-your-gender-designation",
-      "results": [],
+      "results": [
+        {
+          "kind": "form-id",
+          "key": "unnamed:wa-dol-change-of-gender-designation",
+          "label": "form_ref \"wa-dol-change-of-gender-designation\" (Change of Gender Designation — Washington DOL request form (driver license, ID card, or instruction permit)) carries no form identifier to match on",
+          "field": "form_ref",
+          "strength": "literal",
+          "verdict": "uncheckable",
+          "why": "the official form has no identifier to match on"
+        }
+      ],
       "uncheckedProse": 4,
       "negatedClaims": 2,
       "totalSentences": 4
