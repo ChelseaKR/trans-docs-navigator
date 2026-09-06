@@ -12,23 +12,23 @@
 
 | | Count |
 |---|---|
-| Records audited | 658 |
-| Load-bearing assertions found | 1467 |
-| — checked and **supported** by the cited source | 991 |
+| Records audited | 660 |
+| Load-bearing assertions found | 1477 |
+| — checked and **supported** by the cited source | 997 |
 | — checked and **UNSUPPORTED** (merge-blocking) | 0 |
-| — **UNCHECKABLE** (reported, never passed) | 476 |
-| of the checked: literal (fee / duration / form-id) matches | 667 |
-| of the checked: necessary-condition only (topic present, wording NOT verified) | 324 |
+| — **UNCHECKABLE** (reported, never passed) | 480 |
+| of the checked: literal (fee / duration / form-id) matches | 671 |
+| of the checked: necessary-condition only (topic present, wording NOT verified) | 326 |
 
 ## What this gate cannot vouch for
 
-- **2421 of 2969 prose sentences** in the corpus carry no extractable
+- **2431 of 2983 prose sentences** in the corpus carry no extractable
   literal (no fee, duration, or form id). Nothing in CI checks them against the source.
   They are read by a human or they are not read at all.
-- **946 sentences state a negative** (`you do not need a court order`, `the page no
+- **952 sentences state a negative** (`you do not need a court order`, `the page no
   longer lists a form`). A keyword check cannot verify an absence, so these are never
   passed as supported — they are counted here and left to human review.
-- **324 assertions are necessary-condition only**: the source discusses the topic, which
+- **326 assertions are necessary-condition only**: the source discusses the topic, which
   is the weakest possible evidence. It rules out the `cites a page with zero content on
   this subject` bug. It does not rule out a record that says the opposite of its source.
 - **16 cited sources refuse automated fetching entirely**, so no
@@ -467,7 +467,7 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `us.passport.name.es · names form DS60`
 - `us.passport.name.es · states $60`
 
-**the official form has no identifier to match on** — 62 assertion(s):
+**the official form has no identifier to match on** — 66 assertion(s):
 
 - `az.court-order.fees · cost.fee_waiver_form "az-aocdfgf1f-fee-waiver" (Application for Deferral or Waiver of Court Fees or Costs and Consent to Entry of Judgment (Form No. AOCDFGF1F)) carries no form identifier to match on`
 - `az.birth-certificate.name · form_ref "az-affidavit-correct-amend-birth" (Affidavit to Correct or Amend a Birth Certificate) carries no form identifier to match on`
@@ -523,11 +523,15 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 - `us.naturalization-certificate.gender-marker.es · form_ref "us-n-565" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on`
 - `us.naturalization-certificate.name.es · form_ref "us-n-565" (Form N-565 — Application for Replacement Naturalization/Citizenship Document) carries no form identifier to match on`
 - `vt.court-order.name.es · cost.fee_waiver_form "vt-application-waive-filing-fees" (Application to Waive Filing Fees and Service Costs (Form 600-00228)) carries no form identifier to match on`
+- `wa.drivers-license.gender-marker.es · form_ref "wa-dol-change-of-gender-designation" (Change of Gender Designation — Washington DOL request form (driver license, ID card, or instruction permit)) carries no form identifier to match on`
+- `wa.drivers-license.gender-marker.minor.es · form_ref "wa-dol-change-of-gender-designation" (Change of Gender Designation — Washington DOL request form (driver license, ID card, or instruction permit)) carries no form identifier to match on`
 - `wv.birth-certificate.gender-marker.es · form_ref "wv-hsc-sex-designation" (West Virginia Health Statistics Center — Sex Designation Form) carries no form identifier to match on`
 - `wv.birth-certificate.name.es · form_ref "wv-hsc-affidavit-correct-birth" (West Virginia Health Statistics Center — Affidavit to Correct Birth (Adult)) carries no form identifier to match on`
 - `wy.birth-certificate.name.es · form_ref "wy-vrs-correction-form" (Form to Correct a Wyoming Vital Record) carries no form identifier to match on`
 - `tx.court-order.name · cost.fee_waiver_form "tx-statement-inability-afford" (Statement of Inability to Afford Payment of Court Costs or an Appeal Bond) carries no form identifier to match on`
 - `vt.court-order.name · cost.fee_waiver_form "vt-application-waive-filing-fees" (Application to Waive Filing Fees and Service Costs (Form 600-00228)) carries no form identifier to match on`
+- `wa.drivers-license.gender-marker · form_ref "wa-dol-change-of-gender-designation" (Change of Gender Designation — Washington DOL request form (driver license, ID card, or instruction permit)) carries no form identifier to match on`
+- `wa.drivers-license.gender-marker.minor · form_ref "wa-dol-change-of-gender-designation" (Change of Gender Designation — Washington DOL request form (driver license, ID card, or instruction permit)) carries no form identifier to match on`
 - `wv.birth-certificate.name · form_ref "wv-hsc-affidavit-correct-birth" (West Virginia Health Statistics Center — Affidavit to Correct Birth (Adult)) carries no form identifier to match on`
 - `wv.birth-certificate.gender-marker · form_ref "wv-hsc-sex-designation" (West Virginia Health Statistics Center — Sex Designation Form) carries no form identifier to match on`
 - `wy.birth-certificate.name · form_ref "wy-vrs-correction-form" (Form to Correct a Wyoming Vital Record) carries no form identifier to match on`
@@ -1041,6 +1045,8 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `sc.birth-certificate.gender-marker.es` | es | 2 | 0 | 0 | 4/4 |
 | `sc.birth-certificate.name` | en | 6 | 0 | 0 | 3/5 |
 | `sc.birth-certificate.name.es` | es | 6 | 0 | 0 | 3/5 |
+| `sc.court-order.fees` | en | 2 | 0 | 0 | 4/5 |
+| `sc.court-order.fees.es` | es | 2 | 0 | 0 | 4/5 |
 | `sc.court-order.name` | en | 2 | 0 | 0 | 2/3 |
 | `sc.court-order.name.es` | es | 2 | 0 | 0 | 1/3 |
 | `sc.drivers-license.gender-marker` | en | 0 | 0 | 0 | 3/3 |
@@ -1077,8 +1083,8 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `tx.birth-certificate.gender-marker.law.es` | es | 1 | 0 | 0 | 2/3 |
 | `tx.birth-certificate.name` | en | 2 | 0 | 0 | 3/3 |
 | `tx.birth-certificate.name.es` | es | 2 | 0 | 0 | 3/3 |
-| `tx.court-order.name` | en | 7 | 0 | 1 | 5/6 |
-| `tx.court-order.name.es` | es | 7 | 0 | 1 | 5/6 |
+| `tx.court-order.name` | en | 8 | 0 | 1 | 6/8 |
+| `tx.court-order.name.es` | es | 8 | 0 | 1 | 6/8 |
 | `tx.court-order.name.minor` | en | 3 | 0 | 0 | 4/6 |
 | `tx.court-order.name.minor.es` | es | 3 | 0 | 0 | 4/6 |
 | `tx.drivers-license.gender-marker` | en | 2 | 0 | 0 | 4/5 |
@@ -1177,10 +1183,10 @@ None. Every load-bearing assertion the gate could check is locatable in its cite
 | `wa.court-order.name.es` | es | 1 | 0 | 0 | 5/6 |
 | `wa.court-order.name.minor` | en | 1 | 0 | 0 | 5/6 |
 | `wa.court-order.name.minor.es` | es | 1 | 0 | 0 | 5/6 |
-| `wa.drivers-license.gender-marker` | en | 1 | 0 | 0 | 6/6 |
-| `wa.drivers-license.gender-marker.es` | es | 1 | 0 | 0 | 6/6 |
-| `wa.drivers-license.gender-marker.minor` | en | 0 | 0 | 0 | 4/4 |
-| `wa.drivers-license.gender-marker.minor.es` | es | 0 | 0 | 0 | 4/4 |
+| `wa.drivers-license.gender-marker` | en | 1 | 0 | 1 | 6/6 |
+| `wa.drivers-license.gender-marker.es` | es | 1 | 0 | 1 | 6/6 |
+| `wa.drivers-license.gender-marker.minor` | en | 0 | 0 | 1 | 4/4 |
+| `wa.drivers-license.gender-marker.minor.es` | es | 0 | 0 | 1 | 4/4 |
 | `wa.drivers-license.name` | en | 1 | 0 | 0 | 4/4 |
 | `wa.drivers-license.name.es` | es | 1 | 0 | 0 | 4/4 |
 | `wi.birth-certificate.gender-marker` | en | 3 | 0 | 0 | 1/3 |

@@ -6174,6 +6174,32 @@
     "language": "es"
   },
   {
+    "id": "sc.court-order.fees.es",
+    "jurisdiction": "US-SC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Tarifa de presentación del Tribunal de Familia de Carolina del Sur para un cambio de nombre",
+    "statement": "El calendario de tarifas de presentación del Tribunal de Familia del Poder Judicial de Carolina del Sur indica una tarifa de presentación de $150 para las Acciones de Cambio de Nombre y Corrección de Registro de Nacimiento.",
+    "detail": "El mismo calendario dice que no se requiere tarifa de presentación para un caso presentado con una orden que concede una Moción de Autorización para Proceder In Forma Pauperis (Regla 3(b)(1), SCRCP). Tampoco indica tarifa cuando una parte está representada por un abogado que trabaja en nombre de una sociedad de asistencia legal, una organización de servicios legales u otra organización sin fines de lucro, o del Programa Pro Bono de Carolina del Sur, con certificación escrita del abogado (Regla 3(b)(2), SCRCP). Las tarifas por mociones se indican por separado. Consulte la propia página de tarifas del tribunal para confirmar el monto actual antes de presentar su caso.",
+    "cost": {
+      "amount_usd": 150,
+      "note": "La tarifa de presentación para las Acciones de Cambio de Nombre y Corrección de Registro de Nacimiento. El calendario no indica ninguna tarifa para un caso presentado con una orden que concede una Moción de Autorización para Proceder In Forma Pauperis.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.sccourts.org/courts/trial-courts/family-court/court-fees/",
+      "title": "Poder Judicial de Carolina del Sur — Tarifas de Presentación del Tribunal de Familia",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "es"
+  },
+  {
     "id": "sc.court-order.name.es",
     "jurisdiction": "US-SC",
     "document_type": "court-order",
@@ -6607,7 +6633,7 @@
     ],
     "topic": "Petición de cambio de nombre en Texas",
     "statement": "En Texas usted presenta una petición de cambio de nombre en el condado de Texas donde vive, y un juez firma una orden que lo concede. Debe tener al menos 18 años.",
-    "detail": "Le toman un juego de huellas dactilares legible y completo, y le da a la corte información completa sobre todos los delitos graves y los delitos menores de Clase A o B. Presenta su petición en la oficina del secretario de distrito de su condado. En algunos condados también paga por una verificación de antecedentes penales. La orden firmada se usa luego para actualizar otros documentos.",
+    "detail": "Le toman un juego de huellas dactilares legible y completo, y le da a la corte información completa sobre todos los delitos graves y los delitos menores de Clase A o B. Presenta su petición en la oficina del secretario de distrito de su condado. En algunos condados también paga por una verificación de antecedentes penales. La orden firmada se usa luego para actualizar otros documentos. Si tiene una condena por un delito grave, TexasLawHelp dice que la corte no puede cambiar su nombre a menos que presente prueba de que fue indultado, de que han pasado al menos dos años desde que salió de prisión o completó la libertad condicional, o de que está cambiando su nombre al nombre principal que aparece en su historial penal (Código de Familia de Texas 45.103(b)(2)). Si está obligado a registrarse como delincuente sexual, debe presentar prueba de que notificó a la autoridad policial local sobre su solicitud de cambio de nombre.",
     "cost": {
       "amount_usd": null,
       "note": "La cuota de presentación puede ser de entre $150 y $300 según dónde viva — pregunte en la oficina del secretario de distrito de su condado. Si tiene bajos ingresos, puede pedir a la corte que le exente la cuota con una Declaración de Incapacidad para Pagar los Costos de la Corte. También paga por las huellas dactilares y, en algunos condados, por la verificación de antecedentes penales.",
@@ -7816,7 +7842,7 @@
     ],
     "topic": "Designación de género en la licencia de Washington",
     "statement": "Washington ofrece tres designaciones de género en la licencia de conducir o identificación: M (masculino), F (femenino) y X (no exclusivamente masculino ni femenino). Puede cambiarla en persona o por correo; no hay opción en línea.",
-    "detail": "En persona, lleve su tarjeta actual a una oficina de licencias y confirme su designación de género en voz alta. Por correo, complete un formulario de Solicitud de Designación de Género y envíelo a la dirección que aparece en el formulario. La página no pide ninguna documentación médica.",
+    "detail": "En persona, lleve su tarjeta actual a una oficina de licencias y confirme su designación de género en voz alta. Por correo, complete un formulario de Solicitud de Cambio de Designación de Género y envíelo a la dirección que aparece en el formulario. La página no pide ninguna documentación médica.",
     "cost": {
       "amount_usd": 0,
       "note": "Si la designación de género es lo único que actualiza, la tarjeta nueva es gratis. Si actualiza algo más al mismo tiempo, como su nombre, puede haber una tarifa adicional."
@@ -7830,6 +7856,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "wa-dol-change-of-gender-designation",
     "language": "es"
   },
   {
@@ -7851,6 +7878,7 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
+    "form_ref": "wa-dol-change-of-gender-designation",
     "audience": "minor",
     "language": "es"
   },

@@ -1266,5 +1266,20 @@
       "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     }
+  },
+  {
+    "id": "wa-dol-change-of-gender-designation",
+    "jurisdiction": "US-WA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "title": "Change of Gender Designation — Washington DOL request form (driver license, ID card, or instruction permit)",
+    "source": {
+      "url": "https://dol.wa.gov/forms/view/520043/download",
+      "title": "Washington State Department of Licensing — Change of Gender Designation (printed form number DLE-520-043, R/11/19; DOL's forms search also lists Spanish, Russian, and Vietnamese versions of the same form)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    }
   }
 ]
