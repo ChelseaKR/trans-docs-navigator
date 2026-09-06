@@ -7,11 +7,13 @@
 // short-circuited (e.g. refactored to `return pass(...)`) fails these tests even
 // though every OTHER test in the repo stays green — that is the whole point.
 //
-// SCOPE: covers the 20 CLI/spawnable merge gates. Two gates are out of scope per the
+// SCOPE: covers 21 of the CLI/spawnable merge gates. Two gates are out of scope per the
 // roadmap item's own spec and are covered by CI broken-fixture pages instead:
 //   - a11y-lint.ts (pa11y-ci runs the deep accessibility pass in a real browser)
 //   - i18n-overflow (Playwright pseudolocale-overflow gate; starts a browser+server)
 // One remains deferred (typecheck) — see the note at the bottom of this file for why.
+// `loadtest` (scripts/latency-bench.ts) was added for #153, alongside its two verdict
+// states (real regression must still fail; detected contention must not).
 //
 // A gate with more than one half needs a control per half. `security` has two (a
 // dependency audit and a secret scan) and only the secret half was covered here, which
@@ -530,6 +532,62 @@ test("eval gate fails when the expected record is outside the retrieved top-K", 
   assert.notEqual(r.code, 0, `a retrieval miss must fail the gate. Output:\n${r.output}`);
   assert.match(r.output, /❌ context_recall_at_8: 50\.0% \(≥ 80\.0%/);
   assert.match(r.output, /❌ context_precision_at_1: 50\.0% \(≥ 70\.0%/);
+});
+
+// ── loadtest (scripts/latency-bench.ts) ─────────────────────────────────────────
+// #153: an absolute p95 wall-clock budget can't tell a real regression from the
+// measuring machine being busy — a loaded box was blowing p95/max out 10-20x while
+// p50 (what a real regression moves) stayed flat, and the gate rendered that as "over
+// budget" and blocked verified-green pushes. Two poison hooks add real wall-clock
+// delay so these controls exercise the actual timing logic (not a mocked clock), kept
+// fast with LATENCY_BENCH_TEST_ITERATIONS (unset in production: the full 2000/route).
+// Both hooks are no-ops unless set, so production behavior is unchanged.
+//
+// This gate needs a control per DIRECTION, not per half: it must still fail on the
+// harm it exists to catch (a real regression), and it must NOT fail on the harm #153
+// added it to stop causing (contention it can't distinguish from a regression).
+
+// Harm: the original bug. A genuine regression (constant added cost on every sample,
+// exactly like slower per-request code) must still fail the gate — the whole fix would
+// be worthless if "don't cry wolf" quietly became "can't bark at all".
+test("loadtest gate fails when a real regression moves the median latency", () => {
+  const r = runGate("latency-bench", {
+    env: { LATENCY_BENCH_TEST_ITERATIONS: "50", LATENCY_BENCH_POISON_REGRESSION: "1" },
+  });
+  assert.notEqual(r.code, 0, `a real regression must fail the gate. Output:\n${r.output}`);
+  assert.match(r.output, /route\(s\) over the .*ms p50 budget/);
+});
+
+// Harm: THE bug in #153. Simulated scheduler contention (a rare, large stall on ~5% of
+// samples — moves the tail, not the median) must not render as "over budget", and must
+// not block the push either: the same-run calibration control catches the contention
+// and the gate refuses a p95 verdict instead of guessing. code 0 here is the point —
+// a busy box must not fail a push for a change that cannot affect latency.
+test("loadtest gate refuses rather than fails when its own control detects contention, and does not block the push", () => {
+  const r = runGate("latency-bench", {
+    env: { LATENCY_BENCH_TEST_ITERATIONS: "200", LATENCY_BENCH_POISON_CONTENTION: "1" },
+  });
+  assert.equal(r.code, 0, `contention must not block the push. Output:\n${r.output}`);
+  assert.match(r.output, /could not measure p95 reliably/);
+  assert.doesNotMatch(r.output, /route\(s\) over the .*ms in-process p95 budget/);
+  assert.doesNotMatch(r.output, /route\(s\) over the .*ms p50 budget/);
+});
+
+// The control for the controls: without this, a script that always exits 0 (say, one
+// where the p50 check above got short-circuited) would trivially satisfy the second
+// test's assertions while proving nothing about the first. This one carries no
+// injected jitter — it is a real measurement on whatever this machine is doing right
+// now — so it deliberately does NOT assert a clean "✅ pass". This repo's own dev
+// sandbox was observed to legitimately spike past load average 200 while this suite
+// runs (many unrelated concurrent processes), and on a box that busy "could not
+// measure p95" is the CORRECT answer, not a bug: asserting a strict pass here would
+// make this test exactly the kind of environment-dependent flake #153 exists to
+// eliminate. What must always hold, on any box: a real, unregressed run never blocks
+// the push, and never renders as a false "over budget".
+test("loadtest gate never falsely blocks an unpoisoned run — passes clean or honestly refuses, never renders a false 'over budget'", () => {
+  const r = runGate("latency-bench");
+  assert.equal(r.code, 0, `an unpoisoned, unregressed run must never fail the push. Output:\n${r.output}`);
+  assert.match(r.output, /✅ loadtest:|⚠️ {2}loadtest: could not measure p95 reliably/);
 });
 
 // ── Deferred (documented, not covered here) ─────────────────────────────────────
