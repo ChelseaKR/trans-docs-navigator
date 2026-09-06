@@ -10,9 +10,12 @@ name: deploy-aws-preview
 on:
   workflow_dispatch:
 
+# Least privilege at workflow level (#159, Scorecard Token-Permissions): only
+# `contents: read` by default. `id-token: write` moves to job level below — same
+# pattern codeql.yml already uses (Scorecard's Token-Permissions check prefers
+# job-scoped write grants even in a single-job workflow).
 permissions:
   contents: read
-  id-token: write # OIDC
 
 # CICD-23: prevent two concurrent deploys of the same preview environment from racing
 # each other (e.g. two manual dispatches, or a re-run while one is in flight). Do NOT
@@ -25,6 +28,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: read
+      id-token: write # OIDC — only this job assumes the AWS deploy role
     steps:
       - name: Guard — require the deploy role to be configured
         run: |

@@ -189,6 +189,25 @@ test("i18n-bcp47 gate fails on a malformed language tag", () => {
   assert.match(r.output, /malformed BCP 47/);
 });
 
+// ── i18n hardcoded attributes (scripts/i18n-hardcoded-attrs.ts) ────────────────
+// Harm: THE bug this issue is about. A landmark's aria-label is typed in English by
+// hand in a src/ rendering template instead of sourced from the locale bundle, so it
+// renders unchanged on `?language=es` pages — invisible to both `make a11y` (a
+// labelled landmark passes regardless of language) and `make i18n` (key parity has
+// nothing to compare against a string that was never a bundle key). Also proves the
+// gate does not flag src/i18n/ itself, which legitimately holds the string data.
+test("i18n-hardcoded gate fails on a hardcoded aria-label in a src/ rendering template", () => {
+  const r = runGate("i18n-hardcoded-attrs", { env: { I18N_HARDCODED_ROOT: fixture("i18n-hardcoded-poison") } });
+  assert.notEqual(r.code, 0);
+  assert.match(r.output, /1 hardcoded user-visible attribute string/);
+  assert.match(r.output, /src\/bad\.ts:5 — hardcoded aria-label="answer"/);
+  // The dynamic, correctly-localized file, and src/i18n/ (the locale catalog itself,
+  // not a template — it carries the same attribute-shaped literal on purpose), must
+  // never be reported as violations. "1 hardcoded" above already proves the count is
+  // exactly the one real violation; this checks neither exempt file is that one line.
+  assert.doesNotMatch(r.output, /-\s*src[\\/](clean|i18n[\\/]en)\.ts/);
+});
+
 // ── i18n logical CSS (scripts/i18n-css-extract.ts + stylelint) ─────────────────
 // Harm: a physical (non-logical) inline-axis CSS property ships, breaking RTL
 // mirroring. This gate is two Makefile steps (extract, then stylelint); reproduce

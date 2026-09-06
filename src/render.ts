@@ -352,11 +352,12 @@ export function renderPacket(
 }
 
 export function renderAnswer(ans: GroundedAnswer, lang: Language): string {
+  const t = locale(lang).ui;
   const blocks = ans.blocks
     .map((b) => {
       const cls = b.kind === "claim" ? "" : ` class="${b.kind === "freshness" || b.kind === "uncertainty" ? "flag" : "meta"}"`;
       return `<p${cls}>${escapeHtml(b.text)}</p>`;
     })
     .join("");
-  return `<section aria-label="answer">${blocks}${sourceList(ans.cited_records, lang, 2)}</section>`;
+  return `<section aria-label="${escapeHtml(t.answerLandmarkLabel)}">${blocks}${sourceList(ans.cited_records, lang, 2)}</section>`;
 }
