@@ -3,14 +3,37 @@ name: codeql
 # Scheduled + PR static analysis (PRODUCTIONIZATION-PLAN Phase 4). Complements the
 # blocking Semgrep job in ci.yml with GitHub's own query packs.
 #
-# 2026-08-01: the `analyze` job was gated on `!github.event.repository.private`. This repo
-# IS private, so the job skipped on every run and the skip rendered as a green check —
-# CodeQL had never analyzed a line of the TypeScript app or the workflow YAML on the repo
-# SECURITY-AND-SUPPLY-CHAIN-STANDARD calls the portfolio's highest-stakes privacy repo.
-# The guard is gone. Code scanning (the SARIF-upload API) genuinely is unavailable without
-# GitHub Advanced Security, so the analysis now writes SARIF locally (`upload: never`) and
-# `scripts/codeql-gate.mjs` reads it and fails the job on error-severity findings. There is
-# no code-scanning dashboard to review here, so that gate step IS the enforcement.
+# 2026-08-01: the `analyze` job was gated on `!github.event.repository.private`, so it
+# skipped on every run and the skip rendered as a green check — CodeQL had never analyzed a
+# line of the TypeScript app or the workflow YAML on the repo SECURITY-AND-SUPPLY-CHAIN-
+# STANDARD calls the portfolio's highest-stakes privacy repo. The guard was removed and the
+# analysis was switched to `upload: never` + a local SARIF gate, on the stated grounds that
+# "code scanning is not enabled on this private repo (no GitHub Advanced Security)".
+#
+# 2026-09-06: THAT JUSTIFICATION WAS FALSE, and the cost of believing it was three months of
+# stale security data presented as current. This repository is PUBLIC (`"private": false`,
+# `"visibility": "public"` from the repos API), and code scanning is available on every
+# public repo without GitHub Advanced Security. SARIF upload was demonstrably working the
+# whole time: `scorecard.yml`'s `codeql-action/upload-sarif` step landed 3 analyses on `main`
+# at 2026-09-06T02:05Z, same API, same repo, same day. Meanwhile the newest CodeQL analysis
+# in code scanning was dated 2026-06-17 — its 14 alerts were shown in the Security tab as
+# current state for nearly three months, and at least one of them (js/file-system-race in
+# api/server.ts) had already been FIXED in the source. Absence of an upload was rendering as
+# a real, current, and wrong security picture.
+#
+# So `upload: never` is gone and `security-events: write` is restored. Both halves stay:
+# code scanning gets the findings (with real, current line numbers a reviewer can act on),
+# and `scripts/codeql-gate.mjs` still reads the local SARIF and fails the job — the gate
+# fails closed on a MISSING SARIF, which the dashboard cannot do, so it is not redundant.
+#
+# Two things this deliberately does NOT change, because they are the repo owner's calls and
+# are tracked in #239:
+#   * the gate's floor is still error problem-severity. Failing on high `security-severity`
+#     would turn the build red until the 9 current findings are triaged, which is a policy
+#     change, not a bug fix.
+#   * `analyze (...)` is still not in main's required-status-checks list, so a red CodeQL
+#     still cannot block a merge. Same decision, same place, as the stale required-checks
+#     item already recorded in docs/audits/scorecard-2026-07.md.
 
 on:
   # PRs into main analyze the diff before merge; the weekly schedule keeps the
@@ -41,20 +64,21 @@ jobs:
     # pattern that stays minimal if a second job is ever added here).
     permissions:
       contents: read
-      # `security-events: write` was dropped along with the upload: nothing is sent to the
-      # code-scanning API any more, so the job is read-only. `actions: read` is still
-      # required on private repos — codeql-action reads its own workflow-run metadata.
+      # `security-events: write` is the scope `codeql-action/analyze` needs to submit SARIF to
+      # the code-scanning API. It was dropped when `upload: never` went in and is restored
+      # here along with the upload; without it the analyze step fails on submission.
       #
-      # Investigated 2026-09: every analyze job's log shows codeql-action's init step
-      # stalling ~30s on "This run of the CodeQL Action does not have permission to access
-      # the CodeQL Action API endpoints ... please ensure the workflow has at least the
-      # 'security-events: read' permission" before falling back to defaults. That message is
-      # misleading here — added `security-events: read` on this branch and re-ran both
-      # matrix jobs; the identical warning fired at the identical point, with no change in
-      # job duration. The warning's own "Details" line names the real cause: "Code scanning
-      # is not enabled for this repository" — a private-repo GHAS entitlement gate, not a
-      # token-permission gate, so no permissions change here can affect it. Not adding the
-      # scope: it would be a real permission grant for zero measured benefit.
+      # This supersedes a 2026-09 note that lived here concluding no permissions change could
+      # help. That investigation added `security-events: READ`, saw the init step's ~30s
+      # "does not have permission to access the CodeQL Action API endpoints" warning fire
+      # unchanged, and attributed it to "a private-repo GHAS entitlement gate". The
+      # observation was real; the attribution was not — this repo is public and has no such
+      # gate, and `read` is in any case not the scope submission requires. The honest reading
+      # is that `read` was the wrong scope to test with. Whether `write` also clears that
+      # init-step warning is a separate question from whether upload works, and it is not the
+      # reason this scope is here: upload requires it.
+      security-events: write
+      # codeql-action reads its own workflow-run metadata.
       actions: read
     strategy:
       fail-fast: false
@@ -75,14 +99,20 @@ jobs:
         with:
           languages: ${{ matrix.language }}
           queries: security-and-quality
-      # Code scanning is not enabled on this private repo (no GitHub Advanced Security), so the
-      # SARIF-upload API is unavailable and `analyze` fails outright with "Code scanning is not
-      # enabled for this repository". Write the SARIF locally and gate on it ourselves instead —
-      # there is no code-scanning dashboard to review, so the gate step below IS the enforcement.
+      # `upload` is left at its default (`always`), so findings reach code scanning and the
+      # Security tab shows this commit rather than a June snapshot. `output:` is still set,
+      # because the local gate below reads the SARIF from there: upload and local gate are
+      # complementary, not alternatives. `wait-for-processing` also defaults on, so a SARIF
+      # that GitHub rejects fails this step instead of passing silently.
+      #
+      # NOTE ON CATEGORY: the June 2026 analyses predate this `category:` and were filed under
+      # the default `.github/workflows/codeql.yml:analyze`. GitHub only supersedes alerts
+      # within the same (tool, category, ref) stream, so those 14 stale alerts will NOT be
+      # closed by these uploads — they will sit alongside the current ones until the owner
+      # deletes those analyses or dismisses the alerts. See #239.
       - uses: github/codeql-action/analyze@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9
         with:
           category: "/language:${{ matrix.language }}"
-          upload: never
           output: sarif-results
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0

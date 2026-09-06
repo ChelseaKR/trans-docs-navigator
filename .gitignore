@@ -36,7 +36,8 @@ lighthouseci-reports/
 # `npm run corpus:manifest` / the Dockerfile RUN step, never hand-authored or committed.
 corpus.manifest.json
 
-# CodeQL local SARIF output (.github/workflows/codeql.yml) — `codeql-action/analyze` runs with
-# `upload: never` on this private repo and writes its SARIF here for scripts/codeql-gate.mjs to
-# read. A scan artifact, never committed.
+# CodeQL local SARIF output (.github/workflows/codeql.yml) — `codeql-action/analyze` writes its
+# SARIF here (via `output:`) for scripts/codeql-gate.mjs to read, as well as uploading it to code
+# scanning. A scan artifact, never committed. (This said "`upload: never` on this private repo"
+# until 2026-09-06; the repo is public and the upload is back on. See #239.)
 sarif-results/
