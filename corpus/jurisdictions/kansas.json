@@ -54,7 +54,7 @@
     ],
     "topic": "Kansas birth certificate name change",
     "statement": "To change the name on a Kansas birth certificate after a court-ordered legal name change, mail a certified copy of the order to Kansas Vital Statistics along with a cover letter giving your name at birth, date of birth, and what you want done. The fee to amend the certificate is $20, which does not include the cost of a certified copy.",
-    "detail": "This is different from correcting a misspelled name, which needs an old identifying document instead of a court order. Send your certified court order and cover letter to the Amendment Unit, Office of Vital Statistics, 1000 SW Jackson, Suite 120, Topeka, KS 66612-2221.",
+    "detail": "This is different from correcting a misspelled name, which needs an old identifying document instead of a court order. Send your certified court order and cover letter to the Amendment Unit, Office of Vital Statistics, 1000 SW Jackson, Suite 120, Topeka, KS 66612-2221. KDHE's FAQ says to use its Amendment Request Form, which must be notarized, to state what you want amended.",
     "cost": {
       "amount_usd": 20,
       "note": "This does not include the cost of a certified copy of the corrected certificate."
@@ -70,7 +70,8 @@
     },
     "verification_status": "verified",
     "recheck_sla_days": 90,
-    "language": "en"
+    "language": "en",
+    "form_ref": "ks-kdhe-amendment-request-form"
   },
   {
     "id": "ks.court-order.name",

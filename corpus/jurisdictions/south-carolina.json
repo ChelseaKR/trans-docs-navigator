@@ -26,6 +26,32 @@
     "language": "en"
   },
   {
+    "id": "sc.court-order.fees",
+    "jurisdiction": "US-SC",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "South Carolina Family Court filing fee for a name change",
+    "statement": "The South Carolina Judicial Branch's Family Court filing-fee schedule lists a $150 filing fee for Name Change and Correction of Birth Record Actions.",
+    "detail": "The same schedule says no filing fee is required for a case filed with an order granting a Motion for Leave to Proceed in Forma Pauperis (Rule 3(b)(1), SCRCP). It also lists no fee when a party is represented by an attorney working on behalf of a legal aid society, a legal services or other nonprofit organization, or the South Carolina Pro Bono Program, with written certification from the attorney (Rule 3(b)(2), SCRCP). Motion fees are listed separately. Check the court's own fee page for the current amount before you file.",
+    "cost": {
+      "amount_usd": 150,
+      "note": "The filing fee for Name Change and Correction of Birth Record Actions. The schedule lists no fee for a case filed with an order granting a Motion for Leave to Proceed in Forma Pauperis.",
+      "fee_waiver": true
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.sccourts.org/courts/trial-courts/family-court/court-fees/",
+      "title": "South Carolina Judicial Branch — Family Court Filing Fees",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
     "id": "sc.drivers-license.name",
     "jurisdiction": "US-SC",
     "document_type": "drivers-license",

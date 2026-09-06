@@ -133,7 +133,7 @@
     "detail": "Call the Indiana Department of Health's Vital Records division at (317) 233-2700 to correct or amend a birth certificate; requirements vary depending on the requested change.",
     "cost": {
       "amount_usd": null,
-      "note": "This FAQ page doesn't state a fee for a name correction; a separate fee applies for a certified copy of the updated certificate."
+      "note": "This FAQ page doesn't state a fee for a name correction. The department's fee schedule lists separate amounts for an amendment and for a certified copy — see the paired Indiana birth-certificate fee record."
     },
     "prerequisites": [
       "court-order"
@@ -160,7 +160,7 @@
     "detail": "This FAQ page doesn't explain how to get that court order, and this project could not find an official Indiana form or page describing that process: the state's own statewide name-change petition packet only offers to update the name on a birth certificate, not the sex designation. A separate legal-aid guide from Indiana Legal Services' LGBTQ+ Project lists the Indiana birth certificate as a document whose gender marker cannot be changed at all, which conflicts with the health department's own statement here — this project cannot resolve that conflict from official sources alone.",
     "cost": {
       "amount_usd": null,
-      "note": "This FAQ page doesn't state a fee for a sex-designation correction; a separate fee applies for a certified copy of the updated certificate."
+      "note": "This FAQ page doesn't state a fee for a sex-designation correction. The department's fee schedule lists separate amounts for an amendment and for a certified copy — see the paired Indiana birth-certificate fee record."
     },
     "prerequisites": [
       "court-order"
@@ -168,11 +168,38 @@
     "source": {
       "url": "https://www.in.gov/health/vital-records/frequently-asked-questions/amendments-corrections-faqs",
       "title": "Indiana Department of Health — Amendments & Corrections FAQs",
-      "last_verified": "2026-07-13",
+      "last_verified": "2026-09-05",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "needs_reverification",
     "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "in.birth-certificate.fees",
+    "jurisdiction": "US-IN",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name",
+      "gender-marker"
+    ],
+    "topic": "Indiana birth certificate amendment and certified-copy fees",
+    "statement": "The Indiana Department of Health's vital-records fee schedule lists $8.00 for an amendment or correction on a birth certificate, and $10.00 for a birth certificate, with $4.00 for each additional birth certificate in the same order.",
+    "detail": "The fee schedule lists the amendment fee and the certificate fee as separate line items; it does not say whether a person amending a record also pays the certificate fee to receive a copy showing the change. To apply for a birth certificate by mail, the page says to print Form 49607 and pay by check or money order.",
+    "cost": {
+      "amount_usd": 8,
+      "note": "A birth certificate costs $10.00, and each additional birth certificate in the same order costs $4.00; the page does not state a combined total for an amendment plus a copy."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.in.gov/health/vital-records/",
+      "title": "Indiana Department of Health — Vital Records (services, how to apply, fee schedule)",
+      "last_verified": "2026-09-05",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "in-idoh-49607",
     "language": "en"
   }
 ]
