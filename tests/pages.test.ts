@@ -10,6 +10,8 @@ import { buildChecklist } from "../api/checklist.ts";
 import { loadCorpus } from "../api/corpus.ts";
 import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
 import { STYLE } from "../src/render.ts";
+import { registerTestLocale, t as locale } from "../src/i18n/index.ts";
+import type { Language } from "../api/types.ts";
 import { formById } from "../api/forms.ts";
 
 const corpus = loadCorpus();
@@ -195,4 +197,51 @@ test("REGRESSION: the inline-script guard recognizes every spelling a browser ex
   ]) {
     assert.doesNotMatch(ok, INLINE_SCRIPT, `false positive on: ${ok}`);
   }
+});
+
+test("checklist renders the jurisdiction's referrals (A4TE guide + legal aid), state first then federal, in both languages", () => {
+  const corpus = loadCorpus();
+  const cl = buildChecklist({ jurisdiction: "US-WA", change_types: ["name"], documents: ["court-order"], language: "en" });
+  const en = renderChecklistPage(cl, corpus, "en", "jurisdiction=US-WA&change=name&doc=court-order");
+  assert.match(en, /id="help-h">Where to get help</);
+  assert.match(en, /href="https:\/\/transequality\.org\/documents\/washington-identity-documents" rel="noopener noreferrer"/);
+  assert.match(en, /Read it alongside this checklist/);
+  // state referral precedes the federal one
+  assert.ok(en.indexOf("washington-identity-documents") < en.indexOf("us.referral") || en.indexOf("Advocates for Trans Equality (A4TE)</a>") > en.indexOf("washington-identity-documents"));
+  const es = renderChecklistPage(cl, corpus, "es", "jurisdiction=US-WA&change=name&doc=court-order&language=es");
+  assert.match(es, /Dónde obtener ayuda/);
+  assert.match(es, /Léala junto con esta lista/);
+  assert.doesNotMatch(es, /Read it alongside this checklist/); // no English leak
+});
+
+test("an uncovered jurisdiction still gets the federal referrals — help is never empty because a state is", () => {
+  const corpus = loadCorpus();
+  const cl = buildChecklist({ jurisdiction: "US-PR", change_types: ["name"], documents: ["court-order"], language: "en" });
+  const html = renderChecklistPage(cl, corpus, "en", "jurisdiction=US-PR&change=name&doc=court-order", { noStateCoverage: true });
+  assert.match(html, /Where to get help/);
+  assert.match(html, /Advocates for Trans Equality/);
+});
+
+test("the printable packet carries the referrals onto paper", () => {
+  const corpus = loadCorpus();
+  const cl = buildChecklist({ jurisdiction: "US-WA", change_types: ["name"], documents: ["court-order"], language: "en" });
+  const html = renderPacketPage(cl, corpus, "en", "2026-07-13", "jurisdiction=US-WA&change=name&doc=court-order");
+  assert.match(html, /Where to get help/);
+  assert.match(html, /washington-identity-documents/);
+  assert.doesNotMatch(html, /<section class="help no-print"/); // must not be screen-only
+});
+
+test("help section renders under a non-shipping test locale instead of throwing (G9 pseudolocale regression)", () => {
+  // Reproduces the e2e condition that broke /checklist and /packet under ?language=en-XA:
+  // referral notes are keyed by shipping locales only, so indexing by the test tag gave
+  // undefined and escapeHtml threw, taking the whole page — and the gate's ⟦ marker — with it.
+  registerTestLocale("en-XA", locale("en"));
+  const corpus = loadCorpus();
+  const cl = buildChecklist({ jurisdiction: "US-WA", change_types: ["name"], documents: ["court-order"], language: "en" });
+  const html = renderChecklistPage(cl, corpus, "en-XA" as Language, "jurisdiction=US-WA&change=name&doc=court-order");
+  assert.match(html, /id="help-h"/);
+  assert.match(html, /washington-identity-documents/);
+  assert.doesNotMatch(html, /undefined/);
+  const packet = renderPacketPage(cl, corpus, "en-XA" as Language, "2026-07-13", "jurisdiction=US-WA&change=name&doc=court-order");
+  assert.match(packet, /washington-identity-documents/);
 });

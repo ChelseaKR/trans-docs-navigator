@@ -2,15 +2,15 @@
   {
     "id": "nv.referral.lacsn",
     "jurisdiction": "US-NV",
-    "name": "Legal Aid Center of Southern Nevada — Family Justice Project",
+    "name": "Legal Aid Center of Southern Nevada \u2014 Family Justice Project",
     "url": "https://www.lacsn.org/practice-areas/family-justice-project/name-change-gender-marker/correcting-your-name-gender-marker",
     "note": {
       "en": "Southern Nevada's civil legal-aid provider publishes free self-help guidance specifically on correcting your name and gender marker in Nevada, and can help low-income residents with filings.",
-      "es": "El proveedor de ayuda legal civil del sur de Nevada publica orientación gratuita de autoayuda específicamente sobre cómo corregir su nombre y marcador de género en Nevada, y puede ayudar a residentes de bajos ingresos con sus solicitudes."
+      "es": "El proveedor de ayuda legal civil del sur de Nevada publica orientaci\u00f3n gratuita de autoayuda espec\u00edficamente sobre c\u00f3mo corregir su nombre y marcador de g\u00e9nero en Nevada, y puede ayudar a residentes de bajos ingresos con sus solicitudes."
     },
     "source": {
       "url": "https://www.lacsn.org/practice-areas/family-justice-project/name-change-gender-marker/correcting-your-name-gender-marker",
-      "title": "Legal Aid Center of Southern Nevada — Correcting Your Name & Gender Marker",
+      "title": "Legal Aid Center of Southern Nevada \u2014 Correcting Your Name & Gender Marker",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
@@ -20,15 +20,33 @@
   {
     "id": "nv.referral.aclunv",
     "jurisdiction": "US-NV",
-    "name": "ACLU of Nevada — Know Your Rights",
+    "name": "ACLU of Nevada \u2014 Know Your Rights",
     "url": "https://www.aclunv.org/know-your-rights/name-changes-gender-markers-and-birth-certificates/",
     "note": {
       "en": "The ACLU of Nevada publishes a plain-language know-your-rights page on name changes, gender markers, and birth certificates in Nevada.",
-      "es": "La ACLU de Nevada publica una página de lenguaje sencillo sobre sus derechos en cambios de nombre, marcadores de género y actas de nacimiento en Nevada."
+      "es": "La ACLU de Nevada publica una p\u00e1gina de lenguaje sencillo sobre sus derechos en cambios de nombre, marcadores de g\u00e9nero y actas de nacimiento en Nevada."
     },
     "source": {
       "url": "https://www.aclunv.org/know-your-rights/name-changes-gender-markers-and-birth-certificates/",
-      "title": "ACLU of Nevada — Name Changes, Gender Markers, and Birth Certificates",
+      "title": "ACLU of Nevada \u2014 Name Changes, Gender Markers, and Birth Certificates",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "nv.referral.a4te",
+    "jurisdiction": "US-NV",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Nevada identity documents guide",
+    "url": "https://transequality.org/documents/nevada-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Nevada documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Nevada. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/nevada-identity-documents",
+      "title": "A4TE \u2014 Nevada Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

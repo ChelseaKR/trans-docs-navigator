@@ -6,11 +6,11 @@
     "url": "https://www.aclu-ms.org/issues/lgbtq-rights/",
     "note": {
       "en": "The Mississippi affiliate of the American Civil Liberties Union tracks LGBTQ+ policy in the state and offers a legal-help request intake for residents.",
-      "es": "La filial de Mississippi de la Unión Estadounidense por las Libertades Civiles (ACLU) da seguimiento a las políticas LGBTQ+ del estado y ofrece una solicitud de ayuda legal para residentes."
+      "es": "La filial de Mississippi de la Uni\u00f3n Estadounidense por las Libertades Civiles (ACLU) da seguimiento a las pol\u00edticas LGBTQ+ del estado y ofrece una solicitud de ayuda legal para residentes."
     },
     "source": {
       "url": "https://www.aclu-ms.org/issues/lgbtq-rights/",
-      "title": "ACLU of Mississippi — LGBTQ Rights",
+      "title": "ACLU of Mississippi \u2014 LGBTQ Rights",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
@@ -24,11 +24,29 @@
     "url": "https://mscenterforjustice.org/",
     "note": {
       "en": "A Mississippi nonprofit law firm and advocacy organization that provides free legal help on civil-rights matters to low-income residents.",
-      "es": "Un bufete legal y organización de defensa sin fines de lucro de Mississippi que brinda ayuda legal gratuita en asuntos de derechos civiles a residentes de bajos ingresos."
+      "es": "Un bufete legal y organizaci\u00f3n de defensa sin fines de lucro de Mississippi que brinda ayuda legal gratuita en asuntos de derechos civiles a residentes de bajos ingresos."
     },
     "source": {
       "url": "https://mscenterforjustice.org/",
       "title": "Mississippi Center for Justice",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ms.referral.a4te",
+    "jurisdiction": "US-MS",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Mississippi identity documents guide",
+    "url": "https://transequality.org/documents/mississippi-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Mississippi documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Misisipi. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/mississippi-identity-documents",
+      "title": "A4TE \u2014 Mississippi Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },

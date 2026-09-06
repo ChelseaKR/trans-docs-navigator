@@ -19,6 +19,7 @@ import { buildRelocationPlan } from "../api/relocation.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderTransparencyPage } from "../src/transparency.ts";
 import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.ts";
+import { renderFeedsIndex } from "../src/feeds.ts";
 import { robotsTxt, sitemapXml, SITE_NAME, SITE_ORIGIN } from "../src/seo.ts";
 import type { Language } from "../api/types.ts";
 import { pass, fail } from "./util.ts";
@@ -52,6 +53,8 @@ const indexable: Indexable[] = [
   { name: "guide-index (es)", path: "/guide", html: renderGuideIndex("es") },
   { name: "guide ca/name (en)", path: "/guide/california/name-change", html: renderGuidePage("california", "name-change", "en")!, jsonLd: true },
   { name: "guide il/marker (es)", path: "/guide/illinois/gender-marker", html: renderGuidePage("illinois", "gender-marker", "es")!, jsonLd: true },
+  { name: "feeds-index (en)", path: "/feeds", html: renderFeedsIndex("en") },
+  { name: "feeds-index (es)", path: "/feeds", html: renderFeedsIndex("es") },
   { name: "terms (en)", path: "/terms", html: renderTermsPage("en") },
   { name: "privacy (es)", path: "/privacy", html: renderPrivacyPage("es") },
   { name: "accessibility (en)", path: "/accessibility", html: renderAccessibilityPage("en") },

@@ -6,7 +6,7 @@
     "url": "https://nwjustice.org",
     "note": {
       "en": "Washington's statewide civil legal aid program, including the CLEAR hotline that can help low-income residents with legal name-change filings.",
-      "es": "Programa estatal de ayuda legal civil de Washington, incluida la línea CLEAR que puede ayudar a residentes de bajos ingresos con solicitudes de cambio legal de nombre."
+      "es": "Programa estatal de ayuda legal civil de Washington, incluida la l\u00ednea CLEAR que puede ayudar a residentes de bajos ingresos con solicitudes de cambio legal de nombre."
     },
     "source": {
       "url": "https://nwjustice.org",
@@ -24,12 +24,30 @@
     "url": "https://legalvoice.org",
     "note": {
       "en": "Pacific Northwest legal advocacy organization publishing self-help legal information relevant to gender-marker and name changes.",
-      "es": "Organización de defensa legal del noroeste del Pacífico que publica información legal de autoayuda relevante para cambios de marcador de género y de nombre."
+      "es": "Organizaci\u00f3n de defensa legal del noroeste del Pac\u00edfico que publica informaci\u00f3n legal de autoayuda relevante para cambios de marcador de g\u00e9nero y de nombre."
     },
     "source": {
       "url": "https://legalvoice.org",
       "title": "Legal Voice",
       "last_verified": "2026-06-01",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "wa.referral.a4te",
+    "jurisdiction": "US-WA",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Washington identity documents guide",
+    "url": "https://transequality.org/documents/washington-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Washington documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Washington. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/washington-identity-documents",
+      "title": "A4TE \u2014 Washington Identity Documents",
+      "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
     "verification_status": "verified",

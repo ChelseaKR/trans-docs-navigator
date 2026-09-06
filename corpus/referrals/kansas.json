@@ -6,7 +6,7 @@
     "url": "https://www.kansaslegalservices.org",
     "note": {
       "en": "Statewide nonprofit law firm providing free and low-cost civil legal help to low- and moderate-income Kansans in all 105 counties, including self-help legal forms and clinics.",
-      "es": "Firma legal estatal sin fines de lucro que ofrece ayuda legal civil gratuita y de bajo costo a personas de ingresos bajos y moderados en Kansas, en los 105 condados, incluyendo formularios legales de autoayuda y clínicas."
+      "es": "Firma legal estatal sin fines de lucro que ofrece ayuda legal civil gratuita y de bajo costo a personas de ingresos bajos y moderados en Kansas, en los 105 condados, incluyendo formularios legales de autoayuda y cl\u00ednicas."
     },
     "source": {
       "url": "https://www.kansaslegalservices.org",
@@ -20,15 +20,33 @@
   {
     "id": "ks.referral.aclukansas",
     "jurisdiction": "US-KS",
-    "name": "ACLU of Kansas — Identity Documents & Gender Markers",
+    "name": "ACLU of Kansas \u2014 Identity Documents & Gender Markers",
     "url": "https://www.aclukansas.org/publications/identity-documents-gender-markers-state-and-federal-policy/",
     "note": {
       "en": "The ACLU of Kansas publishes and updates a plain-language explainer on state and federal identity-document policy for transgender Kansans, including current developments affecting birth certificates and driver's licenses.",
-      "es": "La ACLU de Kansas publica y actualiza una explicación en lenguaje sencillo sobre la política estatal y federal de documentos de identidad para personas transgénero en Kansas, incluidos los avances actuales que afectan las actas de nacimiento y las licencias de conducir."
+      "es": "La ACLU de Kansas publica y actualiza una explicaci\u00f3n en lenguaje sencillo sobre la pol\u00edtica estatal y federal de documentos de identidad para personas transg\u00e9nero en Kansas, incluidos los avances actuales que afectan las actas de nacimiento y las licencias de conducir."
     },
     "source": {
       "url": "https://www.aclukansas.org/publications/identity-documents-gender-markers-state-and-federal-policy/",
-      "title": "ACLU of Kansas — Identity Documents & Gender Markers: State and Federal Policy",
+      "title": "ACLU of Kansas \u2014 Identity Documents & Gender Markers: State and Federal Policy",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90
+  },
+  {
+    "id": "ks.referral.a4te",
+    "jurisdiction": "US-KS",
+    "name": "Advocates for Trans Equality (A4TE) \u2014 Kansas identity documents guide",
+    "url": "https://transequality.org/documents/kansas-identity-documents",
+    "note": {
+      "en": "Advocates for Trans Equality (A4TE) keeps a plain-language guide to changing your name and gender marker on Kansas documents. Their staff write and update it. Read it alongside this checklist.",
+      "es": "Advocates for Trans Equality (A4TE) mantiene una gu\u00eda en lenguaje sencillo para cambiar su nombre y marcador de g\u00e9nero en los documentos de Kansas. Su personal la escribe y la actualiza. L\u00e9ala junto con esta lista."
+    },
+    "source": {
+      "url": "https://transequality.org/documents/kansas-identity-documents",
+      "title": "A4TE \u2014 Kansas Identity Documents",
       "last_verified": "2026-07-13",
       "verifier": "Pilot Seed Reviewer"
     },
