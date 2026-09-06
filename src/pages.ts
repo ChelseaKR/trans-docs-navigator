@@ -7,6 +7,7 @@ import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from ".
 import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel, preparationList, verificationCaption } from "./render.ts";
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
+import { feedLinkFor } from "./feeds.ts";
 import { toResumeState } from "./secure-resume.ts";
 import { staleAfterDays } from "./offline.ts";
 import { isDriftWatchable } from "../api/watchability.ts";
@@ -142,6 +143,13 @@ export function renderChecklistPage(
 <p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${stateNote}${coverageNote}`;
   const q = query ? `?${query}` : "";
   const actions = `<p class="no-print"><a href="/packet${q}">📄 ${escapeHtml(s.print)}</a> · <a href="/">${escapeHtml(s.startOver)}</a></p>`;
+  // Per-jurisdiction change-alert feed (RSS/Atom, no accounts, no PII — src/feeds.ts).
+  // `undefined` for a state with no corpus coverage: pointing at a feed for a state we
+  // say nothing about would be a subscription to silence, not a signal.
+  const feed = opts.noStateCoverage ? undefined : feedLinkFor(checklist.jurisdiction, lang);
+  const feedNotice = feed
+    ? `<p class="no-print"><a href="${escapeHtml(feed.href)}">📡 ${escapeHtml(locale(lang).seo.feedLinkLabel(feed.stateName))}</a></p>`
+    : "";
   const gaps = checklist.gaps.length
     ? `<section aria-label="${escapeHtml(s.notCovered)}"><h2>${escapeHtml(s.notCovered)}</h2><ul>${checklist.gaps
         .map((g) => `<li class="flag">${escapeHtml(locale(lang).docLabels[g.document_type])}: ${escapeHtml(gapReason(lang, g.reason))}</li>`)
@@ -215,8 +223,14 @@ export function renderChecklistPage(
     : "";
 
   const help = renderHelpSection(checklist.jurisdiction, lang, s);
-  const body = intro + summary + actions + noSteps + reminders + more + gaps + help + renderResumePanel(s, query) + offline + progress;
-  return page({ lang, title: s.checklistTitle, heading: s.checklistHeading, body });
+  const body = intro + summary + actions + feedNotice + noSteps + reminders + more + gaps + help + renderResumePanel(s, query) + offline + progress;
+  return page({
+    lang,
+    title: s.checklistTitle,
+    heading: s.checklistHeading,
+    body,
+    ...(feed ? { feedLinks: [feed] } : {}),
+  });
 }
 
 /**
