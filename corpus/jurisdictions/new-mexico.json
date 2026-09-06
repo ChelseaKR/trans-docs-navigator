@@ -1,0 +1,130 @@
+[
+  {
+    "id": "nm.court-order.name",
+    "jurisdiction": "US-NM",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "New Mexico name change petition",
+    "statement": "To legally change your name in New Mexico, you must be a New Mexico resident and file a Petition for Name Change in district court under Sections 40-8-1 through 40-8-3 NMSA 1978. If you are 14 or older you can file for yourself; if you are 13 or younger, your parent or legal guardian must file for you.",
+    "detail": "The filing fee is $132.00. As part of the standard process, you also prepare an Order Sealing Final Order to Change Name for the judge to sign alongside your name-change order. New Mexico's court self-help instructions for an adult's own name change do not describe a newspaper-publication step; publication is described only as a way to notify an absent parent in a minor's name-change case.",
+    "cost": {
+      "amount_usd": 132,
+      "note": "This is the district court filing fee. Certified copies cost $1.50 each, and recording your order with the county clerk costs $25.00."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://selfrepresentation.nmcourts.gov/name-change/",
+      "title": "New Mexico Courts — Name Change (Self-Representation)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nm.drivers-license.name",
+    "jurisdiction": "US-NM",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "New Mexico driver's license or ID name change",
+    "statement": "To update the name on your New Mexico driver's license or ID, bring your current license or ID, a certified copy of your court Order for Change of Name, and either your new Social Security card or an SSA printout showing your new name to the Motor Vehicle Division.",
+    "detail": "If your license or ID doesn't already show your current address, bring proof of address too. The MVD mails your new card to the address on file. The fee is $18 for a four-year license or $34 for an eight-year license; people 75 and older aren't charged to renew.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The fee depends on the license term: $18 for a four-year license or $34 for an eight-year license. Renewal is free for people 75 and older."
+    },
+    "prerequisites": [
+      "ssa-card",
+      "court-order"
+    ],
+    "source": {
+      "url": "https://selfrepresentation.nmcourts.gov/name-change/",
+      "title": "New Mexico Courts — Name Change (Self-Representation)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nm.drivers-license.gender-marker",
+    "jurisdiction": "US-NM",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "New Mexico driver's license or ID gender designation",
+    "statement": "To change the sex designation on a New Mexico driver's license or ID card, you complete a Request for Sex Designation Change (Form MVD-10237), have it notarized, and choose Male (M), Female (F), or (X), swearing under penalty of perjury that the request is to make your card accurately reflect your sex identity.",
+    "detail": "The form asks for a court order, marriage certificate, or divorce decree only if you are also changing your name at the same time — it does not ask for any medical or court documentation to change the sex designation on its own. Submit the notarized form to a New Mexico Motor Vehicle Division Service Center.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://realfile.tax.newmexico.gov/mvd10237.pdf",
+      "title": "New Mexico Taxation and Revenue Department, Motor Vehicle Division — Request for Sex Designation Change (Form MVD-10237)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "nm-mvd-10237-gender-designation",
+    "language": "en"
+  },
+  {
+    "id": "nm.birth-certificate.name",
+    "jurisdiction": "US-NM",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "New Mexico birth certificate name change",
+    "statement": "If you have a New Mexico court order changing your name, you can present it to the New Mexico Department of Vital Records and Health Statistics to request an amended birth certificate. You submit a birth certificate request form along with a certified copy of the court-ordered name change.",
+    "detail": "New Mexico's courts cite $20.00 as the cost of an amended birth certificate among the overall costs of a name-change case.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "This is the fee New Mexico's courts cite for an amended birth certificate; confirm the current fee directly with Vital Records."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://selfrepresentation.nmcourts.gov/name-change/",
+      "title": "New Mexico Courts — Name Change (Self-Representation)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "nm.birth-certificate.gender-marker",
+    "jurisdiction": "US-NM",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "New Mexico birth certificate gender designation",
+    "statement": "Under a 2019 law (Senate Bill 20, effective October 29, 2019), a person born in New Mexico can request a new birth certificate showing Male, Female, or X as their gender designation by completing a notarized Request to Change Gender Designation on a Birth Certificate form — no physician's letter or surgery is required.",
+    "detail": "If your current legal name is different from the name on your birth certificate, you must also submit a certified copy of your name-change court order. The fee is $20.00, which includes your new birth certificate; extra copies are $10.00 each. New Mexico's health department cautions that it is unsure whether other agencies, such as the passport office, will accept these amended certificates, and that nothing on the new record shows a change was made — so a court order might still be needed to use your new name and gender designation elsewhere.",
+    "cost": {
+      "amount_usd": 20,
+      "note": "Includes one new birth certificate; additional copies are $10.00 each."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.nmhealth.org/about/erd/bvrhs/vrp/gdc/",
+      "title": "New Mexico Department of Health — Gender Designation Change (Vital Records)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "nm-health-gender-designation-adult-form",
+    "language": "en"
+  }
+]

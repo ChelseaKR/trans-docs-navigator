@@ -1,0 +1,129 @@
+[
+  {
+    "id": "ak.court-order.name",
+    "jurisdiction": "US-AK",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Alaska name change petition",
+    "statement": "To legally change your name as an adult in Alaska, you file a Petition for Change of Name (form CIV-700) in the superior court, and a judge decides whether to grant it. The court normally posts notice of your petition on the Alaska Court System's public legal-notice website for four consecutive weeks before your hearing.",
+    "detail": "If you have personal safety concerns about that public posting, you can ask the judge to waive it, and you can also ask the court to keep your case confidential or to withhold your name from the public CourtView index — using the Request to Waive Posting form (CIV-708). Your hearing must be scheduled at least 40 days after the court's scheduling order, and your new name isn't official until at least 30 days after the judgment is distributed. In some situations the court can also order additional notice, including publication in a print newspaper — for example, if you are incarcerated, on probation or parole, or must register on the sex offender or child kidnapper registry. Alaska's own instructions for this process do not state a minimum residency period.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The filing fee is set by the Alaska Court System's Administrative Rule 9(b) and is not stated in dollars on the instructions form. Contact the court you're filing in, or check the court system's own fee schedule, for the current amount. You can ask to have the fee waived if you can't afford it (form TF-920)."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://public.courts.alaska.gov/web/forms/docs/civ-699.pdf",
+      "title": "Alaska Court System — Instructions for Adult Change of Name (Form CIV-699)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "form_ref": "ak-civ-700-petition-name-change",
+    "language": "en"
+  },
+  {
+    "id": "ak.drivers-license.name",
+    "jurisdiction": "US-AK",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Alaska driver's license or ID name change",
+    "statement": "To change the name on your Alaska driver's license or ID card, submit an Application for Driver License, Permit or State Identification Card (Form D1) in person, provide an original certified document proving the name change — such as a court order, marriage certificate, or divorce decree — pass a vision test, and pay the current license fee.",
+    "detail": "Photocopies and faxed copies are not accepted; the DMV needs an original or a certified copy. If you have had more than one name change, you may need extra documents together (for example, a marriage certificate and a divorce decree) to show the link between an older name and your current one. Alaska law requires you to notify the DMV of a name change within 30 days (AS 28.05.071); not doing so can lead to a citation or fine.",
+    "cost": {
+      "amount_usd": null,
+      "note": "This page does not state the license or ID fee amount — it says to pay the fee current at the time of your visit."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://doa.alaska.gov/dmv/akol/namchg.htm",
+      "title": "Alaska Division of Motor Vehicles — Changing Identification Details",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ak.drivers-license.gender-marker",
+    "jurisdiction": "US-AK",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Alaska driver's license or ID sex designation",
+    "statement": "To change the sex shown on your Alaska driver's license or ID card, you submit a Certification for Change of Sex (Form 427) that has been completed and certified by a licensed physician, physician assistant, advanced nurse practitioner, psychologist, professional counselor, or social worker.",
+    "detail": "This appears on the same Alaska DMV page as the name-change instructions, on a version last dated June 2023. This project could not independently re-fetch that live page to reconfirm it: the DMV's website blocks automated requests domain-wide, including — we confirmed directly — the Internet Archive's own web crawler, which has received the same block since around October 2023. So this reflects the most recent version of the page this project could read, not a freshly reconfirmed one. Contact an Alaska DMV office or a local trans-support organization to confirm this is still current before relying on it.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://doa.alaska.gov/dmv/akol/namchg.htm",
+      "title": "Alaska Division of Motor Vehicles — Changing Identification Details",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "form_ref": "ak-dmv-427-cert-change-of-sex",
+    "language": "en"
+  },
+  {
+    "id": "ak.birth-certificate.name",
+    "jurisdiction": "US-AK",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Alaska birth certificate name change",
+    "statement": "To change the name on an Alaska birth certificate, you contact Alaska Vital Records' Special Services Unit by email, and they will send you the forms and instructions for your situation. Alaska charges $60 for a legal name change/record amendment, which includes one certified copy of the amended certificate.",
+    "detail": "Special Services needs an original or certified copy of your court order — a document with only a faxed or emailed signature can't be accepted. Processing currently takes about 16 weeks once your documents are received, not counting shipping time. Additional certified copies cost $25 each.",
+    "cost": {
+      "amount_usd": 60,
+      "note": "This is the fee for a legal name change/record amendment, which includes one certified copy. Extra certified copies are $25 each."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://health.alaska.gov/en/services/vital-records-orders/",
+      "title": "Alaska Department of Health — Vital Records Orders",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ak.birth-certificate.gender-marker",
+    "jurisdiction": "US-AK",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Alaska birth certificate sex designation",
+    "statement": "Alaska's vital records page says that changes and corrections to a birth certificate — which would include a sex-designation change — are handled by its Special Services Unit on request, but the page does not publish what specific documents or evidence it requires for a sex-designation change.",
+    "detail": "Alaska's policy on birth-certificate sex-designation changes has been the subject of past litigation, and this page does not describe the current standard it applies. Before relying on this, contact Special Services directly (BVSSpecialServices@alaska.gov or (907) 465-3162) or a local trans-support organization or attorney to learn Alaska's current requirements.",
+    "cost": {
+      "amount_usd": null,
+      "note": "The page lists a $60 fee for a \"Legal Name Change/Record Amendment\" but does not name a specific fee for a sex-designation-only amendment. Confirm the current fee with Special Services."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://health.alaska.gov/en/services/vital-records-orders/",
+      "title": "Alaska Department of Health — Vital Records Orders",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]

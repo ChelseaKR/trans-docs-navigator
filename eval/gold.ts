@@ -973,6 +973,93 @@ const AUTHORED_GOLD: GoldItem[] = [
     expect: { refused: false, citesRecord: "or.birth-certificate.name", mustContain: ["court-ordered name change"] },
   },
   {
+    id: "ak-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-AK", language: "en" },
+    query: { jurisdiction: "US-AK", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in Alaska" },
+    expect: { refused: false, citesRecord: "ak.court-order.name", mustContain: ["Petition for Change of Name", "four consecutive weeks"] },
+  },
+  {
+    id: "ak-marker-dl",
+    suite: "refusal",
+    segment: { jurisdiction: "US-AK", language: "en" },
+    query: { jurisdiction: "US-AK", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Alaska driver's license sex designation change Form 427" },
+    // Alaska's DMV page for this is blocked to automated fetch (confirmed domain-wide,
+    // including the Internet Archive's own crawler) and the record is marked
+    // needs_reverification — the same honest-degradation shape as az-marker-volatile.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "ak-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-AK", language: "es" },
+    query: { jurisdiction: "US-AK", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Alaska" },
+    expect: { refused: false, citesRecord: "ak.court-order.name.es", mustContain: ["Petición de Cambio de Nombre", "cuatro semanas consecutivas"] },
+  },
+  {
+    id: "ak-marker-dl-es",
+    suite: "refusal",
+    segment: { jurisdiction: "US-AK", language: "es" },
+    query: { jurisdiction: "US-AK", change_types: ["gender-marker"], documents: ["drivers-license"], language: "es", question: "cambio de designación de sexo en licencia de Alaska" },
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "hi-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-HI", language: "en" },
+    query: { jurisdiction: "US-HI", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in Hawaii" },
+    expect: { refused: false, citesRecord: "hi.court-order.name", mustContain: ["Lieutenant Governor", "current Hawaii residents"] },
+  },
+  {
+    id: "hi-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-HI", language: "en" },
+    query: { jurisdiction: "US-HI", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Hawaii driver's license gender designation not specified" },
+    expect: { refused: false, citesRecord: "hi.drivers-license.gender-marker", mustContain: ["Not Specified"] },
+  },
+  {
+    id: "hi-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-HI", language: "es" },
+    query: { jurisdiction: "US-HI", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Hawái" },
+    expect: { refused: false, citesRecord: "hi.court-order.name.es", mustContain: ["Vicegobernador", "residen actualmente en Hawái"] },
+  },
+  {
+    id: "hi-marker-dl-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-HI", language: "es" },
+    query: { jurisdiction: "US-HI", change_types: ["gender-marker"], documents: ["drivers-license"], language: "es", question: "designación de género en licencia de Hawái" },
+    expect: { refused: false, citesRecord: "hi.drivers-license.gender-marker.es", mustContain: ["No Especificado"] },
+  },
+  {
+    id: "nm-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NM", language: "en" },
+    query: { jurisdiction: "US-NM", change_types: ["name"], documents: ["court-order"], question: "how do I change my name in New Mexico" },
+    expect: { refused: false, citesRecord: "nm.court-order.name", mustContain: ["40-8-1", "district court"] },
+  },
+  {
+    id: "nm-marker-dl",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NM", language: "en" },
+    query: { jurisdiction: "US-NM", change_types: ["gender-marker"], documents: ["drivers-license"], question: "New Mexico driver's license gender marker X self-attestation MVD-10237" },
+    expect: { refused: false, citesRecord: "nm.drivers-license.gender-marker", mustContain: ["MVD-10237", "under penalty of perjury"] },
+  },
+  {
+    id: "nm-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NM", language: "es" },
+    query: { jurisdiction: "US-NM", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Nuevo México" },
+    expect: { refused: false, citesRecord: "nm.court-order.name.es", mustContain: ["40-8-1", "tribunal de distrito"] },
+  },
+  {
+    id: "nm-marker-dl-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-NM", language: "es" },
+    query: { jurisdiction: "US-NM", change_types: ["gender-marker"], documents: ["drivers-license"], language: "es", question: "cambio de designación de sexo en licencia de Nuevo México MVD-10237" },
+    expect: { refused: false, citesRecord: "nm.drivers-license.gender-marker.es", mustContain: ["MVD-10237", "bajo pena de perjurio"] },
+  },
+  {
     id: "ks-name-court",
     suite: "accuracy",
     segment: { jurisdiction: "US-KS", language: "en" },
@@ -1458,6 +1545,78 @@ const AUTHORED_GOLD: GoldItem[] = [
     // process entirely (task brief: "sparsely documented") — recorded as a genuine gap,
     // degraded needs_reverification rather than asserted open or closed either way.
     expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "in-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-IN", language: "en" },
+    query: { jurisdiction: "US-IN", change_types: ["name"], documents: ["court-order"], question: "Indiana name change petition eligibility" },
+    expect: { refused: false, citesRecord: "in.court-order.name", mustContain: ["sex or violent offender"] },
+  },
+  {
+    id: "in-marker-dl",
+    suite: "refusal",
+    segment: { jurisdiction: "US-IN", language: "en" },
+    query: { jurisdiction: "US-IN", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Indiana driver's license gender marker change" },
+    // M6: Indiana's BMV closed this path outright (Amended Rule 140, effective Feb. 12, 2026),
+    // and the record is marked needs_reverification — the same honest-degradation shape as
+    // tx-marker-volatile/az-marker-volatile above, not a rendered process that no longer works
+    // (PR #119's standard).
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "in-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-IN", language: "es" },
+    query: { jurisdiction: "US-IN", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Indiana" },
+    expect: { refused: false, citesRecord: "in.court-order.name.es", mustContain: ["delincuente sexual o violento"] },
+  },
+  {
+    id: "ia-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-IA", language: "en" },
+    query: { jurisdiction: "US-IA", change_types: ["name"], documents: ["court-order"], question: "Iowa name change petition district court fee" },
+    expect: { refused: false, citesRecord: "ia.court-order.name", mustContain: ["chapter 674", "$195"] },
+  },
+  {
+    id: "ia-marker-birth-cert",
+    suite: "refusal",
+    segment: { jurisdiction: "US-IA", language: "en" },
+    query: { jurisdiction: "US-IA", change_types: ["gender-marker"], documents: ["birth-certificate"], question: "Iowa birth certificate sex designation change 2025 law" },
+    // Iowa's 2025 law (SF 418) removed the physician-affidavit path from Iowa Code § 144.23, and
+    // the record is marked needs_reverification given how recently the law changed.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "ia-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-IA", language: "es" },
+    query: { jurisdiction: "US-IA", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Iowa" },
+    expect: { refused: false, citesRecord: "ia.court-order.name.es", mustContain: ["capítulo 674", "$195"] },
+  },
+  {
+    id: "mo-name-court",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MO", language: "en" },
+    query: { jurisdiction: "US-MO", change_types: ["name"], documents: ["court-order"], question: "Missouri name change petition circuit court" },
+    expect: { refused: false, citesRecord: "mo.court-order.name", mustContain: ["circuit court"] },
+  },
+  {
+    id: "mo-marker-dl",
+    suite: "refusal",
+    segment: { jurisdiction: "US-MO", language: "en" },
+    query: { jurisdiction: "US-MO", change_types: ["gender-marker"], documents: ["drivers-license"], question: "Missouri driver's license gender marker change process" },
+    // Missouri's DOR acknowledges a "gender" field can change but names no documents, form, or
+    // process for it, and the record is marked needs_reverification — the honest gap, not an
+    // invented procedure.
+    expect: { refused: true, hasFreshnessNote: true },
+  },
+  {
+    id: "mo-name-court-es",
+    suite: "accuracy",
+    segment: { jurisdiction: "US-MO", language: "es" },
+    query: { jurisdiction: "US-MO", change_types: ["name"], documents: ["court-order"], language: "es", question: "cómo cambio mi nombre en Missouri" },
+    expect: { refused: false, citesRecord: "mo.court-order.name.es", mustContain: ["tribunal de circuito"] },
   },
 ];
 

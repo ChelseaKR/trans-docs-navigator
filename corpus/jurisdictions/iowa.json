@@ -1,0 +1,142 @@
+[
+  {
+    "id": "ia.court-order.name",
+    "jurisdiction": "US-IA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Iowa name change petition",
+    "statement": "To legally change your name in Iowa, you file a Petition for Change of Name in district court under Iowa Code chapter 674, and pay a $195 filing fee. You must file electronically unless the court excuses you from e-filing.",
+    "detail": "You must attach a certified copy of your birth certificate to the petition; if it isn't available, you explain why and provide another form of identification. If you're married, the petition must also be served on your spouse, which may cost extra. Iowa's name-change law does not require you to publish notice in a newspaper.",
+    "cost": {
+      "amount_usd": 195,
+      "note": "There may be an additional cost to have the petition served on a spouse."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.iowacourts.gov/for-the-public/representing-yourself/name-change/",
+      "title": "Iowa Judicial Branch — Representing Yourself: Name Change",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ia.court-order.waiting-period",
+    "jurisdiction": "US-IA",
+    "document_type": "court-order",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Iowa name-change waiting period",
+    "statement": "Under Iowa law, a court can't grant a decree changing your name until at least thirty days after you file your petition.",
+    "detail": "Iowa's own self-help page about name changes doesn't mention this waiting period — only the statute itself (Iowa Code § 674.4) states it. Once the court grants the decree, the clerk of court sends a copy to the state registrar of vital statistics so a person born in Iowa can have their birth certificate updated.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legis.iowa.gov/docs/code/2026/674.pdf",
+      "title": "Iowa Code Chapter 674 — Changing Names (2026)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ia.drivers-license.name",
+    "jurisdiction": "US-IA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Iowa driver's license and ID name change",
+    "statement": "To change the name on an Iowa driver's license or ID, you must go in person to any Iowa DMV location by appointment; there's a $10 charge and you must provide proof of the name change. Photocopies and faxes aren't accepted.",
+    "detail": "Iowa's DOT wants a certified document — one with the original seal and certificate of the court or registrar, not just a file or date stamp.",
+    "cost": {
+      "amount_usd": 10,
+      "note": "This is the charge stated for a name change on this page."
+    },
+    "prerequisites": [],
+    "source": {
+      "url": "https://iowadot.gov/drivers-licenses-ids/other-services/change-information",
+      "title": "Iowa Department of Transportation — Change or Update Driver's License or ID",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ia.drivers-license.gender-marker",
+    "jurisdiction": "US-IA",
+    "document_type": "drivers-license",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Iowa driver's license gender marker",
+    "statement": "Iowa's Department of Transportation does not publish a page describing a way to change the sex or gender marker on an Iowa driver's license or ID card. Its own list of optional license and ID designations names only a veteran designation, an organ/tissue donor designation, a deaf-or-hard-of-hearing indicator, a medical advance directive indicator, a medical alert indicator, and an autism spectrum disorder indicator — no sex or gender-marker option.",
+    "detail": "A 2025 Iowa law (Iowa Code § 4.1A) defines \"sex\" for state purposes as the sex observed or clinically verified at birth, but this project could not find an Iowa DOT page or rule directly applying that law to driver's licenses or IDs — only to birth certificates and other vital records. How Iowa DOT currently treats a license whose sex marker was changed before this law, or any request to change one now, is unclear from this project's official sources.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://iowadot.gov/drivers-licenses-ids/get-or-renew-drivers-licenses-ids-permits/designations",
+      "title": "Iowa Department of Transportation — Driver's License Designations",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  },
+  {
+    "id": "ia.birth-certificate.name",
+    "jurisdiction": "US-IA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "name"
+    ],
+    "topic": "Iowa birth certificate name change",
+    "statement": "Iowa's health agency charges a $15 administrative processing fee — the rate since July 1, 2019 — to amend a birth record for a legal change of name, among other actions that can require a court order.",
+    "detail": "Once a district court grants a name change under Iowa Code chapter 674, Iowa's state registrar amends the birth certificate of a person born in Iowa to show the new name.",
+    "cost": {
+      "amount_usd": 15,
+      "note": "This administrative processing fee applies to a name-change amendment and to several other vital-record actions."
+    },
+    "prerequisites": [
+      "court-order"
+    ],
+    "source": {
+      "url": "https://hhs.iowa.gov/family-community/vital-records",
+      "title": "Iowa Health and Human Services — Vital Records",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "verified",
+    "recheck_sla_days": 90,
+    "language": "en"
+  },
+  {
+    "id": "ia.birth-certificate.gender-marker",
+    "jurisdiction": "US-IA",
+    "document_type": "birth-certificate",
+    "change_type": [
+      "gender-marker"
+    ],
+    "topic": "Iowa birth certificate sex designation",
+    "statement": "As of a 2025 Iowa law, Iowa Code no longer offers a way to change the sex shown on an Iowa birth certificate: the provision that let a physician's notarized affidavit change a birth certificate's sex designation after surgery or other treatment has been removed from Iowa Code § 144.23.",
+    "detail": "Before this law, Iowa Code § 144.23(3) (2025 edition) read: \"A notarized affidavit by a licensed physician and surgeon or osteopathic physician and surgeon stating that by reason of surgery or other treatment by the licensee, the sex designation of the person has been changed.\" That subsection is gone from the current Iowa Code. A separate new section, Iowa Code § 4.1A, now defines \"sex\" for state purposes as \"the state of being either male or female as observed or clinically verified at birth,\" and says \"gender\" is a synonym for sex rather than for gender identity. Both changes came from Senate File 418, signed by the governor and effective July 1, 2025.",
+    "prerequisites": [],
+    "source": {
+      "url": "https://www.legis.iowa.gov/docs/code/2026/144.23.pdf",
+      "title": "Iowa Code § 144.23 — State Registrar to Establish New Certificate of Birth (2026)",
+      "last_verified": "2026-07-13",
+      "verifier": "Pilot Seed Reviewer"
+    },
+    "verification_status": "needs_reverification",
+    "recheck_sla_days": 30,
+    "language": "en"
+  }
+]
