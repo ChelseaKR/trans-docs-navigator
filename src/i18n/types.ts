@@ -21,6 +21,15 @@ export interface UiMessages {
   verifyNote: string;
   notFilingNote: string;
   sources: string;
+  /**
+   * Heading for the sources of a step whose every backing record has lapsed. A separate
+   * heading from `sources` on purpose: these links are NOT a citation for anything shown,
+   * because nothing from those records is shown. They are the agency's own page, handed
+   * over so "check the official source" is something the reader can act on.
+   */
+  staleSources: string;
+  /** Sentence under `staleSources` saying what the link is and is not. */
+  staleSourcesNote: string;
   /** Caption for a source a REAL named roster human verified: "verified by {name}, {date}". */
   verifiedBy: string;
   /** Caption when the record's verifier is a placeholder: the honest not-yet state. */

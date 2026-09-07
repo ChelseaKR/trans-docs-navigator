@@ -126,6 +126,37 @@ lives under `[Unreleased]`.
   step. #230 stays open for it, and for the real `changed` state once FIX-03 lands.
 
 ### Fixed
+- **A step whose sources had all gone stale told the reader to "check the official source"
+  and deleted every official-source link from the page** (`api/checklist.ts`,
+  `api/relocation.ts`, `src/render.ts`). A checklist step is emitted whenever any record
+  matches it, but only records inside their recheck SLA reached `record_ids`, and every
+  source list rendered from `record_ids`. So when a cell's records had all lapsed, the step
+  rendered "Needs reverification, so we don't show it as current", the *Not yet covered*
+  section said "Check the official source." — and the page contained no official source to
+  check. The agency URL, the one thing on that step that had *not* gone stale, was the only
+  thing removed.
+
+  Measured on 2026-09-07 this was live for three cells: Alabama birth certificates, and
+  Montana and South Dakota driver's licences. It is not a corner case for long. All 438
+  records serving today carry a 90-day SLA, and 436 of them share `last_verified:
+  2026-07-13`, so on **2026-10-12 the corpus goes from 436 serving records to zero in a
+  single day** and every step in every state renders this way at once.
+
+  Steps now carry `unverified_record_ids` alongside `record_ids`, and a step with no
+  current citation renders the lapsed records' pages under their own heading — "Check
+  these official pages yourself", with a sentence saying we have not re-read them and are
+  not showing what they said. **Only the URL crosses.** No statement, detail, cost,
+  timeline, prerequisite or discretionary flag is ever taken from a lapsed record;
+  `record_ids` remains the sole source of all of those, and a test sweeps the whole corpus
+  on the post-cliff date asserting no statement leaks through the stale path. The block is
+  deliberately not shown when a current citation already exists — a live source and a stale
+  one side by side blurs which is which.
+
+  `/plan` had the identical defect in its own step type and renderer, and is fixed with it.
+  A new corpus-wide test asserts the invariant the checklist page's own lede claims — that
+  *every* rendered step links to at least one official source — on both today's date and
+  2026-10-12.
+
 - **The weekly content sweep could not tell anyone what it found.** Every check in
   `.github/workflows/content-watch.yml` was written as `run: make link-check 2>&1 | tee
   link-check.out` with no `shell:` key. Actions' default `run:` shell on Linux is

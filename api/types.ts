@@ -253,6 +253,16 @@ export interface ChecklistStep {
   title: string;
   /** Record ids backing this step's substantive content. */
   record_ids: string[];
+  /**
+   * Record ids that match this step but whose freshness has lapsed, so none of their
+   * substantive text is used. Carried because a lapsed record's CITATION is still good:
+   * the URL points at the agency's own page, and a stale summary is no reason to withhold
+   * the page it summarises. Without this the renderer had nothing to link when every
+   * backing record was degraded, so the step said "Check the official source" and offered
+   * none — see src/render.ts:staleSourceList. Never a source of statements, costs,
+   * timelines or prerequisites; `record_ids` remains the only one of those.
+   */
+  unverified_record_ids: string[];
   prerequisites: string[]; // step keys
   cost?: Cost | undefined;
   timeline?: Timeline | undefined;
@@ -469,6 +479,8 @@ export interface RelocationStep {
   title: string;
   /** Backing, current corpus records — the ONLY source of this step's substantive text. */
   record_ids: string[];
+  /** Matching records whose freshness has lapsed. Citations only — see ChecklistStep.unverified_record_ids. */
+  unverified_record_ids: string[];
   /** Step keys that this step's own records name as prerequisites. */
   prerequisites: string[];
   cost?: Cost | undefined;

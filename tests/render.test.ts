@@ -43,7 +43,7 @@ test("renderChecklist escapes record statements and lists sources", () => {
     jurisdiction: "US-CA",
     change_types: ["name"],
     language: "en",
-    steps: [{ key: "court-order", order: 1, document_type: "court-order", title: "Court order", record_ids: ["ca.court-order.name"], prerequisites: [], discretionary: false, needs_reverification: false }],
+    steps: [{ key: "court-order", order: 1, document_type: "court-order", title: "Court order", record_ids: ["ca.court-order.name"], unverified_record_ids: [], prerequisites: [], discretionary: false, needs_reverification: false }],
     gaps: [],
   };
   const h = renderChecklist(checklist, records, "en");
@@ -71,6 +71,7 @@ function waiverChecklist(cost: Cost): { checklist: Checklist; records: CorpusRec
         document_type: "court-order",
         title: "Court order",
         record_ids: ["ca.court-order.name"],
+        unverified_record_ids: [],
         prerequisites: [],
         cost,
         discretionary: false,
@@ -161,6 +162,7 @@ test("fee-waiver detail renders fully in Spanish too (parity)", () => {
         document_type: "court-order",
         title: "Court order",
         record_ids: ["ca.court-order.name"],
+        unverified_record_ids: [],
         prerequisites: [],
         cost: {
           amount_usd: null,
@@ -214,7 +216,7 @@ const reportChecklist = (): Checklist => ({
   jurisdiction: "US-CA",
   change_types: ["name"],
   language: "en",
-  steps: [{ key: "court-order", order: 1, document_type: "court-order", title: "Court order", record_ids: ["ca.court-order.name"], prerequisites: [], discretionary: false, needs_reverification: false }],
+  steps: [{ key: "court-order", order: 1, document_type: "court-order", title: "Court order", record_ids: ["ca.court-order.name"], unverified_record_ids: [], prerequisites: [], discretionary: false, needs_reverification: false }],
   gaps: [],
 });
 

@@ -196,6 +196,10 @@ export function buildChecklist(intake: Intake, today?: string, corpus = loadCorp
       document_type: doc,
       title: TITLES[doc],
       record_ids: currentRecords.map((r) => r.id),
+      // Citations survive the degrade. `record_ids` still gates every substantive field
+      // below, so nothing a lapsed record asserts is rendered; only its source URL is,
+      // and only when the step has no current source at all (src/render.ts).
+      unverified_record_ids: degraded.map((r) => r.id),
       prerequisites,
       cost: pickCost(currentRecords),
       timeline: pickTimeline(currentRecords),

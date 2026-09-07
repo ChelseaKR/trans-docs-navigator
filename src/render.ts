@@ -264,13 +264,60 @@ export function sourceItem(source: Source, lang: Language): string {
   );
 }
 
+/** Heading depth a source block is nested at; the callers span h2 (answer page) to h4 (relocation step). */
+type HeadingLevel = 2 | 3 | 4;
+
 // `level` keeps heading order correct: 3 inside a checklist step (under the step's h2),
 // 2 on the standalone answer page (directly under the page h1, so no level is skipped).
-function sourceList(records: CorpusRecord[], lang: Language, level: 2 | 3 = 3): string {
+function sourceList(records: CorpusRecord[], lang: Language, level: HeadingLevel = 3): string {
   if (records.length === 0) return "";
   const t = locale(lang).ui;
   const items = records.map((r) => sourceItem(r.source, lang)).join("");
   return `<h${level}>${escapeHtml(t.sources)}</h${level}><ul>${items}</ul>`;
+}
+
+/**
+ * The official pages behind a step whose every backing record has LAPSED its recheck SLA.
+ *
+ * Why this exists: a step is emitted whenever any record matches it, but only CURRENT
+ * records reach `record_ids`, and `sourceList` renders from `record_ids`. So a step whose
+ * records had all gone stale rendered "Needs reverification, so we don't show it as
+ * current" and, in the gaps section, "Check the official source." — with every official
+ * source link stripped from the page. The one artifact on that step that had NOT gone
+ * stale is the URL: it points at the agency's own page, which is authoritative regardless
+ * of when we last read it, and it is precisely what the reader was being told to consult.
+ * Measured on 2026-09-07 this was live for Alabama birth certificates, Montana and South
+ * Dakota driver's licences; from 2026-10-12 it is every step in the corpus, because 436 of
+ * the 438 then-serving records lapse on that one day.
+ *
+ * It is deliberately NOT rendered when the step already has a current source — the reader
+ * has a live citation there and a second, staler list would only blur which is which. It
+ * carries no statement, cost, timeline or prerequisite from those records; `record_ids`
+ * remains the only source of anything substantive. The caption is the same
+ * `verificationCaption`, so the date on each line still says when it was last read.
+ */
+export function staleSourceList(records: CorpusRecord[], lang: Language, level: HeadingLevel = 3): string {
+  if (records.length === 0) return "";
+  const t = locale(lang).ui;
+  const items = records.map((r) => sourceItem(r.source, lang)).join("");
+  return (
+    `<h${level}>${escapeHtml(t.staleSources)}</h${level}>` +
+    `<p class="meta">${escapeHtml(t.staleSourcesNote)}</p><ul>${items}</ul>`
+  );
+}
+
+/**
+ * The source block for one step: its current citations, or — when it has none — the
+ * official pages behind the records that lapsed. Shared by the checklist and the packet
+ * so the two cannot drift on which of them hands the reader a link.
+ */
+function stepSources(
+  current: CorpusRecord[],
+  lapsed: CorpusRecord[],
+  lang: Language,
+  level: HeadingLevel = 3,
+): string {
+  return current.length > 0 ? sourceList(current, lang, level) : staleSourceList(lapsed, lang, level);
 }
 
 /**
@@ -325,6 +372,7 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
   const steps = checklist.steps
     .map((s) => {
       const stepRecords = s.record_ids.map((id) => byId.get(id)).filter((r): r is CorpusRecord => !!r);
+      const lapsedRecords = s.unverified_record_ids.map((id) => byId.get(id)).filter((r): r is CorpusRecord => !!r);
       const cost = s.cost
         ? `<p class="meta"><strong>${escapeHtml(t.cost)}:</strong> ${s.cost.amount_usd === null ? escapeHtml(s.cost.note ?? t.varies) : "$" + s.cost.amount_usd}</p>`
         : "";
@@ -370,7 +418,7 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
   ${claims ? `<ul>${claims}</ul>` : ""}
   ${cost}${waiver}${time}${prereq}${disc}${stale}
   ${detailBlock}${formCta}
-  ${sourceList(stepRecords, lang)}
+  ${stepSources(stepRecords, lapsedRecords, lang)}
   ${reportLink}
 </li>`;
     })
@@ -398,6 +446,7 @@ export function renderPacket(
   const steps = checklist.steps
     .map((s) => {
       const stepRecords = s.record_ids.map((id) => byId.get(id)).filter((r): r is CorpusRecord => !!r);
+      const lapsedRecords = s.unverified_record_ids.map((id) => byId.get(id)).filter((r): r is CorpusRecord => !!r);
       const detail = stepRecords
         .map((r) => `<li><p>${escapeHtml(r.statement)}</p>${r.detail ? `<p class="meta">${escapeHtml(r.detail)}</p>` : ""}</li>`)
         .join("");
@@ -417,7 +466,7 @@ export function renderPacket(
   ${done}
   ${detail ? `<ul>${detail}</ul>` : ""}
   ${cost}${waiver}${time}${prereq}${disc}${stale}
-  ${sourceList(stepRecords, lang)}
+  ${stepSources(stepRecords, lapsedRecords, lang)}
 </li>`;
     })
     .join("");
