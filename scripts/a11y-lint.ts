@@ -12,7 +12,7 @@
 import { loadCorpus } from "../api/corpus.ts";
 import { buildChecklist } from "../api/checklist.ts";
 import { formById } from "../api/forms.ts";
-import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
+import { renderIntakePage, renderChecklistPage, renderPacketPage, renderChangesPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
 import { renderMovePage, renderPlanPage } from "../src/relocation.ts";
 import { buildRelocationPlan } from "../api/relocation.ts";
 import { renderCompareFormPage, renderCompareResultsPage } from "../src/compare.ts";
@@ -20,6 +20,7 @@ import { buildCompareTable } from "../api/compare.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderGuideIndex, renderGuidePage } from "../src/guide.ts";
 import { renderFeedsIndex } from "../src/feeds.ts";
+import { buildPacketChanges } from "../api/changes.ts";
 import { PALETTE, STYLE } from "../src/render.ts";
 import type { DocumentType } from "../api/types.ts";
 import { pass, fail } from "./util.ts";
@@ -78,12 +79,27 @@ const esChecklist = buildChecklist({ jurisdiction: "US-CA", change_types: ["name
 /** TX → WA is the canonical relocation case: a hostile origin with a residency-bound court. */
 const relocationPlan = (language: "en" | "es", held: DocumentType[]) =>
   buildRelocationPlan({ origin: "US-TX", destination: "US-WA", held, change_types: ["name", "gender-marker"], language });
+/** A staleness check for the same California packet the checklist pages above render. */
+const packetChanges = (language: "en" | "es", since: string) =>
+  buildPacketChanges(
+    { jurisdiction: "US-CA", change_types: ["name", "gender-marker"], documents: [], language },
+    since,
+    undefined,
+    corpus,
+  );
+
 const pages: Page[] = [
   { name: "intake", html: renderIntakePage("en") },
   { name: "intake-es", html: renderIntakePage("es") },
   { name: "checklist", html: renderChecklistPage(enChecklist, corpus, "en", "jurisdiction=US-CA&change=name") },
   { name: "checklist-es", html: renderChecklistPage(esChecklist, corpus, "es", "jurisdiction=US-CA&language=es") },
   { name: "packet", html: renderPacketPage(enChecklist, corpus, "en", "2026-05-31") },
+  // Both a "packet was checked recently" and a "packet is past every recheck window"
+  // rendering: the second is the one that grows a role="note" flag most readers will
+  // meet, so it has to be audited, not only the quiet path.
+  { name: "changes", html: renderChangesPage(packetChanges("en", "2026-05-01"), "en", "jurisdiction=US-CA&change=name") },
+  { name: "changes-es", html: renderChangesPage(packetChanges("es", "2026-05-01"), "es", "jurisdiction=US-CA&language=es") },
+  { name: "changes-expired", html: renderChangesPage(packetChanges("en", "2020-01-01"), "en", "jurisdiction=US-CA&change=name") },
   { name: "form-fill", html: renderFormFillPage(formById("us-ss-5")!, "en") },
   { name: "form-degraded", html: renderFormFillPage(formById("us-ds-82")!, "en") },
   { name: "terms", html: renderTermsPage("en") },
