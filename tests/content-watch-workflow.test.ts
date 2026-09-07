@@ -67,9 +67,14 @@ function steps(): Step[] {
  */
 function propagatesPipeStatus(step: Step): boolean {
   if (step.shell === "bash") return true;
-  return /^\s*set -[a-z]*o?\s*[a-z]*\s*pipefail|set -[a-z]*\s*-o pipefail|set -euo pipefail/m.test(
-    step.run ?? "",
-  );
+  // Line-wise and regex-free on purpose. The first version of this used one alternation
+  // whose leading `^` bound only its first branch, so the other two would have matched
+  // mid-line — CodeQL's js/regex/missing-regexp-anchor caught it at high severity on the
+  // PR that introduced it. A check whose own matcher is loose is not a check.
+  return (step.run ?? "").split("\n").some((line) => {
+    const trimmed = line.trim();
+    return trimmed.startsWith("set ") && trimmed.includes("pipefail");
+  });
 }
 
 test("every piping run step propagates the pipeline's exit status", () => {
