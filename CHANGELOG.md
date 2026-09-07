@@ -8,6 +8,43 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **A second, independently reviewed staleness signal** (`api/sentinel.ts`,
+  `scripts/sentinel-sync.ts`, `make sentinel`; #228). Guardrail 4 says stale law is broken
+  law, and staleness here had exactly two detectors: this project's own hash watcher and
+  the SLA clock. Both are ours, and both share our blind spots — for a cited source we
+  cannot fetch, `last_verified` is a human's assertion that nothing moved, never a checked
+  one.
+
+  `ChelseaKR/id-churn-sentinel` watches the same class of government pages and publishes
+  every change with the name of the human who classified it. Its `changes.json` and
+  `sources.json` are vendored under `corpus/external/id-churn-sentinel/` and pinned by
+  sha256, so nothing fetches at runtime and a run is reproducible from the commit alone.
+  A change flags a record only when it is human-confirmed, independently reviewed,
+  substantive, still active, matched on the *page* rather than the host, and observed
+  strictly after that record's own last check. A flagged record is degraded to
+  `needs_reverification` and carries `flagged_by: { feed, change_id, reviewed_at }`; its
+  Spanish twin is degraded with it, because verification state is a fact the pair shares.
+
+  **The feed publishes nothing today, and the sync says so in those words.** "0 records
+  flagged" and "the sentinel has published no changes yet" are the same number and
+  different facts, and only one of them is about the law. A missing vendored file, a
+  sha256 that disagrees with the pin, or a `schema_version` outside the pinned major all
+  stop the run rather than matching nothing — silently matching nothing is how an absence
+  gets published as an all-clear, on the one signal that exists to say "your source
+  moved."
+
+  `make content` gained the merge-blocking half: every `flagged_by` in the corpus must
+  name a change that is actually in the vendored feed and still actionable, so a
+  hand-written flag, or a vendored artifact edited to delete the entry that flags you,
+  fails a blocking gate.
+
+  `docs/audits/coverage.md` gained an **Externally unwatchable sources** section: nine
+  hosts this corpus cites that the sentinel has publicly declared it cannot watch either —
+  three of its own named, dated gaps (`robots-disallowed`, `blocked-403`) and six
+  registered sources its crawler cannot reach, including `travel.state.gov` and
+  `health.ny.gov`. A reader told "we cannot check this automatically" should not be left
+  assuming somebody else is checking it.
+
 - **An English record and its Spanish twin must now stay in step** (`api/translations.ts`,
   enforced by `make content`; #229 item 1). Measured on the corpus as it stands: 344
   English records, 344 Spanish records, a clean 1:1 match on the `<en-id>.es` id

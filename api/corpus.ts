@@ -289,6 +289,29 @@ export function validateRecord(raw: unknown): ValidationIssue[] {
   if (raw.audience !== undefined && !RECORD_AUDIENCES.includes(raw.audience as RecordAudience))
     push("audience", `must be one of ${RECORD_AUDIENCES.join(", ")} when present`);
 
+  // External drift flag (#228). A flag may only ever accompany a DEGRADED record: writing
+  // one next to `verified` would let an external feed's evidence that a page moved sit on
+  // a record still served as current, which is the opposite of what the flag means.
+  if (raw.flagged_by !== undefined) {
+    if (!isObj(raw.flagged_by)) {
+      push("flagged_by", "must be an object { feed, change_id, reviewed_at } when present");
+    } else {
+      const f = raw.flagged_by;
+      for (const k of ["feed", "change_id", "reviewed_at"] as const) {
+        if (typeof f[k] !== "string" || (f[k] as string).length === 0)
+          push(`flagged_by.${k}`, "missing/empty");
+      }
+      if (f.reviewed_at !== undefined && !isValidIsoDate(f.reviewed_at))
+        push("flagged_by.reviewed_at", "must be a real ISO calendar date YYYY-MM-DD");
+    }
+    if (raw.verification_status !== "needs_reverification")
+      push(
+        "flagged_by",
+        "an external drift flag may only accompany verification_status " +
+          "'needs_reverification'; a flagged record must never be served as current",
+      );
+  }
+
   relocationIssues(raw, push);
 
   return issues;
