@@ -8,6 +8,56 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **A staleness horizon: how much serving life the corpus has left, and the day it runs
+  out** (`api/horizon.ts`, `/healthz`, `/metrics`, `scripts/freshness.ts --horizon-days=N`).
+  Guardrail 4 had one clock and it only ever read the present tense. `make freshness` asks
+  "is anything stale *now*", and the answer was 0 — accurately, and uselessly, because this
+  corpus does not decay. It was seeded in a single pass: **436 of the 438 records serving on
+  2026-09-07 share one `last_verified` (2026-07-13) and one 90-day SLA**, so they lapse
+  together.
+
+  ```
+  2026-10-11   436 serving
+  2026-10-12     0 serving
+  ```
+
+  On that day `readiness()` starts answering 503, every checklist step in every state
+  renders degraded, and until now nothing in this repository said it was coming. A
+  "how many are stale today" check reads clean right up to that morning; the shape of the
+  failure is invisible to it.
+
+  `stalenessHorizon()` reports, from the corpus and `freshnessOf` alone, when each
+  currently-serving record lapses, how many are left after each date, and — separately —
+  whether one single day takes at least half of everything serving. That last field is the
+  cliff, and it is `null` for a corpus that decays evenly, so it is a property of the data
+  rather than a line the report always prints. The lapse-date arithmetic restates a rule
+  that lives in `api/freshness.ts`, so `tests/horizon.test.ts` checks it against `isCurrent`
+  itself for every record in the real corpus, on the day before and the day of.
+
+  **`/healthz` no longer publishes a record count alone.** `corpus_records: 688` counts
+  files on disk and will still read 688 on 2026-10-12 with zero of them serveable; a
+  monitor watching that number would see nothing wrong through a total content blackout.
+  It now carries `serving_records`, `serving_until` and `days_until_none_serving` beside
+  it. Its `status` is deliberately unchanged and it still answers 200 in every case: three
+  deployment targets use `/healthz` as the container liveness path (the Dockerfile
+  `HEALTHCHECK`, `AWS_LWA_READINESS_CHECK_PATH`, `render.yaml`'s `healthCheckPath`), so it
+  is a statement about the process. The freshness verdict is `/readyz`'s and is untouched.
+
+  `/metrics` gains `tdn_corpus_records`, `tdn_corpus_serving_records` and
+  `tdn_corpus_days_until_none_serving`. The countdown gauge is **absent**, not zero, once
+  nothing serves: "it lapses today" and "it lapsed already" are different facts, and an
+  alert written against the first would fire forever on the second.
+
+  The weekly `content-watch` sweep now passes `--horizon-days=30`, which turns the
+  lookahead into a failure and therefore into a GitHub issue. That workflow's header
+  already described this check — "does any record expire its SLA within the next 14 days" —
+  and `scripts/freshness.ts` had never looked ahead at all; the header now matches what
+  runs. The flag is passed **there and nowhere else**: the merge gate keeps its
+  commit-driven contract, because a merge-blocking check that goes red on a calendar date
+  stops every unrelated PR in the repository and teaches people to bypass it. The merge
+  gate does now *print* the horizon on every run, since the interesting number is never
+  today's.
+
 - **A second, independently reviewed staleness signal** (`api/sentinel.ts`,
   `scripts/sentinel-sync.ts`, `make sentinel`; #228). Guardrail 4 says stale law is broken
   law, and staleness here had exactly two detectors: this project's own hash watcher and
