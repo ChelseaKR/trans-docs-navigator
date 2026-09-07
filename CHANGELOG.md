@@ -8,6 +8,50 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **An English record and its Spanish twin must now stay in step** (`api/translations.ts`,
+  enforced by `make content`; #229 item 1). Measured on the corpus as it stands: 344
+  English records, 344 Spanish records, a clean 1:1 match on the `<en-id>.es` id
+  convention, zero orphans. All of that was true by care alone, and care does not fail a
+  build. Nothing required an English record to have a Spanish twin, required a Spanish
+  record to name a real English canonical, or required the two sides to agree on the
+  fields that are facts about the rule rather than about the language. Add a record on one
+  side only, delete one, or change a jurisdiction, a `verification_status`, a
+  `recheck_sla_days` or a `form_ref` on one side, and every gate stayed green.
+
+  That gap lands on the reader least able to check it. A Spanish reader is shown a step
+  with exactly the confidence an English reader gets, so a silent divergence is discovered
+  in a clerk's office.
+
+  `make content` now fails on: a Spanish record whose id names no English canonical; a
+  translation whose canonical is not in the corpus; a twin that disagrees on
+  `jurisdiction`, `document_type`, `change_type`, `verification_status`,
+  `recheck_sla_days`, `audience` or `form_ref`; a twin carrying its own
+  `source.last_verified` (a translation inherits verification from the English source
+  check, so the two dates are one fact); and a twin citing a different *host* from its
+  canonical.
+
+  Citing the same agency's Spanish-language page is expected and allowed — three records
+  already do, and that is better sourcing, not drift — which is why the source check is at
+  host level rather than URL level.
+
+  **The gate is not "every English record must have Spanish."** That would make adding one
+  English record require inventing Spanish for it, which is how a corpus acquires
+  machine-drafted legal text nobody has read. An English record may instead be declared
+  untranslated in the new `corpus/translation-status.json`, with a reason: the gap becomes
+  a written, countable fact rather than an absence nobody notices. A record that is
+  neither translated nor declared fails; so does a declaration for a record that has since
+  been translated, because a coverage statement that drifts from the corpus is the thing
+  this check exists to stop. An unreadable declaration file yields an **empty** set, never
+  a permissive one, so a broken declaration makes the gate stricter rather than excusing
+  every gap it was meant to account for. The list is empty today.
+
+  No record was changed and no schema was migrated. #229 proposes adding `canonical_id`
+  and `translation_of` fields to every record; this derives the same linkage from the id
+  convention already in the data, because a half-migrated corpus is worse than an
+  unmigrated one and the honesty value of that item is the enforcement, not the field.
+  When the migration lands, `canonicalIdOf` reads the declared field instead of the
+  suffix and every invariant is unchanged.
+
 - **`GET /changes` — a printed packet can ask what has been re-checked since it printed**
   (`api/changes.ts`, EXP-03). A packet starts going stale the moment it prints, and
   guardrail 4 ("stale law is broken law") had no way to reach paper: someone three months
