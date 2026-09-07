@@ -2,6 +2,9 @@
 // and exposed in Prometheus text format at /metrics. Route labels are templated before
 // storage so user-controlled paths cannot create unbounded cardinality or leak content.
 
+import { loadCorpus } from "./corpus.ts";
+import { horizonMetrics } from "./horizon.ts";
+
 interface Series {
   method: string;
   route: string;
@@ -149,6 +152,17 @@ export function renderPrometheusMetrics(): string {
       `tdn_http_server_request_duration_seconds_sum{${labelSet}} ${item.durationSeconds}`,
       `tdn_http_server_request_duration_seconds_count{${labelSet}} ${item.count}`,
     );
+  }
+  // Corpus staleness horizon (api/horizon.ts). The RED metrics above describe the SERVER;
+  // these describe what it has to serve, which is the failure mode this project actually
+  // has: a corpus seeded in one pass, on one SLA, lapses on one day, and every
+  // request-side signal stays green through it. A corpus that cannot be read emits NO
+  // corpus series at all rather than zeros — a zero here is a measurement, and an
+  // unreadable corpus is not one.
+  try {
+    lines.push(...horizonMetrics(loadCorpus()));
+  } catch {
+    /* no corpus series; /readyz reports the dependency failure */
   }
   return `${lines.join("\n")}\n`;
 }

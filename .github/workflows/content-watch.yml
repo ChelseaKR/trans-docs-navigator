@@ -8,9 +8,17 @@ name: content-watch
 #   3. policy-watch      — has an authoritative tracker (MAP, A4TE, a legislative
 #                          tracker) upstream of the cited sources changed, flagging
 #                          every record in its jurisdiction for re-verification?
-#   4. freshness (live)  — does any record expire its SLA within the next 14 days,
-#                          evaluated against TODAY's date (the merge gate pins its date
-#                          for determinism; this run is the calendar-true sweep)?
+#   4. freshness (live)  — is any record already past its SLA, and does any record still
+#                          serving expire its SLA within the next 30 days, evaluated
+#                          against TODAY's date (the merge gate pins its date for
+#                          determinism; this run is the calendar-true sweep)? The
+#                          lookahead half is `--horizon-days=30`, and it is passed HERE
+#                          and nowhere else: a merge-blocking gate that goes red on a
+#                          calendar date rather than on a commit stops every unrelated PR
+#                          in the repository. This corpus needs it — 436 of the 438
+#                          records serving on 2026-09-07 share one `last_verified` and one
+#                          90-day SLA, so they lapse on the same day (2026-10-12) and a
+#                          "what is stale today" check reads clean until that morning.
 #   5. sentinel          — does the vendored id-churn-sentinel feed name a cited page a
 #                          NAMED HUMAN confirmed changed since that record's last check?
 #                          A second watcher, independent of ours, reading bytes committed
@@ -76,7 +84,7 @@ jobs:
         id: freshness
         continue-on-error: true
         shell: bash
-        run: NAV_TODAY=$(date +%F) node --experimental-strip-types --no-warnings scripts/freshness.ts 2>&1 | tee freshness.out
+        run: NAV_TODAY=$(date +%F) node --experimental-strip-types --no-warnings scripts/freshness.ts --horizon-days=30 2>&1 | tee freshness.out
       - name: Open an issue when anything needs a human
         if: steps.links.outcome == 'failure' || steps.sources.outcome == 'failure' || steps.policy.outcome == 'failure' || steps.sentinel.outcome == 'failure' || steps.freshness.outcome == 'failure'
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
@@ -101,6 +109,10 @@ jobs:
               '', '## policy-watch', '```', read('policy-watch.out'), '```',
               '', '## sentinel (external drift)', '```', read('sentinel.out'), '```',
               '', '## freshness (live date)', '```', read('freshness.out'), '```',
+              '', 'A `freshness` failure naming a LAPSE DATE is the lookahead, not a breach: those',
+              'records still serve today and stop on the date named. Re-verifying them before then',
+              'is the whole point of the 30-day window, and this corpus lapses in bulk rather than',
+              'gradually — see the horizon lines in that section for the count and the date.',
               '', 'Runbook: re-verify each named record against its official source, update `last_verified`',
               'and the URL if it moved, then run `make source-baseline` and `make verify`.',
               'If policy-watch flagged a tracker, re-verify every record in the named jurisdiction,',
