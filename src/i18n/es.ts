@@ -22,6 +22,8 @@ export const es: LocaleBundle = {
     verifyNote: "Esto es información general, no asesoramiento legal. Los requisitos cambian, así que confirme siempre con la fuente oficial enlazada en cada paso, y hable con un abogado o una organización de ayuda legal sobre su situación específica.",
     notFilingNote: "Esta herramienta no presenta nada por usted y no es asesoramiento legal. Descargue el formulario oficial, complételo y preséntelo usted mismo.",
     sources: "Fuentes",
+    staleSources: "Consulte usted mismo estas páginas oficiales",
+    staleSourcesNote: "No hemos vuelto a revisar estas páginas recientemente, así que no mostramos lo que decían. Estas son las páginas oficiales. Léalas directamente.",
     verifiedBy: "verificado por",
     notHumanVerified: "aún sin verificar por una persona revisora designada",
     recordedOn: "registrado",

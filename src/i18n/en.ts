@@ -22,6 +22,8 @@ export const en: LocaleBundle = {
     verifyNote: "This is general information, not legal advice. Requirements change, so always confirm with the official source linked on each step, and talk to a lawyer or legal-aid organization about your specific situation.",
     notFilingNote: "This tool doesn't file anything for you and isn't legal advice. Download the official form, complete it, and submit it yourself.",
     sources: "Sources",
+    staleSources: "Check these official pages yourself",
+    staleSourcesNote: "We have not re-checked these pages recently, so we are not showing what they said. These are the official pages themselves. Read them directly.",
     verifiedBy: "verified by",
     notHumanVerified: "not yet verified by a named reviewer",
     recordedOn: "recorded",

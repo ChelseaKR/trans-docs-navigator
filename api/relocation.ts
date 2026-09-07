@@ -284,6 +284,10 @@ function originWindowStep(
     phase: "before-you-move",
     title: TITLES[doc],
     record_ids: records.map((r) => r.id),
+    // This branch returns early when nothing is current, so the stale list is never the
+    // only citation here; it is still populated so the field states the cell's real
+    // freshness rather than an empty array that would read as "nothing lapsed".
+    unverified_record_ids: origin.degraded.map((r) => r.id),
     prerequisites: [],
     cost: pickCost(records),
     timeline: pickTimeline(records),
@@ -345,6 +349,10 @@ function birthStateSteps(
       phase: "birth-state",
       title: TITLES[doc],
       record_ids: resolved.current.map((r) => r.id),
+      // Citations survive the degrade (ChecklistStep.unverified_record_ids): a lapsed
+      // record contributes no text, cost, timeline or prerequisite here — only its
+      // source URL, and only where the step would otherwise cite nothing.
+      unverified_record_ids: resolved.degraded.map((r) => r.id),
       prerequisites: [...declared] as DocumentType[],
       // Cost and timeline describe AMENDING the record, which holding a copy of it does not do,
       // so neither is suppressed the way a `keep-from-origin` document's is.
@@ -425,6 +433,8 @@ export function buildRelocationPlan(
       step_class: stepClass,
       title: TITLES[doc],
       record_ids: resolved.current.map((r) => r.id),
+      // See the birth-state branch above: citations survive the degrade, text does not.
+      unverified_record_ids: resolved.degraded.map((r) => r.id),
       prerequisites: [...declared] as DocumentType[],
       cost: alreadyHeld ? undefined : pickCost(resolved.current),
       timeline: alreadyHeld ? undefined : pickTimeline(resolved.current),
