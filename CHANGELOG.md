@@ -148,6 +148,11 @@ lives under `[Unreleased]`.
   every output-capturing check must stay `continue-on-error`, so the first drift does not
   abort the sweep before the rest run.
 
+  The same commit wires `make sentinel` in as the sweep's **fifth** check, so the external
+  drift signal added alongside it actually runs weekly rather than only when someone types
+  the target by hand. It declares `shell: bash` like the rest, and the property test above
+  is what stops a sixth check from being added without being wired into the issue.
+
 - **`api/freshness.ts`'s `isValidIsoDate` threw instead of returning false.** A date that
   matches `YYYY-MM-DD` but cannot exist splits into two cases: JavaScript rolls some over
   (`2026-02-30` becomes `2026-03-02`, which the round-trip comparison catches) and
