@@ -51,18 +51,22 @@ jobs:
       - name: Link-rot check
         id: links
         continue-on-error: true
+        shell: bash
         run: make link-check 2>&1 | tee link-check.out
       - name: Source-change detection
         id: sources
         continue-on-error: true
+        shell: bash
         run: make source-watch 2>&1 | tee source-watch.out
       - name: Policy-change sentinel
         id: policy
         continue-on-error: true
+        shell: bash
         run: make policy-watch 2>&1 | tee policy-watch.out
       - name: Freshness against the real calendar
         id: freshness
         continue-on-error: true
+        shell: bash
         run: NAV_TODAY=$(date +%F) node --experimental-strip-types --no-warnings scripts/freshness.ts 2>&1 | tee freshness.out
       - name: Open an issue when anything needs a human
         if: steps.links.outcome == 'failure' || steps.sources.outcome == 'failure' || steps.policy.outcome == 'failure' || steps.freshness.outcome == 'failure'
