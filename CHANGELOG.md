@@ -126,6 +126,33 @@ lives under `[Unreleased]`.
   step. #230 stays open for it, and for the real `changed` state once FIX-03 lands.
 
 ### Fixed
+- **The weekly content sweep could not tell anyone what it found.** Every check in
+  `.github/workflows/content-watch.yml` was written as `run: make link-check 2>&1 | tee
+  link-check.out` with no `shell:` key. Actions' default `run:` shell on Linux is
+  `bash -e {0}` — **without `pipefail`** — so each step exited with `tee`'s status, which
+  is always 0. All four checks reported `success` whatever they found, and the
+  issue-opening step, whose `if:` reads those outcomes, could never fire.
+
+  This was not theoretical. The live run of 2026-09-07
+  ([`34092783935`](https://github.com/ChelseaKR/trans-docs-navigator/actions/runs/34092783935))
+  logged `❌ link-check: 3/421 source URL(s) dead` while its step concluded `success` and
+  the issue step was `skipped`. **No issue has ever carried the `content-watch` label.**
+  Three cited sources were dead on a project whose first guardrail is that no claim ships
+  without a working citation, and the machinery built to say so was structurally unable
+  to. Measured: `bash -e -c 'false | tee /dev/null'` exits 0; `bash -eo pipefail` exits 1.
+
+  Each check now declares `shell: bash`, which selects `-eo pipefail`.
+  `tests/content-watch-workflow.test.ts` holds three properties: no piping step may run
+  under a shell that swallows the status; the issue-opening `if:` must read the outcome of
+  every step marked `continue-on-error`, so a check added later cannot fail silently; and
+  every output-capturing check must stay `continue-on-error`, so the first drift does not
+  abort the sweep before the rest run.
+
+  The same commit wires `make sentinel` in as the sweep's **fifth** check, so the external
+  drift signal added alongside it actually runs weekly rather than only when someone types
+  the target by hand. It declares `shell: bash` like the rest, and the property test above
+  is what stops a sixth check from being added without being wired into the issue.
+
 - **`api/freshness.ts`'s `isValidIsoDate` threw instead of returning false.** A date that
   matches `YYYY-MM-DD` but cannot exist splits into two cases: JavaScript rolls some over
   (`2026-02-30` becomes `2026-03-02`, which the round-trip comparison catches) and
