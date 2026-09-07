@@ -8,6 +8,55 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **`GET /changes` — a printed packet can ask what has been re-checked since it printed**
+  (`api/changes.ts`, EXP-03). A packet starts going stale the moment it prints, and
+  guardrail 4 ("stale law is broken law") had no way to reach paper: someone three months
+  into a court-order-then-DMV sequence could only find out by redoing intake and
+  comparing by eye. The packet footer now prints an absolute URL carrying the date it was
+  generated plus its existing selection-only fields, and `/changes` compares that date
+  against the corpus as it stands today, per step, in the same order the paper shows.
+
+  **What it will not say is the point of it.** EXP-03 asks for three states —
+  `unchanged`, `re-verified`, and `CHANGED — see step N` with the entries after `since` —
+  and names its dependency: per-record changelogs, which are corpus schema v2 (FIX-03)
+  and are not built. So this ships EXP-03's own specified degraded mode, and the state it
+  omits is `unchanged`. Without changelogs this repository does not know whether the law
+  changed; it knows only whether anyone re-checked the cited page. Rendering "unchanged"
+  would publish an absence of evidence as a reassurance, on the one artifact a person
+  carries into a clerk's office. The honest state is narrower and is a fact about this
+  project rather than about the law: "No re-check has been recorded since your packet
+  printed." A test asserts the word `unchanged` does not appear in the rendered body at
+  all, and the caveat that per-step change history does not exist is unconditional — it
+  is on the page even when every step was re-verified yesterday.
+
+  A packet older than the longest recheck SLA in the corpus is declared unusable outright
+  (the number is derived from the records, not hard-coded). A `since` that is missing,
+  malformed, or in the future is a 400, never a silent default to today: defaulting would
+  answer "has anything changed since now", which always says no. `/changes` is `noindex`,
+  `robots.txt`-disallowed, deliberately not memoized (a memo key on `since` is
+  retention), and **nothing derived from `since` reaches the log** — not the date, and
+  not the one-bit "is this packet expired", which would still narrow a person to a range
+  of print dates. `docs/audits/dpia.md` carries the new row; `scripts/latency-bench.ts`
+  and `loadtest/p95.k6.js` measure the uncached route against the same p95 budget
+  (p95 0.44ms).
+
+  The QR code EXP-03 also asks for is **not** here. A QR that silently fails to scan is
+  itself an absence rendered as a value, and the printed short URL is the safer first
+  step. #230 stays open for it, and for the real `changed` state once FIX-03 lands.
+
+### Fixed
+- **`api/freshness.ts`'s `isValidIsoDate` threw instead of returning false.** A date that
+  matches `YYYY-MM-DD` but cannot exist splits into two cases: JavaScript rolls some over
+  (`2026-02-30` becomes `2026-03-02`, which the round-trip comparison catches) and
+  rejects others outright (`2026-13-45` yields an Invalid Date). Calling `.toISOString()`
+  on an Invalid Date raises a `RangeError`, so the predicate had a third outcome besides
+  true and false and every caller inherited it. That contradicted `servingToday`'s own
+  documented contract that a malformed `NAV_TODAY` pin is *ignored*: such a pin crashed
+  the serving path on its first freshness evaluation rather than falling back to the real
+  clock. Found while building `/changes`, where the same string is user-supplied and the
+  throw would have been a 500 instead of the intended 400. One validator now, guarded and
+  exported, with the `NAV_TODAY` case covered in `tests/freshness.test.ts`.
+
 - **`GET /version` — what the running image was built from** (`api/version.ts`): the AWS
   preview deploys only on a manual `workflow_dispatch`, so the live service can be
   arbitrarily far behind `main`, and nothing on the wire said which commit it was

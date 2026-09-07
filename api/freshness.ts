@@ -20,9 +20,24 @@ export const TEST_TODAY = "2026-07-13";
 
 const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
-/** Is `s` a well-formed, real calendar date in YYYY-MM-DD (rejects 2026-13-40)? */
-function isValidIsoDate(s: string): boolean {
-  return ISO_DATE_RE.test(s) && new Date(s + "T00:00:00Z").toISOString().slice(0, 10) === s;
+/**
+ * Is `s` a well-formed, real calendar date in YYYY-MM-DD (rejects 2026-13-40)?
+ *
+ * The `Date.parse` guard is not redundant. A shape-valid but impossible date splits into
+ * two cases: JavaScript rolls some of them over (2026-02-30 becomes 2026-03-02, caught by
+ * the round-trip comparison) and rejects others outright (2026-13-45 yields an Invalid
+ * Date). Calling `.toISOString()` on an Invalid Date THROWS a RangeError, so without this
+ * guard the function does not return false for that class — it throws, and every caller
+ * treating it as a predicate inherits the throw. That mattered in two places: the
+ * `NAV_TODAY` override below, whose own contract is that a malformed pin is *ignored*
+ * rather than fatal, and `changes.parseSince`, where the string is user-supplied and a
+ * throw would be a 500 instead of a 400.
+ */
+export function isValidIsoDate(s: string): boolean {
+  if (!ISO_DATE_RE.test(s)) return false;
+  const parsed = Date.parse(s + "T00:00:00Z");
+  if (Number.isNaN(parsed)) return false;
+  return new Date(parsed).toISOString().slice(0, 10) === s;
 }
 
 /** The real "as of" date (UTC, YYYY-MM-DD). `now` is injectable for deterministic tests. */

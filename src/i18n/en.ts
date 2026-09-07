@@ -57,6 +57,22 @@ export const en: LocaleBundle = {
     checklistTitle: "Your checklist",
     checklistHeading: "Your personalized checklist",
     checklistIntro: "Your steps are listed in the order most people complete them. Each links to its official source and the date it was last checked.",
+    changesTitle: "What changed since your packet",
+    changesHeading: "What changed since your packet printed",
+    packetChangesLink: "To check whether any of this has been re-verified since today, visit",
+    changesSince: "Your packet was prepared on",
+    changesIntro:
+      "This compares the steps in your packet against our records as they stand today. It tells you when a step has been re-checked or flagged since your packet printed.",
+    changesNoChangelog:
+      "We cannot yet tell you what changed in a step, only whether it has been re-checked. Per-step change history is not built. When a step below says nothing has been re-checked, that is a statement about our records, not a promise that the law has stayed the same. Always confirm with the official source linked on each step before you file.",
+    changesExpired:
+      "Your packet is older than the longest window we allow between checks, so none of it can still be counted as current. Run a fresh checklist before you file.",
+    changesStateReverified: "Re-checked since your packet printed.",
+    changesStateNoRecheck: "No re-check has been recorded since your packet printed.",
+    changesStateNeedsRecheck: "Flagged for re-checking. Do not rely on this step as printed.",
+    changesLastChecked: "Last checked",
+    changesFreshChecklist: "Get a fresh checklist",
+    changesNoSteps: "Your packet has no steps we can check. Start again to build a new one.",
     packetTitle: "Your packet",
     packetHeading: "Your name & gender-marker change packet",
     answerHeading: "What the sources say",

@@ -4,7 +4,9 @@
 // Identity fields are entered only in the form-helper page and stay in the browser.
 
 import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from "../api/types.ts";
+import type { PacketChanges } from "../api/changes.ts";
 import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel, preparationList, verificationCaption } from "./render.ts";
+import { SITE_ORIGIN } from "./seo.ts";
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
 import { feedLinkFor } from "./feeds.ts";
@@ -331,8 +333,71 @@ export function renderPacketPage(
     : [];
   const offline = renderOfflinePanel(s, offlineUrls);
   const help = renderHelpSection(checklist.jurisdiction, lang, s);
-  const body = actions + stateNote + minorNote + renderPacket(checklist, records, lang, generatedOn) + help + offline;
+  // The staleness check has to survive onto paper (EXP-03), which is why it is built
+  // from the canonical intakeQuery rather than the raw query string, and printed as an
+  // absolute URL. Without an intake query there is no packet-specific check to offer,
+  // so the footer offers none rather than a link that would rebuild a different packet.
+  const changesUrl = intakeQuery ? changesUrlFor(intakeQuery, generatedOn, lang) : "";
+  const body = actions + stateNote + minorNote + renderPacket(checklist, records, lang, generatedOn, changesUrl) + help + offline;
   return page({ lang, title: s.packetTitle, heading: s.packetHeading, body });
+}
+
+/** Absolute /changes URL for a packet: its canonical selections plus the date it printed. */
+export function changesUrlFor(intakeQuery: string, generatedOn: string, lang: Language): string {
+  const langParam = lang === "es" && !intakeQuery.includes("language=") ? "&language=es" : "";
+  return `${SITE_ORIGIN}/changes?since=${encodeURIComponent(generatedOn)}&${intakeQuery}${langParam}`;
+}
+
+/**
+ * "What changed since your packet printed" (/changes, EXP-03).
+ *
+ * The order of this page is deliberate and is the whole point of it. The limits come
+ * FIRST: an expired packet, then the plain statement that per-step change history does
+ * not exist yet. Only then the per-step states. A reader who stops after the first
+ * screen must not come away reassured, because the strongest thing this page can
+ * honestly say about a step today is that nobody has re-checked it — which is a fact
+ * about this project's records, not about the law. See api/changes.ts.
+ */
+export function renderChangesPage(changes: PacketChanges, lang: Language, intakeQuery = ""): string {
+  const s = uiStrings(lang);
+  const since = `<p class="meta">${escapeHtml(s.changesSince)} ${escapeHtml(changes.since)}.</p>`;
+  const intro = `<p>${escapeHtml(s.changesIntro)}</p>`;
+  const expired = changes.packet_expired
+    ? `<p class="flag" role="note">${escapeHtml(s.changesExpired)}</p>`
+    : "";
+  // Not conditional on anything. Until FIX-03 lands changelogs this caveat is always
+  // true, and the one reading of this page that would harm someone is the one that
+  // takes "no re-check recorded" as "nothing has changed".
+  const noChangelog = `<p class="flag" role="note">${escapeHtml(s.changesNoChangelog)}</p>`;
+  const stateText: Record<PacketChanges["steps"][number]["state"], string> = {
+    "re-verified": s.changesStateReverified,
+    "no-recheck-recorded": s.changesStateNoRecheck,
+    "needs-reverification": s.changesStateNeedsRecheck,
+  };
+  const items = changes.steps
+    .map((step) => {
+      const flagged = step.state === "no-recheck-recorded" ? "meta" : "flag";
+      const checked = step.last_verified
+        ? `<p class="meta">${escapeHtml(s.changesLastChecked)}: ${escapeHtml(step.last_verified)}</p>`
+        : "";
+      return `<li class="step">
+  <h2>${escapeHtml(s.step)} ${step.order}: ${escapeHtml(locale(lang).docTitles[step.document_type])}</h2>
+  <p class="${flagged}" role="note">${escapeHtml(stateText[step.state])}</p>
+  ${checked}
+</li>`;
+    })
+    .join("");
+  const list = items ? `<ol>${items}</ol>` : `<p class="flag" role="note">${escapeHtml(s.changesNoSteps)}</p>`;
+  const fresh = intakeQuery
+    ? `<a href="/checklist?${escapeHtml(intakeQuery)}">${escapeHtml(s.changesFreshChecklist)}</a> · `
+    : "";
+  const back = `<p class="no-print">${fresh}<a href="/">${escapeHtml(s.startOver)}</a></p>`;
+  return page({
+    lang,
+    title: s.changesTitle,
+    heading: s.changesHeading,
+    body: since + intro + expired + noChangelog + list + back,
+  });
 }
 
 /**

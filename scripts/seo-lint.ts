@@ -13,11 +13,12 @@
 import { buildChecklist } from "../api/checklist.ts";
 import { loadCorpus } from "../api/corpus.ts";
 import { formById } from "../api/forms.ts";
-import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage } from "../src/pages.ts";
+import { renderIntakePage, renderChecklistPage, renderPacketPage, renderChangesPage, renderFormFillPage } from "../src/pages.ts";
 import { renderMovePage, renderPlanPage } from "../src/relocation.ts";
 import { buildRelocationPlan } from "../api/relocation.ts";
 import { renderCompareFormPage, renderCompareResultsPage } from "../src/compare.ts";
 import { buildCompareTable } from "../api/compare.ts";
+import { buildPacketChanges } from "../api/changes.ts";
 import { renderTermsPage, renderPrivacyPage, renderAccessibilityPage, renderMethodologyPage } from "../src/legal.ts";
 import { renderTransparencyPage } from "../src/transparency.ts";
 import { renderGuideIndex, renderGuidePage, indexablePaths } from "../src/guide.ts";
@@ -102,6 +103,14 @@ for (const p of indexable) {
 const noindex: { name: string; html: string }[] = [
   { name: "checklist", html: renderChecklistPage(cl("en"), corpus, "en", "jurisdiction=US-CA&change=name") },
   { name: "packet", html: renderPacketPage(cl("en"), corpus, "en", "2026-05-31") },
+  {
+    name: "changes",
+    html: renderChangesPage(
+      buildPacketChanges({ jurisdiction: "US-CA", change_types: ["name"], documents: [], language: "en" }, "2026-05-31", undefined, corpus),
+      "en",
+      "jurisdiction=US-CA&change=name",
+    ),
+  },
   { name: "form-fill", html: renderFormFillPage(formById("us-ss-5")!, "en") },
   { name: "move", html: renderMovePage("en") },
   {
