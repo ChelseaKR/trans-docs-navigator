@@ -57,6 +57,22 @@ export const es: LocaleBundle = {
     checklistTitle: "Su lista",
     checklistHeading: "Su lista personalizada",
     checklistIntro: "Sus pasos se enumeran en el orden en que la mayoría de las personas los completa. Cada uno enlaza a su fuente oficial y la fecha en que se verificó por última vez.",
+    changesTitle: "Qué cambió desde su paquete",
+    changesHeading: "Qué cambió desde que imprimió su paquete",
+    packetChangesLink: "Para saber si algo se ha vuelto a verificar después de hoy, visite",
+    changesSince: "Su paquete se preparó el",
+    changesIntro:
+      "Esto compara los pasos de su paquete con nuestros registros tal como están hoy. Le indica cuándo un paso se ha vuelto a revisar o se ha marcado desde que imprimió su paquete.",
+    changesNoChangelog:
+      "Todavía no podemos decirle qué cambió dentro de un paso, solo si se ha vuelto a revisar. El historial de cambios por paso no está construido. Cuando un paso indica abajo que no se ha vuelto a revisar, eso es una afirmación sobre nuestros registros, no una promesa de que la ley siga igual. Confirme siempre con la fuente oficial enlazada en cada paso antes de presentar su solicitud.",
+    changesExpired:
+      "Su paquete es más antiguo que el plazo máximo que admitimos entre revisiones, así que ninguna parte puede considerarse actual. Genere una lista nueva antes de presentar su solicitud.",
+    changesStateReverified: "Revisado de nuevo desde que imprimió su paquete.",
+    changesStateNoRecheck: "No se ha registrado ninguna revisión desde que imprimió su paquete.",
+    changesStateNeedsRecheck: "Marcado para volver a verificar. No se base en este paso tal como está impreso.",
+    changesLastChecked: "Última revisión",
+    changesFreshChecklist: "Obtener una lista nueva",
+    changesNoSteps: "Su paquete no tiene pasos que podamos revisar. Empiece de nuevo para crear uno.",
     packetTitle: "Su paquete",
     packetHeading: "Su paquete de cambio de nombre y marcador de género",
     answerHeading: "Lo que dicen las fuentes",

@@ -62,6 +62,32 @@ export interface UiMessages {
   checklistIntro: string;
   packetTitle: string;
   packetHeading: string;
+  /**
+   * Packet staleness check (/changes, EXP-03). These strings are load-bearing in a way
+   * the rest of this bundle is not: they are what a person reads three months after
+   * printing a packet, deciding whether to walk into a clerk's office with it. Without
+   * per-record changelogs this page must never say a step is unchanged — see
+   * api/changes.ts. `changesStateNoRecheck` is the wording that keeps that promise, and
+   * it is phrased as a fact about this project, not about the law.
+   */
+  changesTitle: string;
+  changesHeading: string;
+  /** Link printed on the packet itself, so the check survives onto paper. */
+  packetChangesLink: string;
+  /** "Your packet was prepared on {date}." — the date is appended by the caller. */
+  changesSince: string;
+  changesIntro: string;
+  /** Says plainly that per-record change history does not exist yet (FIX-03). */
+  changesNoChangelog: string;
+  /** The packet is older than the longest recheck window; run a fresh checklist. */
+  changesExpired: string;
+  changesStateReverified: string;
+  changesStateNoRecheck: string;
+  changesStateNeedsRecheck: string;
+  /** Label for the newest verification date shown beside a step. */
+  changesLastChecked: string;
+  changesFreshChecklist: string;
+  changesNoSteps: string;
   answerHeading: string;
   /** Accessible name for the `<section>` landmark wrapping a rendered answer (aria-label, not visible text — issue #151). */
   answerLandmarkLabel: string;

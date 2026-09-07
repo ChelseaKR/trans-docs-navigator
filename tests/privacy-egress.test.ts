@@ -16,6 +16,10 @@ function poisoned(path: string, jurisdiction = "US-CA"): URL {
   const url = new URL(path, "http://localhost:8080");
   url.searchParams.set("jurisdiction", jurisdiction);
   url.searchParams.set("q", `my name is ${SENTINEL}`);
+  // /changes takes one extra bounded field (the date a packet printed). Set to a real
+  // date so the route reaches its 200 path and is actually exercised here rather than
+  // short-circuiting on a 400, which would prove nothing about reflection.
+  url.searchParams.set("since", "2026-05-01");
   // Identity fields the UI never sends, but an attacker/proxy might append:
   for (const k of ["current_legal_name", "new_legal_name", "ssn", "date_of_birth", "email"]) {
     url.searchParams.set(k, SENTINEL);
@@ -24,7 +28,7 @@ function poisoned(path: string, jurisdiction = "US-CA"): URL {
 }
 
 test("request-borne content is not reflected into a response body or log descriptor", () => {
-  const routes = ["/", "/checklist", "/packet", "/answer", "/forms/us-ss-5", "/healthz"];
+  const routes = ["/", "/checklist", "/packet", "/changes", "/answer", "/forms/us-ss-5", "/healthz"];
   for (const path of routes) {
     const r = handleRoute("GET", poisoned(path), "2026-05-31");
     assert.ok(!r.body.includes(SENTINEL), `${path}: sentinel leaked into response body`);

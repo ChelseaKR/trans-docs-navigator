@@ -107,6 +107,9 @@ export function robotsTxt(): string {
     "Allow: /",
     "Disallow: /checklist",
     "Disallow: /packet",
+    // The packet staleness check. Its query string carries the checklist selections AND
+    // the date a packet printed, so it is at least as sensitive as /packet.
+    "Disallow: /changes",
     "Disallow: /answer",
     // The relocation planner. /plan carries an (origin → destination) pair in its query
     // string — the most sensitive selection this app takes — and /move is its entry form.

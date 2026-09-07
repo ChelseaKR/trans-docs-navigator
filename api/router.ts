@@ -8,6 +8,7 @@
 // identity-form fields are not read. See the Privacy Notice for cache/log boundaries.
 
 import { buildChecklist, hasThinnerLanguageCoverage, hasNoStateCoverage, hasNoMinorCoverage } from "./checklist.ts";
+import { buildPacketChanges, parseSince } from "./changes.ts";
 import { buildRelocationPlan } from "./relocation.ts";
 import { buildCompareTable, COMPARE_JURISDICTIONS } from "./compare.ts";
 import { answer } from "./guidance.ts";
@@ -17,7 +18,7 @@ import { formById } from "./forms.ts";
 import { isKnownJurisdiction } from "./feed.ts";
 import { memoize } from "./cache.ts";
 import type { ChangeType, CorpusRecord, DocumentType, Intake, JurisdictionId, Language, RelocationIntake } from "./types.ts";
-import { renderIntakePage, renderChecklistPage, renderPacketPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
+import { renderIntakePage, renderChecklistPage, renderPacketPage, renderChangesPage, renderFormFillPage, renderOfflinePage } from "../src/pages.ts";
 import { renderMovePage, renderPlanPage } from "../src/relocation.ts";
 import { renderCompareFormPage, renderCompareResultsPage, type CompareSort } from "../src/compare.ts";
 import { renderAnswer, page, uiStrings, escapeHtml, STYLE } from "../src/render.ts";
@@ -528,6 +529,35 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
         noMinorCoverage: intake.for_minor === true && hasNoMinorCoverage(intake.jurisdiction),
       }),
       log: { event: "packet", fields: { jurisdiction: intake.jurisdiction, language: intake.language, status: 200 } },
+    };
+  }
+
+  // Packet staleness (EXP-03). One extra bit on the request surface — the date a packet
+  // printed — answered against the corpus as it stands today. Same bounded intake
+  // grammar as /checklist, so nothing free-text or identity-shaped reaches here.
+  //
+  // NOTHING DERIVED FROM `since` IS LOGGED, not the date and not the one-bit
+  // "is this packet past the longest recheck window". `since` is the day a specific
+  // person printed a specific packet; joined with a jurisdiction it is the most
+  // identifying thing on this route, and even the boolean narrows a person to a range of
+  // print dates. The log descriptor therefore carries exactly what /packet's does. This
+  // is the same reasoning /plan applies when it emits no descriptor at all, applied to a
+  // weaker signal — and losing an operational metric is the cheaper mistake.
+  if (p === "/changes") {
+    const intake = parseIntake(url);
+    if (!intake) return badRequest(lang);
+    const serving = today ?? new Date().toISOString().slice(0, 10);
+    const since = parseSince(url.searchParams.get("since"), serving);
+    if (since === null) return badRequest(intake.language);
+    const changes = buildPacketChanges(intake, since, serving);
+    return {
+      status: 200,
+      contentType: HTML,
+      body: renderChangesPage(changes, intake.language, intakeQuery(intake)),
+      log: {
+        event: "changes",
+        fields: { jurisdiction: intake.jurisdiction, language: intake.language, status: 200 },
+      },
     };
   }
 

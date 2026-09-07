@@ -384,6 +384,14 @@ export function renderPacket(
   records: CorpusRecord[],
   lang: Language,
   generatedOn: string,
+  /**
+   * Absolute URL of this packet's staleness check (/changes?since=...), printed in the
+   * footer. It has to be an absolute URL rendered as literal text, not only a link: the
+   * artifact this appears on is paper, and a relative href is unreachable from it.
+   * Omitted when the caller has no canonical intake query to build one from, in which
+   * case the footer simply does not offer a check it cannot honour (EXP-03).
+   */
+  changesUrl = "",
 ): string {
   const t = locale(lang).ui;
   const byId = new Map(records.map((r) => [r.id, r]));
@@ -418,7 +426,10 @@ export function renderPacket(
         .map((g) => `<li class="flag">${escapeHtml(locale(lang).docLabels[g.document_type])}: ${escapeHtml(gapReason(lang, g.reason))}</li>`)
         .join("")}</ul></section>`
     : "";
-  return `<p>${escapeHtml(t.packetIntro)}</p><p class="flag" role="note">${escapeHtml(t.verifyNote)}</p><ol>${steps}</ol>${gaps}<p class="meta">${escapeHtml(t.prepared)} ${escapeHtml(generatedOn)}.</p>`;
+  const changes = changesUrl
+    ? `<p class="meta">${escapeHtml(t.packetChangesLink)} <a href="${escapeHtml(changesUrl)}">${escapeHtml(changesUrl)}</a></p>`
+    : "";
+  return `<p>${escapeHtml(t.packetIntro)}</p><p class="flag" role="note">${escapeHtml(t.verifyNote)}</p><ol>${steps}</ol>${gaps}<p class="meta">${escapeHtml(t.prepared)} ${escapeHtml(generatedOn)}.</p>${changes}`;
 }
 
 export function renderAnswer(ans: GroundedAnswer, lang: Language): string {

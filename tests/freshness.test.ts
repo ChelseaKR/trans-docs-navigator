@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { freshnessOf, isCurrent, staleButMarkedCurrent } from "../api/freshness.ts";
+import { freshnessOf, isCurrent, isValidIsoDate, servingToday, staleButMarkedCurrent } from "../api/freshness.ts";
 import type { CorpusRecord } from "../api/types.ts";
 
 const base: CorpusRecord = {
@@ -57,4 +57,31 @@ test("unverified is never current", () => {
 
 test("uses the default today when none is given", () => {
   assert.equal(typeof freshnessOf(base).current, "boolean");
+});
+
+// Regression: a shape-valid but impossible date used to THROW rather than return false.
+// `2026-13-45` matches YYYY-MM-DD, so the regex passes, but `new Date(...)` yields an
+// Invalid Date and `.toISOString()` on it raises a RangeError. The predicate therefore
+// had a third outcome besides true and false, and every caller inherited it: the
+// NAV_TODAY override below, whose contract is that a malformed pin is *ignored*, and
+// `changes.parseSince`, where the string is user-supplied and a throw is a 500 rather
+// than the 400 the route means to return.
+test("isValidIsoDate returns false for an impossible date instead of throwing", () => {
+  assert.equal(isValidIsoDate("2026-13-45"), false);
+  assert.equal(isValidIsoDate("2026-02-30"), false, "rollover case: caught by the round-trip");
+  assert.equal(isValidIsoDate("2026-00-10"), false);
+  assert.equal(isValidIsoDate("not-a-date"), false);
+  assert.equal(isValidIsoDate("2026-07-13"), true);
+});
+
+test("a malformed NAV_TODAY pin is ignored, as servingToday's contract says", () => {
+  // Previously this raised a RangeError out of servingToday, so the serving path died
+  // on the first freshness evaluation rather than falling back to the real clock.
+  const pinned = servingToday({ NAV_TODAY: "2026-13-45" } as NodeJS.ProcessEnv, new Date("2026-05-31T12:00:00Z"));
+  assert.equal(pinned, "2026-05-31");
+  // A well-formed pin is still honoured.
+  assert.equal(
+    servingToday({ NAV_TODAY: "2026-01-02" } as NodeJS.ProcessEnv, new Date("2026-05-31T12:00:00Z")),
+    "2026-01-02",
+  );
 });
