@@ -73,7 +73,16 @@ export interface FreshnessVerdict {
   reason: "verified-within-sla" | "past-sla" | "needs-reverification" | "unverified" | "future-date";
 }
 
-export function freshnessOf(rec: CorpusRecord, today: string = servingToday()): FreshnessVerdict {
+/**
+ * The only fields freshness actually reads. Typed as a `Pick` rather than as `CorpusRecord`
+ * so the sibling record types that carry the same three fields — ReferralRecord, and the
+ * projections api/public-api.ts builds — can be judged by the SAME function instead of a
+ * near-copy of it. Widening what is accepted, never what is asserted: every existing
+ * CorpusRecord caller still satisfies this exactly as before.
+ */
+export type FreshnessSubject = Pick<CorpusRecord, "source" | "verification_status" | "recheck_sla_days">;
+
+export function freshnessOf(rec: FreshnessSubject, today: string = servingToday()): FreshnessVerdict {
   const ageDays = daysBetween(rec.source.last_verified, today);
   if (rec.verification_status === "unverified") {
     return { current: false, ageDays, reason: "unverified" };
@@ -93,7 +102,7 @@ export function freshnessOf(rec: CorpusRecord, today: string = servingToday()): 
   return { current: true, ageDays, reason: "verified-within-sla" };
 }
 
-export function isCurrent(rec: CorpusRecord, today: string = servingToday()): boolean {
+export function isCurrent(rec: FreshnessSubject, today: string = servingToday()): boolean {
   return freshnessOf(rec, today).current;
 }
 
@@ -102,6 +111,6 @@ export function isCurrent(rec: CorpusRecord, today: string = servingToday()): bo
  * BOTH marked `verified` AND past its SLA. That state means stale data would be
  * served as current. Such records must be re-marked `needs_reverification`.
  */
-export function staleButMarkedCurrent(rec: CorpusRecord, today: string = servingToday()): boolean {
+export function staleButMarkedCurrent(rec: FreshnessSubject, today: string = servingToday()): boolean {
   return rec.verification_status === "verified" && freshnessOf(rec, today).reason === "past-sla";
 }

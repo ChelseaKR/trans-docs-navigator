@@ -246,6 +246,30 @@ lives under `[Unreleased]`.
   throw would have been a 500 instead of the intended 400. One validator now, guarded and
   exported, with the `NAV_TODAY` case covered in `tests/freshness.test.ts`.
 
+- **A versioned, read-only partner API at `/api/v1`** (`api/public-api.ts`, EXP-07): legal-aid
+  organizations are the distribution channel, and until now the only ways to reuse this corpus
+  were to scrape rendered HTML or read JSON out of the repository — both of which strip the
+  guarantees off the data. Every response carries provenance as **required, non-optional keys**,
+  so there is no shape in which a claim can arrive without its sourcing. Three absences are
+  published as absences rather than collapsed into values: (1) `verification_status` never
+  travels alone — 530 of 688 records declare `"verified"` while **zero** have been checked by a
+  named human, so `human_verified` and `verifier_is_placeholder` are mandatory siblings and a
+  corpus-wide `verification` summary sits in every envelope, mirroring the guarantee
+  `src/render.ts:verificationCaption` already gives the HTML UI; (2) a record's declared status
+  and its *serving* status are separate fields, because 92 records are declared `verified` and
+  past their SLA against the real clock and must not be republished as current; (3) an
+  unresearched jurisdiction returns an explicit `not_covered` object with HTTP 200, never an
+  empty list, matching `api/compare.ts`'s per-cell discipline — and a *translation* gap is
+  explicitly not an uncovered jurisdiction. Consumer-facing terms are published as an explicit
+  `null` with `consumer_terms_status: "pending-counsel-review"` rather than invented placeholder
+  wording. Endpoints: `/api/v1/corpus`, `/api/v1/jurisdictions`, `/api/v1/jurisdictions/{code}`,
+  `/api/v1/checklist` (the same bounded selection grammar as `/checklist`, carrying its three
+  coverage-honesty flags), and `/api/v1/referrals/{code}` (also in Open Referral HSDS shape).
+  JSON Schemas for every response are published under `docs/api/` and are **derived** by
+  `scripts/api-schemas.ts` from the router's own accepted enums, with `tests/public-api.test.ts`
+  asserting the committed files are byte-identical to the generator and that every provenance
+  key is in each schema's `required` list. The whole prefix is `Disallow:`ed in `robots.txt` and
+  bounded to low-cardinality metric labels.
 - **`GET /version` — what the running image was built from** (`api/version.ts`): the AWS
   preview deploys only on a manual `workflow_dispatch`, so the live service can be
   arbitrarily far behind `main`, and nothing on the wire said which commit it was
@@ -638,6 +662,14 @@ lives under `[Unreleased]`.
 - README standards-conformance table.
 
 ### Fixed
+- **Referrals for an uncovered jurisdiction read as local coverage** (`api/public-api.ts`):
+  `api/referrals.ts:referralsFor()` folds the two national records (A4TE, Lambda Legal) into
+  *every* jurisdiction's result, so a jurisdiction with no local referral at all still returns a
+  non-empty list. That is correct in the HTML UI's context; it is misleading the moment the data
+  is published as an API, where a partner reads a non-empty list as coverage. The API
+  distinguishes `covered` / `national-only` / `not_covered`, labels each referral's `scope`, and
+  reports `local_referral_count`. Found by a negative control: the `not_covered` branch was
+  unreachable against live data, which made the test asserting it a check that could not fail.
 - **Two Washington records were serving a wrong-direction fact and have been corrected, EN +
   ES** (source-drift triage, #150 / #192). `wa.court-order.name` said a name-change petition is
   "usually filed in the district court of the county where you reside"; `courts.wa.gov` now
