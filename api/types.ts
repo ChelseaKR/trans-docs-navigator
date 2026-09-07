@@ -118,6 +118,25 @@ export interface RelocationTraits {
  * One citable corpus record: a single requirement/fact for a (jurisdiction × document × change).
  * This IS the retrieval unit and the citation unit.
  */
+/**
+ * Why an external, independently reviewed feed says this record's cited source moved
+ * (#228, `api/sentinel.ts`). Written ONLY by `scripts/sentinel-sync.ts --apply`, and only
+ * alongside `verification_status: "needs_reverification"` — a flag can degrade a record
+ * and can never present one as current.
+ *
+ * `change_id` is the sentinel's own dedupe key, deterministic in (source, old hash, new
+ * hash), so a flag stays resolvable against the feed long after the run that wrote it.
+ * The content gate re-checks every flag against the vendored feed, so a hand-written
+ * `flagged_by` naming a change that does not exist fails the build.
+ */
+export interface FlaggedBy {
+  /** Feed id — `id-churn-sentinel` today; present so a second feed is distinguishable. */
+  feed: string;
+  change_id: string;
+  /** The date the feed's named human classified the change. */
+  reviewed_at: string;
+}
+
 export interface CorpusRecord {
   id: string;
   jurisdiction: JurisdictionId;
@@ -144,6 +163,8 @@ export interface CorpusRecord {
   language: Language;
   /** Who this record's rule is for. Absent = adult (the historical default); see RecordAudience. */
   audience?: RecordAudience;
+  /** External drift flag (#228). Only ever present with `needs_reverification`; see FlaggedBy. */
+  flagged_by?: FlaggedBy;
 }
 
 /**
