@@ -31,6 +31,7 @@ const PATHS = [
   "/",
   "/checklist?jurisdiction=US-CA&change=name&change=gender-marker",
   "/packet?jurisdiction=US-CA&change=name",
+  "/changes?since=2026-05-01&jurisdiction=US-CA&change=name&change=gender-marker",
   "/answer?jurisdiction=US-CA&change=name&q=how%20do%20I%20change%20my%20name",
   "/forms/us-ss-5",
   "/healthz",

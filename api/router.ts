@@ -536,6 +536,12 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
   // printed — answered against the corpus as it stands today. Same bounded intake
   // grammar as /checklist, so nothing free-text or identity-shaped reaches here.
   //
+  // NOT CACHED, unlike /checklist. A memo key IS retention, and this key would carry
+  // "someone printed a packet for this state on this date" in process memory for the
+  // lifetime of the process — the reasoning /plan already applies to an origin→
+  // destination pair. The recompute is paid on every request instead; scripts/latency-
+  // bench.ts measures this route against the same p95 budget so the cost is not hidden.
+  //
   // NOTHING DERIVED FROM `since` IS LOGGED, not the date and not the one-bit
   // "is this packet past the longest recheck window". `since` is the day a specific
   // person printed a specific packet; joined with a jurisdiction it is the most

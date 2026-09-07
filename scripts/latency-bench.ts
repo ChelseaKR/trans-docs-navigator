@@ -99,6 +99,11 @@ const routes: [string, string][] = [
   ["home", "/"],
   ["checklist", "/checklist?jurisdiction=US-CA&change=name&change=gender-marker"],
   ["packet", "/packet?jurisdiction=US-CA&change=name"],
+  // /changes is deliberately NOT memoized (its key would retain the date a specific
+  // person printed a packet), so it pays a full buildChecklist plus a corpus index on
+  // every request. A route that opts out of the cache has to be inside the budget the
+  // cache was hiding, not outside it.
+  ["changes", "/changes?since=2026-05-01&jurisdiction=US-CA&change=name&change=gender-marker"],
   ["answer", "/answer?jurisdiction=US-CA&change=name&q=how%20do%20I%20change%20my%20name%20in%20superior%20court"],
   ["healthz", "/healthz"],
 ];
