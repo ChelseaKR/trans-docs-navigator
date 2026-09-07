@@ -1,0 +1,4 @@
+{
+  "$comment": "English records deliberately not yet translated, with the reason. An English record that is neither translated nor listed here fails `make content` (api/translations.ts). The point of the list is that a coverage gap is a written, countable fact rather than an absence nobody notices: this project would rather publish a stated gap than machine-drafted Spanish legal text no native speaker has read. A listing here is not permission to leave it forever; it is the record of a debt. Remove an entry when its translation lands -- a stale declaration fails the gate too.",
+  "untranslated": []
+}
