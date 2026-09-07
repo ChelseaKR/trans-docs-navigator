@@ -236,3 +236,23 @@ driver's-license rows are covered and the federal rows are current.
 | US-WY | — | — | ✅ | — | ⚠️ degraded | — | — | — | — | — | — | — | — |
 
 **Totals:** 446 current · 102 degraded · 2156 uncovered cells.
+
+## Externally unwatchable sources
+
+Cited hosts that [id-churn-sentinel](https://github.com/ChelseaKR/id-churn-sentinel) also
+cannot watch, from its inventory vendored at `corpus/external/id-churn-sentinel/`
+(generated 2026-09-02T04:26:49.847186+00:00). `gap:<reason>` is one of its own named,
+dated gaps; `crawler-unreachable` is a registered source its fetcher cannot reach.
+This is a fact about two watchers' coverage, never about whether the law changed.
+
+| Host | Reason | Detail | Records citing it |
+|---|---|---|---|
+| `cdph.ca.gov` | crawler-unreachable | CA · birth_certificate — registered as ca-cdph-vital-records | 8 |
+| `courts.mo.gov` | crawler-unreachable | MO · court_order_name_change — registered as mo-courts | 2 |
+| `dmv.vermont.gov` | gap:blocked-403 | VT · drivers_license — declared 2026-07-13 | 4 |
+| `health.ny.gov` | crawler-unreachable | NY · birth_certificate — registered as ny-doh-vital-records | 8 |
+| `ldh.la.gov` | crawler-unreachable | LA · birth_certificate — registered as la-ldh-vital-record-amendments | 4 |
+| `leg.state.fl.us` | gap:robots-disallowed | FL · court_order_name_change — declared 2026-07-13 | 2 |
+| `legislature.mi.gov` | crawler-unreachable | MI · drivers_license — registered as mi-mcl-257-307-license-application | 2 |
+| `oscn.net` | gap:robots-disallowed | OK · court_order_name_change — declared 2026-07-13 | 4 |
+| `travel.state.gov` | crawler-unreachable | US · passport — registered as us-passport-change-correct | 4 |

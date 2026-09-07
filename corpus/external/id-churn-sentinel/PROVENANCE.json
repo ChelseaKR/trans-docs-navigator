@@ -1,0 +1,25 @@
+{
+  "$comment": "Provenance pin for the vendored ID Churn Sentinel artifacts. api/sentinel.ts refuses to run when a vendored file's sha256 disagrees with this record, when its schema_version leaves the pinned major, or when a file is missing. A drifted vendor copy must fail loudly: silently matching nothing would render an absence of signal as an all-clear, which is the defect class this repository names in its own audits.",
+  "feed": "id-churn-sentinel",
+  "feed_url": "https://chelseakr.github.io/id-churn-sentinel/",
+  "repository": "https://github.com/ChelseaKR/id-churn-sentinel",
+  "schema_major": 2,
+  "schema_document": "changes-v2.schema.json",
+  "vendored_at": "2026-09-07",
+  "vendored_from_commit": "9b1e60c3f1e0f8ed9bc85043ed1fd297b7a80cd8",
+  "files": {
+    "changes.json": {
+      "sha256": "53bd9c807f0930a26c36c29c1301ed9617266fc81409ca6a2f8370424cc18072",
+      "schema_version": "2.0",
+      "generated_at": "2026-09-02T04:26:49.847186+00:00"
+    },
+    "sources.json": {
+      "sha256": "9dd3bf2bfbcd5605a43335acc8f8e93cc1a788cc1a729fe87fd6e72cfc5adffc",
+      "schema_version": "2.0",
+      "generated_at": "2026-09-02T04:26:49.847186+00:00"
+    },
+    "changes-v2.schema.json": {
+      "sha256": "331e007d36728741d928d8c55c7f5dc8af896e9da1d62c67c73726201d5bb86b"
+    }
+  }
+}

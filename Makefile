@@ -45,7 +45,8 @@ endif
 
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
         gate-count lint typecheck test security content forms citation fidelity privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-hardcoded i18n-overflow seo launch-gates launch-gates-write deploy-plan clean \
-        smoke e2e-journey coverage link-check source-watch source-baseline source-snapshot policy-watch policy-baseline new-record slo corpus-manifest build dataset
+        smoke e2e-journey coverage link-check source-watch source-baseline source-snapshot policy-watch policy-baseline new-record slo corpus-manifest build dataset \
+        sentinel sentinel-apply sentinel-vendor
 
 help:
 	@echo "Targets:"
@@ -285,6 +286,23 @@ source-baseline:
 # the review-only re-baseline procedure. See docs/OPERATIONS.md.
 source-snapshot:
 	@$(NODE) scripts/source-snapshot.ts
+
+# Weekly content-ops (content-watch.yml): a SECOND, independently reviewed staleness
+# signal (#228). Reads the vendored ID Churn Sentinel feed — no network — and reports the
+# cited records a named human has confirmed moved since their last check. Exit 1 means a
+# flag is OWED; a feed that cannot be trusted (missing, drifted sha256, schema major
+# outside the pin) throws instead, because reporting zero changes from an unreadable feed
+# would be an absence dressed as an all-clear.
+#   `sentinel-apply` writes the owed flags; `sentinel-vendor` re-vendors from a sibling
+# checkout (SENTINEL_DOCS=<dir>) and rewrites the pin. Both are deliberately manual.
+# The merge-blocking half is in `make content`, which re-checks every written flag and the
+# vendored artifacts' pins.
+sentinel:
+	@$(NODE) scripts/sentinel-sync.ts
+sentinel-apply:
+	@$(NODE) scripts/sentinel-sync.ts --apply
+sentinel-vendor:
+	@$(NODE) scripts/sentinel-sync.ts --vendor
 
 # Weekly content-ops (content-watch.yml): watch the authoritative trackers (MAP, A4TE,
 # legislative-tracker pages) upstream of any single cited source, and annotate affected
