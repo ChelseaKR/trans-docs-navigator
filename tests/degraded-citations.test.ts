@@ -30,6 +30,12 @@ const TODAY = "2026-09-07";
  */
 const AFTER_CLIFF = "2026-10-12";
 
+/**
+ * Every comparison against rendered HTML goes through escapeHtml first. A raw comparison
+ * silently cannot fail for any record whose text contains an apostrophe or an ampersand —
+ * which is most of them, and which is how the first run of negative control 3 below left
+ * two leak assertions green while the statement was visibly on the page.
+ */
 function externalLinks(html: string): string[] {
   return [...html.matchAll(/href="(https?:[^"]+)"/g)].map((m) => m[1]!);
 }
@@ -86,8 +92,8 @@ test("a step whose every record lapsed still links the official page, labelled a
   for (const r of lapsed) {
     assert.ok(html.includes(escapeHtml(r.source.url)), `${r.id}'s source URL is not on the page`);
     // The freshness contract: the URL crosses, the CLAIM does not.
-    assert.ok(!html.includes(r.statement), `${r.id}'s statement leaked onto a degraded step`);
-    if (r.detail) assert.ok(!html.includes(r.detail), `${r.id}'s detail leaked onto a degraded step`);
+    assert.ok(!html.includes(escapeHtml(r.statement)), `${r.id}'s statement leaked onto a degraded step`);
+    if (r.detail) assert.ok(!html.includes(escapeHtml(r.detail)), `${r.id}'s detail leaked onto a degraded step`);
   }
   // Nothing substantive is derived from a lapsed record either.
   assert.equal(step.cost, undefined);
@@ -104,7 +110,7 @@ test("the packet degrades the same way the checklist does", () => {
   assert.ok(html.includes(locale("en").ui.staleSources));
   for (const r of lapsed) {
     assert.ok(html.includes(escapeHtml(r.source.url)), `${r.id}'s source URL is missing from the packet`);
-    assert.ok(!html.includes(r.statement), `${r.id}'s statement leaked into the packet`);
+    assert.ok(!html.includes(escapeHtml(r.statement)), `${r.id}'s statement leaked into the packet`);
   }
 });
 
@@ -173,7 +179,7 @@ test("a lapsed record's URL is the only field that crosses, corpus-wide", () => 
       for (const id of step.unverified_record_ids) {
         const r = byId.get(id) as CorpusRecord;
         assert.ok(html.includes(escapeHtml(r.source.url)), `${id}: URL missing`);
-        assert.ok(!html.includes(r.statement), `${id}: statement leaked`);
+        assert.ok(!html.includes(escapeHtml(r.statement)), `${id}: statement leaked`);
       }
     }
   }
