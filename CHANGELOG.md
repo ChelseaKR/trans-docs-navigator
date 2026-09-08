@@ -193,6 +193,20 @@ lives under `[Unreleased]`.
   two shape refusals on the `relocation` annotation were unexecuted for the same reason and
   are covered in the same pass. No behaviour changed: this is the guard being proved rather
   than assumed. `api/corpus.ts` goes 95.54% → 100% line coverage.
+- **Eight comparisons in `tests/degraded-citations.test.ts` bypassed the escaping rule that
+  file's own header states.** The rule exists because a raw comparison against rendered HTML
+  silently cannot fail for text carrying an apostrophe or an ampersand — that is how a
+  negative control there once left two leak assertions green over a statement visibly on the
+  page. The header was written about the *record* text; eight comparisons against the locale
+  bundle's own copy (`ui.sources`, `ui.staleSources`, `ui.staleSourcesNote`) were still raw,
+  including the one asserting the Spanish page does not carry the English heading. They pass
+  today only because none of those strings happens to contain a character `escapeHtml`
+  rewrites, while `src/render.ts:305` escapes all of them.
+  Measured: with the English heading given an apostrophe *and* leaked onto every locale's
+  degraded block, the escaped assertions go red on exactly one test — the Spanish leak — and
+  the raw ones go red on three, **none of them the leak**, each reporting that a heading is
+  "missing" when it is present. Red about the wrong thing is not better than green. Nothing
+  is wrong on `main` today; this closes the way it would have gone wrong silently.
 - **The locale gate could not see an English sentence pasted into the Spanish bundle, and
   skipped a quarter of the copy outright** (`scripts/i18n-parity.ts`,
   `src/i18n/identical-by-design.json`). Key parity, non-emptiness and the compile-time
