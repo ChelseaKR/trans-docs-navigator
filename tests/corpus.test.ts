@@ -245,6 +245,81 @@ test("validateRecord validates cost.fee_waiver_form/fee_waiver_criteria/fee_waiv
   );
 });
 
+// The external drift flag (#228, PR #252). Every line of its validation was unexecuted: no
+// corpus record carries `flagged_by` today, and the only tests that mention it exercise the
+// WRITER (`sentinel-sync`, in tests/sentinel.test.ts) and assert the object it produces. The
+// rule below is the one that matters and the one nothing had ever run — a record an external
+// feed says has moved must never be served as current. `sentinel-sync` sets
+// `needs_reverification` today; nothing proved the corpus would refuse a record where it did
+// not, and a flag written by hand, by a future writer, or by a merge resolution reaches this
+// validator and nothing else.
+test("validateRecord refuses a drift flag on a record still served as current (#228)", () => {
+  const flag = { feed: "f", change_id: "chg-1", reviewed_at: "2026-08-21" };
+
+  // The whole point of the flag: it may only sit on a record already withdrawn from service.
+  assert.ok(
+    validateRecord({ ...valid, verification_status: "verified", flagged_by: flag }).some(
+      (i) => i.field === "flagged_by" && /never be served as current/.test(i.message),
+    ),
+  );
+
+  // And on a withdrawn record it is clean, so the refusal above is about the pairing and not
+  // about the flag existing at all. Without this half, deleting the whole block would still
+  // pass the assertion above by refusing every flag.
+  assert.deepEqual(
+    validateRecord({ ...valid, verification_status: "needs_reverification", flagged_by: flag }),
+    [],
+  );
+});
+
+test("validateRecord checks the shape of a drift flag, field by field (#228)", () => {
+  const flagged = (flagged_by: unknown) =>
+    validateRecord({ ...valid, verification_status: "needs_reverification", flagged_by });
+  const good = { feed: "f", change_id: "chg-1", reviewed_at: "2026-08-21" };
+
+  assert.ok(flagged("not an object").some((i) => i.field === "flagged_by"));
+  for (const k of ["feed", "change_id", "reviewed_at"] as const) {
+    const { [k]: _dropped, ...rest } = good;
+    assert.ok(
+      flagged(rest).some((i) => i.field === `flagged_by.${k}`),
+      `a flag missing ${k} was accepted`,
+    );
+    assert.ok(
+      flagged({ ...good, [k]: "" }).some((i) => i.field === `flagged_by.${k}`),
+      `a flag with an empty ${k} was accepted`,
+    );
+  }
+
+  // A calendar date, not a well-shaped string. 2026-02-30 has the right digits and does not
+  // exist, and a review date that never happened is worse than an absent one: it is the
+  // provenance of the withdrawal.
+  assert.ok(
+    flagged({ ...good, reviewed_at: "2026-02-30" }).some(
+      (i) => i.field === "flagged_by.reviewed_at" && /real ISO calendar date/.test(i.message),
+    ),
+  );
+});
+
+// The relocation annotation's two shape refusals were unexecuted for the same reason: every
+// record that carries `relocation` carries it correctly, so only the third refusal (a
+// `residency_bound: true` the record's own text does not support) had ever run.
+test("validateRecord refuses a malformed relocation annotation", () => {
+  assert.ok(validateRecord({ ...valid, relocation: "x" }).some((i) => i.field === "relocation"));
+  assert.ok(
+    validateRecord({ ...valid, relocation: { residency_bound: "yes" } }).some(
+      (i) => i.field === "relocation.residency_bound" && /must be a boolean/.test(i.message),
+    ),
+  );
+  assert.ok(
+    validateRecord({ ...valid, relocation: { weird: 1 } }).some(
+      (i) => i.field === "relocation.weird" && /unknown relocation trait/.test(i.message),
+    ),
+  );
+  // `residency_bound: false` states no claim, so it needs no supporting text and must pass.
+  assert.deepEqual(validateRecord({ ...valid, relocation: { residency_bound: false } }), []);
+  assert.deepEqual(validateRecord({ ...valid, relocation: {} }), []);
+});
+
 test("validateCorpus on the real corpus reports zero issues", () => {
   const { records, issues } = validateCorpus();
   assert.ok(records > 5);
