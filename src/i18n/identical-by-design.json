@@ -1,0 +1,10 @@
+{
+  "$schema-note": "Read scripts/i18n-parity.ts before editing. Every entry is a leaf of the English bundle whose translation is DELIBERATELY byte-identical to its English source. A pattern cannot make this call, so each one carries a written reason and a person put it here. The list is self-limiting: an entry whose path the English bundle no longer declares, whose locale is not registered, whose strings have since diverged, or whose reason is blank FAILS the gate until it is deleted. That is deliberate — an exemption list that only ever grows stops describing the bundles and starts describing the project's history.",
+  "entries": [
+    {
+      "path": "docLabels.trusted-traveler",
+      "locales": ["es"],
+      "reason": "Proper nouns. 'TSA PreCheck' and 'Global Entry' are the U.S. Customs and Border Protection programme names; both are used untranslated on CBP's own Spanish-language pages, and a traveller looking for either at an enrolment centre needs the name printed on the sign."
+    }
+  ]
+}
