@@ -1,0 +1,8 @@
+{
+  "entries": [
+    { "path": "docLabels.trusted-traveler", "locales": ["es"], "reason": "   " },
+    { "path": "ui.thisKeyDoesNotExist", "locales": ["es"], "reason": "a path the bundle no longer declares" },
+    { "path": "ui.needsRecheck", "locales": ["es"], "reason": "this pair has since been translated" },
+    { "path": "ui.cost", "locales": ["fr"], "reason": "a locale that is not registered" }
+  ]
+}

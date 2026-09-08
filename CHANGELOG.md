@@ -176,6 +176,44 @@ lives under `[Unreleased]`.
   step. #230 stays open for it, and for the real `changed` state once FIX-03 lands.
 
 ### Fixed
+- **The locale gate could not see an English sentence pasted into the Spanish bundle, and
+  skipped a quarter of the copy outright** (`scripts/i18n-parity.ts`,
+  `src/i18n/identical-by-design.json`). Key parity, non-emptiness and the compile-time
+  `LocaleBundle` interface are *all* satisfied by a Spanish string that is verbatim
+  English. Measured: with one `es` sentence replaced by its English source, `make i18n`
+  printed *"locale parity: all 2 bundle(s) match"* and exited **0**, and all 19 tests in
+  `tests/spanish-parity.test.ts` passed.
+
+  Separately, the gate's own header said it "never invokes the generator/SEO functions
+  (they are code, not translatable copy)". There are **24** of them and every one returns
+  a whole user-facing sentence with a name or a number interpolated —
+  `planHeading(origin, dest)`, `freshness(topic, date, source)`. They were checked for
+  their *type* and nothing else; a Spanish function returning `""` passed.
+
+  G6b now requires every non-reference leaf to **differ** from its English source, and
+  renders each copy function (fixed sentinel arguments, string then numeric; a leaf that
+  cannot be rendered either way is reported, never skipped). Two exemptions are mechanical
+  and both are about the English source carrying no prose — no alphabetic character once
+  interpolated arguments are removed, or a bare URL. Everything else identical on purpose
+  takes a written reason in `src/i18n/identical-by-design.json`.
+
+  **Measured before the rule was written:** of 329 string leaves and 24 function leaves,
+  exactly **one** pair is identical (`docLabels.trusted-traveler` — "TSA PreCheck / Global
+  Entry", two CBP programme names) and no function pair is. So the list ships with one
+  entry and the mechanical exemptions currently exempt nothing; both counts print in the
+  passing line, so a widening escape hatch shows up in a green run rather than only in the
+  code. There is deliberately no "short ALL-CAPS token" exemption: it cannot tell `CSV`
+  from `OK` or `NEW`, and here it would exempt nothing anyway.
+
+  The list is gated too — a blank reason, a path the bundle no longer declares, an
+  unregistered locale, or a pair that has since been translated each fail until the entry
+  is deleted, and a malformed file is an **error** rather than an empty list. Six new
+  `tests/gate-efficacy` controls cover all of that, including the positive one: removing
+  the single real entry turns the gate red naming that exact leaf.
+
+  What it still cannot see is a *wrong* translation. G6b knows only *different*, never
+  *correct*, and this repository's Spanish is still unreviewed by a native speaker.
+
 - **The birth-certificate step answered with the wrong state's rules and said nothing about
   it** (`api/checklist.ts`, `api/types.ts`, `src/render.ts`, `src/compare.ts`,
   `src/i18n/*`). A birth certificate is amended by the state that **issued** it. The engine
