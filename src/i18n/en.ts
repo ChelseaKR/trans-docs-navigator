@@ -29,6 +29,10 @@ export const en: LocaleBundle = {
     recordedOn: "recorded",
     sourceNotWatched: "We cannot check this source automatically for changes. Check it yourself before you file.",
     needsRecheck: "Needs reverification, so we don't show it as current.",
+    issuingJurisdictionScope: (stateName: string) =>
+      `These steps apply only if ${stateName} issued your birth certificate. A birth certificate is changed by the state that issued it, so if you were born somewhere else, that state's rules are the ones you need.`,
+    issuingJurisdictionScopeUnnamed:
+      "These steps apply only to a birth certificate issued by this government. A birth certificate is changed by the government that issued it.",
     discretionary: "Varies by court/clerk.",
     cost: "Cost",
     timeline: "Timeline",
@@ -306,6 +310,9 @@ export const en: LocaleBundle = {
     sortLabel: "Sort:",
     sortAlpha: "Alphabetical",
     sortCount: "Number of documented paths",
+
+    birthCertificateScopeNote:
+      "About the birth certificate column: a birth certificate is changed by the state that issued it — the state you were born in. Moving does not change that, and a new state cannot change a birth certificate another state issued. Read that column as each state's rules for the birth certificates it issued itself.",
   },
 
   generator: {

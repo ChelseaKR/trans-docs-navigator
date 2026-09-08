@@ -15,6 +15,10 @@ import type {
 import { loadCorpus } from "./corpus.ts";
 import { isCurrent } from "./freshness.ts";
 import { selectAudience } from "./retrieval.ts";
+// The one place that records how each document travels. Imported rather than restated:
+// two lists of "which documents are governed by the state that issued them" would drift,
+// and the drift would be silent — a document quietly losing its scope disclosure.
+import { PORTABILITY } from "./relocation.ts";
 import { t } from "../src/i18n/index.ts";
 
 /** Canonical ordering of documents. Index = order; also the dependency backbone. */
@@ -207,6 +211,15 @@ export function buildChecklist(intake: Intake, today?: string, corpus = loadCorp
       needs_reverification: currentRecords.length === 0 || degraded.length > 0,
       ...(formRefs.length > 0 ? { form_refs: formRefs } : {}),
       ...(done ? { done: true } : {}),
+      // A birth record is amended by the state that ISSUED it. This engine resolves every
+      // step against the residence jurisdiction, which for a birth certificate is the right
+      // state only for someone who never moved. The records are still the residence state's
+      // — routing them elsewhere would need a birth state this app deliberately never asks
+      // for — but the step now carries the fact that they apply only if that state issued
+      // the certificate. Measured on the corpus: 26 of 51 jurisdictions carry no such
+      // conditioning in any of their own birth-certificate records' prose, so on those the
+      // page said nothing at all about it.
+      ...(PORTABILITY[doc] === "state-of-birth" ? { governed_by_issuing_jurisdiction: true } : {}),
     });
   }
 

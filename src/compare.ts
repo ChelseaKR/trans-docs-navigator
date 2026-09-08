@@ -227,6 +227,16 @@ export function renderCompareResultsPage(
 
   const actions = `<p class="no-print"><a href="/compare${lang === "es" ? "?language=es" : ""}">${escapeHtml(s.backToStart)}</a></p>`;
 
-  const body = intro + legend + sortControls + table_ + actions;
+  // Every other column here is about a state someone could move to. The birth-certificate
+  // column is not: a birth record is amended by the state that ISSUED it, so this column is
+  // each state's rules for its own birth records and a move cannot reach it. Rendered only
+  // when that column is actually shown, and immediately after the table, where the reader
+  // is when the question occurs to them. Naming the asymmetry is not a comparison between
+  // states, so it stays inside this surface's no-ranking discipline.
+  const birthNote = table.documents.includes("birth-certificate")
+    ? `<p class="flag" role="note">${escapeHtml(c.birthCertificateScopeNote)}</p>`
+    : "";
+
+  const body = intro + legend + sortControls + table_ + birthNote + actions;
   return page({ lang, title: c.resultsTitle, heading: c.resultsHeading, body });
 }

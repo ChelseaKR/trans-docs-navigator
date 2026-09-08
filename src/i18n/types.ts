@@ -39,6 +39,15 @@ export interface UiMessages {
   /** Shown on a source that no automated drift watch can cover (api/watchability.ts). */
   sourceNotWatched: string;
   needsRecheck: string;
+  /**
+   * Scope line for a step whose records belong to the state that ISSUED the document
+   * rather than the one the reader lives in (`ChecklistStep.governed_by_issuing_jurisdiction`).
+   * Says which government holds the record. It must never say, or let a reader infer, that
+   * any state will honour another state's document — that is a separate, unbuilt question.
+   */
+  issuingJurisdictionScope(stateName: string): string;
+  /** The same line where no state name resolves (a federal-jurisdiction request). */
+  issuingJurisdictionScopeUnnamed: string;
   discretionary: string;
   cost: string;
   timeline: string;
@@ -355,6 +364,15 @@ export interface CompareMessages {
   sortLabel: string;
   sortAlpha: string;
   sortCount: string;
+
+  /**
+   * Footnote for the birth-certificate column. Structural, like the four status labels:
+   * it names which government holds a birth record, which is a fact about the document
+   * and not a comparison between states. Every other column in this table is about a
+   * state the reader could move to; this one is not, and without the note the table reads
+   * as though moving could change it.
+   */
+  birthCertificateScopeNote: string;
 }
 
 /**

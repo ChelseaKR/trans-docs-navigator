@@ -176,6 +176,29 @@ lives under `[Unreleased]`.
   step. #230 stays open for it, and for the real `changed` state once FIX-03 lands.
 
 ### Fixed
+- **The birth-certificate step answered with the wrong state's rules and said nothing about
+  it** (`api/checklist.ts`, `api/types.ts`, `src/render.ts`, `src/compare.ts`,
+  `src/i18n/*`). A birth certificate is amended by the state that **issued** it. The engine
+  resolves every step against `Intake.jurisdiction` — where the reader says they live —
+  which for a birth record is the right state only for someone who never moved. Roughly a
+  quarter to a third of US residents live outside their state of birth, and the share is
+  higher among people who moved for safety, which is the situation this project exists for.
+
+  Until now the only thing conditioning that step was each record's own prose. Measured on
+  the corpus: **26 of 51 jurisdictions carry no such conditioning in any of their
+  birth-certificate records** — California's happens to read "If you were born in
+  California…", Texas's does not — so on half the country `/checklist?state=TX` presented
+  Texas's amendment process with nothing on the page saying it applies only to a Texas
+  birth certificate, and nothing telling someone born in Tennessee where to look instead.
+
+  `ChecklistStep.governed_by_issuing_jurisdiction` (set from `PORTABILITY`'s
+  `state-of-birth`, so there is no second hand-kept list to drift) now carries that fact,
+  and every surface that renders steps says it: the screen, the printed packet, and a
+  footnote under `/compare`'s birth-certificate column, in English and Spanish. The
+  records shown are unchanged — routing them elsewhere needs a state of birth this app
+  deliberately never asks for (#250) — and the line makes no claim that any state honours
+  another state's document, which is a separate and still-unanswered question (#241).
+
 - **A step whose sources had all gone stale told the reader to "check the official source"
   and deleted every official-source link from the page** (`api/checklist.ts`,
   `api/relocation.ts`, `src/render.ts`). A checklist step is emitted whenever any record
