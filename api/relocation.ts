@@ -47,9 +47,13 @@ import { t } from "../src/i18n/index.ts";
 
 /**
  * How each document travels. DEFINITIONAL — what kind of thing the document is, not a
- * rule about what anyone must do. It decides only which jurisdiction's records the engine
- * reads for a step; no user-visible sentence is generated from it. (Same class as
- * api/checklist.ts's CANONICAL_ORDER, which is likewise taxonomy, not law.)
+ * rule about what anyone must do. It decides which jurisdiction's records the engine reads
+ * for a step, and — since the birth-certificate scope disclosure — one thing a reader sees:
+ * `state-of-birth` sets `ChecklistStep.governed_by_issuing_jurisdiction`, which each
+ * renderer turns into "these apply only if <state> issued your birth certificate". That is
+ * a statement about which government holds the record, not a rule about what anyone must
+ * do, so this map stays taxonomy rather than law. (Same class as api/checklist.ts's
+ * CANONICAL_ORDER, which is likewise taxonomy, not law.)
  */
 export const PORTABILITY: Record<DocumentType, Portability> = {
   "court-order": "state-of-record",

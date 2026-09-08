@@ -29,6 +29,10 @@ export const es: LocaleBundle = {
     recordedOn: "registrado",
     sourceNotWatched: "No podemos revisar esta fuente automáticamente para detectar cambios. Revísela usted antes de presentar su solicitud.",
     needsRecheck: "Necesita reverificación, así que no se muestra como actual.",
+    issuingJurisdictionScope: (stateName: string) =>
+      `Estos pasos aplican solo si ${stateName} emitió su acta de nacimiento. Un acta de nacimiento la cambia el estado que la emitió, así que si usted nació en otro lugar, las reglas que necesita son las de ese estado.`,
+    issuingJurisdictionScopeUnnamed:
+      "Estos pasos aplican solo a un acta de nacimiento emitida por este gobierno. Un acta de nacimiento la cambia el gobierno que la emitió.",
     discretionary: "Varía según el tribunal/secretario.",
     cost: "Costo",
     timeline: "Tiempo estimado",
@@ -312,6 +316,9 @@ export const es: LocaleBundle = {
     sortLabel: "Ordenar:",
     sortAlpha: "Alfabético",
     sortCount: "Número de vías documentadas",
+
+    birthCertificateScopeNote:
+      "Sobre la columna del acta de nacimiento: un acta de nacimiento la cambia el estado que la emitió — el estado donde usted nació. Mudarse no cambia eso, y un estado nuevo no puede cambiar un acta de nacimiento que emitió otro estado. Lea esa columna como las reglas de cada estado para las actas de nacimiento que ese mismo estado emitió.",
   },
 
   generator: {

@@ -285,6 +285,23 @@ export interface ChecklistStep {
    * unblocked (the satisfied prerequisite is pruned from their list).
    */
   done?: boolean;
+  /**
+   * True when this step's records are governed by the jurisdiction that ISSUED the
+   * document, not by the one the reader told us they live in. Today that is the birth
+   * certificate and only the birth certificate (api/relocation.ts `PORTABILITY`,
+   * `state-of-birth`).
+   *
+   * It exists because `buildChecklist` resolves every step against `Intake.jurisdiction`,
+   * which for a birth record is the wrong state for anyone who has moved — roughly a
+   * quarter to a third of US residents, and a higher share among people who moved for
+   * safety. The step is still rendered from the residence state's records; the flag is
+   * what lets each renderer say out loud that those rules apply only if that state issued
+   * the certificate. Without it the page reads as an answer to a question it did not ask.
+   *
+   * A disclosure, never a route: nothing here selects records, and nothing here claims
+   * any state will honour another state's document (that is #241's question).
+   */
+  governed_by_issuing_jurisdiction?: boolean;
 }
 
 export interface Checklist {

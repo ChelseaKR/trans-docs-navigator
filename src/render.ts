@@ -4,7 +4,7 @@
 // disclosure (guardrail #2). Colour tokens meet AA contrast; focus is always
 // visible; motion respects prefers-reduced-motion.
 
-import type { Checklist, Cost, FormDef, GroundedAnswer, CorpusRecord, DocumentType, Language, PreparationItem } from "../api/types.ts";
+import type { Checklist, ChecklistStep, Cost, FormDef, GroundedAnswer, CorpusRecord, DocumentType, JurisdictionId, Language, PreparationItem } from "../api/types.ts";
 import type { UiMessages } from "./i18n/index.ts";
 import { t as locale } from "./i18n/index.ts";
 import type { SeoMeta } from "./seo.ts";
@@ -12,6 +12,7 @@ import { headTags, titleTag } from "./seo.ts";
 import { formById } from "../api/forms.ts";
 import { isDriftWatchable } from "../api/watchability.ts";
 import { isHumanVerified } from "../api/corpus.ts";
+import { stateNameFor } from "./guide.ts";
 import type { Source } from "../api/types.ts";
 
 /**
@@ -365,6 +366,25 @@ function feeWaiverDetail(cost: Cost | undefined, lang: Language, langQ: string):
   return `<p class="meta fee-waiver">💸 ${escapeHtml(t.feeWaiverAvailable)}${formLine}${criteriaLine}</p>`;
 }
 
+/**
+ * The scope line for a step governed by the jurisdiction that ISSUED the document
+ * (`ChecklistStep.governed_by_issuing_jurisdiction`). Rendered on every surface that
+ * renders steps, because a disclosure fixed in one renderer and not the other is how a
+ * paper packet ends up saying less than the screen it was printed from.
+ *
+ * The unnamed variant is not dead code: `Intake.jurisdiction` may be the federal `US`,
+ * which resolves to no state name. Falling back to the raw id would print "only if US
+ * issued your birth certificate", and dropping the line would delete the disclosure
+ * exactly where it could not be phrased — an absence standing in for an answer.
+ */
+function issuingJurisdictionNote(step: ChecklistStep, jurisdiction: JurisdictionId, lang: Language): string {
+  if (!step.governed_by_issuing_jurisdiction) return "";
+  const t = locale(lang).ui;
+  const name = stateNameFor(jurisdiction, lang);
+  const text = name ? t.issuingJurisdictionScope(name) : t.issuingJurisdictionScopeUnnamed;
+  return `<p class="flag" role="note">${escapeHtml(text)}</p>`;
+}
+
 export function renderChecklist(checklist: Checklist, records: CorpusRecord[], lang: Language): string {
   const t = locale(lang).ui;
   const langQ = lang === "es" ? "?language=es" : "";
@@ -383,6 +403,7 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
         : "";
       const disc = s.discretionary ? `<p class="flag">${escapeHtml(t.discretionary)}</p>` : "";
       const stale = s.needs_reverification ? `<p class="flag" role="note">${escapeHtml(t.needsRecheck)}</p>` : "";
+      const scope = issuingJurisdictionNote(s, checklist.jurisdiction, lang);
       // has_court_order intake: annotate, don't hide — citations stay visible either way.
       const done = s.done ? `<p class="meta done-badge">✅ ${escapeHtml(t.alreadyDone)}</p>` : "";
       const claims = stepRecords.map((r) => `<li>${escapeHtml(r.statement)}</li>`).join("");
@@ -415,6 +436,7 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
   <div class="step-head"><h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
   <label class="done-toggle no-print"><input type="checkbox" data-step-toggle="${escapeHtml(s.key)}"> ${escapeHtml(t.markDone)}</label></div>
   ${done}
+  ${scope}
   ${claims ? `<ul>${claims}</ul>` : ""}
   ${cost}${waiver}${time}${prereq}${disc}${stale}
   ${detailBlock}${formCta}
@@ -461,9 +483,11 @@ export function renderPacket(
       const disc = s.discretionary ? `<p class="flag">${escapeHtml(t.discretionary)}</p>` : "";
       const stale = s.needs_reverification ? `<p class="flag" role="note">${escapeHtml(t.needsRecheck)}</p>` : "";
       const done = s.done ? `<p class="meta done-badge">✅ ${escapeHtml(t.alreadyDone)}</p>` : "";
+      const scope = issuingJurisdictionNote(s, checklist.jurisdiction, lang);
       return `<li class="step${s.done ? " step-done" : ""}">
   <h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
   ${done}
+  ${scope}
   ${detail ? `<ul>${detail}</ul>` : ""}
   ${cost}${waiver}${time}${prereq}${disc}${stale}
   ${stepSources(stepRecords, lapsedRecords, lang)}
