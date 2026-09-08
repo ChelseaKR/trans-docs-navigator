@@ -27,6 +27,8 @@ import { handleRoute } from "../api/router.ts";
 import { REPO_ROOT, loadCorpus } from "../api/corpus.ts";
 import { loadReferrals } from "../api/referrals.ts";
 import { SW_VERSION, staleAfterDays } from "../src/offline.ts";
+import { escapeHtml } from "../src/render.ts";
+import { t, SUPPORTED_LOCALES } from "../src/i18n/index.ts";
 import { GOLD } from "../eval/gold.ts";
 import type { ChangeType, DocumentType, Language } from "../api/types.ts";
 
@@ -312,6 +314,29 @@ test("the build refuses a bundle whose import cycle would bind undefined", () =>
     build.cycles.some((c) => c.includes("src/render.ts") && c.includes("src/seo.ts")),
     `expected the render/seo cycle to be detected, got ${JSON.stringify(build.cycles)}`,
   );
+});
+
+test("every string a reader can see comes from the locale bundles", () => {
+  // The artifact carries ONE surface the engine cannot render — the no-JavaScript
+  // fallback, which has to be present in every language at once because nothing has run
+  // yet to know which one the reader wants. It would have been the single piece of
+  // user-facing copy in this edition that the key-parity gate could not see, so it is
+  // sourced from src/i18n and asserted here for each registered locale.
+  const noscript = /<noscript>([\s\S]*?)<\/noscript>/.exec(build.html)?.[1] as string;
+  assert.ok(noscript, "the artifact carries a no-JavaScript fallback");
+  for (const l of SUPPORTED_LOCALES) {
+    const ui = t(l.language).ui;
+    assert.ok(noscript.includes(`lang="${l.language}"`), `the fallback is present in ${l.language}`);
+    assert.ok(noscript.includes(escapeHtml(ui.noscriptTitle)), `${l.language} title comes from the bundle`);
+    assert.ok(noscript.includes(escapeHtml(ui.noscriptBody)), `${l.language} body comes from the bundle`);
+  }
+  // Compared ESCAPED, not raw. A raw-substring assertion against rendered HTML is the
+  // check that cannot fail: these sentences contain no apostrophe today, and the day
+  // someone writes one in, `'` renders as `&#39;` and a raw comparison silently stops
+  // being able to catch anything. (Measured in this repository on 2026-09-07, where two
+  // leak assertions had been un-failable for exactly that reason.)
+  const shell = readFileSync(join(REPO_ROOT, "scripts", "portable", "shell.html"), "utf8");
+  assert.ok(!/Esta copia|necesita JavaScript|La lista se genera/.test(shell), "no Spanish is typed into the shell template");
 });
 
 test("the portable header is built from the reviewed locale bundles", () => {

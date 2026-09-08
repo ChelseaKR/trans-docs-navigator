@@ -211,6 +211,18 @@ export interface UiMessages {
   // Privacy-safe reminders: a client-side .ics task list of the steps (no server, no contact info).
   downloadIcs: string;
   downloadIcsNote: string;
+
+  // Portable single-file edition (EXP-02, scripts/portable-build.ts). That artifact's
+  // engine runs in the reader's browser because it has no server to run it, so the
+  // no-JavaScript fallback is the one surface it cannot render from the engine — it is
+  // burned into the shell at build time, in EVERY language at once, because nothing has
+  // yet run to know which one the reader wants. These live here rather than as literals
+  // in the shell template so they are inside the key-parity gate like every other string
+  // a reader can see.
+  /** Heading of the portable edition's no-JavaScript notice. */
+  noscriptTitle: string;
+  /** Body: what the reader must enable, and that nothing is transmitted either way. */
+  noscriptBody: string;
 }
 
 /**

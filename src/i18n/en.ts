@@ -156,6 +156,10 @@ export const en: LocaleBundle = {
     downloadIcs: "Add these steps to your calendar (.ics)",
     // PENDING counsel review — privacy-representation copy (docs/audits/dpia.md [Added 2026-07-09] .ics row).
     downloadIcsNote: "Creates a to-do list file on your device. It holds only the step names—no personal details—and creating it makes no network request. If you add the file to an online calendar, your calendar provider will store the step names.",
+
+    noscriptTitle: "This portable copy needs JavaScript.",
+    noscriptBody:
+      "The checklist runs inside your browser because this file has no server to run it. Nothing is sent anywhere either way.",
   },
 
   docTitles: {

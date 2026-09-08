@@ -36,7 +36,8 @@ import { stripTypeScriptTypes } from "node:module";
 import { dirname, join, posix, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { STYLE } from "../src/render.ts";
+import { escapeHtml, STYLE } from "../src/render.ts";
+import { t as locale, SUPPORTED_LOCALES } from "../src/i18n/index.ts";
 import { pass, fail } from "./util.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -414,6 +415,7 @@ export function buildPortable(opts: { built?: string } = {}): PortableBuild {
   html = substituteOnce(html, "__TDN_TITLE__", "Trans Docs Navigator — portable copy", "shell.html");
   html = substituteOnce(html, "__TDN_BUILT__", built, "shell.html");
   html = substituteOnce(html, "__TDN_SHA256__", HASH_PLACEHOLDER, "shell.html");
+  html = substituteOnce(html, "__TDN_NOSCRIPT__", noscriptBlock(), "shell.html");
   html = substituteOnce(html, "__TDN_STYLE__", portableStyle(), "shell.html");
   html = substituteOnce(html, "__TDN_SCRIPT__", script, "shell.html");
 
@@ -431,6 +433,27 @@ export function buildPortable(opts: { built?: string } = {}): PortableBuild {
     vfsCount: Object.keys(vfs).length,
     cycles,
   };
+}
+
+/**
+ * The no-JavaScript fallback, in EVERY registered language at once.
+ *
+ * It has to be every language, because it renders before anything has run that could ask
+ * which one the reader wants — and a Spanish reader who opens this file on a locked-down
+ * browser is exactly the reader who most needs to be told, in Spanish, that the file is
+ * not broken and that nothing has been transmitted.
+ *
+ * Both strings come from src/i18n rather than being typed into the shell template, so
+ * they sit inside the key-parity gate like every other string a reader can see. A literal
+ * here would have been the one piece of user-facing copy in the artifact that no gate
+ * could look at.
+ */
+function noscriptBlock(): string {
+  const blocks = SUPPORTED_LOCALES.map((l) => {
+    const ui = locale(l.language).ui;
+    return `  <p lang="${l.language}"><strong>${escapeHtml(ui.noscriptTitle)}</strong> ${escapeHtml(ui.noscriptBody)}</p>`;
+  });
+  return `<noscript>\n${blocks.join("\n")}\n</noscript>`;
 }
 
 /**

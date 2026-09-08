@@ -156,6 +156,10 @@ export const es: LocaleBundle = {
     downloadIcs: "Agregue estos pasos a su calendario (.ics)",
     // PENDING native-speaker review (no attestation) + counsel review — privacy-representation copy (docs/audits/dpia.md [Added 2026-07-09] .ics row).
     downloadIcsNote: "Crea un archivo de lista de tareas en su dispositivo. Solo contiene los nombres de los pasos, sin datos personales, y crearlo no hace ninguna solicitud de red. Si agrega el archivo a un calendario en línea, su proveedor de calendario guardará los nombres de los pasos.",
+
+    noscriptTitle: "Esta copia portátil necesita JavaScript.",
+    noscriptBody:
+      "La lista se genera dentro de su navegador porque este archivo no tiene ningún servidor que la genere. No se envía nada a ningún sitio.",
   },
 
   docTitles: {
