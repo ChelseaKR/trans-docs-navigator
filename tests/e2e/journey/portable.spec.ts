@@ -45,6 +45,16 @@ test.describe("EXP-02 — the portable edition, from file:// with the network of
     });
     const pageErrors: string[] = [];
     page.on("pageerror", (error) => pageErrors.push(String(error)));
+    // A request the policy refuses never becomes a `request` event — Chromium blocks it
+    // in the renderer — so the recorder above, on its own, proves only that the policy
+    // held, not that no code tried. Measured: adding a `fetch` to the render path left
+    // this spec GREEN until the console was read as well. The blocked attempt is
+    // reported there ("violates the following Content Security Policy directive"), so
+    // both are asserted: nothing left the device, AND nothing tried to.
+    const consoleErrors: string[] = [];
+    page.on("console", (message) => {
+      if (message.type() === "error") consoleErrors.push(message.text());
+    });
 
     await page.goto(pathToFileURL(ARTIFACT).href);
     await expect(page.locator("#tdn-root h1")).toBeVisible();
@@ -87,6 +97,7 @@ test.describe("EXP-02 — the portable edition, from file:// with the network of
 
     expect(pageErrors, "the portable bundle raised no script error").toEqual([]);
     expect(offDevice, "the portable edition requested nothing off the device").toEqual([]);
+    expect(consoleErrors, "nothing in the portable edition even attempted a request").toEqual([]);
   });
 
   test("past its corpus's re-check dates it degrades on the device clock and keeps the links", async ({ page, context }) => {

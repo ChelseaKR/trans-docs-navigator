@@ -281,6 +281,27 @@ test("the bundle carries no telemetry, transport or model code", () => {
   }
 });
 
+test("the code that runs on load cannot request anything, `fetch` included", () => {
+  // MEASURED, and the reason this test exists at all: adding
+  // `fetch("https://control.invalid/beacon")` to the driver's render path passed the
+  // whole-payload scan above. `fetch(` cannot be forbidden across the payload, because
+  // the bundled files include public/assets/offline.js and src/offline.ts's
+  // service-worker template, both of which legitimately contain the word — and neither
+  // executes here (a `file://` document has no service worker and offline.js
+  // feature-detects one before doing anything).
+  //
+  // So the scan that can be blunt is the one over the code that actually runs on load:
+  // the shim and the driver. Those two files are this edition's ENTIRE additional
+  // surface, and nothing in them has any business making a request.
+  for (const file of ["runtime.js", "driver.js"]) {
+    const source = readFileSync(join(REPO_ROOT, "scripts", "portable", file), "utf8");
+    for (const api of ["fetch(", "XMLHttpRequest", "sendBeacon", "WebSocket", "EventSource", "importScripts", "eval(", "import("]) {
+      assert.ok(!source.includes(api), `scripts/portable/${file} names ${api}`);
+    }
+    assert.ok(source.includes("__tdn_"), "the scan is reading the real file, not an empty one");
+  }
+});
+
 test("the build refuses a bundle whose import cycle would bind undefined", () => {
   // The graph has exactly one cycle (src/render.ts <-> src/seo.ts) and it is safe only
   // because both directions cross on hoisted function declarations. That is a property
