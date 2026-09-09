@@ -7,6 +7,35 @@ lives under `[Unreleased]`.
 
 ## [Unreleased]
 
+### Fixed
+- **The RSS feed told subscribers "We (re)verified N records" when no named human has
+  read any of them (part of #251).** Every one of the **688** corpus records carries the
+  `Pilot Seed Reviewer` placeholder; `humanVerifiedCount()` is **0**, and the checklist
+  page beside those same records renders *"not yet verified by a named reviewer"* against
+  each one. The feed contradicted the page it links to, on the one fact this project's
+  launch gate is about.
+  - **The feed is the surface where this costs the most.** It is deliberately built for a
+    subscriber in a hostile jurisdiction who hands over no identity -- no account, no
+    email address -- so there is no channel through which a wrong claim in it can ever be
+    corrected. A page can be replaced before the next reader arrives; an RSS item has
+    already been read.
+  - **The repair is a computed sentence, not a better one.** `FeedEntry` now carries
+    `humanVerified`, counted from the entry's own records through `isHumanVerified`, and
+    the renderer states it. All three branches -- none, some, all -- are written, so this
+    becomes true on its own the day a real reviewer lands rather than needing an edit
+    nobody remembers to make. A test sums the per-entry counts across every jurisdiction
+    and language and holds the total to `humanVerifiedCount()`, the same function the
+    README's launch-gate row and `scripts/launch-gates.ts` publish, so the two public
+    numbers cannot drift apart.
+  - `source.last_verified` is described everywhere it is read as what it is: a **recorded
+    date**, not an assertion that a human read the source on it. `api/feed.ts`'s own
+    header had said the opposite in terms.
+  - Nothing else in #251 moved. `verification_status` still carries `verified` on 530
+    records, `/compare` still classifies from it, and the three decisions that issue
+    records -- what the live preview becomes once the field is honest, enum value versus
+    sibling boolean, and whether a 30/90-day SLA survives a roster of one -- are exactly
+    as open as they were.
+
 ### Security
 - **`js-yaml` 4.3.1 -> 4.3.2 under `cosmiconfig` (`GHSA-2883-XCG3-V3HH`, high), which is
   what stage 5 of `make verify` was refusing.** The gate is `npm audit --json` with a

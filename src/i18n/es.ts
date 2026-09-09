@@ -545,7 +545,13 @@ export const es: LocaleBundle = {
     feedEntryTitle: (count: number, state: string, date: string) =>
       `${count} registro${count === 1 ? "" : "s"} de ${state} actualizado${count === 1 ? "" : "s"} el ${date}`,
     feedEntryDescription: (count: number, state: string, date: string, docTypes: string) =>
-      `(Re)verificamos ${count} registro${count === 1 ? "" : "s"} de ${state} el ${date}, sobre: ${docTypes}. Esto significa que nuestros registros cambiaron — no necesariamente la ley. Confirme siempre con la fuente oficial enlazada en cada paso.`,
+      `${count} registro${count === 1 ? "" : "s"} de ${state} tiene${count === 1 ? "" : "n"} el ${date} como la fecha en que lo${count === 1 ? "" : "s"} registramos, sobre: ${docTypes}. Esto significa que nuestros registros cambiaron — no necesariamente la ley. Confirme siempre con la fuente oficial enlazada en cada paso.`,
+    feedEntryHumanVerification: (humanVerified: number, count: number) =>
+      humanVerified === 0
+        ? `Ninguna persona revisora designada ha confirmado ${count === 1 ? "este registro" : "ninguno de estos registros"} con su fuente oficial. La fecha indicada arriba es la fecha en que lo${count === 1 ? "" : "s"} anotamos, no la fecha en que alguien lo${count === 1 ? "" : "s"} comprobó.`
+        : humanVerified === count
+          ? `Una persona revisora designada confirmó ${count === 1 ? "este registro" : `los ${count} registros`} con su fuente oficial.`
+          : `Una persona revisora designada confirmó ${humanVerified} de estos ${count} registros con su fuente oficial; el resto solo tiene una fecha registrada.`,
     feedEntryDegradedNote:
       "Al menos uno de estos registros necesita reverificación actualmente y no se muestra como vigente en el resto del sitio.",
     feedEmptyNote: "Todavía no tenemos registros con fecha para esta jurisdicción en este idioma.",
