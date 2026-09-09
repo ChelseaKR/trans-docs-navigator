@@ -7,6 +7,34 @@ lives under `[Unreleased]`.
 
 ## [Unreleased]
 
+### Security
+- **`js-yaml` 4.3.1 -> 4.3.2 under `cosmiconfig` (`GHSA-2883-XCG3-V3HH`, high), which is
+  what stage 5 of `make verify` was refusing.** The gate is `npm audit --json` with a
+  high/critical floor and no `--omit=dev`, and the pre-push hook runs the whole of
+  `verify`, so this one advisory made the repository unpushable.
+  - **Calendar-driven, not commit-driven, and CI's green is not a disagreement.** The
+    advisory was published 2026-09-08 at 21:24 UTC. The `verify` job last succeeded on
+    `main` at `ea7c48d` at 11:19 UTC the same day -- ten hours earlier, against this same
+    `package-lock.json`. CI is not scoped differently from the local gate; it simply has
+    not run since. The next push to `main` would have gone red.
+  - **Nothing here parses untrusted YAML, and the vulnerable copy has no live parse path
+    at all.** The advisory is CPU exhaustion on a hostile document with empty merge
+    sources. `package.json` declares **no `dependencies`** -- every entry is a
+    devDependency, so none of this ships. The only `js-yaml` call in the tree is
+    `scripts/slo-check.ts` reading the committed `slos/prometheus.rules.yml`, and it
+    resolves the **direct** `js-yaml@5.4.1`, which the advisory does not cover. The
+    vulnerable 4.3.1 is reached only through `cosmiconfig` <- `stylelint`, and this
+    repository's stylelint config is `stylelint.config.js` -- JavaScript, loaded by the
+    module loader, never by the YAML parser.
+  - Lockfile only: three lines, a `version`/`resolved`/`integrity` swap. 4.3.2 publishes
+    dependency and `bin` metadata identical to 4.3.1, and 4.3.2 satisfies `cosmiconfig`'s
+    declared `^4.1.0`, so no override and no manifest change is needed. The lock carried
+    no pre-existing drift -- `npm install --package-lock-only` on unmodified `main`
+    produces a zero-line diff -- so every line here is this advisory.
+  - The remaining `colord` finding is **moderate** and the gate's floor is high/critical;
+    it is reported by the gate (`0C/0H, 1 total`) rather than hidden, and nothing was
+    waived or downgraded to reach that verdict.
+
 ### Added
 - **A staleness horizon: how much serving life the corpus has left, and the day it runs
   out** (`api/horizon.ts`, `/healthz`, `/metrics`, `scripts/freshness.ts --horizon-days=N`).
