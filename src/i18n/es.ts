@@ -300,6 +300,15 @@ export const es: LocaleBundle = {
     columnState: "Estado",
     currentMarker: "su estado actual",
 
+    humanVerificationNote: (humanBacked: number, citing: number) =>
+      citing === 0
+        ? "Ninguna celda de abajo cita todavía una fuente, así que aquí no hay nada que una persona revisora designada pudiera haber comprobado."
+        : humanBacked === 0
+          ? `Una persona revisora designada no ha comprobado las fuentes de ninguna de las ${citing} celdas de abajo que citan alguna. Todos los estados que usted ve se obtuvieron de forma automática a partir de la fecha registrada de cada registro, no porque alguien leyera la fuente.`
+          : humanBacked === citing
+            ? `Una persona revisora designada comprobó todas las fuentes de las ${citing} celdas de abajo que citan alguna.`
+            : `Una persona revisora designada comprobó todas las fuentes de ${humanBacked} de las ${citing} celdas de abajo que citan alguna. Las otras ${citing - humanBacked} se apoyan en registros con una fecha registrada y sin lectura humana detrás.`,
+
     statusDocumented: "Documentado",
     statusNeedsReverification: "Documentado, necesita reverificación",
     statusNoPath: "Ninguna vía documentada",

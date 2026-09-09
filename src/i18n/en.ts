@@ -294,6 +294,15 @@ export const en: LocaleBundle = {
     columnState: "State",
     currentMarker: "your current state",
 
+    humanVerificationNote: (humanBacked: number, citing: number) =>
+      citing === 0
+        ? "No cell below cites a source yet, so there is nothing here for a named reviewer to have checked."
+        : humanBacked === 0
+          ? `A named reviewer has checked the sources behind none of the ${citing} cells below that cite one. Every status you see was reached by machine from a record's own recorded date, not from a person reading the source.`
+          : humanBacked === citing
+            ? `A named reviewer has checked every source behind all ${citing} cells below that cite one.`
+            : `A named reviewer has checked every source behind ${humanBacked} of the ${citing} cells below that cite one. The other ${citing - humanBacked} rest on records with a recorded date and no human reading behind them.`,
+
     statusDocumented: "Documented",
     statusNeedsReverification: "Documented, needs reverification",
     statusNoPath: "No path documented",

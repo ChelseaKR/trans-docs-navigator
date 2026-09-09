@@ -8,6 +8,27 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Fixed
+- **`/compare` published affirmative `Documented` cells with no human-verification signal
+  anywhere on the page (part of #251).** `classifyCell()` reads `verification_status` and
+  the freshness clock; neither says a person opened the source. That is `source.verifier`,
+  and every one of the **688** records carries the `Pilot Seed Reviewer` placeholder --
+  so the flagship "which state should I move to" grid was a machine's conclusion rendered
+  under a legend reading *"an official source we cite describes a way to do this."*
+  - The results page now states, computed on every render from the table's own cells,
+    how many of them a named reviewer stands behind. Today that is **0 of the cells that
+    cite a record**.
+  - **Two numbers, because one cannot be read.** `citing` counts cells that cite at least
+    one record; a `not_covered` cell cites nothing and is not a cell a reviewer failed to
+    check, so folding it into the denominator would move the ratio for a reason unrelated
+    to verification. A cell counts as human-backed only when **every** record it cites was
+    confirmed by a named human -- the status is computed from all of them together, so one
+    unread record makes the cell a machine's conclusion.
+  - **Nothing was reclassified.** No new `CoverageStatus`, no change to what any cell
+    renders, and `verified` is still writable. Making the field honest is decision 1 of
+    #251 and changes every cell on the page; this is the non-destructive half, the same
+    shape PR #258 took on the birth-certificate column, and it leaves that call open.
+  - A record id the corpus cannot resolve counts as **not** human-verified. Reading an
+    unresolvable citation as a pass is the same defect one level down.
 - **The RSS feed told subscribers "We (re)verified N records" when no named human has
   read any of them (part of #251).** Every one of the **688** corpus records carries the
   `Pilot Seed Reviewer` placeholder; `humanVerifiedCount()` is **0**, and the checklist

@@ -347,6 +347,22 @@ export interface CompareMessages {
   /** Appended to the row header of the jurisdiction matching the optional "current state". */
   currentMarker: string;
 
+  /**
+   * How much of THIS table a named human stands behind (issue #251), from
+   * `humanBackedCellCounts` — computed on every render, never written down.
+   *
+   * `classifyCell` reads `verification_status` and the freshness clock; neither says a
+   * person read the source, and every record in this corpus carries the
+   * `Pilot Seed Reviewer` placeholder. So a "Documented" cell is a machine's conclusion
+   * today, and this page carried no signal of that at all.
+   *
+   * `citing` counts cells that cite at least one record — a `not_covered` cell cites
+   * nothing and is not a cell a reviewer failed to check. All four branches (none cited,
+   * none checked, some, all) are written so the sentence becomes true on its own once
+   * reviewers arrive rather than needing an edit nobody remembers.
+   */
+  humanVerificationNote(humanBacked: number, citing: number): string;
+
   // The four statuses. Short badge text (the table cell) + a plain-language definition
   // of what it means (the legend above the table). See CoverageStatus (api/types.ts).
   statusDocumented: string;
