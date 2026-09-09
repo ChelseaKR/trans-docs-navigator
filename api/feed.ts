@@ -15,10 +15,18 @@
 //       fails the build if it drifts from that history — the same shape as
 //       corpus.manifest.json (Dockerfile RUN step) or docs/audits/coverage.md.
 //   (b) Derive entries PURELY from fields already on each record: `source.last_verified`
-//       is the date a named verifier last (re)confirmed it against its official source —
-//       exactly the "did someone recheck this for me, and on what" signal a subscriber
-//       wants. Group a jurisdiction's current records by that date; each distinct date is
-//       one feed entry, honestly labelled as OUR verification history, never the law.
+//       is the date we RECORDED the claim against its official source. Group a
+//       jurisdiction's current records by that date; each distinct date is one feed
+//       entry, honestly labelled as OUR record history, never the law.
+//
+// WHAT `last_verified` DOES AND DOES NOT ASSERT (issue #251). It is a recorded date. It
+// does NOT say a named human read the source: that is `source.verifier`, checked through
+// `isHumanVerified`, and today every record in this corpus carries the `Pilot Seed
+// Reviewer` placeholder. This header used to describe the field as "the date a named
+// verifier last (re)confirmed it", and the rendered feed said "We (re)verified N records"
+// while the checklist page beside it read "not yet verified by a named reviewer" against
+// the same record. `humanVerified` below is carried on every entry so the renderer states
+// that fact from the data rather than from a sentence somebody wrote once.
 //
 // This module takes (b). It is simpler, and — more importantly — it has NO artifact that
 // can drift: there is no manifest to regenerate, no staleness gate to add, and nothing
@@ -38,7 +46,7 @@
 // (freshnessOf), exactly like every other route in this app.
 
 import type { CorpusRecord, DocumentType, JurisdictionId, Language } from "./types.ts";
-import { loadCorpus } from "./corpus.ts";
+import { loadCorpus, loadVerifierRoster, isHumanVerified } from "./corpus.ts";
 import { freshnessOf } from "./freshness.ts";
 
 /** Canonical document-type ordering for a feed entry's list (matches api/checklist.ts). */
@@ -68,7 +76,11 @@ export function isKnownJurisdiction(id: string, corpus: CorpusRecord[] = loadCor
 
 /** One dated update: every current record sharing a `source.last_verified` date. */
 export interface FeedEntry {
-  /** ISO date (YYYY-MM-DD) a named verifier last confirmed every record below. */
+  /**
+   * ISO date (YYYY-MM-DD) recorded on every record below as `source.last_verified`.
+   * A recorded date, NOT an assertion that a named human read the source on it — see
+   * `humanVerified` and the module header.
+   */
   date: string;
   /** Record ids sharing this date, sorted for a stable, deterministic render. */
   recordIds: string[];
@@ -77,6 +89,15 @@ export interface FeedEntry {
   /** True when at least one of these records is no longer serveable as current
    *  (past its freshness SLA or otherwise degraded) as of `today`. */
   degraded: boolean;
+  /**
+   * How many of `recordIds` a NAMED HUMAN has confirmed against their official source
+   * (`isHumanVerified`), out of `recordIds.length`. Zero across the whole corpus today.
+   *
+   * Carried on the entry rather than resolved in the renderer so the subscriber-facing
+   * sentence is a function of the records the entry actually names, and so a test can
+   * hold it to the roster without rendering anything.
+   */
+  humanVerified: number;
 }
 
 /**
@@ -94,6 +115,7 @@ export function buildJurisdictionFeed(
   lang: Language,
   today?: string,
   corpus: CorpusRecord[] = loadCorpus(),
+  roster: ReturnType<typeof loadVerifierRoster> = loadVerifierRoster(),
 ): FeedEntry[] {
   const records = corpus.filter((r) => r.jurisdiction === jurisdiction && r.language === lang);
 
@@ -111,6 +133,7 @@ export function buildJurisdictionFeed(
       recordIds: recs.map((r) => r.id).sort(),
       documentTypes: DOCUMENT_ORDER.filter((d) => recs.some((r) => r.document_type === d)),
       degraded: recs.some((r) => !freshnessOf(r, today).current),
+      humanVerified: recs.reduce((n, r) => n + (isHumanVerified(r.source.verifier, roster) ? 1 : 0), 0),
     });
   }
   entries.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0)); // newest first

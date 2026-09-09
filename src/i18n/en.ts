@@ -294,6 +294,15 @@ export const en: LocaleBundle = {
     columnState: "State",
     currentMarker: "your current state",
 
+    humanVerificationNote: (humanBacked: number, citing: number) =>
+      citing === 0
+        ? "No cell below cites a source yet, so there is nothing here for a named reviewer to have checked."
+        : humanBacked === 0
+          ? `A named reviewer has checked the sources behind none of the ${citing} cells below that cite one. Every status you see was reached by machine from a record's own recorded date, not from a person reading the source.`
+          : humanBacked === citing
+            ? `A named reviewer has checked every source behind all ${citing} cells below that cite one.`
+            : `A named reviewer has checked every source behind ${humanBacked} of the ${citing} cells below that cite one. The other ${citing - humanBacked} rest on records with a recorded date and no human reading behind them.`,
+
     statusDocumented: "Documented",
     statusNeedsReverification: "Documented, needs reverification",
     statusNoPath: "No path documented",
@@ -537,7 +546,13 @@ export const en: LocaleBundle = {
     feedEntryTitle: (count: number, state: string, date: string) =>
       `${count} record${count === 1 ? "" : "s"} for ${state} updated on ${date}`,
     feedEntryDescription: (count: number, state: string, date: string, docTypes: string) =>
-      `We (re)verified ${count} record${count === 1 ? "" : "s"} for ${state} on ${date}, covering: ${docTypes}. This means our records changed — not necessarily the law. Always confirm with the official source linked on each step.`,
+      `${count} record${count === 1 ? "" : "s"} for ${state} carr${count === 1 ? "ies" : "y"} ${date} as the date we recorded ${count === 1 ? "it" : "them"}, covering: ${docTypes}. This means our records changed — not necessarily the law. Always confirm with the official source linked on each step.`,
+    feedEntryHumanVerification: (humanVerified: number, count: number) =>
+      humanVerified === 0
+        ? `No named reviewer has confirmed ${count === 1 ? "this record" : "any of these records"} against ${count === 1 ? "its" : "their"} official source. The recorded date above is when we wrote ${count === 1 ? "it" : "them"} down, not when a person checked ${count === 1 ? "it" : "them"}.`
+        : humanVerified === count
+          ? `A named reviewer confirmed ${count === 1 ? "this record" : `all ${count} of these records`} against ${count === 1 ? "its" : "their"} official source.`
+          : `A named reviewer confirmed ${humanVerified} of these ${count} records against their official source; the rest carry a recorded date only.`,
     feedEntryDegradedNote:
       "At least one of these records currently needs reverification and is not shown as current elsewhere on the site.",
     feedEmptyNote: "We don't have any dated records for this jurisdiction in this language yet.",

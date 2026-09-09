@@ -347,6 +347,22 @@ export interface CompareMessages {
   /** Appended to the row header of the jurisdiction matching the optional "current state". */
   currentMarker: string;
 
+  /**
+   * How much of THIS table a named human stands behind (issue #251), from
+   * `humanBackedCellCounts` — computed on every render, never written down.
+   *
+   * `classifyCell` reads `verification_status` and the freshness clock; neither says a
+   * person read the source, and every record in this corpus carries the
+   * `Pilot Seed Reviewer` placeholder. So a "Documented" cell is a machine's conclusion
+   * today, and this page carried no signal of that at all.
+   *
+   * `citing` counts cells that cite at least one record — a `not_covered` cell cites
+   * nothing and is not a cell a reviewer failed to check. All four branches (none cited,
+   * none checked, some, all) are written so the sentence becomes true on its own once
+   * reviewers arrive rather than needing an edit nobody remembers.
+   */
+  humanVerificationNote(humanBacked: number, citing: number): string;
+
   // The four statuses. Short badge text (the table cell) + a plain-language definition
   // of what it means (the legend above the table). See CoverageStatus (api/types.ts).
   statusDocumented: string;
@@ -460,8 +476,29 @@ export interface SeoMessages {
   feedChannelDescription(stateName: string): string;
   /** One entry's `<title>`, e.g. "3 records for Washington updated on 2026-09-06". */
   feedEntryTitle(count: number, stateName: string, date: string): string;
-  /** One entry's `<description>` body (before the trailing disclosure is appended). */
+  /**
+   * One entry's `<description>` body (before the trailing disclosure is appended).
+   *
+   * `date` is the `source.last_verified` field the entry groups on. That field is a
+   * RECORDED date and nothing more — it does not assert that a named human read the
+   * source. This string must not say otherwise; `feedEntryHumanVerification` below is
+   * where the human-reading question is answered, and it is computed.
+   */
   feedEntryDescription(count: number, stateName: string, date: string, docTypes: string): string;
+  /**
+   * How many of an entry's records a NAMED HUMAN has confirmed against their official
+   * source — computed from the records themselves (`isHumanVerified`), never written.
+   *
+   * The feed is the one surface whose subscribers hand over no identity, so there is no
+   * channel through which a wrong claim here can later be corrected. It said
+   * "We (re)verified N records" while every record in the corpus carried the
+   * `Pilot Seed Reviewer` placeholder and the site's own caption beside each of them
+   * read "not yet verified by a named reviewer" (issue #251).
+   *
+   * All three branches — none, some, all — are written here so this becomes true on its
+   * own the day a real reviewer lands, rather than needing an edit nobody will remember.
+   */
+  feedEntryHumanVerification(humanVerified: number, count: number): string;
   /** Appended to an entry when at least one backing record currently needs reverification. */
   feedEntryDegradedNote: string;
   /** Shown when a jurisdiction has no dated records yet in the feed's language. */
