@@ -1,5 +1,13 @@
 # Contributing
 
+## Start here if you have an hour
+
+[`docs/HELP-WANTED.md`](./docs/HELP-WANTED.md) is the honest version: what the
+freshness position actually measures to today, what one hour of verification
+buys (one jurisdiction re-dated, and no more than that), the 44 records that no
+script can check because their hosts refuse an automated fetch, and the open
+question about whether a verifier has to be named.
+
 Thank you for helping keep this resource **current, cited, and safe**. Because wrong or
 stale guidance can cost people money, time, and sometimes safety, contributions are held
 to a higher bar than a typical app — especially anything that touches the corpus.
