@@ -71,3 +71,12 @@ This project assumes some users are in hostile jurisdictions. Do not add anythin
 sends user data to the server, requires an account by default, or logs identifying
 information. The privacy and PII-egress gates will block it, but please design with the
 threat model (`docs/RESPONSIBLE-TECH-AUDITS.md` §C) in mind from the start.
+
+## Commercial solicitation
+
+Issues here are not open to bids. They are design records — written so a decision is
+reconstructable later — not scope documents for outside quoting, and unsolicited offers to
+implement one for a fee will be declined.
+
+Contributions through the normal fork-and-PR process are welcome, and `good first issue` is the
+place to start.

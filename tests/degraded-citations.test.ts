@@ -35,6 +35,20 @@ const AFTER_CLIFF = "2026-10-12";
  * silently cannot fail for any record whose text contains an apostrophe or an ampersand —
  * which is most of them, and which is how the first run of negative control 3 below left
  * two leak assertions green while the statement was visibly on the page.
+ *
+ * That sentence was written about the RECORD text and was not true of the whole file: eight
+ * comparisons against the locale bundle's own copy (`ui.sources`, `ui.staleSources`,
+ * `ui.staleSourcesNote`) were still raw, including the leak assertion that the Spanish page
+ * must not carry the English heading. They passed for a reason that has nothing to do with
+ * what they assert — none of those strings happens to contain a character escapeHtml
+ * rewrites — while `src/render.ts:305` escapes all of them. An editor adding an apostrophe
+ * to any one ("Check the state's official pages…") would have disarmed them in the same
+ * commit, with nothing to say so.
+ *
+ * Two of the eight were found by running that exact change and not by reading, because they
+ * go through a local alias (`const t = locale("en").ui`) and a grep for the spelled-out
+ * `locale("en").ui.staleSources` does not see them. If you add a comparison here, escape it;
+ * do not rely on finding the unescaped ones later.
  */
 function externalLinks(html: string): string[] {
   return [...html.matchAll(/href="(https?:[^"]+)"/g)].map((m) => m[1]!);
@@ -85,8 +99,8 @@ test("a step whose every record lapsed still links the official page, labelled a
 
   const html = renderChecklist(checklist, corpus, "en");
   const t = locale("en").ui;
-  assert.ok(html.includes(t.staleSources), "the unchecked-sources heading is missing");
-  assert.ok(html.includes(t.staleSourcesNote), "the note saying what the link is not is missing");
+  assert.ok(html.includes(escapeHtml(t.staleSources)), "the unchecked-sources heading is missing");
+  assert.ok(html.includes(escapeHtml(t.staleSourcesNote)), "the note saying what the link is not is missing");
 
   const lapsed = step.unverified_record_ids.map((id) => corpus.find((r) => r.id === id)!);
   for (const r of lapsed) {
@@ -107,7 +121,7 @@ test("the packet degrades the same way the checklist does", () => {
   const html = renderPacket(checklist, corpus, "en", TODAY);
   const step = checklist.steps.find((s) => s.document_type === "birth-certificate")!;
   const lapsed = step.unverified_record_ids.map((id) => corpus.find((r) => r.id === id)!);
-  assert.ok(html.includes(locale("en").ui.staleSources));
+  assert.ok(html.includes(escapeHtml(locale("en").ui.staleSources)));
   for (const r of lapsed) {
     assert.ok(html.includes(escapeHtml(r.source.url)), `${r.id}'s source URL is missing from the packet`);
     assert.ok(!html.includes(escapeHtml(r.statement)), `${r.id}'s statement leaked into the packet`);
@@ -121,8 +135,8 @@ test("a step that still has a current source does NOT also print the unchecked l
   const step = checklist.steps.find((s) => s.document_type === "birth-certificate");
   assert.ok(step && step.record_ids.length > 0, "fixture is wrong: this cell has no current record");
   const html = renderChecklist(checklist, corpus, "en");
-  assert.ok(html.includes(locale("en").ui.sources));
-  assert.ok(!html.includes(locale("en").ui.staleSources));
+  assert.ok(html.includes(escapeHtml(locale("en").ui.sources)));
+  assert.ok(!html.includes(escapeHtml(locale("en").ui.staleSources)));
 });
 
 test("the Spanish checklist degrades in Spanish", () => {
@@ -137,8 +151,8 @@ test("the Spanish checklist degrades in Spanish", () => {
     for (const step of checklist.steps) {
       if (step.record_ids.length > 0 || step.unverified_record_ids.length === 0) continue;
       const html = renderChecklist({ ...checklist, steps: [step] }, corpus, "es");
-      assert.ok(html.includes(es.staleSources), `${cell.jurisdiction}/${cell.document_type} lost its ES heading`);
-      assert.ok(!html.includes(en.staleSources), `${cell.jurisdiction}/${cell.document_type} leaked the EN heading`);
+      assert.ok(html.includes(escapeHtml(es.staleSources)), `${cell.jurisdiction}/${cell.document_type} lost its ES heading`);
+      assert.ok(!html.includes(escapeHtml(en.staleSources)), `${cell.jurisdiction}/${cell.document_type} leaked the EN heading`);
       asserted++;
     }
   }
@@ -154,7 +168,7 @@ test("the relocation plan hands over a lapsed step's official page too", () => {
   );
   assert.equal(res.status, 200);
   const html = res.body ?? "";
-  assert.ok(html.includes(locale("en").ui.staleSources), "the plan printed no unchecked-sources block");
+  assert.ok(html.includes(escapeHtml(locale("en").ui.staleSources)), "the plan printed no unchecked-sources block");
   assert.ok(externalLinks(html).some((u) => u.endsWith(".gov") || u.includes(".gov/")), "no .gov page survived");
 });
 
