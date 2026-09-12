@@ -46,7 +46,7 @@
     "dev": "NODE_ENV=development node --experimental-strip-types api/server.ts"
   },
   "devDependencies": {
-    "@playwright/test": "1.62.1",
+    "@playwright/test": "1.63.0",
     "@types/node": "^26.4.1",
     "js-yaml": "5.4.1",
     "stylelint": "17.15.0",
