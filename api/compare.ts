@@ -33,7 +33,7 @@
 // swallowed.
 
 import type { ChangeType, CorpusRecord, DocumentType, JurisdictionId, CompareCell, CompareRow, CompareTable } from "./types.ts";
-import { loadCorpus } from "./corpus.ts";
+import { loadCorpus, loadVerifierRoster, isHumanVerified } from "./corpus.ts";
 import { isCurrent } from "./freshness.ts";
 import { PORTABILITY } from "./relocation.ts";
 
@@ -195,4 +195,52 @@ export function buildCompareTable(input: CompareInput, today?: string, corpus = 
  *  needing reverification) — "number of documented paths", a count, never a rank. */
 export function documentedPathCount(row: CompareRow): number {
   return row.cells.filter((c) => c.status === "documented" || c.status === "needs_reverification").length;
+}
+
+/**
+ * How much of a rendered table a NAMED HUMAN stands behind (issue #251).
+ *
+ * `classifyCell` reads `verification_status` and the freshness clock, and neither says
+ * anything about whether a person read the source. Every record in this corpus carries
+ * the `Pilot Seed Reviewer` placeholder, so a cell reading "Documented" — whose legend
+ * says an official source we cite describes a way to do this — is today an entirely
+ * machine-derived statement. The page carried no signal of that anywhere.
+ *
+ * TWO NUMBERS, because one cannot be read (the brief's examined/examinable rule):
+ *
+ * - `citing` — cells that cite at least one record. A `not_covered` cell cites nothing,
+ *   so it is not a cell a reviewer failed to check; folding it into the denominator
+ *   would make the ratio look worse for a reason unrelated to verification.
+ * - `humanBacked` — cells where EVERY cited record was confirmed by a named human. A
+ *   cell's status is computed from all of its records together, so one unread record is
+ *   enough to make the cell's status a machine's conclusion; "at least one" would let a
+ *   single human reading vouch for records nobody opened.
+ *
+ * Deliberately NOT a change to `CoverageStatus`. Adding a fifth status, or making
+ * `verified` unwritable, is decision 1 of #251 and changes what every cell renders. This
+ * states a fact about the table beside it and leaves that call open.
+ */
+export function humanBackedCellCounts(
+  table: CompareTable,
+  corpus: CorpusRecord[] = loadCorpus(),
+  roster = loadVerifierRoster(),
+): { citing: number; humanBacked: number } {
+  const byId = new Map(corpus.map((r) => [r.id, r]));
+  let citing = 0;
+  let humanBacked = 0;
+  for (const row of table.rows) {
+    for (const cell of row.cells) {
+      if (cell.record_ids.length === 0) continue;
+      citing++;
+      // A record id the corpus cannot resolve is NOT counted as human-verified. It is
+      // the absence case, and reading it as a pass is the defect this whole issue is
+      // about, one level down.
+      const all = cell.record_ids.every((id) => {
+        const rec = byId.get(id);
+        return rec !== undefined && isHumanVerified(rec.source.verifier, roster);
+      });
+      if (all) humanBacked++;
+    }
+  }
+  return { citing, humanBacked };
 }

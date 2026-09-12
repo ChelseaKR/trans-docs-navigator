@@ -7,6 +7,84 @@ lives under `[Unreleased]`.
 
 ## [Unreleased]
 
+### Fixed
+- **`/compare` published affirmative `Documented` cells with no human-verification signal
+  anywhere on the page (part of #251).** `classifyCell()` reads `verification_status` and
+  the freshness clock; neither says a person opened the source. That is `source.verifier`,
+  and every one of the **688** records carries the `Pilot Seed Reviewer` placeholder --
+  so the flagship "which state should I move to" grid was a machine's conclusion rendered
+  under a legend reading *"an official source we cite describes a way to do this."*
+  - The results page now states, computed on every render from the table's own cells,
+    how many of them a named reviewer stands behind. Today that is **0 of the cells that
+    cite a record**.
+  - **Two numbers, because one cannot be read.** `citing` counts cells that cite at least
+    one record; a `not_covered` cell cites nothing and is not a cell a reviewer failed to
+    check, so folding it into the denominator would move the ratio for a reason unrelated
+    to verification. A cell counts as human-backed only when **every** record it cites was
+    confirmed by a named human -- the status is computed from all of them together, so one
+    unread record makes the cell a machine's conclusion.
+  - **Nothing was reclassified.** No new `CoverageStatus`, no change to what any cell
+    renders, and `verified` is still writable. Making the field honest is decision 1 of
+    #251 and changes every cell on the page; this is the non-destructive half, the same
+    shape PR #258 took on the birth-certificate column, and it leaves that call open.
+  - A record id the corpus cannot resolve counts as **not** human-verified. Reading an
+    unresolvable citation as a pass is the same defect one level down.
+- **The RSS feed told subscribers "We (re)verified N records" when no named human has
+  read any of them (part of #251).** Every one of the **688** corpus records carries the
+  `Pilot Seed Reviewer` placeholder; `humanVerifiedCount()` is **0**, and the checklist
+  page beside those same records renders *"not yet verified by a named reviewer"* against
+  each one. The feed contradicted the page it links to, on the one fact this project's
+  launch gate is about.
+  - **The feed is the surface where this costs the most.** It is deliberately built for a
+    subscriber in a hostile jurisdiction who hands over no identity -- no account, no
+    email address -- so there is no channel through which a wrong claim in it can ever be
+    corrected. A page can be replaced before the next reader arrives; an RSS item has
+    already been read.
+  - **The repair is a computed sentence, not a better one.** `FeedEntry` now carries
+    `humanVerified`, counted from the entry's own records through `isHumanVerified`, and
+    the renderer states it. All three branches -- none, some, all -- are written, so this
+    becomes true on its own the day a real reviewer lands rather than needing an edit
+    nobody remembers to make. A test sums the per-entry counts across every jurisdiction
+    and language and holds the total to `humanVerifiedCount()`, the same function the
+    README's launch-gate row and `scripts/launch-gates.ts` publish, so the two public
+    numbers cannot drift apart.
+  - `source.last_verified` is described everywhere it is read as what it is: a **recorded
+    date**, not an assertion that a human read the source on it. `api/feed.ts`'s own
+    header had said the opposite in terms.
+  - Nothing else in #251 moved. `verification_status` still carries `verified` on 530
+    records, `/compare` still classifies from it, and the three decisions that issue
+    records -- what the live preview becomes once the field is honest, enum value versus
+    sibling boolean, and whether a 30/90-day SLA survives a roster of one -- are exactly
+    as open as they were.
+
+### Security
+- **`js-yaml` 4.3.1 -> 4.3.2 under `cosmiconfig` (`GHSA-2883-XCG3-V3HH`, high), which is
+  what stage 5 of `make verify` was refusing.** The gate is `npm audit --json` with a
+  high/critical floor and no `--omit=dev`, and the pre-push hook runs the whole of
+  `verify`, so this one advisory made the repository unpushable.
+  - **Calendar-driven, not commit-driven, and CI's green is not a disagreement.** The
+    advisory was published 2026-09-08 at 21:24 UTC. The `verify` job last succeeded on
+    `main` at `ea7c48d` at 11:19 UTC the same day -- ten hours earlier, against this same
+    `package-lock.json`. CI is not scoped differently from the local gate; it simply has
+    not run since. The next push to `main` would have gone red.
+  - **Nothing here parses untrusted YAML, and the vulnerable copy has no live parse path
+    at all.** The advisory is CPU exhaustion on a hostile document with empty merge
+    sources. `package.json` declares **no `dependencies`** -- every entry is a
+    devDependency, so none of this ships. The only `js-yaml` call in the tree is
+    `scripts/slo-check.ts` reading the committed `slos/prometheus.rules.yml`, and it
+    resolves the **direct** `js-yaml@5.4.1`, which the advisory does not cover. The
+    vulnerable 4.3.1 is reached only through `cosmiconfig` <- `stylelint`, and this
+    repository's stylelint config is `stylelint.config.js` -- JavaScript, loaded by the
+    module loader, never by the YAML parser.
+  - Lockfile only: three lines, a `version`/`resolved`/`integrity` swap. 4.3.2 publishes
+    dependency and `bin` metadata identical to 4.3.1, and 4.3.2 satisfies `cosmiconfig`'s
+    declared `^4.1.0`, so no override and no manifest change is needed. The lock carried
+    no pre-existing drift -- `npm install --package-lock-only` on unmodified `main`
+    produces a zero-line diff -- so every line here is this advisory.
+  - The remaining `colord` finding is **moderate** and the gate's floor is high/critical;
+    it is reported by the gate (`0C/0H, 1 total`) rather than hidden, and nothing was
+    waived or downgraded to reach that verdict.
+
 ### Added
 - **A staleness horizon: how much serving life the corpus has left, and the day it runs
   out** (`api/horizon.ts`, `/healthz`, `/metrics`, `scripts/freshness.ts --horizon-days=N`).
@@ -176,6 +254,98 @@ lives under `[Unreleased]`.
   step. #230 stays open for it, and for the real `changed` state once FIX-03 lands.
 
 ### Fixed
+- **The rule that keeps a flagged record off the page had never run** (`api/corpus.ts`,
+  `tests/corpus.test.ts`). The external drift flag (#228) exists so that a source an
+  independent feed says has moved stops being served as current, and `validateRecord`
+  carries the refusal that enforces it: *"an external drift flag may only accompany
+  verification_status 'needs_reverification'; a flagged record must never be served as
+  current."* Coverage says that whole block — lines 295-313 — had never executed. No corpus
+  record carries `flagged_by` today, and the only tests naming it exercise the **writer**
+  (`scripts/sentinel-sync.ts`, in `tests/sentinel.test.ts`) and assert the object it
+  produces. `sentinel-sync` sets `needs_reverification` correctly; nothing checked that the
+  corpus would refuse a record where it did not — and a flag written by hand, by a future
+  writer, or by a merge resolution reaches this validator and nothing else.
+  Eight refusals now have a test: the pairing rule in both directions, the shape refusal,
+  each of `feed`/`change_id`/`reviewed_at` missing and empty, and an impossible calendar
+  date (`2026-02-30`) in the field that records when a human confirmed the withdrawal. The
+  two shape refusals on the `relocation` annotation were unexecuted for the same reason and
+  are covered in the same pass. No behaviour changed: this is the guard being proved rather
+  than assumed. `api/corpus.ts` goes 95.54% → 100% line coverage.
+- **Eight comparisons in `tests/degraded-citations.test.ts` bypassed the escaping rule that
+  file's own header states.** The rule exists because a raw comparison against rendered HTML
+  silently cannot fail for text carrying an apostrophe or an ampersand — that is how a
+  negative control there once left two leak assertions green over a statement visibly on the
+  page. The header was written about the *record* text; eight comparisons against the locale
+  bundle's own copy (`ui.sources`, `ui.staleSources`, `ui.staleSourcesNote`) were still raw,
+  including the one asserting the Spanish page does not carry the English heading. They pass
+  today only because none of those strings happens to contain a character `escapeHtml`
+  rewrites, while `src/render.ts:305` escapes all of them.
+  Measured: with the English heading given an apostrophe *and* leaked onto every locale's
+  degraded block, the escaped assertions go red on exactly one test — the Spanish leak — and
+  the raw ones go red on three, **none of them the leak**, each reporting that a heading is
+  "missing" when it is present. Red about the wrong thing is not better than green. Nothing
+  is wrong on `main` today; this closes the way it would have gone wrong silently.
+- **The locale gate could not see an English sentence pasted into the Spanish bundle, and
+  skipped a quarter of the copy outright** (`scripts/i18n-parity.ts`,
+  `src/i18n/identical-by-design.json`). Key parity, non-emptiness and the compile-time
+  `LocaleBundle` interface are *all* satisfied by a Spanish string that is verbatim
+  English. Measured: with one `es` sentence replaced by its English source, `make i18n`
+  printed *"locale parity: all 2 bundle(s) match"* and exited **0**, and all 19 tests in
+  `tests/spanish-parity.test.ts` passed.
+
+  Separately, the gate's own header said it "never invokes the generator/SEO functions
+  (they are code, not translatable copy)". There are **24** of them and every one returns
+  a whole user-facing sentence with a name or a number interpolated —
+  `planHeading(origin, dest)`, `freshness(topic, date, source)`. They were checked for
+  their *type* and nothing else; a Spanish function returning `""` passed.
+
+  G6b now requires every non-reference leaf to **differ** from its English source, and
+  renders each copy function (fixed sentinel arguments, string then numeric; a leaf that
+  cannot be rendered either way is reported, never skipped). Two exemptions are mechanical
+  and both are about the English source carrying no prose — no alphabetic character once
+  interpolated arguments are removed, or a bare URL. Everything else identical on purpose
+  takes a written reason in `src/i18n/identical-by-design.json`.
+
+  **Measured before the rule was written:** of 329 string leaves and 24 function leaves,
+  exactly **one** pair is identical (`docLabels.trusted-traveler` — "TSA PreCheck / Global
+  Entry", two CBP programme names) and no function pair is. So the list ships with one
+  entry and the mechanical exemptions currently exempt nothing; both counts print in the
+  passing line, so a widening escape hatch shows up in a green run rather than only in the
+  code. There is deliberately no "short ALL-CAPS token" exemption: it cannot tell `CSV`
+  from `OK` or `NEW`, and here it would exempt nothing anyway.
+
+  The list is gated too — a blank reason, a path the bundle no longer declares, an
+  unregistered locale, or a pair that has since been translated each fail until the entry
+  is deleted, and a malformed file is an **error** rather than an empty list. Six new
+  `tests/gate-efficacy` controls cover all of that, including the positive one: removing
+  the single real entry turns the gate red naming that exact leaf.
+
+  What it still cannot see is a *wrong* translation. G6b knows only *different*, never
+  *correct*, and this repository's Spanish is still unreviewed by a native speaker.
+
+- **The birth-certificate step answered with the wrong state's rules and said nothing about
+  it** (`api/checklist.ts`, `api/types.ts`, `src/render.ts`, `src/compare.ts`,
+  `src/i18n/*`). A birth certificate is amended by the state that **issued** it. The engine
+  resolves every step against `Intake.jurisdiction` — where the reader says they live —
+  which for a birth record is the right state only for someone who never moved. Roughly a
+  quarter to a third of US residents live outside their state of birth, and the share is
+  higher among people who moved for safety, which is the situation this project exists for.
+
+  Until now the only thing conditioning that step was each record's own prose. Measured on
+  the corpus: **26 of 51 jurisdictions carry no such conditioning in any of their
+  birth-certificate records** — California's happens to read "If you were born in
+  California…", Texas's does not — so on half the country `/checklist?state=TX` presented
+  Texas's amendment process with nothing on the page saying it applies only to a Texas
+  birth certificate, and nothing telling someone born in Tennessee where to look instead.
+
+  `ChecklistStep.governed_by_issuing_jurisdiction` (set from `PORTABILITY`'s
+  `state-of-birth`, so there is no second hand-kept list to drift) now carries that fact,
+  and every surface that renders steps says it: the screen, the printed packet, and a
+  footnote under `/compare`'s birth-certificate column, in English and Spanish. The
+  records shown are unchanged — routing them elsewhere needs a state of birth this app
+  deliberately never asks for (#250) — and the line makes no claim that any state honours
+  another state's document, which is a separate and still-unanswered question (#241).
+
 - **A step whose sources had all gone stale told the reader to "check the official source"
   and deleted every official-source link from the page** (`api/checklist.ts`,
   `api/relocation.ts`, `src/render.ts`). A checklist step is emitted whenever any record

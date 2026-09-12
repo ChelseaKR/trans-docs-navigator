@@ -10,7 +10,7 @@
 // comparing states to each other, stop — that sentence does not belong here.
 
 import type { ChangeType, CompareCell, CompareRow, CompareTable, CorpusRecord, CoverageStatus, DocumentType, JurisdictionId, Language } from "../api/types.ts";
-import { documentedPathCount } from "../api/compare.ts";
+import { documentedPathCount, humanBackedCellCounts } from "../api/compare.ts";
 import { page, uiStrings, escapeHtml, sourceItem } from "./render.ts";
 import { t as locale } from "./i18n/index.ts";
 import { RELOCATION_JURISDICTIONS, jurisdictionName } from "./relocation.ts";
@@ -168,7 +168,13 @@ export function renderCompareResultsPage(
   table: CompareTable,
   corpus: CorpusRecord[],
   lang: Language,
-  opts: { current?: JurisdictionId; sort?: CompareSort; thinnerCoverage?: boolean } = {},
+  opts: {
+    current?: JurisdictionId;
+    sort?: CompareSort;
+    thinnerCoverage?: boolean;
+    /** Verifier roster, injectable so a test can render the human-verified case. */
+    roster?: Parameters<typeof humanBackedCellCounts>[2];
+  } = {},
 ): string {
   const s = uiStrings(lang);
   const c = locale(lang).compare;
@@ -179,8 +185,18 @@ export function renderCompareResultsPage(
   const headers = columns.map((col) => columnHeader(col.doc, col.change, singleChange, lang));
 
   const coverageNote = opts.thinnerCoverage ? `<p class="flag" role="note">${escapeHtml(s.thinnerCoverage)}</p>` : "";
+
+  // Issue #251. `classifyCell` reads `verification_status` and the freshness clock, and
+  // neither of those says a person read the source — so every "Documented" cell on this
+  // page is a machine's conclusion while the corpus carries only the placeholder
+  // verifier. Computed on every render from the table's own cells, so it can never be a
+  // sentence that was true when somebody wrote it. Placed in the intro rather than after
+  // the table because it governs how every cell below should be read.
+  const { citing, humanBacked } = humanBackedCellCounts(table, corpus, opts.roster);
+  const humanNote = `<p class="flag" role="note">${escapeHtml(c.humanVerificationNote(humanBacked, citing))}</p>`;
+
   const intro = `<p>${escapeHtml(c.resultsIntro)}</p>
-<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${coverageNote}`;
+<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${humanNote}${coverageNote}`;
 
   const legend = `<section class="more" aria-labelledby="compare-legend-h">
   <h2 id="compare-legend-h">${escapeHtml(c.legendHeading)}</h2>
@@ -227,6 +243,16 @@ export function renderCompareResultsPage(
 
   const actions = `<p class="no-print"><a href="/compare${lang === "es" ? "?language=es" : ""}">${escapeHtml(s.backToStart)}</a></p>`;
 
-  const body = intro + legend + sortControls + table_ + actions;
+  // Every other column here is about a state someone could move to. The birth-certificate
+  // column is not: a birth record is amended by the state that ISSUED it, so this column is
+  // each state's rules for its own birth records and a move cannot reach it. Rendered only
+  // when that column is actually shown, and immediately after the table, where the reader
+  // is when the question occurs to them. Naming the asymmetry is not a comparison between
+  // states, so it stays inside this surface's no-ranking discipline.
+  const birthNote = table.documents.includes("birth-certificate")
+    ? `<p class="flag" role="note">${escapeHtml(c.birthCertificateScopeNote)}</p>`
+    : "";
+
+  const body = intro + legend + sortControls + table_ + birthNote + actions;
   return page({ lang, title: c.resultsTitle, heading: c.resultsHeading, body });
 }
