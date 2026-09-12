@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",
-    "@types/node": "^26.4.1",
+    "@types/node": "^26.5.0",
     "js-yaml": "5.4.1",
     "stylelint": "17.15.0",
     "stylelint-use-logical": "2.1.3",
