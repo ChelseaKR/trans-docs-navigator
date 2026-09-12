@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  Trans Docs Navigator — portable edition (#233).
+
+  ONE FILE. NO NETWORK. This document carries the whole navigator: the corpus, the
+  official-forms registry, both language bundles, and the same checklist, relocation and
+  comparison engines the server runs. It answers from `file://` with the network
+  disabled, and it is meant to be copied — onto a USB stick, over AirDrop, into a folder
+  — by anyone who needs it, for anyone who needs it.
+
+  The Content-Security-Policy below is the enforcement, not a note: `default-src 'none'`
+  plus `connect-src 'none'` means this page cannot fetch, XHR, open a socket, load a
+  font, or pull an image from anywhere, whatever any code in it tries. Clicking an
+  official source link still opens that page in your browser, because a link you choose
+  to follow is your decision — and a degraded copy that hides its sources would be worse
+  than useless.
+
+  THIS COPY DOES NOT UPDATE ITSELF. There is no auto-update and there is never a request
+  home. The banner at the top of every page is computed against your own device clock,
+  so when the records in this copy pass their re-check dates it will say so and stop
+  presenting them as current. A newer copy is a newer download.
+-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' blob:; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<meta name="tdn-portable-built" content="__TDN_BUILT__">
+<meta name="tdn-content-sha256" content="__TDN_SHA256__">
+<title>__TDN_TITLE__</title>
+<style>
+__TDN_STYLE__
+</style>
+</head>
+<body>
+<div id="tdn-portable-header"></div>
+<div id="tdn-root">
+__TDN_NOSCRIPT__
+</div>
+<script>
+__TDN_SCRIPT__
+</script>
+</body>
+</html>

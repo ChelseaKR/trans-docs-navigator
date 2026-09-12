@@ -45,7 +45,7 @@ endif
 
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
         gate-count lint typecheck test security content forms citation fidelity privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-hardcoded i18n-overflow seo launch-gates launch-gates-write deploy-plan clean \
-        smoke e2e-journey coverage link-check source-watch source-baseline source-snapshot policy-watch policy-baseline new-record slo corpus-manifest build dataset \
+        smoke e2e-journey coverage link-check source-watch source-baseline source-snapshot policy-watch policy-baseline new-record slo corpus-manifest build dataset portable portable-verify \
         sentinel sentinel-apply sentinel-vendor
 
 help:
@@ -56,6 +56,7 @@ help:
 	@echo "  make eval         Run the groundedness/accuracy/refusal eval harness"
 	@echo "  make a11y         Run the accessibility gate"
 	@echo "  make loadtest     In-process p95 latency guard (merge-blocking, no server needed)"
+	@echo "  make portable     Build the offline single-file edition (dist/portable/)"
 	@echo "  make build        Build the production container image"
 	@echo "  make deploy-plan  Validate infra (terraform plan)"
 
@@ -323,6 +324,28 @@ new-record:
 dataset:
 	@echo "── dataset release bundle (schema+records+verifiers+labels+manifest) ─"
 	@$(NODE) scripts/dataset-build.ts
+
+# The portable single-file edition (EXP-02, #233): ONE self-contained HTML file that runs
+# intake, the checklist, the packet, /move and /compare from `file://` with no request to
+# anything, for a reader in a hostile jurisdiction or an organiser handing out help on a
+# USB stick. It ships api/ and src/ unmodified — the same engine, the same corpus, the same
+# citations — so there is no second edition to drift.
+#
+# NOT a `verify` gate, deliberately: what has to be merge-blocking is that the artifact
+# still answers exactly as the server does, and that lives in `make test`
+# (tests/portable.test.ts, byte-parity over the whole eval gold set plus the size budget).
+# The real-browser half — opens from file://, issues no request, degrades on the device
+# clock — is tests/e2e/journey/portable.spec.ts, run by `make e2e-journey` in CI.
+portable:
+	@echo "── portable single-file edition (offline, no network) ────"
+	@$(NODE) scripts/portable-build.ts
+
+# Recompute a built file's declared content hash from the file itself. The digest is
+# embedded in the document it describes, so `--verify` replaces it with the zero
+# placeholder the build hashed over and re-hashes — reversing the build exactly, from the
+# artifact alone rather than from a build log nobody kept.
+portable-verify:
+	@$(NODE) scripts/portable-build.ts --verify
 
 deploy-plan:
 	@cd infra && terraform init -backend=false >/dev/null 2>&1 && terraform validate || \
