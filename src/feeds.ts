@@ -13,7 +13,7 @@
 // other route).
 
 import type { CorpusRecord, JurisdictionId, Language } from "../api/types.ts";
-import { loadCorpus } from "../api/corpus.ts";
+import { loadCorpus, loadVerifierRoster } from "../api/corpus.ts";
 import { buildJurisdictionFeed } from "../api/feed.ts";
 import { STATES, stateNameFor } from "./guide.ts";
 import { page, escapeHtml, type FeedLink } from "./render.ts";
@@ -66,8 +66,9 @@ export function renderJurisdictionFeedXml(
   lang: Language,
   today?: string,
   corpus: CorpusRecord[] = loadCorpus(),
+  roster: ReturnType<typeof loadVerifierRoster> = loadVerifierRoster(),
 ): string {
-  const entries = buildJurisdictionFeed(jurisdiction, lang, today, corpus);
+  const entries = buildJurisdictionFeed(jurisdiction, lang, today, corpus, roster);
   const seo = locale(lang).seo;
   const docLabels = locale(lang).docLabels;
   const disclosure = locale(lang).generator.disclosure;
@@ -82,6 +83,10 @@ export function renderJurisdictionFeedXml(
       const title = seo.feedEntryTitle(e.recordIds.length, stateName, e.date);
       const description = [
         seo.feedEntryDescription(e.recordIds.length, stateName, e.date, docTypes),
+        // Computed from the entry's own records, never written (issue #251). A
+        // subscriber hands over no identity to read this, so there is no channel
+        // through which a wrong claim about human verification could be corrected.
+        seo.feedEntryHumanVerification(e.humanVerified, e.recordIds.length),
         e.degraded ? seo.feedEntryDegradedNote : "",
         disclosure,
       ]

@@ -22,11 +22,17 @@ export const es: LocaleBundle = {
     verifyNote: "Esto es información general, no asesoramiento legal. Los requisitos cambian, así que confirme siempre con la fuente oficial enlazada en cada paso, y hable con un abogado o una organización de ayuda legal sobre su situación específica.",
     notFilingNote: "Esta herramienta no presenta nada por usted y no es asesoramiento legal. Descargue el formulario oficial, complételo y preséntelo usted mismo.",
     sources: "Fuentes",
+    staleSources: "Consulte usted mismo estas páginas oficiales",
+    staleSourcesNote: "No hemos vuelto a revisar estas páginas recientemente, así que no mostramos lo que decían. Estas son las páginas oficiales. Léalas directamente.",
     verifiedBy: "verificado por",
     notHumanVerified: "aún sin verificar por una persona revisora designada",
     recordedOn: "registrado",
     sourceNotWatched: "No podemos revisar esta fuente automáticamente para detectar cambios. Revísela usted antes de presentar su solicitud.",
     needsRecheck: "Necesita reverificación, así que no se muestra como actual.",
+    issuingJurisdictionScope: (stateName: string) =>
+      `Estos pasos aplican solo si ${stateName} emitió su acta de nacimiento. Un acta de nacimiento la cambia el estado que la emitió, así que si usted nació en otro lugar, las reglas que necesita son las de ese estado.`,
+    issuingJurisdictionScopeUnnamed:
+      "Estos pasos aplican solo a un acta de nacimiento emitida por este gobierno. Un acta de nacimiento la cambia el gobierno que la emitió.",
     discretionary: "Varía según el tribunal/secretario.",
     cost: "Costo",
     timeline: "Tiempo estimado",
@@ -294,6 +300,15 @@ export const es: LocaleBundle = {
     columnState: "Estado",
     currentMarker: "su estado actual",
 
+    humanVerificationNote: (humanBacked: number, citing: number) =>
+      citing === 0
+        ? "Ninguna celda de abajo cita todavía una fuente, así que aquí no hay nada que una persona revisora designada pudiera haber comprobado."
+        : humanBacked === 0
+          ? `Una persona revisora designada no ha comprobado las fuentes de ninguna de las ${citing} celdas de abajo que citan alguna. Todos los estados que usted ve se obtuvieron de forma automática a partir de la fecha registrada de cada registro, no porque alguien leyera la fuente.`
+          : humanBacked === citing
+            ? `Una persona revisora designada comprobó todas las fuentes de las ${citing} celdas de abajo que citan alguna.`
+            : `Una persona revisora designada comprobó todas las fuentes de ${humanBacked} de las ${citing} celdas de abajo que citan alguna. Las otras ${citing - humanBacked} se apoyan en registros con una fecha registrada y sin lectura humana detrás.`,
+
     statusDocumented: "Documentado",
     statusNeedsReverification: "Documentado, necesita reverificación",
     statusNoPath: "Ninguna vía documentada",
@@ -310,6 +325,9 @@ export const es: LocaleBundle = {
     sortLabel: "Ordenar:",
     sortAlpha: "Alfabético",
     sortCount: "Número de vías documentadas",
+
+    birthCertificateScopeNote:
+      "Sobre la columna del acta de nacimiento: un acta de nacimiento la cambia el estado que la emitió — el estado donde usted nació. Mudarse no cambia eso, y un estado nuevo no puede cambiar un acta de nacimiento que emitió otro estado. Lea esa columna como las reglas de cada estado para las actas de nacimiento que ese mismo estado emitió.",
   },
 
   generator: {
@@ -536,7 +554,13 @@ export const es: LocaleBundle = {
     feedEntryTitle: (count: number, state: string, date: string) =>
       `${count} registro${count === 1 ? "" : "s"} de ${state} actualizado${count === 1 ? "" : "s"} el ${date}`,
     feedEntryDescription: (count: number, state: string, date: string, docTypes: string) =>
-      `(Re)verificamos ${count} registro${count === 1 ? "" : "s"} de ${state} el ${date}, sobre: ${docTypes}. Esto significa que nuestros registros cambiaron — no necesariamente la ley. Confirme siempre con la fuente oficial enlazada en cada paso.`,
+      `${count} registro${count === 1 ? "" : "s"} de ${state} tiene${count === 1 ? "" : "n"} el ${date} como la fecha en que lo${count === 1 ? "" : "s"} registramos, sobre: ${docTypes}. Esto significa que nuestros registros cambiaron — no necesariamente la ley. Confirme siempre con la fuente oficial enlazada en cada paso.`,
+    feedEntryHumanVerification: (humanVerified: number, count: number) =>
+      humanVerified === 0
+        ? `Ninguna persona revisora designada ha confirmado ${count === 1 ? "este registro" : "ninguno de estos registros"} con su fuente oficial. La fecha indicada arriba es la fecha en que lo${count === 1 ? "" : "s"} anotamos, no la fecha en que alguien lo${count === 1 ? "" : "s"} comprobó.`
+        : humanVerified === count
+          ? `Una persona revisora designada confirmó ${count === 1 ? "este registro" : `los ${count} registros`} con su fuente oficial.`
+          : `Una persona revisora designada confirmó ${humanVerified} de estos ${count} registros con su fuente oficial; el resto solo tiene una fecha registrada.`,
     feedEntryDegradedNote:
       "Al menos uno de estos registros necesita reverificación actualmente y no se muestra como vigente en el resto del sitio.",
     feedEmptyNote: "Todavía no tenemos registros con fecha para esta jurisdicción en este idioma.",

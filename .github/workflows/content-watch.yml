@@ -1,6 +1,6 @@
 name: content-watch
 
-# Weekly content operations (PRODUCTIONIZATION-PLAN Phase 3). Four checks, none
+# Weekly content operations (PRODUCTIONIZATION-PLAN Phase 3). Five checks, none
 # merge-blocking — their job is to convert content drift into a GitHub issue a human
 # can act on, never to change content automatically:
 #   1. link-check        — does every cited source URL still resolve?
@@ -8,9 +8,21 @@ name: content-watch
 #   3. policy-watch      — has an authoritative tracker (MAP, A4TE, a legislative
 #                          tracker) upstream of the cited sources changed, flagging
 #                          every record in its jurisdiction for re-verification?
-#   4. freshness (live)  — does any record expire its SLA within the next 14 days,
-#                          evaluated against TODAY's date (the merge gate pins its date
-#                          for determinism; this run is the calendar-true sweep)?
+#   4. freshness (live)  — is any record already past its SLA, and does any record still
+#                          serving expire its SLA within the next 30 days, evaluated
+#                          against TODAY's date (the merge gate pins its date for
+#                          determinism; this run is the calendar-true sweep)? The
+#                          lookahead half is `--horizon-days=30`, and it is passed HERE
+#                          and nowhere else: a merge-blocking gate that goes red on a
+#                          calendar date rather than on a commit stops every unrelated PR
+#                          in the repository. This corpus needs it — 436 of the 438
+#                          records serving on 2026-09-07 share one `last_verified` and one
+#                          90-day SLA, so they lapse on the same day (2026-10-12) and a
+#                          "what is stale today" check reads clean until that morning.
+#   5. sentinel          — does the vendored id-churn-sentinel feed name a cited page a
+#                          NAMED HUMAN confirmed changed since that record's last check?
+#                          A second watcher, independent of ours, reading bytes committed
+#                          to this repository rather than fetching anything.
 
 on:
   schedule:
@@ -51,21 +63,30 @@ jobs:
       - name: Link-rot check
         id: links
         continue-on-error: true
+        shell: bash
         run: make link-check 2>&1 | tee link-check.out
       - name: Source-change detection
         id: sources
         continue-on-error: true
+        shell: bash
         run: make source-watch 2>&1 | tee source-watch.out
       - name: Policy-change sentinel
         id: policy
         continue-on-error: true
+        shell: bash
         run: make policy-watch 2>&1 | tee policy-watch.out
+      - name: External drift (vendored id-churn-sentinel feed)
+        id: sentinel
+        continue-on-error: true
+        shell: bash
+        run: make sentinel 2>&1 | tee sentinel.out
       - name: Freshness against the real calendar
         id: freshness
         continue-on-error: true
-        run: NAV_TODAY=$(date +%F) node --experimental-strip-types --no-warnings scripts/freshness.ts 2>&1 | tee freshness.out
+        shell: bash
+        run: NAV_TODAY=$(date +%F) node --experimental-strip-types --no-warnings scripts/freshness.ts --horizon-days=30 2>&1 | tee freshness.out
       - name: Open an issue when anything needs a human
-        if: steps.links.outcome == 'failure' || steps.sources.outcome == 'failure' || steps.policy.outcome == 'failure' || steps.freshness.outcome == 'failure'
+        if: steps.links.outcome == 'failure' || steps.sources.outcome == 'failure' || steps.policy.outcome == 'failure' || steps.sentinel.outcome == 'failure' || steps.freshness.outcome == 'failure'
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
@@ -86,10 +107,19 @@ jobs:
               '', '## link-check', '```', read('link-check.out'), '```',
               '', '## source-watch', '```', read('source-watch.out'), '```',
               '', '## policy-watch', '```', read('policy-watch.out'), '```',
+              '', '## sentinel (external drift)', '```', read('sentinel.out'), '```',
               '', '## freshness (live date)', '```', read('freshness.out'), '```',
+              '', 'A `freshness` failure naming a LAPSE DATE is the lookahead, not a breach: those',
+              'records still serve today and stop on the date named. Re-verifying them before then',
+              'is the whole point of the 30-day window, and this corpus lapses in bulk rather than',
+              'gradually — see the horizon lines in that section for the count and the date.',
               '', 'Runbook: re-verify each named record against its official source, update `last_verified`',
               'and the URL if it moved, then run `make source-baseline` and `make verify`.',
               'If policy-watch flagged a tracker, re-verify every record in the named jurisdiction,',
               'then run `make policy-baseline` once the review is done.',
+              'If sentinel named records, re-verify each against its cited page and then run',
+              '`make sentinel-apply` to record the flag, or `make sentinel-vendor` if the feed',
+              'itself has moved on. `make sentinel` failing means a flag is OWED, not that the',
+              'feed is broken — a feed that cannot be trusted stops the step with an error instead.',
             ].join('\n');
             await github.rest.issues.create({ ...context.repo, title, body, labels: ['content-watch'] });

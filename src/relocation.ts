@@ -23,7 +23,7 @@ import type {
   RelocationPhase,
   RelocationStep,
 } from "../api/types.ts";
-import { page, uiStrings, escapeHtml, sourceItem, fieldLabel } from "./render.ts";
+import { page, uiStrings, escapeHtml, sourceItem, staleSourceList, fieldLabel } from "./render.ts";
 import { t as locale } from "./i18n/index.ts";
 import { renderHelpSection } from "./help.ts";
 import { formById } from "../api/forms.ts";
@@ -225,6 +225,13 @@ function renderStep(step: RelocationStep, plan: RelocationPlan, records: CorpusR
   const langQ = lang === "es" ? "?language=es" : "";
   const byId = new Map(records.map((rec) => [rec.id, rec]));
   const stepRecords = step.record_ids.map((id) => byId.get(id)).filter((rec): rec is CorpusRecord => !!rec);
+  // Matching records whose freshness lapsed. They contribute nothing below — no claim, no
+  // detail, no cost — but their CITATION is still good, and a step that cites nothing while
+  // telling the reader to consult the official source hands over an instruction it has just
+  // made impossible to follow (src/render.ts:staleSourceList).
+  const lapsedRecords = step.unverified_record_ids
+    .map((id) => byId.get(id))
+    .filter((rec): rec is CorpusRecord => !!rec);
 
   // The ONLY substantive prose on this page: each backing record's own statement, cited.
   const claims = stepRecords.map((rec) => `<li>${escapeHtml(rec.statement)}</li>`).join("");
@@ -269,7 +276,7 @@ function renderStep(step: RelocationStep, plan: RelocationPlan, records: CorpusR
   ${cost}${time}${disc}
   ${stepHazards(step, plan, lang)}
   ${detailBlock}${formCta}
-  ${sources(stepRecords, lang)}
+  ${stepRecords.length > 0 ? sources(stepRecords, lang) : staleSourceList(lapsedRecords, lang, 4)}
 </li>`;
 }
 

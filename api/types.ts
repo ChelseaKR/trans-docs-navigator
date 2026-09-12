@@ -118,6 +118,25 @@ export interface RelocationTraits {
  * One citable corpus record: a single requirement/fact for a (jurisdiction × document × change).
  * This IS the retrieval unit and the citation unit.
  */
+/**
+ * Why an external, independently reviewed feed says this record's cited source moved
+ * (#228, `api/sentinel.ts`). Written ONLY by `scripts/sentinel-sync.ts --apply`, and only
+ * alongside `verification_status: "needs_reverification"` — a flag can degrade a record
+ * and can never present one as current.
+ *
+ * `change_id` is the sentinel's own dedupe key, deterministic in (source, old hash, new
+ * hash), so a flag stays resolvable against the feed long after the run that wrote it.
+ * The content gate re-checks every flag against the vendored feed, so a hand-written
+ * `flagged_by` naming a change that does not exist fails the build.
+ */
+export interface FlaggedBy {
+  /** Feed id — `id-churn-sentinel` today; present so a second feed is distinguishable. */
+  feed: string;
+  change_id: string;
+  /** The date the feed's named human classified the change. */
+  reviewed_at: string;
+}
+
 export interface CorpusRecord {
   id: string;
   jurisdiction: JurisdictionId;
@@ -144,6 +163,8 @@ export interface CorpusRecord {
   language: Language;
   /** Who this record's rule is for. Absent = adult (the historical default); see RecordAudience. */
   audience?: RecordAudience;
+  /** External drift flag (#228). Only ever present with `needs_reverification`; see FlaggedBy. */
+  flagged_by?: FlaggedBy;
 }
 
 /**
@@ -232,6 +253,16 @@ export interface ChecklistStep {
   title: string;
   /** Record ids backing this step's substantive content. */
   record_ids: string[];
+  /**
+   * Record ids that match this step but whose freshness has lapsed, so none of their
+   * substantive text is used. Carried because a lapsed record's CITATION is still good:
+   * the URL points at the agency's own page, and a stale summary is no reason to withhold
+   * the page it summarises. Without this the renderer had nothing to link when every
+   * backing record was degraded, so the step said "Check the official source" and offered
+   * none — see src/render.ts:staleSourceList. Never a source of statements, costs,
+   * timelines or prerequisites; `record_ids` remains the only one of those.
+   */
+  unverified_record_ids: string[];
   prerequisites: string[]; // step keys
   cost?: Cost | undefined;
   timeline?: Timeline | undefined;
@@ -254,6 +285,23 @@ export interface ChecklistStep {
    * unblocked (the satisfied prerequisite is pruned from their list).
    */
   done?: boolean;
+  /**
+   * True when this step's records are governed by the jurisdiction that ISSUED the
+   * document, not by the one the reader told us they live in. Today that is the birth
+   * certificate and only the birth certificate (api/relocation.ts `PORTABILITY`,
+   * `state-of-birth`).
+   *
+   * It exists because `buildChecklist` resolves every step against `Intake.jurisdiction`,
+   * which for a birth record is the wrong state for anyone who has moved — roughly a
+   * quarter to a third of US residents, and a higher share among people who moved for
+   * safety. The step is still rendered from the residence state's records; the flag is
+   * what lets each renderer say out loud that those rules apply only if that state issued
+   * the certificate. Without it the page reads as an answer to a question it did not ask.
+   *
+   * A disclosure, never a route: nothing here selects records, and nothing here claims
+   * any state will honour another state's document (that is #241's question).
+   */
+  governed_by_issuing_jurisdiction?: boolean;
 }
 
 export interface Checklist {
@@ -448,6 +496,8 @@ export interface RelocationStep {
   title: string;
   /** Backing, current corpus records — the ONLY source of this step's substantive text. */
   record_ids: string[];
+  /** Matching records whose freshness has lapsed. Citations only — see ChecklistStep.unverified_record_ids. */
+  unverified_record_ids: string[];
   /** Step keys that this step's own records name as prerequisites. */
   prerequisites: string[];
   cost?: Cost | undefined;

@@ -5,6 +5,12 @@ import { validateCorpus } from "../api/corpus.ts";
 import { validateReferrals } from "../api/referrals.ts";
 import { loadCorpus } from "../api/corpus.ts";
 import { auditTranslations, declaredUntranslated } from "../api/translations.ts";
+import {
+  SENTINEL_FEED_ID,
+  existingFlags,
+  isActionableChange,
+  loadSentinel,
+} from "../api/sentinel.ts";
 import { pass, fail } from "./util.ts";
 
 // Test-only override (tests/gate-efficacy): point the gate at a poisoned corpus
@@ -66,6 +72,36 @@ if (audit.declaredGaps.length > 0) {
     `  ℹ️  ${audit.declaredGaps.length} English record(s) are declared untranslated in ` +
       "corpus/translation-status.json — a stated gap, not a silent one.",
   );
+}
+
+// External drift flags (#228). `make sentinel` is content-ops and runs on someone else's
+// schedule; this is its merge-blocking half. Every `flagged_by` already in the corpus is
+// re-checked against the vendored feed, and the vendored feed is re-checked against its
+// own sha256 pin and schema major. Two things that must never pass: a hand-written flag
+// naming a change that does not exist (a record degraded on invented evidence, or a
+// change id typo that makes the trail unfollowable), and a vendored artifact edited in
+// place — the obvious way to make this gate green would otherwise be to delete the entry.
+const sentinel = loadSentinel();
+const actionableIds = new Set(sentinel.feed.changes.filter(isActionableChange).map((c) => c.id));
+const flagProblems: string[] = [];
+for (const [recordId, flag] of existingFlags(loadCorpus(corpusDir ? { dir: corpusDir } : {}))) {
+  if (flag.feed !== SENTINEL_FEED_ID) {
+    flagProblems.push(
+      `${recordId} · flagged_by.feed: ${JSON.stringify(flag.feed)} is not a feed this ` +
+        `repository vendors (expected ${SENTINEL_FEED_ID})`,
+    );
+    continue;
+  }
+  if (!actionableIds.has(flag.change_id)) {
+    flagProblems.push(
+      `${recordId} · flagged_by.change_id: ${flag.change_id} is not a human-confirmed, ` +
+        "independently reviewed, still-active change in the vendored feed. A record may " +
+        "not be degraded on evidence nobody can look up.",
+    );
+  }
+}
+if (flagProblems.length > 0) {
+  fail("content", `${flagProblems.length} external drift flag issue(s)`, flagProblems);
 }
 
 // Honest-confidence: surface (don't hide) that the corpus is still seed-verified.

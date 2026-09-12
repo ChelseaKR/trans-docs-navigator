@@ -174,11 +174,82 @@ test("readability gate fails on prose below the reading-ease floor", () => {
 });
 
 // ── i18n / locale parity (scripts/i18n-parity.ts) ───────────────────────────────
+// Three halves, three controls. Key parity was the original gate; the other two were
+// added because key parity, non-emptiness and the type check are ALL satisfied by a
+// Spanish string that is verbatim English, and because a quarter of this surface's copy
+// lives in functions the gate used to skip entirely.
+//
 // Harm: a key exists in the English bundle but was never ported to Spanish.
 test("i18n-parity gate fails on an EN/ES key gap", () => {
   const r = runGate("i18n-parity", { env: { I18N_PARITY_POISON: "1" } });
   assert.notEqual(r.code, 0);
   assert.match(r.output, /es\.ui\.skip: missing/);
+});
+
+// Harm: an English sentence pasted into the Spanish bundle. Measured before the
+// must-differ rule existed: this gate printed "locale parity: all 2 bundle(s) match" and
+// exited 0, and all 19 tests in tests/spanish-parity.test.ts passed.
+test("i18n-parity gate fails on a Spanish string left verbatim English", () => {
+  const r = runGate("i18n-parity", { env: { I18N_PARITY_POISON: "english-paste" } });
+  assert.notEqual(r.code, 0);
+  assert.match(r.output, /es\.ui\.needsRecheck: identical to its "en" source/);
+});
+
+// Harm: a Spanish COPY FUNCTION that renders to nothing. A type check cannot see it, and
+// neither could this gate until it started rendering them.
+test("i18n-parity gate fails on a Spanish copy function that renders to nothing", () => {
+  const r = runGate("i18n-parity", { env: { I18N_PARITY_POISON: "empty-function" } });
+  assert.notEqual(r.code, 0);
+  assert.match(r.output, /es\.ui\.issuingJurisdictionScope: empty translation/);
+});
+
+// Harm: the escape hatch stops describing the bundles. A must-differ rule is only as
+// strong as the list of things allowed to be identical, so that list is gated too — a
+// blank reason, a path the bundle no longer declares, an unregistered locale, and a pair
+// that has since been translated must each fail until the entry is deleted.
+test("i18n-parity gate fails on a stale, unreasoned or over-broad identical-by-design list", () => {
+  const r = runGate("i18n-parity", {
+    env: {
+      I18N_PARITY_POISON: `exemptions-file:${fixture("i18n-exemption-poison")}/bad-entries.json`,
+    },
+  });
+  assert.notEqual(r.code, 0);
+  assert.match(r.output, /needs a written reason/);
+  assert.match(r.output, /"ui\.thisKeyDoesNotExist" is not a leaf/);
+  assert.match(r.output, /locale "fr" is not registered/);
+  assert.match(r.output, /the two now differ — delete the entry/);
+});
+
+// The positive half: the one entry on the real list is load-bearing, not decorative.
+// With it, the gate is silent on a leaf that IS identical by design; without it, the gate
+// names that exact leaf. An escape hatch nobody has proven is used is an escape hatch
+// nobody knows the width of.
+test("the one reasoned exemption is what keeps the gate silent on it", () => {
+  const clean = runGate("i18n-parity");
+  assert.equal(clean.code, 0);
+  assert.match(clean.output, /1 identical by written design/);
+
+  const withoutIt = runGate("i18n-parity", {
+    env: { I18N_PARITY_POISON: `exemptions-file:${fixture("i18n-exemption-poison")}/empty-list.json` },
+  });
+  assert.notEqual(withoutIt.code, 0);
+  assert.match(withoutIt.output, /es\.docLabels\.trusted-traveler: identical to its "en" source/);
+});
+
+// Harm: an unreadable escape-hatch file read as "no exemptions". A list that fails open
+// turns the check it guards into one that cannot fail, which is the defect this repository
+// keeps finding in other people's gates.
+test("i18n-parity gate refuses a malformed identical-by-design list rather than ignoring it", () => {
+  for (const [file, expected] of [
+    ["malformed.json", /is not valid JSON/],
+    ["not-an-object.json", /must carry an "entries" array/],
+  ] as [string, RegExp][]) {
+    const r = runGate("i18n-parity", {
+      env: { I18N_PARITY_POISON: `exemptions-file:${fixture("i18n-exemption-poison")}/${file}` },
+    });
+    assert.notEqual(r.code, 0, `${file} was accepted`);
+    assert.match(r.output, expected);
+  }
 });
 
 // ── i18n BCP 47 (scripts/i18n-bcp47.ts) ─────────────────────────────────────────

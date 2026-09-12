@@ -13,7 +13,8 @@ import { buildRelocationPlan } from "./relocation.ts";
 import { buildCompareTable, COMPARE_JURISDICTIONS } from "./compare.ts";
 import { answer } from "./guidance.ts";
 import { loadCorpus } from "./corpus.ts";
-import { isCurrent } from "./freshness.ts";
+import { isCurrent, servingToday } from "./freshness.ts";
+import { healthHorizon } from "./horizon.ts";
 import { formById } from "./forms.ts";
 import { isKnownJurisdiction } from "./feed.ts";
 import { memoize } from "./cache.ts";
@@ -400,11 +401,18 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
     return { status: 200, contentType: "application/xml; charset=utf-8", body: sitemapXml(indexablePaths()) };
   }
 
+  // Container liveness. The Dockerfile HEALTHCHECK, AWS_LWA_READINESS_CHECK_PATH and
+  // render.yaml's healthCheckPath all point here, so `status` stays a statement about the
+  // PROCESS and this route stays 200 whenever the process can answer. What changed is that
+  // `corpus_records` no longer stands alone: it counts records on disk, and on 2026-10-12
+  // it will still read 688 while zero of them are serveable as current (api/horizon.ts).
+  // A monitor reading only that number would see nothing wrong through a total content
+  // blackout. The freshness VERDICT is /readyz's job and is unchanged.
   if (p === "/healthz") {
     return {
       status: 200,
       contentType: JSON_CT,
-      body: JSON.stringify({ status: "ok", corpus_records: loadCorpus().length }),
+      body: JSON.stringify({ status: "ok", ...healthHorizon(loadCorpus(), today ?? servingToday()) }),
     };
   }
 

@@ -7,6 +7,7 @@ import { writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { loadCorpus, REPO_ROOT } from "../api/corpus.ts";
 import { isCurrent, TEST_TODAY } from "../api/freshness.ts";
+import { externallyUnwatchable, loadSentinel } from "../api/sentinel.ts";
 import type { ChangeType, DocumentType, Language } from "../api/types.ts";
 import { pass } from "./util.ts";
 
@@ -72,6 +73,30 @@ for (const l of LANGS) for (const c of CHANGES) for (const j of jurisdictions) f
   counts[v === "—" ? "missing" : v]++;
 }
 md += `\n**Totals:** ${counts.current} current · ${counts.degraded} degraded · ${counts.missing} uncovered cells.\n`;
+
+// Externally unwatchable (#228). `api/watchability.ts` already says which cited sources
+// THIS project cannot drift-watch. This section says which of them a second, independent
+// watcher — ChelseaKR/id-churn-sentinel — has publicly declared it cannot watch either,
+// read from its vendored inventory rather than asserted here. A reader told "we cannot
+// check this automatically" should not be left assuming somebody else is checking it.
+const sentinel = loadSentinel();
+const unwatchable = externallyUnwatchable(corpus, sentinel.inventory);
+md += `\n## Externally unwatchable sources\n\n`;
+md += `Cited hosts that [id-churn-sentinel](https://github.com/ChelseaKR/id-churn-sentinel) also\n`;
+md += `cannot watch, from its inventory vendored at \`corpus/external/id-churn-sentinel/\`\n`;
+md += `(generated ${sentinel.inventory.generated_at}). \`gap:<reason>\` is one of its own named,\n`;
+md += `dated gaps; \`crawler-unreachable\` is a registered source its fetcher cannot reach.\n`;
+md += `This is a fact about two watchers' coverage, never about whether the law changed.\n\n`;
+if (unwatchable.length === 0) {
+  md += `None: no host this corpus cites appears in the sentinel's named gaps or among its\n`;
+  md += `crawler-unreachable sources. That is an overlap of zero, not a clean bill of health —\n`;
+  md += `the sentinel watches its own registry, not ours.\n`;
+} else {
+  md += `| Host | Reason | Detail | Records citing it |\n|---|---|---|---|\n`;
+  for (const u of unwatchable) {
+    md += `| \`${u.host}\` | ${u.reason} | ${u.detail} | ${u.citedBy.length} |\n`;
+  }
+}
 
 const out = join(REPO_ROOT, "docs", "audits", "coverage.md");
 writeFileSync(out, md);

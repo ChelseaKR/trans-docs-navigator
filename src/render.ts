@@ -4,7 +4,7 @@
 // disclosure (guardrail #2). Colour tokens meet AA contrast; focus is always
 // visible; motion respects prefers-reduced-motion.
 
-import type { Checklist, Cost, FormDef, GroundedAnswer, CorpusRecord, DocumentType, Language, PreparationItem } from "../api/types.ts";
+import type { Checklist, ChecklistStep, Cost, FormDef, GroundedAnswer, CorpusRecord, DocumentType, JurisdictionId, Language, PreparationItem } from "../api/types.ts";
 import type { UiMessages } from "./i18n/index.ts";
 import { t as locale } from "./i18n/index.ts";
 import type { SeoMeta } from "./seo.ts";
@@ -12,6 +12,7 @@ import { headTags, titleTag } from "./seo.ts";
 import { formById } from "../api/forms.ts";
 import { isDriftWatchable } from "../api/watchability.ts";
 import { isHumanVerified } from "../api/corpus.ts";
+import { stateNameFor } from "./guide.ts";
 import type { Source } from "../api/types.ts";
 
 /**
@@ -264,13 +265,60 @@ export function sourceItem(source: Source, lang: Language): string {
   );
 }
 
+/** Heading depth a source block is nested at; the callers span h2 (answer page) to h4 (relocation step). */
+type HeadingLevel = 2 | 3 | 4;
+
 // `level` keeps heading order correct: 3 inside a checklist step (under the step's h2),
 // 2 on the standalone answer page (directly under the page h1, so no level is skipped).
-function sourceList(records: CorpusRecord[], lang: Language, level: 2 | 3 = 3): string {
+function sourceList(records: CorpusRecord[], lang: Language, level: HeadingLevel = 3): string {
   if (records.length === 0) return "";
   const t = locale(lang).ui;
   const items = records.map((r) => sourceItem(r.source, lang)).join("");
   return `<h${level}>${escapeHtml(t.sources)}</h${level}><ul>${items}</ul>`;
+}
+
+/**
+ * The official pages behind a step whose every backing record has LAPSED its recheck SLA.
+ *
+ * Why this exists: a step is emitted whenever any record matches it, but only CURRENT
+ * records reach `record_ids`, and `sourceList` renders from `record_ids`. So a step whose
+ * records had all gone stale rendered "Needs reverification, so we don't show it as
+ * current" and, in the gaps section, "Check the official source." — with every official
+ * source link stripped from the page. The one artifact on that step that had NOT gone
+ * stale is the URL: it points at the agency's own page, which is authoritative regardless
+ * of when we last read it, and it is precisely what the reader was being told to consult.
+ * Measured on 2026-09-07 this was live for Alabama birth certificates, Montana and South
+ * Dakota driver's licences; from 2026-10-12 it is every step in the corpus, because 436 of
+ * the 438 then-serving records lapse on that one day.
+ *
+ * It is deliberately NOT rendered when the step already has a current source — the reader
+ * has a live citation there and a second, staler list would only blur which is which. It
+ * carries no statement, cost, timeline or prerequisite from those records; `record_ids`
+ * remains the only source of anything substantive. The caption is the same
+ * `verificationCaption`, so the date on each line still says when it was last read.
+ */
+export function staleSourceList(records: CorpusRecord[], lang: Language, level: HeadingLevel = 3): string {
+  if (records.length === 0) return "";
+  const t = locale(lang).ui;
+  const items = records.map((r) => sourceItem(r.source, lang)).join("");
+  return (
+    `<h${level}>${escapeHtml(t.staleSources)}</h${level}>` +
+    `<p class="meta">${escapeHtml(t.staleSourcesNote)}</p><ul>${items}</ul>`
+  );
+}
+
+/**
+ * The source block for one step: its current citations, or — when it has none — the
+ * official pages behind the records that lapsed. Shared by the checklist and the packet
+ * so the two cannot drift on which of them hands the reader a link.
+ */
+function stepSources(
+  current: CorpusRecord[],
+  lapsed: CorpusRecord[],
+  lang: Language,
+  level: HeadingLevel = 3,
+): string {
+  return current.length > 0 ? sourceList(current, lang, level) : staleSourceList(lapsed, lang, level);
 }
 
 /**
@@ -318,6 +366,25 @@ function feeWaiverDetail(cost: Cost | undefined, lang: Language, langQ: string):
   return `<p class="meta fee-waiver">💸 ${escapeHtml(t.feeWaiverAvailable)}${formLine}${criteriaLine}</p>`;
 }
 
+/**
+ * The scope line for a step governed by the jurisdiction that ISSUED the document
+ * (`ChecklistStep.governed_by_issuing_jurisdiction`). Rendered on every surface that
+ * renders steps, because a disclosure fixed in one renderer and not the other is how a
+ * paper packet ends up saying less than the screen it was printed from.
+ *
+ * The unnamed variant is not dead code: `Intake.jurisdiction` may be the federal `US`,
+ * which resolves to no state name. Falling back to the raw id would print "only if US
+ * issued your birth certificate", and dropping the line would delete the disclosure
+ * exactly where it could not be phrased — an absence standing in for an answer.
+ */
+function issuingJurisdictionNote(step: ChecklistStep, jurisdiction: JurisdictionId, lang: Language): string {
+  if (!step.governed_by_issuing_jurisdiction) return "";
+  const t = locale(lang).ui;
+  const name = stateNameFor(jurisdiction, lang);
+  const text = name ? t.issuingJurisdictionScope(name) : t.issuingJurisdictionScopeUnnamed;
+  return `<p class="flag" role="note">${escapeHtml(text)}</p>`;
+}
+
 export function renderChecklist(checklist: Checklist, records: CorpusRecord[], lang: Language): string {
   const t = locale(lang).ui;
   const langQ = lang === "es" ? "?language=es" : "";
@@ -325,6 +392,7 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
   const steps = checklist.steps
     .map((s) => {
       const stepRecords = s.record_ids.map((id) => byId.get(id)).filter((r): r is CorpusRecord => !!r);
+      const lapsedRecords = s.unverified_record_ids.map((id) => byId.get(id)).filter((r): r is CorpusRecord => !!r);
       const cost = s.cost
         ? `<p class="meta"><strong>${escapeHtml(t.cost)}:</strong> ${s.cost.amount_usd === null ? escapeHtml(s.cost.note ?? t.varies) : "$" + s.cost.amount_usd}</p>`
         : "";
@@ -335,6 +403,7 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
         : "";
       const disc = s.discretionary ? `<p class="flag">${escapeHtml(t.discretionary)}</p>` : "";
       const stale = s.needs_reverification ? `<p class="flag" role="note">${escapeHtml(t.needsRecheck)}</p>` : "";
+      const scope = issuingJurisdictionNote(s, checklist.jurisdiction, lang);
       // has_court_order intake: annotate, don't hide — citations stay visible either way.
       const done = s.done ? `<p class="meta done-badge">✅ ${escapeHtml(t.alreadyDone)}</p>` : "";
       const claims = stepRecords.map((r) => `<li>${escapeHtml(r.statement)}</li>`).join("");
@@ -367,10 +436,11 @@ export function renderChecklist(checklist: Checklist, records: CorpusRecord[], l
   <div class="step-head"><h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
   <label class="done-toggle no-print"><input type="checkbox" data-step-toggle="${escapeHtml(s.key)}"> ${escapeHtml(t.markDone)}</label></div>
   ${done}
+  ${scope}
   ${claims ? `<ul>${claims}</ul>` : ""}
   ${cost}${waiver}${time}${prereq}${disc}${stale}
   ${detailBlock}${formCta}
-  ${sourceList(stepRecords, lang)}
+  ${stepSources(stepRecords, lapsedRecords, lang)}
   ${reportLink}
 </li>`;
     })
@@ -398,6 +468,7 @@ export function renderPacket(
   const steps = checklist.steps
     .map((s) => {
       const stepRecords = s.record_ids.map((id) => byId.get(id)).filter((r): r is CorpusRecord => !!r);
+      const lapsedRecords = s.unverified_record_ids.map((id) => byId.get(id)).filter((r): r is CorpusRecord => !!r);
       const detail = stepRecords
         .map((r) => `<li><p>${escapeHtml(r.statement)}</p>${r.detail ? `<p class="meta">${escapeHtml(r.detail)}</p>` : ""}</li>`)
         .join("");
@@ -412,12 +483,14 @@ export function renderPacket(
       const disc = s.discretionary ? `<p class="flag">${escapeHtml(t.discretionary)}</p>` : "";
       const stale = s.needs_reverification ? `<p class="flag" role="note">${escapeHtml(t.needsRecheck)}</p>` : "";
       const done = s.done ? `<p class="meta done-badge">✅ ${escapeHtml(t.alreadyDone)}</p>` : "";
+      const scope = issuingJurisdictionNote(s, checklist.jurisdiction, lang);
       return `<li class="step${s.done ? " step-done" : ""}">
   <h2>${escapeHtml(t.step)} ${s.order}: ${escapeHtml(locale(lang).docTitles[s.document_type])}</h2>
   ${done}
+  ${scope}
   ${detail ? `<ul>${detail}</ul>` : ""}
   ${cost}${waiver}${time}${prereq}${disc}${stale}
-  ${sourceList(stepRecords, lang)}
+  ${stepSources(stepRecords, lapsedRecords, lang)}
 </li>`;
     })
     .join("");
