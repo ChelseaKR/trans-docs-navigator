@@ -16,9 +16,9 @@ SHELL := /bin/bash
 # LOADTEST_ISOLATE just below and the `loadtest:` target for why. With those
 # two edges in place, the remaining 22 gates have no ordering constraints
 # between them, so building them as parallel `make` prerequisites is safe:
-# same corpus reads, disjoint writes (only `fidelity`, `eval`, and
-# `i18n-logical-css` write files, and each writes to a path nothing else in
-# `verify` reads).
+# same corpus reads, disjoint writes (only `eval` and `i18n-logical-css` write
+# files, and each writes to a path nothing else in `verify` reads; `fidelity`
+# used to write too, and now only compares — see its target).
 #
 # This sets -j on every invocation, not just `verify` — harmless for a lone
 # `make lint` (no sibling prerequisites to overlap) and exactly what we want
@@ -44,7 +44,7 @@ MAKEFLAGS += --output-sync=target
 endif
 
 .PHONY: help install dev verify eval eval-bedrock a11y loadtest \
-        gate-count lint typecheck test security content forms citation fidelity privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-hardcoded i18n-overflow seo launch-gates launch-gates-write deploy-plan clean \
+        gate-count lint typecheck test security content forms citation fidelity fidelity-write privacy freshness disclosure readability i18n-utf8 i18n-bcp47 i18n i18n-logical-css i18n-hardcoded i18n-overflow seo launch-gates launch-gates-write deploy-plan clean \
         smoke e2e-journey coverage link-check source-watch source-baseline source-snapshot policy-watch policy-baseline new-record slo corpus-manifest build dataset \
         sentinel sentinel-apply sentinel-vendor
 
@@ -113,8 +113,15 @@ citation: gate-count
 # before, which is how the corpus came to assert a form and a $0 fee the DMV page never
 # mentioned — with an unchanged source hash, so source-watch saw nothing either. Runs
 # offline against the committed snapshots in corpus/snapshots/ (refresh: make source-snapshot).
+# No --report below. This stage used to regenerate docs/audits/source-fidelity.* and
+# then pass, which meant the one stage that could have noticed the committed audit was
+# stale instead repaired it in place. Now it COMPARES, and a stale committed audit
+# fails the gate. `make fidelity-write` is the half that writes.
 fidelity: gate-count
 	@echo "── [9/25] source fidelity (does each record match its cited source?) ─"
+	@$(NODE) scripts/source-fidelity.ts
+
+fidelity-write: ## Regenerate the committed source-fidelity audit after a real corpus change
 	@$(NODE) scripts/source-fidelity.ts --report
 
 privacy: gate-count
