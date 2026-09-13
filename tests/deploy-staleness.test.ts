@@ -37,15 +37,16 @@ import {
   StalenessUnknown,
   asJson,
   commitsBetween,
-  fetchVersion,
   main,
   measure,
   parseArgs,
+  newestCommitWithoutVersionEndpoint,
   parseVersionPayload,
+  readLiveService,
   render,
   shipsToVisitors,
 } from "../scripts/deploy-staleness.ts";
-import type { LiveBuild } from "../scripts/deploy-staleness.ts";
+import type { LiveReport } from "../scripts/deploy-staleness.ts";
 
 const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SHA = "0123456789abcdef0123456789abcdef01234567";
@@ -239,8 +240,16 @@ function commit(root: string, path: string, daysAgo = 0): string {
   return git(root, ["rev-parse", "HEAD"]);
 }
 
-function live(commitSha: string): LiveBuild {
-  return { commit: commitSha, version: "0.1.0", builtAt: null, corpusHash: null };
+function live(commitSha: string): LiveReport {
+  return {
+    kind: "stamped",
+    build: { commit: commitSha, version: "0.1.0", builtAt: null, corpusHash: null },
+  };
+}
+
+/** The measured-but-bounded case: /version absent on a service that proves it is alive. */
+function absent(): LiveReport {
+  return { kind: "endpoint-absent", evidence: "/version → 404 while /livez → 200 answered" };
 }
 
 test("it counts the commits and names the reader-visible ones", () => {
@@ -299,6 +308,51 @@ test("nothing since the deploy is up to date", () => {
   assert.equal(drift.visitorCommits, 0);
   assert.equal(drift.waitingDays, 0);
   assert.equal(drift.overdue, false);
+});
+
+test("a bounded measurement always reports, because a bound can never say 'fine'", () => {
+  // The trap this rule closes. An at-least measurement says "the deploy is AT LEAST this
+  // far behind"; the true deploy may be far older. So a bound that lands inside the
+  // 14-day threshold proves nothing, and applying the threshold to it would manufacture
+  // exactly the comfortable zero this file exists to refuse -- reached by arithmetic
+  // instead of by a silent failure. Here the bound is 1 day and 1 commit, well inside
+  // the threshold, and it must STILL report.
+  const root = scratchRepo();
+  commit(root, "api/router.ts", 30);
+  commit(root, "api/version.ts", 2); // the commit that introduced the endpoint
+  commit(root, "src/render.ts", 1);
+
+  const drift = measure(absent(), "HEAD", NOW, DEFAULT_MAX_AGE_DAYS, root);
+
+  assert.equal(drift.basis, "at-least");
+  assert.equal(drift.live, null, "no build identity was reported, and none may be invented");
+  assert.ok(drift.waitingDays <= DEFAULT_MAX_AGE_DAYS, "the bound is inside the threshold");
+  assert.equal(drift.overdue, true, "and it reports anyway");
+  assert.match(render(drift), /lower bound/);
+  assert.match(render(drift), /UNIDENTIFIED/);
+});
+
+test("the bound is anchored at the last commit before /version existed", () => {
+  const root = scratchRepo();
+  commit(root, "api/router.ts", 30);
+  const lastWithout = commit(root, "corpus/jurisdictions/ca.json", 20);
+  commit(root, "api/version.ts", 10);
+  commit(root, "src/render.ts", 1);
+
+  assert.equal(newestCommitWithoutVersionEndpoint(root, "HEAD"), lastWithout);
+  assert.equal(measure(absent(), "HEAD", NOW, DEFAULT_MAX_AGE_DAYS, root).anchor, lastWithout);
+});
+
+test("a history that never added api/version.ts cannot be bounded, so it refuses", () => {
+  // The shallow-clone shape again: the add-commit lookup returns nothing silently, and
+  // an anchor picked from nothing would put the bound wherever the truncation fell.
+  const root = scratchRepo();
+  commit(root, "api/router.ts", 5);
+
+  assert.throws(
+    () => measure(absent(), "HEAD", NOW, DEFAULT_MAX_AGE_DAYS, root),
+    (err: Error) => err instanceof StalenessUnknown && /cannot locate the commit that added/.test(err.message),
+  );
 });
 
 test("a commit this clone does not have is a refusal, never a zero", () => {
@@ -409,26 +463,68 @@ test("a live service that answers /version is read", async () => {
   await withServer(
     () => ({ status: 200, body: JSON.stringify(versionBody()) }),
     async (base) => {
-      const build = await fetchVersion(base, noSleep);
-      assert.equal(build.commit, SHA);
+      const report = await readLiveService(base, noSleep);
+      assert.equal(report.kind, "stamped");
+      assert.equal(report.kind === "stamped" && report.build.commit, SHA);
     },
   );
 });
 
-test("a 404 is a refusal, not an up-to-date service", async () => {
+/** The live preview's real shape on 2026-09-13: healthy, but with no /version. */
+function absentVersionService(path: string): { status: number; body: string; contentType?: string } {
+  if (path.startsWith("/livez")) return { status: 200, body: JSON.stringify({ status: "ok" }) };
+  if (path.startsWith("/readyz")) {
+    return { status: 200, body: JSON.stringify({ status: "ok", checks: { corpus: "ok" } }) };
+  }
+  return { status: 404, body: "<!doctype html>Page not found", contentType: "text/html" };
+}
+
+test("an absent /version on a demonstrably live service is a MEASUREMENT, not a refusal", async () => {
   // The real state of this preview on 2026-09-13: 200 on /, /livez, /healthz and
   // /readyz, 404 on /version, because the running image predates api/version.ts. The
-  // endpoint that would date the deploy has itself never been deployed. Treating that
-  // as "nothing to report" would call the stalest possible preview current.
+  // endpoint built to date the deploy has itself never been deployed.
+  //
+  // This must not be red. A red run here would be permanent -- only a deploy can change
+  // it, and deploying is a deliberate cost-bearing human act -- and a check that is red
+  // for weeks stops being read, which is the failure this whole file guards against.
+  // The 404 is evidence ABOUT the image, so it is measured, reported, and green.
+  await withServer(absentVersionService, async (base) => {
+    const report = await readLiveService(base, noSleep);
+    assert.equal(report.kind, "endpoint-absent");
+    assert.match(
+      report.kind === "endpoint-absent" ? report.evidence : "",
+      /404/,
+      "the evidence must record what was actually observed",
+    );
+  });
+});
+
+test("a 404 whose liveness probes do not answer is still a refusal", async () => {
+  // The distinction that makes the case above legitimate. A parked domain, a dead host
+  // behind a CDN, or a misrouted proxy also 404s. Only a service that proves it is alive
+  // AND is this application turns a 404 into evidence about the deployed image.
   await withServer(
-    () => ({ status: 404, body: "<!doctype html>Page not found", contentType: "text/html" }),
+    () => ({ status: 404, body: "not found", contentType: "text/html" }),
     async (base) => {
       await assert.rejects(
-        fetchVersion(base, noSleep),
+        readLiveService(base, noSleep),
+        (err: Error) => err instanceof StalenessUnknown && /not evidence/.test(err.message),
+      );
+    },
+  );
+});
+
+test("a 404 whose probes answer something that is not this application is a refusal", async () => {
+  await withServer(
+    (path) =>
+      path.startsWith("/livez") || path.startsWith("/readyz")
+        ? { status: 200, body: "<html>hello from a proxy</html>", contentType: "text/html" }
+        : { status: 404, body: "nope", contentType: "text/html" },
+    async (base) => {
+      await assert.rejects(
+        readLiveService(base, noSleep),
         (err: Error) =>
-          err instanceof StalenessUnknown &&
-          /did not report a build identity/.test(err.message) &&
-          /HTTP 404/.test(err.message),
+          err instanceof StalenessUnknown && /nothing proves it is this service/.test(err.message),
       );
     },
   );
@@ -439,7 +535,7 @@ test("a 200 that is not JSON is a refusal that quotes what it got", async () => 
     () => ({ status: 200, body: "<!doctype html><title>login</title>", contentType: "text/html" }),
     async (base) => {
       await assert.rejects(
-        fetchVersion(base, noSleep),
+        readLiveService(base, noSleep),
         (err: Error) => err instanceof StalenessUnknown && /not JSON/.test(err.message),
       );
     },
@@ -451,7 +547,7 @@ test("a 200 of the wrong shape is a refusal", async () => {
     () => ({ status: 200, body: JSON.stringify({ status: "ok" }) }),
     async (base) => {
       await assert.rejects(
-        fetchVersion(base, noSleep),
+        readLiveService(base, noSleep),
         (err: Error) => err instanceof StalenessUnknown && /not the BuildInfo shape/.test(err.message),
       );
     },
@@ -466,7 +562,7 @@ test("an unreachable service is a refusal after bounded retries, never a pass", 
   }) as unknown as typeof fetch;
 
   await assert.rejects(
-    fetchVersion("http://127.0.0.1:1", { attempts: 3, sleep: async () => {}, fetchImpl }),
+    readLiveService("http://127.0.0.1:1", { attempts: 3, sleep: async () => {}, fetchImpl }),
     (err: Error) => err instanceof StalenessUnknown && /the request failed/.test(err.message),
   );
   assert.equal(attempts, 3, "retries must be bounded and must all be spent before refusing");
@@ -486,8 +582,12 @@ test("a flaky fetch that succeeds on a later attempt is a measurement, not a ref
     });
   }) as unknown as typeof fetch;
 
-  const build = await fetchVersion("http://example.invalid", { attempts: 4, sleep: async () => {}, fetchImpl });
-  assert.equal(build.commit, SHA);
+  const report = await readLiveService("http://example.invalid", {
+    attempts: 4,
+    sleep: async () => {},
+    fetchImpl,
+  });
+  assert.equal(report.kind === "stamped" && report.build.commit, SHA);
   assert.equal(attempts, 3);
 });
 
@@ -500,7 +600,7 @@ test("the trailing slash on the homepage URL does not become a double slash", as
     return new Response(JSON.stringify(versionBody()), { status: 200 });
   }) as unknown as typeof fetch;
 
-  await fetchVersion("https://example.invalid/", { attempts: 1, sleep: async () => {}, fetchImpl });
+  await readLiveService("https://example.invalid/", { attempts: 1, sleep: async () => {}, fetchImpl });
   assert.equal(seen, "https://example.invalid/version");
 });
 

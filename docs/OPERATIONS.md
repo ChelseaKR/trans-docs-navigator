@@ -52,11 +52,20 @@ node --experimental-strip-types scripts/deploy-staleness.ts --url "$PREVIEW_URL"
 
 It publishes nothing and holds no AWS credential — deploying stays a deliberate,
 cost-bearing human action. It **requires network access**, which nothing else in this
-repository's gate set does, so it is fail-closed about it: an unreachable service, a
-non-200, a body that is not the `BuildInfo` shape, an unstamped image, a commit missing
-from a shallow checkout, or a history that has diverged each exit non-zero and turn the run
-red. None of them report zero drift, because "the preview is current" and "nobody could
-ask" must never arrive as the same answer.
+repository's gate set does, so it is fail-closed about it: an unreachable service, a 5xx,
+a body that is not the `BuildInfo` shape, an image answering `stamped: false`, a commit
+missing from a shallow checkout, or a history that has diverged each exit non-zero and turn
+the run red. None of them report zero drift, because "the preview is current" and "nobody
+could ask" must never arrive as the same answer.
+
+One case is neither: **`/version` answering 404 while `/livez` and `/readyz` answer this
+application's health JSON.** That is the preview's state today — the running image predates
+`api/version.ts`, so the endpoint this section tells you to curl does not exist on the live
+service yet. It is not unmeasurable; it proves the image was built before that commit, which
+bounds the drift from below. The sentinel reports it as an issue on a **green** run, and
+deliberately does not compare that bound against the 14-day threshold: a lower bound can
+prove a deploy is stale, never that it is fresh. The first deploy makes `/version` answer,
+the measurement becomes exact, and the issue closes.
 
 This is **deploy** staleness, not corpus-verification staleness. Whether a record is inside
 its `last_verified` SLA is `content-watch.yml`'s question and `make freshness`'s; a record

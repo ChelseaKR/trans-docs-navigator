@@ -25,10 +25,24 @@
 #
 # The output is an issue, not a permanent red. A scheduled check that stays red for
 # months is a check nobody reads. This run goes red only when the comparison cannot be
-# made at all: the live service unreachable or not answering 200, a response that is not
-# the BuildInfo shape, an image that names no commit, a commit this clone does not
-# contain, or a history that has diverged. A detector that cannot tell must look broken
-# rather than report a comfortable zero.
+# made at all: the live service unreachable, a 5xx, a response that is not the BuildInfo
+# shape, an image that answers `stamped: false`, a commit this clone does not contain, or
+# a history that has diverged. A detector that cannot tell must look broken rather than
+# report a comfortable zero.
+#
+# ONE CASE SITS BETWEEN THOSE, and getting it wrong is what would make this workflow
+# permanently red. The live preview currently 404s on `/version`, because the running
+# image predates the commit that added the endpoint (#243). Only a deploy can change
+# that, and deploying is a deliberate cost-bearing act — so treating the 404 as
+# "unmeasurable" would mean a red check forever, which is the exact outcome the rule
+# above exists to prevent, reached from the other direction.
+#
+# It is not unmeasurable. A 404 on `/version` while `/livez` and `/readyz` answer this
+# application's own health JSON proves the service is up, is this app, and was built
+# before `api/version.ts` existed. That bounds the drift from below without the endpoint.
+# So it is measured, reported as an issue, and the run stays GREEN. The bound always
+# reports rather than being compared to the threshold, because a lower bound can prove a
+# deploy is stale but never that it is fresh (see LOWER_BOUND_RULE in the script).
 #
 # NETWORK ACCESS IS REQUIRED, which is unusual for a check in this repository. The
 # ground truth is the running process answering for itself, and there is no offline
@@ -121,6 +135,7 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           MEASURED: ${{ steps.measure.outputs.measured }}
           OVERDUE: ${{ steps.measure.outputs.overdue }}
+          BASIS: ${{ steps.measure.outputs.basis }}
           TITLE: "The live preview is behind main"
         run: |
           set -euo pipefail
@@ -152,6 +167,14 @@ jobs:
             echo "This is **deploy** staleness — how far the running image is behind \`main\`."
             echo "It is not corpus-verification staleness; that is \`content-watch.yml\`'s question."
             echo
+            if [ "$BASIS" = "at-least" ]; then
+              echo "**This is a lower bound.** The live service does not serve \`/version\`, so it"
+              echo "cannot say which commit it is running. The numbers above are the smallest drift"
+              echo "consistent with the evidence and the true deploy may be far older — which is why"
+              echo "the day threshold is not applied here. Deploying makes \`/version\` answer, the"
+              echo "measurement becomes exact, and this issue closes on the next run."
+              echo
+            fi
             echo "Deploying is a deliberate, cost-bearing human action here:"
             echo "\`deploy-aws-preview.yml\` is \`workflow_dispatch\` only by design, and this"
             echo "sentinel holds no credential that could run it. Checking what is live by hand:"
