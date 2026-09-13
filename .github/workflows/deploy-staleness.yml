@@ -1,0 +1,169 @@
+# Is the service a reader gets at the preview URL the service this repository has?
+#
+# `deploy-aws-preview.yml` is `workflow_dispatch` only, deliberately — "Manual by design
+# (workflow_dispatch only) so nothing bills until you choose to deploy." That is a cost
+# policy and this workflow does not touch it. The same header names the cost it buys:
+# "Nothing deploys on a push, so the running preview can be arbitrarily far behind `main`
+# and no timestamp anywhere says how far."
+#
+# It then says that is answerable now: the build stamps the commit into the image,
+# `/version` serves it (api/version.ts), and docs/OPERATIONS.md tells a reader how to
+# check. All true — and until this file, nothing asked on a schedule. A person had to
+# remember to `curl`, and the failure mode is exactly that nobody remembers. Every gate
+# in this repository was green throughout, because none of them was asking.
+#
+# This is DEPLOY staleness, not DATA staleness. Whether a corpus record is inside its
+# verification SLA is `content-watch.yml`'s question and `make freshness`'s. A record
+# verified this morning is still invisible to every reader until a deploy carries it.
+#
+# IT PUBLISHES NOTHING. It cannot: no `id-token: write`, no AWS role, no deploy
+# credential of any kind, no `gh workflow run`. Whether and when to deploy costs money
+# and stays a human decision; this only reports the distance. `deployments: read` is not
+# granted either, and not by oversight — this repository has no deployment record to
+# read (`repos/.../deployments` is empty, `repos/.../pages` 404s), which is why the
+# measurement comes from the live endpoint instead.
+#
+# The output is an issue, not a permanent red. A scheduled check that stays red for
+# months is a check nobody reads. This run goes red only when the comparison cannot be
+# made at all: the live service unreachable or not answering 200, a response that is not
+# the BuildInfo shape, an image that names no commit, a commit this clone does not
+# contain, or a history that has diverged. A detector that cannot tell must look broken
+# rather than report a comfortable zero.
+#
+# NETWORK ACCESS IS REQUIRED, which is unusual for a check in this repository. The
+# ground truth is the running process answering for itself, and there is no offline
+# substitute — so a flaky fetch is a refusal (red), never a pass. scripts/deploy-
+# staleness.ts retries a bounded number of times first, because the preview is a
+# scale-to-zero Lambda and the first request after idle pays a cold start.
+#
+# Every action is pinned to a full 40-char commit SHA already in use elsewhere in this
+# repository (SECURITY-AND-SUPPLY-CHAIN-STANDARD §6).
+name: deploy-staleness
+
+on:
+  schedule:
+    # Mondays 15:53 UTC. Deploying here is a deliberate, cost-bearing human act on no
+    # fixed cadence, so the useful question is asked weekly; asking hourly would produce
+    # the same answer 168 times and wake a scale-to-zero Lambda for each one.
+    - cron: "53 15 * * 1"
+  workflow_dispatch:
+    inputs:
+      max_age_days:
+        description: "Days an unpublished reader-visible commit may wait before this reports"
+        required: false
+        default: "14"
+        type: string
+
+# Least privilege at workflow level (#159, Scorecard Token-Permissions): nothing by
+# default. The one job grants itself exactly what it needs, the pattern codeql.yml and
+# content-watch.yml already use.
+permissions: {}
+
+# This workflow writes (it files, updates or closes one issue): never cancel a run
+# mid-write, and never let a manual dispatch race the Monday schedule onto the same
+# issue (CICD-23, the same reasoning deploy-aws-preview.yml states).
+concurrency:
+  group: deploy-staleness
+  cancel-in-progress: false
+
+jobs:
+  report:
+    name: how far is the live preview behind main
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read # the checkout, and the git history the comparison walks
+      issues: write # the report itself; nothing here writes anywhere else
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Required, not incidental. On a shallow clone a commit from last month is
+          # simply absent, `git log <live>..origin/main` prints nothing, and the preview
+          # reads as up to date. scripts/deploy-staleness.ts refuses that case rather
+          # than reporting it as zero — this is what keeps it from having to.
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          # package.json requires >= 22.6.0 for `--experimental-strip-types`, which is
+          # how every script in this repository runs. No `npm ci`: the sentinel imports
+          # only the standard library and nothing from api/ or src/, so it needs no
+          # dependency resolution and cannot be broken by one.
+          node-version: "22"
+
+      - name: Ask the live preview which commit it is running
+        id: measure
+        shell: bash
+        env:
+          # `shell: bash` (not the Actions default `bash -e`) so a pipeline's real exit
+          # status propagates — the defect tests/content-watch-workflow.test.ts pins.
+          GH_TOKEN: ${{ github.token }}
+          MAX_AGE_DAYS: ${{ inputs.max_age_days || '14' }}
+          REPOSITORY: ${{ github.repository }}
+        # `|| true` so a refusal reaches the reporting step, which turns it into the red
+        # run with the reason attached, rather than ending the job here with nothing
+        # explaining why.
+        run: |
+          set -euo pipefail
+          node --experimental-strip-types --no-warnings scripts/deploy-staleness.ts \
+            --repo "$REPOSITORY" \
+            --head origin/main \
+            --max-age-days "$MAX_AGE_DAYS" \
+            > "$RUNNER_TEMP/report.txt" 2> "$RUNNER_TEMP/error.txt" || true
+          cat "$RUNNER_TEMP/report.txt" "$RUNNER_TEMP/error.txt"
+
+      - name: File, update or close the report
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          MEASURED: ${{ steps.measure.outputs.measured }}
+          OVERDUE: ${{ steps.measure.outputs.overdue }}
+          TITLE: "The live preview is behind main"
+        run: |
+          set -euo pipefail
+
+          existing=$(gh issue list --repo "$REPOSITORY" --state open \
+            --json number,title --jq "[.[] | select(.title == env.TITLE)] | .[0].number // empty")
+
+          if [ "$MEASURED" != "true" ]; then
+            echo "::error title=The staleness comparison could not be made::See the reason above. This is deliberately a red run: a sentinel that cannot tell must look broken rather than report zero drift."
+            exit 1
+          fi
+
+          if [ "$OVERDUE" != "true" ]; then
+            if [ -n "$existing" ]; then
+              gh issue close "$existing" --repo "$REPOSITORY" --reason completed \
+                --comment "The live preview is no longer overdue. ${RUN_URL}"
+              echo "closed #$existing"
+            else
+              echo "not overdue; no open report to close"
+            fi
+            exit 0
+          fi
+
+          {
+            echo '```'
+            cat "$RUNNER_TEMP/report.txt"
+            echo '```'
+            echo
+            echo "This is **deploy** staleness — how far the running image is behind \`main\`."
+            echo "It is not corpus-verification staleness; that is \`content-watch.yml\`'s question."
+            echo
+            echo "Deploying is a deliberate, cost-bearing human action here:"
+            echo "\`deploy-aws-preview.yml\` is \`workflow_dispatch\` only by design, and this"
+            echo "sentinel holds no credential that could run it. Checking what is live by hand:"
+            echo "\`curl -s \"\$PREVIEW_URL/version\" | jq .\` (docs/OPERATIONS.md)."
+            echo
+            echo "Measured by \`scripts/deploy-staleness.ts\` in ${RUN_URL}."
+          } > "$RUNNER_TEMP/body.md"
+
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$REPOSITORY" --body-file "$RUNNER_TEMP/body.md"
+            echo "updated #$existing"
+          else
+            gh issue create --repo "$REPOSITORY" --title "$TITLE" \
+              --body-file "$RUNNER_TEMP/body.md"
+          fi

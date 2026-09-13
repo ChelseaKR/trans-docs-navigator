@@ -36,6 +36,32 @@ A tag is a different question from a deploy: `release.yml` fires on `v*` and pub
 signed, attested image to GHCR. It deploys nothing. "Released" and "live" are two facts
 here, and `/version` is the one that answers "live".
 
+### Nobody has to remember to ask
+`/version` made the question answerable; `.github/workflows/deploy-staleness.yml` is what
+asks it. Every Monday it fetches `/version` from the URL this repository advertises as its
+homepage, places that commit against `origin/main`, and counts the commits since — and,
+separately, the commits since that change something a reader actually receives (the server,
+the renderers, the corpus, the forms, the public assets, the image's own build inputs). It
+files one issue when reader-visible work has waited past 14 days, and closes it when a
+deploy catches up. Run it early with `gh workflow run deploy-staleness.yml -f max_age_days=7`,
+or by hand:
+
+```sh
+node --experimental-strip-types scripts/deploy-staleness.ts --url "$PREVIEW_URL"
+```
+
+It publishes nothing and holds no AWS credential — deploying stays a deliberate,
+cost-bearing human action. It **requires network access**, which nothing else in this
+repository's gate set does, so it is fail-closed about it: an unreachable service, a
+non-200, a body that is not the `BuildInfo` shape, an unstamped image, a commit missing
+from a shallow checkout, or a history that has diverged each exit non-zero and turn the run
+red. None of them report zero drift, because "the preview is current" and "nobody could
+ask" must never arrive as the same answer.
+
+This is **deploy** staleness, not corpus-verification staleness. Whether a record is inside
+its `last_verified` SLA is `content-watch.yml`'s question and `make freshness`'s; a record
+verified this morning is still invisible to every reader until a deploy carries it.
+
 ## Health & rollback
 - **Liveness:** `GET /livez` only proves the process can answer; it never calls a
   dependency. A non-200/crash means restart or replace the container.
