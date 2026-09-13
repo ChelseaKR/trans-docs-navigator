@@ -113,12 +113,12 @@ citation: gate-count
 # before, which is how the corpus came to assert a form and a $0 fee the DMV page never
 # mentioned — with an unchanged source hash, so source-watch saw nothing either. Runs
 # offline against the committed snapshots in corpus/snapshots/ (refresh: make source-snapshot).
+# No --report below. This stage used to regenerate docs/audits/source-fidelity.* and
+# then pass, which meant the one stage that could have noticed the committed audit was
+# stale instead repaired it in place. Now it COMPARES, and a stale committed audit
+# fails the gate. `make fidelity-write` is the half that writes.
 fidelity: gate-count
 	@echo "── [9/25] source fidelity (does each record match its cited source?) ─"
-	# No --report. This stage used to regenerate docs/audits/source-fidelity.* and then
-	# pass, which meant the one stage that could have noticed the committed audit was
-	# stale instead repaired it in place. Now it COMPARES, and a stale committed audit
-	# fails the gate. `make fidelity-write` is the half that writes.
 	@$(NODE) scripts/source-fidelity.ts
 
 fidelity-write: ## Regenerate the committed source-fidelity audit after a real corpus change
