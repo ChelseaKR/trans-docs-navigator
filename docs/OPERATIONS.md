@@ -36,6 +36,41 @@ A tag is a different question from a deploy: `release.yml` fires on `v*` and pub
 signed, attested image to GHCR. It deploys nothing. "Released" and "live" are two facts
 here, and `/version` is the one that answers "live".
 
+### Nobody has to remember to ask
+`/version` made the question answerable; `.github/workflows/deploy-staleness.yml` is what
+asks it. Every Monday it fetches `/version` from the URL this repository advertises as its
+homepage, places that commit against `origin/main`, and counts the commits since — and,
+separately, the commits since that change something a reader actually receives (the server,
+the renderers, the corpus, the forms, the public assets, the image's own build inputs). It
+files one issue when reader-visible work has waited past 14 days, and closes it when a
+deploy catches up. Run it early with `gh workflow run deploy-staleness.yml -f max_age_days=7`,
+or by hand:
+
+```sh
+node --experimental-strip-types scripts/deploy-staleness.ts --url "$PREVIEW_URL"
+```
+
+It publishes nothing and holds no AWS credential — deploying stays a deliberate,
+cost-bearing human action. It **requires network access**, which nothing else in this
+repository's gate set does, so it is fail-closed about it: an unreachable service, a 5xx,
+a body that is not the `BuildInfo` shape, an image answering `stamped: false`, a commit
+missing from a shallow checkout, or a history that has diverged each exit non-zero and turn
+the run red. None of them report zero drift, because "the preview is current" and "nobody
+could ask" must never arrive as the same answer.
+
+One case is neither: **`/version` answering 404 while `/livez` and `/readyz` answer this
+application's health JSON.** That is the preview's state today — the running image predates
+`api/version.ts`, so the endpoint this section tells you to curl does not exist on the live
+service yet. It is not unmeasurable; it proves the image was built before that commit, which
+bounds the drift from below. The sentinel reports it as an issue on a **green** run, and
+deliberately does not compare that bound against the 14-day threshold: a lower bound can
+prove a deploy is stale, never that it is fresh. The first deploy makes `/version` answer,
+the measurement becomes exact, and the issue closes.
+
+This is **deploy** staleness, not corpus-verification staleness. Whether a record is inside
+its `last_verified` SLA is `content-watch.yml`'s question and `make freshness`'s; a record
+verified this morning is still invisible to every reader until a deploy carries it.
+
 ## Health & rollback
 - **Liveness:** `GET /livez` only proves the process can answer; it never calls a
   dependency. A non-200/crash means restart or replace the container.
