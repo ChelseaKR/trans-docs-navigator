@@ -1,0 +1,361 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ChelseaKR/trans-docs-navigator/api/v1/corpus.schema.json",
+  "title": "GET /api/v1/corpus",
+  "description": "Every corpus record, optionally narrowed by jurisdiction and/or language.",
+  "type": "object",
+  "properties": {
+    "api_version": {
+      "const": "1"
+    },
+    "generated_on": {
+      "type": "string",
+      "description": "ISO date this response's freshness was evaluated against."
+    },
+    "disclosure": {
+      "$ref": "#/$defs/disclosure"
+    },
+    "verification": {
+      "$ref": "#/$defs/verification"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "filters": {
+          "type": "object",
+          "properties": {
+            "jurisdiction": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "language": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "en",
+                "es",
+                null
+              ]
+            }
+          },
+          "required": [
+            "jurisdiction",
+            "language"
+          ],
+          "additionalProperties": false
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/record"
+          }
+        }
+      },
+      "required": [
+        "filters",
+        "records"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "api_version",
+    "generated_on",
+    "disclosure",
+    "verification",
+    "data"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "disclosure": {
+      "type": "object",
+      "description": "Guarantees that travel with the data. A consumer must display these.",
+      "properties": {
+        "not_legal_advice": {
+          "type": "string"
+        },
+        "ai_assisted": {
+          "type": "string"
+        },
+        "terms_path": {
+          "type": "string"
+        },
+        "consumer_terms": {
+          "type": "null",
+          "description": "Always null. Terms for API consumers are a legal judgement this project has not obtained; an explicit absence is published rather than invented wording."
+        },
+        "consumer_terms_status": {
+          "const": "pending-counsel-review"
+        },
+        "license": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "not_legal_advice",
+        "ai_assisted",
+        "terms_path",
+        "consumer_terms",
+        "consumer_terms_status",
+        "license"
+      ],
+      "additionalProperties": false
+    },
+    "verification": {
+      "type": "object",
+      "description": "Corpus-wide honesty header, present on every response.",
+      "properties": {
+        "human_verified_records": {
+          "type": "integer",
+          "description": "Records in this response verified by a named human. Zero today."
+        },
+        "total_records": {
+          "type": "integer"
+        },
+        "readiness": {
+          "enum": [
+            "demonstration",
+            "partially-verified",
+            "verified"
+          ]
+        }
+      },
+      "required": [
+        "human_verified_records",
+        "total_records",
+        "readiness"
+      ],
+      "additionalProperties": false
+    },
+    "record": {
+      "type": "object",
+      "description": "One citable corpus record, with mandatory provenance.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "jurisdiction": {
+          "type": "string"
+        },
+        "document_type": {
+          "enum": [
+            "court-order",
+            "ssa-card",
+            "drivers-license",
+            "passport",
+            "birth-certificate",
+            "financial-records",
+            "green-card",
+            "naturalization-certificate",
+            "ead",
+            "selective-service",
+            "military-records",
+            "trusted-traveler",
+            "federal-employment-records"
+          ]
+        },
+        "change_type": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "name",
+              "gender-marker"
+            ]
+          }
+        },
+        "topic": {
+          "type": "string"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "detail": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cost": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "amount_usd": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "description": "null means the corpus states no amount. Never estimated."
+            },
+            "note": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "fee_waiver": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "amount_usd",
+            "note",
+            "fee_waiver"
+          ],
+          "additionalProperties": false
+        },
+        "timeline": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "typical": {
+              "type": "string"
+            },
+            "note": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "typical",
+            "note"
+          ],
+          "additionalProperties": false
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "discretionary": {
+          "type": "boolean"
+        },
+        "form_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "language": {
+          "enum": [
+            "en",
+            "es"
+          ]
+        },
+        "audience": {
+          "enum": [
+            "adult",
+            "minor"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "description": "Provenance for a single substantive claim. Guardrail 1: no claim without this.",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "The official page this claim is cited to."
+            },
+            "title": {
+              "type": "string"
+            },
+            "last_verified": {
+              "type": "string",
+              "description": "ISO date (YYYY-MM-DD)."
+            },
+            "verifier": {
+              "type": "string",
+              "description": "The name recorded as verifier. May be a placeholder — see verifier_is_placeholder."
+            }
+          },
+          "required": [
+            "url",
+            "title",
+            "last_verified",
+            "verifier"
+          ],
+          "additionalProperties": false
+        },
+        "verification_status": {
+          "enum": [
+            "verified",
+            "needs_reverification",
+            "unverified"
+          ],
+          "description": "What a reviewer wrote down about this record. NOT, by itself, evidence that a human checked it — read human_verified for that."
+        },
+        "human_verified": {
+          "type": "boolean",
+          "description": "True only when source.verifier is a real, non-placeholder human on the project's roster. False for every record in the corpus today."
+        },
+        "verifier_is_placeholder": {
+          "type": "boolean",
+          "description": "True when source.verifier is a roster placeholder such as 'Pilot Seed Reviewer'."
+        },
+        "serving_status": {
+          "enum": [
+            "current",
+            "degraded"
+          ],
+          "description": "What freshness says as of generated_on. A 'degraded' record must not be republished as a current statement of the law."
+        },
+        "serving_reason": {
+          "enum": [
+            "verified-within-sla",
+            "past-sla",
+            "needs-reverification",
+            "unverified",
+            "future-date"
+          ]
+        },
+        "age_days": {
+          "type": "integer",
+          "description": "Days between source.last_verified and generated_on. Negative means a future-dated record."
+        },
+        "recheck_sla_days": {
+          "type": "integer"
+        },
+        "drift_watchable": {
+          "type": "boolean",
+          "description": "False when nothing can automatically detect this cited page changing — no committed drift baseline, or a source the pipeline cannot fetch."
+        }
+      },
+      "required": [
+        "id",
+        "jurisdiction",
+        "document_type",
+        "change_type",
+        "topic",
+        "statement",
+        "detail",
+        "cost",
+        "timeline",
+        "prerequisites",
+        "discretionary",
+        "form_refs",
+        "language",
+        "audience",
+        "source",
+        "verification_status",
+        "human_verified",
+        "verifier_is_placeholder",
+        "serving_status",
+        "serving_reason",
+        "age_days",
+        "recheck_sla_days",
+        "drift_watchable"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

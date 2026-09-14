@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ChelseaKR/trans-docs-navigator/api/v1/jurisdictions.schema.json",
+  "title": "GET /api/v1/jurisdictions",
+  "description": "The coverage index: every jurisdiction the corpus holds at least one record for.",
+  "type": "object",
+  "properties": {
+    "api_version": {
+      "const": "1"
+    },
+    "generated_on": {
+      "type": "string",
+      "description": "ISO date this response's freshness was evaluated against."
+    },
+    "disclosure": {
+      "$ref": "#/$defs/disclosure"
+    },
+    "verification": {
+      "$ref": "#/$defs/verification"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "jurisdictions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "jurisdiction": {
+                "type": "string"
+              },
+              "record_count": {
+                "type": "integer"
+              },
+              "human_verified_records": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "jurisdiction",
+              "record_count",
+              "human_verified_records"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "jurisdictions"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "api_version",
+    "generated_on",
+    "disclosure",
+    "verification",
+    "data"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "disclosure": {
+      "type": "object",
+      "description": "Guarantees that travel with the data. A consumer must display these.",
+      "properties": {
+        "not_legal_advice": {
+          "type": "string"
+        },
+        "ai_assisted": {
+          "type": "string"
+        },
+        "terms_path": {
+          "type": "string"
+        },
+        "consumer_terms": {
+          "type": "null",
+          "description": "Always null. Terms for API consumers are a legal judgement this project has not obtained; an explicit absence is published rather than invented wording."
+        },
+        "consumer_terms_status": {
+          "const": "pending-counsel-review"
+        },
+        "license": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "not_legal_advice",
+        "ai_assisted",
+        "terms_path",
+        "consumer_terms",
+        "consumer_terms_status",
+        "license"
+      ],
+      "additionalProperties": false
+    },
+    "verification": {
+      "type": "object",
+      "description": "Corpus-wide honesty header, present on every response.",
+      "properties": {
+        "human_verified_records": {
+          "type": "integer",
+          "description": "Records in this response verified by a named human. Zero today."
+        },
+        "total_records": {
+          "type": "integer"
+        },
+        "readiness": {
+          "enum": [
+            "demonstration",
+            "partially-verified",
+            "verified"
+          ]
+        }
+      },
+      "required": [
+        "human_verified_records",
+        "total_records",
+        "readiness"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -31,6 +31,15 @@ import { robotsTxt, sitemapXml } from "../src/seo.ts";
 import { asLanguage } from "../src/i18n/index.ts";
 import { serviceWorkerScript } from "../src/offline.ts";
 import { metricMethod, metricRoute, renderPrometheusMetrics } from "./metrics.ts";
+import {
+  API_PREFIX,
+  API_VERSION,
+  getChecklist,
+  getCorpus,
+  getJurisdiction,
+  getJurisdictions,
+  getReferrals,
+} from "./public-api.ts";
 import { buildInfo } from "./version.ts";
 
 /** Input bounds — abuse/DoS resistance + predictable resource use. */
@@ -41,8 +50,11 @@ export const LIMITS = {
   maxArrayItems: 16,
 } as const;
 
-const CHANGE_TYPES: readonly ChangeType[] = ["name", "gender-marker"];
-const DOCUMENT_TYPES: readonly DocumentType[] = [
+// Exported so the published JSON Schemas (scripts/api-schemas.ts) enumerate exactly what
+// this router accepts. Two hand-kept copies of an enum is how a schema starts promising a
+// value the service rejects; tests/public-api.test.ts pins them to each other.
+export const CHANGE_TYPES: readonly ChangeType[] = ["name", "gender-marker"];
+export const DOCUMENT_TYPES: readonly DocumentType[] = [
   "court-order",
   "ssa-card",
   "drivers-license",
@@ -359,6 +371,125 @@ function notFound(lang: Language): RouteResponse {
   };
 }
 
+// ── Partner read-API dispatch (api/public-api.ts, #232) ────────────────────────────────
+//
+// Separate from the HTML routes for two reasons. It must never fall through to an HTML
+// 404 page — a consumer parsing JSON would then try to parse a document — and its errors
+// must be machine-readable. Both error shapes below are FIXED strings: nothing from the
+// request is copied into a response, so the non-reflection guarantee
+// (tests/privacy-egress.test.ts) holds on these routes exactly as it does on the pages.
+
+const JSON_INDENT = 2;
+
+function apiJson(status: number, value: unknown, log?: RouteResponse["log"]): RouteResponse {
+  return {
+    status,
+    contentType: JSON_CT,
+    body: JSON.stringify(value, null, JSON_INDENT),
+    ...(log ? { log } : {}),
+  };
+}
+
+/** A machine-readable API error. `message` is a constant — never an echo of the input. */
+function apiError(status: number, code: string, message: string): RouteResponse {
+  return apiJson(status, { api_version: API_VERSION, error: { code, message } }, {
+    event: "api_error",
+    fields: { route: metricRoute("/api/v1"), status },
+  });
+}
+
+/**
+ * Read a language filter for the API. Unlike the HTML routes — where `asLanguage` falls back
+ * to English so a page always renders — an UNRECOGNIZED value here returns null so the caller
+ * can 400. A partner that asks for a locale we do not have must be told so, not silently
+ * handed English rows and left to publish them as that locale's coverage.
+ */
+function apiLanguage(url: URL): Language | null | undefined {
+  const raw = languageParam(url);
+  if (raw === null) return undefined; // absent = no filter
+  return raw === "en" || raw === "es" ? raw : null;
+}
+
+function apiRoute(p: string, url: URL, today?: string): RouteResponse {
+  const rest = p.slice(API_PREFIX.length).replace(/^\/+/, "").replace(/\/+$/, "");
+  const segments = rest === "" ? [] : rest.split("/");
+  const lang = apiLanguage(url);
+  if (lang === null) {
+    return apiError(400, "unsupported_language", "Supported values for `language` are: en, es.");
+  }
+
+  // /api/v1/corpus — every record, optionally narrowed.
+  if (segments.length === 1 && segments[0] === "corpus") {
+    const raw = url.searchParams.get("jurisdiction");
+    if (raw !== null && !JURISDICTION_RE.test(raw)) {
+      return apiError(400, "invalid_jurisdiction", "`jurisdiction` must match US or US-XX.");
+    }
+    return apiJson(200, getCorpus({ ...(raw !== null ? { jurisdiction: raw } : {}), ...(lang ? { language: lang } : {}), today }), {
+      event: "api_corpus",
+      fields: { route: "/api/v1/corpus", status: 200 },
+    });
+  }
+
+  // /api/v1/jurisdictions — the coverage index.
+  if (segments.length === 1 && segments[0] === "jurisdictions") {
+    return apiJson(200, getJurisdictions({ today }), {
+      event: "api_jurisdictions",
+      fields: { route: "/api/v1/jurisdictions", status: 200 },
+    });
+  }
+
+  // /api/v1/jurisdictions/{code} — one jurisdiction. A WELL-FORMED but uncovered id is a
+  // 200 carrying `status: "not_covered"`, never a 404: 404 would say "no such thing", and
+  // the honest answer is "we have not researched it". A MALFORMED id is still a 400.
+  if (segments.length === 2 && segments[0] === "jurisdictions") {
+    const id = segments[1]!;
+    if (!JURISDICTION_RE.test(id)) {
+      return apiError(400, "invalid_jurisdiction", "Jurisdiction must match US or US-XX.");
+    }
+    return apiJson(200, getJurisdiction(id, { ...(lang ? { language: lang } : {}), today }), {
+      event: "api_jurisdiction",
+      fields: { route: "/api/v1/jurisdictions/:jurisdiction", jurisdiction: id, status: 200 },
+    });
+  }
+
+  // /api/v1/checklist — the same bounded selection grammar as /checklist.
+  if (segments.length === 1 && segments[0] === "checklist") {
+    const intake = parseIntake(url);
+    if (!intake) {
+      return apiError(400, "invalid_jurisdiction", "`jurisdiction` must match US or US-XX.");
+    }
+    return apiJson(200, getChecklist(intake, { today }), {
+      event: "api_checklist",
+      fields: {
+        route: "/api/v1/checklist",
+        jurisdiction: intake.jurisdiction,
+        change_types: intake.change_types,
+        documents: intake.documents,
+        language: intake.language,
+        status: 200,
+      },
+    });
+  }
+
+  // /api/v1/referrals/{code} — same not_covered discipline as the jurisdiction route.
+  if (segments.length === 2 && segments[0] === "referrals") {
+    const id = segments[1]!;
+    if (!JURISDICTION_RE.test(id)) {
+      return apiError(400, "invalid_jurisdiction", "Jurisdiction must match US or US-XX.");
+    }
+    return apiJson(200, getReferrals(id, { ...(lang ? { language: lang } : {}), today }), {
+      event: "api_referrals",
+      fields: { route: "/api/v1/referrals/:jurisdiction", jurisdiction: id, status: 200 },
+    });
+  }
+
+  return apiError(
+    404,
+    "unknown_endpoint",
+    "No such endpoint. The published response schemas are in docs/api/ in this repository.",
+  );
+}
+
 /**
  * Resolve a dynamic route. Static files and the HTTP plumbing live in server.ts;
  * `today` is injectable for deterministic tests.
@@ -399,6 +530,14 @@ export function handleRoute(method: string, url: URL, today?: string): RouteResp
   }
   if (p === "/sitemap.xml") {
     return { status: 200, contentType: "application/xml; charset=utf-8", body: sitemapXml(indexablePaths()) };
+  }
+
+  // ── Versioned partner read-API (EXP-07, #232) ─────────────────────────────────────
+  // Read-only by construction: this router only ever answers GET/HEAD (the 405 above),
+  // so there is no write surface to secure. Every payload is built by api/public-api.ts,
+  // which attaches mandatory provenance; this block only parses input and picks a status.
+  if (p === API_PREFIX || p.startsWith(API_PREFIX + "/")) {
+    return apiRoute(p, url, today);
   }
 
   // Container liveness. The Dockerfile HEALTHCHECK, AWS_LWA_READINESS_CHECK_PATH and
