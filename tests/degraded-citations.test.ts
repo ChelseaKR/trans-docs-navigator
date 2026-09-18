@@ -88,7 +88,7 @@ test("every rendered checklist step carries at least one official source link", 
   }
 });
 
-test("a step whose every record lapsed still links the official page, labelled as unchecked", () => {
+test("a step whose every record lapsed still links the official page, labeled as unchecked", () => {
   // Alabama birth certificates were one of exactly three cells already in this state on
   // 2026-09-07 — measured, not hypothetical.
   const checklist = buildChecklist(intakeFor("US-AL", "birth-certificate"), TODAY);

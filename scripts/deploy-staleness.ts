@@ -48,7 +48,7 @@
 // unmeasurable case below throws `StalenessUnknown` and exits non-zero rather than
 // returning a number that would read as a measurement.
 //
-// Its corollary, which costs more to honour: RED MUST MEAN THE DETECTOR IS BROKEN, and
+// Its corollary, which costs more to honor: RED MUST MEAN THE DETECTOR IS BROKEN, and
 // nothing else. A scheduled check that is red for weeks stops being read, so a red run
 // has to be rare and has to mean something is wrong with the measuring, not with the
 // thing measured. An overdue deploy is reported as an ISSUE on a green run.

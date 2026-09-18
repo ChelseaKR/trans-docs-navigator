@@ -619,7 +619,7 @@ test("the CLI refuses with a non-zero exit when it cannot reach the service", as
   );
 });
 
-test("parseArgs rejects what it cannot honour instead of guessing", () => {
+test("parseArgs rejects what it cannot honor instead of guessing", () => {
   assert.equal(parseArgs([]).maxAgeDays, DEFAULT_MAX_AGE_DAYS);
   assert.equal(parseArgs(["--max-age-days", "30"]).maxAgeDays, 30);
   assert.equal(parseArgs(["--url", "https://x.test/"]).url, "https://x.test/");

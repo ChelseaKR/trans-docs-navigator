@@ -11,7 +11,7 @@
  * birth state this app deliberately never asks for (#250). What these tests hold is the
  * disclosure: that every surface rendering a birth-certificate step says the rules apply
  * only if that state issued the certificate, in both languages, on the screen and on the
- * paper packet, and that it says nothing about one state honouring another's document.
+ * paper packet, and that it says nothing about one state honoring another's document.
  *
  * Escaping note, measured in this repo on 2026-09-07: a raw-substring assertion against
  * rendered HTML cannot fail for most real prose, because `'` renders as `&#39;`. Every
@@ -146,7 +146,7 @@ test("a plan with no birth certificate in it says nothing about one", () => {
 test("the scope line is exactly the locale string — it makes no recognition claim", () => {
   // Structure, not a denylist of forbidden words: the rendered sentence has to BE the
   // reviewed string, so nothing can be assembled around it at render time. Whether one
-  // state honours another's document is #241's question and is not answered anywhere here.
+  // state honors another's document is #241's question and is not answered anywhere here.
   const cl = buildChecklist(intake({ jurisdiction: "US-TX" }), today);
   const html = renderChecklist(cl, corpus, "en");
   const rendered = html.match(/<p class="flag" role="note">([^<]*)<\/p>/g) ?? [];

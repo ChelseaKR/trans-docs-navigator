@@ -206,7 +206,7 @@ i18n-overflow: gate-count
 # (needs k6 + a running server, so it is not part of this merge-blocking target).
 #
 # #153: this is the ONE gate in `verify` with an explicit ordering constraint beyond
-# gate-count. #148 parallelised this suite with -j4, which means this gate used to run
+# gate-count. #148 parallelized this suite with -j4, which means this gate used to run
 # concurrently with up to three others in the same `make verify` — including a
 # real-browser Playwright pass (i18n-overflow) and the coverage-gated test suite (by
 # far the two longest-running gates, ~1-2 minutes each; see the NPROC comment above) —

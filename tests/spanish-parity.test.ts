@@ -55,7 +55,7 @@ test("error pages are Spanish under ?language=es", () => {
 });
 
 test("Washington now has Spanish parity (court-order + drivers-license) — no thinner-coverage note", () => {
-  // Washington was the last Spanish gap: EN had court-order and driver's-licence records
+  // Washington was the last Spanish gap: EN had court-order and driver's-license records
   // with no ES twin, so a Spanish user got the honest "not ready yet" note instead of steps.
   // Those records now exist, so the note must no longer fire — and the ES steps must render.
   const wa = handleRoute(

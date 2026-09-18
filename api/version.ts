@@ -65,7 +65,7 @@ function readCommit(env: NodeJS.ProcessEnv): string | null {
   return COMMIT_RE.test(raw) ? raw : null;
 }
 
-/** Accept a build time only if it actually parses as a date; normalise to ISO-8601. */
+/** Accept a build time only if it actually parses as a date; normalize to ISO-8601. */
 function readBuiltAt(env: NodeJS.ProcessEnv): string | null {
   const raw = (env.BUILD_TIME ?? "").trim();
   if (raw === "") return null;

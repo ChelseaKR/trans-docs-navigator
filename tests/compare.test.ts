@@ -332,7 +332,7 @@ test("compare results: sort toggle — alphabetical by default, a plain count-so
   assert.match(alpha, new RegExp(`<a href="/compare\\?[^"]*sort=count[^"]*">${c.sortCount}</a>`));
 });
 
-test("no editorial ranking: none of the compare CHROME (our own copy, not cited record text) contains a value judgement about a state", () => {
+test("no editorial ranking: none of the compare CHROME (our own copy, not cited record text) contains a value judgment about a state", () => {
   const forbidden = [
     "safe", "unsafe", "friendly", "hostile", "dangerous", "risky",
     "best", "worst", "better", "worse", "recommend", "top state", "avoid this state",

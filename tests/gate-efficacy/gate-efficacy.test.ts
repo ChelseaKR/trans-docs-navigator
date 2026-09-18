@@ -264,7 +264,7 @@ test("i18n-bcp47 gate fails on a malformed language tag", () => {
 // Harm: THE bug this issue is about. A landmark's aria-label is typed in English by
 // hand in a src/ rendering template instead of sourced from the locale bundle, so it
 // renders unchanged on `?language=es` pages — invisible to both `make a11y` (a
-// labelled landmark passes regardless of language) and `make i18n` (key parity has
+// labeled landmark passes regardless of language) and `make i18n` (key parity has
 // nothing to compare against a string that was never a bundle key). Also proves the
 // gate does not flag src/i18n/ itself, which legitimately holds the string data.
 test("i18n-hardcoded gate fails on a hardcoded aria-label in a src/ rendering template", () => {

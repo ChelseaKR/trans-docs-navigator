@@ -289,7 +289,7 @@ lives under `[Unreleased]`.
   each of `feed`/`change_id`/`reviewed_at` missing and empty, and an impossible calendar
   date (`2026-02-30`) in the field that records when a human confirmed the withdrawal. The
   two shape refusals on the `relocation` annotation were unexecuted for the same reason and
-  are covered in the same pass. No behaviour changed: this is the guard being proved rather
+  are covered in the same pass. No behavior changed: this is the guard being proved rather
   than assumed. `api/corpus.ts` goes 95.54% → 100% line coverage.
 - **Eight comparisons in `tests/degraded-citations.test.ts` bypassed the escaping rule that
   file's own header states.** The rule exists because a raw comparison against rendered HTML
@@ -328,7 +328,7 @@ lives under `[Unreleased]`.
 
   **Measured before the rule was written:** of 329 string leaves and 24 function leaves,
   exactly **one** pair is identical (`docLabels.trusted-traveler` — "TSA PreCheck / Global
-  Entry", two CBP programme names) and no function pair is. So the list ships with one
+  Entry", two CBP program names) and no function pair is. So the list ships with one
   entry and the mechanical exemptions currently exempt nothing; both counts print in the
   passing line, so a widening escape hatch shows up in a green run rather than only in the
   code. There is deliberately no "short ALL-CAPS token" exemption: it cannot tell `CSV`
@@ -363,7 +363,7 @@ lives under `[Unreleased]`.
   and every surface that renders steps says it: the screen, the printed packet, and a
   footnote under `/compare`'s birth-certificate column, in English and Spanish. The
   records shown are unchanged — routing them elsewhere needs a state of birth this app
-  deliberately never asks for (#250) — and the line makes no claim that any state honours
+  deliberately never asks for (#250) — and the line makes no claim that any state honors
   another state's document, which is a separate and still-unanswered question (#241).
 
 - **A step whose sources had all gone stale told the reader to "check the official source"
@@ -377,7 +377,7 @@ lives under `[Unreleased]`.
   thing removed.
 
   Measured on 2026-09-07 this was live for three cells: Alabama birth certificates, and
-  Montana and South Dakota driver's licences. It is not a corner case for long. All 438
+  Montana and South Dakota driver's licenses. It is not a corner case for long. All 438
   records serving today carry a 90-day SLA, and 436 of them share `last_verified:
   2026-07-13`, so on **2026-10-12 the corpus goes from 436 serving records to zero in a
   single day** and every step in every state renders this way at once.
@@ -475,7 +475,7 @@ lives under `[Unreleased]`.
   the honesty failure `api/checklist.ts:hasNoStateCoverage` already guards against one level
   up. No editorial ranking anywhere: no score, no "safe"/"friendly"/"hostile" label, default
   sort is alphabetical, and the only other sort offered is a literal count
-  (`documentedPathCount` — "number of documented paths"), labelled as exactly that. Every
+  (`documentedPathCount` — "number of documented paths"), labeled as exactly that. Every
   cell links to the record(s) it came from via a `<details>` disclosure. The results table
   (up to 51 rows) is responsive: a horizontally-scrolling box on wider viewports, a per-row
   card list under 640px — both proven against the pseudolocale-overflow gate (G9) at ~40%

@@ -24,7 +24,7 @@ name: deploy-aws-preview
 # nothing was built, pushed or updated. davis-bike-hazard-map had the identical shape and
 # fixed it the same way on 2026-08-29. `vars` (unlike `secrets`) is readable from a
 # job-level `if:`, so the gate lives there: an unconfigured run renders `deploy` as
-# SKIPPED and grey, and `announce` states in warning text that nothing shipped.
+# SKIPPED and gray, and `announce` states in warning text that nothing shipped.
 on:
   workflow_dispatch:
 
@@ -162,7 +162,7 @@ jobs:
         run: |
           set -euo pipefail
           curl -fsS --max-time 60 "${URL}/readyz" | jq .
-      - name: Summarise
+      - name: Summarize
         if: always()
         env:
           URL: ${{ steps.activate.outputs.url }}

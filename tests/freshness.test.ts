@@ -79,7 +79,7 @@ test("a malformed NAV_TODAY pin is ignored, as servingToday's contract says", ()
   // on the first freshness evaluation rather than falling back to the real clock.
   const pinned = servingToday({ NAV_TODAY: "2026-13-45" } as NodeJS.ProcessEnv, new Date("2026-05-31T12:00:00Z"));
   assert.equal(pinned, "2026-05-31");
-  // A well-formed pin is still honoured.
+  // A well-formed pin is still honored.
   assert.equal(
     servingToday({ NAV_TODAY: "2026-01-02" } as NodeJS.ProcessEnv, new Date("2026-05-31T12:00:00Z")),
     "2026-01-02",

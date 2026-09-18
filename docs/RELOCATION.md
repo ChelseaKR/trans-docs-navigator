@@ -53,7 +53,7 @@ is an identity field, and the relocation surface holds none.
 
 The engine therefore refuses to answer the question it cannot answer. `governingJurisdiction()`
 returns `null` for a `state-of-birth` document instead of guessing the origin or the destination,
-and the plan emits **one step per state it covers in that plan**, each labelled with whose rules
+and the plan emits **one step per state it covers in that plan**, each labeled with whose rules
 they are, grouped under its own phase ("Where you were born") whose lead says the move changes
 nothing about it — and says that a birth in a sixth state is not covered. The records' own cited
 prose does the conditioning ("if you were born in California…").
@@ -75,7 +75,7 @@ Three failure modes are closed by construction, each with a test:
 ## The dependency graph
 
 This is the part that has real value, and the part most likely to hurt someone if it's
-wrong. Three things are modelled explicitly.
+wrong. Three things are modeled explicitly.
 
 **1. Prerequisite edges come from the corpus, not from us.** Records already carry a
 `prerequisites` field (Washington's driver's-license record says to bring a court order —
@@ -90,7 +90,7 @@ certified copy of the court-order name change"; New York: "a name change cannot 
 without a court order"; Illinois: "a certified copy of the Court Order of Legal Name Change also
 must be submitted"; Pennsylvania: the amendment form asks for "a certified court order that
 authorized the change"). Note the direction: in the six states we cover, **no** source makes an
-amended birth certificate a prerequisite for a driver's-licence marker change — all five states
+amended birth certificate a prerequisite for a driver's-license marker change — all five states
 that still allow one let you self-attest. We did not encode an edge no source states.
 
 **2. The closing door — steps that are only available while you still live in the origin
@@ -113,7 +113,7 @@ guardrail working, and there's a test asserting it stays that way.
 **3. Alternative routes, not phantom steps.** If you don't hold a court order, there are two
 routes to one: file in the origin while you still live there, or file in the destination
 once you arrive. Those are **alternatives**. Emitting both as sequential steps would be a lie
-of structure, so both are emitted, cross-linked (`alternative_to`), and labelled "do this one
+of structure, so both are emitted, cross-linked (`alternative_to`), and labeled "do this one
 or step N — not both."
 
 ## The cost model
@@ -142,7 +142,7 @@ The panel says *"This is a floor, not a total"* in both languages. Nothing is ex
 
 `cost.fee_waiver_form` and `cost.fee_waiver_criteria` (api/types.ts:Cost) surface *what the
 court publishes* — the official form, linked via `forms/registry.json`, and a literal quote of
-the court's own eligibility criteria — never this app's judgement about a specific reader's
+the court's own eligibility criteria — never this app's judgment about a specific reader's
 odds. GOVERNANCE.md forbids adjudicating eligibility, so there is no income calculator, no "you
 likely qualify," and no "you probably don't need to pay" anywhere in this feature. Concretely:
 
@@ -169,7 +169,7 @@ likely qualify," and no "you probably don't need to pay" anywhere in this featur
 - **A `$0` cost can be narrower than it looks.** Washington's license record prices the
   *gender-designation change* at $0 ("no additional fee ... during another transaction"). The
   license itself is not priced. The engine renders the source's note next to the amount so the
-  caveat travels with the number, but it inherits `pickCost`'s existing single-cost behaviour
+  caveat travels with the number, but it inherits `pickCost`'s existing single-cost behavior
   from the checklist engine rather than diverging from it.
 - **Moving costs themselves are out of scope.** Movers, deposits, lost income — the actual
   bulk of the 82% cost barrier — are not document fees and are not in this corpus.
@@ -178,7 +178,7 @@ likely qualify," and no "you probably don't need to pay" anywhere in this featur
 
 Deliberate silences, each one a thing a plausible-sounding planner would get wrong:
 
-- **Whether the destination honours an origin-issued document.** No corpus record addresses
+- **Whether the destination honors an origin-issued document.** No corpus record addresses
   interstate recognition, so no step asserts it. A held court order is `keep-from-origin`,
   and the page says plainly: *"Our sources do not say what the new state does with a document
   issued elsewhere, so we will not guess."*
@@ -268,7 +268,7 @@ applies here, tightened in one specific way:
   (`documented`, `needs_reverification`, `no_path_documented`, `not_covered`) — never a
   score, a color scale standing in for a verdict, or a label like "safe"/"friendly"/"hostile".
   Default sort is alphabetical; the only other sort offered is a literal count
-  (`documentedPathCount` — "number of documented paths"), labelled as exactly that. This is
+  (`documentedPathCount` — "number of documented paths"), labeled as exactly that. This is
   the same "risk map vs. cited plan" gap `/move` fills, in the other direction: a rating tells
   you a state is dangerous; this table tells you an official source describes no route to
   amend a birth certificate's sex field, cites the record, and leaves the reader to draw their
