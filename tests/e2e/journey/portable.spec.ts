@@ -15,7 +15,7 @@ import { expect, test } from "@playwright/test";
 //      module loader, no service worker;
 //   2. it issues NO request off the device, for anything, ever;
 //   3. carried past its corpus's re-check dates it says so, on the reader's own clock,
-//      and still hands over the official-source links it can no longer summarise.
+//      and still hands over the official-source links it can no longer summarize.
 //
 // The browser context is set offline, so a request that did fire would fail rather than
 // leak — and every request the page attempts is recorded and asserted to be empty of

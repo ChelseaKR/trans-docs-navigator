@@ -334,7 +334,7 @@ dataset:
 
 # The portable single-file edition (EXP-02, #233): ONE self-contained HTML file that runs
 # intake, the checklist, the packet, /move and /compare from `file://` with no request to
-# anything, for a reader in a hostile jurisdiction or an organiser handing out help on a
+# anything, for a reader in a hostile jurisdiction or an organizer handing out help on a
 # USB stick. It ships api/ and src/ unmodified — the same engine, the same corpus, the same
 # citations — so there is no second edition to drift.
 #
