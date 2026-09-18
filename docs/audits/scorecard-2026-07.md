@@ -232,7 +232,7 @@ here for the same reason it did in July: no releases exist (`git tag -l` is stil
   N/A for that reason. Do not read `Packaging 10/10` as "releases are signed".
 - **SAST 8 → 7.** A drop, and worth naming rather than burying: the reason string is
   unchanged ("SAST tool detected but not run on all commits"), so this is the same
-  commit-sampling behaviour the baseline already diagnosed as a normalization artifact,
+  commit-sampling behavior the baseline already diagnosed as a normalization artifact,
   re-sampled over a different (and much busier) commit window. Semgrep still runs on every
   push and PR into `main`. Flagged as watch-not-act; if it keeps sliding, re-examine rather
   than assuming the artifact explanation still holds.

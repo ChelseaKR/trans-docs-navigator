@@ -1910,7 +1910,7 @@ const AUTHORED_GOLD: GoldItem[] = [
 // poisoned gold set so the ACCURACY ORACLE'S OWN ability to fail can be proven. This is
 // the only gate that can tell a well-formed answer from a correct one, and nothing else
 // in the repo goes red if its scoring or thresholding is short-circuited. Unset in
-// production and in CI, so behaviour is identical.
+// production and in CI, so behavior is identical.
 const POISON_PATH = process.env.EVAL_GOLD_POISON;
 
 export const GOLD: GoldItem[] = POISON_PATH

@@ -327,5 +327,5 @@ even *questions* never leave the device.
   for the DPIA; eval must run against the client path (extend FIX-11). Output
   framing **[counsel-gated]**; **[community-gated]** for trust.
 - **Excellence bar:** Stage 1 — `/answer` parity on the gold set with the network
-  tab empty after load. Stage 2 — the `tests/bedrock.test.ts` rejection analogues
+  tab empty after load. Stage 2 — the `tests/bedrock.test.ts` rejection analogs
   pass against the on-device model in CI.

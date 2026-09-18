@@ -104,7 +104,7 @@ test("the unverified-rule warning does not overclaim", () => {
   assert.doesNotMatch(html, /We cannot show a current rule for this step/);
 });
 
-test("the engine never claims the destination honours an origin-issued document", () => {
+test("the engine never claims the destination honors an origin-issued document", () => {
   // The corpus contains no record about interstate recognition, so no step may assert it.
   // The held court order is classified `keep-from-origin` — "you have this; we don't know
   // what Washington does with it" — and the UI says exactly that, rather than guessing.
@@ -266,7 +266,7 @@ test("the two routes to one document are alternatives, not two things to do", ()
   assert.match(html, /not both/i, "the page must say to do one route or the other, not both");
 });
 
-test("the origin route is labelled as the OLD state's rules, not the new state's", () => {
+test("the origin route is labeled as the OLD state's rules, not the new state's", () => {
   // Regression: the origin route carried `redo-in-destination`, so it rendered as "The new
   // state has its own requirements · Texas" — false, and exactly backwards. Caught by
   // reading the real page.
@@ -457,7 +457,7 @@ test("potentially_waivable_usd is a SUBTOTAL of the known floor, never money add
     "the subtotal can never exceed the floor it is a slice of",
   );
 
-  // Rendered on a real plan page, clearly labelled as a fact about the fee, not the reader's
+  // Rendered on a real plan page, clearly labeled as a fact about the fee, not the reader's
   // odds (California's name-change AND gender-marker records both carry a known-shaped cost
   // note but an unstated amount, so use a real move where the corpus states one instead).
   const plan = buildRelocationPlan(intake({ origin: "US-CA", destination: "US-MI", held: [] }), TODAY, corpus);
@@ -716,7 +716,7 @@ test("a Spanish plan never cites an English record — it reports a gap instead 
 test("a destination with no records in the user's language reports a gap, not a guess", () => {
   // The gap mechanism itself. The real corpus now has full EN/ES parity, so no live pair can
   // exercise it — but a future language-thin destination must still SAY so rather than
-  // silently serving the English record. Synthetic corpus: EN-only driver's-licence records.
+  // silently serving the English record. Synthetic corpus: EN-only driver's-license records.
   const enOnly = corpus.filter((r) => r.language === "en");
   const plan = buildRelocationPlan(intake({ destination: "US-WA", language: "es" }), TODAY, enOnly);
   assert.ok(plan.gaps.length > 0, "missing Spanish coverage must surface as a gap");

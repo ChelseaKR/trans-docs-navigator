@@ -38,7 +38,7 @@
 //      `verification_status` and `flagged_by`. A feed entry is evidence that a page
 //      moved; it is not evidence of what the page now says.
 //
-// DIRECTION OF ERROR. Every judgement call below fails toward `needs_reverification`.
+// DIRECTION OF ERROR. Every judgment call below fails toward `needs_reverification`.
 // Being told to re-check a source that did not really change costs a verifier one read;
 // the reverse costs a reader a filing.
 

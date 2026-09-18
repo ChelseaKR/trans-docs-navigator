@@ -53,6 +53,7 @@ const FALLBACK_STALE_DAYS = 30;
  */
 export const SHELL_ASSETS: readonly string[] = [
   "/assets/app.css",
+  "/assets/analytics.js",
   "/assets/offline.js",
   "/assets/progress.js",
   "/assets/resume-crypto.js",

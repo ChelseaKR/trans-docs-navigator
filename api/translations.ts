@@ -53,7 +53,7 @@ export const TRANSLATION_SUFFIX = ".es";
  * `source.url` and `source.title` are deliberately absent. A Spanish record may — and in
  * three places already does — cite the same agency's Spanish-language page, which is
  * better sourcing rather than drift. `sameSourceHost` below keeps that from becoming a
- * licence to cite a different agency.
+ * license to cite a different agency.
  */
 export const MIRRORED_FIELDS = [
   "jurisdiction",

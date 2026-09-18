@@ -12,13 +12,20 @@ export const en: LocaleBundle = {
     skip: "Skip to main content",
     bannerTitle: "Information, not legal advice",
     bannerBody: DISCLOSURE.aiAssisted, // title already carries the "not legal advice" sentence
-    footer: "No account. Form-fill identity details stay on your device. Checklist choices and optional questions are sent to the server to render a response; see Privacy.",
+    footer: "No account. Form-fill identity details stay on your device. Checklist choices and optional questions are sent to the server to render a response. Google Analytics counts page visits but never receives your choices, questions or identity details; see Privacy.",
     legalNav: "Legal and policies",
     termsLink: "Terms of Use",
     privacyLink: "Privacy",
     transparencyLink: "Transparency report",
     a11yLink: "Accessibility",
     methodologyLink: "How we source & verify",
+    analyticsOptOut: "Opt out of analytics",
+    analyticsOptIn: "Opt back in",
+    analyticsOptedOut: "You opted out. From the next page you open, this site will not load Google Analytics in this browser.",
+    analyticsIsOut: "You opted out. This site does not load Google Analytics in this browser.",
+    analyticsBackIn: "You opted back in. Analytics starts again on the next page you open.",
+    analyticsSignal: "Analytics is off because your browser sends Global Privacy Control or Do Not Track.",
+    analyticsNoStorage: "This browser blocks site storage, so your choice cannot be saved here. Global Privacy Control or Do Not Track keeps analytics off.",
     verifyNote: "This is general information, not legal advice. Requirements change, so always confirm with the official source linked on each step, and talk to a lawyer or legal-aid organization about your specific situation.",
     notFilingNote: "This tool doesn't file anything for you and isn't legal advice. Download the official form, complete it, and submit it yourself.",
     sources: "Sources",
@@ -392,7 +399,7 @@ export const en: LocaleBundle = {
       {
         h: "The short version",
         html:
-          "<p>The Service has no account or user-profile database. Identity details entered in the form helper stay on your device. To render a checklist or answer, your browser sends the choices in the page address and any optional free-text question to the server. <strong>Do not put a name, Social Security number, or other identifying detail in a question.</strong></p>",
+          "<p>The Service has no account or user-profile database. Identity details entered in the form helper stay on your device. To render a checklist or answer, your browser sends the choices in the page address and any optional free-text question to the server. <strong>Do not put a name, Social Security number, or other identifying detail in a question.</strong> Google Analytics counts page visits, but never receives your choices, questions or identity details, and you can turn it off (see below).</p>",
       },
       {
         h: "Identity details used for forms",
@@ -410,8 +417,21 @@ export const en: LocaleBundle = {
           "<p>Application logs use a fixed allowlist: route template, response status, jurisdiction, selected change/document types, language, and other bounded operational fields. They exclude the raw question and identity-form fields. The live preview's application-log retention is 14 days; the production infrastructure template uses 30 days. Hosting and edge providers may keep separate network or access metadata under their own retention policies.</p>",
       },
       {
-        h: "No cookies, no trackers",
-        html: "<p>The Service uses no advertising or analytics trackers and sets no tracking cookies.</p>",
+        h: "Google Analytics (page counts only)",
+        html:
+          "<p>The Service uses Google Analytics 4, a service of Google LLC in the United States, to count visits to its pages. For each page you view, Google receives the page address <strong>with everything after the “?” removed</strong>, so your state, change and document choices, court-order and minor choices, and any question never reach Google. It also receives the page title, the domain of the site that linked you here (never the full address), your browser, device type, screen size and language, and an approximate location that Google works out from your IP address. Google Analytics does not log or store IP addresses. It may also record how far you scroll and clicks on links that leave the Service.</p>" +
+          "<p>Google Analytics never receives your name, date of birth, Social Security number, identity-document details, form-helper entries, saved progress, or any question you type. A page whose address carries a question does not load Google Analytics at all, and neither does the relocation planner (“Plan a move to another state”), even without your states in the address.</p>" +
+          "<p>No advertising trackers are used. Google signals and ad personalization are off, and the advertising consent signals (ad storage, ad user data and ad personalization) are denied for every visitor. Google keeps this data for 14 months.</p>",
+      },
+      {
+        h: "Cookies",
+        html:
+          "<p>Outside the European Economic Area, the United Kingdom and Switzerland, Google Analytics sets two first-party cookies, <code>_ga</code> and <code>_ga_8HZFD5R23E</code>, to tell a returning browser apart from a new one. They last up to two years. In the European Economic Area, the United Kingdom and Switzerland, analytics storage is denied, so no Google Analytics cookie is set, but Google still receives a measurement without a cookie identifier for each page you view. The Service sets no other cookies.</p>",
+      },
+      {
+        h: "Turning analytics off",
+        html:
+          "<p>Google Analytics does not load if your browser sends Global Privacy Control or Do Not Track. You can also use the “Opt out of analytics” button at the bottom of any page. That choice is saved in this browser’s local storage as <code>trans-docs-navigator:analytics-opt-out</code>, not in a cookie, and covers this browser on this device only. Clearing this site’s data removes it. Opting out does not delete Google Analytics cookies that were already set; you can delete those in your browser settings. Read <a href=\"https://policies.google.com/technologies/partner-sites\">how Google uses information from sites that use its services</a>.</p>",
       },
       {
         h: "Optional “Save your progress” (on your device)",
@@ -426,7 +446,7 @@ export const en: LocaleBundle = {
       {
         h: "Why we built it this way",
         html:
-          "<p>We assume some people who use this may be in places that are hostile to trans people. The Service therefore avoids accounts and identity databases, keeps form identity details on-device, prevents raw questions from entering application logs or caches, and bounds application-log retention. This minimizes records; it does not mean no server or infrastructure record can exist.</p>",
+          "<p>We assume some people who use this may be in places that are hostile to trans people. The Service therefore avoids accounts and identity databases, keeps form identity details on-device, prevents raw questions from entering application logs or caches, and bounds application-log retention. Google Analytics is limited to page counts without your choices or questions, and you can turn it off. This minimizes records; it does not mean no server or infrastructure record can exist.</p>",
       },
       {
         h: "Your choices",
@@ -442,12 +462,12 @@ export const en: LocaleBundle = {
       {
         h: "What we do",
         html:
-          "<ul><li>Semantic HTML with a skip link and labelled controls.</li><li>The core flow works with <strong>no JavaScript</strong>.</li><li>Keyboard-complete paths and always-visible focus.</li><li>Sufficient colour contrast, checked automatically on every change.</li><li>Reduced-motion support and a calm, low-stimulation default.</li><li>Readable at 200% zoom and on small screens.</li></ul>",
+          "<ul><li>Semantic HTML with a skip link and labeled controls.</li><li>The core flow works with <strong>no JavaScript</strong>.</li><li>Keyboard-complete paths and always-visible focus.</li><li>Sufficient color contrast, checked automatically on every change.</li><li>Reduced-motion support and a calm, low-stimulation default.</li><li>Readable at 200% zoom and on small screens.</li></ul>",
       },
       {
         h: "What is still in progress",
         html:
-          "<p>A full manual screen-reader, keyboard-only, and zoom walkthrough is part of our release process and is being completed before public launch. Automated checks (axe/pa11y and colour contrast) run on every change.</p>",
+          "<p>A full manual screen-reader, keyboard-only, and zoom walkthrough is part of our release process and is being completed before public launch. Automated checks (axe/pa11y and color contrast) run on every change.</p>",
       },
       {
         h: "Tell us about a barrier",
@@ -535,7 +555,7 @@ export const en: LocaleBundle = {
 
     feedIndexTitle: "Get notified when a state's records change (RSS)",
     feedIndexDescription:
-      "Subscribe by RSS or Atom to updates for any state's name and gender-marker change records. No account, no email address, no tracking.",
+      "Subscribe by RSS or Atom to updates for any state's name and gender-marker change records. No account or email, and the feeds are never tracked.",
     feedIndexLead:
       "Pick a state to get its feed link. Each feed tells you when we update our own records for that state — never a claim that the law itself changed.",
     feedIndexAllHeading: "All state feeds",

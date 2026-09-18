@@ -12,13 +12,20 @@ export const es: LocaleBundle = {
     skip: "Saltar al contenido principal",
     bannerTitle: "Información, no asesoramiento legal",
     bannerBody: "Asistido por IA, basado en fuentes citadas.",
-    footer: "Sin cuenta. Los datos de identidad para formularios permanecen en su dispositivo. Las selecciones y preguntas opcionales se envían al servidor para generar una respuesta; consulte Privacidad.",
+    footer: "Sin cuenta. Los datos de identidad para formularios permanecen en su dispositivo. Las selecciones y preguntas opcionales se envían al servidor para generar una respuesta. Google Analytics cuenta las visitas a las páginas, pero nunca recibe sus selecciones, preguntas ni datos de identidad; consulte Privacidad.",
     legalNav: "Legal y políticas",
     termsLink: "Términos de uso",
     privacyLink: "Privacidad",
     transparencyLink: "Informe de transparencia",
     a11yLink: "Accesibilidad",
     methodologyLink: "Cómo obtenemos y verificamos la información",
+    analyticsOptOut: "Desactivar la analítica",
+    analyticsOptIn: "Volver a activarla",
+    analyticsOptedOut: "Desactivó la analítica. Desde la próxima página que abra, este sitio no cargará Google Analytics en este navegador.",
+    analyticsIsOut: "Desactivó la analítica. Este sitio no carga Google Analytics en este navegador.",
+    analyticsBackIn: "Volvió a activar la analítica. Funcionará de nuevo en la próxima página que abra.",
+    analyticsSignal: "La analítica está desactivada porque su navegador envía Global Privacy Control o Do Not Track.",
+    analyticsNoStorage: "Este navegador bloquea el almacenamiento del sitio, así que su elección no se puede guardar aquí. Global Privacy Control o Do Not Track mantienen la analítica desactivada.",
     verifyNote: "Esto es información general, no asesoramiento legal. Los requisitos cambian, así que confirme siempre con la fuente oficial enlazada en cada paso, y hable con un abogado o una organización de ayuda legal sobre su situación específica.",
     notFilingNote: "Esta herramienta no presenta nada por usted y no es asesoramiento legal. Descargue el formulario oficial, complételo y preséntelo usted mismo.",
     sources: "Fuentes",
@@ -398,7 +405,7 @@ export const es: LocaleBundle = {
       {
         h: "La versión corta",
         html:
-          "<p>El servicio no tiene cuentas ni una base de datos de perfiles de usuarios. Los datos de identidad ingresados en la herramienta para formularios permanecen en su dispositivo. Para mostrar una lista o respuesta, el navegador envía al servidor las selecciones de la dirección de la página y cualquier pregunta opcional de texto libre. <strong>No incluya su nombre, número de Seguro Social ni otros datos identificativos en una pregunta.</strong></p>",
+          "<p>El servicio no tiene cuentas ni una base de datos de perfiles de usuarios. Los datos de identidad ingresados en la herramienta para formularios permanecen en su dispositivo. Para mostrar una lista o respuesta, el navegador envía al servidor las selecciones de la dirección de la página y cualquier pregunta opcional de texto libre. <strong>No incluya su nombre, número de Seguro Social ni otros datos identificativos en una pregunta.</strong> Google Analytics cuenta las visitas a las páginas, pero nunca recibe sus selecciones, preguntas ni datos de identidad, y usted puede desactivarlo (vea más abajo).</p>",
       },
       {
         h: "Datos de identidad usados para formularios",
@@ -416,8 +423,21 @@ export const es: LocaleBundle = {
           "<p>Los registros de la aplicación usan una lista fija: plantilla de ruta, estado de respuesta, jurisdicción, tipos de cambio y documento elegidos, idioma y otros campos operativos limitados. Excluyen la pregunta sin procesar y los campos de identidad del formulario. La vista previa conserva esos registros durante 14 días; la plantilla de producción usa 30 días. Los proveedores de alojamiento y red pueden mantener metadatos separados según sus propias políticas.</p>",
       },
       {
-        h: "Sin cookies, sin rastreadores",
-        html: "<p>El servicio no usa rastreadores de publicidad ni de analítica, y no coloca cookies de seguimiento.</p>",
+        h: "Google Analytics (solo recuento de páginas)",
+        html:
+          "<p>El servicio usa Google Analytics 4, un servicio de Google LLC en Estados Unidos, para contar las visitas a sus páginas. Por cada página que ve, Google recibe la dirección de la página <strong>sin todo lo que va después del “?”</strong>, de modo que el estado, los cambios y documentos elegidos, las opciones sobre una orden judicial o una persona menor de edad y cualquier pregunta nunca llegan a Google. También recibe el título de la página, el dominio del sitio que le trajo aquí (nunca la dirección completa), su navegador, tipo de dispositivo, tamaño de pantalla e idioma, y una ubicación aproximada que Google calcula a partir de su dirección IP. Google Analytics no registra ni guarda direcciones IP. También puede registrar hasta dónde se desplaza y los clics en enlaces que salen del servicio.</p>" +
+          "<p>Google Analytics nunca recibe su nombre, fecha de nacimiento, número de Seguro Social, datos de documentos de identidad, lo que escriba en la herramienta para formularios, su progreso guardado ni ninguna pregunta que escriba. Una página cuya dirección contiene una pregunta no carga Google Analytics, y tampoco lo hace el planificador de mudanza, aunque la dirección no incluya sus estados.</p>" +
+          "<p>No se usan rastreadores de publicidad. Google Signals y la personalización de anuncios están desactivados, y las señales de consentimiento publicitario (almacenamiento de anuncios, datos de usuario para anuncios y personalización de anuncios) están denegadas para todas las personas. Google conserva estos datos durante 14 meses.</p>",
+      },
+      {
+        h: "Cookies",
+        html:
+          "<p>Fuera del Espacio Económico Europeo, el Reino Unido y Suiza, Google Analytics crea dos cookies propias, <code>_ga</code> y <code>_ga_8HZFD5R23E</code>, para distinguir un navegador que vuelve de uno nuevo. Duran hasta dos años. En el Espacio Económico Europeo, el Reino Unido y Suiza, el almacenamiento de analítica está denegado, así que no se crea ninguna cookie de Google Analytics, pero Google sigue recibiendo una medición sin identificador de cookie por cada página que ve. El servicio no crea otras cookies.</p>",
+      },
+      {
+        h: "Cómo desactivar la analítica",
+        html:
+          "<p>Google Analytics no se carga si su navegador envía Global Privacy Control o Do Not Track. También puede usar el botón “Desactivar la analítica” al final de cualquier página. Esa elección se guarda en el almacenamiento local de este navegador como <code>trans-docs-navigator:analytics-opt-out</code>, no en una cookie, y solo se aplica a este navegador en este dispositivo. Borrar los datos de este sitio la elimina. Desactivarla no borra las cookies de Google Analytics que ya existan; puede borrarlas en la configuración del navegador. Lea <a href=\"https://policies.google.com/technologies/partner-sites?hl=es\">cómo usa Google la información de los sitios que utilizan sus servicios</a>.</p>",
       },
       {
         h: "“Guardar su progreso” (opcional, en su dispositivo)",
@@ -432,7 +452,7 @@ export const es: LocaleBundle = {
       {
         h: "Por qué lo hicimos así",
         html:
-          "<p>Suponemos que algunas personas que lo usan pueden estar en lugares hostiles hacia las personas trans. Por eso el servicio evita cuentas y bases de datos de identidad, mantiene los datos de formularios en el dispositivo, impide que las preguntas sin procesar entren en los registros o la caché de la aplicación y limita la retención de registros. Esto reduce los datos; no significa que no pueda existir ningún registro del servidor o la infraestructura.</p>",
+          "<p>Suponemos que algunas personas que lo usan pueden estar en lugares hostiles hacia las personas trans. Por eso el servicio evita cuentas y bases de datos de identidad, mantiene los datos de formularios en el dispositivo, impide que las preguntas sin procesar entren en los registros o la caché de la aplicación y limita la retención de registros. Google Analytics se limita a contar páginas sin sus selecciones ni preguntas, y usted puede desactivarlo. Esto reduce los datos; no significa que no pueda existir ningún registro del servidor o la infraestructura.</p>",
       },
       {
         h: "Sus opciones",
@@ -543,7 +563,7 @@ export const es: LocaleBundle = {
 
     feedIndexTitle: "Reciba avisos cuando cambien los registros de un estado (RSS)",
     feedIndexDescription:
-      "Suscríbase por RSS o Atom a las actualizaciones de los registros de cambio de nombre y marcador de género. Sin cuenta, sin correo, sin rastreo.",
+      "Suscríbase por RSS o Atom a las actualizaciones de los registros de cambio de nombre y marcador de género. Sin cuenta ni correo; los canales nunca se rastrean.",
     feedIndexLead:
       "Elija un estado para obtener el enlace de su feed. Cada feed le indica cuándo actualizamos nuestros propios registros de ese estado — nunca una afirmación de que la ley misma cambió.",
     feedIndexAllHeading: "Todos los feeds por estado",

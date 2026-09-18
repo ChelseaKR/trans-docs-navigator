@@ -196,7 +196,11 @@ test("an unknown/uncovered jurisdiction 404s and never reflects the input", () =
   const r = handleRoute("GET", u(`/feeds/${encodeURIComponent(bogus)}.xml`));
   assert.equal(r.status, 404);
   assert.doesNotMatch(r.body, /ZZ/);
-  assert.doesNotMatch(r.body, /script/i);
+  // The only script on the 404 page is the site's own analytics loader (ADR 0007); the
+  // input's <script> must appear nowhere, raw or escaped.
+  const scripts = r.body.match(/<script\b[^>]*>/gi) ?? [];
+  assert.deepEqual(scripts, ['<script src="/assets/analytics.js" defer>']);
+  assert.doesNotMatch(r.body.replace('<script src="/assets/analytics.js" defer></script>', ""), /script/i);
 });
 
 test("a well-formed but uncovered US-XX jurisdiction 404s (validated against the corpus, not just the regex shape)", () => {

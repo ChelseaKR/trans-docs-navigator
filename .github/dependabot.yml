@@ -23,3 +23,41 @@ updates:
     directory: /
     schedule:
       interval: weekly
+  # The AWS provider constraints in infra/ (closed-VPC skeleton) and
+  # infra/preview/ (cost-light Lambda preview). Only Renovate's default
+  # `terraform` manager tracked these, until Renovate was disabled (#278).
+  - package-ecosystem: terraform
+    directories:
+      - /infra
+      - /infra/preview
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+
+# Not covered by any entry above, because Dependabot has no ecosystem for these
+# pins. Renovate's default `nvm`, `dockerfile` and `github-actions` managers
+# proposed bumps to them until it was disabled (#278). They are now a manual
+# check:
+#   - `.nvmrc` (read by codeql.yml via `node-version-file`), and the literal
+#     `node-version:` inputs to actions/setup-node in the other workflows
+#   - `COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:1.0.1` in the
+#     Dockerfile (Dependabot's docker ecosystem reads `FROM` lines only)
+#   - the `terraform_version:` input to hashicorp/setup-terraform in ci.yml
+
+# There is deliberately no `pip` (or `uv`) entry here.
+#
+# GitHub runs a job of its own against this repo — `dynamic/dependabot/update-graph`,
+# titled "Graph Update: pip in /corpus/snapshots" — which has failed all 7 of its runs
+# (2026-07-14 → 2026-09-06) and never passed. It reads three corpus snapshots whose
+# URL-derived names contain "requirements" as pip requirements files. That job is created
+# by GitHub's manifest detection, not by this file: it already runs even though nothing
+# here declares pip. Adding a pip entry would therefore not silence it — it would add a
+# second, weekly version-update job with no manifests to update.
+#
+# `exclude-paths` does not reach it either. GitHub documents it as "Version updates only",
+# and dependabot-core PR #15148 ("Honor exclude_paths in graph jobs") is still open. The
+# snapshots are not renamed because their names are their provenance.
+#
+# The full, dated finding is in README.md's Standards-conformance CI/CD row, and
+# tests/dependabot-pip-graph.test.ts fails if a real Python manifest ever lands here, so a
+# genuinely new pip failure cannot hide behind the known one. Issue #265.

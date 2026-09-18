@@ -2,7 +2,7 @@
 // checks (the ~30–40% that automation can decide, per the standard). It renders
 // every page template and asserts: language, title, viewport, single h1, skip
 // link + main landmark, visible-focus + reduced-motion styles, image alt text,
-// labelled form controls, no positive tabindex, and non-empty link/button text.
+// labeled form controls, no positive tabindex, and non-empty link/button text.
 //
 // HONEST SCOPE: this is NOT a full axe/pa11y run and does NOT replace the manual
 // screen-reader / keyboard / 200%-zoom walkthrough, which are REVIEW-GATED and
@@ -25,7 +25,7 @@ import { PALETTE, STYLE } from "../src/render.ts";
 import type { DocumentType } from "../api/types.ts";
 import { pass, fail } from "./util.ts";
 
-// ── Colour-contrast (WCAG 2.2 SC 1.4.3) ───────────────────────────────────────
+// ── Color-contrast (WCAG 2.2 SC 1.4.3) ───────────────────────────────────────
 // Automatable portion of contrast conformance: compute the real ratio for the
 // palette's text/background pairs. Normal text needs ≥ 4.5:1, large/bold UI ≥ 3:1.
 function srgbToLin(c: number): number {
@@ -199,7 +199,7 @@ function checkPage(p: Page): string[] {
     const text = b.replace(/<[^>]+>/g, "").trim();
     if (text.length === 0 && !/aria-label=/.test(b)) errs.push(`${p.name}: button without text`);
   }
-  // Every form control is labelled: id→<label for>, or wrapped in a <label>.
+  // Every form control is labeled: id→<label for>, or wrapped in a <label>.
   errs.push(...checkLabels(p));
   return errs;
 }

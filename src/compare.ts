@@ -6,7 +6,7 @@
 // STRUCTURAL statuses (api/types.ts:CoverageStatus), each one a fact about what the
 // corpus holds, never a characterization of a state. There is no score, no color scale
 // implying good/bad, and the one sort this page offers is a literal count ("number of
-// documented paths"), labelled as exactly that. If you're about to write a sentence
+// documented paths"), labeled as exactly that. If you're about to write a sentence
 // comparing states to each other, stop — that sentence does not belong here.
 
 import type { ChangeType, CompareCell, CompareRow, CompareTable, CorpusRecord, CoverageStatus, DocumentType, JurisdictionId, Language } from "../api/types.ts";

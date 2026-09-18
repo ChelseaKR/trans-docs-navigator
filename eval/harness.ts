@@ -71,7 +71,7 @@ export const THRESHOLDS: Thresholds = {
   // verbatim. The gold set defines exactly one expected-relevant record per accuracy
   // item (GoldItem.expect.citesRecord), not a full multi-document relevance judgment
   // set — so "precision" here is Precision@1 (does the top-ranked result match the
-  // expected record?), the standard single-relevant-document IR analogue, rather than
+  // expected record?), the standard single-relevant-document IR analog, rather than
   // Precision@20 (which has a hard ceiling of 1/20 for a single-relevant-doc gold set
   // and would be an unmeetable, meaningless gate at this corpus size).
   context_recall: 0.8,
