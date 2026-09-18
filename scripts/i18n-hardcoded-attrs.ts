@@ -1,6 +1,6 @@
 // i18n hardcoded-attribute gate (issue #151) — merge-blocking.
 //
-// The gap this closes: `make a11y` (scripts/a11y-lint.ts) accepts any labelled
+// The gap this closes: `make a11y` (scripts/a11y-lint.ts) accepts any labeled
 // landmark regardless of what language the label is written in — a mechanical WCAG
 // check has no notion of "wrong language". `make i18n` (scripts/i18n-parity.ts) only
 // proves key-for-key parity between locale bundles that ALREADY exist — an inline

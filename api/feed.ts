@@ -17,7 +17,7 @@
 //   (b) Derive entries PURELY from fields already on each record: `source.last_verified`
 //       is the date we RECORDED the claim against its official source. Group a
 //       jurisdiction's current records by that date; each distinct date is one feed
-//       entry, honestly labelled as OUR record history, never the law.
+//       entry, honestly labeled as OUR record history, never the law.
 //
 // WHAT `last_verified` DOES AND DOES NOT ASSERT (issue #251). It is a recorded date. It
 // does NOT say a named human read the source: that is `source.verifier`, checked through

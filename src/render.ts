@@ -1,7 +1,7 @@
 // Accessible server-side rendering (WCAG 2.2 AA target, audit §E).
 // Pages are usable with no client JavaScript; the form-fill page progressively
 // enhances. Every page carries the persistent "information, not legal advice"
-// disclosure (guardrail #2). Colour tokens meet AA contrast; focus is always
+// disclosure (guardrail #2). Color tokens meet AA contrast; focus is always
 // visible; motion respects prefers-reduced-motion.
 
 import type { Checklist, ChecklistStep, Cost, FormDef, GroundedAnswer, CorpusRecord, DocumentType, JurisdictionId, Language, PreparationItem } from "../api/types.ts";
@@ -77,10 +77,10 @@ export function reportErrorLinksEnabled(env: NodeJS.ProcessEnv = process.env): b
 
 
 /**
- * Colour tokens, exported so the a11y gate can assert WCAG 2.2 AA contrast ratios
+ * Color tokens, exported so the a11y gate can assert WCAG 2.2 AA contrast ratios
  * against the actual rendered palette (not a hand-copied duplicate). `screen` is the
- * default dark theme; `print` is the print-media override. On-token colours are the
- * foreground used ON a control of that colour (e.g. button/skip text).
+ * default dark theme; `print` is the print-media override. On-token colors are the
+ * foreground used ON a control of that color (e.g. button/skip text).
  */
 export const PALETTE = {
   screen: { bg: "#0f1419", fg: "#f2f5f7", muted: "#c9d3da", accent: "#7fd3ff", card: "#1b232c", warn: "#ffcf6b", line: "#3a4754", onAccent: "#000000" },
@@ -275,7 +275,7 @@ ${feedTags}
  * gate goes red when it changes. On an unwatchable one it means only that a human once
  * read it. Rendering both identically hands the reader a guarantee that does not exist,
  * for a filing where being wrong costs money, time, and sometimes safety. The note is
- * plain text inside the list item (not a title attribute, not a colour, not an icon), so
+ * plain text inside the list item (not a title attribute, not a color, not an icon), so
  * a screen-reader user and a print reader get exactly the same warning as anyone else.
  *
  * Exported so src/relocation.ts renders its source list identically instead of keeping a
@@ -315,7 +315,7 @@ function sourceList(records: CorpusRecord[], lang: Language, level: HeadingLevel
  * stale is the URL: it points at the agency's own page, which is authoritative regardless
  * of when we last read it, and it is precisely what the reader was being told to consult.
  * Measured on 2026-09-07 this was live for Alabama birth certificates, Montana and South
- * Dakota driver's licences; from 2026-10-12 it is every step in the corpus, because 436 of
+ * Dakota driver's licenses; from 2026-10-12 it is every step in the corpus, because 436 of
  * the 438 then-serving records lapse on that one day.
  *
  * It is deliberately NOT rendered when the step already has a current source — the reader
@@ -367,7 +367,7 @@ export function preparationList(items: PreparationItem[] | undefined, lang: Lang
  * Fee-waiver detail for a checklist/packet step: the official form (linked via
  * forms/registry.json, resolved by id — never auto-filled, same as every other form CTA)
  * and the court's own quoted criteria, when a source states them. Every sentence here is a
- * FACT about the fee ("this fee can be waived", "the court says X") — never a judgement
+ * FACT about the fee ("this fee can be waived", "the court says X") — never a judgment
  * about whether THIS reader would get it waived. GOVERNANCE.md forbids this app from
  * adjudicating eligibility, so there is no "you likely qualify" branch to add, only
  * branches for what the record does or does not carry:
@@ -486,7 +486,7 @@ export function renderPacket(
    * footer. It has to be an absolute URL rendered as literal text, not only a link: the
    * artifact this appears on is paper, and a relative href is unreachable from it.
    * Omitted when the caller has no canonical intake query to build one from, in which
-   * case the footer simply does not offer a check it cannot honour (EXP-03).
+   * case the footer simply does not offer a check it cannot honor (EXP-03).
    */
   changesUrl = "",
 ): string {

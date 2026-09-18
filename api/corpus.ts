@@ -174,7 +174,7 @@ function relocationIssues(raw: Record<string, unknown>, push: (f: string, m: str
 }
 
 /**
- * Phrases that turn a quoted fact into a legal judgement ABOUT THE READER — the line
+ * Phrases that turn a quoted fact into a legal judgment ABOUT THE READER — the line
  * GOVERNANCE.md forbids this app from crossing. `fee_waiver_criteria` exists to relay what a
  * court publishes ("the court can waive fees if you receive public benefits"), never to
  * predict an outcome for the person reading it ("you likely qualify"). This is a narrow,

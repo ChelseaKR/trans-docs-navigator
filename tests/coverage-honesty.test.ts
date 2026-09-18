@@ -15,7 +15,7 @@
 //      total — on cost, which the project's own research names the #1 reported barrier.
 //
 // Both are the same defect: something we do not know, rendered as a value. These tests
-// pin the honest behaviour on every surface a person can reach.
+// pin the honest behavior on every surface a person can reach.
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -36,7 +36,7 @@ const corpus = loadCorpus();
  *
  * Derived, not hardcoded. This was "US-FL" until Florida was added, then "US-OH" until
  * Ohio was added — each time silently pointing at a state the corpus had since gained,
- * which turns every assertion below into a test of covered behaviour while still passing
+ * which turns every assertion below into a test of covered behavior while still passing
  * under a name that claims the opposite. That is the exact failure this file exists to
  * prevent, so the fixture now reads the corpus and fails loudly if it cannot find a
  * genuinely uncovered state.
@@ -257,7 +257,7 @@ test("REGRESSION: the live intake path that printed a bare total (birth certific
   // Not hypothetical and not URL-surgery: "Birth certificate" and "Social Security card"
   // are both checkboxes on the intake form (DOCUMENT_IDS in src/pages.ts). Twelve corpus
   // records carry a numeric fee and all of them are birth-certificate or WA driver's
-  // licence records, so this selection is exactly where a stated amount meets an unpriced
+  // license records, so this selection is exactly where a stated amount meets an unpriced
   // sibling. Measured on the parent commit, `/checklist?jurisdiction=US-CA&change=name&
   // doc=birth-certificate&doc=ssa-card` rendered "2 steps · Estimated cost: $26" — the
   // $26 birth-record fee presented as the price of the plan, while nothing in the corpus
@@ -278,7 +278,7 @@ test("REGRESSION: the live intake path that printed a bare total (birth certific
 });
 
 test("REGRESSION: a $0 fee beside an unpriced step no longer erases the cost line entirely", () => {
-  // Washington's driver's-licence record states $0. On the parent commit, pairing it with
+  // Washington's driver's-license record states $0. On the parent commit, pairing it with
   // the unpriced SSA step gave known=0, anyVaries=false and unpriced skipped — so the
   // summary rendered "2 steps" with NO cost line at all. Absence and $0 collapsed together.
   const html = bodyOf("/checklist?jurisdiction=US-WA&change=name&change=gender-marker&doc=drivers-license&doc=ssa-card");

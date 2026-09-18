@@ -10,7 +10,7 @@ retrieval and the unit of citation. **63 records:** federal (SSA, passport) +
 California, Illinois, New York, Texas, Washington. English coverage spans all five
 states + federal; **Spanish coverage** (30 records) spans California, Illinois, New
 York, Texas + federal, plus Washington's birth-certificate records (Washington's
-court-order and driver's-licence rows are still English-only — a tracked gap).
+court-order and driver's-license rows are still English-only — a tracked gap).
 
 **Birth certificates (added 2026-07-13, 28 records, EN + ES).** Every state's own
 vital-records/health-department source, including the `court-order → birth-certificate`

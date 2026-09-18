@@ -309,7 +309,7 @@ function originWindowStep(
  * you are leaving, it is certainly not the one you are moving to, and this app never asks for it
  * (a birth state is an identity field, and the relocation surface holds none). So the engine
  * does the only honest thing available to it: it emits the rules of each state IN THIS PLAN,
- * labelled with whose rules they are, and lets the records — whose own cited prose says "if you
+ * labeled with whose rules they are, and lets the records — whose own cited prose says "if you
  * were born in Illinois", "people who were born in Washington state" — do the conditioning. The
  * phase copy says the rest: the move does not change which state's rules apply, and if you were
  * born outside these two states, neither set applies to you.

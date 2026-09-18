@@ -26,7 +26,7 @@ import { pass, fail } from "./util.ts";
 const CORPUS_BASELINE_PATH = join(REPO_ROOT, "corpus", "source-hashes.json");
 const FORMS_BASELINE_PATH = join(REPO_ROOT, "forms", "form-hashes.json");
 // Exported so any other local tool that fetches a cited source (scripts/verify-record.ts)
-// sends the SAME declared user-agent and honours the same timeout. Two fetchers that drift
+// sends the SAME declared user-agent and honors the same timeout. Two fetchers that drift
 // apart would compare a verifier's live read against a snapshot taken under different rules.
 export const TIMEOUT_MS = 20_000;
 export const UA = "trans-docs-navigator-source-watch/1.0 (+https://github.com/ChelseaKR/trans-docs-navigator)";

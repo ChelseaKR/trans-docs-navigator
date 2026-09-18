@@ -1,7 +1,7 @@
 # Open pull request triage
 
 Date of triage: 2026-08-28. Read-only review against the GitHub API and a
-scratch clone. Nothing was merged, closed, commented on, labelled, or re-run.
+scratch clone. Nothing was merged, closed, commented on, labeled, or re-run.
 This file is the only change.
 
 This repository helps people navigate identity-document changes. A confidently
@@ -382,7 +382,7 @@ While the budget is down, `make verify` locally is a real substitute for the
 - The two NUL bytes at byte 4033 of `api/watchability.ts`, `file --mime-encoding`
   returning `binary`, and the `i18n-utf8` gate's skipped-asset count going 4 to 5
   between `main` and `pr/121`, with the file named.
-- `EVAL_GOLD_POISON` producing an all-green, unlabelled eval verdict from a
+- `EVAL_GOLD_POISON` producing an all-green, unlabeled eval verdict from a
   3-item substitute for the 23-item authored gold set, by running the real
   `eval/run.ts`.
 - #119's tests: 19 of 19 on the merged tree, 8 of 19 failing after the guards
@@ -408,7 +408,7 @@ While the budget is down, `make verify` locally is a real substitute for the
 - That `tsc --strict` passes on the merged tree. No compiler was available
   offline; the code was executed under Node's type-stripping, which runs but
   does not typecheck.
-- Playwright, pa11y, Lighthouse and container-scan behaviour. Not run.
+- Playwright, pa11y, Lighthouse and container-scan behavior. Not run.
 
 **Noted in passing, out of scope:** `origin` carries roughly thirty stale
 feature branches with no open pull request. They are not part of this queue, but
@@ -453,7 +453,7 @@ Both were real and both were acted on:
 All four human-authored PRs landed: #119, #120, #121, #122. The seven Dependabot
 PRs were superseded by newer bumps as the queue sat.
 
-Section 2's judgement — *"live, and mid-remediation, do not mass-close"* — was
+Section 2's judgment — *"live, and mid-remediation, do not mass-close"* — was
 correct. Nothing here was stale; it was blocked.
 
 ### Found while draining, and not visible from a read-only triage

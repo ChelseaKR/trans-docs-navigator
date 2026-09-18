@@ -462,12 +462,12 @@ export const en: LocaleBundle = {
       {
         h: "What we do",
         html:
-          "<ul><li>Semantic HTML with a skip link and labelled controls.</li><li>The core flow works with <strong>no JavaScript</strong>.</li><li>Keyboard-complete paths and always-visible focus.</li><li>Sufficient colour contrast, checked automatically on every change.</li><li>Reduced-motion support and a calm, low-stimulation default.</li><li>Readable at 200% zoom and on small screens.</li></ul>",
+          "<ul><li>Semantic HTML with a skip link and labeled controls.</li><li>The core flow works with <strong>no JavaScript</strong>.</li><li>Keyboard-complete paths and always-visible focus.</li><li>Sufficient color contrast, checked automatically on every change.</li><li>Reduced-motion support and a calm, low-stimulation default.</li><li>Readable at 200% zoom and on small screens.</li></ul>",
       },
       {
         h: "What is still in progress",
         html:
-          "<p>A full manual screen-reader, keyboard-only, and zoom walkthrough is part of our release process and is being completed before public launch. Automated checks (axe/pa11y and colour contrast) run on every change.</p>",
+          "<p>A full manual screen-reader, keyboard-only, and zoom walkthrough is part of our release process and is being completed before public launch. Automated checks (axe/pa11y and color contrast) run on every change.</p>",
       },
       {
         h: "Tell us about a barrier",

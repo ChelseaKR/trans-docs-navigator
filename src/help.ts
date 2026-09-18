@@ -22,7 +22,7 @@ export function renderHelpSection(jurisdiction: string, lang: Language, s: UiMes
   // yields undefined, escapeHtml(undefined) throws, the route 500s, and the gate times out
   // waiting for a marker that never renders — the same trap that keeps /guide excluded
   // from that gate (see tests/e2e/i18n/pseudo-overflow.spec.ts). Corpus-sourced text is
-  // not pseudolocalised anyway, so English is the honest fallback, not a leak.
+  // not pseudolocalized anyway, so English is the honest fallback, not a leak.
   const noteFor = (r: (typeof ordered)[number]): string => r.note[lang] ?? r.note.en;
   const items = ordered
     .map((r) => `<li><a href="${escapeHtml(r.url)}" rel="noopener noreferrer">${escapeHtml(r.name)}</a> — ${escapeHtml(noteFor(r))}</li>`)

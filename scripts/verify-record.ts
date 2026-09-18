@@ -134,7 +134,7 @@ export interface VerifierCheck {
  * A verifier must appear in corpus/VERIFIERS.json by exact name before anything is shown or
  * written. Placeholder ("seed") reviewers are refused by default: the roster's own comment
  * says a record carrying one is NEVER launch-cleared, so letting the workbench stamp real
- * records with a placeholder would manufacture verification theatre at exactly the gate this
+ * records with a placeholder would manufacture verification theater at exactly the gate this
  * tool exists to move. `--allow-placeholder` is available for fixture and demo runs and says
  * so out loud.
  */

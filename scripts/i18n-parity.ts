@@ -287,7 +287,7 @@ const problems: string[] = [];
 //
 // Shallow-clone (not structuredClone: the bundles carry functions, which structuredClone
 // cannot copy) so the real registry is never mutated. Inert unless the env var matches
-// exactly, so production behaviour is unchanged.
+// exactly, so production behavior is unchanged.
 const POISON = process.env.I18N_PARITY_POISON ?? "";
 const locales: typeof SUPPORTED_LOCALES = POISON
   ? SUPPORTED_LOCALES.map((l) => {

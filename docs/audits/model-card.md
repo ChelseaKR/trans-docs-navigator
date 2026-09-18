@@ -23,7 +23,7 @@ any uncited or unsupported claim is **rejected, not shown** (guardrail #1).
   from the model is rejected rather than rendered. Unconfigured in this environment
   (no AWS credentials).
 
-## Behaviours
+## Behaviors
 - **Refusal:** when no current record backs a request, the system says it does not have
   verified information and points to the official source — it never fabricates.
 - **Freshness degradation:** stale/volatile records are surfaced as "needs

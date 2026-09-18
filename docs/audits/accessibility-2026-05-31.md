@@ -31,7 +31,7 @@
 `make a11y` renders every page template and asserts the mechanical WCAG checks
 (~30–40% per the standard): `<html lang>`, non-empty `<title>`, viewport meta, exactly
 one `<h1>`, skip-to-content link + `#main` landmark, visible-focus styles,
-`prefers-reduced-motion` handling, image `alt`, labelled form controls, no positive
+`prefers-reduced-motion` handling, image `alt`, labeled form controls, no positive
 `tabindex`, non-empty link/button text. **Result (2026-05-31): 0 violations across the
 page templates then covered** (intake EN/ES, checklist EN/ES, printable packet, form-fill,
 form-degraded — this original count of 7 was itself already behind the gate's actual
@@ -62,7 +62,7 @@ Cannot be automated; requires a human and assistive tech. Each must be signed be
 - [ ] Reduced-motion respected (verified: no animations defined; CSS guard present)
 - [ ] Readability target (~8th grade) met for English and Spanish content
 - [ ] **[Added 2026-07-05]** Save/resume panel: keyboard-operable save/restore/clear
-      controls, passphrase field correctly labelled and errors announced
+      controls, passphrase field correctly labeled and errors announced
       (`public/assets/resume-panel.js`, `src/secure-resume.ts`)
 - [ ] **[Added 2026-07-05]** Offline shell: "Save for offline" and "delete all saved
       pages" controls are keyboard-operable and announce their result; the offline
