@@ -2,11 +2,11 @@
 
 ## Start here if you have an hour
 
-[`docs/HELP-WANTED.md`](./docs/HELP-WANTED.md) is the honest version: what the
-freshness position actually measures to today, what one hour of verification
-buys (one jurisdiction re-dated, and no more than that), the 44 records that no
-script can check because their hosts refuse an automated fetch, and the open
-question about whether a verifier has to be named.
+[`docs/HELP-WANTED.md`](./docs/HELP-WANTED.md) is the honest version: the
+measured freshness position, what one hour of verification buys (one
+jurisdiction re-dated, and no more than that), the 44 records that no script can
+check because their hosts refuse an automated fetch, and how a verifier is
+credited: by name, stable pseudonym, or organization ID, and only with consent.
 
 Thank you for helping keep this resource **current, cited, and safe**. Because wrong or
 stale guidance can cost people money, time, and sometimes safety, contributions are held
