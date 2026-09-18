@@ -19,6 +19,14 @@ lives under `[Unreleased]`.
   self-contained HTML file that runs the whole navigator from `file://` with no network, and
   `make portable-verify` recomputes its declared hash. Nothing publishes the file or attaches
   it to a release: there is no public distribution until counsel and community review.
+- **A help-wanted page for verifiers, and credit by pseudonym (#253).**
+  `docs/HELP-WANTED.md` publishes the freshness position measured on 2026-09-18: 0 of 1000
+  records verified by a human, and all 436 currently-current jurisdiction records lapse on
+  2026-10-12. It also covers what one hour of verification buys and the 44 records whose
+  sources refuse automated fetching. A verifier may now be credited by name, a stable
+  pseudonym, or an organization ID, and only with written consent. The verify-a-record
+  template offers that choice before anything is published, and its default is no credit.
+  README's stale "0 of 768" now reads 0 of 1000.
 - **Google Analytics 4 page counts, path only (ADR 0007).** Every rendered page loads
   `/assets/analytics.js`, which loads GA4 (`G-8HZFD5R23E`) only on the production Lambda
   URL host, and never under Global Privacy Control, Do Not Track or the new footer

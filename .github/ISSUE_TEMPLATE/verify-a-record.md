@@ -1,6 +1,6 @@
 ---
-name: Verify a record (become a named verifier)
-about: You checked a jurisdiction record against its official source and can put your name to it
+name: Verify a record (become a credited verifier)
+about: You checked a jurisdiction record against its official source and can be credited for it, by name, stable pseudonym or organization ID
 title: "[verify] <jurisdiction> · <document>: <name or gender-marker>"
 labels: ["corpus", "verification", "help wanted"]
 ---
@@ -13,8 +13,10 @@ Every record in the corpus currently carries a PLACEHOLDER verifier
 launch gate 1, it is the reason this is not a launched service, and it is the one
 thing no amount of code can close.
 
-You do not need to be a lawyer. You do need to have actually read the official
-source and be willing to be named for it.
+You do not need to be a lawyer, and you do not need to use your legal name. You
+do need to have actually read the official source and be willing to be credited
+for it: under your name, a stable pseudonym, or an organization ID. See
+docs/HELP-WANTED.md, "How you are credited".
 -->
 
 ## What you checked
@@ -36,13 +38,23 @@ source and be willing to be named for it.
 
 ## How you want to be credited
 
-Named verification means your name (or your organization's) goes in
-`corpus/VERIFIERS.json` and renders next to the record in the app.
+You choose this before anything is published. The credit you choose goes in
+`corpus/VERIFIERS.json` and renders next to the record in the app as
+`Verified by <credit>, <date>`. Nothing else about you goes on the roster or in
+the app, apart from a role if you choose to give one.
 
-- **Name / organization to credit:**
-- **Role:** <!-- e.g. staff attorney, paralegal, legal-aid volunteer, name-change clinic -->
-- [ ] I understand this is a public, attributed statement that I checked this record
-- [ ] I'd rather not be named — file this as a correction instead, and I'll stay anonymous
+- [ ] My name
+- [ ] A stable pseudonym (the same one on every record I verify)
+- [ ] An organization ID (the organization is credited, not me)
+- [ ] No credit — file this as a correction instead, and I'll stay anonymous
+
+- **Credit, exactly as it should appear:**
+- **Role (optional):** <!-- e.g. paralegal, legal-aid volunteer. Leave it blank if it would identify you. -->
+- [ ] I consent to this credit appearing publicly, and I understand it stays in the repository's history
+
+<!-- The default is no credit. If you tick nothing above, nothing is added to the
+     roster and your finding is filed as a correction. Silence is not consent.
+     Whatever you choose here, GitHub shows the account you file this issue from. -->
 
 ## Anything you're unsure about
 
