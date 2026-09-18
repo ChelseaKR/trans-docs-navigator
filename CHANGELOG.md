@@ -73,6 +73,11 @@ lives under `[Unreleased]`.
     as open as they were.
 
 ### Security
+- **The image now applies Debian's security updates on top of `node:26-slim`.** The
+  upstream tag had not yet picked up fixed `gzip`, `pcre2`, `sqlite` and `perl` packages,
+  so the blocking Trivy scan failed on 13 fixable HIGH/CRITICAL CVEs (first seen on
+  #275, a `@types/node` bump that did not cause them). The `Dockerfile` base stage now
+  runs `apt-get upgrade` and clears the apt lists in the same layer.
 - **`js-yaml` 4.3.1 -> 4.3.2 under `cosmiconfig` (`GHSA-2883-XCG3-V3HH`, high), which is
   what stage 5 of `make verify` was refusing.** The gate is `npm audit --json` with a
   high/critical floor and no `--omit=dev`, and the pre-push hook runs the whole of
