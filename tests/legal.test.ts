@@ -26,7 +26,27 @@ test("Privacy page distinguishes server requests from local-only identity fields
   assert.match(h, /Opening a saved copy while offline makes no fresh request/i);
   assert.doesNotMatch(h, /Nothing you type is sent/i);
   assert.doesNotMatch(h, /Saving never sends anything/i);
-  assert.match(h, /no.*trackers|no cookies/i);
+  // ADR 0007: Google Analytics is disclosed, bounded to page counts, and can be refused.
+  assert.doesNotMatch(h, /no advertising or analytics trackers/i);
+  assert.match(h, /Google Analytics 4, a service of Google LLC/);
+  assert.match(h, /with everything after the “\?” removed/);
+  assert.match(h, /never receives your name, date of birth, Social Security number/);
+  assert.match(h, /A page whose address carries a question does not load Google Analytics at all/);
+  assert.match(h, /Google keeps this data for 14 months/);
+  assert.match(h, /<code>_ga_8HZFD5R23E<\/code>/);
+  assert.match(h, /Global Privacy Control or Do Not Track/);
+  assert.match(h, /<code>trans-docs-navigator:analytics-opt-out<\/code>/);
+  assert.match(h, /No advertising trackers are used/);
+});
+
+test("Spanish privacy page discloses Google Analytics the same way", () => {
+  const h = renderPrivacyPage("es");
+  assert.doesNotMatch(h, /no usa rastreadores de publicidad ni de analítica/i);
+  assert.match(h, /Google Analytics 4, un servicio de Google LLC/);
+  assert.match(h, /sin todo lo que va después del “\?”/);
+  assert.match(h, /Una página cuya dirección contiene una pregunta no carga Google Analytics/);
+  assert.match(h, /<code>trans-docs-navigator:analytics-opt-out<\/code>/);
+  assert.match(h, /14 meses/);
 });
 
 test("Accessibility page commits to WCAG 2.2 AA and is honest about the manual gate", () => {

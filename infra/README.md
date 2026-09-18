@@ -40,7 +40,8 @@ resource they create is attributable in Cost Explorer and to a per-project budge
 lands in the account's untagged bucket, where a per-project budget cannot see it.
 
 These are billing labels on infrastructure. They observe nothing about users and
-collect no data, so they do not touch the no-analytics posture.
+collect no data, so they do not touch the analytics posture (ADR 0007: browser-side
+Google Analytics 4 page counts only).
 
 Resource-level `tags` blocks merge *over* provider defaults, so the `Name` and
 `PII = "none"` tags on individual resources are unaffected.

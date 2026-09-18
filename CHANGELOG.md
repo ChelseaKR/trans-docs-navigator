@@ -7,6 +7,21 @@ lives under `[Unreleased]`.
 
 ## [Unreleased]
 
+### Added
+- **Google Analytics 4 page counts, path only (ADR 0007).** Every rendered page loads
+  `/assets/analytics.js`, which loads GA4 (`G-8HZFD5R23E`) only on the production Lambda
+  URL host, and never under Global Privacy Control, Do Not Track or the new footer
+  "Opt out of analytics" control (en/es, remembered as
+  `trans-docs-navigator:analytics-opt-out`). It also never loads on a page whose address
+  carries a question or any GA site-search parameter, or on the relocation planner
+  (`/move`, `/plan`). `page_location` is origin plus path, so no selection, court-order or
+  minor bit, `since` date or question reaches Google; the referrer is origin-only. Consent
+  Mode v2 denies the three ad signals everywhere and analytics storage in the EEA, UK and
+  CH; Google signals and ad personalization are off. The CSP (now `api/csp.ts`) admits
+  only the minimum GA origins. The Privacy Notice, footer, DPIA, README and ROADMAP
+  describe it; `LEGAL_EFFECTIVE_DATE` is 2026-09-17. Takes effect on the next dispatch of
+  `deploy-aws-preview.yml`.
+
 ### Fixed
 - **`/compare` published affirmative `Documented` cells with no human-verification signal
   anywhere on the page (part of #251).** `classifyCell()` reads `verification_status` and

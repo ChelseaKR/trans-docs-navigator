@@ -18,6 +18,18 @@ export interface UiMessages {
   transparencyLink: string;
   a11yLink: string;
   methodologyLink: string;
+  /** Footer "Opt out of analytics" control (public/assets/analytics.js, ADR 0007). */
+  analyticsOptOut: string;
+  analyticsOptIn: string;
+  /** Status line after opting out; says it applies from the next page. */
+  analyticsOptedOut: string;
+  /** Status line for a returning visitor who opted out earlier. */
+  analyticsIsOut: string;
+  analyticsBackIn: string;
+  /** Status line when Global Privacy Control or Do Not Track already keeps analytics off. */
+  analyticsSignal: string;
+  /** Status line when browser storage is blocked, so the choice cannot be remembered. */
+  analyticsNoStorage: string;
   verifyNote: string;
   notFilingNote: string;
   sources: string;
