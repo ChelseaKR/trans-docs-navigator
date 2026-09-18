@@ -3,7 +3,7 @@
 // `make portable` writes ONE self-contained HTML file that runs intake, the checklist,
 // the packet, /move and /compare entirely in the reader's browser from `file://`, with
 // the network disabled and nothing to phone home to. It is the strongest privacy posture
-// this threat model can offer: a community organiser can hand it out on a USB stick, and
+// this threat model can offer: a community organizer can hand it out on a USB stick, and
 // a reader in a hostile jurisdiction can use the whole navigator without a single request
 // existing to be logged, subpoenaed, or correlated.
 //
@@ -38,6 +38,7 @@ import { fileURLToPath } from "node:url";
 
 import { escapeHtml, STYLE } from "../src/render.ts";
 import { t as locale, SUPPORTED_LOCALES } from "../src/i18n/index.ts";
+import { isMachineTranslated, MACHINE_TRANSLATION_NOTICE, NOTICE_ATTR } from "../src/machine-translation.ts";
 import { pass, fail } from "./util.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -449,9 +450,18 @@ export function buildPortable(opts: { built?: string } = {}): PortableBuild {
  * could look at.
  */
 function noscriptBlock(): string {
+  const { es, en } = MACHINE_TRANSLATION_NOTICE;
   const blocks = SUPPORTED_LOCALES.map((l) => {
     const ui = locale(l.language).ui;
-    return `  <p lang="${l.language}"><strong>${escapeHtml(ui.noscriptTitle)}</strong> ${escapeHtml(ui.noscriptBody)}</p>`;
+    const own = `  <p lang="${l.language}"><strong>${escapeHtml(ui.noscriptTitle)}</strong> ${escapeHtml(ui.noscriptBody)}</p>`;
+    // The fallback shows every language at once, so a machine-translated one carries the
+    // same notice every page in that language does (src/machine-translation.ts). There is no
+    // English page to link to without JavaScript; the English paragraph is right beside it.
+    if (!isMachineTranslated(l.language)) return own;
+    return (
+      `${own}\n  <p ${NOTICE_ATTR}><span lang="es"><strong>${escapeHtml(es.lead)}</strong></span> ` +
+      `<span lang="en"><strong>${escapeHtml(en.lead)}</strong></span></p>`
+    );
   });
   return `<noscript>\n${blocks.join("\n")}\n</noscript>`;
 }
