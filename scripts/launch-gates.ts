@@ -19,7 +19,7 @@
 //   docs/signoffs/*.json        → the human sign-offs that have actually happened (none)
 //
 // A gate can only be marked DONE by producing machine-checkable evidence. The three gates
-// that need human judgement (counsel review, the screen-reader walkthrough, a real-Bedrock
+// that need human judgment (counsel review, the screen-reader walkthrough, a real-Bedrock
 // eval run) are cleared by committing a sign-off file naming a verifier who is in
 // corpus/VERIFIERS.json and is NOT a placeholder — so the "Pilot Seed Reviewer" placeholder
 // can never sign anything, and no one can clear a launch gate by editing a sentence.

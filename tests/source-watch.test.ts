@@ -284,7 +284,7 @@ test("`</scriptfoo>` does NOT close a script element", () => {
 // FAILS ON THE UNFIXED normalize(): with only `-->` recognized, the comment is not removed as
 // a comment, the generic tag-strip tears it in half at the `>` inside it, and the tail leaks
 // into the hashed text as `b --!`.
-test("REGRESSION: normalize() honours `--!>` as a comment terminator, as browsers do", () => {
+test("REGRESSION: normalize() honors `--!>` as a comment terminator, as browsers do", () => {
   assert.equal(normalize("<p>keep</p><!-- a > b --><p>me</p>"), "keep me");
   assert.equal(normalize("<p>keep</p><!-- a > b --!><p>me</p>"), "keep me");
 });

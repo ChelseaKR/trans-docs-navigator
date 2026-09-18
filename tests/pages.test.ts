@@ -21,7 +21,7 @@ const clEs = buildChecklist({ jurisdiction: "US-CA", change_types: ["name"], doc
 /**
  * Matches an EXECUTABLE INLINE `<script>` — a script start tag carrying neither `src=` nor a
  * data `type=`. The pages below legitimately emit `<script type="module" src="/assets/…">`
- * (external behaviour) and `<script type="application/json">` / `application/ld+json`
+ * (external behavior) and `<script type="application/json">` / `application/ld+json`
  * (inert config islands and structured data); neither is inline code, and both must pass.
  *
  * The assertions below used to be `assert.doesNotMatch(h, /<script>/)`, which CodeQL flagged
@@ -121,7 +121,7 @@ test("form page offers an on-device copy-helper that can't submit anything", () 
   const h = renderFormFillPage(formById("us-ss-5")!, "en");
   assert.match(h, /id="copy-current"/);
   assert.match(h, /id="copy-new"/);
-  assert.match(h, /for="copy-current"/); // labelled (a11y)
+  assert.match(h, /for="copy-current"/); // labeled (a11y)
   assert.match(h, /\/assets\/form-copy\.js/);
   assert.doesNotMatch(h, /<form/); // no form element → nothing can be submitted
   assert.doesNotMatch(h, /<input[^>]*\bname=/); // inputs have no name → never serialized to a request

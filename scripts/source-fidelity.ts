@@ -61,8 +61,11 @@
 // output — scripts/source-watch.ts). So a snapshot cannot be edited to make this gate pass
 // without breaking source-watch's baseline, which is human-review-only.
 //
-//   node scripts/source-fidelity.ts             # offline gate (CI)
-//   node scripts/source-fidelity.ts --report    # also (re)write docs/audits/source-fidelity.md
+//   node scripts/source-fidelity.ts             # offline gate (CI): also fails if the
+//                                               # COMMITTED docs/audits/source-fidelity.*
+//                                               # is not what this corpus produces
+//   node scripts/source-fidelity.ts --report    # (re)write docs/audits/source-fidelity.*
+//                                               # and skip that comparison (`make fidelity-write`)
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
@@ -993,29 +996,62 @@ function main(): void {
 
   const report = auditCorpus(corpus, forms, index, { snapshotDir, baseline });
 
-  if (process.argv.includes("--report") || process.env.FIDELITY_WRITE_REPORT === "1") {
-    writeFileSync(REPORT_MD, renderReport(report));
-    writeFileSync(
-      REPORT_JSON,
-      JSON.stringify(
-        {
-          generated_by: "scripts/source-fidelity.ts",
-          records: report.audits.length,
-          supported: report.supported,
-          unsupported: report.unsupported,
-          uncheckable: report.uncheckable,
-          unfetchable_sources: report.unfetchable,
-          unchecked_prose_sentences: report.audits.reduce((n, a) => n + a.uncheckedProse, 0),
-          total_prose_sentences: report.audits.reduce((n, a) => n + a.totalSentences, 0),
-          audits: report.audits,
-        },
-        null,
-        2,
-      ) + "\n",
-    );
+  const md = renderReport(report);
+  const json =
+    JSON.stringify(
+      {
+        generated_by: "scripts/source-fidelity.ts",
+        records: report.audits.length,
+        supported: report.supported,
+        unsupported: report.unsupported,
+        uncheckable: report.uncheckable,
+        unfetchable_sources: report.unfetchable,
+        unchecked_prose_sentences: report.audits.reduce((n, a) => n + a.uncheckedProse, 0),
+        total_prose_sentences: report.audits.reduce((n, a) => n + a.totalSentences, 0),
+        audits: report.audits,
+      },
+      null,
+      2,
+    ) + "\n";
+
+  const writing =
+    process.argv.includes("--report") || process.env.FIDELITY_WRITE_REPORT === "1";
+
+  // Only the committed corpus can be compared against the committed audit. A run
+  // steered at a fixture corpus (tests/gate-efficacy) would "drift" by construction.
+  const readingTheCommittedCorpus =
+    corpusDir === undefined &&
+    process.env.FIDELITY_INDEX === undefined &&
+    process.env.FIDELITY_SNAPSHOT_DIR === undefined &&
+    process.env.FIDELITY_BASELINE === undefined;
+
+  // The audit is the artifact a human reads to learn which of these records are backed
+  // by their cited source and which 500-odd assertions are UNCHECKABLE. Until this
+  // check existed, `make verify` ran this script with --report, so the one stage that
+  // could have noticed the committed copy was stale instead OVERWROTE it in the
+  // runner's checkout and moved on: a gate that repairs what it checks cannot fail.
+  const auditDrift: string[] = [];
+  if (writing) {
+    writeFileSync(REPORT_MD, md);
+    writeFileSync(REPORT_JSON, json);
+  } else if (readingTheCommittedCorpus) {
+    for (const [path, expected] of [
+      [REPORT_MD, md],
+      [REPORT_JSON, json],
+    ] as const) {
+      const shown = path.slice(REPO_ROOT.length + 1);
+      if (!existsSync(path)) {
+        auditDrift.push(`audit-missing: ${shown} — run \`make fidelity-write\` and commit it`);
+      } else if (readFileSync(path, "utf8") !== expected) {
+        auditDrift.push(
+          `audit-stale: ${shown} does not match what this corpus produces — run \`make fidelity-write\` and commit it`,
+        );
+      }
+    }
   }
 
   const blocking: string[] = [
+    ...auditDrift,
     ...report.missingSnapshots.map((m) => `missing-snapshot: ${m}`),
     ...report.tamperedSnapshots.map((m) => `TAMPERED SNAPSHOT: ${m}`),
     ...report.baselineMismatches.map((m) => `baseline-mismatch: ${m}`),

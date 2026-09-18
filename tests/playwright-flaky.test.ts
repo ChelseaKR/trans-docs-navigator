@@ -6,7 +6,7 @@
 // zero in CI, that turns an intermittent failure into a green check with
 // nothing to show for it. This imports each config the way Playwright reads it,
 // with CI set, rather than matching its text, so a key that is commented out,
-// misspelt or set to `false` cannot satisfy it.
+// misspelled or set to `false` cannot satisfy it.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readdirSync } from "node:fs";

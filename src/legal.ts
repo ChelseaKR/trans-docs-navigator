@@ -14,7 +14,7 @@ import type { LegalSection } from "./i18n/index.ts";
 import { t as locale } from "./i18n/index.ts";
 import { page, escapeHtml } from "./render.ts";
 
-export const LEGAL_EFFECTIVE_DATE = "2026-06-05";
+export const LEGAL_EFFECTIVE_DATE = "2026-09-17";
 
 function legalBody(sections: LegalSection[], updatedLabel: string): string {
   const body = sections.map((s) => `<section><h2>${escapeHtml(s.h)}</h2>${s.html}</section>`).join("\n");

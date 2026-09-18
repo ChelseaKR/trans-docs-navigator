@@ -18,6 +18,18 @@ export interface UiMessages {
   transparencyLink: string;
   a11yLink: string;
   methodologyLink: string;
+  /** Footer "Opt out of analytics" control (public/assets/analytics.js, ADR 0007). */
+  analyticsOptOut: string;
+  analyticsOptIn: string;
+  /** Status line after opting out; says it applies from the next page. */
+  analyticsOptedOut: string;
+  /** Status line for a returning visitor who opted out earlier. */
+  analyticsIsOut: string;
+  analyticsBackIn: string;
+  /** Status line when Global Privacy Control or Do Not Track already keeps analytics off. */
+  analyticsSignal: string;
+  /** Status line when browser storage is blocked, so the choice cannot be remembered. */
+  analyticsNoStorage: string;
   verifyNote: string;
   notFilingNote: string;
   sources: string;
@@ -43,7 +55,7 @@ export interface UiMessages {
    * Scope line for a step whose records belong to the state that ISSUED the document
    * rather than the one the reader lives in (`ChecklistStep.governed_by_issuing_jurisdiction`).
    * Says which government holds the record. It must never say, or let a reader infer, that
-   * any state will honour another state's document — that is a separate, unbuilt question.
+   * any state will honor another state's document — that is a separate, unbuilt question.
    */
   issuingJurisdictionScope(stateName: string): string;
   /** The same line where no state name resolves (a federal-jurisdiction request). */
@@ -152,7 +164,7 @@ export interface UiMessages {
   varies: string;
   /**
    * Fee-waiver detail on a checklist/packet step (cost.fee_waiver_form/fee_waiver_criteria).
-   * A FACT about the fee — "this fee can be waived" — never a judgement about whether THIS
+   * A FACT about the fee — "this fee can be waived" — never a judgment about whether THIS
    * reader would get it waived. See GOVERNANCE.md: this app does not adjudicate eligibility.
    */
   feeWaiverAvailable: string;
@@ -353,7 +365,7 @@ export interface CompareMessages {
   resultsTitle: string;
   resultsHeading: string;
   resultsIntro: string;
-  /** Table <caption> — what the table shows, never a value judgement about it. */
+  /** Table <caption> — what the table shows, never a value judgment about it. */
   caption: string;
   columnState: string;
   /** Appended to the row header of the jurisdiction matching the optional "current state". */

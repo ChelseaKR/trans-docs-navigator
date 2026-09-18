@@ -7,9 +7,9 @@ It is a reference tool, and it is explicitly pre-launch: no record in its corpus
 yet been verified by a named human (see the launch-gate table in
 [`README.md`](./README.md)).
 
-For actual help with your situation, these are the kinds of organisations that do it:
+For actual help with your situation, these are the kinds of organizations that do it:
 
-- **Your state's legal-aid organisation** — many run free name-change clinics.
+- **Your state's legal-aid organization** — many run free name-change clinics.
   The app lists per-jurisdiction referrals it has on file under each checklist.
 - **[Advocates for Trans Equality (A4TE) — ID Documents Center](https://transequality.org/documents)** —
   human-curated, plain-language guides for every state. Each checklist here links the matching guide.

@@ -7,7 +7,29 @@ lives under `[Unreleased]`.
 
 ## [Unreleased]
 
+### Added
+- **Google Analytics 4 page counts, path only (ADR 0007).** Every rendered page loads
+  `/assets/analytics.js`, which loads GA4 (`G-8HZFD5R23E`) only on the production Lambda
+  URL host, and never under Global Privacy Control, Do Not Track or the new footer
+  "Opt out of analytics" control (en/es, remembered as
+  `trans-docs-navigator:analytics-opt-out`). It also never loads on a page whose address
+  carries a question or any GA site-search parameter, or on the relocation planner
+  (`/move`, `/plan`). `page_location` is origin plus path, so no selection, court-order or
+  minor bit, `since` date or question reaches Google; the referrer is origin-only. Consent
+  Mode v2 denies the three ad signals everywhere and analytics storage in the EEA, UK and
+  CH; Google signals and ad personalization are off. The CSP (now `api/csp.ts`) admits
+  only the minimum GA origins. The Privacy Notice, footer, DPIA, README and ROADMAP
+  describe it; `LEGAL_EFFECTIVE_DATE` is 2026-09-17. Takes effect on the next dispatch of
+  `deploy-aws-preview.yml`.
+
 ### Fixed
+- **The `a11y-browser` check could fail with "Could not find Chrome" on a PR that only
+  changed the lockfile (#283).** `npx --yes pa11y-ci` used the `~/.npm` that setup-node
+  restores by lockfile hash. When that cache already held pa11y-ci in `_npx`, npx skipped
+  the install, so puppeteer's postinstall never downloaded Chrome. Chrome lives in
+  `~/.cache/puppeteer`, which is not cached, so the step failed. A rerun could not recover
+  because the cache for that key stayed the same. The step now gives npx an empty cache
+  under `$RUNNER_TEMP`, so every run installs pa11y-ci and fetches its Chrome.
 - **`/compare` published affirmative `Documented` cells with no human-verification signal
   anywhere on the page (part of #251).** `classifyCell()` reads `verification_status` and
   the freshness clock; neither says a person opened the source. That is `source.verifier`,
@@ -58,6 +80,11 @@ lives under `[Unreleased]`.
     as open as they were.
 
 ### Security
+- **The image now applies Debian's security updates on top of `node:26-slim`.** The
+  upstream tag had not yet picked up fixed `gzip`, `pcre2`, `sqlite` and `perl` packages,
+  so the blocking Trivy scan failed on 13 fixable HIGH/CRITICAL CVEs (first seen on
+  #275, a `@types/node` bump that did not cause them). The `Dockerfile` base stage now
+  runs `apt-get upgrade` and clears the apt lists in the same layer.
 - **`js-yaml` 4.3.1 -> 4.3.2 under `cosmiconfig` (`GHSA-2883-XCG3-V3HH`, high), which is
   what stage 5 of `make verify` was refusing.** The gate is `npm audit --json` with a
   high/critical floor and no `--omit=dev`, and the pre-push hook runs the whole of
@@ -269,7 +296,7 @@ lives under `[Unreleased]`.
   each of `feed`/`change_id`/`reviewed_at` missing and empty, and an impossible calendar
   date (`2026-02-30`) in the field that records when a human confirmed the withdrawal. The
   two shape refusals on the `relocation` annotation were unexecuted for the same reason and
-  are covered in the same pass. No behaviour changed: this is the guard being proved rather
+  are covered in the same pass. No behavior changed: this is the guard being proved rather
   than assumed. `api/corpus.ts` goes 95.54% → 100% line coverage.
 - **Eight comparisons in `tests/degraded-citations.test.ts` bypassed the escaping rule that
   file's own header states.** The rule exists because a raw comparison against rendered HTML
@@ -308,7 +335,7 @@ lives under `[Unreleased]`.
 
   **Measured before the rule was written:** of 329 string leaves and 24 function leaves,
   exactly **one** pair is identical (`docLabels.trusted-traveler` — "TSA PreCheck / Global
-  Entry", two CBP programme names) and no function pair is. So the list ships with one
+  Entry", two CBP program names) and no function pair is. So the list ships with one
   entry and the mechanical exemptions currently exempt nothing; both counts print in the
   passing line, so a widening escape hatch shows up in a green run rather than only in the
   code. There is deliberately no "short ALL-CAPS token" exemption: it cannot tell `CSV`
@@ -343,7 +370,7 @@ lives under `[Unreleased]`.
   and every surface that renders steps says it: the screen, the printed packet, and a
   footnote under `/compare`'s birth-certificate column, in English and Spanish. The
   records shown are unchanged — routing them elsewhere needs a state of birth this app
-  deliberately never asks for (#250) — and the line makes no claim that any state honours
+  deliberately never asks for (#250) — and the line makes no claim that any state honors
   another state's document, which is a separate and still-unanswered question (#241).
 
 - **A step whose sources had all gone stale told the reader to "check the official source"
@@ -357,7 +384,7 @@ lives under `[Unreleased]`.
   thing removed.
 
   Measured on 2026-09-07 this was live for three cells: Alabama birth certificates, and
-  Montana and South Dakota driver's licences. It is not a corner case for long. All 438
+  Montana and South Dakota driver's licenses. It is not a corner case for long. All 438
   records serving today carry a 90-day SLA, and 436 of them share `last_verified:
   2026-07-13`, so on **2026-10-12 the corpus goes from 436 serving records to zero in a
   single day** and every step in every state renders this way at once.
@@ -455,7 +482,7 @@ lives under `[Unreleased]`.
   the honesty failure `api/checklist.ts:hasNoStateCoverage` already guards against one level
   up. No editorial ranking anywhere: no score, no "safe"/"friendly"/"hostile" label, default
   sort is alphabetical, and the only other sort offered is a literal count
-  (`documentedPathCount` — "number of documented paths"), labelled as exactly that. Every
+  (`documentedPathCount` — "number of documented paths"), labeled as exactly that. Every
   cell links to the record(s) it came from via a `<details>` disclosure. The results table
   (up to 51 rows) is responsive: a horizontally-scrolling box on wider viewports, a per-row
   card list under 640px — both proven against the pseudolocale-overflow gate (G9) at ~40%

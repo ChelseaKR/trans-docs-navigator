@@ -140,7 +140,7 @@
 > added a named-verifier roster + placeholder enforcement (§1.1), a gold-set provenance
 > gate (§1.2), HTTP hardening with a testable router + input bounds + security headers
 > + rate limiting (§2.2), a runtime request-content non-reflection test (§2.1, which caught and
-> fixed a query-string reflection bug), a readability gate (§3.2), colour-contrast
+> fixed a query-string reflection bug), a readability gate (§3.2), color-contrast
 > assertions + blocking pa11y/SAST in CI (§3.1), full Spanish localization of generated
 > answers (§4.1), an adversarial/prompt-injection eval suite (§1.3), form-fill failure
 > feedback (§3.3), real calendar-date validation + conflicting-cost detection (§1.5),

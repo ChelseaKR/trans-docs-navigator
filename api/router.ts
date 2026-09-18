@@ -37,7 +37,7 @@ import { buildInfo } from "./version.ts";
 export const LIMITS = {
   /** Free-text question chars considered; longer is truncated before tokenizing. */
   questionMaxLen: 2000,
-  /** Max repeated change/doc params honoured; excess is ignored. */
+  /** Max repeated change/doc params honored; excess is ignored. */
   maxArrayItems: 16,
 } as const;
 

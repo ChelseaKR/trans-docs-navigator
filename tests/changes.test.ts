@@ -199,7 +199,7 @@ test("the packet prints an absolute link back to its own staleness check", () =>
   assert.doesNotMatch(html, /\/changes\?since=2026-07-13/);
 });
 
-test("a packet built without a canonical intake query offers no check it cannot honour", () => {
+test("a packet built without a canonical intake query offers no check it cannot honor", () => {
   const checklist = buildChecklist(INTAKE, TODAY);
   const html = renderPacketPage(checklist, [], "en", "2026-05-31");
   assert.doesNotMatch(html, /\/changes\?/);

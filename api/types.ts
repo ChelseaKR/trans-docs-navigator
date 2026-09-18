@@ -75,7 +75,7 @@ export interface Cost {
   fee_waiver_form?: string;
   /**
    * A short, LITERAL quote of what the court itself publishes as its fee-waiver criteria —
-   * never this app's own eligibility judgement, and never phrased as a prediction about the
+   * never this app's own eligibility judgment, and never phrased as a prediction about the
    * reader ("you likely qualify"). `make fidelity` requires this exact text to be locatable
    * in the source it is checked against (this record's own `source`, or `fee_waiver_source`
    * below when the waiver lives on a different official page). Where the source states a
@@ -257,7 +257,7 @@ export interface ChecklistStep {
    * Record ids that match this step but whose freshness has lapsed, so none of their
    * substantive text is used. Carried because a lapsed record's CITATION is still good:
    * the URL points at the agency's own page, and a stale summary is no reason to withhold
-   * the page it summarises. Without this the renderer had nothing to link when every
+   * the page it summarizes. Without this the renderer had nothing to link when every
    * backing record was degraded, so the step said "Check the official source" and offered
    * none — see src/render.ts:staleSourceList. Never a source of statements, costs,
    * timelines or prerequisites; `record_ids` remains the only one of those.
@@ -299,7 +299,7 @@ export interface ChecklistStep {
    * the certificate. Without it the page reads as an answer to a question it did not ask.
    *
    * A disclosure, never a route: nothing here selects records, and nothing here claims
-   * any state will honour another state's document (that is #241's question).
+   * any state will honor another state's document (that is #241's question).
    */
   governed_by_issuing_jurisdiction?: boolean;
 }
@@ -388,7 +388,7 @@ export type StepClass =
   | "redo-in-destination"
   /**
    * An action taken under the ORIGIN's rules, while the person still lives there. Distinct
-   * from `redo-in-destination`: labelling this one "the new state has its own requirements"
+   * from `redo-in-destination`: labeling this one "the new state has its own requirements"
    * would be plainly false — it is the OLD state's requirements, and that is the whole point
    * of the step (it is the route with a deadline).
    */
@@ -538,7 +538,7 @@ export interface RelocationPlan {
 
 /**
  * One (jurisdiction × document × change) cell's status, derived STRICTLY from what the
- * corpus holds — never a judgement about the jurisdiction. `documented` and
+ * corpus holds — never a judgment about the jurisdiction. `documented` and
  * `needs_reverification` both mean "a record describes a path" (the difference is
  * freshness, exactly like ChecklistStep.needs_reverification); `no_path_documented` and
  * `not_covered` are BOTH absences, but different ones, and the whole point of this

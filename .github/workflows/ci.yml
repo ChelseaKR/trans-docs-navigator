@@ -194,6 +194,16 @@ jobs:
         # threshold; a violation fails the job. Required check via branch protection.
         # Chromium runs with --no-sandbox (.pa11yci.json) since GitHub runners have no
         # user namespaces for the Chrome sandbox.
+        #
+        # npx gets its own empty cache. The restored ~/.npm can already hold
+        # pa11y-ci in `_npx` from an earlier run with the same lockfile hash. Then
+        # npx skips the install, puppeteer's postinstall never downloads Chrome
+        # into ~/.cache/puppeteer (which is not cached), and the step dies with
+        # "Could not find Chrome" (#283, 2026-09-18). A fresh cache makes every
+        # run install pa11y-ci and fetch its Chrome from storage.googleapis.com,
+        # which the egress allowlist above already permits.
+        env:
+          NPM_CONFIG_CACHE: ${{ runner.temp }}/pa11y-npx-cache
         run: npx --yes pa11y-ci --config .pa11yci.json
 
   lighthouse:
@@ -299,7 +309,7 @@ jobs:
     # required_status_checks today (verify, smoke-journey, a11y-browser, security-sast,
     # container-and-infra are), so nothing there needs to change for this PR — but if
     # `lighthouse` is ever made required, point the rule at this job, not at one leg.
-    # `if: always()` + an explicit result check so a cancelled/skipped matrix reads as
+    # `if: always()` + an explicit result check so a canceled/skipped matrix reads as
     # a failure here rather than a silently-green summary: a gate that didn't run must
     # not read as a gate that passed (PR #118).
     name: lighthouse
@@ -325,7 +335,7 @@ jobs:
           LH_MATRIX_RESULT: ${{ needs.lighthouse.result }}
         run: |
           if [ "$LH_MATRIX_RESULT" != "success" ]; then
-            echo "::error::lighthouse matrix result was '$LH_MATRIX_RESULT' (expected 'success') — at least one URL shard failed, was skipped, or was cancelled."
+            echo "::error::lighthouse matrix result was '$LH_MATRIX_RESULT' (expected 'success') — at least one URL shard failed, was skipped, or was canceled."
             exit 1
           fi
           echo "All 7 lighthouse URL shards passed."
@@ -464,7 +474,7 @@ jobs:
         # stable across runs, so there is no exact-match allowlist entry to add;
         # the only way to unblock it would be a blanket `*.cloudfront.net`, which
         # would defeat the point of an allowlist (CloudFront fronts an enormous
-        # share of the internet) — exactly the "too-broad is theatre" failure
+        # share of the internet) — exactly the "too-broad is theater" failure
         # mode #158 warns against. Better an honest `audit` here than a `block`
         # that is either randomly red or silently wide open.
         uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1

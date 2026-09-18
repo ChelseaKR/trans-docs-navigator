@@ -25,6 +25,7 @@ import {
   runWithTrace,
   startServerTrace,
 } from "./trace.ts";
+import { CONTENT_SECURITY_POLICY } from "./csp.ts";
 
 const PORT = Number(process.env.PORT ?? 8080);
 
@@ -46,10 +47,10 @@ const MIME: Record<string, string> = {
 
 // Strict security headers. No inline scripts or styles anywhere: client JS is served
 // from /assets/ (public/assets on disk), the stylesheet from /assets/app.css, and
-// per-page config travels in JSON islands — so the CSP is 'self' across the board.
+// per-page config travels in JSON islands. The CSP lives in api/csp.ts: 'self' across
+// the board plus the minimum Google Analytics 4 origins (ADR 0007).
 const SECURITY_HEADERS: Record<string, string> = {
-  "content-security-policy":
-    "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; object-src 'none'",
+  "content-security-policy": CONTENT_SECURITY_POLICY,
   "x-content-type-options": "nosniff",
   "x-frame-options": "DENY",
   "referrer-policy": "no-referrer",

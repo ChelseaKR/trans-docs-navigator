@@ -36,10 +36,10 @@ source and be willing to be named for it.
 
 ## How you want to be credited
 
-Named verification means your name (or your organisation's) goes in
+Named verification means your name (or your organization's) goes in
 `corpus/VERIFIERS.json` and renders next to the record in the app.
 
-- **Name / organisation to credit:**
+- **Name / organization to credit:**
 - **Role:** <!-- e.g. staff attorney, paralegal, legal-aid volunteer, name-change clinic -->
 - [ ] I understand this is a public, attributed statement that I checked this record
 - [ ] I'd rather not be named — file this as a correction instead, and I'll stay anonymous

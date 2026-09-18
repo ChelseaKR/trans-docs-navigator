@@ -60,9 +60,9 @@ test("every almost-a-SHA stamp is reported as absent, never as a value", () => {
   }
 });
 
-// ── build time is normalised, and an unparseable one is absent ──────────────
+// ── build time is normalized, and an unparseable one is absent ──────────────
 
-test("a parseable build time is normalised to ISO-8601", () => {
+test("a parseable build time is normalized to ISO-8601", () => {
   const root = fixtureRoot({});
   const info = buildInfo({ BUILD_TIME: "2026-09-06T12:00:00Z" }, root);
   assert.equal(info.built_at, "2026-09-06T12:00:00.000Z");
