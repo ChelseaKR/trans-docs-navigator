@@ -23,6 +23,13 @@ lives under `[Unreleased]`.
   `deploy-aws-preview.yml`.
 
 ### Fixed
+- **The `a11y-browser` check could fail with "Could not find Chrome" on a PR that only
+  changed the lockfile (#283).** `npx --yes pa11y-ci` used the `~/.npm` that setup-node
+  restores by lockfile hash. When that cache already held pa11y-ci in `_npx`, npx skipped
+  the install, so puppeteer's postinstall never downloaded Chrome. Chrome lives in
+  `~/.cache/puppeteer`, which is not cached, so the step failed. A rerun could not recover
+  because the cache for that key stayed the same. The step now gives npx an empty cache
+  under `$RUNNER_TEMP`, so every run installs pa11y-ci and fetches its Chrome.
 - **`/compare` published affirmative `Documented` cells with no human-verification signal
   anywhere on the page (part of #251).** `classifyCell()` reads `verification_status` and
   the freshness clock; neither says a person opened the source. That is `source.verifier`,
