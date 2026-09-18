@@ -194,6 +194,16 @@ jobs:
         # threshold; a violation fails the job. Required check via branch protection.
         # Chromium runs with --no-sandbox (.pa11yci.json) since GitHub runners have no
         # user namespaces for the Chrome sandbox.
+        #
+        # npx gets its own empty cache. The restored ~/.npm can already hold
+        # pa11y-ci in `_npx` from an earlier run with the same lockfile hash. Then
+        # npx skips the install, puppeteer's postinstall never downloads Chrome
+        # into ~/.cache/puppeteer (which is not cached), and the step dies with
+        # "Could not find Chrome" (#283, 2026-09-18). A fresh cache makes every
+        # run install pa11y-ci and fetch its Chrome from storage.googleapis.com,
+        # which the egress allowlist above already permits.
+        env:
+          NPM_CONFIG_CACHE: ${{ runner.temp }}/pa11y-npx-cache
         run: npx --yes pa11y-ci --config .pa11yci.json
 
   lighthouse:
