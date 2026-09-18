@@ -38,7 +38,7 @@ provider "aws" {
   # Resource-level `tags` blocks MERGE over these defaults, so the existing
   # Name/PII tags below are untouched. Nothing here observes users or collects
   # data — these are billing labels on infrastructure, not runtime telemetry, so
-  # the no-analytics posture is unaffected.
+  # the analytics posture (ADR 0007: browser-side GA4 page counts only) is unaffected.
   default_tags {
     tags = {
       project = "trans-docs-navigator"
