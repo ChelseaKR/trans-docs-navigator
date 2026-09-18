@@ -39,8 +39,10 @@
 > who may be in hostile jurisdictions. Discoverability is part of the mission: someone
 > searching "how do I change my gender marker in California" should find accurate,
 > cited guidance instead of forum lore. But the same threat model means some surfaces
-> must stay *out* of the index, and the site carries no client-side analytics by
-> design. So this is not a generic "add meta tags and a sitemap" plan. The real work
+> must stay *out* of the index, and the site carried no client-side analytics by
+> design when this plan was written. (Since 2026-09-17 it counts page views with Google
+> Analytics 4, path only and never on a page carrying a question or on the relocation
+> planner; see ADR 0007.) So this is not a generic "add meta tags and a sitemap" plan. The real work
 > is building an indexable content surface for the guidance that today only exists
 > behind a form, while keeping user-state URLs uncrawlable and measuring without
 > trackers.

@@ -7,6 +7,21 @@ lives under `[Unreleased]`.
 
 ## [Unreleased]
 
+### Added
+- **Google Analytics 4 page counts, path only (ADR 0007).** Every rendered page loads
+  `/assets/analytics.js`, which loads GA4 (`G-8HZFD5R23E`) only on the production Lambda
+  URL host, and never under Global Privacy Control, Do Not Track or the new footer
+  "Opt out of analytics" control (en/es, remembered as
+  `trans-docs-navigator:analytics-opt-out`). It also never loads on a page whose address
+  carries a question or any GA site-search parameter, or on the relocation planner
+  (`/move`, `/plan`). `page_location` is origin plus path, so no selection, court-order or
+  minor bit, `since` date or question reaches Google; the referrer is origin-only. Consent
+  Mode v2 denies the three ad signals everywhere and analytics storage in the EEA, UK and
+  CH; Google signals and ad personalization are off. The CSP (now `api/csp.ts`) admits
+  only the minimum GA origins. The Privacy Notice, footer, DPIA, README and ROADMAP
+  describe it; `LEGAL_EFFECTIVE_DATE` is 2026-09-17. Takes effect on the next dispatch of
+  `deploy-aws-preview.yml`.
+
 ### Fixed
 - **`/compare` published affirmative `Documented` cells with no human-verification signal
   anywhere on the page (part of #251).** `classifyCell()` reads `verification_status` and
@@ -58,6 +73,11 @@ lives under `[Unreleased]`.
     as open as they were.
 
 ### Security
+- **The image now applies Debian's security updates on top of `node:26-slim`.** The
+  upstream tag had not yet picked up fixed `gzip`, `pcre2`, `sqlite` and `perl` packages,
+  so the blocking Trivy scan failed on 13 fixable HIGH/CRITICAL CVEs (first seen on
+  #275, a `@types/node` bump that did not cause them). The `Dockerfile` base stage now
+  runs `apt-get upgrade` and clears the apt lists in the same layer.
 - **`js-yaml` 4.3.1 -> 4.3.2 under `cosmiconfig` (`GHSA-2883-XCG3-V3HH`, high), which is
   what stage 5 of `make verify` was refusing.** The gate is `npm audit --json` with a
   high/critical floor and no `--omit=dev`, and the pre-push hook runs the whole of

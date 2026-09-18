@@ -180,6 +180,31 @@ export interface FeedLink {
   title: string;
 }
 
+/**
+ * The footer's "Opt out of analytics" control (ADR 0007). Hidden until
+ * /assets/analytics.js wires it, so a visitor without JavaScript (who also never
+ * loads Google Analytics) never sees a button that does nothing. Its words travel as
+ * data-* attributes so the loader carries no user-facing text of its own and every
+ * language comes from the catalogs.
+ */
+export function analyticsChoice(t: UiMessages): string {
+  const attrs: [string, string][] = [
+    ["label-out", t.analyticsOptOut],
+    ["label-in", t.analyticsOptIn],
+    ["msg-opted-out", t.analyticsOptedOut],
+    ["msg-is-out", t.analyticsIsOut],
+    ["msg-back-in", t.analyticsBackIn],
+    ["msg-signal", t.analyticsSignal],
+    ["msg-no-storage", t.analyticsNoStorage],
+  ];
+  const data = attrs.map(([name, value]) => ` data-${name}="${escapeHtml(value)}"`).join("");
+  return (
+    `<p class="analytics-choice" data-analytics-choice hidden${data}>` +
+    `<button type="button">${escapeHtml(t.analyticsOptOut)}</button> ` +
+    `<span role="status"></span></p>`
+  );
+}
+
 export function page(opts: {
   lang: Language;
   title: string;
@@ -214,6 +239,7 @@ export function page(opts: {
 ${headTags(fullTitle, opts.lang, seo)}
 ${feedTags}
 <link rel="stylesheet" href="/assets/app.css">
+<script src="/assets/analytics.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">${escapeHtml(t.skip)}</a>
@@ -233,6 +259,7 @@ ${feedTags}
     <a href="/accessibility${langQ}">${escapeHtml(t.a11yLink)}</a> ·
     <a href="/methodology${langQ}">${escapeHtml(t.methodologyLink)}</a>
   </nav>
+  ${analyticsChoice(t)}
 </footer>
 </body>
 </html>`;

@@ -6,6 +6,16 @@
 FROM node:26-slim AS base
 WORKDIR /app
 
+# Apply Debian's published security updates on top of the base image. The upstream
+# `node:26-slim` tag is rebuilt on its own schedule, so it can lag a Debian point fix
+# by days. In that window the blocking Trivy scan (container-scan.yml) fails on
+# HIGH/CRITICAL CVEs that already have a fixed package (2026-09-18: gzip, pcre2,
+# sqlite and perl). Upgrading here keeps the image patched to the current Debian
+# security archive and removes the apt lists in the same layer.
+RUN apt-get update \
+    && apt-get upgrade -y --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
 # AWS Lambda Web Adapter (cost-light preview, infra/preview): lets Lambda run this
 # standard HTTP server unmodified. Inert on non-Lambda hosts.
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:1.0.1 /lambda-adapter /opt/extensions/lambda-adapter
