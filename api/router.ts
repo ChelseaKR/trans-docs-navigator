@@ -32,6 +32,7 @@ import { asLanguage } from "../src/i18n/index.ts";
 import { serviceWorkerScript } from "../src/offline.ts";
 import { metricMethod, metricRoute, renderPrometheusMetrics } from "./metrics.ts";
 import { buildInfo } from "./version.ts";
+import { aimEnglishLink, englishHref } from "../src/machine-translation.ts";
 
 /** Input bounds — abuse/DoS resistance + predictable resource use. */
 export const LIMITS = {
@@ -362,8 +363,20 @@ function notFound(lang: Language): RouteResponse {
 /**
  * Resolve a dynamic route. Static files and the HTTP plumbing live in server.ts;
  * `today` is injectable for deterministic tests.
+ *
+ * Every HTML page in a machine-translated language carries the machine-translation notice
+ * (src/machine-translation.ts, rendered by `page()`), and the notice links to "the English
+ * version". Only this function knows which URL was asked for, so this is where that link is
+ * pointed at the same URL in English, parameters and all -- a checklist link that dropped the
+ * reader's answers would not be the English version of anything.
  */
 export function handleRoute(method: string, url: URL, today?: string): RouteResponse {
+  const response = routeRequest(method, url, today);
+  if (response.contentType !== HTML) return response;
+  return { ...response, body: aimEnglishLink(response.body, englishHref(url)) };
+}
+
+function routeRequest(method: string, url: URL, today?: string): RouteResponse {
   const lang = asLanguage(languageParam(url));
   if (method !== "GET" && method !== "HEAD") {
     const t = uiStrings(lang);

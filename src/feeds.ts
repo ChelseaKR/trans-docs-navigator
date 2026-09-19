@@ -19,6 +19,7 @@ import { STATES, stateNameFor } from "./guide.ts";
 import { page, escapeHtml, type FeedLink } from "./render.ts";
 import { t as locale } from "./i18n/index.ts";
 import { SITE_ORIGIN } from "./seo.ts";
+import { machineTranslationNoticeText } from "./machine-translation.ts";
 
 /** The route path (no origin, no query) for a jurisdiction's feed. */
 export function feedPath(jurisdiction: JurisdictionId): string {
@@ -75,6 +76,12 @@ export function renderJurisdictionFeedXml(
 
   const langQ = lang === "es" ? "?language=es" : "";
   const selfUrl = `${SITE_ORIGIN}${feedPath(jurisdiction)}${langQ}`;
+  // Machine-translated, unreviewed Spanish (owner decision, 2026-09-18) is said in the text a
+  // reader sees -- the channel description and every item, since an item is often read alone --
+  // in both languages, with the English feed named. `null` for English.
+  const englishFeedUrl = `${SITE_ORIGIN}${feedPath(jurisdiction)}`;
+  const itemNotice = machineTranslationNoticeText(lang);
+  const channelNotice = machineTranslationNoticeText(lang, englishFeedUrl);
   const channelLink = `${SITE_ORIGIN}/checklist?jurisdiction=${jurisdiction}${lang === "es" ? "&language=es" : ""}`;
 
   const itemsXml = entries
@@ -82,6 +89,7 @@ export function renderJurisdictionFeedXml(
       const docTypes = e.documentTypes.map((d) => docLabels[d]).join(", ");
       const title = seo.feedEntryTitle(e.recordIds.length, stateName, e.date);
       const description = [
+        itemNotice ?? "",
         seo.feedEntryDescription(e.recordIds.length, stateName, e.date, docTypes),
         // Computed from the entry's own records, never written (issue #251). A
         // subscriber hands over no identity to read this, so there is no channel
@@ -104,12 +112,16 @@ export function renderJurisdictionFeedXml(
     .join("\n");
 
   const channelDescription = [
+    channelNotice ?? "",
     seo.feedChannelDescription(stateName),
     entries.length === 0 ? seo.feedEmptyNote : "",
     disclosure,
   ]
     .filter(Boolean)
     .join(" ");
+  const englishAlternate = channelNotice
+    ? `\n  <atom:link href="${escapeXmlAttr(englishFeedUrl)}" rel="alternate" hreflang="en" type="application/rss+xml"/>`
+    : "";
   const lastBuildDate = entries[0] ? `\n  <lastBuildDate>${rfc822(entries[0].date)}</lastBuildDate>` : "";
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -117,7 +129,7 @@ export function renderJurisdictionFeedXml(
 <channel>
   <title>${escapeXml(seo.feedChannelTitle(stateName))}</title>
   <link>${escapeXml(channelLink)}</link>
-  <atom:link href="${escapeXmlAttr(selfUrl)}" rel="self" type="application/rss+xml"/>
+  <atom:link href="${escapeXmlAttr(selfUrl)}" rel="self" type="application/rss+xml"/>${englishAlternate}
   <description>${escapeXml(channelDescription)}</description>
   <language>${lang}</language>${lastBuildDate}
   <docs>https://www.rssboard.org/rss-specification</docs>

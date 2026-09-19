@@ -8,6 +8,17 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Added
+- **The Spanish is labeled machine-translated wherever it is shown (owner decision,
+  2026-09-18).** No qualified speaker has reviewed it. Every Spanish page now starts `<main>`
+  with a notice in Spanish and English, *"Traducción automática, sin revisión humana."*, and a
+  link to the same page in English (every parameter kept but the language); Spanish RSS feeds
+  carry it in the channel and every item, with a link to the English feed. English pages are
+  unchanged. `tests/machine-translation.test.ts` fails on any Spanish surface without it. See
+  `docs/I18N.md`.
+- **Portable single-file edition, build-only (#233).** `make portable` writes one
+  self-contained HTML file that runs the whole navigator from `file://` with no network, and
+  `make portable-verify` recomputes its declared hash. Nothing publishes the file or attaches
+  it to a release: there is no public distribution until counsel and community review.
 - **A help-wanted page for verifiers, and credit by pseudonym (#253).**
   `docs/HELP-WANTED.md` publishes the freshness position measured on 2026-09-18: 0 of 1000
   records verified by a human, and all 436 currently-current jurisdiction records lapse on

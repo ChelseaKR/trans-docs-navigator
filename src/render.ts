@@ -12,6 +12,7 @@ import { headTags, titleTag } from "./seo.ts";
 import { formById } from "../api/forms.ts";
 import { isDriftWatchable } from "../api/watchability.ts";
 import { isHumanVerified } from "../api/corpus.ts";
+import { machineTranslationNoticeHtml } from "./machine-translation.ts";
 import { stateNameFor } from "./guide.ts";
 import type { Source } from "../api/types.ts";
 
@@ -100,6 +101,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 header[role=banner]{background:var(--card);border-bottom:1px solid var(--line);padding:1rem}
 .banner{max-width:60rem;margin:0 auto;color:var(--warn);font-weight:600}
 main{max-width:60rem;margin:0 auto;padding:1.5rem 1rem}
+.mt-notice{background:var(--card);border:1px solid var(--line);border-inline-start:4px solid var(--warn);border-radius:.5rem;padding:.75rem 1rem;margin:0 0 1rem}
+.mt-notice p{margin:.25rem 0}
 .step{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:1rem;margin:1rem 0}
 .meta{color:var(--muted);font-size:.95rem}
 .flag{color:var(--warn);font-weight:600}
@@ -222,6 +225,10 @@ export function page(opts: {
 }): string {
   const t = locale(opts.lang).ui;
   const langQ = opts.lang === "es" ? "?language=es" : ""; // preserve language on footer links
+  // Machine-translated, unreviewed Spanish (owner decision, 2026-09-18): first in <main>, in
+  // both languages. Empty for English, which leaves an English page byte-for-byte as it was.
+  const notice = machineTranslationNoticeHtml(opts.lang);
+  const mtNotice = notice ? `  ${notice}\n` : "";
   const fullTitle = titleTag(opts.title);
   const seo: SeoMeta = opts.seo ?? { path: "", description: "", index: false };
   const feedTags = (opts.feedLinks ?? [])
@@ -247,7 +254,7 @@ ${feedTags}
   <p class="banner" role="note"><strong>${escapeHtml(t.bannerTitle)}.</strong> ${escapeHtml(t.bannerBody)}</p>
 </header>
 <main id="main">
-  <h1>${escapeHtml(opts.heading)}</h1>
+${mtNotice}  <h1>${escapeHtml(opts.heading)}</h1>
   ${opts.body}
 </main>
 <footer>
