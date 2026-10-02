@@ -41,6 +41,13 @@ lives under `[Unreleased]`.
   describe it; `LEGAL_EFFECTIVE_DATE` is 2026-09-17. Takes effect on the next dispatch of
   `deploy-aws-preview.yml`.
 
+### Changed
+- **Standards pin moved from portfolio-standards v1.0.1 to v3.0.0.** The `standards` check
+  failed on `main` and on every PR because the v1.0.1 documents, last verified 2026-06-21,
+  were past their 92-day recheck. Upstream re-verified them and released v3.0.0 on
+  2026-10-02. `.standards-version` and the `ref` in `.github/workflows/standards.yml` move
+  together; nothing from the standards repo is committed here.
+
 ### Fixed
 - **The `a11y-browser` check could fail with "Could not find Chrome" on a PR that only
   changed the lockfile (#283).** `npx --yes pa11y-ci` used the `~/.npm` that setup-node
