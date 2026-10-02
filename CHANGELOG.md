@@ -47,6 +47,9 @@ lives under `[Unreleased]`.
   were past their 92-day recheck. Upstream re-verified them and released v3.0.0 on
   2026-10-02. `.standards-version` and the `ref` in `.github/workflows/standards.yml` move
   together; nothing from the standards repo is committed here.
+- **`CITATION.cff` no longer records a `date-released` for 0.1.0.** No tag names 0.1.0, and
+  v3.0.0's citation check (DOC-08) fails a release date on a version that was never
+  released. The date goes back in when the first release is tagged.
 
 ### Fixed
 - **The `a11y-browser` check could fail with "Could not find Chrome" on a PR that only
