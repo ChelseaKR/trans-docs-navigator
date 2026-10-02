@@ -50,6 +50,10 @@ lives under `[Unreleased]`.
 - **`CITATION.cff` no longer records a `date-released` for 0.1.0.** No tag names 0.1.0, and
   v3.0.0's citation check (DOC-08) fails a release date on a version that was never
   released. The date goes back in when the first release is tagged.
+- **Standards pin moved from portfolio-standards v3.0.0 to v3.0.1.** v3.0.1 is a patch
+  release (re-verified stamps, text corrections, tooling fixes) with no control, threshold,
+  or gate change. `.standards-version` and the `ref` in `.github/workflows/standards.yml`
+  move together.
 
 ### Fixed
 - **The `a11y-browser` check could fail with "Could not find Chrome" on a PR that only
