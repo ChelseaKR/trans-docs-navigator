@@ -27,6 +27,17 @@ const ARTIFACT = join(REPO_ROOT, "dist", "portable", "trans-docs-navigator.html"
 /** The corpus is seeded in one pass, so it lapses on one day; this is a day after it. */
 const AFTER_EVERYTHING_LAPSES = "2026-12-01T12:00:00Z";
 
+/**
+ * A device clock at which the corpus is current (#308): after the newest `last_verified`
+ * date in corpus/jurisdictions (2026-09-06) and before the earliest re-check lapse
+ * (2026-09-14), so most records are servable and none has a verification date in the
+ * future. The first test pins this instead of reading the real clock, because the real
+ * clock decides how many records are servable and the suite would otherwise start failing
+ * on the day the corpus lapses (it did, on 2026-10-12) with no change to the code. The
+ * records and their review dates are not touched to make the count positive.
+ */
+const WHILE_CORPUS_IS_CURRENT = "2026-09-07T12:00:00Z";
+
 test.beforeAll(() => {
   execFileSync(
     process.execPath,
@@ -38,6 +49,7 @@ test.beforeAll(() => {
 test.describe("EXP-02 — the portable edition, from file:// with the network off", () => {
   test("runs intake, the checklist, /move and /compare with no request off the device", async ({ page, context }) => {
     await context.setOffline(true);
+    await page.clock.install({ time: new Date(WHILE_CORPUS_IS_CURRENT) });
     const offDevice: string[] = [];
     page.on("request", (request) => {
       const url = request.url();
