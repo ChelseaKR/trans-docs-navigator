@@ -358,6 +358,10 @@ export const en: LocaleBundle = {
     freshness: (topic: string, date: string, title: string) =>
       `One related rule (${topic}) may have changed and needs reverification. We recorded it on ${date}, ` +
       `which is past our re-check date, so I won't present it as current. Verify it directly at the official source: ${title}.`,
+    freshnessGroup: (count: number, rules: string, firstDate: string, lastDate: string, sources: string) =>
+      `${count} related rules may have changed and need reverification: ${rules}. ` +
+      `We recorded them ${firstDate === lastDate ? `on ${firstDate}` : `between ${firstDate} and ${lastDate}`}, ` +
+      `which is past our re-check date, so I won't present any of them as current. Verify them directly at the official sources: ${sources}.`,
     disclosure: `${DISCLOSURE.notLegalAdvice} ${DISCLOSURE.aiAssisted}`,
   },
 
@@ -542,15 +546,15 @@ export const en: LocaleBundle = {
       "See, state by state, whether an official source describes a way to update your legal name or gender marker, says there is no way, or has not been checked yet.",
     guideIndexTitle: "State-by-state name & gender-marker change guides",
     guideIndexDescription:
-      "Cited, current guides to changing your legal name and gender marker in each state we cover, from court order through SSA, DMV, and passport.",
+      "Cited guides to changing your legal name and gender marker in each state we cover, from court order through SSA, DMV, and passport.",
     guideIndexLead:
       "Pick your state and what you're changing. Each guide lists the steps in order with a link to the official source for every requirement. Costs and timelines appear only where our record of them is within its re-check date.",
     guideIndexAllHeading: "All guides",
     topicName: { name: "Name change", "gender-marker": "Gender-marker change" },
-    guideTitle: (state, topic) => `${topic} in ${state}: steps, forms & costs`,
+    guideTitle: (state, topic) => `${topic} in ${state}: steps & forms`,
     guideHeading: (state, topic) => `${topic} in ${state}`,
     guideDescription: (state, topic) =>
-      `How to complete a ${topic.toLowerCase()} in ${state}: the steps in order, what each costs, how long it takes, and the official source for every requirement.`,
+      `How to complete a ${topic.toLowerCase()} in ${state}: the steps in order, the forms to use, and the official source for every requirement.`,
     guideLead: (state, topic) =>
       `These are the steps most people follow for a ${topic.toLowerCase()} in ${state}, in order. Each links to its official source and the date we recorded it. When you're ready, build a personalized checklist that covers every document at once.`,
     guideCta: "Build my personalized checklist",

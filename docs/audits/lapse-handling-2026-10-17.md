@@ -105,3 +105,12 @@ beside each source already read "recorded {date} · not yet verified by a named 
 Only a named human reading each source. See `docs/HELP-WANTED.md` and
 `docs/VERIFIER-WORKBENCH.md`. Verifying a jurisdiction resets that jurisdiction's SLA; it does
 not stop the clock for the rest.
+
+## Follow-up (#311)
+
+Two of the items under "Left alone" are now done. `/answer` prints one statement for all
+related rules that cannot be served as current (it names each rule once, the span of dates they
+were recorded on, and the official sources), and a single unservable rule keeps its own
+sentence. Guide titles, descriptions, Open Graph and Twitter text, and the HowTo JSON-LD no
+longer mention costs or timelines, and the guide index description no longer says "current".
+Neither change marks any record verified or changes a date.

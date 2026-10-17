@@ -130,3 +130,35 @@ test("/compare still shows a current cell's claim, with no lapsed mark", () => {
   assert.ok(html.includes(escapeHtml(rec.statement)));
   assert.ok(!html.includes(escapeHtml(locale("en").compare.lapsedMark)));
 });
+
+// ── #311: /answer prints one freshness statement, not one per lapsed rule ───────────────
+// On the day every record had lapsed, a California question printed about 25 near-identical
+// "may have changed" paragraphs. The same facts now arrive as one block that names the
+// affected rules, the span of dates they were recorded on, and the official sources.
+
+for (const lang of ["en", "es"] as const) {
+  test(`[${lang}] /answer collapses the lapsed-rule paragraphs into one statement that lists them`, () => {
+    const url = `http://l/answer?jurisdiction=US-CA&change=name&q=how%20much%20does%20it%20cost&language=${lang}`;
+    const r = handleRoute("GET", new URL(url), LAPSED_DAY);
+    assert.equal(r.status, 200);
+    const g = locale(lang).generator;
+    const single = escapeHtml(g.freshness("TOPIC", "DATE", "TITLE")).split("TOPIC")[0]!;
+    const grouped = escapeHtml(g.freshnessGroup(2, "RULES", "D1", "D2", "SOURCES")).split("RULES")[0]!.replace(/^2/, "");
+    assert.equal(r.body.split(single).length - 1, 0, "a per-rule paragraph was printed");
+    assert.equal(r.body.split(grouped).length - 1, 1, "expected exactly one grouped statement");
+    const text = /<p class="flag">([^<]*)<\/p>/.exec(r.body.slice(r.body.indexOf(grouped) - 20))?.[1] ?? "";
+    assert.ok(text.includes("California"), "the grouped statement names the affected California rules");
+    assert.ok(text.split(";").length > 5, "and lists more than a handful of them");
+  });
+
+  test(`[${lang}] the grouped statement names each rule and source once and never implies a re-check`, () => {
+    const g = locale(lang).generator;
+    const text = g.freshnessGroup(3, "Rule A; Rule B; Rule C", "2026-05-31", "2026-07-13", "Source 1; Source 2");
+    for (const part of ["Rule A", "Rule B", "Rule C", "Source 1", "Source 2", "2026-05-31", "2026-07-13", "3"]) {
+      assert.ok(text.includes(part), `${part} missing from: ${text}`);
+    }
+    assert.doesNotMatch(text, /re-?checked|last checked|verified on|verificamos|verificó/i);
+    const same = g.freshnessGroup(3, "A", "2026-07-13", "2026-07-13", "S");
+    assert.equal(same.split("2026-07-13").length - 1, 1, "a single date is not printed as a range");
+  });
+}

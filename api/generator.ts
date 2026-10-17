@@ -58,7 +58,7 @@ export class GroundedComposer implements Generator {
     // Refusal path: nothing serveable. Never fabricate; point to official sources.
     if (current.length === 0) {
       blocks.push({ kind: "refusal", citations: [], text: s.refusal });
-      for (const d of degraded) blocks.push(freshnessBlock(d.record, s));
+      blocks.push(...freshnessBlocks(degraded, s));
       blocks.push(disclosureBlock(s));
       return { blocks, cited_records: [], refused: true };
     }
@@ -75,7 +75,7 @@ export class GroundedComposer implements Generator {
     }
 
     // Surface (never serve) anything stale/volatile that matched.
-    for (const d of degraded) blocks.push(freshnessBlock(d.record, s));
+    blocks.push(...freshnessBlocks(degraded, s));
 
     blocks.push(disclosureBlock(s));
     return { blocks, cited_records: citedRecords, refused: false };
@@ -88,6 +88,33 @@ function freshnessBlock(rec: CorpusRecord, s: GeneratorMessages): AnswerBlock {
     citations: [], // intentionally not a servable claim
     text: s.freshness(rec.topic, rec.source.last_verified, rec.source.title),
   };
+}
+
+/**
+ * One freshness statement for everything that matched but cannot be served as current (#311).
+ * While many records are past their re-check date, a question about one state matches dozens
+ * of them, and a paragraph per record printed the same sentence about 25 times. One record
+ * keeps its own sentence; two or more become a single block naming each affected rule, the
+ * span of dates they were recorded on, and the official sources to read instead.
+ *
+ * Nothing here says a record was re-checked: the dates are the dates the records were
+ * recorded, and the block stays uncited so it can never be mistaken for a servable claim.
+ */
+function freshnessBlocks(degraded: Retrieved[], s: GeneratorMessages): AnswerBlock[] {
+  const unique = [...new Map(degraded.map((d) => [d.record.id, d.record])).values()];
+  const [only] = unique;
+  if (!only) return [];
+  if (unique.length === 1) return [freshnessBlock(only, s)];
+  const topics = [...new Set(unique.map((r) => r.topic))];
+  const sources = [...new Set(unique.map((r) => r.source.title))];
+  const dates = unique.map((r) => r.source.last_verified).sort();
+  return [
+    {
+      kind: "freshness",
+      citations: [], // intentionally not a servable claim
+      text: s.freshnessGroup(unique.length, topics.join("; "), dates[0]!, dates[dates.length - 1]!, sources.join("; ")),
+    },
+  ];
 }
 
 function disclosureBlock(s: GeneratorMessages): AnswerBlock {
@@ -197,7 +224,7 @@ export class BedrockGenerator implements AsyncGenerator {
 
     if (current.length === 0) {
       const blocks: AnswerBlock[] = [{ kind: "refusal", citations: [], text: s.refusal }];
-      for (const d of degraded) blocks.push(freshnessBlock(d.record, s));
+      blocks.push(...freshnessBlocks(degraded, s));
       blocks.push(disclosureBlock(s));
       return { blocks, cited_records: [], refused: true };
     }
@@ -213,7 +240,7 @@ export class BedrockGenerator implements AsyncGenerator {
     const citedIds = new Set(claimBlocks.flatMap((b) => b.citations));
     const citedRecords = [...citedIds].map((id) => byId.get(id)).filter((r): r is CorpusRecord => !!r);
 
-    for (const d of degraded) blocks.push(freshnessBlock(d.record, s));
+    blocks.push(...freshnessBlocks(degraded, s));
     blocks.push(disclosureBlock(s));
     // refused stays false; if the model produced nothing usable, enforce() will reject (0/0 → but
     // no claims means coverage 1.0, so guard: an empty body is treated as a refusal here).

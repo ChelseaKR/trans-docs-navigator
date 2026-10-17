@@ -452,6 +452,14 @@ export interface GeneratorMessages {
   discretionary: string;
   refusal: string;
   freshness(topic: string, lastVerified: string, sourceTitle: string): string;
+  /**
+   * One statement for two or more related rules that cannot be served as current (#311), so a
+   * question that matches dozens of lapsed records is not answered with dozens of identical
+   * paragraphs. `rules` and `sources` are already joined lists; `firstDate` and `lastDate` are
+   * the earliest and latest dates the records were recorded (equal when there is only one date).
+   * It must not imply any of them was re-checked.
+   */
+  freshnessGroup(count: number, rules: string, firstDate: string, lastDate: string, sources: string): string;
   disclosure: string;
 }
 

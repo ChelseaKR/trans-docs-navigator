@@ -8,6 +8,14 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Changed
+- **`/answer` prints one statement for lapsed rules, and guide meta text stops promising costs
+  (#311).** A California question used to print about 25 near-identical "may have changed"
+  paragraphs while every record was past its re-check date. Two or more related rules that
+  cannot be served as current now become one block (EN/ES) naming each rule once, the span of
+  dates they were recorded on, and the official sources; a single rule keeps its own sentence.
+  Guide titles, meta descriptions, Open Graph, Twitter and HowTo JSON-LD text no longer mention
+  costs or timelines, which are withheld while records are lapsed, and the guide index
+  description no longer says "current". Nothing implies a re-check, and no record changed.
 - **Lapsed records are explained in plain language, and /compare no longer prints their
   claims.** Every jurisdiction record passed its recheck date on 2026-10-12. The checklist,
   packet and guide now carry a page-level note (EN/ES) saying what is left out and what the date

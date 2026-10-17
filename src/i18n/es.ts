@@ -364,6 +364,10 @@ export const es: LocaleBundle = {
     freshness: (topic: string, date: string, title: string) =>
       `Una regla relacionada (${topic}) puede haber cambiado y necesita reverificación. La registramos el ${date}, ` +
       `lo cual ya pasó nuestra fecha de reverificación, así que no la presentaré como actual. Verifíquela directamente en la fuente oficial: ${title}.`,
+    freshnessGroup: (count: number, rules: string, firstDate: string, lastDate: string, sources: string) =>
+      `${count} reglas relacionadas pueden haber cambiado y necesitan reverificación: ${rules}. ` +
+      `Las registramos ${firstDate === lastDate ? `el ${firstDate}` : `entre el ${firstDate} y el ${lastDate}`}, ` +
+      `lo cual ya pasó nuestra fecha de reverificación, así que no las presentaré como actuales. Verifíquelas directamente en las fuentes oficiales: ${sources}.`,
     disclosure: "Información, no asesoramiento legal. Asistido por IA, basado en fuentes citadas.",
   },
 
@@ -550,15 +554,15 @@ export const es: LocaleBundle = {
       "Vea, estado por estado, si una fuente oficial describe una manera de actualizar su nombre o marcador de género, dice que no hay manera, o si no se ha revisado.",
     guideIndexTitle: "Guías de cambio de nombre y marcador de género por estado",
     guideIndexDescription:
-      "Guías citadas y actuales para cambiar su nombre legal y marcador de género en cada estado que cubrimos: orden judicial, Seguro Social, DMV y pasaporte.",
+      "Guías citadas para cambiar su nombre legal y marcador de género en cada estado que cubrimos: orden judicial, Seguro Social, DMV y pasaporte.",
     guideIndexLead:
       "Elija su estado y lo que va a cambiar. Cada guía enumera los pasos en orden, con un enlace a la fuente oficial de cada requisito. Los costos y plazos aparecen solo cuando nuestro registro está dentro de su fecha de reverificación.",
     guideIndexAllHeading: "Todas las guías",
     topicName: { name: "Cambio de nombre", "gender-marker": "Cambio de marcador de género" },
-    guideTitle: (state, topic) => `${topic} en ${state}: pasos, formularios y costos`,
+    guideTitle: (state, topic) => `${topic} en ${state}: pasos y formularios`,
     guideHeading: (state, topic) => `${topic} en ${state}`,
     guideDescription: (state, topic) =>
-      `Cómo completar un ${topic.toLowerCase()} en ${state}: los pasos en orden, cuánto cuesta cada uno, cuánto tarda y la fuente oficial de cada requisito.`,
+      `Cómo completar un ${topic.toLowerCase()} en ${state}: los pasos en orden, los formularios que debe usar y la fuente oficial de cada requisito.`,
     guideLead: (state, topic) =>
       `Estos son los pasos que la mayoría de las personas sigue para un ${topic.toLowerCase()} en ${state}, en orden. Cada uno enlaza a su fuente oficial y la fecha en que lo registramos. Cuando esté listo, cree una lista personalizada que cubra todos los documentos a la vez.`,
     guideCta: "Crear mi lista personalizada",
