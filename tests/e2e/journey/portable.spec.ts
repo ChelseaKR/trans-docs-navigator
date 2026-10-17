@@ -112,7 +112,7 @@ test.describe("EXP-02 — the portable edition, from file:// with the network of
     await expect(page.locator("#tdn-root h1")).toHaveText(/checklist/i);
 
     // The header refuses to present the copy as current...
-    await expect(page.locator("#tdn-portable-header")).toContainText("needs reverification");
+    await expect(page.locator("#tdn-portable-header")).toContainText("past our re-check date");
     await expect(page.locator("#tdn-serving")).toHaveText(/^0\/[0-9]+$/);
 
     // ...and the page it degrades still carries the official sources, which is the whole
