@@ -43,7 +43,7 @@ test("content gate fails on a corpus record missing its source block", () => {
 // still catches it if that "impossible" ever stops being true, e.g. a future
 // model-backed generator).
 test("citation gate fails on an uncited-claim answer path", () => {
-  const r = runGate("citation-coverage", { env: { CITATION_POISON: "uncited-claim" } });
+  const r = runGate("citation-coverage", { env: { CITATION_POISON: "uncited-claim", NAV_TODAY: "2026-07-13" } });
   assert.notEqual(r.code, 0);
   assert.match(r.output, /uncited-claim/);
 });

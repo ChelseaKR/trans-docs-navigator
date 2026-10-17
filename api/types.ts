@@ -560,6 +560,14 @@ export interface CompareCell {
   /** Backing record ids, in the language actually used to classify (English; see
    *  api/compare.ts). Empty only when status is `not_covered`. */
   record_ids: string[];
+  /**
+   * True when at least one backing record is past its recheck SLA (or otherwise not
+   * serveable as current) on the day the table was built. Set for EVERY status that has
+   * records, including `no_path_documented`: a stale "no path" is a stale claim too, and
+   * the badge alone cannot say so. The renderer withholds a lapsed record's statement and
+   * shows only its source link, the same contract the checklist keeps.
+   */
+  lapsed?: boolean;
 }
 
 /** One row of the table: a single jurisdiction's cell for every requested (doc × change). */

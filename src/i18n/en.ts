@@ -30,12 +30,20 @@ export const en: LocaleBundle = {
     notFilingNote: "This tool doesn't file anything for you and isn't legal advice. Download the official form, complete it, and submit it yourself.",
     sources: "Sources",
     staleSources: "Check these official pages yourself",
-    staleSourcesNote: "We have not re-checked these pages recently, so we are not showing what they said. These are the official pages themselves. Read them directly.",
+    staleSourcesNote: "The date beside each link is when we recorded the page. That is past our re-check date, so we are not repeating what the page said. These are the official pages themselves. Read them directly.",
+    lapseNote: "Some steps here are past our re-check date. For those, we link the official page and leave out fees, requirements and timelines, because they may have changed. The date beside a source is when we recorded that page. Unless the line says “verified by”, no named person has reviewed it. Before you file anything, read the official page or ask a legal-aid organization.",
+    homeLapseNote: (lapsed: number, total: number) =>
+      lapsed <= 0
+        ? ""
+        : lapsed >= total
+          ? `All ${total} state and federal records on this site are past our re-check date. You can still build a checklist. Each step links the official page, and fees, requirements and timelines are left out because they may have changed.`
+          : `${lapsed} of ${total} state and federal records on this site are past our re-check date. Steps that rely on them link the official page and leave out fees, requirements and timelines, because they may have changed.`,
+    gapsLapsedHeading: "Past our re-check date",
     verifiedBy: "verified by",
     notHumanVerified: "not yet verified by a named reviewer",
     recordedOn: "recorded",
     sourceNotWatched: "We cannot check this source automatically for changes. Check it yourself before you file.",
-    needsRecheck: "Needs reverification, so we don't show it as current.",
+    needsRecheck: "Part or all of this step is past our re-check date. We do not show out-of-date requirements, fees or timelines as current, because they may have changed. Check the official pages linked here before you act.",
     issuingJurisdictionScope: (stateName: string) =>
       `These steps apply only if ${stateName} issued your birth certificate. A birth certificate is changed by the state that issued it, so if you were born somewhere else, that state's rules are the ones you need.`,
     issuingJurisdictionScopeUnnamed:
@@ -69,7 +77,7 @@ export const en: LocaleBundle = {
     submitChecklist: "Show my checklist",
     checklistTitle: "Your checklist",
     checklistHeading: "Your personalized checklist",
-    checklistIntro: "Your steps are listed in the order most people complete them. Each links to its official source and the date it was last checked.",
+    checklistIntro: "Your steps are listed in the order most people complete them. Each links to its official source and the date we recorded it.",
     changesTitle: "What changed since your packet",
     changesHeading: "What changed since your packet printed",
     packetChangesLink: "To check whether any of this has been re-verified since today, visit",
@@ -94,7 +102,7 @@ export const en: LocaleBundle = {
     fillDownload: "Fill & download",
     flatScanIntro: "This official form is a flat scan that can't be auto-filled. Download the blank form and complete it by hand:",
     gapNoRecords: "We don't have verified steps for this yet. Check your state's official website or a trans legal-aid organization.",
-    gapAllDegraded: "The information we have for this may have changed and needs reverification, so we won't show it as current. Check the official source.",
+    gapAllDegraded: "What we have recorded for this is past our re-check date and may have changed, so we are not showing it as current. Check the official source.",
     noStepsLead: "We couldn't build any verified steps for these choices yet.",
     notFoundHeading: "Page not found",
     notFoundBody: "We couldn't find that page.",
@@ -135,6 +143,7 @@ export const en: LocaleBundle = {
       "We don't have verified information for this state yet, so the steps below cover federal documents only. This is not a complete plan for where you live, and it is not a sign that your state asks nothing of you — we simply have not checked it. Start with your state's official website, its courts' self-help pages, or a trans legal-aid organization.",
     noMinorCoverage:
       "We don't yet have verified information about name or gender-marker changes for minors (under 18) in this state. The steps below are written for adults and may not apply to a minor's case. Who can petition, what a parent must consent to or be told, the age when a minor's own consent matters, and the court's standard can all be different. Check with the court in your county or a trans legal-aid organization before you rely on these steps.",
+    costWithheld: "Costs are not shown for steps that are past our re-check date, so the total above, if any, is a floor.",
     costIncomplete: (n: number) =>
       `${n} step(s) have no fee listed in our sources, so this is a floor, not a complete cost. We don't estimate what a source doesn't state.`,
     moreHeading: "Go deeper",
@@ -318,12 +327,13 @@ export const en: LocaleBundle = {
     statusNeedsReverification: "Documented, needs reverification",
     statusNoPath: "No path documented",
     statusNotCovered: "Not covered",
+    lapsedMark: "Out of date: past our re-check date, so the details are not shown.",
     legendHeading: "How to read this table",
     legendDocumented: "Documented: an official source we cite describes a way to do this.",
     legendNeedsReverification:
-      "Documented, needs reverification: an official source describes a way to do this, but our check on it is out of date, so we do not show it as current until we recheck it.",
+      "Documented, needs reverification: an official source describes a way to do this, but our record of it is past our re-check date. We show the official page and leave out the details until it is rechecked.",
     legendNoPath:
-      "No path documented: an official source we cite says it describes no way to do this. That is a fact about the source, not proof that no way exists anywhere — read the source yourself before relying on it.",
+      "No path documented: an official source we cite says it describes no way to do this. That is a fact about the source, not proof that no way exists anywhere — read the source yourself before relying on it. If the cell also says it is out of date, the source was recorded before our re-check date and may have changed.",
     legendNotCovered:
       "Not covered: we have not checked an official source for this yet. This is not a sign that the state asks nothing of you — we simply have not checked it.",
 
@@ -346,8 +356,8 @@ export const en: LocaleBundle = {
       "I don't have verified information for that yet, so I can't give you an answer I'd stand behind. " +
       "Please check the official source directly, or try a jurisdiction and document I currently cover.",
     freshness: (topic: string, date: string, title: string) =>
-      `One related rule (${topic}) may have changed and needs reverification. I last checked it on ${date}, ` +
-      `which is outside the freshness window, so I won't present it as current. Verify it directly at the official source: ${title}.`,
+      `One related rule (${topic}) may have changed and needs reverification. We recorded it on ${date}, ` +
+      `which is past our re-check date, so I won't present it as current. Verify it directly at the official source: ${title}.`,
     disclosure: `${DISCLOSURE.notLegalAdvice} ${DISCLOSURE.aiAssisted}`,
   },
 
@@ -493,7 +503,7 @@ export const en: LocaleBundle = {
       {
         h: "“Last checked” and going stale",
         html:
-          "<p>Every requirement carries the date we last checked it and a re-check deadline (its freshness SLA). If a requirement passes that deadline before we've re-verified it, we don't keep showing it as current: it's automatically marked <strong>needs reverification</strong> and flagged in the interface, rather than silently going stale.</p>",
+          "<p>Every requirement carries the date we recorded it and a re-check deadline (its freshness SLA). If a requirement passes that deadline before it has been re-verified, we don't keep showing it as current. It is marked <strong>needs reverification</strong> automatically. For a step in that state we leave out the requirement, fee and timeline, link the official page instead, and say so on the page. The date beside a source is when we recorded that page. It is not a sign that a person re-checked it; a line says “verified by” only when a named reviewer on our roster did.</p>",
       },
       {
         h: "Report an error or a law change",
@@ -534,7 +544,7 @@ export const en: LocaleBundle = {
     guideIndexDescription:
       "Cited, current guides to changing your legal name and gender marker in each state we cover, from court order through SSA, DMV, and passport.",
     guideIndexLead:
-      "Pick your state and what you're changing. Each guide lists the steps in order, with costs, timelines, and a link to the official source for every requirement.",
+      "Pick your state and what you're changing. Each guide lists the steps in order with a link to the official source for every requirement. Costs and timelines appear only where our record of them is within its re-check date.",
     guideIndexAllHeading: "All guides",
     topicName: { name: "Name change", "gender-marker": "Gender-marker change" },
     guideTitle: (state, topic) => `${topic} in ${state}: steps, forms & costs`,
@@ -542,7 +552,7 @@ export const en: LocaleBundle = {
     guideDescription: (state, topic) =>
       `How to complete a ${topic.toLowerCase()} in ${state}: the steps in order, what each costs, how long it takes, and the official source for every requirement.`,
     guideLead: (state, topic) =>
-      `These are the steps most people follow for a ${topic.toLowerCase()} in ${state}, in order. Each links to its official source and the date we last checked it. When you're ready, build a personalized checklist that covers every document at once.`,
+      `These are the steps most people follow for a ${topic.toLowerCase()} in ${state}, in order. Each links to its official source and the date we recorded it. When you're ready, build a personalized checklist that covers every document at once.`,
     guideCta: "Build my personalized checklist",
     guideReviewed: "Last reviewed",
     breadcrumbHome: "Home",

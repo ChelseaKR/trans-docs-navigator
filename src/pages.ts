@@ -5,7 +5,7 @@
 
 import type { Checklist, CorpusRecord, DocumentType, FormDef, Language } from "../api/types.ts";
 import type { PacketChanges } from "../api/changes.ts";
-import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, gapReason, fieldLabel, preparationList, verificationCaption } from "./render.ts";
+import { page, renderChecklist, renderPacket, uiStrings, escapeHtml, renderGaps, lapseNoteFor, fieldLabel, preparationList, verificationCaption } from "./render.ts";
 import { SITE_ORIGIN } from "./seo.ts";
 import { t as locale, SUPPORTED_LOCALES } from "./i18n/index.ts";
 import { guideLinksFor } from "./guide.ts";
@@ -84,8 +84,12 @@ const DOCUMENT_IDS: DocumentType[] = [
   "federal-employment-records",
 ];
 
-export function renderIntakePage(lang: Language = "en"): string {
+export function renderIntakePage(lang: Language = "en", opts: { lapsed?: number; total?: number } = {}): string {
   const s = uiStrings(lang);
+  // Computed by the caller from the live corpus, so it is a count and not a sentence that
+  // was true when someone wrote it. Empty (and absent) when nothing is past its recheck date.
+  const lapseText = locale(lang).ui.homeLapseNote(opts.lapsed ?? 0, opts.total ?? 0);
+  const lapseBanner = lapseText ? `<p class="flag" role="note">${escapeHtml(lapseText)}</p>` : "";
   const jOpts = JURISDICTIONS.map((j) => `<option value="${j.id}">${escapeHtml(j.label)}</option>`).join("");
   const ct = (["name", "gender-marker"] as const)
     .map(
@@ -108,6 +112,7 @@ export function renderIntakePage(lang: Language = "en"): string {
 
   const body = `
 <p>${escapeHtml(s.intakeLead)}</p>
+${lapseBanner}
 <p class="meta" role="note">🔒 ${escapeHtml(s.private)}</p>
 <form action="/checklist" method="get" aria-label="${escapeHtml(s.intakeHeading)}">
   <fieldset>
@@ -170,7 +175,7 @@ export function renderChecklistPage(
   // territory has no minor coverage either; both statements stay true and distinct).
   const minorNote = opts.noMinorCoverage ? `<p class="flag" role="note">${escapeHtml(s.noMinorCoverage)}</p>` : "";
   const intro = `<p>${escapeHtml(s.checklistIntro)}</p>
-<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${stateNote}${minorNote}${coverageNote}`;
+<p class="flag" role="note">${escapeHtml(s.verifyNote)}</p>${lapseNoteFor(checklist, lang)}${stateNote}${minorNote}${coverageNote}`;
   const q = query ? `?${query}` : "";
   const actions = `<p class="no-print"><a href="/packet${q}">📄 ${escapeHtml(s.print)}</a> · <a href="/">${escapeHtml(s.startOver)}</a></p>`;
   // Per-jurisdiction change-alert feed (RSS/Atom, no accounts, no PII — src/feeds.ts).
@@ -180,11 +185,7 @@ export function renderChecklistPage(
   const feedNotice = feed
     ? `<p class="no-print"><a href="${escapeHtml(feed.href)}">📡 ${escapeHtml(locale(lang).seo.feedLinkLabel(feed.stateName))}</a></p>`
     : "";
-  const gaps = checklist.gaps.length
-    ? `<section aria-label="${escapeHtml(s.notCovered)}"><h2>${escapeHtml(s.notCovered)}</h2><ul>${checklist.gaps
-        .map((g) => `<li class="flag">${escapeHtml(locale(lang).docLabels[g.document_type])}: ${escapeHtml(gapReason(lang, g.reason))}</li>`)
-        .join("")}</ul></section>`
-    : "";
+  const gaps = renderGaps(checklist, lang);
   // Reassuring empty-state instead of a bare empty list when nothing could be produced.
   const hasSteps = checklist.steps.length > 0;
   const noSteps = !hasSteps
@@ -206,18 +207,25 @@ export function renderChecklistPage(
   let known = 0;
   let anyVaries = false;
   let unpriced = 0;
+  let lapsedUnpriced = 0;
   for (const st of checklist.steps) {
     if (st.done) continue; // already-done steps (e.g. has_court_order) don't cost anything more
     if (!st.cost) {
-      unpriced++;
+      // A step with no cost because its records LAPSED is not a step "no cited source
+      // prices": the price was withheld, not absent. It keeps the total a floor ("+")
+      // but is not reported as a gap in our sources.
+      if (st.needs_reverification) lapsedUnpriced++;
+      else unpriced++;
       continue;
     }
     if (st.cost.amount_usd === null) anyVaries = true;
     else known += st.cost.amount_usd;
   }
-  const incomplete = anyVaries || unpriced > 0;
-  const costText = known > 0 ? `$${known}${incomplete ? "+" : ""}` : incomplete ? s.varies : "";
-  const unpricedNote = unpriced > 0 ? `<p class="meta">${escapeHtml(s.costIncomplete(unpriced))}</p>` : "";
+  const incomplete = anyVaries || unpriced > 0 || lapsedUnpriced > 0;
+  const costText = known > 0 ? `$${known}${incomplete ? "+" : ""}` : anyVaries || unpriced > 0 ? s.varies : "";
+  const unpricedNote =
+    (unpriced > 0 ? `<p class="meta">${escapeHtml(s.costIncomplete(unpriced))}</p>` : "") +
+    (lapsedUnpriced > 0 ? `<p class="meta">${escapeHtml(s.costWithheld)}</p>` : "");
   const summary = hasSteps
     ? `<p class="plan-summary"><strong>${checklist.steps.length} ${escapeHtml(s.stepsLabel)}</strong>${costText ? ` · ${escapeHtml(s.estimatedCost)}: ${escapeHtml(costText)}` : ""}</p>${unpricedNote}
 <p id="progress-count" class="meta no-print" role="status" aria-live="polite"></p>`

@@ -34,6 +34,16 @@ import { metricMethod, metricRoute, renderPrometheusMetrics } from "./metrics.ts
 import { buildInfo } from "./version.ts";
 import { aimEnglishLink, englishHref } from "../src/machine-translation.ts";
 
+/**
+ * How many English corpus records are not serveable as current on `today` (default: the
+ * real clock). English only, so a record and its Spanish translation are not counted twice.
+ * Pure given the corpus; read by the home page so the lapse is stated before the intake form.
+ */
+export function lapseCounts(today?: string): { lapsed: number; total: number } {
+  const en = loadCorpus().filter((r) => r.language === "en");
+  return { lapsed: en.filter((r) => !isCurrent(r, today)).length, total: en.length };
+}
+
 /** Input bounds — abuse/DoS resistance + predictable resource use. */
 export const LIMITS = {
   /** Free-text question chars considered; longer is truncated before tokenizing. */
@@ -467,7 +477,11 @@ function routeRequest(method: string, url: URL, today?: string): RouteResponse {
   }
 
   if (p === "/") {
-    return { status: 200, contentType: HTML, body: renderIntakePage(asLanguage(languageParam(url))) };
+    // Count of English records not serveable as current today, so the home page can say
+    // so before anyone fills in the form. Real clock via servingToday(), like every other
+    // serving path (never TEST_TODAY).
+    const lapse = lapseCounts(today);
+    return { status: 200, contentType: HTML, body: renderIntakePage(asLanguage(languageParam(url)), lapse) };
   }
 
   // Static legal / policy / trust pages (linked from every footer).

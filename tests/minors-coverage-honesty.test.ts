@@ -21,6 +21,7 @@ import { handleRoute } from "../api/router.ts";
 import { renderChecklistPage, renderPacketPage } from "../src/pages.ts";
 import { escapeHtml } from "../src/render.ts";
 import { t as locale } from "../src/i18n/index.ts";
+import { TEST_TODAY } from "../api/freshness.ts";
 import type { Intake, Language } from "../api/types.ts";
 
 const corpus = loadCorpus();
@@ -97,7 +98,7 @@ test("the disclosure asserts nothing about what the state requires or permits fo
 test("a PILOT state's checklist gets no no-minor-coverage note, and its court-order step cites the MINOR record", () => {
   const cl = buildChecklist(
     { jurisdiction: "US-CA", change_types: ["name"], documents: ["court-order"], language: "en", for_minor: true },
-    undefined,
+    TEST_TODAY,
     corpus,
   );
   const html = renderChecklistPage(cl, corpus, "en", "jurisdiction=US-CA&doc=court-order&for_minor=1", { noMinorCoverage: false });
@@ -111,7 +112,7 @@ test("a PILOT state's checklist gets no no-minor-coverage note, and its court-or
 test("the SAME California query without for_minor never cites the minor record", () => {
   const cl = buildChecklist(
     { jurisdiction: "US-CA", change_types: ["name"], documents: ["court-order"], language: "en" },
-    undefined,
+    TEST_TODAY,
     corpus,
   );
   const step = cl.steps.find((s) => s.document_type === "court-order")!;

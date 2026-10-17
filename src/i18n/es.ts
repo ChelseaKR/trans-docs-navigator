@@ -30,12 +30,20 @@ export const es: LocaleBundle = {
     notFilingNote: "Esta herramienta no presenta nada por usted y no es asesoramiento legal. Descargue el formulario oficial, complételo y preséntelo usted mismo.",
     sources: "Fuentes",
     staleSources: "Consulte usted mismo estas páginas oficiales",
-    staleSourcesNote: "No hemos vuelto a revisar estas páginas recientemente, así que no mostramos lo que decían. Estas son las páginas oficiales. Léalas directamente.",
+    staleSourcesNote: "La fecha junto a cada enlace es cuando registramos la página. Ya pasó nuestra fecha de reverificación, así que no repetimos lo que decía. Estas son las páginas oficiales. Léalas directamente.",
+    lapseNote: "Algunos pasos de esta página han superado nuestra fecha de reverificación. En esos casos enlazamos la página oficial y omitimos requisitos, costos y plazos, porque pueden haber cambiado. La fecha junto a una fuente es cuando registramos esa página. Si la línea no dice «verificado por», ninguna persona revisora designada la ha revisado. Antes de presentar cualquier trámite, lea la página oficial o consulte a una organización de ayuda legal.",
+    homeLapseNote: (lapsed: number, total: number) =>
+      lapsed <= 0
+        ? ""
+        : lapsed >= total
+          ? `Los ${total} registros estatales y federales de este sitio han superado nuestra fecha de reverificación. Aun así, puede crear una lista. Cada paso enlaza la página oficial, y omitimos requisitos, costos y plazos porque pueden haber cambiado.`
+          : `${lapsed} de los ${total} registros estatales y federales de este sitio han superado nuestra fecha de reverificación. Los pasos que dependen de ellos enlazan la página oficial y omiten requisitos, costos y plazos, porque pueden haber cambiado.`,
+    gapsLapsedHeading: "Pasaron nuestra fecha de reverificación",
     verifiedBy: "verificado por",
     notHumanVerified: "aún sin verificar por una persona revisora designada",
     recordedOn: "registrado",
     sourceNotWatched: "No podemos revisar esta fuente automáticamente para detectar cambios. Revísela usted antes de presentar su solicitud.",
-    needsRecheck: "Necesita reverificación, así que no se muestra como actual.",
+    needsRecheck: "Una parte o todo este paso ha superado nuestra fecha de reverificación. No mostramos como vigentes requisitos, costos ni plazos desactualizados, porque pueden haber cambiado. Consulte las páginas oficiales enlazadas aquí antes de actuar.",
     issuingJurisdictionScope: (stateName: string) =>
       `Estos pasos aplican solo si ${stateName} emitió su acta de nacimiento. Un acta de nacimiento la cambia el estado que la emitió, así que si usted nació en otro lugar, las reglas que necesita son las de ese estado.`,
     issuingJurisdictionScopeUnnamed:
@@ -69,7 +77,7 @@ export const es: LocaleBundle = {
     submitChecklist: "Mostrar mi lista",
     checklistTitle: "Su lista",
     checklistHeading: "Su lista personalizada",
-    checklistIntro: "Sus pasos se enumeran en el orden en que la mayoría de las personas los completa. Cada uno enlaza a su fuente oficial y la fecha en que se verificó por última vez.",
+    checklistIntro: "Sus pasos se enumeran en el orden en que la mayoría de las personas los completa. Cada uno enlaza a su fuente oficial y la fecha en que lo registramos.",
     changesTitle: "Qué cambió desde su paquete",
     changesHeading: "Qué cambió desde que imprimió su paquete",
     packetChangesLink: "Para saber si algo se ha vuelto a verificar después de hoy, visite",
@@ -94,7 +102,7 @@ export const es: LocaleBundle = {
     fillDownload: "Llenar y descargar",
     flatScanIntro: "Este formulario oficial es una imagen escaneada que no se puede llenar automáticamente. Descargue el formulario en blanco y complételo a mano:",
     gapNoRecords: "Aún no tenemos pasos verificados para esto. Consulte el sitio web oficial de su estado o una organización de ayuda legal para personas trans.",
-    gapAllDegraded: "La información que tenemos sobre esto puede haber cambiado y necesita reverificación; no la mostraremos como actual. Consulte la fuente oficial.",
+    gapAllDegraded: "Lo que tenemos registrado sobre esto ha superado nuestra fecha de reverificación y puede haber cambiado, así que no lo mostramos como vigente. Consulte la fuente oficial.",
     noStepsLead: "Todavía no pudimos crear pasos verificados para estas opciones.",
     notFoundHeading: "Página no encontrada",
     notFoundBody: "No pudimos encontrar esa página.",
@@ -135,6 +143,7 @@ export const es: LocaleBundle = {
       "Todavía no tenemos información verificada para este estado, así que los pasos de abajo cubren solo documentos federales. Este no es un plan completo para el lugar donde vive, y no significa que su estado no le pida nada: simplemente no lo hemos verificado. Empiece por el sitio web oficial de su estado, las páginas de autoayuda de sus tribunales, o una organización de asistencia legal para personas trans.",
     noMinorCoverage:
       "Todavía no tenemos información verificada sobre el cambio de nombre o de marcador de género para menores (personas de menos de 18 años) en este estado. Los pasos de abajo están escritos para adultos y pueden no aplicar al caso de un menor. Quién puede pedir el cambio, qué debe consentir o saber un padre o madre, la edad en que importa el propio consentimiento del menor, y el criterio del tribunal pueden ser diferentes. Consulte con el tribunal de su condado o con una organización de asistencia legal para personas trans antes de basarse en estos pasos.",
+    costWithheld: "No mostramos los costos de los pasos que pasaron nuestra fecha de reverificación, así que el total de arriba, si lo hay, es un mínimo.",
     costIncomplete: (n: number) =>
       `${n} paso(s) no tienen ninguna tarifa indicada en nuestras fuentes, así que esto es un mínimo, no un costo completo. No estimamos lo que una fuente no indica.`,
     moreHeading: "Más información",
@@ -324,12 +333,13 @@ export const es: LocaleBundle = {
     statusNeedsReverification: "Documentado, necesita reverificación",
     statusNoPath: "Ninguna vía documentada",
     statusNotCovered: "No verificado",
+    lapsedMark: "Desactualizado: pasó nuestra fecha de reverificación, así que no se muestran los detalles.",
     legendHeading: "Cómo leer esta tabla",
     legendDocumented: "Documentado: una fuente oficial que citamos describe una manera de hacer esto.",
     legendNeedsReverification:
-      "Documentado, necesita reverificación: una fuente oficial describe una manera de hacer esto, pero nuestra verificación está vencida, así que no la mostramos como vigente hasta volver a verificarla.",
+      "Documentado, necesita reverificación: una fuente oficial describe una manera de hacer esto, pero nuestro registro ha superado nuestra fecha de reverificación. Mostramos la página oficial y omitimos los detalles hasta volver a verificarlo.",
     legendNoPath:
-      "Ninguna vía documentada: una fuente oficial que citamos dice que no describe ninguna manera de hacer esto. Eso es un hecho sobre la fuente, no una prueba de que no exista ninguna manera en ningún lugar — lea la fuente usted mismo antes de confiar en ella.",
+      "Ninguna vía documentada: una fuente oficial que citamos dice que no describe ninguna manera de hacer esto. Eso es un hecho sobre la fuente, no una prueba de que no exista ninguna manera en ningún lugar — lea la fuente usted mismo antes de confiar en ella. Si la celda también indica que está desactualizada, la fuente se registró antes de nuestra fecha de reverificación y puede haber cambiado.",
     legendNotCovered:
       "No verificado: todavía no hemos revisado una fuente oficial para esto. Esto no es una señal de que el estado no le exija nada — simplemente no lo hemos revisado.",
 
@@ -352,8 +362,8 @@ export const es: LocaleBundle = {
       "Todavía no tengo información verificada sobre eso, así que no puedo darle una respuesta que pueda respaldar. " +
       "Consulte directamente la fuente oficial, o pruebe una jurisdicción y un documento que cubra actualmente.",
     freshness: (topic: string, date: string, title: string) =>
-      `Una regla relacionada (${topic}) puede haber cambiado y necesita reverificación. La verifiqué por última vez el ${date}, ` +
-      `lo cual está fuera del período de vigencia, así que no la presentaré como actual. Verifíquela directamente en la fuente oficial: ${title}.`,
+      `Una regla relacionada (${topic}) puede haber cambiado y necesita reverificación. La registramos el ${date}, ` +
+      `lo cual ya pasó nuestra fecha de reverificación, así que no la presentaré como actual. Verifíquela directamente en la fuente oficial: ${title}.`,
     disclosure: "Información, no asesoramiento legal. Asistido por IA, basado en fuentes citadas.",
   },
 
@@ -500,7 +510,7 @@ export const es: LocaleBundle = {
       {
         h: "“Última verificación” y la vigencia de la información",
         html:
-          "<p>Cada requisito lleva la fecha en que lo verificamos por última vez y una fecha límite de reverificación (su plazo de vigencia). Si un requisito supera ese plazo antes de que lo hayamos reverificado, dejamos de mostrarlo como vigente: se marca automáticamente como <strong>necesita reverificación</strong> y se señala en la interfaz, en lugar de quedar obsoleto sin aviso.</p>",
+          "<p>Cada requisito lleva la fecha en que lo registramos y una fecha límite de reverificación (su plazo de vigencia). Si un requisito supera ese plazo antes de ser reverificado, dejamos de mostrarlo como vigente. Se marca automáticamente como <strong>necesita reverificación</strong>. En un paso en ese estado omitimos el requisito, el costo y el plazo, enlazamos la página oficial y lo decimos en la página. La fecha junto a una fuente es cuando registramos esa página; no indica que una persona la haya revisado de nuevo. Una línea dice «verificado por» solo cuando lo hizo una persona revisora designada de nuestra lista.</p>",
       },
       {
         h: "Informe un error o un cambio en la ley",
@@ -542,7 +552,7 @@ export const es: LocaleBundle = {
     guideIndexDescription:
       "Guías citadas y actuales para cambiar su nombre legal y marcador de género en cada estado que cubrimos: orden judicial, Seguro Social, DMV y pasaporte.",
     guideIndexLead:
-      "Elija su estado y lo que va a cambiar. Cada guía enumera los pasos en orden, con costos, plazos y un enlace a la fuente oficial de cada requisito.",
+      "Elija su estado y lo que va a cambiar. Cada guía enumera los pasos en orden, con un enlace a la fuente oficial de cada requisito. Los costos y plazos aparecen solo cuando nuestro registro está dentro de su fecha de reverificación.",
     guideIndexAllHeading: "Todas las guías",
     topicName: { name: "Cambio de nombre", "gender-marker": "Cambio de marcador de género" },
     guideTitle: (state, topic) => `${topic} en ${state}: pasos, formularios y costos`,
@@ -550,7 +560,7 @@ export const es: LocaleBundle = {
     guideDescription: (state, topic) =>
       `Cómo completar un ${topic.toLowerCase()} en ${state}: los pasos en orden, cuánto cuesta cada uno, cuánto tarda y la fuente oficial de cada requisito.`,
     guideLead: (state, topic) =>
-      `Estos son los pasos que la mayoría de las personas sigue para un ${topic.toLowerCase()} en ${state}, en orden. Cada uno enlaza a su fuente oficial y la fecha en que lo verificamos por última vez. Cuando esté listo, cree una lista personalizada que cubra todos los documentos a la vez.`,
+      `Estos son los pasos que la mayoría de las personas sigue para un ${topic.toLowerCase()} en ${state}, en orden. Cada uno enlaza a su fuente oficial y la fecha en que lo registramos. Cuando esté listo, cree una lista personalizada que cubra todos los documentos a la vez.`,
     guideCta: "Crear mi lista personalizada",
     guideReviewed: "Última revisión",
     breadcrumbHome: "Inicio",

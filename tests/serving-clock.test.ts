@@ -62,12 +62,12 @@ test("/checklist flags a verified-but-past-SLA record as needing reverification,
   // no reverification flag in the rendered page.
   const fresh = handleRoute("GET", u(route), TEST_TODAY);
   assert.equal(fresh.status, 200);
-  assert.doesNotMatch(fresh.body, /Needs reverification/);
+  assert.doesNotMatch(fresh.body, /past our re-check date/);
 
   // A `today` a year past that lapses the SLA. The step must degrade in the response —
   // proving the checklist route derives currency from the injected clock at request time,
   // not from a compile-time "as of" constant that would keep serving it as current forever.
   const stale = handleRoute("GET", u(route), FAR_PAST_SLA_TODAY);
   assert.equal(stale.status, 200);
-  assert.match(stale.body, /Needs reverification/);
+  assert.match(stale.body, /past our re-check date/);
 });
