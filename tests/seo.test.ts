@@ -7,6 +7,7 @@ import assert from "node:assert/strict";
 import { headTags, titleTag, absoluteUrl, robotsTxt, sitemapXml, SITE_NAME, SITE_ORIGIN } from "../src/seo.ts";
 import { renderGuideIndex, renderGuidePage, guidePaths, indexablePaths } from "../src/guide.ts";
 import { renderIntakePage } from "../src/pages.ts";
+import { t as locale } from "../src/i18n/index.ts";
 
 test("noindex is the default: a page with no seo opts is not indexable", () => {
   const h = headTags("X · " + SITE_NAME, "en", { path: "", description: "", index: false });
@@ -118,4 +119,25 @@ test("guide pages carry the state's referrals (A4TE guide + legal aid) so the SE
   const es = renderGuidePage("washington", "name-change", "es") ?? "";
   assert.match(es, /Dónde obtener ayuda/);
   assert.doesNotMatch(es, /Read it alongside this checklist/); // no English leak
+});
+
+// #311: costs, fees and timelines are withheld while a record is past its re-check date, so
+// the text a search result or a link preview shows must not promise them. The same strings
+// feed the <title>, the description, Open Graph, Twitter and the HowTo JSON-LD.
+test("guide titles and descriptions never promise costs or timelines (#311)", () => {
+  const promise = /\b(costs?|fees?|prices?|how long|timelines?)\b|costos?|cuánto (cuesta|tarda)|plazos?|tarifas?/i;
+  for (const lang of ["en", "es"] as const) {
+    const seo = locale(lang).seo;
+    assert.doesNotMatch(seo.guideIndexDescription, promise, `${lang} guide index description`);
+    assert.doesNotMatch(seo.guideIndexDescription, /\b(current|actuales?|vigentes?)\b/i, `${lang} guide index description claims currency`);
+    for (const [state, topic] of [["California", "Name change"], ["Illinois", "Gender-marker change"]] as const) {
+      assert.doesNotMatch(seo.guideTitle(state, topic), promise, `${lang} guide title`);
+      assert.doesNotMatch(seo.guideDescription(state, topic), promise, `${lang} guide description`);
+    }
+    for (const html of [renderGuideIndex(lang), renderGuidePage("california", "name-change", lang)!, renderGuidePage("illinois", "gender-marker", lang)!]) {
+      const metas = [...html.matchAll(/<(?:meta|title)[^>]*(?:name|property)="(?:description|og:description|og:title|twitter:description|twitter:title)"[^>]*>|<title>[^<]*<\/title>/g)].map((m) => m[0]);
+      assert.ok(metas.length >= 5, "title, description, og and twitter text are present");
+      for (const m of metas) assert.doesNotMatch(m, promise, `${lang}: ${m}`);
+    }
+  }
 });

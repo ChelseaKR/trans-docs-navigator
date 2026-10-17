@@ -103,3 +103,43 @@ test("BedrockGenerator is the async production seam (full behavior in bedrock.te
 test("defaultGenerator is a GroundedComposer", () => {
   assert.ok(defaultGenerator instanceof GroundedComposer);
 });
+
+test("several unservable records become one freshness block that lists each rule and source once (#311)", () => {
+  const degraded: Retrieved[] = [
+    { record: rec({ id: "a", topic: "Rule A", source: { url: "https://a", title: "Source 1", last_verified: "2026-07-13", verifier: "A" } }), score: 3, current: false },
+    { record: rec({ id: "b", topic: "Rule B", source: { url: "https://b", title: "Source 1", last_verified: "2026-05-31", verifier: "A" } }), score: 2, current: false },
+    { record: rec({ id: "c", topic: "Rule C", source: { url: "https://c", title: "Source 2", last_verified: "2026-06-16", verifier: "A" } }), score: 1, current: false },
+    // The same record retrieved twice must not be listed twice.
+    { record: rec({ id: "c", topic: "Rule C", source: { url: "https://c", title: "Source 2", last_verified: "2026-06-16", verifier: "A" } }), score: 1, current: false },
+  ];
+  for (const retrieved of [degraded, [{ record: rec({ id: "ok" }), score: 4, current: true } as Retrieved, ...degraded]]) {
+    const ans = composer.generate({ retrieved });
+    const fresh = ans.blocks.filter((b) => b.kind === "freshness");
+    assert.equal(fresh.length, 1);
+    const f = fresh[0]!;
+    assert.deepEqual(f.citations, []);
+    for (const part of ["3 related rules", "Rule A; Rule B; Rule C", "between 2026-05-31 and 2026-07-13", "Source 1; Source 2"]) {
+      assert.ok(f.text.includes(part), `${part} missing from: ${f.text}`);
+    }
+    assert.equal(f.text.match(/Rule C/g)?.length, 1);
+    assert.doesNotMatch(f.text, /re-?checked|last checked/i);
+    // Placement is unchanged: before the closing disclosure.
+    assert.equal(ans.blocks[ans.blocks.length - 1]!.kind, "boilerplate");
+  }
+});
+
+test("one unservable record keeps its own sentence, and Spanish groups the same way (#311)", () => {
+  const one = composer.generate({ retrieved: [{ record: rec({ topic: "Rule A" }), score: 1, current: false }] });
+  assert.match(one.blocks.find((b) => b.kind === "freshness")!.text, /^One related rule \(Rule A\) may have changed/);
+  const many = composer.generate({
+    language: "es",
+    retrieved: [
+      { record: rec({ id: "a", topic: "Regla A", language: "es" }), score: 2, current: false },
+      { record: rec({ id: "b", topic: "Regla B", language: "es" }), score: 1, current: false },
+    ],
+  });
+  const fresh = many.blocks.filter((b) => b.kind === "freshness");
+  assert.equal(fresh.length, 1);
+  assert.match(fresh[0]!.text, /^2 reglas relacionadas pueden haber cambiado y necesitan reverificación: Regla A; Regla B\./);
+  assert.match(fresh[0]!.text, /Las registramos el 2026-05-31/);
+});
