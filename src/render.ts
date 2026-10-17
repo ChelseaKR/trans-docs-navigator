@@ -41,6 +41,40 @@ export function gapReason(lang: Language, reason: "no-records" | "all-degraded")
   return reason === "no-records" ? ui.gapNoRecords : ui.gapAllDegraded;
 }
 
+/**
+ * The page-level note for a checklist that has at least one step (or document) past its
+ * recheck date; empty string otherwise, so it vanishes on its own once records are
+ * re-verified. Pure: it reads the checklist the page is already rendering, so it can
+ * never disagree with the steps beneath it.
+ */
+export function lapseNoteFor(checklist: Pick<Checklist, "steps" | "gaps">, lang: Language): string {
+  const lapsed =
+    checklist.steps.some((s) => s.needs_reverification) || checklist.gaps.some((g) => g.reason === "all-degraded");
+  if (!lapsed) return "";
+  return `<p class="flag" role="note">${escapeHtml(locale(lang).ui.lapseNote)}</p>`;
+}
+
+/**
+ * The "documents we have nothing for" sections of a checklist. Two different situations
+ * used to share one heading, "Not yet covered": a document we hold no record for, and a
+ * document whose records exist but are past their recheck date. The second is not an
+ * absence, and calling it one told a reader we had never looked. They are now separate
+ * sections, each only when non-empty.
+ */
+export function renderGaps(checklist: Pick<Checklist, "gaps">, lang: Language): string {
+  const t = locale(lang).ui;
+  const section = (heading: string, gaps: Checklist["gaps"]): string =>
+    gaps.length
+      ? `<section aria-label="${escapeHtml(heading)}"><h2>${escapeHtml(heading)}</h2><ul>${gaps
+          .map((g) => `<li class="flag">${escapeHtml(locale(lang).docLabels[g.document_type])}: ${escapeHtml(gapReason(lang, g.reason))}</li>`)
+          .join("")}</ul></section>`
+      : "";
+  return (
+    section(t.notCovered, checklist.gaps.filter((g) => g.reason === "no-records")) +
+    section(t.gapsLapsedHeading, checklist.gaps.filter((g) => g.reason === "all-degraded"))
+  );
+}
+
 /** Friendly label for a form-fill intake key (a small fixed set). Falls back to the key. */
 export function fieldLabel(lang: Language, intakeKey: string): string {
   return locale(lang).fieldLabels[intakeKey] ?? intakeKey.replace(/_/g, " ");
@@ -148,6 +182,7 @@ footer{max-width:60rem;margin:0 auto;padding:1.5rem 1rem;color:var(--muted);bord
 .compare-table th,.compare-table td{border:1px solid var(--line);padding:.5rem .75rem;text-align:start;vertical-align:top}
 .compare-table thead th{background:var(--card)}
 .cell-status{font-weight:600}
+.cell-lapsed{display:block;margin-block:.25rem}
 .status-needs-reverification,.status-no-path{color:var(--warn)}
 .status-not-covered{color:var(--muted);font-weight:400}
 @media (max-width: 640px){
@@ -528,15 +563,11 @@ export function renderPacket(
 </li>`;
     })
     .join("");
-  const gaps = checklist.gaps.length
-    ? `<section aria-label="${escapeHtml(t.notCovered)}"><h2>${escapeHtml(t.notCovered)}</h2><ul>${checklist.gaps
-        .map((g) => `<li class="flag">${escapeHtml(locale(lang).docLabels[g.document_type])}: ${escapeHtml(gapReason(lang, g.reason))}</li>`)
-        .join("")}</ul></section>`
-    : "";
+  const gaps = renderGaps(checklist, lang);
   const changes = changesUrl
     ? `<p class="meta">${escapeHtml(t.packetChangesLink)} <a href="${escapeHtml(changesUrl)}">${escapeHtml(changesUrl)}</a></p>`
     : "";
-  return `<p>${escapeHtml(t.packetIntro)}</p><p class="flag" role="note">${escapeHtml(t.verifyNote)}</p><ol>${steps}</ol>${gaps}<p class="meta">${escapeHtml(t.prepared)} ${escapeHtml(generatedOn)}.</p>${changes}`;
+  return `<p>${escapeHtml(t.packetIntro)}</p><p class="flag" role="note">${escapeHtml(t.verifyNote)}</p>${lapseNoteFor(checklist, lang)}<ol>${steps}</ol>${gaps}<p class="meta">${escapeHtml(t.prepared)} ${escapeHtml(generatedOn)}.</p>${changes}`;
 }
 
 export function renderAnswer(ans: GroundedAnswer, lang: Language): string {

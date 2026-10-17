@@ -6,6 +6,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { handleRoute, readiness } from "../api/router.ts";
+import { TEST_TODAY } from "../api/freshness.ts";
 import { safeLog } from "../api/log.ts";
 import { metricMethod, metricRoute } from "../api/metrics.ts";
 
@@ -29,7 +30,7 @@ test("/livez returns 200 {status:ok} with no dependency detail", () => {
 // ── /readyz (readiness) ────────────────────────────────────────────────────
 
 test("/readyz returns 200 with per-dependency checks when the corpus is fresh", () => {
-  const r = handleRoute("GET", u("/readyz"));
+  const r = handleRoute("GET", u("/readyz"), TEST_TODAY);
   assert.equal(r.status, 200);
   assert.equal(r.contentType, "application/json");
   const body = JSON.parse(r.body);
@@ -57,7 +58,7 @@ test("/healthz is preserved and still reports corpus size", () => {
 // ── readiness() fail-closed dependency logic ───────────────────────────────
 
 test("readiness is ready when the corpus loads with current records", () => {
-  const report = readiness();
+  const report = readiness({ today: TEST_TODAY });
   assert.equal(report.ready, true);
   assert.equal(report.checks.corpus, "ok");
   assert.equal(report.checks.freshness, "ok");

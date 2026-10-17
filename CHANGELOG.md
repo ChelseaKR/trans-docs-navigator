@@ -7,6 +7,18 @@ lives under `[Unreleased]`.
 
 ## [Unreleased]
 
+### Changed
+- **Lapsed records are explained in plain language, and /compare no longer prints their
+  claims.** Every jurisdiction record passed its recheck date on 2026-10-12. The checklist,
+  packet and guide now carry a page-level note (EN/ES) saying what is left out and what the date
+  beside a source means; the home page states the lapse from the live count; lapsed documents
+  have their own heading instead of "Not yet covered"; the cost summary says costs are withheld
+  rather than "not in our sources"; wording that implied a re-check ("last checked", "I last
+  checked it") now says "recorded". `/compare` withholds the statement of any cell with a lapsed
+  record, "No path documented" cells included, and marks it "Out of date". No record,
+  verification date or verifier changed. Nine tests that read the real clock now pin
+  `TEST_TODAY`. Findings: `docs/audits/lapse-handling-2026-10-17.md`.
+
 ### Added
 - **The Spanish is labeled machine-translated wherever it is shown (owner decision,
   2026-09-18).** No qualified speaker has reviewed it. Every Spanish page now starts `<main>`

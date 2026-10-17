@@ -147,8 +147,18 @@ function renderCell(cell: CompareCell, corpus: CorpusRecord[], lang: Language, h
     return `<td role="cell" data-label="${escapeHtml(header)}">${badge}</td>`;
   }
   const records = cellRecords(corpus, cell, lang);
-  const claims = records.map((r) => `<li>${escapeHtml(r.statement)}</li>`).join("");
   const sources = records.map((r) => sourceItem(r.source, lang)).join("");
+  if (cell.lapsed) {
+    // Same contract as the checklist: the official page crosses, the claim does not. A
+    // lapsed record's statement (a fee, a form, or "no way to do this") is withheld, and
+    // the cell says so in visible text beside the badge rather than only inside a
+    // collapsed disclosure. The whole cell is held back, not just its lapsed records, so a
+    // mixed cell cannot show a current claim next to a source we are not vouching for.
+    const mark = `<span class="cell-lapsed">${escapeHtml(c.lapsedMark)}</span>`;
+    const lapsedDetails = `<details class="step-detail no-print"><summary>${escapeHtml(s.staleSources)}</summary><p class="meta">${escapeHtml(s.staleSourcesNote)}</p><ul>${sources}</ul></details>`;
+    return `<td role="cell" data-label="${escapeHtml(header)}">${badge} ${mark}${lapsedDetails}</td>`;
+  }
+  const claims = records.map((r) => `<li>${escapeHtml(r.statement)}</li>`).join("");
   const details = `<details class="step-detail no-print"><summary>${escapeHtml(s.sources)}</summary><ul>${claims}</ul><ul>${sources}</ul></details>`;
   return `<td role="cell" data-label="${escapeHtml(header)}">${badge}${details}</td>`;
 }

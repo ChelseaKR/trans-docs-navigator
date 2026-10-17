@@ -13,10 +13,11 @@ import { STYLE } from "../src/render.ts";
 import { registerTestLocale, t as locale } from "../src/i18n/index.ts";
 import type { Language } from "../api/types.ts";
 import { formById } from "../api/forms.ts";
+import { TEST_TODAY } from "../api/freshness.ts";
 
 const corpus = loadCorpus();
-const clEn = buildChecklist({ jurisdiction: "US-CA", change_types: ["name", "gender-marker"], documents: [], language: "en" });
-const clEs = buildChecklist({ jurisdiction: "US-CA", change_types: ["name"], documents: [], language: "es" });
+const clEn = buildChecklist({ jurisdiction: "US-CA", change_types: ["name", "gender-marker"], documents: [], language: "en" }, TEST_TODAY);
+const clEs = buildChecklist({ jurisdiction: "US-CA", change_types: ["name"], documents: [], language: "es" }, TEST_TODAY);
 
 /**
  * Matches an EXECUTABLE INLINE `<script>` — a script start tag carrying neither `src=` nor a

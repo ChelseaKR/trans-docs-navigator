@@ -27,6 +27,7 @@ import { handleRoute } from "../api/router.ts";
 import { renderChecklistPage, renderPacketPage } from "../src/pages.ts";
 import { escapeHtml } from "../src/render.ts";
 import { t as locale } from "../src/i18n/index.ts";
+import { TEST_TODAY } from "../api/freshness.ts";
 import type { CorpusRecord, Intake, Language } from "../api/types.ts";
 
 const corpus = loadCorpus();
@@ -74,6 +75,7 @@ const noteEs = locale("es").ui.noStateCoverage;
 const noteEnHtml = escapeHtml(noteEn);
 const noteEsHtml = escapeHtml(noteEs);
 const unpricedHtml = (n: number) => escapeHtml(locale("en").ui.costIncomplete(n));
+const withheldHtml = escapeHtml(locale("en").ui.costWithheld);
 
 function intakeFor(jurisdiction: string, language: Language = "en"): Intake {
   return { jurisdiction, change_types: ["name", "gender-marker"], documents: [], language };
@@ -236,9 +238,11 @@ function costFixture(): CorpusRecord[] {
 
 test("an unpriced step is never silently treated as $0 in the plan total", () => {
   const fx = costFixture();
+  // Pinned: unpriced-versus-lapsed is decided against the clock, and these fixture records
+  // are copies of a real one, so on the real clock they are all past their recheck date.
   const cl = buildChecklist(
     { jurisdiction: "US-ZZ", change_types: ["name"], documents: [], language: "en" },
-    undefined,
+    TEST_TODAY,
     fx,
   );
   const unpriced = cl.steps.filter((s) => !s.cost);
@@ -282,7 +286,18 @@ test("REGRESSION: a $0 fee beside an unpriced step no longer erases the cost lin
   // the unpriced SSA step gave known=0, anyVaries=false and unpriced skipped — so the
   // summary rendered "2 steps" with NO cost line at all. Absence and $0 collapsed together.
   const html = bodyOf("/checklist?jurisdiction=US-WA&change=name&change=gender-marker&doc=drivers-license&doc=ssa-card");
-  assert.ok(html.includes(unpricedHtml(1)), "the unpriced step must be disclosed, not silently dropped");
+  // On this date both steps are past their recheck date, so the price is withheld rather
+  // than absent. Either disclosure is acceptable; silence is the failure.
+  assert.ok(
+    html.includes(unpricedHtml(1)) || html.includes(withheldHtml),
+    "the unpriced or withheld step must be disclosed, not silently dropped",
+  );
+});
+
+test("a step with no cost because it LAPSED says so, and does not claim no source prices it", () => {
+  const html = bodyOf("/checklist?jurisdiction=US-WA&change=name&change=gender-marker&doc=drivers-license&doc=ssa-card");
+  assert.ok(html.includes(withheldHtml), "the withheld-cost line is missing");
+  assert.ok(!html.includes(unpricedHtml(1)) && !html.includes(unpricedHtml(2)), "a lapsed step was reported as unpriced");
 });
 
 test("every real state's checklist states how many of its steps are unpriced", () => {
@@ -290,11 +305,15 @@ test("every real state's checklist states how many of its steps are unpriced", (
   // so today every single plan is a floor. Saying so is the honest default, and it matches
   // what the relocation planner already tells people (api/relocation.ts costModel).
   for (const j of ["US-CA", "US-FL", "US-IL", "US-NY", "US-TX", "US-WA"]) {
-    const cl = buildChecklist(intakeFor(j), undefined, corpus);
-    const unpriced = cl.steps.filter((s) => !s.cost && !s.done).length;
+    const cl = buildChecklist(intakeFor(j), TEST_TODAY, corpus);
+    const unpriced = cl.steps.filter((s) => !s.cost && !s.done && !s.needs_reverification).length;
+    const withheld = cl.steps.filter((s) => !s.cost && !s.done && s.needs_reverification).length;
     const html = renderChecklistPage(cl, corpus, "en", `jurisdiction=${j}`);
     if (unpriced > 0) {
       assert.ok(html.includes(unpricedHtml(unpriced)), `${j}: ${unpriced} unpriced step(s) must be disclosed`);
+    }
+    if (withheld > 0) {
+      assert.ok(html.includes(withheldHtml), `${j}: ${withheld} step(s) with withheld cost must be disclosed`);
     }
   }
 });
@@ -306,7 +325,7 @@ test("a fully priced plan shows a plain total with no incompleteness note", () =
   const fx = [priced("zy.court-order", "court-order", 100), priced("zy.ssa", "ssa-card", 20)];
   const cl = buildChecklist(
     { jurisdiction: "US-ZY", change_types: ["name"], documents: ["court-order", "ssa-card"], language: "en" },
-    undefined,
+    TEST_TODAY,
     fx,
   );
   const html = renderChecklistPage(cl, fx, "en", "jurisdiction=US-ZY");

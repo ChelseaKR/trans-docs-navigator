@@ -138,14 +138,19 @@ export function classifyCell(
   }
 
   const ids = matching.map((r) => r.id);
-  if (matching.some(describesNoPath)) {
-    return { jurisdiction, document_type: doc, change_type: change, status: "no_path_documented", record_ids: ids };
-  }
-
   const current = matching.filter((r) => isCurrent(r, today));
   const degraded = matching.filter((r) => !isCurrent(r, today));
+  // `lapsed` is reported on every status, "no path" included. The status itself is left
+  // alone on purpose: a lapsed "no path" source is still a source that said so, and
+  // re-labelling it "documented" would invert what the record says. The flag is what lets
+  // the page say the claim is out of date instead of presenting it as a current fact.
+  const lapsed = degraded.length > 0;
+  if (matching.some(describesNoPath)) {
+    return { jurisdiction, document_type: doc, change_type: change, status: "no_path_documented", record_ids: ids, lapsed };
+  }
+
   const status = current.length === 0 || degraded.length > 0 ? "needs_reverification" : "documented";
-  return { jurisdiction, document_type: doc, change_type: change, status, record_ids: ids };
+  return { jurisdiction, document_type: doc, change_type: change, status, record_ids: ids, lapsed };
 }
 
 /**

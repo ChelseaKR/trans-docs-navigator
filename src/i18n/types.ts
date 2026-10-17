@@ -42,6 +42,23 @@ export interface UiMessages {
   staleSources: string;
   /** Sentence under `staleSources` saying what the link is and is not. */
   staleSourcesNote: string;
+  /**
+   * Page-level note shown once, above the steps, whenever at least one step on the page is
+   * past its recheck SLA. The per-step flag says THAT a step lapsed; this says what the
+   * reader will and will not see for it, what the date beside a source means, and where to
+   * go instead. It must not claim a person re-checked anything, and it must not hard-code
+   * that no one has: the per-source caption (`verifiedBy` / `notHumanVerified`) carries that
+   * fact line by line and changes on its own when a roster human verifies a record.
+   */
+  lapseNote: string;
+  /**
+   * Home-page note, computed from the live corpus at serve time. `lapsed` of `total`
+   * English records are not serveable as current today. Empty string when none are, so
+   * the note disappears by itself once records are re-verified.
+   */
+  homeLapseNote(lapsed: number, total: number): string;
+  /** Heading for the checklist section listing documents whose records are past their recheck date. */
+  gapsLapsedHeading: string;
   /** Caption for a source a REAL named roster human verified: "verified by {name}, {date}". */
   verifiedBy: string;
   /** Caption when the record's verifier is a placeholder: the honest not-yet state. */
@@ -194,6 +211,12 @@ export interface UiMessages {
    * floor rather than a cost. Mirrors the relocation planner's `costUnpriced`/`costHonesty`.
    */
   costIncomplete(unpricedSteps: number): string;
+  /**
+   * Shown in the plan summary when at least one step has no cost BECAUSE its records are
+   * past their recheck date. Distinct from `costIncomplete`, which says no cited source
+   * prices a step: here a source may well price it and we are withholding what it said.
+   */
+  costWithheld: string;
   moreHeading: string;
   seeDetailedAnswer: string;
   /** "Where to get help": legal-aid and guide referrals for the jurisdiction (corpus/referrals/). */
@@ -397,6 +420,8 @@ export interface CompareMessages {
   legendDocumented: string;
   legendNeedsReverification: string;
   legendNoPath: string;
+  /** Visible mark on a cell whose record is past its recheck date; its claim is withheld. */
+  lapsedMark: string;
   legendNotCovered: string;
 
   // Sort — a count of records, never a ranking. Exactly the neutral label the count is

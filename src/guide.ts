@@ -12,7 +12,7 @@
 import type { ChangeType, CorpusRecord, Language } from "../api/types.ts";
 import { buildChecklist } from "../api/checklist.ts";
 import { loadCorpus } from "../api/corpus.ts";
-import { page, renderChecklist, escapeHtml } from "./render.ts";
+import { page, renderChecklist, escapeHtml, lapseNoteFor } from "./render.ts";
 import { t as locale } from "./i18n/index.ts";
 import { renderHelpSection } from "./help.ts";
 import { absoluteUrl, jsonLd } from "./seo.ts";
@@ -191,6 +191,7 @@ export function renderGuidePage(stateSlug: string, topicSlug: string, lang: Lang
     breadcrumb,
     `<p>${escapeHtml(seo.guideLead(stateName, topicName))}</p>`,
     `<p class="flag" role="note">${escapeHtml(ui.verifyNote)}</p>`,
+    lapseNoteFor(checklist, lang),
     cta,
     renderChecklist(checklist, corpus, lang),
     cta,
