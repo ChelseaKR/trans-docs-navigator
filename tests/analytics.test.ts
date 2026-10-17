@@ -369,3 +369,36 @@ test("analytics negative control: Google signals turned on is caught", () => {
   const source = sabotaged("allow_google_signals: false,", "allow_google_signals: true,");
   assert.equal(config(run({ source }))["allow_google_signals"], true);
 });
+
+// #309: the site counts page views with Google Analytics 4 (ADR 0007), so no public string may
+// say the site does no tracking at all. Strings are walked from both catalogs, function-valued
+// entries by their source text, so a template literal cannot slip past.
+function catalogStrings(value: unknown, out: string[] = []): string[] {
+  if (typeof value === "string") out.push(value);
+  else if (typeof value === "function") out.push(value.toString());
+  else if (Array.isArray(value)) for (const item of value) catalogStrings(item, out);
+  else if (value && typeof value === "object") for (const item of Object.values(value)) catalogStrings(item, out);
+  return out;
+}
+
+test("analytics wording: no catalog string claims the site does no tracking or has no analytics", () => {
+  const overbroad: Record<string, RegExp> = {
+    en: /\b(?:never|not|no|without)\s+(?:be\s+)?(?:tracking|tracked|trackers?|analytics)\b(?!\s+(?:on|from|for|in|of)\b)|\bnothing about you is collected\b|\bno cookies\b/i,
+    es: /\bnunca se rastrea|\bsin rastreo\b|\bsin rastreadores\b|\bno se recopila nada sobre usted\b|\bsin cookies\b/i,
+  };
+  for (const [lang, bundle] of [["en", en], ["es", es]] as const) {
+    for (const text of catalogStrings(bundle)) {
+      const hit = overbroad[lang]!.exec(text);
+      assert.equal(hit, null, `${lang} catalog says "${hit?.[0]}" but ADR 0007 page counts run: ${text.slice(0, 120)}`);
+    }
+  }
+});
+
+test("analytics wording: the feed copy says the feeds load no analytics and does not claim they are untracked", () => {
+  assert.match(en.seo.feedIndexDescription, /no analytics on the feeds/);
+  assert.match(es.seo.feedIndexDescription, /sin analítica en los canales/);
+  assert.match(en.seo.feedChannelDescription("California"), /no analytics on the feed/);
+  assert.match(es.seo.feedChannelDescription("California"), /el feed no tiene analítica/);
+  assert.match(en.seo.feedChannelDescription("California"), /bounded server records/);
+  assert.match(es.seo.feedChannelDescription("California"), /registros acotados del servidor/);
+});

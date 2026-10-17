@@ -577,14 +577,14 @@ export const es: LocaleBundle = {
 
     feedIndexTitle: "Reciba avisos cuando cambien los registros de un estado (RSS)",
     feedIndexDescription:
-      "Suscríbase por RSS o Atom a las actualizaciones de los registros de cambio de nombre y marcador de género. Sin cuenta ni correo; los canales nunca se rastrean.",
+      "Suscríbase por RSS o Atom a las actualizaciones de los registros de cambio de nombre y marcador de género. Sin cuenta ni correo, y sin analítica en los canales.",
     feedIndexLead:
       "Elija un estado para obtener el enlace de su feed. Cada feed le indica cuándo actualizamos nuestros propios registros de ese estado — nunca una afirmación de que la ley misma cambió.",
     feedIndexAllHeading: "Todos los feeds por estado",
     feedLinkLabel: (state: string) => `Reciba avisos cuando actualicemos los registros de ${state} (RSS)`,
     feedChannelTitle: (state: string) => `${state}: registros actualizados`,
     feedChannelDescription: (state: string) =>
-      `Avisos cuando Trans Docs Navigator actualiza sus propios registros citados para ${state} — nunca un aviso de que la ley misma cambió. Suscríbase con cualquier lector de RSS o Atom. No hay cuenta, no se pide correo electrónico y no se recopila nada sobre usted para entregar este feed.`,
+      `Avisos cuando Trans Docs Navigator actualiza sus propios registros citados para ${state} — nunca un aviso de que la ley misma cambió. Suscríbase con cualquier lector de RSS o Atom. No hay cuenta, no se pide correo electrónico y el feed no tiene analítica. Como cualquier solicitud web, obtenerlo puede dejar los registros acotados del servidor que describe el Aviso de privacidad.`,
     feedEntryTitle: (count: number, state: string, date: string) =>
       `${count} registro${count === 1 ? "" : "s"} de ${state} actualizado${count === 1 ? "" : "s"} el ${date}`,
     feedEntryDescription: (count: number, state: string, date: string, docTypes: string) =>

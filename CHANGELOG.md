@@ -8,6 +8,14 @@ lives under `[Unreleased]`.
 ## [Unreleased]
 
 ### Changed
+- **Public wording no longer says the site does no tracking (#309).** Since ADR 0007 the hosted
+  preview counts page views with Google Analytics 4 (path only). The change-alert feed copy
+  (EN/ES, including each feed's channel description) said the feeds are "never tracked" and that
+  "nothing about you is collected"; it now says the feeds load no analytics and that fetching one
+  can leave the bounded server records the Privacy Notice describes. The README, SEO plan, user
+  research and responsible-technology threat-model summary were brought in line. No new data
+  collection. `tests/analytics.test.ts` fails if either catalog again claims no tracking or no
+  analytics.
 - **Lapsed records are explained in plain language, and /compare no longer prints their
   claims.** Every jurisdiction record passed its recheck date on 2026-10-12. The checklist,
   packet and guide now carry a page-level note (EN/ES) saying what is left out and what the date

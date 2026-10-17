@@ -569,14 +569,14 @@ export const en: LocaleBundle = {
 
     feedIndexTitle: "Get notified when a state's records change (RSS)",
     feedIndexDescription:
-      "Subscribe by RSS or Atom to updates for any state's name and gender-marker change records. No account or email, and the feeds are never tracked.",
+      "Subscribe by RSS or Atom to updates for any state's name and gender-marker change records. No account or email, and no analytics on the feeds.",
     feedIndexLead:
       "Pick a state to get its feed link. Each feed tells you when we update our own records for that state — never a claim that the law itself changed.",
     feedIndexAllHeading: "All state feeds",
     feedLinkLabel: (state: string) => `Get notified when we update ${state}'s records (RSS)`,
     feedChannelTitle: (state: string) => `${state}: records updated`,
     feedChannelDescription: (state: string) =>
-      `Notifications when Trans Docs Navigator updates its own cited records for ${state} — never a notification that the law itself changed. Subscribe with any RSS or Atom reader. No account, no email address, and nothing about you is collected to deliver this feed.`,
+      `Notifications when Trans Docs Navigator updates its own cited records for ${state} — never a notification that the law itself changed. Subscribe with any RSS or Atom reader. No account, no email address, and no analytics on the feed. Like any web request, fetching it can leave the bounded server records the Privacy Notice describes.`,
     feedEntryTitle: (count: number, state: string, date: string) =>
       `${count} record${count === 1 ? "" : "s"} for ${state} updated on ${date}`,
     feedEntryDescription: (count: number, state: string, date: string, docTypes: string) =>
