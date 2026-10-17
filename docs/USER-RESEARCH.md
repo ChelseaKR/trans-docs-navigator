@@ -131,7 +131,7 @@ relying**; this is exactly why the product treats freshness as a safety property
    [LGBTQ Nation, data privacy in Trump 2.0](https://www.lgbtqnation.com/2025/05/data-privacy-in-2-0-and-lgbtq-rights-what-you-need-to-know/);
    [EPIC, data-broker harms](https://epic.org/documents/data-broker-harms-to-public-officials/)).
    → *Validates "privacy is a safety property": zero server-side PII, ephemeral default,
-   client-side form-fill, no-tracker stance, strict referrer policy.*
+   client-side form-fill, page-count-only analytics (ADR 0007, added after this research), strict referrer policy.*
 
 6. **Comparable resources exist — but none combine personalization, privacy-by-design,
    bilingual delivery, and a freshness contract.** The closest is **A4TE's ID Documents
@@ -315,7 +315,7 @@ relying**; this is exactly why the product treats freshness as a safety property
 ### A4 — "The Investigator," hostile actor (the adversary the privacy model must defeat)
 - **Goal:** use the service to identify, locate, or build a list of trans users (subpoena, breach, or traffic analysis).
 - **What the model denies them:** there are **no accounts, no server-side identity inputs, and nothing persisted by default** — "the strongest protection is having nothing to hand over"; form-fill happens client-side; logs are allowlisted and PII-free (proven by the egress test); `Referrer-Policy: no-referrer` and `noindex` on user-state URLs starve traffic-pattern inference.
-- **Residual seams they'd probe:** server access logs / IP + timing (mitigated by no-PII logging, but edge/CDN logs live outside the app); the optional save/resume blob (mitigated: local-only, encrypted, selections-not-names); a poisoned corpus PR (mitigated by review + verifier gate, *if* branch protection is enforced).
+- **Residual seams they'd probe:** server access logs / IP + timing (mitigated by no-PII logging, but edge/CDN logs live outside the app); Google Analytics page counts on the hosted preview (path only, never a query string, selection or question, but Google still learns that a browser visited a path); the optional save/resume blob (mitigated: local-only, encrypted, selections-not-names); a poisoned corpus PR (mitigated by review + verifier gate, *if* branch protection is enforced).
 - **Defeats it if:** the DPIA/STRIDE pass closes the edge-log and supply-chain seams. **Wins if:** the project ever adds reminders-with-contact-info or server-side accounts — which would re-open the whole threat model (correctly kept out of v1).
 
 ---
@@ -356,7 +356,7 @@ relying**; this is exactly why the product treats freshness as a safety property
 
 ### O2 — Sky, SEO / findability owner
 - **Goal:** make sure someone searching "change gender marker California" finds cited guidance, not forum lore — without betraying the privacy posture.
-- **Values today:** the **indexing contract is code, not a doc** (`page()` defaults to `noindex`; only home/guide/legal pages opt in), `robots.txt` + `sitemap.xml` with hreflang, the **seo-lint gate**, and a measurement plan that uses **Search Console (no client cookies)** plus referrer-*host*-only server logs — compatible with the no-tracker stance.
+- **Values today:** the **indexing contract is code, not a doc** (`page()` defaults to `noindex`; only home/guide/legal pages opt in), `robots.txt` + `sitemap.xml` with hreflang, the **seo-lint gate**, and a measurement plan that uses **Search Console (no client cookies)** plus referrer-*host*-only server logs — compatible with the rule that no choice or question reaches a third party (the site has counted page views with Google Analytics 4 since 2026-09-17, path only; ADR 0007).
 - **Gets stuck:** the **real ranking payoff is blocked until there's a public domain** (Search Console verification, `SITE_ORIGIN`); the corpus's content is the ranking asset but only 5 states exist.
 - **Wants next:** the domain + Search Console; native-Spanish guide ranking; off-page links from advocacy orgs (E-E-A-T) — which is relationship work, not automation.
 - **Adopts / walks:** The strategy is sound; **value is realized only post-deploy.** The tension to never lose: discoverability is the mission, but user-state URLs must stay out of the index.

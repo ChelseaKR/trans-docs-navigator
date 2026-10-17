@@ -45,7 +45,7 @@
 > planner; see ADR 0007.) So this is not a generic "add meta tags and a sitemap" plan. The real work
 > is building an indexable content surface for the guidance that today only exists
 > behind a form, while keeping user-state URLs uncrawlable and measuring without
-> trackers.
+> collecting anyone's choices or questions.
 
 ## The headline finding
 
@@ -79,7 +79,7 @@ missed opportunity · **P2** = polish.
 | 9 | No `robots.txt` — crawlers get a 404; no place to point a sitemap or disallow user-state paths | P1 | `api/router.ts` |
 | 10 | No `sitemap.xml` — nothing tells search engines which URLs are canonical and translated | P1 | new |
 | 11 | No favicon or web manifest — affects SERP presentation and the install/share affordance | P2 | `public/` |
-| 12 | No measurement path compatible with the no-tracker stance | P1 | ops |
+| 12 | No measurement path that keeps visitor choices and questions off third-party servers | P1 | ops |
 
 **What is already right** (worth keeping as the plan changes things):
 
@@ -187,9 +187,14 @@ front of people at the moment they search, which is the entire point of the proj
 3. Regenerate as part of the build so it never goes stale; assert in CI that every
    indexable route appears and no excluded route does.
 
-### Phase 4 — Measurement without trackers (privacy-compatible)
+### Phase 4 — Measurement that stays privacy-compatible
 
-The no-analytics stance is correct and worth protecting. You can still measure:
+> **Updated 2026-10-17 (#309).** This phase was written when the site had no analytics. Since
+> 2026-09-17 the hosted preview counts page views with Google Analytics 4 (path only; ADR 0007).
+> The measures below are the ones that add nothing on top of that, and the rule that still
+> holds is that no choice, question or identity detail reaches a third party.
+
+Search-engine and server-side measures add no further third-party script:
 
 1. **Google Search Console** (and Bing Webmaster Tools). These use the search engine's
    own crawl and click data, set no client-side cookies, and collect nothing the user's
@@ -201,8 +206,9 @@ The no-analytics stance is correct and worth protecting. You can still measure:
    which guide pages draw traffic without logging a full referrer, query, or direct
    identity field. Treat even this metadata as potentially sensitive; update the notice,
    retention inventory, logger tests, and privacy gates before shipping.
-3. No third-party analytics, no client beacons. Keep it that way; it's a differentiator
-   and a safety property.
+3. No additional third-party analytics and no client beacons beyond the GA4 page counts in
+   ADR 0007. Anything that would send a query string, a selection or a question to a third
+   party stays out; that is a safety property.
 
 ## Sequencing
 
