@@ -54,7 +54,7 @@ jobs:
         # npm registry, and the apt/Microsoft/Google mirrors that
         # `npx playwright install --with-deps chromium` touches for the G9
         # pseudolocale-overflow gate inside `make verify`.
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
         with:
           egress-policy: block
           allowed-endpoints: >
@@ -113,7 +113,7 @@ jobs:
         # GitHub Actions runner infra, the npm registry, and the same
         # apt/Microsoft/Google mirrors `verify`'s Chromium install touches (this
         # job installs Chromium too, for the D2 real-browser journey).
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
         with:
           egress-policy: block
           allowed-endpoints: >
@@ -161,7 +161,7 @@ jobs:
         # background calls to Google (autofill, account/sync, GCM push) — this
         # job never runs `playwright install`, so unlike `verify`/`smoke-journey`
         # there is no Playwright-CDN or apt-mirror egress here.
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
         with:
           egress-policy: block
           allowed-endpoints: >
@@ -263,7 +263,7 @@ jobs:
         # (account/sync, GCM push, gstatic assets) — Lighthouse launches the
         # runner image's preinstalled Chrome, so unlike `verify`/`smoke-journey`
         # there is no Chromium *download* here.
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
         with:
           egress-policy: block
           allowed-endpoints: >
@@ -322,7 +322,7 @@ jobs:
         # Flipped `audit` → `block` (#158). This job does no checkout and makes
         # no tool calls of its own — it only reads `needs.lighthouse.result` — so
         # the only OBSERVED egress is GitHub Actions runner infra itself.
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
         with:
           egress-policy: block
           allowed-endpoints: >
@@ -349,7 +349,7 @@ jobs:
         # in completed audit-mode runs of this job (e.g. run 34003436863):
         # GitHub Actions runner infra plus Semgrep's own rule-fetch/telemetry
         # endpoints (no npm ci in this job).
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
         with:
           egress-policy: block
           allowed-endpoints: >
@@ -394,7 +394,7 @@ jobs:
         # GitHub Actions runner infra plus `api.github.com`, which
         # gitleaks-action calls to resolve the PR's commit range (see the
         # `pull-requests: read` comment above).
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
         with:
           egress-policy: block
           allowed-endpoints: >
@@ -436,7 +436,7 @@ jobs:
         # Flipped `audit` → `block` (#158). Allowlist is the domain set OBSERVED
         # in completed audit-mode runs of this job (e.g. run 34003436863):
         # GitHub Actions runner infra plus PyPI, for `pip install zizmor`.
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
         with:
           egress-policy: block
           allowed-endpoints: >
@@ -477,7 +477,7 @@ jobs:
         # share of the internet) — exactly the "too-broad is theater" failure
         # mode #158 warns against. Better an honest `audit` here than a `block`
         # that is either randomly red or silently wide open.
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
         with:
           egress-policy: audit
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
