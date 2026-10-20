@@ -1,0 +1,305 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ChelseaKR/trans-docs-navigator/api/v1/referrals.schema.json",
+  "title": "GET /api/v1/referrals/{code}",
+  "description": "Referrals for one jurisdiction, in this project's shape and in Open Referral HSDS shape.",
+  "type": "object",
+  "properties": {
+    "api_version": {
+      "const": "1"
+    },
+    "generated_on": {
+      "type": "string",
+      "description": "ISO date this response's freshness was evaluated against."
+    },
+    "disclosure": {
+      "$ref": "#/$defs/disclosure"
+    },
+    "verification": {
+      "$ref": "#/$defs/verification"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "jurisdiction": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "covered",
+            "national-only",
+            "not_covered"
+          ],
+          "description": "'national-only' means the list is non-empty but holds only national organizations: no referral scoped to this jurisdiction has been researched."
+        },
+        "coverage_note": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Non-null for 'national-only' and 'not_covered'."
+        },
+        "local_referral_count": {
+          "type": "integer",
+          "description": "Referrals scoped to this jurisdiction specifically."
+        },
+        "referrals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/referral"
+          }
+        },
+        "hsds": {
+          "type": "object",
+          "properties": {
+            "organizations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "null",
+                    "description": "Always null: this project holds no contact data, and an invented one would be a lie."
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "description",
+                  "url",
+                  "email"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "organizations"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "jurisdiction",
+        "status",
+        "coverage_note",
+        "local_referral_count",
+        "referrals",
+        "hsds"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "api_version",
+    "generated_on",
+    "disclosure",
+    "verification",
+    "data"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "disclosure": {
+      "type": "object",
+      "description": "Guarantees that travel with the data. A consumer must display these.",
+      "properties": {
+        "not_legal_advice": {
+          "type": "string"
+        },
+        "ai_assisted": {
+          "type": "string"
+        },
+        "terms_path": {
+          "type": "string"
+        },
+        "consumer_terms": {
+          "type": "null",
+          "description": "Always null. Terms for API consumers are a legal judgement this project has not obtained; an explicit absence is published rather than invented wording."
+        },
+        "consumer_terms_status": {
+          "const": "pending-counsel-review"
+        },
+        "license": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "not_legal_advice",
+        "ai_assisted",
+        "terms_path",
+        "consumer_terms",
+        "consumer_terms_status",
+        "license"
+      ],
+      "additionalProperties": false
+    },
+    "verification": {
+      "type": "object",
+      "description": "Corpus-wide honesty header, present on every response.",
+      "properties": {
+        "human_verified_records": {
+          "type": "integer",
+          "description": "Records in this response verified by a named human. Zero today."
+        },
+        "total_records": {
+          "type": "integer"
+        },
+        "readiness": {
+          "enum": [
+            "demonstration",
+            "partially-verified",
+            "verified"
+          ]
+        }
+      },
+      "required": [
+        "human_verified_records",
+        "total_records",
+        "readiness"
+      ],
+      "additionalProperties": false
+    },
+    "referral": {
+      "type": "object",
+      "description": "A legal-aid or official referral, with the same mandatory provenance as a record.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "jurisdiction": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "note": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            },
+            "es": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "en",
+            "es"
+          ],
+          "additionalProperties": false
+        },
+        "scope": {
+          "enum": [
+            "jurisdiction",
+            "national"
+          ],
+          "description": "'national' means this organization is returned for every jurisdiction. A non-empty list of national referrals is not evidence of local coverage."
+        },
+        "source": {
+          "type": "object",
+          "description": "Provenance for a single substantive claim. Guardrail 1: no claim without this.",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "The official page this claim is cited to."
+            },
+            "title": {
+              "type": "string"
+            },
+            "last_verified": {
+              "type": "string",
+              "description": "ISO date (YYYY-MM-DD)."
+            },
+            "verifier": {
+              "type": "string",
+              "description": "The name recorded as verifier. May be a placeholder — see verifier_is_placeholder."
+            }
+          },
+          "required": [
+            "url",
+            "title",
+            "last_verified",
+            "verifier"
+          ],
+          "additionalProperties": false
+        },
+        "verification_status": {
+          "enum": [
+            "verified",
+            "needs_reverification",
+            "unverified"
+          ],
+          "description": "What a reviewer wrote down about this record. NOT, by itself, evidence that a human checked it — read human_verified for that."
+        },
+        "human_verified": {
+          "type": "boolean",
+          "description": "True only when source.verifier is a real, non-placeholder human on the project's roster. False for every record in the corpus today."
+        },
+        "verifier_is_placeholder": {
+          "type": "boolean",
+          "description": "True when source.verifier is a roster placeholder such as 'Pilot Seed Reviewer'."
+        },
+        "serving_status": {
+          "enum": [
+            "current",
+            "degraded"
+          ],
+          "description": "What freshness says as of generated_on. A 'degraded' record must not be republished as a current statement of the law."
+        },
+        "serving_reason": {
+          "enum": [
+            "verified-within-sla",
+            "past-sla",
+            "needs-reverification",
+            "unverified",
+            "future-date"
+          ]
+        },
+        "age_days": {
+          "type": "integer",
+          "description": "Days between source.last_verified and generated_on. Negative means a future-dated record."
+        },
+        "recheck_sla_days": {
+          "type": "integer"
+        },
+        "drift_watchable": {
+          "type": "boolean",
+          "description": "False when nothing can automatically detect this cited page changing — no committed drift baseline, or a source the pipeline cannot fetch."
+        }
+      },
+      "required": [
+        "id",
+        "jurisdiction",
+        "name",
+        "url",
+        "note",
+        "scope",
+        "source",
+        "verification_status",
+        "human_verified",
+        "verifier_is_placeholder",
+        "serving_status",
+        "serving_reason",
+        "age_days",
+        "recheck_sla_days",
+        "drift_watchable"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

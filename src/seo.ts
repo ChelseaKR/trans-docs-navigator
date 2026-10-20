@@ -124,6 +124,10 @@ export function robotsTxt(): string {
     // disallows above.
     "Disallow: /compare?",
     "Disallow: /forms/",
+    // The partner read-API (api/public-api.ts). Machine-readable JSON is not a ranking
+    // surface, and /api/v1/checklist carries the same document/change selections
+    // /checklist does — so the whole prefix is blocked, not just the query-bearing route.
+    "Disallow: /api/",
     "Disallow: /healthz",
     "",
     `Sitemap: ${SITE_ORIGIN}/sitemap.xml`,

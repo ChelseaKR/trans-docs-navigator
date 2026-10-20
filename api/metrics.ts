@@ -52,6 +52,11 @@ const EXACT_ROUTES = new Set([
   "/sw.js",
   "/terms",
   "/version",
+  // Partner read-API (api/public-api.ts). Enumerated so the two collection endpoints keep
+  // their own labels; the two id-bearing ones are folded to templates in metricRoute below.
+  "/api/v1/corpus",
+  "/api/v1/jurisdictions",
+  "/api/v1/checklist",
 ]);
 
 /** Bound every path to a low-cardinality route-template label. */
@@ -62,6 +67,11 @@ export function metricRoute(path: string): string {
   if (path.startsWith("/forms/fixtures/")) return "/forms/fixtures/:file";
   if (path.startsWith("/forms/")) return "/forms/:form";
   if (path.startsWith("/guide/")) return "/guide/:state/:topic";
+  // Bound the jurisdiction id out of the label: it is a bounded enum, but 51 label values
+  // per status code is still cardinality no dashboard wants, and the same reason the
+  // /feeds and /guide routes above are templated.
+  if (path.startsWith("/api/v1/jurisdictions/")) return "/api/v1/jurisdictions/:jurisdiction";
+  if (path.startsWith("/api/v1/referrals/")) return "/api/v1/referrals/:jurisdiction";
   return "_unmatched";
 }
 
