@@ -484,7 +484,16 @@ jobs:
         with:
           persist-credentials: false
       - name: Build container
-        run: docker build -t trans-docs-navigator:ci .
+        run: |
+          # public.ecr.aws rate-limits anonymous pulls per runner IP ("429 Data limit
+          # exceeded"), which failed this step on unchanged code. Retry only the build,
+          # three attempts with a growing pause; a real Dockerfile error fails all three
+          # and the step still exits non-zero.
+          for attempt in 1 2 3; do
+            if docker build -t trans-docs-navigator:ci .; then exit 0; fi
+            [ "$attempt" -lt 3 ] && sleep $((attempt * 45))
+          done
+          exit 1
       - uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
         with:
           terraform_version: "1.9.5"
