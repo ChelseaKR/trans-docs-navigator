@@ -57,7 +57,16 @@ jobs:
 
       - name: Build container
         # Same image the deploy path ships (Dockerfile at repo root).
-        run: docker build -t trans-docs-navigator:scan .
+        run: |
+          # public.ecr.aws rate-limits anonymous pulls per runner IP ("429 Data limit
+          # exceeded"), which failed this step on unchanged code. Retry only the build,
+          # three attempts with a growing pause; a real Dockerfile error fails all three
+          # and the step still exits non-zero.
+          for attempt in 1 2 3; do
+            if docker build -t trans-docs-navigator:scan .; then exit 0; fi
+            [ "$attempt" -lt 3 ] && sleep $((attempt * 45))
+          done
+          exit 1
 
       - name: Trivy image scan (BLOCKING on HIGH,CRITICAL)
         # Fails on fixable HIGH/CRITICAL CVEs in OS packages and app libraries.

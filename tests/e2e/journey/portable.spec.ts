@@ -27,6 +27,16 @@ const ARTIFACT = join(REPO_ROOT, "dist", "portable", "trans-docs-navigator.html"
 /** The corpus is seeded in one pass, so it lapses on one day; this is a day after it. */
 const AFTER_EVERYTHING_LAPSES = "2026-12-01T12:00:00Z";
 
+/**
+ * A device-clock day on which the seeded corpus is still inside every record's re-check
+ * window (the newest verification is 2026-09-06; the shortest SLA is 30 days). The
+ * first spec is about the portable edition running offline, not about how fresh the
+ * corpus is on the day CI happens to run, so it pins the device clock here. Without the
+ * pin it went red on 2026-10-12, when the last record's 90-day window closed. The
+ * lapse itself is still asserted, in the spec below.
+ */
+const WHILE_CORPUS_IS_CURRENT = "2026-09-10T12:00:00Z";
+
 test.beforeAll(() => {
   execFileSync(
     process.execPath,
@@ -38,6 +48,7 @@ test.beforeAll(() => {
 test.describe("EXP-02 — the portable edition, from file:// with the network off", () => {
   test("runs intake, the checklist, /move and /compare with no request off the device", async ({ page, context }) => {
     await context.setOffline(true);
+    await page.clock.install({ time: new Date(WHILE_CORPUS_IS_CURRENT) });
     const offDevice: string[] = [];
     page.on("request", (request) => {
       const url = request.url();
